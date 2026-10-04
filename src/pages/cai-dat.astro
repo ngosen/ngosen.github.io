@@ -22,7 +22,7 @@ const sourceGuide = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md#cài-sang-m
 
 <Page
   title="Cài đặt Ngó Sen"
-  description="Cài Ngó Sen bằng một dòng lệnh, bằng gói tải tay, hoặc tự dựng từ mã. Kèm việc cần làm sau khi cài và cách cập nhật."
+  description="Cài Ngó Sen bằng một dòng lệnh, bằng gói tải tay, hoặc tự dựng từ mã. Kèm việc cần làm sau khi cài, cách cập nhật và cách gỡ."
   heading="Cài đặt"
 >
   <p slot="lede">
@@ -146,6 +146,56 @@ cmake --build build -j8
 sudo cmake --install build`}</code></pre>
   <p>
     Dựng xong còn phải bật máy chủ nền; các lệnh đó nằm ở bước 4 của hướng dẫn trên.
+  </p>
+
+  <h2 id="go">Gỡ cài đặt</h2>
+  <p>Thứ tự giống nhau trên mọi bản Linux; chỉ lệnh gỡ gói là khác.</p>
+  <ol>
+    <li>Mở “Fcitx5 Configuration” và bỏ Ngó Sen khỏi danh sách bộ gõ.</li>
+    <li>
+      Tắt máy chủ nền của tài khoản đang dùng. Làm trước khi gỡ gói, vì không phải gói nào cũng tự
+      dừng nó:
+      <pre tabindex="0"><code>sudo systemctl disable --now fcitx5-lotus-server@$(whoami).service</code></pre>
+    </li>
+    <li>
+      Gỡ gói bằng trình quản lý gói của máy:
+      <pre tabindex="0"><code>{`sudo dnf remove fcitx5-ngosen       # Fedora
+sudo apt remove fcitx5-ngosen       # Ubuntu, Debian
+sudo pacman -R fcitx5-ngosen        # Arch, CachyOS
+sudo zypper remove fcitx5-ngosen    # openSUSE`}</code></pre>
+    </li>
+    <li>
+      Khởi động lại fcitx5:
+      <pre tabindex="0"><code>fcitx5 -rd</code></pre>
+    </li>
+  </ol>
+  <p>
+    Trên Fedora, <code>dnf</code> gỡ luôn những gói được kéo theo lúc cài mà nay không còn gói nào cần.
+    Nó in danh sách ra trước khi làm; đọc danh sách rồi mới đồng ý.
+  </p>
+  <p>Hai thứ còn lại trên máy sau khi gỡ, vì trình quản lý gói không đụng tới:</p>
+  <ul>
+    <li>
+      Cấu hình của bộ gõ, là các tệp <code>lotus*.conf</code> trong <code>~/.config/fcitx5/conf/</code>.
+      Giữ lại thì lần cài sau dùng tiếp được; không cần nữa thì xoá.
+    </li>
+    <li>
+      Tài khoản hệ thống <code>uinput_proxy</code> mà máy chủ nền dùng. Để lại không sao; muốn xoá thì
+      chạy <code>sudo userdel uinput_proxy</code>.
+    </li>
+  </ul>
+  <p>
+    Bản tự dựng từ mã thì gỡ ngay trong thư mục <code>ngosen</code> đã dựng, sau bước tắt máy chủ nền:
+  </p>
+  <pre tabindex="0"><code>sudo cmake --build build --target uninstall</code></pre>
+  <p>
+    Muốn quay về fcitx5-lotus thì gỡ xong cài gói của bản gốc. Hai bản dùng chung tên tệp cấu hình nên
+    cấu hình cũ dùng tiếp được.
+  </p>
+  <p>
+    Đã thử tới đâu: lệnh gỡ gói đã chạy với gói của bản 3.5.10-4 trong container Fedora 44, Ubuntu
+    24.04, Arch và openSUSE Tumbleweed, cả bốn gỡ sạch tệp của gói. Bước tắt máy chủ nền chưa thử,
+    vì container không chạy trình quản lý dịch vụ. Lệnh gỡ bản tự dựng cũng chưa thử.
   </p>
 
   <h2 id="nixos">NixOS</h2>
