@@ -1,0 +1,209 @@
+---
+import Page from '../layouts/Page.astro';
+import InstallStrip from '../components/InstallStrip.astro';
+import { DISTRIBUTIONS, LEVELS, REPO } from '../data/site';
+
+// File names as listed in the release notes; the asterisk stands for the version.
+const files: Record<string, string> = {
+  'Fedora 44': 'fcitx5-ngosen-*.fc44.x86_64.rpm',
+  'Fedora 43': 'fcitx5-ngosen-*.fc43.x86_64.rpm',
+  CachyOS: 'fcitx5-ngosen-*-x86_64.pkg.tar.zst',
+  Arch: 'fcitx5-ngosen-*-x86_64.pkg.tar.zst',
+  'Ubuntu 24.04': 'fcitx5-ngosen_*_noble_amd64.deb',
+  'Ubuntu 22.04': 'fcitx5-ngosen_*_jammy_amd64.deb',
+  'Ubuntu 26.04': 'fcitx5-ngosen_*_resolute_amd64.deb',
+  'Debian 12': 'fcitx5-ngosen_*_bookworm_amd64.deb',
+  'Debian 13': 'fcitx5-ngosen_*_trixie_amd64.deb',
+  'openSUSE Tumbleweed': 'fcitx5-ngosen-*.opensuse-tumbleweed.x86_64.rpm',
+};
+
+const sourceGuide = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md#cài-sang-máy-khác`;
+---
+
+<Page
+  title="Cài đặt Ngó Sen"
+  description="Cài Ngó Sen bằng một dòng lệnh, bằng gói tải tay, hoặc tự dựng từ mã. Kèm việc cần làm sau khi cài và cách cập nhật."
+  heading="Cài đặt"
+>
+  <p slot="lede">
+    Một dòng lệnh cho mười bản Linux trên máy x86_64. Bản khác thì tự dựng từ mã.
+  </p>
+
+  <h2 id="mot-dong-lenh">Cài bằng một dòng lệnh</h2>
+  <InstallStrip inset />
+  <p>Lệnh này làm lần lượt các việc sau:</p>
+  <ol>
+    <li>Nhận ra bản Linux của máy và chọn đúng gói trong bản phát hành mới nhất trên GitHub.</li>
+    <li>In ra gói sẽ cài và hỏi lại. Trả lời <kbd>c</kbd> thì mới đi tiếp; bấm Enter là dừng.</li>
+    <li>Tải gói về và đối chiếu mã băm với tệp <code>SHA256SUMS</code>. Không khớp thì không cài.</li>
+    <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper), lúc này máy hỏi mật khẩu sudo.</li>
+    <li>Bật và khởi động lại máy chủ nền cho tài khoản đang dùng.</li>
+  </ol>
+  <p>
+    Gói <code>fcitx5-lotus</code> nếu có trên máy sẽ bị thay, vì hai gói dùng chung tên tệp và không cài
+    song song được. Cấu hình trong <code>~/.config/fcitx5</code> giữ nguyên. Kịch bản làm gì thì đọc
+    được trong <a href={`${REPO}/blob/ban-dung/install.sh`}>install.sh</a>.
+  </p>
+  <p>
+    Các gói không có chữ ký số. Thứ bảo đảm tệp tải về đúng là tệp đã phát hành là mã băm, lấy qua
+    HTTPS từ GitHub.
+  </p>
+
+  <h2 id="ban-nao">Bản Linux nào có gói</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Bản Linux và tệp</th>
+          <th scope="col">Đã thử tới đâu</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          DISTRIBUTIONS.map((item) => (
+            <tr>
+              <th scope="row">
+                {item.name}
+                <code class="file">{files[item.name]}</code>
+              </th>
+              <td>
+                <span class="stamp" data-level={item.level}>
+                  {LEVELS[item.level].label}
+                </span>
+                <span class="basis">{item.basis}</span>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <p>
+    “Chỉ dựng” nghĩa là gói dựng được và qua bộ kiểm lúc dựng, chưa ai gõ thử trên bản Linux đó. Tình
+    trạng ngày 04/10/2026.
+  </p>
+
+  <h2 id="sau-khi-cai">Cài xong, còn ba việc</h2>
+  <ol>
+    <li>
+      Khởi động lại fcitx5:
+      <pre tabindex="0"><code>fcitx5 -rd</code></pre>
+    </li>
+    <li>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</li>
+    <li>Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”.</li>
+  </ol>
+  <p>
+    Nên chọn chế độ gõ mặc định là <code>Uinput</code> trong cài đặt Ngó Sen. Đây là chế độ được dùng
+    hằng ngày và được đo. Chế độ Surrounding Text không được sửa ở bản này.
+  </p>
+
+  <h2 id="tai-tay">Không muốn chạy kịch bản tải từ mạng</h2>
+  <p>
+    Tải gói ở trang <a href={`${REPO}/releases`}>Releases</a>, chọn tệp theo bảng trên, rồi đối chiếu
+    mã băm:
+  </p>
+  <pre tabindex="0"><code>sha256sum -c SHA256SUMS --ignore-missing</code></pre>
+  <p>Cài gói bằng trình quản lý gói của máy, sau đó bật máy chủ nền rồi khởi động lại fcitx5:</p>
+  <pre tabindex="0"><code>{`sudo systemctl enable --now fcitx5-lotus-server@$(whoami).service
+sudo systemctl restart fcitx5-lotus-server@$(whoami).service
+fcitx5 -rd`}</code></pre>
+
+  <h2 id="cap-nhat">Cập nhật</h2>
+  <p>
+    Chạy lại đúng dòng lệnh cài. Không có cơ chế tự cập nhật. Nếu cài bằng tay thì sau khi cài gói mới
+    phải khởi động lại máy chủ nền:
+  </p>
+  <pre tabindex="0"><code>{`sudo systemctl restart fcitx5-lotus-server@$(whoami).service
+fcitx5 -rd`}</code></pre>
+  <p>
+    Cài gói mới chỉ thay tệp trên đĩa. Máy chủ nền đang chạy vẫn là bản cũ cho tới khi khởi động lại,
+    và bản cũ không hiểu hết lệnh của bản mới nên chữ có thể sai ở mọi ứng dụng.
+  </p>
+
+  <h2 id="tu-lotus">Đang dùng fcitx5-lotus</h2>
+  <p>
+    Dòng lệnh cài tự thay gói <code>fcitx5-lotus</code> và giữ cấu hình cũ. Trên Arch và CachyOS, nếu
+    máy có gói phụ <code>fcitx5-lotus-openrc</code> hoặc <code>fcitx5-lotus-runit</code> thì kịch bản
+    dừng lại và chỉ lệnh gỡ, vì hai gói đó cần <code>fcitx5-lotus</code>.
+  </p>
+  <p>
+    Máy từng cài bản gốc, hoặc Ngó Sen trước ngày 26/09/2026, còn để tài khoản <code>uinput_proxy</code>
+    trong nhóm <code>input</code>, nhóm đọc được mọi bàn phím. Các gói dựng sẵn tự gỡ khi cài. Tự dựng
+    từ mã thì gỡ một lần, rồi khởi động lại máy chủ nền:
+  </p>
+  <pre tabindex="0"><code>sudo gpasswd -d uinput_proxy input</code></pre>
+
+  <h2 id="tu-dung">Tự dựng từ mã</h2>
+  <p>
+    Dành cho bản Linux chưa có gói, hoặc khi muốn tự dựng. Làm theo mục
+    <a href={sourceGuide}>Cài sang máy khác</a> trong kho mã. Hai điều dễ sai: gỡ gói Lotus đóng sẵn
+    trước, và cài vào <code>/usr</code>.
+  </p>
+  <pre tabindex="0"><code>{`git clone --recurse-submodules -b ban-dung https://github.com/ngosen/ngosen.git
+cd ngosen
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib
+cmake --build build -j8
+sudo cmake --install build`}</code></pre>
+  <p>
+    Dựng xong còn phải bật máy chủ nền; các lệnh đó nằm ở bước 4 của hướng dẫn trên.
+  </p>
+
+  <h2 id="nixos">NixOS</h2>
+  <p>
+    Ngó Sen không có gói Nix. Công thức Nix thừa hưởng từ bản gốc dựng mã của bản gốc chứ không dựng mã
+    ở đây, nên đã gỡ. Trên NixOS hãy dùng
+    <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a>.
+  </p>
+</Page>
+
+<style>
+  .basis {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .file {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: var(--step--1);
+    font-weight: 400;
+    background: none;
+    padding: 0;
+    color: var(--ink-muted);
+    overflow-wrap: anywhere;
+  }
+
+  tbody th {
+    width: 55%;
+  }
+
+  @media (max-width: 40rem) {
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+
+    tr {
+      display: grid;
+      gap: 0.5rem;
+      padding-block: 0.9rem;
+      border-bottom: 1px solid var(--paper-edge);
+    }
+
+    tbody th,
+    td {
+      width: auto;
+      padding: 0;
+      border: 0;
+    }
+  }
+
+  li pre {
+    margin-top: 0.5rem;
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+import { REPO } from '../data/site';
+---
+
+<footer class="site-footer" lang="vi">
+  <div class="inner">
+    <p class="origin">
+      Ngó Sen tách ra từ
+      <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a>; fcitx5-lotus lại là bản
+      fork của <a href="https://github.com/thanhpy2009/VMK">bộ gõ VMK</a>. Lõi ghép chữ là bamboo-core. Giấy
+      phép GPL-3.0-or-later.
+    </p>
+    <p>
+      Người giữ dự án chỉ vibecode dự án này và làm một mình. Mã để công khai cho ai cần thì lấy dùng,
+      không hứa hỗ trợ.
+    </p>
+    <ul>
+      <li><a href={REPO}>Mã nguồn</a></li>
+      <li><a href={`${REPO}/blob/ban-dung/CHANGELOG.md`}>Nhật ký thay đổi</a></li>
+      <li><a href={`${REPO}/releases`}>Các bản phát hành</a></li>
+      <li><a href="/rss.xml">RSS của blog</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--strip);
+    color: var(--on-strip);
+    margin-top: clamp(3rem, 8vw, 6rem);
+  }
+
+  .inner {
+    max-width: 78rem;
+    margin-inline: auto;
+    padding: 2.5rem var(--gutter) 3rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    max-width: var(--measure);
+    color: var(--on-strip-muted);
+  }
+
+  .origin {
+    color: var(--on-strip);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.6rem;
+    font-family: var(--font-legend);
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  a:focus-visible {
+    outline-color: var(--on-strip);
+  }
+</style>

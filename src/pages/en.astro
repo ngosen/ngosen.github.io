@@ -1,0 +1,104 @@
+---
+import Page from '../layouts/Page.astro';
+import { DISTRIBUTIONS, INSTALL_COMMAND, REPO, type Level } from '../data/site';
+
+const levels: Record<Level, string> = {
+  daily: 'Used daily',
+  light: 'Used lightly',
+  container: 'Installed in a container',
+  built: 'Builds only',
+};
+---
+
+<Page
+  title="Ngó Sen: a Vietnamese input method for Linux"
+  description="Ngó Sen is a Vietnamese input method for fcitx5, forked from fcitx5-lotus. One-line install, and an honest list of where it has been tested."
+  heading="Ngó Sen"
+  lang="en"
+>
+  <p slot="lede">
+    A Vietnamese input method for fcitx5 on Linux. The maintainer only vibecodes this project: an AI
+    coding agent writes the code, and the maintainer measures the result and types with it every day.
+  </p>
+
+  <p>
+    Ngó Sen (“lotus stem”) is a fork of
+    <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a> 3.5.10, itself a fork of
+    <a href="https://github.com/thanhpy2009/VMK">VMK</a>, and stays under GPL-3.0-or-later. It is kept
+    by one person and published as is, with no promise of support. The rest of this site is in
+    Vietnamese.
+  </p>
+
+  <h2 id="install">Install</h2>
+  <pre tabindex="0"><code>{INSTALL_COMMAND}</code></pre>
+  <p>
+    The script picks the prebuilt package for your distribution from the latest GitHub release, asks
+    before it downloads the package, checks the file against <code>SHA256SUMS</code>, installs it with
+    your package manager and starts the background server for your account. It replaces
+    <code>fcitx5-lotus</code> if that is installed; your configuration is kept. Its prompts are in
+    Vietnamese: answer <kbd>c</kbd> to continue. The source is
+    <a href={`${REPO}/blob/ban-dung/install.sh`}>install.sh</a>.
+  </p>
+  <p>Then:</p>
+  <ol>
+    <li>Restart fcitx5 with <code>fcitx5 -rd</code>.</li>
+    <li>Open “Fcitx5 Configuration” and add the input method named Ngó Sen.</li>
+    <li>On KDE Wayland, select “Fcitx 5” under System Settings, Virtual Keyboard.</li>
+  </ol>
+
+  <h2 id="tested">Where it has been tested</h2>
+  <p>Packages exist for ten distributions on x86_64. A package that builds is not a package that works, so each one is labelled by how far it was tested, as of 4 October 2026.</p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Distribution</th>
+          <th scope="col">Tested level</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          DISTRIBUTIONS.map((item) => (
+            <tr>
+              <th scope="row">{item.name}</th>
+              <td>
+                <span class="stamp" data-level={item.level}>
+                  {levels[item.level]}
+                </span>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <p>
+    “Used daily” means the maintainer types on that system every day, on KDE Plasma Wayland; on CachyOS
+    that is a build from source, and the prebuilt package has only been installed in a container.
+    “Builds only” means the package builds and passes the test suite at build time; nobody has typed
+    with it there.
+  </p>
+
+  <h2 id="differences">What differs from fcitx5-lotus</h2>
+  <ul>
+    <li>
+      Text no longer disappears in the Facebook Messenger compose box in uinput mode: 861 replacements
+      measured on Edge, none lost.
+    </li>
+    <li>The first letter is no longer doubled in browser address bars.</li>
+    <li>LibreOffice Writer went from 30 to 36 wrong words out of 60 to none.</li>
+    <li>
+      The background server that presses backspace for the input method opens pointer devices only,
+      never a keyboard, and identifies its client by uid.
+    </li>
+    <li>26 automated tests instead of 9, run in every package build.</li>
+  </ul>
+  <p>
+    Not fixed: Surrounding Text mode is still broken, and if the background server dies during a
+    replacement the keyboard stops with it. All measurements were made typing Telex; VNI has not been
+    checked.
+  </p>
+  <p>
+    Source, releases and the changelog are at <a href={REPO}>github.com/ngosen/ngosen</a>.
+  </p>
+</Page>

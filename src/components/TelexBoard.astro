@@ -1,0 +1,88 @@
+---
+// What each Telex key adds, shown on the key that does it. Checked against the composing core with
+// tools/telex-wasm/check.mjs.
+const marks: Record<string, string> = {
+  s: 'á',
+  f: 'à',
+  r: 'ả',
+  x: 'ã',
+  j: 'ạ',
+  a: 'â',
+  e: 'ê',
+  o: 'ô',
+  w: 'ư',
+  d: 'đ',
+  z: 'bỏ',
+};
+
+const rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
+---
+
+<div class="board" role="img" aria-label="Bàn phím với các phím Telex: s f r x j thêm dấu thanh, a e o w d thêm mũ, móc hoặc gạch, z bỏ dấu.">
+  {
+    rows.map((row, index) => (
+      <div class="row" data-row={index}>
+        {[...row].map((letter) => (
+          <span class="key" data-plain={marks[letter] ? undefined : ''}>
+            <span class="letter">{letter}</span>
+            {marks[letter] && <span class="mark">{marks[letter]}</span>}
+          </span>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .board {
+    display: grid;
+    gap: clamp(0.4rem, 1vw, 0.7rem);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    gap: clamp(0.2rem, 0.8vw, 0.6rem);
+  }
+
+  /* Each key spans two tracks, so the lower rows can sit half a key to the right. */
+  .row .key {
+    grid-column: span 2;
+  }
+
+  .row[data-row='1'] .key:first-child {
+    grid-column: 2 / span 2;
+  }
+
+  .row[data-row='2'] .key:first-child {
+    grid-column: 4 / span 2;
+  }
+
+  .key {
+    min-width: 0;
+    min-height: clamp(2.9rem, 7.5vw, 5rem);
+    padding: 0.3em 0.35em 0.2em;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    font-size: clamp(0.95rem, 0.6rem + 1.4vw, 1.5rem);
+    cursor: default;
+  }
+
+  .key[data-plain] {
+    opacity: 0.6;
+    box-shadow: none;
+  }
+
+  .letter {
+    line-height: 1;
+  }
+
+  .mark {
+    align-self: flex-end;
+    font-size: clamp(0.8rem, 0.55rem + 1vw, 1.25rem);
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+</style>

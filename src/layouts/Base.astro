@@ -1,0 +1,50 @@
+---
+import '@fontsource/xanh-mono/400.css';
+import '@fontsource/xanh-mono/400-italic.css';
+import '@fontsource/barlow/400.css';
+import '@fontsource/barlow/400-italic.css';
+import '@fontsource/barlow/600.css';
+import '@fontsource/barlow-condensed/500.css';
+import '@fontsource/barlow-condensed/600.css';
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  // The home page carries its own large wordmark, so the header leaves it out there.
+  wordmark?: boolean;
+}
+
+const { title, description, lang = 'vi', wordmark = true } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Blog Ngó Sen" href="/rss.xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#1c6b5f" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#145247" media="(prefers-color-scheme: dark)" />
+  </head>
+  <body>
+    <a class="skip" href="#noi-dung">{lang === 'en' ? 'Skip to content' : 'Tới nội dung'}</a>
+    <SiteHeader wordmark={wordmark} />
+    <main id="noi-dung">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

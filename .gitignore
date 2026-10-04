@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+
+# Design review captures and decision mock-ups are working material.
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/config.local.json
+.impeccable/hook.cache.json

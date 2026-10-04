@@ -1,0 +1,102 @@
+---
+import { NAV, REPO } from '../data/site';
+
+interface Props {
+  wordmark: boolean;
+}
+
+const { wordmark } = Astro.props;
+const here = Astro.url.pathname;
+const isCurrent = (href: string) => here === href || here.startsWith(href);
+---
+
+<header class="site-header" lang="vi">
+  <div class="inner">
+    {
+      wordmark ? (
+        <a class="wordmark" href="/" aria-label="Ngó Sen, về trang chủ">
+          Ngó Sen
+        </a>
+      ) : (
+        <span class="wordmark-space" aria-hidden="true" />
+      )
+    }
+    <nav aria-label="Các trang chính">
+      <ul>
+        {
+          NAV.map((item) => (
+            <li>
+              <a class="key" href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a class="key" href={REPO}>GitHub</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--enamel);
+    color: var(--on-enamel);
+  }
+
+  .inner {
+    max-width: 78rem;
+    margin-inline: auto;
+    padding: 1rem var(--gutter) 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem 2rem;
+  }
+
+  .wordmark {
+    font-family: var(--font-typed);
+    font-size: var(--step-2);
+    line-height: 1;
+    word-spacing: -0.28em;
+    text-decoration: none;
+    color: var(--on-enamel);
+  }
+
+  .wordmark:focus-visible {
+    outline-color: var(--on-enamel);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.5rem;
+  }
+
+  .key {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 30rem) {
+    .inner {
+      padding-inline: 0.75rem;
+    }
+
+    ul {
+      gap: 0.5rem 0.3rem;
+    }
+
+    .key {
+      min-width: 0;
+      min-height: 2.5rem;
+      padding-inline: 0.5em;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+  }
+</style>

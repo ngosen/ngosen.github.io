@@ -1,0 +1,382 @@
+/* A keyboard at work: enamel machine body, ivory keycaps, typed paper sheets, one red ribbon. */
+:root {
+  --enamel: #1c6b5f;
+  --enamel-deep: #134b43;
+  --on-enamel: #f0f5ee;
+  --on-enamel-muted: #d3e8df;
+
+  --cap: #f1ead9;
+  --cap-skirt: #c5bba3;
+  --cap-ink: #15191a;
+
+  --paper: #fbfbf8;
+  --paper-edge: #dfe3dc;
+  --desk: #dfe9e3;
+  --ink: #15191a;
+  --ink-muted: #48524f;
+
+  --ribbon: #c2301c;
+  --ribbon-text: #b02a18;
+  --on-ribbon: #ffffff;
+
+  --strip: #15191a;
+  --on-strip: #f1ead9;
+  --on-strip-muted: #b9c2bc;
+
+  --font-typed: 'Xanh Mono', 'DejaVu Sans Mono', ui-monospace, monospace;
+  --font-legend: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: 1.7rem;
+  --step-3: 2.3rem;
+
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --measure: 68ch;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --enamel: #145247;
+    --enamel-deep: #0d3832;
+    --on-enamel: #f0f5ee;
+    --on-enamel-muted: #c5ddd3;
+
+    --cap: #e9e2d0;
+    --cap-skirt: #b0a68e;
+
+    --paper: #222927;
+    --paper-edge: #38423f;
+    --desk: #0c1715;
+    --ink: #ebe8de;
+    --ink-muted: #aab6b1;
+
+    --ribbon: #d0432c;
+    --ribbon-text: #f08571;
+
+    --strip: #0a0d0d;
+
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--enamel) var(--desk);
+}
+
+body {
+  margin: 0;
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  caret-color: var(--ribbon);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+::selection {
+  background: var(--ribbon);
+  color: var(--on-ribbon);
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-typed);
+  font-weight: 400;
+  line-height: 1.2;
+  /* A monospace word space is a full cell; at heading sizes that reads as a gap. */
+  word-spacing: -0.2em;
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-color: var(--ribbon-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ribbon-text);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-typed);
+  font-size: 0.95em;
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -4rem;
+  z-index: 10;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.5rem 0.9rem;
+}
+
+.skip:focus {
+  top: 0.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Keycap: an ivory top on a darker skirt. Pressing shortens the skirt, as a key does. */
+.key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4em;
+  padding: 0.3em 0.75em 0.25em;
+  border: 0;
+  border-bottom: 0.3em solid var(--cap-skirt);
+  border-radius: 0.4em;
+  background: var(--cap);
+  color: var(--cap-ink);
+  font-family: var(--font-legend);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45);
+  transition:
+    transform 120ms var(--ease-out),
+    box-shadow 120ms var(--ease-out);
+  cursor: pointer;
+}
+
+a.key:hover,
+button.key:hover {
+  transform: translateY(0.08em);
+}
+
+a.key:active,
+button.key:active,
+.key[data-state='now'] {
+  transform: translateY(0.22em);
+  box-shadow: 0 0.12em 0.25em -0.12em rgb(0 0 0 / 0.45);
+}
+
+.key[aria-current='page'] {
+  transform: translateY(0.22em);
+  box-shadow: inset 0 -0.14em 0 var(--ribbon);
+}
+
+.key--ribbon {
+  background: var(--ribbon);
+  color: var(--on-ribbon);
+  border-bottom-color: color-mix(in srgb, var(--ribbon) 62%, black);
+}
+
+.key:focus-visible {
+  outline-color: var(--on-enamel);
+}
+
+.sheet .key:focus-visible,
+.strip .key:focus-visible {
+  outline-color: var(--ribbon-text);
+}
+
+/* Stamp: the tested level. The outline form carries the level, so it reads without colour:
+   double box, single box, dashed box, brackets. */
+.stamp {
+  display: inline-block;
+  padding: 0.12em 0.6em 0.08em;
+  font-family: var(--font-legend);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+}
+
+.stamp[data-level='daily'] {
+  box-shadow: inset 0 0 0 2px var(--stamp-ground, var(--paper)), inset 0 0 0 3.5px currentColor;
+}
+
+.stamp[data-level='container'] {
+  border-style: dashed;
+  font-weight: 500;
+}
+
+/* Brackets: only the two side strokes. */
+.stamp[data-level='built'] {
+  border-block-color: transparent;
+  border-radius: 0;
+  font-weight: 500;
+}
+
+.wrap {
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Paper: whatever was typed or measured sits on a sheet. */
+.sheet {
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 2px;
+  box-shadow:
+    0 0 0 1px var(--paper-edge),
+    0 1.4rem 2rem -1.4rem rgb(0 0 0 / 0.35);
+}
+
+pre {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  overflow-x: auto;
+  background: var(--strip);
+  color: var(--on-strip);
+  border-radius: 3px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  scrollbar-color: var(--on-strip-muted) var(--strip);
+}
+
+pre:focus-visible {
+  outline-offset: 2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 0.7rem 0.9rem 0.7rem 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--paper-edge);
+}
+
+th {
+  font-family: var(--font-legend);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+tbody th {
+  font-family: var(--font-body);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Long-form text: guides and blog posts. */
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-top: 1.1rem;
+}
+
+.prose h2 {
+  margin-top: 2.8rem;
+  font-size: var(--step-2);
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  font-size: var(--step-1);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3rem;
+}
+
+.prose li + li {
+  margin-top: 0.45rem;
+}
+
+.prose li::marker {
+  color: var(--ink-muted);
+}
+
+.prose :not(pre) > code {
+  padding: 0.08em 0.3em;
+  background: var(--desk);
+  border-radius: 2px;
+  overflow-wrap: anywhere;
+}
+
+.prose blockquote {
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--ink-muted);
+  color: var(--ink-muted);
+}
+
+.prose .table-scroll {
+  overflow-x: auto;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

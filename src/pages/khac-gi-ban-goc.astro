@@ -1,0 +1,106 @@
+---
+import Page from '../layouts/Page.astro';
+import { REPO } from '../data/site';
+
+const upstream = 'https://github.com/LotusInputMethod/fcitx5-lotus';
+const full = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md`;
+---
+
+<Page
+  title="Ngó Sen khác gì bản gốc"
+  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: lỗi đã sửa kèm số đo, phần siết quyền, và những gì chưa sửa."
+  heading="Khác gì bản gốc"
+>
+  <p slot="lede">
+    Ngó Sen tách ra từ <a href={upstream}>fcitx5-lotus</a>, bản 3.5.10. Trang này chỉ ghi những chỗ
+    khác.
+  </p>
+
+  <p>
+    Cách dùng bộ gõ nói chung vẫn như bản gốc, xem <a href={`${upstream}#readme`}>README của bản gốc</a>.
+    Bên trong mã vẫn giữ tên <code>lotus</code> (tệp cấu hình, dịch vụ nền, icon) để nhặt được bản vá
+    của bản gốc và để cấu hình cũ dùng tiếp. Vì vậy cài Ngó Sen là thay cho Lotus gốc, không cài song
+    song được.
+  </p>
+
+  <h2 id="loi-da-sua">Lỗi gặp thật đã sửa</h2>
+  <p>Tất cả ở chế độ <code>Uinput</code>, kiểu gõ Telex.</p>
+  <ul>
+    <li>
+      <strong>Messenger trên Facebook hết mất chữ.</strong> Gõ <code>tieengs vieetj</code> từng ra
+      <code>iếngiệt</code>. Bộ gõ nay bôi đen chữ cần bỏ bằng Shift+Mũi tên trái rồi gõ đè, thay vì xoá
+      trước rồi gõ sau. Đo 20/09/2026 trên Edge: 861 lần thay chữ, 0 lần mất. Firefox và Chrome chưa
+      đo.
+    </li>
+    <li>
+      <strong>Thanh địa chỉ trình duyệt hết lặp chữ đầu.</strong> Gõ <code>tôi</code> từng ra
+      <code>toôi</code>. Chromium và Edge sửa triệt để; Firefox đo 7 trên 7 lần có gợi ý ra đúng.
+    </li>
+    <li>
+      <strong>LibreOffice gõ đúng.</strong> <code>chao</code> rồi <code>f</code> từng ra
+      <code>chaà</code>. Writer: từ 30 đến 36 trên 60 từ sai xuống 0 trên 60; Calc và Impress 0 trên
+      60.
+    </li>
+    <li>
+      <strong>Chữ V trên thanh hệ thống hết màu đen</strong> trên panel tối của KDE và thanh trên cùng
+      của GNOME. Phần sửa cho KDE đã vào bản gốc.
+    </li>
+    <li>
+      <strong>Chờ 4 ms mỗi phím xoá thay vì 2.</strong> Lúc máy tải nặng, 2 ms gõ đúng 39 đến 46 trên
+      60 câu, 4 ms đúng 58 đến 60 trên 60. Máy rảnh thì không khác.
+    </li>
+  </ul>
+
+  <h2 id="mot-che-do">Chỉ còn một chế độ Uinput</h2>
+  <p>
+    Ba chế độ <code>Uinput (Smooth)</code>, <code>Uinput (Super Smooth)</code> và
+    <code>Uinput (Slow)</code> của bản gốc gộp thành một chế độ <code>Uinput</code>, chạy như Super
+    Smooth. Cấu hình cũ tự chuyển, không phải chỉnh gì.
+  </p>
+
+  <h2 id="toc-do">Tốc độ</h2>
+  <p>
+    Thay chữ nhanh hơn bản gốc vài mili giây mỗi lần, dưới ngưỡng cảm nhận của một lần gõ. Ví dụ đo
+    được: khoảng cách giữa hai phím xoá từ 5,2 ms xuống 0,1 ms (trung vị); thời gian chờ ở ứng dụng
+    không báo chữ quanh con trỏ từ 12,8 ms xuống 6,9 ms. Mỗi số đo riêng một thay đổi, trên CachyOS với
+    KDE Plasma Wayland, và không cộng dồn được thành một con số chung.
+  </p>
+
+  <h2 id="may-chu-nen">Máy chủ nền bị siết quyền</h2>
+  <p>
+    Máy chủ nền là chương trình chạy ngầm bấm phím xoá thay bộ gõ. Ở bản gốc nó mở được mọi thiết bị
+    nhập, kể cả bàn phím.
+  </p>
+  <ul>
+    <li>Chỉ còn mở chuột và bàn chạm, không đọc được bàn phím; ra khỏi nhóm <code>input</code>.</li>
+    <li>Nhận bộ gõ bằng tài khoản thay vì tên chương trình; bỏ quyền <code>CAP_SYS_PTRACE</code>.</li>
+    <li>Bỏ qua con số ngoài khoảng ±1024 thay vì xin bộ nhớ tuỳ ý.</li>
+    <li>Dịch vụ systemd được siết: điểm <code>systemd-analyze security</code> từ 7.0 xuống 2.0.</li>
+  </ul>
+  <p>
+    Cái giá: chuột kiêm bàn phím mất tính năng bấm chuột để ngắt từ. Chi tiết trong bài
+    <a href="/blog/may-chu-nen-chi-doc-chuot/">Máy chủ nền chỉ còn đọc chuột</a>.
+  </p>
+
+  <h2 id="kiem-thu">Kiểm thử</h2>
+  <p>
+    26 bài kiểm thay vì 9, chạy trong mỗi lần dựng gói: kiểm trên chuỗi phím ngẫu nhiên, kiểm màu panel
+    KDE và GNOME, tám bài cho lỗi Messenger, ba bài cho máy chủ nền.
+  </p>
+
+  <h2 id="khong-sua">Bản này không sửa</h2>
+  <ul>
+    <li>
+      Chế độ Surrounding Text vẫn lỗi, nhất là trên Firefox và LibreOffice Writer (60 trên 60 từ sai).
+    </li>
+    <li>Máy chủ nền chết giữa lúc thay chữ thì bàn phím chết theo.</li>
+    <li>Mọi lượt đo đều gõ Telex. VNI và các kiểu gõ khác chưa kiểm.</li>
+    <li>Không có gói Nix.</li>
+  </ul>
+
+  <h2 id="day-du">Bản đầy đủ</h2>
+  <p>
+    Từng miếng vá, số đo, và tác giả gốc trả lời ra sao: <a href={full}>KHAC-GI-SO-VOI-BAN-GOC.md</a>.
+    Từng thay đổi theo ngày: <a href={`${REPO}/blob/ban-dung/CHANGELOG.md`}>CHANGELOG.md</a>.
+  </p>
+</Page>

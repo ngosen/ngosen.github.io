@@ -1,0 +1,563 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import InstallStrip from '../components/InstallStrip.astro';
+import TelexBoard from '../components/TelexBoard.astro';
+import { DISTRIBUTIONS, LEVELS, REPO, type Level } from '../data/site';
+import { formatDay, getPosts } from '../lib/posts';
+
+const posts = (await getPosts()).slice(0, 3);
+const levels = Object.keys(LEVELS) as Level[];
+
+// Every line names where its number comes from; all of them are in the repository's README.
+const measured = [
+  {
+    claim: 'Messenger trên Facebook: 861 lần thay chữ, 0 lần mất chữ.',
+    source:
+      'Đo ngày 20/09/2026 bằng máy gõ tự động, lúc máy đang bận, trên trình duyệt Edge. Firefox và Chrome chưa đo.',
+  },
+  {
+    claim: '50 câu đầy đủ gõ vào Messenger: sai 0 câu. Mỗi lần bỏ dấu chờ 3 đến 20 ms, thường là 6 ms.',
+    source: 'Cùng lượt đo 20/09/2026. Cách cũ, chờ theo đồng hồ 40 đến 60 ms, sai 1 câu.',
+  },
+  {
+    claim: 'LibreOffice Writer: từ 30 đến 36 trên 60 từ sai, xuống 0 trên 60.',
+    source: 'Calc và Impress cũng 0 trên 60. Đo ở chế độ Uinput.',
+  },
+  {
+    claim: 'Thanh địa chỉ trình duyệt: hết cảnh gõ “tôi” ra “toôi”.',
+    source:
+      'Chromium và Edge sửa triệt để vì trình duyệt báo đúng phần tự điền. Firefox đo 7 trên 7 lần có gợi ý ra đúng.',
+  },
+  {
+    claim: 'Máy chủ nền: điểm systemd-analyze security từ 7.0 xuống 2.0.',
+    source:
+      'Điểm càng thấp càng kín. Chương trình chạy ngầm này chỉ còn mở chuột và bàn chạm, không đọc được bàn phím.',
+  },
+  {
+    claim: '26 bài kiểm tự động, bản gốc có 9.',
+    source: 'Cả 26 bài chạy lại trong mỗi lần dựng gói.',
+  },
+];
+
+const notFixed = [
+  'Chế độ Surrounding Text vẫn lỗi, nhất là trên Firefox và LibreOffice Writer: 60 trên 60 từ sai.',
+  'Máy chủ nền chết giữa lúc thay chữ thì bàn phím chết theo.',
+  'Mọi lượt đo đều gõ Telex. VNI và các kiểu gõ khác chưa kiểm.',
+];
+---
+
+<Base
+  title="Ngó Sen: bộ gõ tiếng Việt cho Linux"
+  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào và đo được gì."
+  wordmark={false}
+>
+  <Hero />
+
+  <section class="can-it-run wrap" id="may-nao" aria-labelledby="may-nao-tieu-de">
+    <div class="intro">
+      <h2 id="may-nao-tieu-de">Máy tôi có chạy được không?</h2>
+      <p>
+        Dòng lệnh cài chọn được gói cho mười bản Linux dưới đây, trên máy x86_64. Dựng được gói chưa có
+        nghĩa là gõ được, nên mỗi bản mang một dấu ghi nó đã được thử tới đâu.
+      </p>
+      <dl class="legend">
+        {
+          levels.map((level) => (
+            <div>
+              <dt>
+                <span class="stamp" data-level={level}>
+                  {LEVELS[level].label}
+                </span>
+              </dt>
+              <dd>{LEVELS[level].meaning}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <div class="sheet tested-sheet">
+      <table>
+        <caption class="visually-hidden">Mười bản Linux và mức đã thử của từng bản</caption>
+        <thead>
+          <tr>
+            <th scope="col">Bản Linux</th>
+            <th scope="col">Đã thử tới đâu</th>
+            <th scope="col">Dựa trên</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            DISTRIBUTIONS.map((item) => (
+              <tr>
+                <th scope="row">{item.name}</th>
+                <td class="level">
+                  <span class="stamp" data-level={item.level}>
+                    {LEVELS[item.level].label}
+                  </span>
+                </td>
+                <td class="basis">{item.basis}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <p class="sheet-note">
+        Tình trạng ngày 04/10/2026, chép theo ghi chú của bản phát hành. Bản Linux khác thì
+        <a href="/cai-dat/#tu-dung">tự dựng từ mã</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="telex" aria-labelledby="telex-tieu-de">
+    <div class="wrap">
+      <div class="telex-head">
+        <h2 id="telex-tieu-de">Telex nằm ở những phím này</h2>
+        <p>
+          Telex là kiểu gõ dùng trong mọi lượt đo và trong việc gõ hằng ngày của Ngó Sen. Phím mờ là phím
+          chữ thường; phím đậm làm thêm một việc.
+        </p>
+      </div>
+      <TelexBoard />
+      <dl class="telex-notes">
+        <div>
+          <dt>Dấu thanh</dt>
+          <dd>
+            Gõ sau nguyên âm: <kbd>s</kbd> sắc, <kbd>f</kbd> huyền, <kbd>r</kbd> hỏi, <kbd>x</kbd> ngã,
+            <kbd>j</kbd> nặng. <kbd>as</kbd> ra á.
+          </dd>
+        </div>
+        <div>
+          <dt>Mũ, móc, trăng</dt>
+          <dd>
+            <kbd>aa</kbd> â, <kbd>ee</kbd> ê, <kbd>oo</kbd> ô, <kbd>aw</kbd> ă, <kbd>ow</kbd> ơ,
+            <kbd>uw</kbd> ư, <kbd>dd</kbd> đ.
+          </dd>
+        </div>
+        <div>
+          <dt>Bỏ dấu</dt>
+          <dd><kbd>z</kbd> bỏ dấu thanh vừa gõ: <kbd>asz</kbd> ra a.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="measured wrap" aria-labelledby="da-do-tieu-de">
+    <div class="sheet report">
+      <h2 id="da-do-tieu-de">Đã đo được gì</h2>
+      <ul>
+        {
+          measured.map((line) => (
+            <li>
+              <p class="claim">{line.claim}</p>
+              <p class="source">{line.source}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="sheet-note">
+        Số liệu và cách đo ghi trong <a href={`${REPO}#readme`}>README của kho mã</a>. Mỗi dòng đo riêng
+        một thay đổi, không cộng dồn thành một con số chung.
+      </p>
+    </div>
+    <div class="sheet open-items">
+      <h3><span class="struck">Chưa sửa</span></h3>
+      <ul>
+        {notFixed.map((line) => <li>{line}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="install" id="cai" aria-labelledby="cai-tieu-de">
+    <div class="wrap install-head">
+      <h2 id="cai-tieu-de">Cài bằng một dòng lệnh</h2>
+      <p>
+        Lệnh này tìm gói dựng sẵn cho đúng bản Linux của máy trong bản phát hành mới nhất, hỏi lại rồi
+        mới tải, đối chiếu mã băm của tệp tải về, rồi cài bằng trình quản lý gói của máy. Gói
+        <code>fcitx5-lotus</code> nếu có sẽ bị thay; cấu hình cũ giữ nguyên.
+        <a href="/cai-dat/">Cài bằng tay và các trường hợp khác</a>.
+      </p>
+    </div>
+    <InstallStrip />
+    <div class="wrap">
+      <h3 class="after-title">Cài xong, còn ba việc</h3>
+      <ol class="after">
+        <li>
+          <span class="key" aria-hidden="true">1</span>
+          <div>
+            <p>Khởi động lại fcitx5.</p>
+            <pre tabindex="0"><code>fcitx5 -rd</code></pre>
+          </div>
+        </li>
+        <li>
+          <span class="key" aria-hidden="true">2</span>
+          <div>
+            <p>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</p>
+          </div>
+        </li>
+        <li>
+          <span class="key" aria-hidden="true">3</span>
+          <div>
+            <p>
+              Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="notes wrap" aria-labelledby="ghi-chep-tieu-de">
+    <h2 id="ghi-chep-tieu-de">Ghi chép</h2>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+              {formatDay(post.data.pubDate)}
+            </time>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <p>{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="all"><a href="/blog/">Tất cả bài viết</a></p>
+  </section>
+</Base>
+
+<style>
+  section {
+    scroll-margin-top: 1rem;
+  }
+
+  h2 {
+    font-size: var(--step-3);
+  }
+
+  .sheet-note {
+    margin-top: 1.4rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  /* Which machines */
+  .can-it-run {
+    padding-block: clamp(3.5rem, 9vw, 7rem) clamp(3rem, 8vw, 6rem);
+    display: grid;
+    gap: 2.25rem;
+  }
+
+  .intro p {
+    margin-top: 1rem;
+    max-width: 46ch;
+  }
+
+  .legend {
+    margin-top: 1.8rem;
+    display: grid;
+    gap: 1rem;
+    --stamp-ground: var(--desk);
+  }
+
+  .legend dd {
+    margin-top: 0.3rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    max-width: 44ch;
+  }
+
+  .tested-sheet {
+    padding: clamp(1.1rem, 3.5vw, 2.25rem) clamp(1.1rem, 3.5vw, 2.5rem) clamp(1.4rem, 3.5vw, 2.25rem);
+  }
+
+  .tested-sheet thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tested-sheet tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.25rem 1rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .tested-sheet th,
+  .tested-sheet td {
+    padding: 0;
+    border: 0;
+  }
+
+  .tested-sheet tbody th {
+    font-family: var(--font-typed);
+    font-weight: 400;
+    font-size: var(--step-1);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .tested-sheet .basis {
+    grid-column: 1 / -1;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  /* Telex keyboard */
+  .telex {
+    background: var(--enamel);
+    color: var(--on-enamel);
+    padding-block: clamp(3rem, 8vw, 6rem);
+  }
+
+  .telex-head {
+    margin-bottom: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .telex-head p {
+    margin-top: 1rem;
+    max-width: 58ch;
+    color: var(--on-enamel-muted);
+  }
+
+  .telex-notes {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    display: grid;
+    gap: 1.5rem 3rem;
+  }
+
+  .telex-notes dt {
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: var(--step-1);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .telex-notes dd {
+    margin-top: 0.3rem;
+    max-width: 40ch;
+    color: var(--on-enamel-muted);
+  }
+
+  .telex-notes kbd {
+    padding: 0.05em 0.35em;
+    border-radius: 0.25em;
+    background: var(--cap);
+    color: var(--cap-ink);
+  }
+
+  /* Measured results */
+  .measured {
+    padding-block: clamp(3.5rem, 9vw, 7rem) clamp(2rem, 5vw, 3.5rem);
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .report {
+    padding: clamp(1.5rem, 4.5vw, 3.25rem);
+  }
+
+  .report ul,
+  .open-items ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .report ul {
+    margin-top: 1.9rem;
+    display: grid;
+    gap: 1.6rem;
+  }
+
+  .claim {
+    font-family: var(--font-typed);
+    font-size: var(--step-1);
+    line-height: 1.4;
+    max-width: 52ch;
+    text-wrap: pretty;
+  }
+
+  .source {
+    margin-top: 0.35rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    max-width: 62ch;
+  }
+
+  .open-items {
+    padding: clamp(1.25rem, 3.5vw, 2rem);
+  }
+
+  .open-items h3 {
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: var(--step-1);
+    letter-spacing: 0.06em;
+    word-spacing: normal;
+    text-transform: uppercase;
+  }
+
+  .struck {
+    display: inline-block;
+    padding: 0.1em 0.6em 0.05em;
+    border: 2px solid currentColor;
+    border-radius: 3px;
+    color: var(--ribbon-text);
+    transform: rotate(-2deg);
+  }
+
+  .open-items ul {
+    margin-top: 1.1rem;
+    display: grid;
+    gap: 0.9rem;
+    font-family: var(--font-typed);
+    line-height: 1.5;
+  }
+
+  /* Install */
+  .install {
+    padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .install-head {
+    padding-bottom: 1.8rem;
+  }
+
+  .install-head p {
+    margin-top: 1rem;
+    max-width: var(--measure);
+  }
+
+  .install-head code {
+    padding: 0.08em 0.3em;
+    background: var(--paper);
+    border-radius: 2px;
+  }
+
+  .after-title {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    font-size: var(--step-2);
+  }
+
+  .after {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.4rem;
+    display: grid;
+    gap: 1.5rem 2.5rem;
+  }
+
+  .after li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .after .key {
+    cursor: default;
+    font-size: 1.15rem;
+  }
+
+  .after pre {
+    margin-top: 0.6rem;
+  }
+
+  /* Blog */
+  .notes {
+    padding-top: clamp(3.5rem, 9vw, 7rem);
+  }
+
+  .notes ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.6rem;
+    border-top: 1px solid var(--ink);
+  }
+
+  .notes li {
+    padding-block: 1.3rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+    display: grid;
+    gap: 0.3rem 2rem;
+  }
+
+  .notes time {
+    font-family: var(--font-legend);
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-muted);
+  }
+
+  .notes li a {
+    font-family: var(--font-typed);
+    font-size: var(--step-2);
+    line-height: 1.25;
+    text-decoration-thickness: 1px;
+  }
+
+  .notes li p {
+    max-width: 62ch;
+    color: var(--ink-muted);
+  }
+
+  .all {
+    margin-top: 1.4rem;
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 44rem) {
+    .telex-notes {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .after {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .notes li {
+      grid-template-columns: 7rem minmax(0, 1fr);
+    }
+
+    .notes li p {
+      grid-column: 2;
+    }
+  }
+
+  @media (min-width: 62rem) {
+    .can-it-run {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .intro {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .measured {
+      grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+      gap: 0;
+    }
+
+    /* The second sheet lies on top of the first, slightly turned, as a note left on a report. */
+    .open-items {
+      margin: 5.5rem 0 0 -2.5rem;
+      transform: rotate(1.2deg);
+    }
+  }
+</style>

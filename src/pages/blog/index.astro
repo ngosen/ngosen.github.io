@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import { formatDay, getPosts } from '../../lib/posts';
+
+const posts = await getPosts();
+---
+
+<Base
+  title="Blog Ngó Sen"
+  description="Ghi chép của dự án Ngó Sen: lỗi gõ tiếng Việt trên Linux được đo và sửa thế nào, gói cài được thử ra sao."
+>
+  <div class="wrap">
+    <header>
+      <h1>Blog</h1>
+      <p>Mỗi bài kể lại một việc đã đo hoặc đã sửa, kèm phần chưa kiểm được.</p>
+    </header>
+    <ul>
+      {
+        posts.map((post) => (
+          <li class="sheet">
+            <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+              {formatDay(post.data.pubDate)}
+            </time>
+            <h2>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="feed"><a href="/rss.xml">Theo dõi qua RSS</a></p>
+  </div>
+</Base>
+
+<style>
+  .wrap {
+    padding-top: clamp(2rem, 6vw, 4.5rem);
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 1.6rem + 3.6vw, 4rem);
+    line-height: 1.05;
+  }
+
+  header p {
+    margin-top: 0.9rem;
+    max-width: 52ch;
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: clamp(1.75rem, 4vw, 3rem);
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  li {
+    padding: clamp(1.25rem, 4vw, 2.25rem) clamp(1.1rem, 4vw, 2.5rem);
+    max-width: 60rem;
+  }
+
+  /* Sheets step to the right down the list, the way pages fan out of a stack. */
+  li:nth-child(3n + 2) {
+    margin-left: clamp(0rem, 4vw, 4rem);
+  }
+
+  li:nth-child(3n) {
+    margin-left: clamp(0rem, 8vw, 8rem);
+  }
+
+  time {
+    font-family: var(--font-legend);
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-muted);
+  }
+
+  h2 {
+    margin-top: 0.3rem;
+    font-size: var(--step-2);
+  }
+
+  h2 a {
+    text-decoration-thickness: 1px;
+  }
+
+  li p {
+    margin-top: 0.6rem;
+    max-width: 62ch;
+    color: var(--ink-muted);
+  }
+
+  .feed {
+    margin-top: 1.75rem;
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+</style>
