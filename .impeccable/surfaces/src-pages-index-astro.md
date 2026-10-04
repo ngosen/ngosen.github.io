@@ -21,7 +21,7 @@ Unresolved: custom domain, pictorial logo.
 
 THESIS: The site is a keyboard at work. Keystrokes become Vietnamese in front of the visitor before any claim is made. It refuses the dark terminal-hero landing page with a feature-tile grid.
 
-OWN-WORLD: An enamel green machine body owns the first viewport. Ivory keycaps carry condensed grotesque legends and a real pressed state. Anything typed sits on white paper sheets in a Didone-leaning typewriter mono. Carbon black ink. Ribbon red is reserved for the install action and struck marks. Tested levels are stamps whose outline form differs: solid, dashed, hollow.
+OWN-WORLD: An enamel green machine body owns the first viewport. Ivory keycaps carry condensed grotesque legends and a real pressed state. Anything typed sits on white paper sheets in a Didone-leaning typewriter mono. Carbon black ink. Ribbon red is reserved for the install action and struck marks. Tested levels are stamps whose outline form differs: double box, single box, dashed box, brackets.
 
 STORY: The visitor sees typing work, checks their machine against stamps that name machine and date, then copies the install line.
 

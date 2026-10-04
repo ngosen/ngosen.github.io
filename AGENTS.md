@@ -23,8 +23,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - `public/telex/telex.wasm` is a build output kept in the repository. Rebuild it with
   `tools/telex-wasm/build.sh`, then run `npm run check:telex` and
   `node tools/telex-wasm/demo-steps.mjs`.
-- Ribbon red (`--ribbon`) is reserved for the install action, the caret and the "not fixed" mark.
-  Tested levels are told apart by the stamp's outline, never by colour alone.
+- Ribbon red (`--ribbon`) is reserved for the install copy key, the caret, the "not fixed" mark,
+  focus and selection, and the line under the current page's nav key. Tested levels are told apart
+  by the stamp's outline, never by colour alone.
 - Animate only `transform`, `opacity` and `box-shadow`, and keep the reduced-motion path working.
 
 ## Publishing

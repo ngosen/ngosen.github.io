@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T00:00:00Z",
+  "title": "Design System: Ngó Sen",
+  "extensions": {
+    "colorMeta": {
+      "enamel": {
+        "role": "primary",
+        "displayName": "Enamel Green",
+        "canonical": "#1c6b5f",
+        "darkScheme": "#145247",
+        "tonalRamp": ["oklch(15% 0.03 180)", "oklch(27% 0.05 180)", "oklch(38% 0.065 180)", "oklch(48% 0.077 180)", "oklch(62% 0.077 180)", "oklch(74% 0.065 180)", "oklch(85% 0.045 180)", "oklch(95% 0.02 180)"]
+      },
+      "enamel-deep": {
+        "role": "primary",
+        "displayName": "Deep Enamel",
+        "canonical": "#134b43",
+        "darkScheme": "#0d3832",
+        "tonalRamp": ["oklch(15% 0.03 182)", "oklch(27% 0.045 182)", "oklch(37% 0.059 182)", "oklch(50% 0.059 182)", "oklch(62% 0.059 182)", "oklch(74% 0.05 182)", "oklch(85% 0.035 182)", "oklch(95% 0.018 182)"]
+      },
+      "on-enamel": {
+        "role": "neutral",
+        "displayName": "Text on Enamel",
+        "canonical": "#f0f5ee",
+        "tonalRamp": ["oklch(15% 0.011 137)", "oklch(27% 0.011 137)", "oklch(38% 0.011 137)", "oklch(50% 0.011 137)", "oklch(62% 0.011 137)", "oklch(74% 0.011 137)", "oklch(85% 0.011 137)", "oklch(96% 0.011 137)"]
+      },
+      "on-enamel-muted": {
+        "role": "neutral",
+        "displayName": "Muted Text on Enamel",
+        "canonical": "#d3e8df",
+        "darkScheme": "#c5ddd3",
+        "tonalRamp": ["oklch(15% 0.025 168)", "oklch(27% 0.025 168)", "oklch(38% 0.025 168)", "oklch(50% 0.025 168)", "oklch(62% 0.025 168)", "oklch(74% 0.025 168)", "oklch(85% 0.025 168)", "oklch(91% 0.025 168)"]
+      },
+      "cap": {
+        "role": "tertiary",
+        "displayName": "Keycap Ivory",
+        "canonical": "#f1ead9",
+        "darkScheme": "#e9e2d0",
+        "tonalRamp": ["oklch(15% 0.024 88)", "oklch(27% 0.024 88)", "oklch(38% 0.024 88)", "oklch(50% 0.024 88)", "oklch(62% 0.024 88)", "oklch(74% 0.024 88)", "oklch(85% 0.024 88)", "oklch(94% 0.024 88)"]
+      },
+      "cap-skirt": {
+        "role": "tertiary",
+        "displayName": "Keycap Skirt",
+        "canonical": "#c5bba3",
+        "darkScheme": "#b0a68e",
+        "tonalRamp": ["oklch(15% 0.035 88)", "oklch(27% 0.035 88)", "oklch(38% 0.035 88)", "oklch(50% 0.035 88)", "oklch(62% 0.035 88)", "oklch(73% 0.035 88)", "oklch(79% 0.035 88)", "oklch(95% 0.02 88)"]
+      },
+      "cap-ink": {
+        "role": "neutral",
+        "displayName": "Keycap Legend Ink",
+        "canonical": "#15191a",
+        "tonalRamp": ["oklch(15% 0.006 214)", "oklch(21% 0.006 214)", "oklch(38% 0.006 214)", "oklch(50% 0.006 214)", "oklch(62% 0.006 214)", "oklch(74% 0.006 214)", "oklch(85% 0.006 214)", "oklch(95% 0.006 214)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#fbfbf8",
+        "darkScheme": "#222927",
+        "tonalRamp": ["oklch(15% 0.004 106)", "oklch(27% 0.004 106)", "oklch(38% 0.004 106)", "oklch(50% 0.004 106)", "oklch(62% 0.004 106)", "oklch(74% 0.004 106)", "oklch(85% 0.004 106)", "oklch(99% 0.004 106)"]
+      },
+      "paper-edge": {
+        "role": "neutral",
+        "displayName": "Paper Edge",
+        "canonical": "#dfe3dc",
+        "darkScheme": "#38423f",
+        "tonalRamp": ["oklch(15% 0.01 131)", "oklch(27% 0.01 131)", "oklch(37% 0.01 131)", "oklch(50% 0.01 131)", "oklch(62% 0.01 131)", "oklch(74% 0.01 131)", "oklch(85% 0.01 131)", "oklch(91% 0.01 131)"]
+      },
+      "desk": {
+        "role": "neutral",
+        "displayName": "Desk",
+        "canonical": "#dfe9e3",
+        "darkScheme": "#0c1715",
+        "tonalRamp": ["oklch(15% 0.013 160)", "oklch(19% 0.016 182)", "oklch(38% 0.013 160)", "oklch(50% 0.013 160)", "oklch(62% 0.013 160)", "oklch(74% 0.013 160)", "oklch(85% 0.013 160)", "oklch(92% 0.013 160)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Carbon Ink",
+        "canonical": "#15191a",
+        "darkScheme": "#ebe8de",
+        "tonalRamp": ["oklch(15% 0.006 214)", "oklch(21% 0.006 214)", "oklch(38% 0.006 214)", "oklch(50% 0.006 214)", "oklch(62% 0.006 214)", "oklch(74% 0.006 214)", "oklch(85% 0.006 214)", "oklch(95% 0.006 214)"]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#48524f",
+        "darkScheme": "#aab6b1",
+        "tonalRamp": ["oklch(15% 0.014 176)", "oklch(27% 0.014 176)", "oklch(43% 0.014 176)", "oklch(50% 0.014 176)", "oklch(62% 0.014 176)", "oklch(77% 0.014 176)", "oklch(85% 0.014 176)", "oklch(95% 0.014 176)"]
+      },
+      "ribbon": {
+        "role": "secondary",
+        "displayName": "Ribbon Red",
+        "canonical": "#c2301c",
+        "darkScheme": "#d0432c",
+        "tonalRamp": ["oklch(15% 0.06 31)", "oklch(27% 0.11 31)", "oklch(38% 0.15 31)", "oklch(54% 0.186 31)", "oklch(62% 0.18 31)", "oklch(74% 0.13 31)", "oklch(85% 0.075 31)", "oklch(95% 0.025 31)"]
+      },
+      "ribbon-text": {
+        "role": "secondary",
+        "displayName": "Ribbon Red, text weight",
+        "canonical": "#b02a18",
+        "darkScheme": "#f08571",
+        "tonalRamp": ["oklch(15% 0.06 31)", "oklch(27% 0.11 31)", "oklch(38% 0.15 31)", "oklch(50% 0.173 31)", "oklch(62% 0.17 31)", "oklch(73% 0.135 32)", "oklch(85% 0.075 31)", "oklch(95% 0.025 31)"]
+      },
+      "on-ribbon": {
+        "role": "neutral",
+        "displayName": "Legend on Ribbon",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(38% 0 0)", "oklch(50% 0 0)", "oklch(62% 0 0)", "oklch(74% 0 0)", "oklch(85% 0 0)", "oklch(100% 0 0)"]
+      },
+      "strip": {
+        "role": "neutral",
+        "displayName": "Ink Strip",
+        "canonical": "#15191a",
+        "darkScheme": "#0a0d0d",
+        "tonalRamp": ["oklch(16% 0.005 197)", "oklch(21% 0.006 214)", "oklch(38% 0.006 214)", "oklch(50% 0.006 214)", "oklch(62% 0.006 214)", "oklch(74% 0.006 214)", "oklch(85% 0.006 214)", "oklch(95% 0.006 214)"]
+      },
+      "on-strip": {
+        "role": "neutral",
+        "displayName": "Ivory Text on Strip",
+        "canonical": "#f1ead9",
+        "tonalRamp": ["oklch(15% 0.024 88)", "oklch(27% 0.024 88)", "oklch(38% 0.024 88)", "oklch(50% 0.024 88)", "oklch(62% 0.024 88)", "oklch(74% 0.024 88)", "oklch(85% 0.024 88)", "oklch(94% 0.024 88)"]
+      },
+      "on-strip-muted": {
+        "role": "neutral",
+        "displayName": "Muted Text on Strip",
+        "canonical": "#b9c2bc",
+        "tonalRamp": ["oklch(15% 0.013 157)", "oklch(27% 0.013 157)", "oklch(38% 0.013 157)", "oklch(50% 0.013 157)", "oklch(62% 0.013 157)", "oklch(74% 0.013 157)", "oklch(81% 0.013 157)", "oklch(95% 0.013 157)"]
+      },
+      "enamel-dark": { "role": "primary", "displayName": "Enamel Green (dark scheme)", "canonical": "#145247", "lightScheme": "enamel" },
+      "enamel-deep-dark": { "role": "primary", "displayName": "Deep Enamel (dark scheme)", "canonical": "#0d3832", "lightScheme": "enamel-deep" },
+      "on-enamel-muted-dark": { "role": "neutral", "displayName": "Muted Text on Enamel (dark scheme)", "canonical": "#c5ddd3", "lightScheme": "on-enamel-muted" },
+      "cap-dark": { "role": "tertiary", "displayName": "Keycap Ivory (dark scheme)", "canonical": "#e9e2d0", "lightScheme": "cap" },
+      "cap-skirt-dark": { "role": "tertiary", "displayName": "Keycap Skirt (dark scheme)", "canonical": "#b0a68e", "lightScheme": "cap-skirt" },
+      "paper-dark": { "role": "neutral", "displayName": "Lifted Dark Paper", "canonical": "#222927", "lightScheme": "paper" },
+      "paper-edge-dark": { "role": "neutral", "displayName": "Paper Edge (dark scheme)", "canonical": "#38423f", "lightScheme": "paper-edge" },
+      "desk-dark": { "role": "neutral", "displayName": "Desk (dark scheme)", "canonical": "#0c1715", "lightScheme": "desk" },
+      "ink-dark": { "role": "neutral", "displayName": "Ink (dark scheme)", "canonical": "#ebe8de", "lightScheme": "ink" },
+      "ink-muted-dark": { "role": "neutral", "displayName": "Muted Ink (dark scheme)", "canonical": "#aab6b1", "lightScheme": "ink-muted" },
+      "ribbon-dark": { "role": "secondary", "displayName": "Ribbon Red (dark scheme)", "canonical": "#d0432c", "lightScheme": "ribbon" },
+      "ribbon-text-dark": { "role": "secondary", "displayName": "Ribbon Red, text weight (dark scheme)", "canonical": "#f08571", "lightScheme": "ribbon-text" },
+      "strip-dark": { "role": "neutral", "displayName": "Ink Strip (dark scheme)", "canonical": "#0a0d0d", "lightScheme": "strip" }
+    },
+    "typographyMeta": {
+      "wordmark": { "displayName": "Wordmark", "purpose": "The two words \"Ngó Sen\" on the hero sheet; the header repeats the setting at 1.7rem. word-spacing -0.28em." },
+      "display": { "displayName": "Display", "purpose": "Title of a read page. word-spacing -0.2em." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings on the home page. word-spacing -0.2em." },
+      "title": { "displayName": "Title", "purpose": "Headings inside a guide or post, and post titles in lists. word-spacing -0.2em." },
+      "typed": { "displayName": "Typed", "purpose": "Measured claims, system names, third-level headings in prose." },
+      "typed-output": { "displayName": "Typed output", "purpose": "The single line the typing run writes on the hero sheet; never wraps." },
+      "code": { "displayName": "Code", "purpose": "Commands, code blocks and inline code; wraps rather than scrolls." },
+      "lede": { "displayName": "Lede", "purpose": "The one sentence under a title." },
+      "body": { "displayName": "Body", "purpose": "Running text, capped at 68ch. Emphasis is weight 600." },
+      "small": { "displayName": "Small", "purpose": "Sources, bases and notes, in muted ink." },
+      "label": { "displayName": "Label", "purpose": "Keycap legends, column heads, dates and small uppercase links. Uppercase, 0.95rem to 1.1rem." },
+      "stamp": { "displayName": "Stamp", "purpose": "Tested-level stamps. Uppercase; weight 500 on the dashed and bracket forms." }
+    },
+    "shadows": [
+      { "name": "key-rest", "value": "0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45)", "purpose": "Under every live keycap, together with the 0.3em skirt." },
+      { "name": "key-pressed", "value": "0 0.12em 0.25em -0.12em rgb(0 0 0 / 0.45)", "purpose": "Keycap moved down 0.22em: active, or the key being typed in the run." },
+      { "name": "key-current", "value": "inset 0 -0.14em 0 var(--ribbon)", "purpose": "Ribbon line along the bottom of the current page's nav key, which stays pressed." },
+      { "name": "sheet", "value": "0 0 0 1px var(--paper-edge), 0 1.4rem 2rem -1.4rem rgb(0 0 0 / 0.35)", "purpose": "Paper sheet on the desk: hairline edge plus a contact shadow under the bottom edge." },
+      { "name": "sheet-in-machine", "value": "0 1.2rem 2rem -1.2rem rgb(0 0 0 / 0.55)", "purpose": "The hero sheet on enamel." },
+      { "name": "roller", "value": "inset 0 0.2rem 0.2rem -0.1rem rgb(255 255 255 / 0.16), 0 0.5rem 0.8rem -0.5rem rgb(0 0 0 / 0.6)", "purpose": "The roller the hero sheet feeds out of." },
+      { "name": "stamp-double", "value": "inset 0 0 0 2px var(--stamp-ground, var(--paper)), inset 0 0 0 3.5px currentColor", "purpose": "Inner ring of the double-box stamp; --stamp-ground is set to the surface the stamp sits on." },
+      { "name": "field-focus", "value": "0 2px 0 var(--ribbon-text)", "purpose": "Doubles the typing field's underline on focus." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The only easing; used for every transition." },
+      { "name": "key-press", "value": "120ms", "purpose": "Transform and box-shadow on a keycap's hover and press." },
+      { "name": "demo-key", "value": "140ms transform and box-shadow, 240ms opacity", "purpose": "Keys in the typing run going down and fading once used." },
+      { "name": "typing-run-key", "value": "220ms", "purpose": "Interval between keys in the scripted typing run." },
+      { "name": "typing-run-hold", "value": "2000ms", "purpose": "Pause on a finished phrase before the next one; the run plays three phrases once and stops." },
+      { "name": "visitor-key-flash", "value": "180ms", "purpose": "How long the visitor's latest key stays pressed in the row." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce", "purpose": "The typing run does not start; transitions and animations collapse to 0.01ms." }
+    ],
+    "breakpoints": [
+      { "name": "nav-compact", "value": "max-width: 30rem" },
+      { "name": "narrow", "value": "40rem" },
+      { "name": "three-up", "value": "44rem" },
+      { "name": "two-column", "value": "62rem" }
+    ],
+    "widths": [
+      { "name": "wrap", "value": "78rem", "purpose": "Container inside every band." },
+      { "name": "page-sheet", "value": "60rem", "purpose": "The single sheet of a read page." },
+      { "name": "measure", "value": "68ch", "purpose": "Text column." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Keycap",
+      "kind": "button",
+      "refersTo": "key",
+      "description": "The only button shape: ivory top on a skirt, moves down when pressed. Also used for navigation and step numbers.",
+      "html": "<div class=\"ds-on-enamel\"><button type=\"button\" class=\"ds-key\">Dừng</button></div>",
+      "css": ".ds-on-enamel { background: var(--enamel); padding: 1.25rem; } .ds-key { display: inline-flex; align-items: center; justify-content: center; min-width: 2.4em; padding: 0.3em 0.75em 0.25em; border: 0; border-bottom: 0.3em solid var(--cap-skirt); border-radius: 0.4em; background: var(--cap); color: var(--cap-ink); font-family: var(--font-legend); font-weight: 600; font-size: 1rem; letter-spacing: 0.04em; line-height: 1.2; text-transform: uppercase; text-decoration: none; box-shadow: 0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45); transition: transform 120ms var(--ease-out), box-shadow 120ms var(--ease-out); cursor: pointer; } .ds-key:hover { transform: translateY(0.08em); } .ds-key:active { transform: translateY(0.22em); box-shadow: 0 0.12em 0.25em -0.12em rgb(0 0 0 / 0.45); } .ds-key:focus-visible { outline: 2px solid var(--on-enamel); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ribbon Copy Key",
+      "kind": "button",
+      "refersTo": "key-ribbon",
+      "description": "The one red key: copies the install command. One per command strip.",
+      "html": "<div class=\"ds-on-strip\"><button type=\"button\" class=\"ds-key-ribbon\">Chép lệnh</button></div>",
+      "css": ".ds-on-strip { background: var(--strip); padding: 1.25rem; } .ds-key-ribbon { display: inline-flex; align-items: center; justify-content: center; min-width: 2.4em; padding: 0.3em 1.1em 0.25em; border: 0; border-bottom: 0.3em solid color-mix(in srgb, var(--ribbon) 62%, black); border-radius: 0.4em; background: var(--ribbon); color: var(--on-ribbon); font-family: var(--font-legend); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.04em; line-height: 1.2; text-transform: uppercase; box-shadow: 0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45); transition: transform 120ms var(--ease-out), box-shadow 120ms var(--ease-out); cursor: pointer; } .ds-key-ribbon:hover { transform: translateY(0.08em); } .ds-key-ribbon:active { transform: translateY(0.22em); box-shadow: 0 0.12em 0.25em -0.12em rgb(0 0 0 / 0.45); } .ds-key-ribbon:focus-visible { outline: 2px solid var(--ribbon-text); outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation Keys",
+      "kind": "nav",
+      "refersTo": "key",
+      "description": "Header on the enamel band: wordmark plus a row of keycaps. The current page's key stays pressed with a ribbon line.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-wordmark\" href=\"#\">Ngó Sen</a><nav><a class=\"ds-nav-key\" href=\"#\" aria-current=\"page\">Cài đặt</a><a class=\"ds-nav-key\" href=\"#\">Khác gì bản gốc</a><a class=\"ds-nav-key\" href=\"#\">Blog</a></nav></header>",
+      "css": ".ds-header { background: var(--enamel); color: var(--on-enamel); padding: 1rem 1.25rem 1.2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.9rem 2rem; } .ds-header nav { display: flex; flex-wrap: wrap; gap: 0.6rem 0.5rem; } .ds-wordmark { font-family: var(--font-typed); font-size: 1.7rem; line-height: 1; word-spacing: -0.28em; text-decoration: none; color: var(--on-enamel); } .ds-nav-key { display: inline-flex; align-items: center; justify-content: center; min-width: 2.4em; padding: 0.3em 0.75em 0.25em; border-bottom: 0.3em solid var(--cap-skirt); border-radius: 0.4em; background: var(--cap); color: var(--cap-ink); font-family: var(--font-legend); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.04em; line-height: 1.2; text-transform: uppercase; text-decoration: none; box-shadow: 0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45); transition: transform 120ms var(--ease-out), box-shadow 120ms var(--ease-out); } .ds-nav-key:hover { transform: translateY(0.08em); } .ds-nav-key:active { transform: translateY(0.22em); box-shadow: 0 0.12em 0.25em -0.12em rgb(0 0 0 / 0.45); } .ds-nav-key[aria-current='page'] { transform: translateY(0.22em); box-shadow: inset 0 -0.14em 0 var(--ribbon); } .ds-nav-key:focus-visible, .ds-wordmark:focus-visible { outline: 2px solid var(--on-enamel); outline-offset: 3px; }"
+    },
+    {
+      "name": "Tested-level Stamps",
+      "kind": "chip",
+      "refersTo": "stamp",
+      "description": "Four outline forms, never colour: double box (daily), single box (light), dashed box (container), brackets (built).",
+      "html": "<div class=\"ds-stamps\"><span class=\"ds-stamp\" data-level=\"daily\">Dùng hằng ngày</span><span class=\"ds-stamp\" data-level=\"light\">Mới dùng sơ</span><span class=\"ds-stamp\" data-level=\"container\">Cài thử trong container</span><span class=\"ds-stamp\" data-level=\"built\">Chỉ dựng</span></div>",
+      "css": ".ds-stamps { background: var(--paper); color: var(--ink); padding: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.9rem; } .ds-stamp { display: inline-block; padding: 0.12em 0.6em 0.08em; font-family: var(--font-legend); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.06em; line-height: 1.35; text-transform: uppercase; white-space: nowrap; border: 2px solid currentColor; border-radius: 3px; } .ds-stamp[data-level='daily'] { box-shadow: inset 0 0 0 2px var(--stamp-ground, var(--paper)), inset 0 0 0 3.5px currentColor; } .ds-stamp[data-level='container'] { border-style: dashed; font-weight: 500; } .ds-stamp[data-level='built'] { border-block-color: transparent; border-radius: 0; font-weight: 500; }"
+    },
+    {
+      "name": "Paper Sheet",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "Carries anything typed or measured: a claim in the typed voice with its source in small muted text.",
+      "html": "<div class=\"ds-desk\"><div class=\"ds-sheet\"><p class=\"ds-claim\">26 bài kiểm tự động, bản gốc có 9.</p><p class=\"ds-source\">Cả 26 bài chạy lại trong mỗi lần dựng gói.</p></div></div>",
+      "css": ".ds-desk { background: var(--desk); padding: 1.5rem; } .ds-sheet { background: var(--paper); color: var(--ink); border-radius: 2px; padding: clamp(1.5rem, 4.5vw, 3.25rem); box-shadow: 0 0 0 1px var(--paper-edge), 0 1.4rem 2rem -1.4rem rgb(0 0 0 / 0.35); } .ds-claim { margin: 0; font-family: var(--font-typed); font-size: 1.3rem; line-height: 1.4; } .ds-source { margin: 0.35rem 0 0; font-family: var(--font-body); font-size: 0.875rem; line-height: 1.55; color: var(--ink-muted); }"
+    },
+    {
+      "name": "Command Strip",
+      "kind": "custom",
+      "refersTo": "command-strip",
+      "description": "Ink band with the install command and the ribbon copy key. The command wraps and is focusable.",
+      "html": "<div class=\"ds-strip\"><code class=\"ds-command\" tabindex=\"0\">curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/ban-dung/install.sh | bash</code><button type=\"button\" class=\"ds-strip-key\">Chép lệnh</button></div>",
+      "css": ".ds-strip { background: var(--strip); color: var(--on-strip); padding: 1.1rem 1.25rem 1.3rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem 1.5rem; } .ds-command { flex: 1 1 28rem; min-width: 0; font-family: var(--font-typed); font-size: clamp(0.9rem, 0.75rem + 0.6vw, 1.1rem); line-height: 1.5; overflow-wrap: anywhere; } .ds-command::before { content: '$ '; color: var(--on-strip-muted); } .ds-command:focus-visible { outline: 2px solid var(--on-strip); outline-offset: 3px; border-radius: 2px; } .ds-strip-key { flex: none; display: inline-flex; align-items: center; justify-content: center; padding: 0.3em 1.1em 0.25em; border: 0; border-bottom: 0.3em solid color-mix(in srgb, var(--ribbon) 62%, black); border-radius: 0.4em; background: var(--ribbon); color: var(--on-ribbon); font-family: var(--font-legend); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.04em; line-height: 1.2; text-transform: uppercase; box-shadow: 0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45); transition: transform 120ms var(--ease-out), box-shadow 120ms var(--ease-out); cursor: pointer; } .ds-strip-key:hover { transform: translateY(0.08em); } .ds-strip-key:active { transform: translateY(0.22em); box-shadow: 0 0.12em 0.25em -0.12em rgb(0 0 0 / 0.45); } .ds-strip-key:focus-visible { outline: 2px solid var(--ribbon-text); outline-offset: 3px; }"
+    },
+    {
+      "name": "Code Block and Inline Code",
+      "kind": "custom",
+      "refersTo": "code-block",
+      "description": "Ink block whose lines wrap; inline code on paper is a desk-coloured chip.",
+      "html": "<div class=\"ds-prose\"><p>Cấu hình trong <code class=\"ds-code\">~/.config/fcitx5</code> giữ nguyên.</p><pre class=\"ds-pre\" tabindex=\"0\"><code>sudo systemctl restart fcitx5-lotus-server@$(whoami).service\nfcitx5 -rd</code></pre></div>",
+      "css": ".ds-prose { background: var(--paper); color: var(--ink); padding: 1.25rem; font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.65; } .ds-prose p { margin: 0 0 1.1rem; } .ds-code { font-family: var(--font-typed); font-size: 0.95em; padding: 0.08em 0.3em; background: var(--desk); border-radius: 2px; overflow-wrap: anywhere; } .ds-pre { margin: 0; padding: 0.9rem 1.1rem; background: var(--strip); color: var(--on-strip); border-radius: 3px; font-family: var(--font-typed); font-size: 0.95em; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; } .ds-pre:focus-visible { outline: 2px solid var(--ribbon-text); outline-offset: 2px; }"
+    },
+    {
+      "name": "Typing Field",
+      "kind": "input",
+      "refersTo": "typed-field",
+      "description": "Boxless input on paper: ink underline that turns ribbon red and doubles on focus. Label in legend type.",
+      "html": "<div class=\"ds-try\"><label class=\"ds-label\" for=\"ds-go-thu\">Gõ thử kiểu Telex</label><input class=\"ds-field\" id=\"ds-go-thu\" type=\"text\" placeholder=\"tieengs Vieejt\" /></div>",
+      "css": ".ds-try { background: var(--paper); color: var(--ink); padding: 1.1rem 1.25rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 1rem; } .ds-label { font-family: var(--font-legend); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.05em; text-transform: uppercase; } .ds-field { flex: 1 1 14rem; min-width: 0; min-height: 2.75rem; padding: 0.35rem 0.1rem; border: 0; border-bottom: 2px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); caret-color: var(--ribbon); font-family: var(--font-typed); font-size: 1.3rem; } .ds-field::placeholder { color: var(--ink-muted); opacity: 1; } .ds-field:focus-visible { outline: none; border-bottom-color: var(--ribbon-text); box-shadow: 0 2px 0 var(--ribbon-text); }"
+    },
+    {
+      "name": "Struck Mark",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "\"Chưa sửa\": a turned ribbon-red stamp heading the sheet of things not fixed. The only red text.",
+      "html": "<div class=\"ds-note\"><h3 class=\"ds-note-head\"><span class=\"ds-struck\">Chưa sửa</span></h3><p class=\"ds-note-line\">Mọi lượt đo đều gõ Telex. VNI và các kiểu gõ khác chưa kiểm.</p></div>",
+      "css": ".ds-note { background: var(--paper); color: var(--ink); padding: clamp(1.25rem, 3.5vw, 2rem); border-radius: 2px; box-shadow: 0 0 0 1px var(--paper-edge), 0 1.4rem 2rem -1.4rem rgb(0 0 0 / 0.35); } .ds-note-head { margin: 0; font-family: var(--font-legend); font-weight: 600; font-size: 1.3rem; letter-spacing: 0.06em; line-height: 1.2; text-transform: uppercase; } .ds-struck { display: inline-block; padding: 0.1em 0.6em 0.05em; border: 2px solid currentColor; border-radius: 3px; color: var(--ribbon-text); transform: rotate(-2deg); } .ds-note-line { margin: 1.1rem 0 0; font-family: var(--font-typed); line-height: 1.5; }"
+    },
+    {
+      "name": "Telex Keys",
+      "kind": "custom",
+      "refersTo": "key",
+      "description": "Diagram keys on the enamel band: keys that add a mark show it bottom-right; plain keys are dimmed with no shadow.",
+      "html": "<div class=\"ds-board\"><span class=\"ds-tkey\"><span class=\"ds-letter\">s</span><span class=\"ds-mark\">á</span></span><span class=\"ds-tkey\"><span class=\"ds-letter\">d</span><span class=\"ds-mark\">đ</span></span><span class=\"ds-tkey\" data-plain><span class=\"ds-letter\">g</span></span><span class=\"ds-tkey\"><span class=\"ds-letter\">j</span><span class=\"ds-mark\">ạ</span></span></div>",
+      "css": ".ds-board { background: var(--enamel); padding: 1.25rem; display: grid; grid-template-columns: repeat(4, 4rem); gap: 0.6rem; } .ds-tkey { display: inline-flex; flex-direction: column; align-items: stretch; justify-content: space-between; min-height: 4rem; padding: 0.3em 0.35em 0.2em; border-bottom: 0.3em solid var(--cap-skirt); border-radius: 0.4em; background: var(--cap); color: var(--cap-ink); font-family: var(--font-legend); font-weight: 600; font-size: 1.3rem; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45); } .ds-tkey[data-plain] { opacity: 0.6; box-shadow: none; } .ds-letter { line-height: 1; } .ds-mark { align-self: flex-end; font-size: 1.1rem; line-height: 1; text-transform: none; letter-spacing: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A keyboard at work",
+    "overview": "The site is a machine you can watch typing. An enamel green body carries the keys, ivory keycaps go down when pressed, and whatever was typed or measured comes out on a sheet of paper. Before any claim is made, keystrokes turn into Vietnamese in front of the visitor. The palette is the machine's own materials: enamel, ivory caps, paper, carbon ink, and one red ribbon.\n\nEvery surface is one of three grounds, and the ground says what kind of content it holds. The enamel band carries the machine (the header, the hero, the Telex keyboard). Paper sheets carry anything typed or measured (the wordmark, the demo line, tested systems, measured results, guides, posts). The ink strip carries commands and the footer. Between them is the desk, a pale green-grey the sheets rest on.\n\nDensity is unhurried on the home page and plain on read pages: the install guide, the comparison page and blog posts are a single sheet on the desk with one text column. Both colour schemes are authored; the dark one follows the system setting and keeps the same materials, with paper lifted clear of the desk so a sheet still reads as a sheet.\n\nMotion is one authored moment: the typing run in the hero. Everything else is a short press.",
+    "keyCharacteristics": [
+      "Three grounds with fixed jobs: enamel for the machine, paper for typed or measured content, ink for commands.",
+      "Keycaps are the only button shape, and they move the way a key does.",
+      "Ribbon red is reserved for a short, fixed list of marks.",
+      "Tested levels are told apart by outline form, never by colour.",
+      "Three typefaces with fixed voices: typed, legend, body.",
+      "Commands wrap; nothing a visitor must copy scrolls sideways."
+    ],
+    "rules": [
+      { "name": "The Ribbon Rule", "body": "Ribbon red marks the install copy key, the caret, the \"Chưa sửa\" struck mark, focus and selection, and the line under the current page's nav key. Nothing else. No red headings, links, badges or decoration.", "section": "colors" },
+      { "name": "The Three Grounds Rule", "body": "Enamel carries the machine, paper carries what was typed or measured, the ink strip carries commands and the footer. New content picks its ground by what it is, not by which colour the page is short of.", "section": "colors" },
+      { "name": "The Ground Decides Focus Rule", "body": "The focus ring is a 2px outline at 3px offset in `ribbon-text` on paper and desk. On enamel it switches to `on-enamel` and on the ink strip to `on-strip`, because red on enamel green has almost no contrast.", "section": "colors" },
+      { "name": "The Closed Word Space Rule", "body": "A monospace word space is a full cell, and at heading sizes it reads as a gap. Xanh Mono headings set `word-spacing: -0.2em`; the wordmark sets `-0.28em`. A heading that switches to the legend font resets word-spacing to normal.", "section": "typography" },
+      { "name": "The Typed or Measured Rule", "body": "Xanh Mono is for what the machine produced or what was measured: names, numbers, results, commands, headings. Explanations and notes around them are Barlow.", "section": "typography" },
+      { "name": "The Marks Stay Whole Rule", "body": "Vietnamese stacked marks (ế, ỗ, ặ) must stay legible at every size used. Lines of large typed text keep room above and below the line box rather than clipping.", "section": "typography" },
+      { "name": "The Skirt Rule", "body": "A key's height is its skirt: a 0.3em bottom edge in the skirt colour. Pressing moves the cap down and shortens the shadow. Hover is a 0.08em dip, active is 0.22em, both over 120ms. Keys that are legends rather than controls (dimmed Telex keys) carry no shadow.", "section": "elevation" },
+      { "name": "The Sheets Stay Sheets Rule", "body": "In the dark scheme paper is lifted well above the desk so the sheet edge is visible without relying on the shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do choose the ground by content: enamel for the machine, paper for typed or measured content, the ink strip for commands and the footer.",
+      "Do make every button a keycap with a skirt, and let it move down when pressed (0.08em hover, 0.22em active, 120ms).",
+      "Do set Xanh Mono headings with `word-spacing: -0.2em` and the wordmark with `-0.28em`; reset it when a heading uses the legend font.",
+      "Do tell tested levels apart by stamp form (double box, single box, dashed box, brackets) and put the basis for the claim next to the stamp.",
+      "Do let commands and code wrap, and give the install command a ribbon copy key wherever it appears.",
+      "Do switch the focus ring to the light text colour on enamel and on the ink strip.",
+      "Do keep stacked Vietnamese marks whole: leave room above and below large typed lines.",
+      "Do author both colour schemes, with dark paper lifted clear of the dark desk.",
+      "Do keep transitions to transform, opacity and box-shadow, between 120ms and 240ms, and keep the reduced-motion path working."
+    ],
+    "donts": [
+      "Don't use ribbon red for anything outside the Ribbon Rule's list: no red headings, links, badges or decoration.",
+      "Don't carry a tested level, or any other state, by colour alone.",
+      "Don't loop the typing run or add a second authored animation; the run plays once and stops.",
+      "Don't make a command scroll sideways on a narrow screen.",
+      "Don't set running text in Xanh Mono or body paragraphs in the legend font.",
+      "Don't set Xanh Mono in bold; only regular and italic exist.",
+      "Don't draw a pictorial logo. The mark is the two words \"Ngó Sen\" set in Xanh Mono, always with diacritics.",
+      "Don't float surfaces with wide ambient shadows or glows; shadows are contact shadows under an edge."
+    ]
+  }
+}

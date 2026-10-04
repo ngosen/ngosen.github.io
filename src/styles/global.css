@@ -129,7 +129,7 @@ a {
 }
 
 a:hover {
-  text-decoration-color: var(--ribbon-text);
+  text-decoration-thickness: 0.14em;
 }
 
 :focus-visible {
@@ -278,7 +278,6 @@ button.key:active,
 pre {
   margin: 0;
   padding: 0.9rem 1.1rem;
-  overflow-x: auto;
   background: var(--strip);
   color: var(--on-strip);
   border-radius: 3px;
