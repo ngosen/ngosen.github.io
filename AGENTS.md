@@ -13,7 +13,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - Every factual claim on the site comes from the main branch of the main repository (`README.md`,
   `CHANGELOG.md`, `TU-DUNG.md`, `install.sh`, `packaging/release-notes.md` in `ngosen/ngosen`). Do not
   add numbers, tested systems or dates that are not there. "Builds" is not "works": keep the tested levels exact.
-- `src/data/site.ts` mirrors the release notes of the main repository. Change them together.
+- `src/data/site.ts` mirrors the release notes of the main repository. Change them together. On each
+  release, add an entry at the top of `RELEASES` (user-visible changes only, picked from
+  `CHANGELOG.md`); the home page shows the first entry and `/ban-phat-hanh/` lists them all.
 - Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
   page.
 - The site must not imply support or a team. The intro, highlights and roadmap mirror the top of the
