@@ -65,15 +65,6 @@ const posts = await getPosts();
     max-width: 60rem;
   }
 
-  /* Sheets step to the right down the list, the way pages fan out of a stack. */
-  li:nth-child(3n + 2) {
-    margin-left: clamp(0rem, 4vw, 4rem);
-  }
-
-  li:nth-child(3n) {
-    margin-left: clamp(0rem, 8vw, 8rem);
-  }
-
   time {
     font-family: var(--font-legend);
     font-weight: 500;

@@ -280,8 +280,8 @@ of a short page.
 
 Read pages are one sheet on the desk: a single paper sheet 60rem wide holding a title block closed by
 a 1px ink rule and one text column capped at 68ch, with 1.1rem between blocks and 2.8rem above a
-second-level heading. The blog index is a stack of sheets, each stepped further right in a cycle of
-three, the way pages fan out of a pile.
+second-level heading. The blog index is a column of sheets sharing one left edge; stepping them
+sideways read as misalignment.
 
 The home page alternates grounds: enamel hero with the ink install strip closing it, desk with a paper
 table, enamel Telex band, desk with two overlapping sheets, a second full-width install strip, then
