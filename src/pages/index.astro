@@ -54,17 +54,15 @@ const notFixed = [
 
 <Base
   title="Ngó Sen: bộ gõ tiếng Việt cho Linux"
-  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào, kèm roadmap tới bản 1.0."
+  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào, kèm roadmap."
   wordmark={false}
 >
   <Hero />
 
   <section class="roadmap wrap" id="roadmap" aria-labelledby="roadmap-tieu-de">
     <div class="intro">
-      <h2 id="roadmap-tieu-de">Roadmap: Ngó Sen 1.0</h2>
-      <p>
-        Bản 1.0 nhắm bốn thay đổi lớn. Chưa có ngày phát hành; đây là hướng đi, không phải lời hứa.
-      </p>
+      <h2 id="roadmap-tieu-de">Roadmap</h2>
+      <p>Hướng đi tiếp theo của Ngó Sen. Chưa có ngày phát hành.</p>
     </div>
     <ul class="sheet goals">
       {
@@ -72,10 +70,6 @@ const notFixed = [
           <li>
             <p class="goal">{item.goal}</p>
             <p class="detail">{item.detail}</p>
-            <p class="progress" data-done={item.done ? '' : undefined}>
-              <span class="progress-label">{item.done ? 'Xong' : 'Đang làm'}</span>
-              {item.status}
-            </p>
           </li>
         ))
       }
@@ -647,26 +641,6 @@ const notFixed = [
   .detail {
     margin-top: 0.4rem;
     max-width: 62ch;
-  }
-
-  .progress {
-    margin-top: 0.6rem;
-    font-size: var(--step--1);
-    color: var(--ink-muted);
-    max-width: 62ch;
-  }
-
-  .progress-label {
-    margin-right: 0.5em;
-    font-family: var(--font-legend);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink);
-  }
-
-  .progress[data-done] .progress-label {
-    font-weight: 700;
   }
 
   /* Modes and the Telex board */

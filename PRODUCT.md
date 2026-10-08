@@ -39,9 +39,8 @@ is, they have it installed and typing without opening the source repository.
 - Changes are measured before they are merged: predictions are written down first, then checked.
 - Since 0.5.0 there is no background server: the input method deletes old text with keys forwarded
   through fcitx5, or XTEST on X11, so nothing runs with special device permissions.
-- The maintainer does not write the code by hand: they vibecode the project, directing an AI
-  assistant, then measures and uses the result daily. The site says so plainly, with the word
-  "vibecode".
+- Tagline, from the README: "Bộ gõ tiếng Việt tối ưu cho Linux." The site no longer mentions how the
+  code is written (the maintainer asked to drop the vibecode wording on 2026-10-08).
 
 ## Operating Context
 
@@ -62,8 +61,8 @@ is, they have it installed and typing without opening the source repository.
 
 - Internal names stay `lotus` (config paths, gettext domain), so the
   package cannot be installed alongside fcitx5-lotus; installing Ngó Sen replaces it.
-- No support is promised. The site must not imply a support channel or a team. The README's 1.0
-  roadmap may appear, as a direction with no date.
+- The site must not imply a support channel or a team; bug reports go to Issues. The README's roadmap
+  may appear, as a direction with no date.
 - Primary language is Vietnamese. One short English page or section is enough.
 - Blog posts come from the maintainer's private notes; each is a real account of something measured
   or fixed. The first three are to be chosen with the maintainer.

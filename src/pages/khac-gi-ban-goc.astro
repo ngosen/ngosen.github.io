@@ -1,6 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
-import { REPO } from '../data/site';
+import { REPO, ROADMAP } from '../data/site';
 
 const upstream = 'https://github.com/LotusInputMethod/fcitx5-lotus';
 const changelog = `${REPO}/blob/main/CHANGELOG.md`;
@@ -9,7 +9,7 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
 
 <Page
   title="Ngó Sen khác gì bản gốc"
-  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: bỏ máy chủ nền, hai chế độ gõ, lõi ghép dấu Rust, các lỗi đã sửa, những gì chưa sửa và roadmap tới bản 1.0."
+  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: bỏ máy chủ nền, hai chế độ gõ, lõi ghép dấu Rust, các lỗi đã sửa, những gì chưa sửa và roadmap."
   heading="Khác gì bản gốc"
 >
   <p slot="lede">
@@ -99,29 +99,21 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
     <li>Không có gói Nix.</li>
   </ul>
 
-  <h2 id="roadmap">Roadmap: hướng tới bản 1.0</h2>
-  <p>
-    Đây là hướng đi, chưa có ngày phát hành và không phải lời hứa. Bản 1.0 nhắm bốn thay đổi lớn:
-  </p>
+  <h2 id="roadmap">Roadmap</h2>
+  <p>Hướng đi tiếp theo, chưa có ngày phát hành:</p>
   <ul>
-    <li><strong>Bỏ máy chủ nền.</strong> Đã xong ở bản 0.5.0.</li>
-    <li>
-      <strong>Chỉ còn hai chế độ gõ, Gõ Sen và Preedit</strong>, cùng chế độ Emoji. Đã gộp Surrounding
-      Text vào Gõ Sen.
-    </li>
-    <li>
-      <strong>Lõi ghép dấu chuyển sang Rust.</strong> Chỉ đổi khi bản mới gõ ra y hệt bản cũ. Gói cho
-      phần lớn distro đã dùng bản Rust.
-    </li>
-    <li>
-      <strong>Tách lõi Ngó Sen để dùng được ở nhiều nơi</strong>: ngoài fcitx5 sẽ có bản cho IBus (bộ gõ
-      mặc định của GNOME và Ubuntu) và cho các môi trường dùng wlroots như Sway.
-    </li>
+    {
+      ROADMAP.map((item) => (
+        <li>
+          <strong>{item.goal}:</strong> {item.detail}
+        </li>
+      ))
+    }
   </ul>
 
   <h2 id="day-du">Bản đầy đủ</h2>
   <p>
-    Từng thay đổi theo bản, kèm số pull request: <a href={changelog}>changelog</a>. Roadmap gốc nằm ở
-    đầu <a href={`${REPO}#readme`}>README</a>.
+    Từng thay đổi theo bản, kèm số pull request: <a href={changelog}>changelog</a>. Roadmap gốc nằm trong
+    <a href={`${REPO}#readme`}>README</a>.
   </p>
 </Page>

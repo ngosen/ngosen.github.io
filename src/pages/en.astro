@@ -16,12 +16,12 @@ const levels: Record<Level, string> = {
   lang="en"
 >
   <p slot="lede">
-    A Vietnamese input method for fcitx5 on Linux. The maintainer only vibecodes this project: an AI
-    coding agent writes the code, and the maintainer measures the result and types with it every day.
+    A Vietnamese input method optimized for Linux, running on fcitx5. No root daemon, no underlined
+    preedit: one typing mode, Gõ Sen, for every app.
   </p>
 
   <p>
-    Ngó Sen (“lotus stem”) is kept by one person and published as is, with no promise of support. Bugs can be reported in
+    Ngó Sen means “lotus stem”. Bugs can be reported in
     <a href={`${REPO}/issues`}>Issues</a>. The rest of this site is in Vietnamese.
   </p>
 
@@ -112,8 +112,9 @@ const levels: Record<Level, string> = {
     the method used and checked daily; VNI works but has not been checked closely.
   </p>
   <p>
-    Planned for 1.0, with no date: a shared core that can plug into fcitx5, IBus and wlroots
-    compositors such as Sway, and the Rust core everywhere. Source, releases and the changelog are at
+    Planned, with no date: an IBus build for GNOME and Ubuntu (package <code>ibus-ngosen</code>), and a
+    build that runs directly on wlroots compositors such as Sway, Hyprland, river, labwc and Wayfire,
+    without fcitx5. Source, releases and the changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>
 </Page>

@@ -16,8 +16,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - `src/data/site.ts` mirrors the release notes of the main repository. Change them together.
 - Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
   page.
-- The site must not imply support or a team, and must say that the maintainer vibecodes the project.
-  The 1.0 roadmap from the README may be shown, always as a direction with no date and no promise.
+- The site must not imply support or a team. The intro, highlights and roadmap mirror the top of the
+  README; show the roadmap as a direction with no date. Do not mention vibecoding (dropped at the
+  maintainer's request) or list fork lineage outside the footer credit and the comparison page.
 - Internal names stay `lotus` (config paths such as `lotus*.conf`). Do not rename them in commands
   shown to users.
 - Vietnamese page text keeps common technical terms in English: file, repo, script, test, build,

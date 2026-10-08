@@ -1,6 +1,6 @@
 ---
 import demoSteps from '../data/demo-steps.json';
-import { LEVELS, MACHINES, REPO } from '../data/site';
+import { HIGHLIGHTS, REPO, TAGLINE } from '../data/site';
 import InstallStrip from './InstallStrip.astro';
 
 // Without scripting the sheet shows the first phrase fully typed.
@@ -13,10 +13,7 @@ const firstText = first?.steps.at(-1) ?? '';
   <div class="inner">
     <div class="sheet">
       <h1 id="ten">Ngó Sen</h1>
-      <p class="lede">
-        Bộ gõ tiếng Việt cho Linux. Người giữ dự án chỉ vibecode nó: nêu việc cho trợ lý AI viết mã, rồi
-        tự đo và gõ bằng nó mỗi ngày.
-      </p>
+      <p class="lede">{TAGLINE}</p>
       <p class="typed">
         <span data-demo-out>{firstText}</span><span class="caret" aria-hidden="true"></span>
       </p>
@@ -42,24 +39,21 @@ const firstText = first?.steps.at(-1) ?? '';
       </p>
     </div>
 
-    <aside class="tested" aria-labelledby="may-da-thu">
-      <h2 id="may-da-thu">Máy đã thử</h2>
+    <aside class="tested" aria-labelledby="diem-chinh">
+      <h2 id="diem-chinh">Điểm chính</h2>
       <ul>
         {
-          MACHINES.map((item) => (
+          HIGHLIGHTS.map((item) => (
             <li>
-              <span class="machine">{item.name}</span>
-              <span class="stamp" data-level={item.level}>
-                {LEVELS[item.level].label}
-              </span>
-              <span class="basis">{item.desktop}</span>
+              <span class="point">{item.title}</span>
+              <span class="point-text">{item.text}</span>
             </li>
           ))
         }
       </ul>
       <p class="more">
-        Không hứa hỗ trợ. Gặp lỗi thì báo ở <a href={`${REPO}/issues`}>Issues</a>.
-        <a href="#may-nao">Gói cho từng distro và nghĩa của từng dấu</a>
+        Gặp lỗi thì báo ở <a href={`${REPO}/issues`}>Issues</a>.
+        <a href="#may-nao">Distro nào đã test</a>
       </p>
     </aside>
 
@@ -287,13 +281,13 @@ const firstText = first?.steps.at(-1) ?? '';
     gap: 0.2rem 1rem;
   }
 
-  .machine {
+  .point {
     font-weight: 600;
     font-size: var(--step-1);
     line-height: 1.2;
   }
 
-  .basis {
+  .point-text {
     grid-column: 1 / -1;
     font-size: var(--step--1);
     line-height: 1.45;
@@ -361,7 +355,8 @@ const firstText = first?.steps.at(-1) ?? '';
 
     .tested {
       margin-top: 0;
-      padding-top: clamp(1.5rem, 3vw, 2.5rem);
+      /* The platen overlaps the bottom of this row; keep the last line clear of it. */
+      padding-block: clamp(1.5rem, 3vw, 2.5rem) 1.75rem;
       align-self: start;
     }
 

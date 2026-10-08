@@ -1,8 +1,5 @@
 # Ngó Sen website
 
-The maintainer only **vibecodes** this project: an AI coding agent writes the code and the
-maintainer directs, checks and publishes it.
-
 Source of the website for [Ngó Sen](https://github.com/ngosen/ngosen), a Vietnamese input method for
 fcitx5 on Linux. It is a static [Astro](https://astro.build) site meant for GitHub Pages at
 `ngosen.github.io`: a home page, an install guide, a page on what differs from fcitx5-lotus, a blog
