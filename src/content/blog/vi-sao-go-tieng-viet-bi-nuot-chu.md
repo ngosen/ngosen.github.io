@@ -2,7 +2,7 @@
 title: "Vì sao gõ tiếng Việt trên Linux hay bị nuốt chữ, lặp chữ"
 description: "Bộ gõ phải xoá chữ cũ rồi gõ chữ có dấu, và hai bước đó dễ lệch nhịp với app. Ngó Sen đã chọn cách nào để chữa ở Messenger và LibreOffice."
 pubDate: 2026-10-04
-outdated: "Từ bản 0.5.0, chế độ Uinput đổi tên thành Gõ Sen, Surrounding Text gộp vào Gõ Sen, và máy chủ nền đã bỏ: bộ gõ xoá chữ bằng phím gửi hộ qua fcitx5. Trên KDE, ô soạn tin Facebook nay xoá rồi gõ lại như ô thường."
+outdated: "Từ bản 0.5.0, chế độ Uinput đổi tên thành Gõ Sen, Surrounding Text gộp vào Gõ Sen, và uinput server đã bỏ: bộ gõ xoá chữ bằng forward key qua fcitx5. Trên KDE, ô soạn tin Facebook nay xoá rồi gõ lại như ô thường."
 ---
 
 Gõ `tieengs vieetj` vào ô chat Messenger, đáng ra phải thấy `tiếng việt`. Trên Linux, có lúc màn hình lại hiện `iếngiệt`: chữ có dấu vẫn đúng, còn chữ `t`, dấu cách và chữ `v` phía trước thì biến mất. Ở thanh địa chỉ trình duyệt thì gặp lỗi ngược lại: gõ `tôi` ra `toôi`.
@@ -11,7 +11,7 @@ Gõ `tieengs vieetj` vào ô chat Messenger, đáng ra phải thấy `tiếng vi
 
 Với Telex, chữ hiện ra trước, dấu tới sau. Lúc bấm phím bỏ dấu, chữ chưa dấu đã nằm sẵn trong ô. Bộ gõ phải xoá chữ cũ rồi đưa chữ có dấu vào.
 
-Ở chế độ Uinput, việc đó gồm hai bước. Một chương trình chạy nền bấm phím Backspace thay người gõ, rồi bộ gõ đưa chữ có dấu vào. Giống hai người cùng sửa một tấm bảng: một người lau, một người viết. Viết sớm quá thì chữ mới bị lau theo. Đợi lâu quá thì người gõ thấy chậm.
+Ở chế độ Uinput, việc đó gồm hai bước. Một uinput server chạy nền bấm phím Backspace thay người gõ, rồi bộ gõ đưa chữ có dấu vào. Giống hai người cùng sửa một tấm bảng: một người lau, một người viết. Viết sớm quá thì chữ mới bị lau theo. Đợi lâu quá thì người gõ thấy chậm.
 
 Mỗi app xử lý Backspace nhanh chậm khác nhau, còn bộ gõ chỉ biết những gì app báo lại. Hai bước lệch nhịp là ra lỗi: mất chữ, lặp chữ, hoặc chữ sai.
 

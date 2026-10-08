@@ -137,7 +137,7 @@ const goDistros = DISTRIBUTIONS.filter((item) => item.core === 'Go').map((item) 
     bản này mới hơn 3.5.10-4, nên cập nhật như thường.
   </p>
   <p>
-    Bản 0.5.0 cũng bỏ máy chủ nền, chương trình chạy ngầm từng bấm phím Backspace thay bộ gõ. Cập nhật từ bản
+    Bản 0.5.0 cũng bỏ uinput server, service chạy nền từng bấm phím Backspace thay bộ gõ. Cập nhật từ bản
     cũ thì gói tự tắt dịch vụ đó và xoá tài khoản <code>uinput_proxy</code> của nó, không phải làm gì
     thêm.
   </p>
@@ -161,7 +161,7 @@ cmake --build build -j8
 sudo cmake --install build`}</code></pre>
   <p>
     Trên Fedora và openSUSE dùng <code>-DCMAKE_INSTALL_LIBDIR=lib64</code> thay cho <code>/usr/lib</code>.
-    Máy từng chạy máy chủ nền của Lotus hoặc Ngó Sen bản cũ thì làm thêm bước 4 trong TU-DUNG.md để tắt
+    Máy từng chạy uinput server của Lotus hoặc Ngó Sen bản cũ thì làm thêm bước 4 trong TU-DUNG.md để tắt
     nó và xoá các file nó để lại, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
   </p>
 

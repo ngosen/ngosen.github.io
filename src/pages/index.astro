@@ -12,9 +12,9 @@ const levels = Object.keys(LEVELS) as Level[];
 // Every line is a user-visible change from CHANGELOG.md in the main repository; `pr` is its pull request.
 const changes = [
   {
-    claim: 'Không còn máy chủ nền.',
+    claim: 'Không còn uinput server.',
     source:
-      'Bộ gõ xoá chữ cũ bằng phím gửi hộ qua fcitx5, hoặc qua XTEST trên X11. Không còn chương trình chạy ngầm có quyền đặc biệt, không cần quyền thiết bị.',
+      'Bộ gõ xoá chữ cũ bằng forward key qua fcitx5, hoặc qua XTEST trên X11. Không còn chương trình chạy ngầm có quyền đặc biệt, không cần quyền thiết bị.',
     pr: 43,
   },
   {
@@ -45,7 +45,7 @@ const changes = [
 ];
 
 const notFixed = [
-  'Game dùng SDL ngoài X11 không nhận phím gửi hộ, nên gõ ra chữ không dấu.',
+  'Game dùng SDL ngoài X11 không nhận forward key, nên gõ ra chữ không dấu.',
   'VS Code bản snap phải gõ qua XIM, và khoảng một câu trong mười có một chữ sai dấu.',
   'Ubuntu 26.04 cần bật một extension của Ngó Sen cho tới khi GNOME tự sửa lỗi làm mất phím Backspace.',
   'Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.',

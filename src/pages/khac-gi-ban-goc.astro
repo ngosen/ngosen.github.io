@@ -9,7 +9,7 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
 
 <Page
   title="Ngó Sen khác gì bản gốc"
-  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: bỏ máy chủ nền, hai chế độ gõ, lõi ghép dấu Rust, các lỗi đã sửa, những gì chưa sửa và roadmap."
+  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: bỏ uinput server, hai chế độ gõ, lõi ghép dấu Rust, các lỗi đã sửa, những gì chưa sửa và roadmap."
   heading="Khác gì bản gốc"
 >
   <p slot="lede">
@@ -23,10 +23,10 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
     riêng, không theo số 3.5.10 của bản gốc nữa.
   </p>
 
-  <h2 id="may-chu-nen">Không còn máy chủ nền</h2>
+  <h2 id="may-chu-nen">Không còn uinput server</h2>
   <p>
     Ở bản gốc, một chương trình chạy ngầm có quyền đặc biệt bấm phím Backspace thay bộ gõ. Ngó Sen bỏ hẳn nó:
-    bộ gõ xoá chữ cũ bằng phím gửi hộ qua fcitx5, hoặc qua XTEST trên phiên X11. Cài xong là gõ, không
+    bộ gõ xoá chữ cũ bằng forward key qua fcitx5, hoặc qua XTEST trên phiên X11. Cài xong là gõ, không
     phải bật dịch vụ, không cần quyền thiết bị. Cập nhật từ bản cũ thì gói tự tắt dịch vụ đó và xoá tài
     khoản <code>uinput_proxy</code> (<a href={pr(43)}>#43</a>).
   </p>
@@ -93,7 +93,7 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
 
   <h2 id="khong-sua">Chưa sửa</h2>
   <ul>
-    <li>Game dùng SDL ngoài X11 không nhận phím gửi hộ, nên gõ ra chữ không dấu.</li>
+    <li>Game dùng SDL ngoài X11 không nhận forward key, nên gõ ra chữ không dấu.</li>
     <li>VS Code bản snap phải gõ qua XIM, và khoảng một câu trong mười có một chữ sai dấu.</li>
     <li>Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.</li>
     <li>Không có gói Nix.</li>
