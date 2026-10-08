@@ -37,6 +37,14 @@ Mỗi tổ hợp là một đường, và mỗi đường hỗ trợ một phầ
 
 Rồi trong cùng một đường, mỗi app lại xử lý một kiểu. LibreOffice, Firefox, Chromium và ô soạn tin Facebook đều cần cách riêng, kể ở phần dưới.
 
+## Preedit là đường chính, vì nó sinh ra cho tiếng Trung, Nhật, Hàn
+
+Các bộ gõ trên Linux lớn lên cùng tiếng Trung, Nhật và Hàn. IBus, bộ gõ mặc định của GNOME, ra đời theo đề xuất của Northeast Asia OSS Forum, diễn đàn mã nguồn mở của ba nước này ([Wikipedia](https://en.wikipedia.org/wiki/Intelligent_Input_Bus)).
+
+Với các thứ tiếng đó, phím gõ chưa phải chữ cuối cùng. Gõ pinyin của tiếng Trung hay romaji của tiếng Nhật, bộ gõ hiện chuỗi đang soạn có gạch chân, người dùng chọn chữ trong danh sách gợi ý rồi mới commit. Giao thức text-input-v3 của Wayland cũng gọi preedit là "composing text", chữ đang soạn ([đặc tả](https://wayland.app/protocols/text-input-unstable-v3)). Vì vậy preedit là đường mà app và desktop trên Linux quen hỗ trợ nhất.
+
+Tiếng Việt thì khác: mỗi phím ra ngay một chữ, dấu thêm vào chữ đã có. Gõ bằng preedit thì chữ có gạch chân cho tới khi xong từ, và ô gợi ý của thanh địa chỉ hay ô tìm kiếm phải chờ chữ được commit. Muốn gõ thẳng, không gạch chân, thì bộ gõ phải đi các đường phụ: forward key và surrounding text. Đó lại chính là những đường mỗi desktop, mỗi toolkit hỗ trợ một kiểu, như các ví dụ ở trên.
+
 ## Nhiều đường thì sinh ra nhiều chế độ
 
 Bản gốc fcitx5-lotus đối phó bằng cách cho người dùng chọn: ba chế độ Uinput (Slow, Smooth, Super Smooth), Surrounding Text, Preedit, Minecraft. Gõ sai ở app nào thì người dùng tự thử từng chế độ cho app đó. Việc chọn đường bị đẩy sang cho người gõ.
