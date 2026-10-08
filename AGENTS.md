@@ -33,5 +33,6 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 
 ## Publishing
 
-The site is deployed by hand-off only: do not create the Pages repository, push, or deploy without
-the maintainer's explicit approval.
+The site lives in `ngosen/ngosen.github.io`; every push to `main` builds and deploys it through
+`.github/workflows/deploy.yml`. Pushing to `main` therefore publishes: do it only with the
+maintainer's explicit approval, and only after the release the site describes is public.

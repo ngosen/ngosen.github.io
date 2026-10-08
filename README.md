@@ -20,8 +20,8 @@ npm run check:telex  # compare the typing core with the expected Telex results
 ## The typing demo
 
 The home page composes Vietnamese with
-[bamboo-core](https://github.com/LotusInputMethod/bamboo-core) (MIT), the same composing core the
-input method uses, compiled to WebAssembly. The browser fetches it only when a visitor focuses the
+[bamboo-core](https://github.com/LotusInputMethod/bamboo-core) (MIT), the Go composing core, compiled
+to WebAssembly. Most packages of the input method now ship the Rust port, which types the same text. The browser fetches it only when a visitor focuses the
 demo field; the scripted run plays from precomputed steps.
 
 ```
