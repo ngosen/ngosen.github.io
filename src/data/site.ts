@@ -202,11 +202,13 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 ];
 
 // Mirrors the "Roadmap" section of README.md.
-export const ROADMAP: { goal: string; detail: string }[] = [
+// progress mirrors the latest Unreleased changelog entry; it never announces a release.
+export const ROADMAP: { goal: string; detail: string; progress?: string }[] = [
   {
     goal: 'IBus',
     detail:
       'Bản cho GNOME và Ubuntu, nơi IBus là bộ gõ mặc định, không phải cài thêm fcitx5. Gói ibus-ngosen; install.sh sẽ hỏi chọn bản nào.',
+    progress: 'Đã xong phần nền cho bản IBus.',
   },
   {
     goal: 'wlroots, không cần fcitx5',

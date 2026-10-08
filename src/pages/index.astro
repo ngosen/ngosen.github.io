@@ -36,6 +36,7 @@ const notFixed = [
           <li>
             <p class="goal">{item.goal}</p>
             <p class="detail">{item.detail}</p>
+            {item.progress && <p class="progress">{item.progress}</p>}
           </li>
         ))
       }
@@ -612,6 +613,15 @@ const notFixed = [
   .detail {
     margin-top: 0.4rem;
     max-width: 62ch;
+  }
+
+  .progress {
+    margin-top: 0.5rem;
+    font-family: var(--font-legend);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    word-spacing: normal;
+    color: var(--ink-muted);
   }
 
   /* Modes and the Telex board */
