@@ -22,7 +22,7 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - Internal names stay `lotus` (config paths such as `lotus*.conf`). Do not rename them in commands
   shown to users.
 - Vietnamese page text keeps common technical terms in English: file, repo, script, test, build,
-  source, release, changelog, roadmap, hash/SHA-256, distro, app, container. Translate lỗi, phiên
+  source, release, changelog, roadmap, hash/SHA-256, distro, app, container, and key names such as Backspace. Translate lỗi, phiên
   bản, cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
 - `public/telex/telex.wasm` is a build output kept in the repository. Rebuild it with
   `tools/telex-wasm/build.sh`, then run `npm run check:telex` and

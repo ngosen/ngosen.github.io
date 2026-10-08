@@ -47,7 +47,7 @@ Container cho biết gói cài vào được, thay được gói cũ và giữ c
 - Fedora 43 và openSUSE Tumbleweed: chỉ dựng và cài thử trong container.
 - Ubuntu 22.04, 26.04 và Debian 12, 13: chỉ dựng.
 
-Container cũng thiếu thiết bị thật, nên máy chủ nền (chương trình chạy ngầm bấm phím xoá thay bộ gõ) không khởi động được trong đó.
+Container cũng thiếu thiết bị thật, nên máy chủ nền (chương trình chạy ngầm bấm phím Backspace thay bộ gõ) không khởi động được trong đó.
 
 Quy trình phát hành chỉ chạy khi có thẻ phát hành, nên lần chạy thật đầu tiên của nó chính là bản phát hành đầu tiên. Trình cài cũng chưa được thử trên máy thật.
 

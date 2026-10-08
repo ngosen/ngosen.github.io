@@ -47,7 +47,7 @@ const changes = [
 const notFixed = [
   'Game dùng SDL ngoài X11 không nhận phím gửi hộ, nên gõ ra chữ không dấu.',
   'VS Code bản snap phải gõ qua XIM, và khoảng một câu trong mười có một chữ sai dấu.',
-  'Ubuntu 26.04 cần bật một extension của Ngó Sen cho tới khi GNOME tự sửa lỗi làm rơi phím xoá.',
+  'Ubuntu 26.04 cần bật một extension của Ngó Sen cho tới khi GNOME tự sửa lỗi làm mất phím Backspace.',
   'Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.',
 ];
 ---
@@ -217,7 +217,7 @@ const notFixed = [
         <p>
           <strong>Ubuntu 26.04:</strong> cài xong, đăng xuất rồi đăng nhập lại, sau đó chạy một lần
           <code>gnome-extensions enable forward-keys@ngosen.github.io</code>. Extension này sửa lỗi GNOME
-          làm rơi phím xoá.
+          làm mất phím Backspace.
         </p>
         <p>
           <strong>Gỡ:</strong> bỏ Ngó Sen khỏi danh sách bộ gõ, gỡ gói <code>fcitx5-ngosen</code>, rồi chạy

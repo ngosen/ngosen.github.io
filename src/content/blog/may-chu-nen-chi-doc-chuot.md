@@ -1,11 +1,11 @@
 ---
 title: "Máy chủ nền chỉ còn đọc chuột"
-description: "Chương trình nền bấm phím xoá hộ bộ gõ từng mở được mọi bàn phím, nay chỉ còn đọc chuột, kèm cái giá và phần chưa kiểm trên máy thật."
+description: "Chương trình nền bấm phím Backspace hộ bộ gõ từng mở được mọi bàn phím, nay chỉ còn đọc chuột, kèm cái giá và phần chưa kiểm trên máy thật."
 pubDate: 2026-10-04
 outdated: "Từ bản 0.5.0, Ngó Sen bỏ hẳn máy chủ nền. Cập nhật từ bản cũ thì gói tự tắt dịch vụ và xoá tài khoản uinput_proxy, nên các lệnh trong bài không còn cần."
 ---
 
-Ở chế độ Uinput, Ngó Sen sửa một chữ bằng cách xoá chữ cũ rồi gõ chữ mới. Việc bấm phím xoá lùi (backspace) do một chương trình nhỏ chạy nền làm hộ, gọi là máy chủ nền. Nó bấm qua một bàn phím ảo, tức bàn phím do phần mềm tạo ra.
+Ở chế độ Uinput, Ngó Sen sửa một chữ bằng cách xoá chữ cũ rồi gõ chữ mới. Việc bấm phím Backspace do một chương trình nhỏ chạy nền làm hộ, gọi là máy chủ nền. Nó bấm qua một bàn phím ảo, tức bàn phím do phần mềm tạo ra.
 
 Bàn phím ảo ấy chỉ khai ba phím: xoá lùi, mũi tên trái và Shift phải. Máy chủ nền còn theo dõi cú bấm chuột, để khi người dùng bấm chuột giữa một từ đang gõ thì bộ gõ bắt đầu từ mới.
 
@@ -33,11 +33,11 @@ Tệp khai báo dịch vụ của systemd, trình quản lý dịch vụ, cũng 
 
 Máy chủ nền và mô-đun bộ gõ (phần chạy trong fcitx5) nói chuyện qua socket, một kênh nối giữa hai chương trình. Trước đây máy chủ nhận khách bằng cách xem đường dẫn chương trình của bên kia. Việc xem đó cần `CAP_SYS_PTRACE`, một quyền hệ thống dùng để soi vào tiến trình khác. Phép kiểm này lại không chặn được gì, vì chính người dùng chạy được fcitx5 kèm phần bổ sung tuỳ ý.
 
-Nay hai bên nhận nhau theo uid, số định danh tài khoản của tiến trình bên kia. Máy chủ chỉ nhận tài khoản của người dùng nó phục vụ, mô-đun chỉ nhận `uinput_proxy`. Máy chủ bỏ hẳn `CAP_SYS_PTRACE`. Mô-đun kiểm cả socket phím xoá, nên chương trình chiếm tên socket trước không đọc được độ dài từng từ ([#9](https://github.com/ngosen/ngosen/pull/9)).
+Nay hai bên nhận nhau theo uid, số định danh tài khoản của tiến trình bên kia. Máy chủ chỉ nhận tài khoản của người dùng nó phục vụ, mô-đun chỉ nhận `uinput_proxy`. Máy chủ bỏ hẳn `CAP_SYS_PTRACE`. Mô-đun kiểm cả socket phím Backspace, nên chương trình chiếm tên socket trước không đọc được độ dài từng từ ([#9](https://github.com/ngosen/ngosen/pull/9)).
 
 Máy chủ cũng kiểm con số nó nhận. Số từ 1 tới 1024 là số lần bấm xoá lùi, số từ -1 tới -1024 là số chữ cần bôi đen. Số khác bị bỏ qua và ghi vào nhật ký. Trước đây một số âm rất lớn làm máy chủ chết, bàn phím chết theo ([#7](https://github.com/ngosen/ngosen/pull/7)).
 
-Hàng chờ phím xoá giữ tối đa 1024 phím và bị bỏ khi bộ gõ ngắt kết nối. Trước đây một chương trình gửi dồn dập có thể khiến máy chủ tiếp tục xoá chữ rất lâu sau khi nó đã dừng ([#18](https://github.com/ngosen/ngosen/pull/18)).
+Hàng chờ phím Backspace giữ tối đa 1024 phím và bị bỏ khi bộ gõ ngắt kết nối. Trước đây một chương trình gửi dồn dập có thể khiến máy chủ tiếp tục xoá chữ rất lâu sau khi nó đã dừng ([#18](https://github.com/ngosen/ngosen/pull/18)).
 
 ## Cái giá
 

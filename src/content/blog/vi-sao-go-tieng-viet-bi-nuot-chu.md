@@ -13,11 +13,11 @@ Bài này giải thích vì sao, và bộ gõ [Ngó Sen](https://github.com/ngos
 
 Với kiểu gõ Telex, chữ hiện ra trước, dấu tới sau. Lúc người gõ bấm phím bỏ dấu, chữ chưa dấu đã nằm sẵn trong ô. Bộ gõ phải bỏ chữ cũ đi và đưa chữ có dấu vào thay.
 
-Ở chế độ Ngó Sen khuyên dùng, tên là Uinput, việc thay chữ gồm hai bước. Trước hết, một chương trình nhỏ chạy nền, đóng vai bàn phím ảo, bấm phím xoá (Backspace) thay người gõ. Sau đó bộ gõ đưa chữ có dấu vào.
+Ở chế độ Ngó Sen khuyên dùng, tên là Uinput, việc thay chữ gồm hai bước. Trước hết, một chương trình nhỏ chạy nền, đóng vai bàn phím ảo, bấm phím Backspace thay người gõ. Sau đó bộ gõ đưa chữ có dấu vào.
 
 Có thể hình dung hai người cùng sửa một tấm bảng: một người lau chữ cũ, người kia viết chữ mới. Viết sớm quá thì chữ mới bị lau theo. Đợi lâu quá thì người gõ thấy chậm.
 
-Mỗi ứng dụng xử lý phím xoá nhanh chậm khác nhau, còn bộ gõ chỉ biết những gì ứng dụng báo lại. Hai bước lệch nhịp nhau là ra lỗi: mất chữ, lặp chữ, hoặc ra chữ sai.
+Mỗi ứng dụng xử lý phím Backspace nhanh chậm khác nhau, còn bộ gõ chỉ biết những gì ứng dụng báo lại. Hai bước lệch nhịp nhau là ra lỗi: mất chữ, lặp chữ, hoặc ra chữ sai.
 
 ## Chuyện ở ô chat Messenger
 
@@ -49,9 +49,9 @@ Cách này chỉ dùng cho ô soạn tin của Facebook và Messenger. Phép đo
 
 Ở thanh địa chỉ trình duyệt, lỗi là lặp chữ đầu, như `toôi` ở trên. Thanh địa chỉ có phần gợi ý tự điền, và bộ gõ phải nhận ra phần đó thì mới thay chữ đúng. Edge báo đúng phần tự điền, nên ở đó lỗi đã sửa dứt. Firefox không báo đúng, nên bản này nhận ra thanh địa chỉ qua hình dạng của ô nhập. Đo được 7 trên 7 lần có gợi ý ra đúng, nhưng mẫu còn nhỏ.
 
-Ở LibreOffice, gõ `chao` rồi bấm `f` ra `chaà`. LibreOffice xếp phím xoá vào hàng để xử lý sau, còn chữ mới thì chèn ngay. Chữ mới vượt lên trước phím xoá, và chờ lâu hơn cũng không cứu được.
+Ở LibreOffice, gõ `chao` rồi bấm `f` ra `chaà`. LibreOffice xếp phím Backspace vào hàng để xử lý sau, còn chữ mới thì chèn ngay. Chữ mới vượt lên trước phím Backspace, và chờ lâu hơn cũng không cứu được.
 
-Bản này chữa riêng cho LibreOffice: bảo thẳng ứng dụng xoá chữ ngay tại con trỏ, không đi qua phím xoá. Đo trên Writer, 60 từ mỗi lượt: trước khi vá sai 30 đến 36 từ, sau khi vá không sai từ nào.
+Bản này chữa riêng cho LibreOffice: bảo thẳng ứng dụng xoá chữ ngay tại con trỏ, không đi qua phím Backspace. Đo trên Writer, 60 từ mỗi lượt: trước khi vá sai 30 đến 36 từ, sau khi vá không sai từ nào.
 
 ## Những gì chưa xong
 
