@@ -1,0 +1,80 @@
+---
+import Page from '../layouts/Page.astro';
+import { RELEASES, REPO } from '../data/site';
+
+const changelog = `${REPO}/blob/main/CHANGELOG.md`;
+const download = (version: string) => `${REPO}/releases/tag/ngosen-${version}`;
+---
+
+<Page
+  title="Các bản phát hành của Ngó Sen"
+  description="Mỗi bản phát hành của Ngó Sen đổi gì với người dùng, kèm link tải gói và changelog đầy đủ."
+  heading="Các bản phát hành"
+>
+  <p slot="lede">
+    Mỗi bản chỉ ghi những gì người dùng thấy khác. Thay đổi bên trong mã, kể cả những mục "người dùng
+    không thấy gì khác", nằm trong <a href={changelog}>changelog</a> đầy đủ.
+  </p>
+
+  <p>
+    Từ bản 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 của bản gốc nữa. Trình quản lý gói vẫn coi
+    bản mới hơn 3.5.10-4, nên cập nhật như thường. Các bản trước 0.5.0 có trong changelog.
+  </p>
+
+  {
+    RELEASES.map((release, index) => (
+      <section class="release" aria-labelledby={`ban-${release.version}`}>
+        <h2 id={`ban-${release.version}`}>
+          {release.version}
+          {index === 0 && <span class="latest">Mới nhất</span>}
+        </h2>
+        <p class="meta">
+          <time datetime={release.date.split('/').reverse().join('-')}>{release.date}</time> · <a href={download(release.version)}>Tải gói</a>
+        </p>
+        <p>{release.summary}</p>
+        <ul>
+          {release.changes.map((change) => (
+            <li>
+              <strong>{change.claim}</strong> {change.source}{' '}
+              <a href={`${REPO}/pull/${change.pr}`}>#{change.pr}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Page>
+
+<style>
+  .release + .release {
+    margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  h2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.9rem;
+  }
+
+  .latest {
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    word-spacing: normal;
+    text-transform: uppercase;
+    padding: 0.1em 0.55em 0.05em;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+  }
+
+  .meta {
+    font-family: var(--font-legend);
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

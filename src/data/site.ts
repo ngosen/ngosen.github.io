@@ -2,8 +2,79 @@ export const REPO = 'https://github.com/ngosen/ngosen';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
 
+export interface Change {
+  claim: string;
+  source: string;
+  pr: number;
+}
+
+// User-visible changes per release, newest first, picked from CHANGELOG.md.
+// Internal refactors ("người dùng không thấy gì khác") stay in the changelog only.
+export const RELEASES: { version: string; date: string; summary: string; changes: Change[] }[] = [
+  {
+    version: '0.5.1-1',
+    date: '09/10/2026',
+    summary: 'Sửa lỗi Gõ Sen trên Sway và Hyprland, và cài mới thì dùng Gõ Sen luôn.',
+    changes: [
+      {
+        claim: 'Gõ Sen gõ được trên Sway, Hyprland và các WM dùng input-method-v2.',
+        source: 'Trước đó chữ đầu tiên cần thêm dấu làm bộ gõ kẹt, mọi phím sau đó không ra chữ.',
+        pr: 73,
+      },
+      {
+        claim: 'Cài mới thì chế độ mặc định là Gõ Sen thay cho Preedit.',
+        source: 'Khớp với cửa sổ cài đặt. Ai đã chọn chế độ thì giữ nguyên.',
+        pr: 74,
+      },
+    ],
+  },
+  {
+    version: '0.5.0-1',
+    date: '08/10/2026',
+    summary: 'Bản đầu tiên đánh số riêng: bỏ uinput server, gom chế độ gõ vào Gõ Sen, lõi ghép dấu Rust.',
+    changes: [
+      {
+        claim: 'Không còn uinput server.',
+        source:
+          'Bộ gõ xoá chữ cũ bằng forward key qua fcitx5, hoặc qua XTEST trên X11. Không còn chương trình chạy ngầm có quyền đặc biệt, không cần quyền thiết bị.',
+        pr: 43,
+      },
+      {
+        claim: 'Chỉ còn hai chế độ gõ: Gõ Sen và Preedit, cùng chế độ Emoji.',
+        source: 'Uinput đổi tên thành Gõ Sen; Surrounding Text gộp vào Gõ Sen. Cấu hình cũ tự chuyển sang tên mới.',
+        pr: 43,
+      },
+      {
+        claim: 'Lõi ghép dấu viết bằng Rust trong gói Fedora, Arch, openSUSE và Ubuntu 24.04 trở lên.',
+        source: 'Debian 12, 13 và Ubuntu 22.04 vẫn dùng lõi Go. Hai lõi gõ ra chữ như nhau.',
+        pr: 71,
+      },
+      {
+        claim: 'Ubuntu 26.04 có extension sửa lỗi GNOME làm mất phím Backspace.',
+        source: 'Chrome, Edge và app Electron chạy Wayland từng gõ ra “tieêngếng”. Phải bật extension một lần sau khi cài.',
+        pr: 41,
+      },
+      {
+        claim: 'Gõ nhanh trong Firefox trên GNOME không còn mất chữ.',
+        source: 'Trước đó “viet” có lúc ra “v”. Ô soạn tin Facebook trên Edge cũng không còn ra “i” thay cho “đi”.',
+        pr: 33,
+      },
+      {
+        claim: 'Thanh địa chỉ Chrome, Edge và Chromium trên X11 không còn giữ dấu cũ.',
+        source: 'Gõ lại một địa chỉ đã từng vào từng ra “tiêng” thay cho “tiếng”.',
+        pr: 38,
+      },
+      {
+        claim: 'VS Code bản Flatpak, và bản .deb chạy Wayland, gõ được tiếng Việt.',
+        source: 'Bộ gõ không còn coi việc VS Code nhích con trỏ sau mỗi phím là một cú bấm chuột.',
+        pr: 58,
+      },
+    ],
+  },
+];
+
 // The release whose notes the tested levels below are copied from.
-export const RELEASE = { version: '0.5.1-1', date: '09/10/2026' };
+export const RELEASE = RELEASES[0];
 
 export type Level = 'daily' | 'vm' | 'built';
 
