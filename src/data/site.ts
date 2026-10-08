@@ -3,7 +3,7 @@ export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
 
 // The release whose notes the tested levels below are copied from.
-export const RELEASE = { version: '0.5.0-1', date: '08/10/2026' };
+export const RELEASE = { version: '0.5.1-1', date: '09/10/2026' };
 
 export type Level = 'daily' | 'vm' | 'built';
 
@@ -45,7 +45,7 @@ export const DISTRIBUTIONS: Distribution[] = [
   {
     name: 'Arch, CachyOS',
     level: 'vm',
-    basis: '5 app trên máy ảo CachyOS (Hyprland), cài bằng install.sh',
+    basis: '5 app ở chế độ Gõ Sen trên máy ảo CachyOS (Hyprland)',
     file: 'fcitx5-ngosen-*-x86_64.pkg.tar.zst',
     core: 'Rust',
   },

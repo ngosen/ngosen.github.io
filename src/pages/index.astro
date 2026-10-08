@@ -10,6 +10,20 @@ const posts = (await getPosts()).slice(0, 3);
 const levels = Object.keys(LEVELS) as Level[];
 
 // Every line is a user-visible change from CHANGELOG.md in the main repository; `pr` is its pull request.
+const latestChanges = [
+  {
+    claim: 'Gõ Sen gõ được trên Sway, Hyprland và các WM dùng input-method-v2.',
+    source: 'Trước đó chữ đầu tiên cần thêm dấu làm bộ gõ kẹt, mọi phím sau đó không ra chữ.',
+    pr: 73,
+  },
+  {
+    claim: 'Cài mới thì chế độ mặc định là Gõ Sen thay cho Preedit.',
+    source: 'Khớp với cửa sổ cài đặt. Ai đã chọn chế độ thì giữ nguyên.',
+    pr: 74,
+  },
+];
+
+// Previous release, kept because it carries the larger changes.
 const changes = [
   {
     claim: 'Không còn uinput server.',
@@ -232,6 +246,19 @@ const notFixed = [
       <h2 id="da-do-tieu-de">Bản {RELEASE.version} đổi gì</h2>
       <ul>
         {
+          latestChanges.map((line) => (
+            <li>
+              <p class="claim">{line.claim}</p>
+              <p class="source">
+                {line.source} <a href={`${REPO}/pull/${line.pr}`}>#{line.pr}</a>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+      <h3>Bản 0.5.0-1</h3>
+      <ul>
+        {
           changes.map((line) => (
             <li>
               <p class="claim">{line.claim}</p>
@@ -422,6 +449,16 @@ const notFixed = [
     margin-top: 1.9rem;
     display: grid;
     gap: 1.6rem;
+  }
+
+  .report h3 {
+    margin-top: 2.6rem;
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: var(--step-1);
+    letter-spacing: 0.06em;
+    word-spacing: normal;
+    text-transform: uppercase;
   }
 
   .claim {

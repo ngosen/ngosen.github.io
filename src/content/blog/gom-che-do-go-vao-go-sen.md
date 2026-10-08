@@ -30,6 +30,6 @@ Cấu hình cũ tự chuyển: `Mode=Uinput`, `Mode=Surrounding Text`, `Mode=Min
 
 ## Gõ Sen là mặc định
 
-Bản kế tiếp đặt Gõ Sen làm chế độ mặc định khi cài mới, thay cho Preedit, khớp với cửa sổ cài đặt và README. Ai đã chọn chế độ thì giữ nguyên ([#74](https://github.com/ngosen/ngosen/pull/74)).
+Từ bản 0.5.1-1, Gõ Sen là chế độ mặc định khi cài mới, thay cho Preedit, khớp với cửa sổ cài đặt và README. Ai đã chọn chế độ thì giữ nguyên ([#74](https://github.com/ngosen/ngosen/pull/74)).
 
 Còn một chỗ Gõ Sen chưa làm được: game dùng SDL ngoài X11 không nhận forward key, cũng không báo surrounding text, nên gõ ra chữ không dấu.
