@@ -34,6 +34,34 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   by the stamp's outline, never by colour alone.
 - Animate only `transform`, `opacity` and `box-shadow`, and keep the reduced-motion path working.
 
+## Keeping up with the main repository
+
+`RELEASING.md` in `ngosen/ngosen` lists what to update after each merged PR and each release; the
+website is the last step of both lists. This section is the website side.
+
+Two rules apply to every update:
+
+- `/en/` follows the Vietnamese pages. When a page changes for a new release or a new README, change
+  `src/pages/en.astro` in the same commit.
+- Blog posts must not contradict the latest release. On each release, search `src/content/blog/` for
+  version numbers and for wording such as "bản tiếp theo", "bản kế tiếp" or "bản hiện tại". Correct the
+  text, or add an `outdated` note when the post describes an older state on purpose.
+
+After a merged PR, before any release: change the site only when users can see the change or the
+roadmap moved (the `progress` line in `ROADMAP`). Never present unreleased work as a new version.
+
+When a version is released, in this order:
+
+1. Start only after the release is public and marked Latest on GitHub.
+2. Add an entry at the top of `RELEASES` in `src/data/site.ts`: user-visible changes only, picked from
+   `CHANGELOG.md`. The version, date and download links on every page derive from that entry.
+3. Update the tested levels in `DISTRIBUTIONS` from `packaging/release-notes.md`.
+4. If the README changed, update the intro, highlights and roadmap (`TAGLINE`, `HIGHLIGHTS`,
+   `ROADMAP`); clear a `progress` line the release has made obsolete.
+5. Update `/en/` and the blog posts as described above.
+6. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
+   to `main`.
+
 ## Publishing
 
 The site lives in `ngosen/ngosen.github.io`; every push to `main` builds and deploys it through
