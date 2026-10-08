@@ -62,7 +62,7 @@ is, they have it installed and typing without opening the source repository.
 - Internal names stay `lotus` (config paths, gettext domain), so the
   package cannot be installed alongside fcitx5-lotus; installing Ngó Sen replaces it.
 - The site must not imply a support channel or a team; bug reports go to Issues. The README's roadmap
-  may appear, as a direction with no date.
+  may appear, as a direction without dates.
 - Primary language is Vietnamese. One short English page or section is enough.
 - Blog posts come from the maintainer's private notes; each is a real account of something measured
   or fixed. The first three are to be chosen with the maintainer.

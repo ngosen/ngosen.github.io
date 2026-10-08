@@ -17,7 +17,7 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
   page.
 - The site must not imply support or a team. The intro, highlights and roadmap mirror the top of the
-  README; show the roadmap as a direction with no date. Do not mention vibecoding (dropped at the
+  README; show the roadmap as a direction, without dates or promises. Do not mention vibecoding (dropped at the
   maintainer's request) or list fork lineage outside the footer credit and the comparison page.
 - Internal names stay `lotus` (config paths such as `lotus*.conf`). Do not rename them in commands
   shown to users.
