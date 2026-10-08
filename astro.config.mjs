@@ -8,8 +8,9 @@ export default defineConfig({
   markdown: { syntaxHighlight: false },
   // Minifying drops the space between a word and an inline element on the next source line.
   compressHTML: false,
-  // Keep links to renamed posts working.
+  // Keep links to renamed or removed posts working.
   redirects: {
     '/blog/may-chu-nen-chi-doc-chuot': '/blog/bo-uinput-server/',
+    '/blog/dong-goi-cho-muoi-ban-linux': '/cai-dat/',
   },
 });
