@@ -179,11 +179,16 @@ const notFixed = [
         Lệnh này tìm gói build sẵn cho đúng distro của máy trong bản release mới nhất, hỏi lại rồi mới
         tải, so hash SHA-256 của file tải về, rồi cài bằng trình quản lý gói của máy. Gói
         <code>fcitx5-lotus</code> nếu có sẽ bị thay; cấu hình cũ giữ nguyên.
-        <a href="/cai-dat/">Cài bằng tay và các trường hợp khác</a>.
       </p>
     </div>
     <InstallStrip />
     <div class="wrap">
+      <p class="install-manual">
+        Không muốn chạy lệnh qua curl? Tải gói <code>.rpm</code>, <code>.deb</code> hoặc
+        <code>.pkg.tar.zst</code> ở <a href={`${REPO}/releases/latest`}>bản release mới nhất</a>, so hash
+        với file <code>SHA256SUMS</code> rồi cài bằng trình quản lý gói.
+        <a href="/cai-dat/#tai-tay">Chọn đúng file cho từng distro</a>.
+      </p>
       <h3 class="after-title">Cài xong, còn ba việc</h3>
       <ol class="after">
         <li>
@@ -655,6 +660,18 @@ const notFixed = [
   .board-note {
     margin: 0.5rem 0 1.4rem;
     color: var(--on-enamel-muted);
+  }
+
+  .install-manual {
+    margin-top: 1.2rem;
+    max-width: var(--measure);
+  }
+
+  .install-manual code,
+  .install-notes code {
+    padding: 0.08em 0.3em;
+    background: var(--paper);
+    border-radius: 2px;
   }
 
   .install-notes {
