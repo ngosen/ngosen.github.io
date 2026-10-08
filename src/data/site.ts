@@ -100,6 +100,49 @@ export const DISTRIBUTIONS: Distribution[] = [
   },
 ];
 
+// Machines the input method itself runs on, as the opening of README.md lists them. Unlike
+// DISTRIBUTIONS this is about where people type, not which prebuilt package was tried.
+export const MACHINES: { name: string; level: Extract<Level, 'daily' | 'vm'>; desktop: string }[] = [
+  { name: 'Fedora 44', level: 'daily', desktop: 'KDE Plasma, Wayland' },
+  { name: 'CachyOS', level: 'daily', desktop: 'KDE Plasma, Wayland' },
+  { name: 'Ubuntu 26.04', level: 'vm', desktop: 'GNOME, Wayland' },
+  { name: 'CachyOS', level: 'vm', desktop: 'Hyprland' },
+  { name: 'MX Linux', level: 'vm', desktop: 'Xfce, X11' },
+  { name: 'Linux Mint', level: 'vm', desktop: 'Cinnamon, X11' },
+];
+
+// Mirrors the "Roadmap: Ngó Sen 1.0" section of README.md; `status` is what is already shipped.
+export const ROADMAP: { goal: string; detail: string; status: string; done: boolean }[] = [
+  {
+    goal: 'Bỏ máy chủ nền uinput',
+    detail:
+      'Bộ gõ không còn chương trình chạy ngầm có quyền đặc biệt. Cài xong là gõ, không phải bật dịch vụ, không cần quyền thiết bị.',
+    status: 'Xong ở bản 0.5.0. Cập nhật từ bản cũ thì gói tự tắt và dọn dịch vụ cũ.',
+    done: true,
+  },
+  {
+    goal: 'Chỉ còn hai chế độ gõ: Gõ Sen và Preedit',
+    detail:
+      'Cùng chế độ Emoji để chọn biểu tượng cảm xúc. Người dùng không còn phải chọn giữa nhiều chế độ khó hiểu.',
+    status: 'Đã gộp chế độ Surrounding Text vào Gõ Sen.',
+    done: false,
+  },
+  {
+    goal: 'Lõi ghép dấu chuyển sang Rust',
+    detail: 'Phần biến tieengs thành tiếng (bamboo-core) đổi từ Go sang Rust. Chỉ đổi khi bản mới gõ ra y hệt bản cũ.',
+    status: 'Gói Fedora, Arch, openSUSE và Ubuntu 24.04 trở lên đã dùng lõi Rust.',
+    done: false,
+  },
+  {
+    goal: 'Tách lõi Ngó Sen để dùng được ở nhiều nơi',
+    detail:
+      'Ngoài fcitx5 sẽ có bản cho IBus (bộ gõ mặc định của GNOME và Ubuntu) và cho các môi trường dùng wlroots như Sway.',
+    // From CHANGELOG.md 0.5.0-1 (#47–#66): the core is split out, no IBus build yet.
+    status: 'Phần gõ đã tách thành thư viện riêng, không nối với fcitx5. Chưa có bản IBus.',
+    done: false,
+  },
+];
+
 export const NAV = [
   { href: '/cai-dat/', label: 'Cài đặt' },
   { href: '/khac-gi-ban-goc/', label: 'Khác gì bản gốc' },

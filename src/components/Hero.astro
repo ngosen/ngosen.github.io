@@ -1,13 +1,12 @@
 ---
 import demoSteps from '../data/demo-steps.json';
-import { DISTRIBUTIONS, LEVELS, RELEASE } from '../data/site';
+import { LEVELS, MACHINES, REPO } from '../data/site';
 import InstallStrip from './InstallStrip.astro';
 
 // Without scripting the sheet shows the first phrase fully typed.
 const first = demoSteps[0];
 const firstKeys = first ? [...first.keys] : [];
 const firstText = first?.steps.at(-1) ?? '';
-const used = DISTRIBUTIONS.filter((item) => item.level === 'daily' || item.level === 'vm');
 ---
 
 <section class="hero" aria-labelledby="ten">
@@ -47,19 +46,20 @@ const used = DISTRIBUTIONS.filter((item) => item.level === 'daily' || item.level
       <h2 id="may-da-thu">Máy đã thử</h2>
       <ul>
         {
-          used.map((item) => (
+          MACHINES.map((item) => (
             <li>
               <span class="machine">{item.name}</span>
               <span class="stamp" data-level={item.level}>
                 {LEVELS[item.level].label}
               </span>
-              <span class="basis">{item.basis}</span>
+              <span class="basis">{item.desktop}</span>
             </li>
           ))
         }
       </ul>
       <p class="more">
-        Theo ghi chú bản {RELEASE.version}, ngày {RELEASE.date}. <a href="#may-nao">Đủ các distro và nghĩa của từng dấu</a>
+        Không hứa hỗ trợ. Gặp lỗi thì báo ở <a href={`${REPO}/issues`}>Issues</a>.
+        <a href="#may-nao">Gói cho từng distro và nghĩa của từng dấu</a>
       </p>
     </aside>
 

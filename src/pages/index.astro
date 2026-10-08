@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import InstallStrip from '../components/InstallStrip.astro';
 import TelexBoard from '../components/TelexBoard.astro';
-import { DISTRIBUTIONS, LEVELS, RELEASE, REPO, type Level } from '../data/site';
+import { DISTRIBUTIONS, LEVELS, RELEASE, REPO, ROADMAP, type Level } from '../data/site';
 import { formatDay, getPosts } from '../lib/posts';
 
 const posts = (await getPosts()).slice(0, 3);
@@ -54,10 +54,74 @@ const notFixed = [
 
 <Base
   title="Ngó Sen: bộ gõ tiếng Việt cho Linux"
-  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào và đo được gì."
+  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào, kèm roadmap tới bản 1.0."
   wordmark={false}
 >
   <Hero />
+
+  <section class="roadmap wrap" id="roadmap" aria-labelledby="roadmap-tieu-de">
+    <div class="intro">
+      <h2 id="roadmap-tieu-de">Roadmap: Ngó Sen 1.0</h2>
+      <p>
+        Bản 1.0 nhắm bốn thay đổi lớn. Chưa có ngày phát hành; đây là hướng đi, không phải lời hứa.
+      </p>
+    </div>
+    <ul class="sheet goals">
+      {
+        ROADMAP.map((item) => (
+          <li>
+            <p class="goal">{item.goal}</p>
+            <p class="detail">{item.detail}</p>
+            <p class="progress" data-done={item.done ? '' : undefined}>
+              <span class="progress-label">{item.done ? 'Xong' : 'Đang làm'}</span>
+              {item.status}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="telex" aria-labelledby="telex-tieu-de">
+    <div class="wrap">
+      <div class="telex-head">
+        <h2 id="telex-tieu-de">Nên dùng chế độ nào</h2>
+        <p>
+          Dùng <strong>Gõ Sen</strong> làm chế độ gõ chính: chọn trong cửa sổ cài đặt Ngó Sen, mục chế độ
+          mặc định. Gõ Sen dùng cho mọi chỗ: gõ nhanh không mất chữ, gõ đúng trong trình duyệt, thanh địa
+          chỉ, Facebook, app Electron như Zalo, và terminal. Chế độ này trước tên là Uinput; cấu hình cũ tự
+          chuyển sang tên mới.
+        </p>
+        <p>
+          <strong>Preedit</strong> hiện chữ gạch chân trong lúc gõ, dành cho app không hợp với Gõ Sen. Kiểu
+          gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa kiểm kỹ.
+        </p>
+      </div>
+      <h3 class="board-title">Telex nằm ở những phím này</h3>
+      <p class="board-note">Phím mờ là phím chữ thường; phím đậm làm thêm một việc.</p>
+      <TelexBoard />
+      <dl class="telex-notes">
+        <div>
+          <dt>Dấu thanh</dt>
+          <dd>
+            Gõ sau nguyên âm: <kbd>s</kbd> sắc, <kbd>f</kbd> huyền, <kbd>r</kbd> hỏi, <kbd>x</kbd> ngã,
+            <kbd>j</kbd> nặng. <kbd>as</kbd> ra á.
+          </dd>
+        </div>
+        <div>
+          <dt>Mũ, móc, trăng</dt>
+          <dd>
+            <kbd>aa</kbd> â, <kbd>ee</kbd> ê, <kbd>oo</kbd> ô, <kbd>aw</kbd> ă, <kbd>ow</kbd> ơ,
+            <kbd>uw</kbd> ư, <kbd>dd</kbd> đ.
+          </dd>
+        </div>
+        <div>
+          <dt>Bỏ dấu</dt>
+          <dd><kbd>z</kbd> bỏ dấu thanh vừa gõ: <kbd>asz</kbd> ra a.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
 
   <section class="can-it-run wrap" id="may-nao" aria-labelledby="may-nao-tieu-de">
     <div class="intro">
@@ -114,67 +178,6 @@ const notFixed = [
     </div>
   </section>
 
-  <section class="telex" aria-labelledby="telex-tieu-de">
-    <div class="wrap">
-      <div class="telex-head">
-        <h2 id="telex-tieu-de">Telex nằm ở những phím này</h2>
-        <p>
-          Telex là kiểu gõ dùng trong mọi lượt đo và trong việc gõ hằng ngày của Ngó Sen. Phím mờ là phím
-          chữ thường; phím đậm làm thêm một việc.
-        </p>
-      </div>
-      <TelexBoard />
-      <dl class="telex-notes">
-        <div>
-          <dt>Dấu thanh</dt>
-          <dd>
-            Gõ sau nguyên âm: <kbd>s</kbd> sắc, <kbd>f</kbd> huyền, <kbd>r</kbd> hỏi, <kbd>x</kbd> ngã,
-            <kbd>j</kbd> nặng. <kbd>as</kbd> ra á.
-          </dd>
-        </div>
-        <div>
-          <dt>Mũ, móc, trăng</dt>
-          <dd>
-            <kbd>aa</kbd> â, <kbd>ee</kbd> ê, <kbd>oo</kbd> ô, <kbd>aw</kbd> ă, <kbd>ow</kbd> ơ,
-            <kbd>uw</kbd> ư, <kbd>dd</kbd> đ.
-          </dd>
-        </div>
-        <div>
-          <dt>Bỏ dấu</dt>
-          <dd><kbd>z</kbd> bỏ dấu thanh vừa gõ: <kbd>asz</kbd> ra a.</dd>
-        </div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="measured wrap" aria-labelledby="da-do-tieu-de">
-    <div class="sheet report">
-      <h2 id="da-do-tieu-de">Bản {RELEASE.version} đổi gì</h2>
-      <ul>
-        {
-          changes.map((line) => (
-            <li>
-              <p class="claim">{line.claim}</p>
-              <p class="source">
-                {line.source} <a href={`${REPO}/pull/${line.pr}`}>#{line.pr}</a>
-              </p>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="sheet-note">
-        Đủ từng thay đổi trong <a href={`${REPO}/blob/main/CHANGELOG.md`}>changelog</a>. Ngó Sen đang hướng
-        tới bản 1.0 theo <a href="/khac-gi-ban-goc/#roadmap">roadmap</a>, chưa có ngày.
-      </p>
-    </div>
-    <div class="sheet open-items">
-      <h3><span class="struck">Chưa sửa</span></h3>
-      <ul>
-        {notFixed.map((line) => <li>{line}</li>)}
-      </ul>
-    </div>
-  </section>
-
   <section class="install" id="cai" aria-labelledby="cai-tieu-de">
     <div class="wrap install-head">
       <h2 id="cai-tieu-de">Cài bằng một dòng lệnh</h2>
@@ -211,6 +214,60 @@ const notFixed = [
           </div>
         </li>
       </ol>
+      <div class="install-notes">
+        <p>
+          <strong>Ubuntu 26.04:</strong> cài xong, đăng xuất rồi đăng nhập lại, sau đó chạy một lần
+          <code>gnome-extensions enable forward-keys@ngosen.github.io</code>. Extension này sửa lỗi GNOME
+          làm rơi phím xoá.
+        </p>
+        <p>
+          <strong>Gỡ:</strong> bỏ Ngó Sen khỏi danh sách bộ gõ, gỡ gói <code>fcitx5-ngosen</code>, rồi chạy
+          <code>fcitx5 -rd</code>. <a href="/cai-dat/#go">Lệnh gỡ cho từng distro</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="measured wrap" aria-labelledby="da-do-tieu-de">
+    <div class="sheet report">
+      <h2 id="da-do-tieu-de">Bản {RELEASE.version} đổi gì</h2>
+      <ul>
+        {
+          changes.map((line) => (
+            <li>
+              <p class="claim">{line.claim}</p>
+              <p class="source">
+                {line.source} <a href={`${REPO}/pull/${line.pr}`}>#{line.pr}</a>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="sheet-note">
+        Đủ từng thay đổi trong <a href={`${REPO}/blob/main/CHANGELOG.md`}>changelog</a>. So với bản gốc:
+        <a href="/khac-gi-ban-goc/">Khác gì bản gốc</a>.
+      </p>
+    </div>
+    <div class="sheet open-items">
+      <h3><span class="struck">Chưa sửa</span></h3>
+      <ul>
+        {notFixed.map((line) => <li>{line}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="origin wrap" aria-labelledby="nguon-goc-tieu-de">
+    <h2 id="nguon-goc-tieu-de">Nguồn gốc</h2>
+    <div class="origin-text">
+      <p>
+        Người giữ dự án chỉ <strong>vibecode</strong> dự án này: nêu việc cho trợ lý AI viết mã, rồi đo và
+        dùng thử hằng ngày. Kho để công khai cho ai cần thì lấy dùng, không hứa hỗ trợ.
+      </p>
+      <p>
+        Ngó Sen tách ra từ <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a>,
+        vốn là bản fork của <a href="https://github.com/thanhpy2009/VMK">bộ gõ VMK</a>. Ngó sen là mầm mọc
+        ra từ cây sen: cùng gốc với Lotus nhưng đi hướng riêng. Giấy phép vẫn là GPL-3.0-or-later.
+      </p>
     </div>
   </section>
 
@@ -565,6 +622,120 @@ const notFixed = [
     .open-items {
       margin: 5.5rem 0 0 -2.5rem;
       transform: rotate(1.2deg);
+    }
+  }
+
+  /* Roadmap */
+  .roadmap {
+    padding-block: clamp(3.5rem, 9vw, 7rem) clamp(3rem, 8vw, 6rem);
+    display: grid;
+    gap: 2.25rem;
+  }
+
+  .goals {
+    list-style: none;
+    margin: 0;
+    padding: clamp(1.1rem, 3.5vw, 2.25rem) clamp(1.1rem, 3.5vw, 2.5rem);
+  }
+
+  .goals li {
+    padding-block: 1.2rem;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .goals li:first-child {
+    padding-top: 0;
+  }
+
+  .goals li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .goal {
+    font-family: var(--font-typed);
+    font-size: var(--step-1);
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  .detail {
+    margin-top: 0.4rem;
+    max-width: 62ch;
+  }
+
+  .progress {
+    margin-top: 0.6rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    max-width: 62ch;
+  }
+
+  .progress-label {
+    margin-right: 0.5em;
+    font-family: var(--font-legend);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .progress[data-done] .progress-label {
+    font-weight: 700;
+  }
+
+  /* Modes and the Telex board */
+  .telex-head p + p {
+    margin-top: 0.8rem;
+  }
+
+  .board-title {
+    font-size: var(--step-2);
+  }
+
+  .board-note {
+    margin: 0.5rem 0 1.4rem;
+    color: var(--on-enamel-muted);
+  }
+
+  .install-notes {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    display: grid;
+    gap: 0.9rem;
+    max-width: var(--measure);
+  }
+
+  .install-notes code {
+    padding: 0.08em 0.3em;
+    background: var(--paper);
+    border-radius: 2px;
+    overflow-wrap: anywhere;
+  }
+
+  /* Origin */
+  .origin {
+    padding-top: clamp(3.5rem, 9vw, 7rem);
+    display: grid;
+    gap: 1.2rem 3rem;
+  }
+
+  .origin-text {
+    display: grid;
+    gap: 0.9rem;
+    max-width: var(--measure);
+  }
+
+  @media (min-width: 62rem) {
+    .roadmap,
+    .origin {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .roadmap .intro {
+      position: sticky;
+      top: 2rem;
     }
   }
 </style>
