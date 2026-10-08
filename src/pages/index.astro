@@ -3,47 +3,52 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import InstallStrip from '../components/InstallStrip.astro';
 import TelexBoard from '../components/TelexBoard.astro';
-import { DISTRIBUTIONS, LEVELS, REPO, type Level } from '../data/site';
+import { DISTRIBUTIONS, LEVELS, RELEASE, REPO, type Level } from '../data/site';
 import { formatDay, getPosts } from '../lib/posts';
 
 const posts = (await getPosts()).slice(0, 3);
 const levels = Object.keys(LEVELS) as Level[];
 
-// Every line names where its number comes from; all of them are in the repository's README.
-const measured = [
+// Every line is a user-visible change from CHANGELOG.md in the main repository; `pr` is its pull request.
+const changes = [
   {
-    claim: 'Messenger trên Facebook: 861 lần thay chữ, 0 lần mất chữ.',
+    claim: 'Không còn máy chủ nền.',
     source:
-      'Đo ngày 20/09/2026 bằng máy gõ tự động, lúc máy đang bận, trên trình duyệt Edge. Firefox và Chrome chưa đo.',
+      'Bộ gõ xoá chữ cũ bằng phím gửi hộ qua fcitx5, hoặc qua XTEST trên X11. Không còn chương trình chạy ngầm có quyền đặc biệt, không cần quyền thiết bị.',
+    pr: 43,
   },
   {
-    claim: '50 câu đầy đủ gõ vào Messenger: sai 0 câu. Mỗi lần bỏ dấu chờ 3 đến 20 ms, thường là 6 ms.',
-    source: 'Cùng lượt đo 20/09/2026. Cách cũ, chờ theo đồng hồ 40 đến 60 ms, sai 1 câu.',
+    claim: 'Chỉ còn hai chế độ gõ: Gõ Sen và Preedit, cùng chế độ Emoji.',
+    source: 'Uinput đổi tên thành Gõ Sen; Surrounding Text gộp vào Gõ Sen. Cấu hình cũ tự chuyển sang tên mới.',
+    pr: 43,
   },
   {
-    claim: 'LibreOffice Writer: từ 30 đến 36 trên 60 từ sai, xuống 0 trên 60.',
-    source: 'Calc và Impress cũng 0 trên 60. Đo ở chế độ Uinput.',
+    claim: 'Lõi ghép dấu viết bằng Rust trong gói Fedora, Arch, openSUSE và Ubuntu 24.04 trở lên.',
+    source: 'Debian 12, 13 và Ubuntu 22.04 vẫn dùng lõi Go. Hai lõi gõ ra chữ như nhau.',
+    pr: 71,
   },
   {
-    claim: 'Thanh địa chỉ trình duyệt: hết cảnh gõ “tôi” ra “toôi”.',
-    source:
-      'Chromium và Edge sửa triệt để vì trình duyệt báo đúng phần tự điền. Firefox đo 7 trên 7 lần có gợi ý ra đúng.',
+    claim: 'Gõ nhanh trong Firefox trên GNOME không còn mất chữ.',
+    source: 'Trước đó “viet” có lúc ra “v”. Ô soạn tin Facebook trên Edge cũng không còn ra “i” thay cho “đi”.',
+    pr: 33,
   },
   {
-    claim: 'Máy chủ nền: điểm systemd-analyze security từ 7.0 xuống 2.0.',
-    source:
-      'Điểm càng thấp càng kín. Chương trình chạy ngầm này chỉ còn mở chuột và bàn chạm, không đọc được bàn phím.',
+    claim: 'Thanh địa chỉ Chrome, Edge và Chromium trên X11 không còn giữ dấu cũ.',
+    source: 'Gõ lại một địa chỉ đã từng vào từng ra “tiêng” thay cho “tiếng”.',
+    pr: 38,
   },
   {
-    claim: '26 bài kiểm tự động, bản gốc có 9.',
-    source: 'Cả 26 bài chạy lại trong mỗi lần dựng gói.',
+    claim: 'VS Code bản Flatpak, và bản .deb chạy Wayland, gõ được tiếng Việt.',
+    source: 'Bộ gõ không còn coi việc VS Code nhích con trỏ sau mỗi phím là một cú bấm chuột.',
+    pr: 58,
   },
 ];
 
 const notFixed = [
-  'Chế độ Surrounding Text vẫn lỗi, nhất là trên Firefox và LibreOffice Writer: 60 trên 60 từ sai.',
-  'Máy chủ nền chết giữa lúc thay chữ thì bàn phím chết theo.',
-  'Mọi lượt đo đều gõ Telex. VNI và các kiểu gõ khác chưa kiểm.',
+  'Game dùng SDL ngoài X11 không nhận phím gửi hộ, nên gõ ra chữ không dấu.',
+  'VS Code bản snap phải gõ qua XIM, và khoảng một câu trong mười có một chữ sai dấu.',
+  'Ubuntu 26.04 cần bật một extension của Ngó Sen cho tới khi GNOME tự sửa lỗi làm rơi phím xoá.',
+  'Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.',
 ];
 ---
 
@@ -58,8 +63,8 @@ const notFixed = [
     <div class="intro">
       <h2 id="may-nao-tieu-de">Máy tôi có chạy được không?</h2>
       <p>
-        Dòng lệnh cài chọn được gói cho mười bản Linux dưới đây, trên máy x86_64. Dựng được gói chưa có
-        nghĩa là gõ được, nên mỗi bản mang một dấu ghi nó đã được thử tới đâu.
+        Dòng lệnh cài chọn được gói cho các distro dưới đây, trên máy x86_64. Build được gói chưa có
+        nghĩa là gõ được, nên mỗi distro mang một dấu ghi nó đã được thử tới đâu.
       </p>
       <dl class="legend">
         {
@@ -78,10 +83,10 @@ const notFixed = [
     </div>
     <div class="sheet tested-sheet">
       <table>
-        <caption class="visually-hidden">Mười bản Linux và mức đã thử của từng bản</caption>
+        <caption class="visually-hidden">Các distro và mức đã thử của từng distro</caption>
         <thead>
           <tr>
-            <th scope="col">Bản Linux</th>
+            <th scope="col">Distro</th>
             <th scope="col">Đã thử tới đâu</th>
             <th scope="col">Dựa trên</th>
           </tr>
@@ -103,8 +108,8 @@ const notFixed = [
         </tbody>
       </table>
       <p class="sheet-note">
-        Tình trạng ngày 04/10/2026, chép theo ghi chú của bản phát hành. Bản Linux khác thì
-        <a href="/cai-dat/#tu-dung">tự dựng từ mã</a>.
+        Chép theo ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}. Distro khác thì
+        <a href="/cai-dat/#tu-build">tự build từ source</a>.
       </p>
     </div>
   </section>
@@ -144,20 +149,22 @@ const notFixed = [
 
   <section class="measured wrap" aria-labelledby="da-do-tieu-de">
     <div class="sheet report">
-      <h2 id="da-do-tieu-de">Đã đo được gì</h2>
+      <h2 id="da-do-tieu-de">Bản {RELEASE.version} đổi gì</h2>
       <ul>
         {
-          measured.map((line) => (
+          changes.map((line) => (
             <li>
               <p class="claim">{line.claim}</p>
-              <p class="source">{line.source}</p>
+              <p class="source">
+                {line.source} <a href={`${REPO}/pull/${line.pr}`}>#{line.pr}</a>
+              </p>
             </li>
           ))
         }
       </ul>
       <p class="sheet-note">
-        Số liệu và cách đo ghi trong <a href={`${REPO}#readme`}>README của kho mã</a>. Mỗi dòng đo riêng
-        một thay đổi, không cộng dồn thành một con số chung.
+        Đủ từng thay đổi trong <a href={`${REPO}/blob/main/CHANGELOG.md`}>changelog</a>. Ngó Sen đang hướng
+        tới bản 1.0 theo <a href="/khac-gi-ban-goc/#roadmap">roadmap</a>, chưa có ngày.
       </p>
     </div>
     <div class="sheet open-items">
@@ -172,8 +179,8 @@ const notFixed = [
     <div class="wrap install-head">
       <h2 id="cai-tieu-de">Cài bằng một dòng lệnh</h2>
       <p>
-        Lệnh này tìm gói dựng sẵn cho đúng bản Linux của máy trong bản phát hành mới nhất, hỏi lại rồi
-        mới tải, đối chiếu mã băm của tệp tải về, rồi cài bằng trình quản lý gói của máy. Gói
+        Lệnh này tìm gói build sẵn cho đúng distro của máy trong bản release mới nhất, hỏi lại rồi mới
+        tải, so hash SHA-256 của file tải về, rồi cài bằng trình quản lý gói của máy. Gói
         <code>fcitx5-lotus</code> nếu có sẽ bị thay; cấu hình cũ giữ nguyên.
         <a href="/cai-dat/">Cài bằng tay và các trường hợp khác</a>.
       </p>

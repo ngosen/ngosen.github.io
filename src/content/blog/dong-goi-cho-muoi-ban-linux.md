@@ -2,6 +2,7 @@
 title: "Đóng gói cho mười bản Linux: thử trong container nói được gì"
 description: "Ngó Sen có gói cài sẵn cho mười bản Linux và một dòng lệnh cài. Phép thử trong container đã chỉ ra gì, và điều gì nó không trả lời được."
 pubDate: 2026-10-04
+outdated: "Mức đã thử trong bài là của bản 3.5.10-4. Bản mới có mức khác, xem bảng ở trang Cài đặt. Lệnh cài nay lấy script từ nhánh main, và máy chủ nền đã bỏ từ bản 0.5.0."
 ---
 
 Cho tới giờ, cài Ngó Sen nghĩa là tự dựng từ mã nguồn. Dự án nay có gói cài sẵn cho mười bản Linux: Fedora 43 và 44, Ubuntu 22.04, 24.04 và 26.04, Debian 12 và 13, Arch, CachyOS, openSUSE Tumbleweed. Các gói được đính kèm vào bản phát hành trên GitHub, cùng một dòng lệnh để cài.

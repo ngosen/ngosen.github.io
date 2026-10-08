@@ -10,16 +10,19 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 
 ## Rules that are easy to break
 
-- Every factual claim on the site comes from the main repository (`README.md`, `CHANGELOG.md`,
-  `KHAC-GI-SO-VOI-BAN-GOC.md`, `packaging/release-notes.md` in `ngosen/ngosen`). Do not add numbers,
-  tested systems or dates that are not there. "Builds" is not "works": keep the tested levels exact.
+- Every factual claim on the site comes from the main branch of the main repository (`README.md`,
+  `CHANGELOG.md`, `TU-DUNG.md`, `install.sh`, `packaging/release-notes.md` in `ngosen/ngosen`). Do not
+  add numbers, tested systems or dates that are not there. "Builds" is not "works": keep the tested levels exact.
 - `src/data/site.ts` mirrors the release notes of the main repository. Change them together.
 - Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
   page.
-- The site must not imply support, a team or a roadmap, and must say that the maintainer vibecodes
-  the project.
-- Internal names stay `lotus` (service `fcitx5-lotus-server`, config paths). Do not rename them in
-  commands shown to users.
+- The site must not imply support or a team, and must say that the maintainer vibecodes the project.
+  The 1.0 roadmap from the README may be shown, always as a direction with no date and no promise.
+- Internal names stay `lotus` (config paths such as `lotus*.conf`). Do not rename them in commands
+  shown to users.
+- Vietnamese page text keeps common technical terms in English: file, repo, script, test, build,
+  source, release, changelog, roadmap, hash/SHA-256, distro, app, container. Translate lỗi, phiên
+  bản, cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
 - `public/telex/telex.wasm` is a build output kept in the repository. Rebuild it with
   `tools/telex-wasm/build.sh`, then run `npm run check:telex` and
   `node tools/telex-wasm/demo-steps.mjs`.

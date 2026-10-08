@@ -1,11 +1,10 @@
 ---
 import Page from '../layouts/Page.astro';
-import { DISTRIBUTIONS, INSTALL_COMMAND, REPO, type Level } from '../data/site';
+import { DISTRIBUTIONS, INSTALL_COMMAND, RELEASE, REPO, type Level } from '../data/site';
 
 const levels: Record<Level, string> = {
   daily: 'Used daily',
-  light: 'Used lightly',
-  container: 'Installed in a container',
+  vm: 'Typed in a VM',
   built: 'Builds only',
 };
 ---
@@ -25,29 +24,40 @@ const levels: Record<Level, string> = {
     Ngó Sen (“lotus stem”) is a fork of
     <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a> 3.5.10, itself a fork of
     <a href="https://github.com/thanhpy2009/VMK">VMK</a>, and stays under GPL-3.0-or-later. It is kept
-    by one person and published as is, with no promise of support. The rest of this site is in
-    Vietnamese.
+    by one person and published as is, with no promise of support. Bugs can be reported in
+    <a href={`${REPO}/issues`}>Issues</a>. The rest of this site is in Vietnamese.
   </p>
 
   <h2 id="install">Install</h2>
   <pre tabindex="0"><code>{INSTALL_COMMAND}</code></pre>
   <p>
     The script picks the prebuilt package for your distribution from the latest GitHub release, asks
-    before it downloads the package, checks the file against <code>SHA256SUMS</code>, installs it with
-    your package manager and starts the background server for your account. It replaces
-    <code>fcitx5-lotus</code> if that is installed; your configuration is kept. Its prompts are in
-    Vietnamese: answer <kbd>c</kbd> to continue. The source is
-    <a href={`${REPO}/blob/ban-dung/install.sh`}>install.sh</a>.
+    before it downloads the package, checks the file against <code>SHA256SUMS</code> and installs it
+    with your package manager. It replaces <code>fcitx5-lotus</code> if that is installed; your
+    configuration is kept. Its prompts are in Vietnamese: answer <kbd>c</kbd> to continue. The source is
+    <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>Then:</p>
   <ol>
-    <li>Restart fcitx5 with <code>fcitx5 -rd</code>.</li>
+    <li>Restart fcitx5 with <code>fcitx5 -rd</code>. Do this again after every update.</li>
     <li>Open “Fcitx5 Configuration” and add the input method named Ngó Sen.</li>
     <li>On KDE Wayland, select “Fcitx 5” under System Settings, Virtual Keyboard.</li>
+    <li>
+      In the Ngó Sen settings window, pick <strong>Gõ Sen</strong> as the default mode.
+    </li>
   </ol>
+  <p>
+    On Ubuntu 26.04, log out and back in after installing, then run
+    <code>gnome-extensions enable forward-keys@ngosen.github.io</code> once. The extension works around a
+    GNOME bug that drops the backspaces the input method sends.
+  </p>
 
   <h2 id="tested">Where it has been tested</h2>
-  <p>Packages exist for ten distributions on x86_64. A package that builds is not a package that works, so each one is labelled by how far it was tested, as of 4 October 2026.</p>
+  <p>
+    Packages exist for these distributions on x86_64. A package that builds is not a package that works,
+    so each one is labelled by how far it was tested, as listed in the notes of release
+    {RELEASE.version}.
+  </p>
   <div class="table-scroll">
     <table>
       <thead>
@@ -73,32 +83,40 @@ const levels: Record<Level, string> = {
     </table>
   </div>
   <p>
-    “Used daily” means the maintainer types on that system every day, on KDE Plasma Wayland; on CachyOS
-    that is a build from source, and the prebuilt package has only been installed in a container.
-    “Builds only” means the package builds and passes the test suite at build time; nobody has typed
-    with it there.
+    “Used daily” means the maintainer types on that system every day, on KDE Plasma Wayland. “Typed in a
+    VM” means a handful of apps were tried in a virtual machine: CachyOS with Hyprland, Ubuntu 26.04 with
+    GNOME Wayland, Linux Mint 22 for Ubuntu 24.04 and MX 25 for Debian 13; the two Ubuntu tests used a
+    build from source. “Builds only” means the package builds and passes the test suite at build time;
+    nobody has typed with it there.
   </p>
 
   <h2 id="differences">What differs from fcitx5-lotus</h2>
   <ul>
     <li>
-      Text no longer disappears in the Facebook Messenger compose box in uinput mode: 861 replacements
-      measured on Edge, none lost.
+      No background server. Old text is deleted with keys forwarded through fcitx5, or through XTEST on
+      X11, so nothing runs with special device permissions.
     </li>
-    <li>The first letter is no longer doubled in browser address bars.</li>
-    <li>LibreOffice Writer went from 30 to 36 wrong words out of 60 to none.</li>
     <li>
-      The background server that presses backspace for the input method opens pointer devices only,
-      never a keyboard, and identifies its client by uid.
+      Two typing modes: Gõ Sen, for fast typing, browsers, Electron apps and terminals, and Preedit,
+      plus an Emoji mode. Old Uinput and Surrounding Text settings move to Gõ Sen on their own.
     </li>
-    <li>26 automated tests instead of 9, run in every package build.</li>
+    <li>
+      The Bamboo composition core is written in Rust in the Fedora, Arch, openSUSE and Ubuntu 24.04+
+      packages. Debian 12, 13 and Ubuntu 22.04 keep the Go core; both type the same text.
+    </li>
+    <li>
+      Ngó Sen numbers its own releases from 0.5.0. Packages carry an epoch, so package managers still
+      treat 0.5.0 as newer than 3.5.10.
+    </li>
   </ul>
   <p>
-    Not fixed: Surrounding Text mode is still broken, and if the background server dies during a
-    replacement the keyboard stops with it. All measurements were made typing Telex; VNI has not been
-    checked.
+    Not fixed: SDL games outside X11 ignore forwarded keys and get text without tone marks, and the snap
+    build of VS Code types through XIM, where about one sentence in ten gets a wrong tone mark. Telex is
+    the method used and checked daily; VNI works but has not been checked closely.
   </p>
   <p>
-    Source, releases and the changelog are at <a href={REPO}>github.com/ngosen/ngosen</a>.
+    Planned for 1.0, with no date: a shared core that can plug into fcitx5, IBus and wlroots
+    compositors such as Sway, and the Rust core everywhere. Source, releases and the changelog are at
+    <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>
 </Page>

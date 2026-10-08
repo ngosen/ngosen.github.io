@@ -228,7 +228,7 @@ button.key:active,
 }
 
 /* Stamp: the tested level. The outline form carries the level, so it reads without colour:
-   double box, single box, dashed box, brackets. */
+   double box, single box, brackets. */
 .stamp {
   display: inline-block;
   padding: 0.12em 0.6em 0.08em;
@@ -245,11 +245,6 @@ button.key:active,
 
 .stamp[data-level='daily'] {
   box-shadow: inset 0 0 0 2px var(--stamp-ground, var(--paper)), inset 0 0 0 3.5px currentColor;
-}
-
-.stamp[data-level='container'] {
-  border-style: dashed;
-  font-weight: 500;
 }
 
 /* Brackets: only the two side strokes. */

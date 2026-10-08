@@ -2,6 +2,7 @@
 title: "Máy chủ nền chỉ còn đọc chuột"
 description: "Chương trình nền bấm phím xoá hộ bộ gõ từng mở được mọi bàn phím, nay chỉ còn đọc chuột, kèm cái giá và phần chưa kiểm trên máy thật."
 pubDate: 2026-10-04
+outdated: "Từ bản 0.5.0, Ngó Sen bỏ hẳn máy chủ nền. Cập nhật từ bản cũ thì gói tự tắt dịch vụ và xoá tài khoản uinput_proxy, nên các lệnh trong bài không còn cần."
 ---
 
 Ở chế độ Uinput, Ngó Sen sửa một chữ bằng cách xoá chữ cũ rồi gõ chữ mới. Việc bấm phím xoá lùi (backspace) do một chương trình nhỏ chạy nền làm hộ, gọi là máy chủ nền. Nó bấm qua một bàn phím ảo, tức bàn phím do phần mềm tạo ra.

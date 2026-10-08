@@ -1,60 +1,51 @@
 ---
 import Page from '../layouts/Page.astro';
 import InstallStrip from '../components/InstallStrip.astro';
-import { DISTRIBUTIONS, LEVELS, REPO } from '../data/site';
+import { DISTRIBUTIONS, LEVELS, RELEASE, REPO } from '../data/site';
 
-// File names as listed in the release notes; the asterisk stands for the version.
-const files: Record<string, string> = {
-  'Fedora 44': 'fcitx5-ngosen-*.fc44.x86_64.rpm',
-  'Fedora 43': 'fcitx5-ngosen-*.fc43.x86_64.rpm',
-  CachyOS: 'fcitx5-ngosen-*-x86_64.pkg.tar.zst',
-  Arch: 'fcitx5-ngosen-*-x86_64.pkg.tar.zst',
-  'Ubuntu 24.04': 'fcitx5-ngosen_*_noble_amd64.deb',
-  'Ubuntu 22.04': 'fcitx5-ngosen_*_jammy_amd64.deb',
-  'Ubuntu 26.04': 'fcitx5-ngosen_*_resolute_amd64.deb',
-  'Debian 12': 'fcitx5-ngosen_*_bookworm_amd64.deb',
-  'Debian 13': 'fcitx5-ngosen_*_trixie_amd64.deb',
-  'openSUSE Tumbleweed': 'fcitx5-ngosen-*.opensuse-tumbleweed.x86_64.rpm',
-};
-
-const sourceGuide = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md#cài-sang-máy-khác`;
+const buildGuide = `${REPO}/blob/main/TU-DUNG.md`;
+const rustDistros = DISTRIBUTIONS.filter((item) => item.core === 'Rust').map((item) => item.name);
+const goDistros = DISTRIBUTIONS.filter((item) => item.core === 'Go').map((item) => item.name);
 ---
 
 <Page
   title="Cài đặt Ngó Sen"
-  description="Cài Ngó Sen bằng một dòng lệnh, bằng gói tải tay, hoặc tự dựng từ mã. Kèm việc cần làm sau khi cài, cách cập nhật và cách gỡ."
+  description="Cài Ngó Sen bằng một dòng lệnh, bằng gói tải tay, hoặc tự build từ source. Kèm việc cần làm sau khi cài, cách cập nhật và cách gỡ."
   heading="Cài đặt"
 >
   <p slot="lede">
-    Một dòng lệnh cho mười bản Linux trên máy x86_64. Bản khác thì tự dựng từ mã.
+    Một dòng lệnh cho Fedora, Ubuntu, Debian, Arch, CachyOS và openSUSE Tumbleweed trên máy x86_64.
+    Distro khác thì tự build từ source.
   </p>
 
   <h2 id="mot-dong-lenh">Cài bằng một dòng lệnh</h2>
   <InstallStrip inset />
   <p>Lệnh này làm lần lượt các việc sau:</p>
   <ol>
-    <li>Nhận ra bản Linux của máy và chọn đúng gói trong bản phát hành mới nhất trên GitHub.</li>
+    <li>
+      Nhận ra distro của máy và chọn đúng gói trong
+      <a href={`${REPO}/releases/latest`}>bản release mới nhất</a> trên GitHub.
+    </li>
     <li>In ra gói sẽ cài và hỏi lại. Trả lời <kbd>c</kbd> thì mới đi tiếp; bấm Enter là dừng.</li>
-    <li>Tải gói về và đối chiếu mã băm với tệp <code>SHA256SUMS</code>. Không khớp thì không cài.</li>
-    <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper), lúc này máy hỏi mật khẩu sudo.</li>
-    <li>Bật và khởi động lại máy chủ nền cho tài khoản đang dùng.</li>
+    <li>Tải gói về và so hash SHA-256 với file <code>SHA256SUMS</code>. Không khớp thì không cài.</li>
+    <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper); lúc này máy hỏi mật khẩu sudo.</li>
   </ol>
   <p>
-    Gói <code>fcitx5-lotus</code> nếu có trên máy sẽ bị thay, vì hai gói dùng chung tên tệp và không cài
-    song song được. Cấu hình trong <code>~/.config/fcitx5</code> giữ nguyên. Kịch bản làm gì thì đọc
-    được trong <a href={`${REPO}/blob/ban-dung/install.sh`}>install.sh</a>.
+    Máy đang có <code>fcitx5-lotus</code> thì Ngó Sen thay nó, vì hai gói dùng chung tên file và không
+    cài song song được. Cấu hình cũ giữ nguyên. Script làm gì thì đọc được trong
+    <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>
-    Các gói không có chữ ký số. Thứ bảo đảm tệp tải về đúng là tệp đã phát hành là mã băm, lấy qua
+    Các gói không có chữ ký số. Thứ bảo đảm file tải về đúng là file đã release là hash SHA-256, lấy qua
     HTTPS từ GitHub.
   </p>
 
-  <h2 id="ban-nao">Bản Linux nào có gói</h2>
+  <h2 id="ban-nao">Distro nào có gói</h2>
   <div class="table-scroll">
     <table>
       <thead>
         <tr>
-          <th scope="col">Bản Linux và tệp</th>
+          <th scope="col">Distro và file</th>
           <th scope="col">Đã thử tới đâu</th>
         </tr>
       </thead>
@@ -64,7 +55,7 @@ const sourceGuide = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md#cài-sang-m
             <tr>
               <th scope="row">
                 {item.name}
-                <code class="file">{files[item.name]}</code>
+                <code class="file">{item.file}</code>
               </th>
               <td>
                 <span class="stamp" data-level={item.level}>
@@ -79,8 +70,15 @@ const sourceGuide = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md#cài-sang-m
     </table>
   </div>
   <p>
-    “Chỉ dựng” nghĩa là gói dựng được và qua bộ kiểm lúc dựng, chưa ai gõ thử trên bản Linux đó. Tình
-    trạng ngày 04/10/2026.
+    “Chỉ build” nghĩa là gói build được và qua test lúc build, chưa ai gõ thử trên distro đó. Chép theo
+    ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}.
+  </p>
+
+  <h3 id="loi-ghep-dau">Lõi ghép dấu: Rust hay Go</h3>
+  <p>
+    Lõi ghép dấu là phần biến <code>tieengs</code> thành <code>tiếng</code>. Gói cho
+    {rustDistros.join(', ')} dùng bản viết bằng Rust. Gói cho {goDistros.join(', ')} vẫn dùng bản Go,
+    vì Rust có sẵn trên các distro đó quá cũ. Hai bản gõ ra chữ như nhau.
   </p>
 
   <h2 id="sau-khi-cai">Cài xong, còn ba việc</h2>
@@ -93,115 +91,104 @@ const sourceGuide = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md#cài-sang-m
     <li>Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”.</li>
   </ol>
   <p>
-    Nên chọn chế độ gõ mặc định là <code>Uinput</code> trong cài đặt Ngó Sen. Đây là chế độ được dùng
-    hằng ngày và được đo. Chế độ Surrounding Text không được sửa ở bản này.
+    Trong cửa sổ cài đặt Ngó Sen, chọn chế độ mặc định là <strong>Gõ Sen</strong>. Chế độ này dùng cho
+    mọi chỗ: gõ nhanh không mất chữ, gõ đúng trong trình duyệt, thanh địa chỉ, Facebook, app Electron như
+    Zalo, và terminal. Chế độ còn lại là Preedit, hiện chữ gạch chân trong lúc gõ, dành cho app không
+    hợp với Gõ Sen.
+  </p>
+  <p>Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa kiểm kỹ.</p>
+
+  <h3 id="ubuntu-26-04">Ubuntu 26.04: bật extension sửa lỗi gõ</h3>
+  <p>
+    GNOME trên Ubuntu 26.04 làm rơi phím xoá mà bộ gõ gửi, nên Chrome, Edge và app Electron gõ ra
+    <code>tieêngếng</code>. Gói Ngó Sen kèm một extension sửa lỗi này. Cài xong, đăng xuất rồi đăng nhập
+    lại, sau đó chạy một lần:
+  </p>
+  <pre tabindex="0"><code>gnome-extensions enable forward-keys@ngosen.github.io</code></pre>
+  <p>
+    Khi Ubuntu tự sửa lỗi này (<a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784"
+      >báo lỗi trên Launchpad</a
+    >) thì tắt extension:
+  </p>
+  <pre tabindex="0"><code>gnome-extensions disable forward-keys@ngosen.github.io</code></pre>
+
+  <h3 id="vs-code">Ubuntu: VS Code</h3>
+  <p>
+    Cài VS Code bằng gói <code>.deb</code> từ
+    <a href="https://code.visualstudio.com/download">trang của Microsoft</a> hoặc bằng Flatpak từ
+    <a href="https://flathub.org/apps/com.visualstudio.code">Flathub</a> thì gõ được tiếng Việt ngay. Bản
+    snap (cài từ App Center) gõ ra Telex thô như <code>tieengs</code>; cách chữa tạm nằm ở mục “Ubuntu:
+    VS Code” trong <a href={`${REPO}#ubuntu-vs-code`}>README</a>.
   </p>
 
-  <h2 id="tai-tay">Không muốn chạy kịch bản tải từ mạng</h2>
-  <p>
-    Tải gói ở trang <a href={`${REPO}/releases`}>Releases</a>, chọn tệp theo bảng trên, rồi đối chiếu
-    mã băm:
-  </p>
+  <h2 id="tai-tay">Không muốn chạy script tải từ mạng</h2>
+  <p>Tải gói ở trang <a href={`${REPO}/releases`}>Releases</a>, chọn file theo bảng trên, rồi so hash:</p>
   <pre tabindex="0"><code>sha256sum -c SHA256SUMS --ignore-missing</code></pre>
-  <p>Cài gói bằng trình quản lý gói của máy, sau đó bật máy chủ nền rồi khởi động lại fcitx5:</p>
-  <pre tabindex="0"><code>{`sudo systemctl enable --now fcitx5-lotus-server@$(whoami).service
-sudo systemctl restart fcitx5-lotus-server@$(whoami).service
-fcitx5 -rd`}</code></pre>
+  <p>Cài gói bằng trình quản lý gói của máy, rồi khởi động lại fcitx5:</p>
+  <pre tabindex="0"><code>fcitx5 -rd</code></pre>
 
   <h2 id="cap-nhat">Cập nhật</h2>
   <p>
-    Chạy lại đúng dòng lệnh cài. Không có cơ chế tự cập nhật. Nếu cài bằng tay thì sau khi cài gói mới
-    phải khởi động lại máy chủ nền:
+    Chạy lại đúng dòng lệnh cài, rồi khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>. Không có cơ chế
+    tự cập nhật.
   </p>
-  <pre tabindex="0"><code>{`sudo systemctl restart fcitx5-lotus-server@$(whoami).service
-fcitx5 -rd`}</code></pre>
   <p>
-    Cài gói mới chỉ thay tệp trên đĩa. Máy chủ nền đang chạy vẫn là bản cũ cho tới khi khởi động lại,
-    và bản cũ không hiểu hết lệnh của bản mới nên chữ có thể sai ở mọi ứng dụng.
+    Từ bản 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 của bản gốc nữa. Trình quản lý gói vẫn coi
+    bản này mới hơn 3.5.10-4, nên cập nhật như thường.
+  </p>
+  <p>
+    Bản 0.5.0 cũng bỏ máy chủ nền, chương trình chạy ngầm từng bấm phím xoá thay bộ gõ. Cập nhật từ bản
+    cũ thì gói tự tắt dịch vụ đó và xoá tài khoản <code>uinput_proxy</code> của nó, không phải làm gì
+    thêm.
   </p>
 
   <h2 id="tu-lotus">Đang dùng fcitx5-lotus</h2>
   <p>
     Dòng lệnh cài tự thay gói <code>fcitx5-lotus</code> và giữ cấu hình cũ. Trên Arch và CachyOS, nếu
-    máy có gói phụ <code>fcitx5-lotus-openrc</code> hoặc <code>fcitx5-lotus-runit</code> thì kịch bản
-    dừng lại và chỉ lệnh gỡ, vì hai gói đó cần <code>fcitx5-lotus</code>.
+    máy có gói phụ <code>fcitx5-lotus-openrc</code> hoặc <code>fcitx5-lotus-runit</code> thì script dừng
+    lại và chỉ lệnh gỡ, vì hai gói đó cần <code>fcitx5-lotus</code>.
   </p>
-  <p>
-    Máy từng cài bản gốc, hoặc Ngó Sen trước ngày 26/09/2026, còn để tài khoản <code>uinput_proxy</code>
-    trong nhóm <code>input</code>, nhóm đọc được mọi bàn phím. Các gói dựng sẵn tự gỡ khi cài. Tự dựng
-    từ mã thì gỡ một lần, rồi khởi động lại máy chủ nền:
-  </p>
-  <pre tabindex="0"><code>sudo gpasswd -d uinput_proxy input</code></pre>
 
-  <h2 id="tu-dung">Tự dựng từ mã</h2>
+  <h2 id="tu-build">Tự build từ source</h2>
   <p>
-    Dành cho bản Linux chưa có gói, hoặc khi muốn tự dựng. Làm theo mục
-    <a href={sourceGuide}>Cài sang máy khác</a> trong kho mã. Hai điều dễ sai: gỡ gói Lotus đóng sẵn
-    trước, và cài vào <code>/usr</code>.
+    Dành cho distro chưa có gói, hoặc khi muốn tự build. Làm theo <a href={buildGuide}>TU-DUNG.md</a>
+    trong repo. Hai điều dễ sai: gỡ gói Lotus cài sẵn trước, và cài vào <code>/usr</code>.
   </p>
-  <pre tabindex="0"><code>{`git clone --recurse-submodules -b ban-dung https://github.com/ngosen/ngosen.git
+  <pre tabindex="0"><code>{`git clone --recurse-submodules -b main https://github.com/ngosen/ngosen.git
 cd ngosen
 cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib
 cmake --build build -j8
 sudo cmake --install build`}</code></pre>
   <p>
-    Dựng xong còn phải bật máy chủ nền; các lệnh đó nằm ở bước 4 của hướng dẫn trên.
+    Trên Fedora và openSUSE dùng <code>-DCMAKE_INSTALL_LIBDIR=lib64</code> thay cho <code>/usr/lib</code>.
+    Máy từng chạy máy chủ nền của Lotus hoặc Ngó Sen bản cũ thì làm thêm bước 4 trong TU-DUNG.md để tắt
+    nó và xoá các file nó để lại, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
   </p>
 
   <h2 id="go">Gỡ cài đặt</h2>
-  <p>Thứ tự giống nhau trên mọi bản Linux; chỉ lệnh gỡ gói là khác.</p>
   <ol>
     <li>Mở “Fcitx5 Configuration” và bỏ Ngó Sen khỏi danh sách bộ gõ.</li>
     <li>
-      Tắt máy chủ nền của tài khoản đang dùng. Làm trước khi gỡ gói, vì không phải gói nào cũng tự
-      dừng nó:
-      <pre tabindex="0"><code>sudo systemctl disable --now fcitx5-lotus-server@$(whoami).service</code></pre>
-    </li>
-    <li>
-      Gỡ gói bằng trình quản lý gói của máy:
+      Gỡ gói rồi khởi động lại fcitx5:
       <pre tabindex="0"><code>{`sudo dnf remove fcitx5-ngosen       # Fedora
 sudo apt remove fcitx5-ngosen       # Ubuntu, Debian
 sudo pacman -R fcitx5-ngosen        # Arch, CachyOS
-sudo zypper remove fcitx5-ngosen    # openSUSE`}</code></pre>
-    </li>
-    <li>
-      Khởi động lại fcitx5:
-      <pre tabindex="0"><code>fcitx5 -rd</code></pre>
+sudo zypper remove fcitx5-ngosen    # openSUSE
+fcitx5 -rd`}</code></pre>
     </li>
   </ol>
   <p>
-    Trên Fedora, <code>dnf</code> gỡ luôn những gói được kéo theo lúc cài mà nay không còn gói nào cần.
-    Nó in danh sách ra trước khi làm; đọc danh sách rồi mới đồng ý.
+    Cấu hình, là các file <code>lotus*.conf</code> trong <code>~/.config/fcitx5/conf/</code>, vẫn ở lại
+    máy để lần cài sau dùng tiếp. Muốn xoá sạch thì xoá các file đó.
   </p>
-  <p>Hai thứ còn lại trên máy sau khi gỡ, vì trình quản lý gói không đụng tới:</p>
-  <ul>
-    <li>
-      Cấu hình của bộ gõ, là các tệp <code>lotus*.conf</code> trong <code>~/.config/fcitx5/conf/</code>.
-      Giữ lại thì lần cài sau dùng tiếp được; không cần nữa thì xoá.
-    </li>
-    <li>
-      Tài khoản hệ thống <code>uinput_proxy</code> mà máy chủ nền dùng. Để lại không sao; muốn xoá thì
-      chạy <code>sudo userdel uinput_proxy</code>.
-    </li>
-  </ul>
   <p>
-    Bản tự dựng từ mã thì gỡ ngay trong thư mục <code>ngosen</code> đã dựng, sau bước tắt máy chủ nền:
-  </p>
-  <pre tabindex="0"><code>sudo cmake --build build --target uninstall</code></pre>
-  <p>
-    Muốn quay về fcitx5-lotus thì gỡ xong cài gói của bản gốc. Hai bản dùng chung tên tệp cấu hình nên
+    Muốn quay về fcitx5-lotus thì gỡ xong cài gói của bản gốc. Hai bản dùng chung tên file cấu hình nên
     cấu hình cũ dùng tiếp được.
-  </p>
-  <p>
-    Đã thử tới đâu: lệnh gỡ gói đã chạy với gói của bản 3.5.10-4 trong container Fedora 44, Ubuntu
-    24.04, Arch và openSUSE Tumbleweed, cả bốn gỡ sạch tệp của gói. Bước tắt máy chủ nền chưa thử,
-    vì container không chạy trình quản lý dịch vụ. Lệnh gỡ bản tự dựng cũng chưa thử.
   </p>
 
   <h2 id="nixos">NixOS</h2>
   <p>
-    Ngó Sen không có gói Nix. Công thức Nix thừa hưởng từ bản gốc dựng mã của bản gốc chứ không dựng mã
-    ở đây, nên đã gỡ. Trên NixOS hãy dùng
+    Ngó Sen không có gói Nix. Trên NixOS hãy dùng
     <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a>.
   </p>
 </Page>

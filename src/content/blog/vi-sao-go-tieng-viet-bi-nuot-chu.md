@@ -2,6 +2,7 @@
 title: "Vì sao gõ tiếng Việt trên Linux hay bị nuốt chữ, lặp chữ"
 description: "Bộ gõ phải xoá chữ cũ rồi gõ chữ có dấu, và hai bước đó dễ lệch nhịp với ứng dụng. Chuyện ở Messenger cho thấy Ngó Sen xử lý thế nào."
 pubDate: 2026-10-04
+outdated: "Từ bản 0.5.0, chế độ Uinput đổi tên thành Gõ Sen, Surrounding Text gộp vào Gõ Sen, và máy chủ nền đã bỏ: bộ gõ xoá chữ bằng phím gửi hộ qua fcitx5."
 ---
 
 Gõ `tieengs vieetj` vào ô chat Messenger, đáng ra phải thấy `tiếng việt`. Trên Linux, có lúc màn hình lại hiện `iếngiệt`: chữ có dấu vẫn đúng, còn chữ `t`, dấu cách và chữ `v` phía trước thì biến mất. Ở thanh địa chỉ trình duyệt thì gặp lỗi ngược lại: gõ `tôi` ra `toôi`.

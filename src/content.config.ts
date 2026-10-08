@@ -9,6 +9,8 @@ const blog = defineCollection({
     description: z.string().max(160),
     pubDate: z.date(),
     draft: z.boolean().default(false),
+    // Set when a later release changed what the post describes; the post body stays as published.
+    outdated: z.string().optional(),
   }),
 });
 

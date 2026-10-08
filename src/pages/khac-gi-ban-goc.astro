@@ -3,12 +3,13 @@ import Page from '../layouts/Page.astro';
 import { REPO } from '../data/site';
 
 const upstream = 'https://github.com/LotusInputMethod/fcitx5-lotus';
-const full = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md`;
+const changelog = `${REPO}/blob/main/CHANGELOG.md`;
+const pr = (n: number) => `${REPO}/pull/${n}`;
 ---
 
 <Page
   title="Ngó Sen khác gì bản gốc"
-  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: lỗi đã sửa kèm số đo, phần siết quyền, và những gì chưa sửa."
+  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: bỏ máy chủ nền, hai chế độ gõ, lõi ghép dấu Rust, các lỗi đã sửa, những gì chưa sửa và roadmap tới bản 1.0."
   heading="Khác gì bản gốc"
 >
   <p slot="lede">
@@ -17,90 +18,110 @@ const full = `${REPO}/blob/ban-dung/KHAC-GI-SO-VOI-BAN-GOC.md`;
   </p>
 
   <p>
-    Cách dùng bộ gõ nói chung vẫn như bản gốc, xem <a href={`${upstream}#readme`}>README của bản gốc</a>.
-    Bên trong mã vẫn giữ tên <code>lotus</code> (tệp cấu hình, dịch vụ nền, icon) để nhặt được bản vá
-    của bản gốc và để cấu hình cũ dùng tiếp. Vì vậy cài Ngó Sen là thay cho Lotus gốc, không cài song
-    song được.
+    Bên trong vẫn giữ tên <code>lotus</code> (file cấu hình, icon) để cấu hình cũ dùng tiếp. Vì vậy cài
+    Ngó Sen là thay cho Lotus gốc, không cài song song được. Từ bản 0.5.0, Ngó Sen đánh số phiên bản
+    riêng, không theo số 3.5.10 của bản gốc nữa.
+  </p>
+
+  <h2 id="may-chu-nen">Không còn máy chủ nền</h2>
+  <p>
+    Ở bản gốc, một chương trình chạy ngầm có quyền đặc biệt bấm phím xoá thay bộ gõ. Ngó Sen bỏ hẳn nó:
+    bộ gõ xoá chữ cũ bằng phím gửi hộ qua fcitx5, hoặc qua XTEST trên phiên X11. Cài xong là gõ, không
+    phải bật dịch vụ, không cần quyền thiết bị. Cập nhật từ bản cũ thì gói tự tắt dịch vụ đó và xoá tài
+    khoản <code>uinput_proxy</code> (<a href={pr(43)}>#43</a>).
+  </p>
+
+  <h2 id="che-do">Hai chế độ gõ: Gõ Sen và Preedit</h2>
+  <p>
+    <strong>Gõ Sen</strong> là chế độ dùng cho mọi chỗ: gõ nhanh không mất chữ, gõ đúng trong trình
+    duyệt, thanh địa chỉ, Facebook, app Electron như Zalo, và terminal. <strong>Preedit</strong> hiện chữ
+    gạch chân trong lúc gõ, dành cho app không hợp với Gõ Sen. Ngoài ra còn chế độ Emoji để chọn biểu
+    tượng cảm xúc.
+  </p>
+  <p>
+    Gõ Sen trước tên là <code>Uinput</code>, vốn gộp từ ba chế độ Slow, Smooth và Super Smooth của bản
+    gốc. Chế độ Surrounding Text cũng gộp vào Gõ Sen; chế độ Minecraft đã bỏ. Cấu hình cũ tự chuyển sang
+    tên mới, không phải chỉnh gì (<a href={pr(6)}>#6</a>, <a href={pr(29)}>#29</a>,
+    <a href={pr(43)}>#43</a>).
+  </p>
+
+  <h2 id="loi-ghep-dau">Lõi ghép dấu viết bằng Rust</h2>
+  <p>
+    Phần biến <code>tieengs</code> thành <code>tiếng</code> là bamboo-core, ở bản gốc viết bằng Go. Gói
+    Ngó Sen cho Fedora, Arch, openSUSE và Ubuntu 24.04 trở lên dùng bản viết bằng Rust. Debian 12, 13
+    và Ubuntu 22.04 vẫn dùng bản Go, vì Rust có sẵn ở đó quá cũ. Hai bản gõ ra chữ như nhau
+    (<a href={pr(69)}>#69</a>, <a href={pr(70)}>#70</a>, <a href={pr(71)}>#71</a>).
   </p>
 
   <h2 id="loi-da-sua">Lỗi gặp thật đã sửa</h2>
-  <p>Tất cả ở chế độ <code>Uinput</code>, kiểu gõ Telex.</p>
   <ul>
     <li>
-      <strong>Messenger trên Facebook hết mất chữ.</strong> Gõ <code>tieengs vieetj</code> từng ra
-      <code>iếngiệt</code>. Bộ gõ nay bôi đen chữ cần bỏ bằng Shift+Mũi tên trái rồi gõ đè, thay vì xoá
-      trước rồi gõ sau. Đo 20/09/2026 trên Edge: 861 lần thay chữ, 0 lần mất. Firefox và Chrome chưa
-      đo.
+      <strong>Firefox trên GNOME hết mất chữ khi gõ nhanh</strong>: <code>viet</code> từng ra
+      <code>v</code>. Ô soạn tin Facebook trên Edge không còn ra <code>i</code> thay cho
+      <code>đi</code> (<a href={pr(33)}>#33</a>).
     </li>
     <li>
-      <strong>Thanh địa chỉ trình duyệt hết lặp chữ đầu.</strong> Gõ <code>tôi</code> từng ra
-      <code>toôi</code>. Chromium và Edge sửa triệt để; Firefox đo 7 trên 7 lần có gợi ý ra đúng.
+      <strong>App X11 chạy qua XWayland trên KDE không còn bị kẹt</strong>, nuốt hết phím sau một lần
+      thay chữ (<a href={pr(33)}>#33</a>).
     </li>
     <li>
-      <strong>LibreOffice gõ đúng.</strong> <code>chao</code> rồi <code>f</code> từng ra
-      <code>chaà</code>. Writer: từ 30 đến 36 trên 60 từ sai xuống 0 trên 60; Calc và Impress 0 trên
-      60.
+      <strong>Thanh địa chỉ Chrome, Edge, Chromium trên X11 không còn giữ dấu cũ</strong>: gõ lại một
+      địa chỉ đã từng vào từng ra <code>tiêng</code> thay cho <code>tiếng</code>
+      (<a href={pr(38)}>#38</a>).
     </li>
     <li>
-      <strong>Chữ V trên thanh hệ thống hết màu đen</strong> trên panel tối của KDE và thanh trên cùng
-      của GNOME. Phần sửa cho KDE đã vào bản gốc.
+      <strong>Terminal trên X11 không còn ra chữ rác</strong> như <code>ngayDDày</code>
+      (<a href={pr(46)}>#46</a>).
     </li>
     <li>
-      <strong>Chờ 4 ms mỗi phím xoá thay vì 2.</strong> Lúc máy tải nặng, 2 ms gõ đúng 39 đến 46 trên
-      60 câu, 4 ms đúng 58 đến 60 trên 60. Máy rảnh thì không khác.
+      <strong>Lark (Messenger web) trên Firefox gõ đúng dấu</strong>: <code>về</code> thay cho
+      <code>vêf</code> (<a href={pr(45)}>#45</a>).
+    </li>
+    <li>
+      <strong>VS Code bản Flatpak, và bản .deb chạy Wayland, gõ được tiếng Việt</strong>
+      (<a href={pr(58)}>#58</a>).
+    </li>
+    <li>
+      <strong>Ubuntu 26.04: Chrome, Edge và app Electron hết gõ ra <code>tieêngếng</code></strong>, nhờ
+      một extension GNOME đi kèm gói, bật bằng tay một lần (<a href={pr(41)}>#41</a>).
+    </li>
+    <li>
+      <strong>Icon trên khay hệ thống đổi màu theo thanh</strong>, không còn đen trên panel tối của KDE
+      và thanh trên cùng của GNOME.
     </li>
   </ul>
 
-  <h2 id="mot-che-do">Chỉ còn một chế độ Uinput</h2>
-  <p>
-    Ba chế độ <code>Uinput (Smooth)</code>, <code>Uinput (Super Smooth)</code> và
-    <code>Uinput (Slow)</code> của bản gốc gộp thành một chế độ <code>Uinput</code>, chạy như Super
-    Smooth. Cấu hình cũ tự chuyển, không phải chỉnh gì.
-  </p>
-
-  <h2 id="toc-do">Tốc độ</h2>
-  <p>
-    Thay chữ nhanh hơn bản gốc vài mili giây mỗi lần, dưới ngưỡng cảm nhận của một lần gõ. Ví dụ đo
-    được: khoảng cách giữa hai phím xoá từ 5,2 ms xuống 0,1 ms (trung vị); thời gian chờ ở ứng dụng
-    không báo chữ quanh con trỏ từ 12,8 ms xuống 6,9 ms. Mỗi số đo riêng một thay đổi, trên CachyOS với
-    KDE Plasma Wayland, và không cộng dồn được thành một con số chung.
-  </p>
-
-  <h2 id="may-chu-nen">Máy chủ nền bị siết quyền</h2>
-  <p>
-    Máy chủ nền là chương trình chạy ngầm bấm phím xoá thay bộ gõ. Ở bản gốc nó mở được mọi thiết bị
-    nhập, kể cả bàn phím.
-  </p>
+  <h2 id="khong-sua">Chưa sửa</h2>
   <ul>
-    <li>Chỉ còn mở chuột và bàn chạm, không đọc được bàn phím; ra khỏi nhóm <code>input</code>.</li>
-    <li>Nhận bộ gõ bằng tài khoản thay vì tên chương trình; bỏ quyền <code>CAP_SYS_PTRACE</code>.</li>
-    <li>Bỏ qua con số ngoài khoảng ±1024 thay vì xin bộ nhớ tuỳ ý.</li>
-    <li>Dịch vụ systemd được siết: điểm <code>systemd-analyze security</code> từ 7.0 xuống 2.0.</li>
-  </ul>
-  <p>
-    Cái giá: chuột kiêm bàn phím mất tính năng bấm chuột để ngắt từ. Chi tiết trong bài
-    <a href="/blog/may-chu-nen-chi-doc-chuot/">Máy chủ nền chỉ còn đọc chuột</a>.
-  </p>
-
-  <h2 id="kiem-thu">Kiểm thử</h2>
-  <p>
-    26 bài kiểm thay vì 9, chạy trong mỗi lần dựng gói: kiểm trên chuỗi phím ngẫu nhiên, kiểm màu panel
-    KDE và GNOME, tám bài cho lỗi Messenger, ba bài cho máy chủ nền.
-  </p>
-
-  <h2 id="khong-sua">Bản này không sửa</h2>
-  <ul>
-    <li>
-      Chế độ Surrounding Text vẫn lỗi, nhất là trên Firefox và LibreOffice Writer (60 trên 60 từ sai).
-    </li>
-    <li>Máy chủ nền chết giữa lúc thay chữ thì bàn phím chết theo.</li>
-    <li>Mọi lượt đo đều gõ Telex. VNI và các kiểu gõ khác chưa kiểm.</li>
+    <li>Game dùng SDL ngoài X11 không nhận phím gửi hộ, nên gõ ra chữ không dấu.</li>
+    <li>VS Code bản snap phải gõ qua XIM, và khoảng một câu trong mười có một chữ sai dấu.</li>
+    <li>Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.</li>
     <li>Không có gói Nix.</li>
+  </ul>
+
+  <h2 id="roadmap">Roadmap: hướng tới bản 1.0</h2>
+  <p>
+    Đây là hướng đi, chưa có ngày phát hành và không phải lời hứa. Bản 1.0 nhắm bốn thay đổi lớn:
+  </p>
+  <ul>
+    <li><strong>Bỏ máy chủ nền.</strong> Đã xong ở bản 0.5.0.</li>
+    <li>
+      <strong>Chỉ còn hai chế độ gõ, Gõ Sen và Preedit</strong>, cùng chế độ Emoji. Đã gộp Surrounding
+      Text vào Gõ Sen.
+    </li>
+    <li>
+      <strong>Lõi ghép dấu chuyển sang Rust.</strong> Chỉ đổi khi bản mới gõ ra y hệt bản cũ. Gói cho
+      phần lớn distro đã dùng bản Rust.
+    </li>
+    <li>
+      <strong>Tách lõi Ngó Sen để dùng được ở nhiều nơi</strong>: ngoài fcitx5 sẽ có bản cho IBus (bộ gõ
+      mặc định của GNOME và Ubuntu) và cho các môi trường dùng wlroots như Sway.
+    </li>
   </ul>
 
   <h2 id="day-du">Bản đầy đủ</h2>
   <p>
-    Từng miếng vá, số đo, và tác giả gốc trả lời ra sao: <a href={full}>KHAC-GI-SO-VOI-BAN-GOC.md</a>.
-    Từng thay đổi theo ngày: <a href={`${REPO}/blob/ban-dung/CHANGELOG.md`}>CHANGELOG.md</a>.
+    Từng thay đổi theo bản, kèm số pull request: <a href={changelog}>changelog</a>. Roadmap gốc nằm ở
+    đầu <a href={`${REPO}#readme`}>README</a>.
   </p>
 </Page>

@@ -357,8 +357,7 @@ The tested level of a system. Legend type in a 2px outline in the current text c
 paper, desk and enamel alike.
 - **Double box:** used every day. An inner ring drawn inside the outline, with the ground colour
   between the two rings.
-- **Single box:** used a little on a real machine.
-- **Dashed box:** installed in a container only. Weight 500.
+- **Single box:** typed in a few apps on a virtual machine.
 - **Brackets:** only built. Side strokes only, square corners, weight 500.
 - **Rule:** the form is the level. Every stamp sits next to the basis for its claim, in small muted text.
 
@@ -419,7 +418,7 @@ technology as one labelled image.
 - **Do** choose the ground by content: enamel for the machine, paper for typed or measured content, the ink strip for commands and the footer.
 - **Do** make every button a keycap with a skirt, and let it move down when pressed (0.08em hover, 0.22em active, 120ms).
 - **Do** set Xanh Mono headings with `word-spacing: -0.2em` and the wordmark with `-0.28em`; reset it when a heading uses the legend font.
-- **Do** tell tested levels apart by stamp form (double box, single box, dashed box, brackets) and put the basis for the claim next to the stamp.
+- **Do** tell tested levels apart by stamp form (double box, single box, brackets) and put the basis for the claim next to the stamp.
 - **Do** let commands and code wrap, and give the install command a ribbon copy key wherever it appears.
 - **Do** switch the focus ring to the light text colour on enamel and on the ink strip.
 - **Do** keep stacked Vietnamese marks whole: leave room above and below large typed lines.

@@ -37,33 +37,39 @@ is, they have it installed and typing without opening the source repository.
   Plasma Wayland. Other systems are labelled by how far they were actually tested, package by
   package.
 - Changes are measured before they are merged: predictions are written down first, then checked.
-- The background server that presses backspace on the user's behalf may read pointer devices only,
-  never a keyboard, and identifies its client by uid.
-- The maintainer does not write the code by hand: he vibecodes the project, directing an AI
+- Since 0.5.0 there is no background server: the input method deletes old text with keys forwarded
+  through fcitx5, or XTEST on X11, so nothing runs with special device permissions.
+- The maintainer does not write the code by hand: they vibecode the project, directing an AI
   assistant, then measures and uses the result daily. The site says so plainly, with the word
   "vibecode".
 
 ## Operating Context
 
-- Install is one line: `curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/ban-dung/install.sh | bash`.
+- Install is one line: `curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash`.
   It picks a prebuilt package from the latest GitHub release for Fedora 43/44, Ubuntu 22.04/24.04/26.04,
   Debian 12/13, Arch, CachyOS and openSUSE Tumbleweed (x86_64), verifies its checksum and asks before
-  installing. Building from source is the fallback for everything else.
+  installing. Packages for Fedora, Arch, openSUSE and Ubuntu 24.04+ use the Rust composition core;
+  Debian 12/13 and Ubuntu 22.04 keep the Go core. Building from source is the fallback for everything else.
 - After install the user restarts fcitx5, adds "Ngó Sen" in Fcitx5 Configuration, and on KDE Wayland
-  selects "Fcitx 5" under Virtual Keyboard.
-- Typing methods are Telex and VNI. Per-application rules choose how text is committed.
-- Source, releases and the changelog live at `github.com/ngosen/ngosen`. Issues are disabled there.
+  selects "Fcitx 5" under Virtual Keyboard. On Ubuntu 26.04 they also enable a bundled GNOME
+  extension once.
+- Typing modes are Gõ Sen (default) and Preedit, plus Emoji. Telex is used and checked daily; VNI
+  works but is not checked closely.
+- Source, releases and the changelog live at `github.com/ngosen/ngosen`. Issues are open for bug
+  reports.
 
 ## Capabilities and Constraints
 
-- Internal names stay `lotus` (config paths, service `fcitx5-lotus-server`, gettext domain), so the
+- Internal names stay `lotus` (config paths, gettext domain), so the
   package cannot be installed alongside fcitx5-lotus; installing Ngó Sen replaces it.
-- No support is promised. The site must not imply a support channel, a team, or a roadmap.
+- No support is promised. The site must not imply a support channel or a team. The README's 1.0
+  roadmap may appear, as a direction with no date.
 - Primary language is Vietnamese. One short English page or section is enough.
 - Blog posts come from the maintainer's private notes; each is a real account of something measured
   or fixed. The first three are to be chosen with the maintainer.
-- Undecided: custom domain; a pictorial logo; whether Issues will be enabled; the fork's own version
-  line (packages currently use `3.5.10-<n>`).
+- Undecided: custom domain; a pictorial logo.
+- Versions: Ngó Sen numbers its own releases from 0.5.0 (package `1:0.5.0-1`; the epoch keeps it newer
+  than `3.5.10-4`). Tags are `ngosen-<version>`.
 
 ## Brand Commitments
 
@@ -76,9 +82,9 @@ is, they have it installed and typing without opening the source repository.
 
 ## Evidence on Hand
 
-- `README.md`, `CHANGELOG.md`, `KHAC-GI-SO-VOI-BAN-GOC.md` in `ngosen/ngosen`: what differs from
-  upstream, what was tested where.
-- A 26-test suite that runs in every package build.
+- `README.md`, `CHANGELOG.md` and `packaging/release-notes.md` in `ngosen/ngosen`: what differs from
+  upstream, what was tested where. `KHAC-GI-SO-VOI-BAN-GOC.md` and its measurements were removed from
+  the repository in #42, so the site no longer quotes them.
 - Package test results per distribution (pull requests #19, #23, #24, #26 in `ngosen/ngosen`).
 - Private notes with measured investigations, source material for blog posts.
 
