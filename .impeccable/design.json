@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-04T00:00:00Z",
+  "generatedAt": "2026-10-08T00:00:00Z",
   "title": "Design System: Ngó Sen",
   "extensions": {
     "colorMeta": {
@@ -151,7 +151,7 @@
       "body": { "displayName": "Body", "purpose": "Running text, capped at 68ch. Emphasis is weight 600." },
       "small": { "displayName": "Small", "purpose": "Sources, bases and notes, in muted ink." },
       "label": { "displayName": "Label", "purpose": "Keycap legends, column heads, dates and small uppercase links. Uppercase, 0.95rem to 1.1rem." },
-      "stamp": { "displayName": "Stamp", "purpose": "Tested-level stamps. Uppercase; weight 500 on the dashed and bracket forms." }
+      "stamp": { "displayName": "Stamp", "purpose": "Tested-level stamps. Uppercase; weight 500 on the bracket form." }
     },
     "shadows": [
       { "name": "key-rest", "value": "0 0.45em 0.6em -0.3em rgb(0 0 0 / 0.45)", "purpose": "Under every live keycap, together with the 0.3em skirt." },
@@ -213,9 +213,9 @@
       "name": "Tested-level Stamps",
       "kind": "chip",
       "refersTo": "stamp",
-      "description": "Four outline forms, never colour: double box (daily), single box (light), dashed box (container), brackets (built).",
-      "html": "<div class=\"ds-stamps\"><span class=\"ds-stamp\" data-level=\"daily\">Dùng hằng ngày</span><span class=\"ds-stamp\" data-level=\"light\">Mới dùng sơ</span><span class=\"ds-stamp\" data-level=\"container\">Cài thử trong container</span><span class=\"ds-stamp\" data-level=\"built\">Chỉ dựng</span></div>",
-      "css": ".ds-stamps { background: var(--paper); color: var(--ink); padding: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.9rem; } .ds-stamp { display: inline-block; padding: 0.12em 0.6em 0.08em; font-family: var(--font-legend); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.06em; line-height: 1.35; text-transform: uppercase; white-space: nowrap; border: 2px solid currentColor; border-radius: 3px; } .ds-stamp[data-level='daily'] { box-shadow: inset 0 0 0 2px var(--stamp-ground, var(--paper)), inset 0 0 0 3.5px currentColor; } .ds-stamp[data-level='container'] { border-style: dashed; font-weight: 500; } .ds-stamp[data-level='built'] { border-block-color: transparent; border-radius: 0; font-weight: 500; }"
+      "description": "Three outline forms, never colour: double box (daily), single box (typed in a VM), brackets (builds only).",
+      "html": "<div class=\"ds-stamps\"><span class=\"ds-stamp\" data-level=\"daily\">Dùng hằng ngày</span><span class=\"ds-stamp\" data-level=\"vm\">Gõ thử trên máy ảo</span><span class=\"ds-stamp\" data-level=\"built\">Chỉ build</span></div>",
+      "css": ".ds-stamps { background: var(--paper); color: var(--ink); padding: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.9rem; } .ds-stamp { display: inline-block; padding: 0.12em 0.6em 0.08em; font-family: var(--font-legend); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.06em; line-height: 1.35; text-transform: uppercase; white-space: nowrap; border: 2px solid currentColor; border-radius: 3px; } .ds-stamp[data-level='daily'] { box-shadow: inset 0 0 0 2px var(--stamp-ground, var(--paper)), inset 0 0 0 3.5px currentColor; } .ds-stamp[data-level='built'] { border-block-color: transparent; border-radius: 0; font-weight: 500; }"
     },
     {
       "name": "Paper Sheet",
@@ -254,7 +254,7 @@
       "kind": "custom",
       "refersTo": "stamp",
       "description": "\"Chưa sửa\": a turned ribbon-red stamp heading the sheet of things not fixed. The only red text.",
-      "html": "<div class=\"ds-note\"><h3 class=\"ds-note-head\"><span class=\"ds-struck\">Chưa sửa</span></h3><p class=\"ds-note-line\">Mọi lượt đo đều gõ Telex. VNI và các kiểu gõ khác chưa kiểm.</p></div>",
+      "html": "<div class=\"ds-note\"><h3 class=\"ds-note-head\"><span class=\"ds-struck\">Chưa sửa</span></h3><p class=\"ds-note-line\">Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.</p></div>",
       "css": ".ds-note { background: var(--paper); color: var(--ink); padding: clamp(1.25rem, 3.5vw, 2rem); border-radius: 2px; box-shadow: 0 0 0 1px var(--paper-edge), 0 1.4rem 2rem -1.4rem rgb(0 0 0 / 0.35); } .ds-note-head { margin: 0; font-family: var(--font-legend); font-weight: 600; font-size: 1.3rem; letter-spacing: 0.06em; line-height: 1.2; text-transform: uppercase; } .ds-struck { display: inline-block; padding: 0.1em 0.6em 0.05em; border: 2px solid currentColor; border-radius: 3px; color: var(--ribbon-text); transform: rotate(-2deg); } .ds-note-line { margin: 1.1rem 0 0; font-family: var(--font-typed); line-height: 1.5; }"
     },
     {
@@ -291,7 +291,7 @@
       "Do choose the ground by content: enamel for the machine, paper for typed or measured content, the ink strip for commands and the footer.",
       "Do make every button a keycap with a skirt, and let it move down when pressed (0.08em hover, 0.22em active, 120ms).",
       "Do set Xanh Mono headings with `word-spacing: -0.2em` and the wordmark with `-0.28em`; reset it when a heading uses the legend font.",
-      "Do tell tested levels apart by stamp form (double box, single box, dashed box, brackets) and put the basis for the claim next to the stamp.",
+      "Do tell tested levels apart by stamp form (double box, single box, brackets) and put the basis for the claim next to the stamp.",
       "Do let commands and code wrap, and give the install command a ribbon copy key wherever it appears.",
       "Do switch the focus ring to the light text colour on enamel and on the ink strip.",
       "Do keep stacked Vietnamese marks whole: leave room above and below large typed lines.",
