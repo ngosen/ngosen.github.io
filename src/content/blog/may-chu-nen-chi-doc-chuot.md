@@ -55,8 +55,6 @@ Kiểm theo tài khoản cũng có giá. Khi đo, một chương trình thử ch
 
 ## Đã kiểm ở đâu, chưa kiểm ở đâu
 
-Người giữ dự án chỉ vibecode dự án này: nêu việc cho trợ lý AI viết mã, rồi đo và dùng hằng ngày.
-
 Phần lọc thiết bị đo bằng một máy chủ chạy riêng dưới tài khoản người dùng. Trước khi sửa, nó mở 12 thiết bị, trong đó có một bàn phím. Sau khi sửa chỉ còn bàn chạm và phần chuột của nó.
 
 Điểm 7.0 và 2.0 đo ngày 06/09/2026 trên CachyOS với KDE Plasma Wayland, tức trước các thay đổi ngày 26/09; sau đó chưa đo lại. Dịch vụ đã siết được cài và chạy thật, gõ thử ra đúng chữ.

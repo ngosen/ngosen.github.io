@@ -9,11 +9,11 @@ export type Level = 'daily' | 'vm' | 'built';
 
 export const LEVELS: Record<Level, { label: string; meaning: string }> = {
   daily: {
-    label: 'Dùng hằng ngày',
-    meaning: 'Người giữ dự án gõ trên máy này mỗi ngày.',
+    label: 'Môi trường dùng chính',
+    meaning: 'Máy người giữ dự án dùng để gõ hằng ngày.',
   },
   vm: {
-    label: 'Gõ thử trên máy ảo',
+    label: 'Đã test',
     meaning: 'Đã gõ thử trong một số app trên máy ảo. Chưa ai dùng hằng ngày.',
   },
   built: {

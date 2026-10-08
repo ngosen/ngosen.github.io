@@ -256,21 +256,6 @@ const notFixed = [
     </div>
   </section>
 
-  <section class="origin wrap" aria-labelledby="nguon-goc-tieu-de">
-    <h2 id="nguon-goc-tieu-de">Nguồn gốc</h2>
-    <div class="origin-text">
-      <p>
-        Người giữ dự án chỉ <strong>vibecode</strong> dự án này: nêu việc cho trợ lý AI viết mã, rồi đo và
-        dùng thử hằng ngày. Kho để công khai cho ai cần thì lấy dùng, không hứa hỗ trợ.
-      </p>
-      <p>
-        Ngó Sen tách ra từ <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a>,
-        vốn là bản fork của <a href="https://github.com/thanhpy2009/VMK">bộ gõ VMK</a>. Ngó sen là mầm mọc
-        ra từ cây sen: cùng gốc với Lotus nhưng đi hướng riêng. Giấy phép vẫn là GPL-3.0-or-later.
-      </p>
-    </div>
-  </section>
-
   <section class="notes wrap" aria-labelledby="ghi-chep-tieu-de">
     <h2 id="ghi-chep-tieu-de">Ghi chép</h2>
     <ul>
@@ -712,22 +697,8 @@ const notFixed = [
     overflow-wrap: anywhere;
   }
 
-  /* Origin */
-  .origin {
-    padding-top: clamp(3.5rem, 9vw, 7rem);
-    display: grid;
-    gap: 1.2rem 3rem;
-  }
-
-  .origin-text {
-    display: grid;
-    gap: 0.9rem;
-    max-width: var(--measure);
-  }
-
   @media (min-width: 62rem) {
-    .roadmap,
-    .origin {
+    .roadmap {
       grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
       gap: clamp(2.5rem, 5vw, 5rem);
       align-items: start;

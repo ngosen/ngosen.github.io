@@ -3,15 +3,15 @@ import Page from '../layouts/Page.astro';
 import { DISTRIBUTIONS, INSTALL_COMMAND, RELEASE, REPO, type Level } from '../data/site';
 
 const levels: Record<Level, string> = {
-  daily: 'Used daily',
-  vm: 'Typed in a VM',
+  daily: 'Main setup',
+  vm: 'Tested',
   built: 'Builds only',
 };
 ---
 
 <Page
   title="Ngó Sen: a Vietnamese input method for Linux"
-  description="Ngó Sen is a Vietnamese input method for fcitx5, forked from fcitx5-lotus. One-line install, and an honest list of where it has been tested."
+  description="Ngó Sen is a Vietnamese input method for fcitx5 on Linux. One-line install, and an honest list of where it has been tested."
   heading="Ngó Sen"
   lang="en"
 >
@@ -21,10 +21,7 @@ const levels: Record<Level, string> = {
   </p>
 
   <p>
-    Ngó Sen (“lotus stem”) is a fork of
-    <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a> 3.5.10, itself a fork of
-    <a href="https://github.com/thanhpy2009/VMK">VMK</a>, and stays under GPL-3.0-or-later. It is kept
-    by one person and published as is, with no promise of support. Bugs can be reported in
+    Ngó Sen (“lotus stem”) is kept by one person and published as is, with no promise of support. Bugs can be reported in
     <a href={`${REPO}/issues`}>Issues</a>. The rest of this site is in Vietnamese.
   </p>
 
@@ -83,8 +80,8 @@ const levels: Record<Level, string> = {
     </table>
   </div>
   <p>
-    “Used daily” means the maintainer types on that system every day, on KDE Plasma Wayland. “Typed in a
-    VM” means a handful of apps were tried in a virtual machine: CachyOS with Hyprland, Ubuntu 26.04 with
+    “Main setup” means the maintainer types on that system every day, on KDE Plasma Wayland. “Tested”
+    means a handful of apps were tried in a virtual machine: CachyOS with Hyprland, Ubuntu 26.04 with
     GNOME Wayland, Linux Mint 22 for Ubuntu 24.04 and MX 25 for Debian 13; the two Ubuntu tests used a
     build from source. “Builds only” means the package builds and passes the test suite at build time;
     nobody has typed with it there.

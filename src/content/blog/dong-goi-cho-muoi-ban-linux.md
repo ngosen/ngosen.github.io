@@ -11,8 +11,6 @@ Người giữ dự án chỉ dùng hằng ngày hai trong mười bản đó. V
 
 ## Ghi dự đoán trước, chạy sau
 
-Người giữ dự án chỉ vibecode dự án này: nêu việc cho trợ lý AI viết mã, rồi đo và dùng thử hằng ngày.
-
 Trước mỗi lượt thử, kết quả mong đợi được ghi ra: lệnh nào phải chạy được, lệnh nào phải bị từ chối, cài xong thì máy ở trạng thái nào. Lượt nào lệch dự đoán thì coi như chưa chứng minh được gì.
 
 Cách này giống thử cân bằng quả cân đã biết trọng lượng. Đặt quả một ký lên mà cân báo một ký hai thì biết ngay cân sai. Không biết trước thì con số nào cũng có vẻ hợp lý.

@@ -65,4 +65,3 @@ Chế độ gõ Surrounding Text, tức chế độ dựa vào văn bản quanh 
 
 Còn một lỗi đã tái hiện được mà chưa vá: chương trình nền chết đúng lúc đang thay chữ thì bàn phím chết theo.
 
-Người giữ dự án chỉ vibecode Ngó Sen: nêu việc cho trợ lý AI viết mã, rồi đo và dùng thử hằng ngày.
