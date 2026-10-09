@@ -1,5 +1,5 @@
 ---
-title: "WPS Office trên IBus bỏ qua lệnh xoá của bộ gõ"
+title: "WPS Office không phù hợp với IBus"
 description: "Gõ tiếng Việt trong WPS Spreadsheets qua IBus ra hocọc thay vì học. Plugin IBus của WPS bỏ qua mọi cách xoá chữ. Trên fcitx5 thì gõ được."
 pubDate: 2026-10-09
 ---
