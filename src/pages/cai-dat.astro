@@ -17,6 +17,13 @@ const nixConfig = [
   '  fcitx5.addons = [ inputs.ngosen.packages.${pkgs.stdenv.hostPlatform.system}.default ];',
   '};',
 ].join('\n');
+const nixBuild = [
+  'git clone -b main https://github.com/ngosen/ngosen.git',
+  'cd ngosen',
+  'nix build          # build gói và chạy test, kết quả ở ./result',
+  'nix flake check    # thêm bước nạp addon vào fcitx5 trên màn hình X ảo',
+].join('\n');
+const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 ---
 
 <Page
@@ -206,14 +213,22 @@ fcitx5 -rd`}</code></pre>
   <pre tabindex="0"><code>{nixConfig}</code></pre>
   <p>Áp cấu hình xong thì khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>.</p>
   <p>
-    Muốn tự build trước khi cài, clone repo rồi chạy <code>nix build</code>: lệnh này build gói, chạy
-    test, và để kết quả ở <code>./result</code>. <code>nix flake check</code> làm thêm một bước: nạp
-    addon vào fcitx5 trên một màn hình X ảo.
-  </p>
-  <p>
     Mức đã kiểm: CI build gói, chạy 42 test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
     thử trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa thử. Gặp lỗi xin
     <a href={`${REPO}/issues`}>mở issue</a>.
+  </p>
+  <h3 id="nixos-tu-build">NixOS: tự build từ bản clone</h3>
+  <pre tabindex="0"><code>{nixBuild}</code></pre>
+  <p>
+    Muốn dùng bản vừa build thì trỏ input của cấu hình vào thư mục clone, phần còn lại giữ như trên, rồi
+    chạy <code>sudo nixos-rebuild switch</code>:
+  </p>
+  <pre tabindex="0"><code>{nixLocal}</code></pre>
+  <p>
+    Flake chỉ thấy các file git đang theo dõi, nên file mới phải <code>git add</code> trước khi build.
+    Đang sửa code thì <code>nix develop</code> mở một shell có đủ công cụ build; build và chạy test như
+    trong <a href={`${buildGuide}#nixos`}>TU-DUNG.md</a>, thêm <code>-DNGOSEN_RUST_CORE=ON</code> vì gói
+    Nix dùng lõi Rust.
   </p>
 </Page>
 
