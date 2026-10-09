@@ -86,6 +86,11 @@ const levels: Record<Level, string> = {
     build from source. “Builds only” means the package builds and passes the test suite at build time;
     nobody has typed with it there.
   </p>
+  <p>
+    NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
+    <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the 42 tests and loads the addon into fcitx5 on
+    Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
+  </p>
 
   <h2 id="differences">What differs from fcitx5-lotus</h2>
   <ul>

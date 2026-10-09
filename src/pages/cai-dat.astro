@@ -6,6 +6,17 @@ import { DISTRIBUTIONS, LEVELS, RELEASE, REPO } from '../data/site';
 const buildGuide = `${REPO}/blob/main/TU-DUNG.md`;
 const rustDistros = DISTRIBUTIONS.filter((item) => item.core === 'Rust').map((item) => item.name);
 const goDistros = DISTRIBUTIONS.filter((item) => item.core === 'Go').map((item) => item.name);
+
+// Copied from the README; kept as strings because `{` and `${` would be read as Astro expressions.
+const nixInput = '# flake.nix\ninputs.ngosen.url = "github:ngosen/ngosen";';
+const nixConfig = [
+  '# configuration.nix, với inputs truyền qua specialArgs',
+  'i18n.inputMethod = {',
+  '  enable = true;',
+  '  type = "fcitx5";',
+  '  fcitx5.addons = [ inputs.ngosen.packages.${pkgs.stdenv.hostPlatform.system}.default ];',
+  '};',
+].join('\n');
 ---
 
 <Page
@@ -15,7 +26,7 @@ const goDistros = DISTRIBUTIONS.filter((item) => item.core === 'Go').map((item) 
 >
   <p slot="lede">
     Một dòng lệnh cho Fedora, Ubuntu, Debian, Arch, CachyOS và openSUSE Tumbleweed trên máy x86_64.
-    Distro khác thì tự build từ source.
+    NixOS dùng flake; distro khác thì tự build từ source.
   </p>
 
   <h2 id="mot-dong-lenh">Cài bằng một dòng lệnh</h2>
@@ -188,8 +199,21 @@ fcitx5 -rd`}</code></pre>
 
   <h2 id="nixos">NixOS</h2>
   <p>
-    Ngó Sen không có gói Nix. Trên NixOS hãy dùng
-    <a href="https://github.com/LotusInputMethod/fcitx5-lotus">fcitx5-lotus</a>.
+    Lệnh cài một dòng không dùng cho NixOS. Trên NixOS, thêm flake của repo Ngó Sen vào cấu hình rồi đưa
+    gói vào addon của fcitx5. Gói được build từ source trong repo, kèm lõi Rust.
+  </p>
+  <pre tabindex="0"><code>{nixInput}</code></pre>
+  <pre tabindex="0"><code>{nixConfig}</code></pre>
+  <p>Áp cấu hình xong thì khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>.</p>
+  <p>
+    Muốn tự build trước khi cài, clone repo rồi chạy <code>nix build</code>: lệnh này build gói, chạy
+    test, và để kết quả ở <code>./result</code>. <code>nix flake check</code> làm thêm một bước: nạp
+    addon vào fcitx5 trên một màn hình X ảo.
+  </p>
+  <p>
+    Mức đã kiểm: CI build gói, chạy 42 test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
+    thử trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa thử. Gặp lỗi xin
+    <a href={`${REPO}/issues`}>mở issue</a>.
   </p>
 </Page>
 
