@@ -17,8 +17,8 @@ gõ ra đời sau, bài này chưa xét tới.
 ## Vì sao hỏi câu này
 
 Lúc đó Ngó Sen xoá chữ bằng **hai đường**: một bàn phím ảo bấm Backspace, còn chữ mới đi đường riêng
-của bộ gõ (commit). Lỗi mất chữ ở Messenger và ô đăng bài Facebook đều do hai đường này lệch nhịp. Bộ gõ
-nào làm được việc đó **chỉ bằng một đường** là bộ gõ đáng học.
+của bộ gõ (commit). Lỗi mất chữ ở Messenger và ô đăng bài Facebook đều do hai đường này lệch nhịp. Vì
+vậy, bộ gõ nào xoá rồi viết **chỉ bằng một đường** là bộ gõ đáng học.
 
 ## 18 bộ gõ, năm cách
 
@@ -72,7 +72,7 @@ lệnh xoá thì **riêng app đó** chuyển sang gõ bằng preedit, và Funpu
 README của họ ghi vài số đo, Ngó Sen chưa kiểm lại: app chỉ trả lời 61% số lần commit; chờ trả lời từng
 lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau không nghỉ thì hỏng chữ.
 
-Ngó Sen nhận ra ô khó bằng hình dạng của ô. Funput nhận ra bằng cách ô thật sự phản ứng.
+Ngó Sen nhận ra ô khó qua hình dạng của ô; Funput nhận ra qua cách ô phản ứng thật.
 
 ### Unikey-Wayland-Final: giữ phím gõ tiếp tới khi app xác nhận
 
@@ -132,7 +132,7 @@ Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc 
 - [ArecaIME](https://github.com/xhkzeroone/ArecaIME): 5 cách thay chữ đổi được, đều canh nhịp bằng đồng
   hồ, tự tăng 5 ms mỗi bước tới 50 ms. Có cách bôi đen bằng Shift+mũi tên trái rồi gõ đè, ghi rõ là để
   trị Facebook, giống hướng Ngó Sen chọn, nhưng nó chốt bằng đồng hồ chứ không chờ ô xác nhận. Luật udev
-  cho người dùng quyền đọc cả chuột và bàn di. Lõi Go để ở dạng file đã build sẵn.
+  cho người dùng quyền đọc cả chuột và touchpad. Lõi Go để ở dạng file đã build sẵn.
 - [VMK](https://github.com/thanhpy2009/VMK): bấm thừa một Backspace rồi chờ cố định 20 ms.
 - [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad): bản fcitx5-lotus đổi tên từ đầu tháng
   8/2026, thêm chế độ gõ canh theo đồng hồ và tự gửi tin xác nhận.

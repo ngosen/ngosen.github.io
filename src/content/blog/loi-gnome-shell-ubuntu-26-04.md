@@ -5,16 +5,16 @@ pubDate: 2026-10-09
 ---
 
 Trên Ubuntu 26.04, gõ `tieengs` trong Chrome, Edge hay app Electron chạy Wayland, đáng ra phải thấy
-`tiếng`, màn hình lại hiện `tieêngếng`. Lỗi không nằm ở bộ gõ. Nó nằm ở GNOME Shell, và nó làm hỏng mọi
-bộ gõ tiếng Việt đi qua đường này, không riêng Ngó Sen.
+`tiếng`, màn hình lại hiện `tieêngếng`. Lỗi nằm ở GNOME Shell chứ không ở bộ gõ, nên bộ gõ tiếng Việt
+nào đi qua đường này cũng bị, không riêng Ngó Sen.
 
 ## Chuyện gì xảy ra
 
-Với Telex, chữ hiện ra trước, dấu tới sau, nên bộ gõ phải xoá chữ cũ rồi commit chữ mới. Ở các app trên,
-phím Backspace bộ gõ gửi đi qua GNOME Shell bằng forward key.
+Với Telex, chữ hiện ra trước, dấu tới sau, nên bộ gõ phải xoá chữ cũ rồi commit chữ mới. Với các app
+trên, bộ gõ gửi Backspace qua GNOME Shell bằng forward key.
 
-Từ GNOME 50.0, GNOME Shell vứt bỏ mọi phím bộ gõ gửi theo đường forward key. Backspace không tới được
-app, nhưng chữ mới vẫn được commit:
+Từ GNOME 50.0, GNOME Shell bỏ mọi phím đi theo đường forward key. Backspace không tới app, còn chữ mới
+vẫn được commit:
 
 - Gõ `tiee`: bộ gõ xoá `e` để thay bằng `ê`. Không xoá được, ô còn `tieê`.
 - Gõ thêm `ng`: `tieêng`.
@@ -49,9 +49,9 @@ Tới ngày 09/10/2026, trạng thái trên Launchpad là:
 - **Ubuntu 26.04:** đã được xác nhận (Confirmed) và đưa vào danh sách chờ bản cập nhật `resolute-updates`,
   nhưng chưa có ai nhận làm.
 
-Bản cập nhật cho một bản Ubuntu đã phát hành phải đi qua quy trình SRU (Stable Release Update): có người
-đóng gói bản sửa, đưa lên kho thử `resolute-proposed`, người dùng gõ thử rồi xác nhận, sau đó mới tới máy
-mọi người. Báo lỗi càng có nhiều người bị ảnh hưởng thì càng dễ được làm sớm.
+Với một phiên bản Ubuntu đã phát hành, mỗi bản cập nhật phải qua quy trình SRU (Stable Release Update):
+có người đóng gói bản sửa và đưa lên kho thử `resolute-proposed`, người dùng cài thử rồi xác nhận, sau đó
+bản sửa mới tới máy mọi người. Báo lỗi càng nhiều người bị thì càng dễ được làm sớm.
 
 ## Anh chị em có thể giúp
 
@@ -66,5 +66,3 @@ Nếu đang dùng Ubuntu 26.04 và đã gặp lỗi `tieêngếng`:
 3. Khi bản sửa lên kho `resolute-proposed`, báo lỗi sẽ có thẻ `verification-needed-resolute`. Lúc đó,
    ai bật được kho thử thì cập nhật, gõ lại `tieengs` trong Chrome với extension đã tắt, và bình luận kết
    quả. Không có người xác nhận thì bản sửa không rời được kho thử.
-
-Bản sửa này giúp mọi bộ gõ tiếng Việt trên Ubuntu 26.04, không riêng Ngó Sen.
