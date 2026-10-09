@@ -9,15 +9,15 @@ Từ ngày 09/10/2026, Ngó Sen chỉ làm cho fcitx5. Hai hướng trong roadma
 
 ## Vì sao
 
-Phần tốn công không nằm ở code mà ở việc thử. Mỗi bộ gõ nền, fcitx5 hay IBus, đưa chữ vào app theo cách
-riêng, nên mỗi bản phải thử lại từng app. Cùng một app có thể hỏng theo kiểu khác hẳn trên mỗi nền.
+Phần tốn công không nằm ở code mà ở việc test. Mỗi bộ gõ nền, fcitx5 hay IBus, đưa chữ vào app theo cách
+riêng, nên mỗi bản phải test lại từng app. Cùng một app có thể lỗi theo kiểu khác hẳn trên mỗi nền.
 
 Một ví dụ là WPS Office. Trên IBus, ở Ubuntu 26.04 GNOME, gõ `tieengs` trong một ô ra `tieêngếng`
 thay vì `tiếng`. Trên fcitx5, cùng app đó gõ đúng. Chi tiết ở bài
 [WPS Office không phù hợp với IBus](/blog/wps-office-ibus/).
 
-Mỗi app hỏng kiểu riêng như vậy phải sửa riêng cho từng nền, rồi thử lại sau mỗi bản cập nhật. Một người
-làm dự án không kham nổi hai ba bản cùng lúc mà vẫn thử kỹ từng bản.
+Mỗi app lỗi kiểu riêng như vậy phải sửa riêng cho từng nền, rồi test lại sau mỗi bản cập nhật. Một người
+làm dự án không kham nổi hai ba bản cùng lúc mà vẫn test kỹ từng bản.
 
 ## Người dùng GNOME và Ubuntu
 
