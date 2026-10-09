@@ -1,0 +1,59 @@
+---
+import { REPO } from '../data/site';
+
+// giscus keeps each post's comments in a GitHub Discussion of the website repo, matched by URL path.
+const SITE_REPO = 'ngosen/ngosen.github.io';
+---
+
+<section class="comments" aria-labelledby="binh-luan">
+  <h2 id="binh-luan">Bình luận</h2>
+  <p class="note">
+    Bình luận cần tài khoản GitHub và nằm ở mục
+    <a href={`https://github.com/${SITE_REPO}/discussions`}>Discussions</a> của repo website. Ở đây không
+    được theo dõi thường xuyên; gặp lỗi thì báo ở <a href={`${REPO}/issues`}>Issues</a>.
+  </p>
+  <div class="giscus"></div>
+  <script
+    is:inline
+    src="https://giscus.app/client.js"
+    data-repo="ngosen/ngosen.github.io"
+    data-repo-id="R_kgDOVBOySg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOVBOySs4DHX8X"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="vi"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+  <noscript>
+    <p class="note">
+      Bật JavaScript để xem bình luận, hoặc đọc ở
+      <a href={`https://github.com/${SITE_REPO}/discussions`}>Discussions</a>.
+    </p>
+  </noscript>
+</section>
+
+<style>
+  .comments {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  h2 {
+    font-size: var(--step-1);
+  }
+
+  .note {
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    max-width: var(--measure);
+  }
+</style>

@@ -33,6 +33,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   focus and selection, and the line under the current page's nav key. Tested levels are told apart
   by the stamp's outline, never by colour alone.
 - Animate only `transform`, `opacity` and `box-shadow`, and keep the reduced-motion path working.
+- Blog comments come from giscus (`src/components/Comments.astro`): one GitHub Discussion per post in
+  the Announcements category of `ngosen/ngosen.github.io`, matched by URL path. Renaming a post's slug
+  starts a new, empty thread.
 
 ## Keeping up with the main repository
 

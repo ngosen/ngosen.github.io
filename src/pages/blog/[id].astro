@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import Comments from '../../components/Comments.astro';
 import Page from '../../layouts/Page.astro';
 import { REPO } from '../../data/site';
 import { formatDay, getPosts } from '../../lib/posts';
@@ -28,6 +29,7 @@ const { Content } = await render(post);
     )
   }
   <Content />
+  <Comments />
   <p class="back"><a href="/blog/">Tất cả bài viết</a></p>
 </Page>
 
