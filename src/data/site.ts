@@ -197,20 +197,12 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
 ];
 
-// Mirrors the "Roadmap" section of README.md.
-// progress mirrors the latest Unreleased changelog entry; it never announces a release.
-export const ROADMAP: { goal: string; detail: string; progress?: string }[] = [
-  {
-    goal: 'IBus',
-    detail:
-      'Bản cho GNOME và Ubuntu, nơi IBus là bộ gõ mặc định, không phải cài thêm fcitx5. Gói ibus-ngosen; install.sh sẽ hỏi chọn bản nào.',
-    progress: 'Đã xong phần nền cho bản IBus.',
-  },
-  {
-    goal: 'Sway, Hyprland, không cần fcitx5',
-    detail: 'Ngó Sen chạy thẳng trên Sway, Hyprland, river, labwc, Wayfire, gọn nhẹ hơn cài cả fcitx5.',
-  },
-];
+// Mirrors the "Chỉ cho fcitx5" section of README.md, which replaced the roadmap.
+export const SCOPE = {
+  title: 'Chỉ cho fcitx5',
+  text: 'Ngó Sen chỉ làm cho fcitx5. Bản IBus và bản chạy thẳng trên Sway, Hyprland đã thôi làm: mỗi bộ gõ nền cần thử lại từng app, và một người không giữ nổi hai ba bản cùng lúc. Trên GNOME và Ubuntu, cài fcitx5 cùng Ngó Sen là gõ được.',
+  branch: 'feat/ibus-engine',
+};
 
 export const NAV = [
   { href: '/cai-dat/', label: 'Cài đặt' },

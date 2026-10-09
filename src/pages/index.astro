@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import InstallStrip from '../components/InstallStrip.astro';
 import TelexBoard from '../components/TelexBoard.astro';
-import { DISTRIBUTIONS, LEVELS, RELEASE, REPO, ROADMAP, type Level } from '../data/site';
+import { DISTRIBUTIONS, LEVELS, RELEASE, REPO, SCOPE, type Level } from '../data/site';
 import { formatDay, getPosts } from '../lib/posts';
 
 const posts = (await getPosts()).slice(0, 3);
@@ -20,27 +20,22 @@ const notFixed = [
 
 <Base
   title="Ngó Sen: bộ gõ tiếng Việt cho Linux"
-  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào, kèm roadmap."
+  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào."
   wordmark={false}
 >
   <Hero />
 
-  <section class="roadmap wrap" id="roadmap" aria-labelledby="roadmap-tieu-de">
+  <section class="scope wrap" id="chi-cho-fcitx5" aria-labelledby="scope-tieu-de">
     <div class="intro">
-      <h2 id="roadmap-tieu-de">Roadmap</h2>
-      <p>Hướng đi tiếp theo của Ngó Sen.</p>
+      <h2 id="scope-tieu-de">{SCOPE.title}</h2>
     </div>
-    <ul class="sheet goals">
-      {
-        ROADMAP.map((item) => (
-          <li>
-            <p class="goal">{item.goal}</p>
-            <p class="detail">{item.detail}</p>
-            {item.progress && <p class="progress">{item.progress}</p>}
-          </li>
-        ))
-      }
-    </ul>
+    <div class="sheet scope-note">
+      <p>{SCOPE.text}</p>
+      <p>
+        Mã bản IBus dở dang vẫn nằm ở nhánh <a href={`${REPO}/tree/${SCOPE.branch}`}><code>{SCOPE.branch}</code></a>,
+        không cập nhật nữa. Lý do chi tiết ở bài <a href="/blog/chi-lam-cho-fcitx5/">Ngó Sen chỉ làm cho fcitx5</a>.
+      </p>
+    </div>
   </section>
 
   <section class="telex" aria-labelledby="telex-tieu-de">
@@ -576,52 +571,23 @@ const notFixed = [
     }
   }
 
-  /* Roadmap */
-  .roadmap {
+  /* Scope: fcitx5 only */
+  .scope {
     padding-block: clamp(3.5rem, 9vw, 7rem) clamp(3rem, 8vw, 6rem);
     display: grid;
     gap: 2.25rem;
   }
 
-  .goals {
-    list-style: none;
-    margin: 0;
+  .scope-note {
     padding: clamp(1.1rem, 3.5vw, 2.25rem) clamp(1.1rem, 3.5vw, 2.5rem);
   }
 
-  .goals li {
-    padding-block: 1.2rem;
-    border-bottom: 1px solid var(--paper-edge);
-  }
-
-  .goals li:first-child {
-    padding-top: 0;
-  }
-
-  .goals li:last-child {
-    padding-bottom: 0;
-    border-bottom: 0;
-  }
-
-  .goal {
-    font-family: var(--font-typed);
-    font-size: var(--step-1);
-    line-height: 1.3;
-    text-wrap: balance;
-  }
-
-  .detail {
-    margin-top: 0.4rem;
+  .scope-note p {
     max-width: 62ch;
   }
 
-  .progress {
-    margin-top: 0.5rem;
-    font-family: var(--font-legend);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    word-spacing: normal;
-    color: var(--ink-muted);
+  .scope-note p + p {
+    margin-top: 0.8rem;
   }
 
   /* Modes and the Telex board */
@@ -665,13 +631,13 @@ const notFixed = [
   }
 
   @media (min-width: 62rem) {
-    .roadmap {
+    .scope {
       grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
       gap: clamp(2.5rem, 5vw, 5rem);
       align-items: start;
     }
 
-    .roadmap .intro {
+    .scope .intro {
       position: sticky;
       top: 2rem;
     }

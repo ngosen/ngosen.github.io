@@ -18,8 +18,8 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   `CHANGELOG.md`); the home page shows the first entry and `/ban-phat-hanh/` lists them all.
 - Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
   page.
-- The site must not imply support or a team. The intro, highlights and roadmap mirror the top of the
-  README; show the roadmap as a direction, without dates or promises. Do not mention vibecoding (dropped at the
+- The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
+  the top of the README. The README has no roadmap; do not add one, and never show dates or promises. Do not mention vibecoding (dropped at the
   maintainer's request) or list fork lineage outside the footer credit and the comparison page.
 - Internal names stay `lotus` (config paths such as `lotus*.conf`). Do not rename them in commands
   shown to users.
@@ -54,7 +54,7 @@ Two rules apply to every update:
   text, or add an `outdated` note when the post describes an older state on purpose.
 
 After a merged PR, before any release: change the site only when users can see the change or the
-roadmap moved (the `progress` line in `ROADMAP`). Never present unreleased work as a new version.
+README's scope changed (`SCOPE`). Never present unreleased work as a new version.
 
 When a version is released, in this order:
 
@@ -62,8 +62,8 @@ When a version is released, in this order:
 2. Add an entry at the top of `RELEASES` in `src/data/site.ts`: user-visible changes only, picked from
    `CHANGELOG.md`. The version, date and download links on every page derive from that entry.
 3. Update the tested levels in `DISTRIBUTIONS` from `packaging/release-notes.md`.
-4. If the README changed, update the intro, highlights and roadmap (`TAGLINE`, `HIGHLIGHTS`,
-   `ROADMAP`); clear a `progress` line the release has made obsolete.
+4. If the README changed, update the intro, highlights and scope note (`TAGLINE`, `HIGHLIGHTS`,
+   `SCOPE`).
 5. Update `/en/` and the blog posts as described above.
 6. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
    to `main`.

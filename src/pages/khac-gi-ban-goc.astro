@@ -1,6 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
-import { REPO, ROADMAP } from '../data/site';
+import { REPO, SCOPE } from '../data/site';
 
 const upstream = 'https://github.com/LotusInputMethod/fcitx5-lotus';
 const changelog = `${REPO}/blob/main/CHANGELOG.md`;
@@ -9,7 +9,7 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
 
 <Page
   title="Ngó Sen khác gì bản gốc"
-  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: bỏ uinput server, hai chế độ gõ, lõi ghép dấu Rust, các lỗi đã sửa, những gì chưa sửa và roadmap."
+  description="Ngó Sen tách từ fcitx5-lotus 3.5.10. Trang này ghi những chỗ khác: bỏ uinput server, hai chế độ gõ, lõi ghép dấu Rust, các lỗi đã sửa, những gì chưa sửa và vì sao chỉ làm cho fcitx5."
   heading="Khác gì bản gốc"
 >
   <p slot="lede">
@@ -98,21 +98,15 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
     <li>Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.</li>
   </ul>
 
-  <h2 id="roadmap">Roadmap</h2>
-  <p>Hướng đi tiếp theo của Ngó Sen:</p>
-  <ul>
-    {
-      ROADMAP.map((item) => (
-        <li>
-          <strong>{item.goal}:</strong> {item.detail} {item.progress}
-        </li>
-      ))
-    }
-  </ul>
+  <h2 id="chi-cho-fcitx5">{SCOPE.title}</h2>
+  <p>
+    {SCOPE.text} Mã bản IBus dở dang vẫn nằm ở nhánh
+    <a href={`${REPO}/tree/${SCOPE.branch}`}><code>{SCOPE.branch}</code></a>, không cập nhật nữa. Lý do chi tiết ở
+    bài <a href="/blog/chi-lam-cho-fcitx5/">Ngó Sen chỉ làm cho fcitx5</a>.
+  </p>
 
   <h2 id="day-du">Bản đầy đủ</h2>
   <p>
-    Từng thay đổi theo bản, kèm số pull request: <a href={changelog}>changelog</a>. Roadmap gốc nằm trong
-    <a href={`${REPO}#readme`}>README</a>.
+    Từng thay đổi theo bản, kèm số pull request: <a href={changelog}>changelog</a>.
   </p>
 </Page>

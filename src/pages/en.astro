@@ -117,9 +117,10 @@ const levels: Record<Level, string> = {
     the method used and checked daily; VNI works but has not been checked closely.
   </p>
   <p>
-    Planned next: an IBus build for GNOME and Ubuntu (package <code>ibus-ngosen</code>), and a
-    build that runs directly on compositors such as Sway, Hyprland, river, labwc and Wayfire,
-    without fcitx5. Groundwork for the IBus build is done. Source, releases and the changelog are at
+    Ngó Sen targets fcitx5 only. The IBus build and a build running directly on Sway and Hyprland were
+    dropped: every input framework needs each app retested, and one person cannot keep two or three
+    builds going. On GNOME and Ubuntu, install fcitx5 with Ngó Sen. The unfinished IBus code stays,
+    unmaintained, on the <code>feat/ibus-engine</code> branch. Source, releases and the changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>
 </Page>
