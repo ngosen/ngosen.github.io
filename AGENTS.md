@@ -36,6 +36,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - Blog comments come from giscus (`src/components/Comments.astro`): one GitHub Discussion per post in
   the Announcements category of `ngosen/ngosen.github.io`, matched by URL path. Renaming a post's slug
   starts a new, empty thread.
+- `public/og.png` is the link preview image, rendered from `tools/og/card.html` by
+  `tools/og/render.sh`. Its tagline and three points copy `TAGLINE` and `HIGHLIGHTS`; re-render it
+  when those change.
 
 ## Keeping up with the main repository
 

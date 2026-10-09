@@ -36,6 +36,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Ngó Sen" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'vi_VN'} />
+    <meta property="og:image" content={new URL('/og.png', Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ngó Sen, bộ gõ tiếng Việt cho Linux: phím Telex gõ ra chữ tiếng Việt" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#1c6b5f" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#145247" media="(prefers-color-scheme: dark)" />
   </head>

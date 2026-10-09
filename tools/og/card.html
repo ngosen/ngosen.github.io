@@ -1,0 +1,183 @@
+<!doctype html>
+<!-- Source of public/og.png, the link preview image. Render with tools/og/render.sh. -->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../node_modules/@fontsource/xanh-mono/400.css" />
+    <link rel="stylesheet" href="../../node_modules/@fontsource/barlow/400.css" />
+    <link rel="stylesheet" href="../../node_modules/@fontsource/barlow-condensed/600.css" />
+    <style>
+      :root {
+        --enamel: #1c6b5f;
+        --enamel-deep: #134b43;
+        --on-enamel: #f0f5ee;
+        --on-enamel-muted: #d3e8df;
+        --cap: #f1ead9;
+        --cap-skirt: #c5bba3;
+        --cap-ink: #15191a;
+        --paper: #fbfbf8;
+        --paper-edge: #dfe3dc;
+        --ink: #15191a;
+        --ink-muted: #48524f;
+        --ribbon: #c2301c;
+      }
+
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        background: var(--enamel);
+        color: var(--on-enamel);
+        font-family: 'Barlow', sans-serif;
+        position: relative;
+      }
+
+      .copy {
+        position: absolute;
+        left: 80px;
+        top: 92px;
+        width: 520px;
+      }
+
+      h1 {
+        font-family: 'Xanh Mono', monospace;
+        font-weight: 400;
+        font-size: 128px;
+        line-height: 1;
+        letter-spacing: -0.01em;
+      }
+
+      .tagline {
+        margin-top: 26px;
+        font-size: 36px;
+        line-height: 1.25;
+        color: var(--on-enamel);
+      }
+
+      .points {
+        margin-top: 30px;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 25px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--on-enamel-muted);
+        line-height: 1.6;
+      }
+
+      .url {
+        position: absolute;
+        left: 80px;
+        bottom: 64px;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        letter-spacing: 0.05em;
+        color: var(--on-enamel);
+      }
+
+      .sheet {
+        position: absolute;
+        right: 72px;
+        top: 96px;
+        width: 470px;
+        padding: 40px 42px 44px;
+        background: var(--paper);
+        color: var(--ink);
+        border-radius: 2px;
+        transform: rotate(1.6deg);
+        box-shadow:
+          0 1px 0 var(--paper-edge),
+          0 26px 50px -18px rgba(8, 30, 26, 0.55);
+      }
+
+      .label {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+      }
+
+      .keys {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+
+      .key {
+        width: 46px;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        background: var(--cap);
+        color: var(--cap-ink);
+        border-radius: 5px;
+        box-shadow: inset 0 -6px 0 var(--cap-skirt);
+        padding-bottom: 6px;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+      }
+
+      .key.space {
+        width: 22px;
+        background: none;
+        box-shadow: none;
+      }
+
+      .rule {
+        margin: 30px 0 24px;
+        border: 0;
+        border-top: 1px solid var(--paper-edge);
+      }
+
+      .typed {
+        font-family: 'Xanh Mono', monospace;
+        font-size: 66px;
+        line-height: 1.05;
+        white-space: nowrap;
+      }
+
+      .caret {
+        display: inline-block;
+        width: 4px;
+        height: 0.9em;
+        margin-left: 6px;
+        vertical-align: -0.1em;
+        background: var(--ribbon);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="copy">
+      <h1>Ngó Sen</h1>
+      <p class="tagline">Bộ gõ tiếng Việt tối ưu cho Linux.</p>
+      <p class="points">Gõ thẳng, không gạch chân<br />Một chế độ cho mọi app<br />Không chạy ngầm với quyền root</p>
+    </div>
+    <p class="url">ngosen.github.io</p>
+
+    <div class="sheet" aria-hidden="true">
+      <p class="label">Gõ Telex</p>
+      <div class="keys">
+        <span class="key">T</span><span class="key">I</span><span class="key">E</span><span class="key">E</span
+        ><span class="key">N</span><span class="key">G</span><span class="key">S</span><span class="key space"></span
+        ><span class="key">V</span><span class="key">I</span><span class="key">E</span><span class="key">E</span
+        ><span class="key">T</span><span class="key">J</span>
+      </div>
+      <hr class="rule" />
+      <p class="typed">tiếng Việt<span class="caret"></span></p>
+    </div>
+  </body>
+</html>
