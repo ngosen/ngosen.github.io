@@ -22,5 +22,5 @@ bản IBus và chỉ làm cho fcitx5, kể ở bài [Ngó Sen chỉ làm cho fci
 Dùng fcitx5 cùng Ngó Sen, như hướng dẫn ở [trang cài đặt](/cai-dat/). Trên Ubuntu 26.04, bật thêm
 extension `forward-keys@ngosen.github.io` một lần, xem mục [Ubuntu 26.04](/cai-dat/#ubuntu-26-04).
 
-Trên fcitx5, WPS còn vài lỗi nhỏ: gõ hai phím giống nhau liền nhau (như `dd`, `ee`) có lúc mất một phím,
-và click sang ô khác có lúc dính chữ. Các lỗi này đã sửa nhưng chưa có trong bản phát hành.
+Trên fcitx5, WPS từng có vài lỗi nhỏ: gõ hai phím giống nhau liền nhau (như `dd`, `ee`) có lúc mất một
+phím, và click sang ô khác có lúc dính chữ. Bản [1.0.0-1](/ban-phat-hanh/) đã sửa các lỗi này.

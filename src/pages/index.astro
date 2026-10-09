@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import InstallStrip from '../components/InstallStrip.astro';
 import TelexBoard from '../components/TelexBoard.astro';
-import { DISTRIBUTIONS, LEVELS, RELEASE, REPO, SCOPE, type Level } from '../data/site';
+import { DISTRIBUTIONS, LEVELS, LEVELS_NOTE, RELEASE, REPO, SCOPE, type Level } from '../data/site';
 import { formatDay, getPosts } from '../lib/posts';
 
 const posts = (await getPosts()).slice(0, 3);
@@ -127,7 +127,7 @@ const notFixed = [
         </tbody>
       </table>
       <p class="sheet-note">
-        Chép theo ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}. Distro khác thì
+        Chép theo ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}. {LEVELS_NOTE} Distro khác thì
         <a href="/cai-dat/#tu-build">tự build từ source</a>.
       </p>
     </div>

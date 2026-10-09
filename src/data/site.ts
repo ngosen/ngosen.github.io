@@ -12,6 +12,44 @@ export interface Change {
 // Internal refactors ("người dùng không thấy gì khác") stay in the changelog only.
 export const RELEASES: { version: string; date: string; summary: string; changes: Change[] }[] = [
   {
+    version: '1.0.0-1',
+    date: '09/10/2026',
+    summary:
+      'Bản 1.0: Ngó Sen chỉ làm cho fcitx5. Click sang ô khác rồi gõ nay ra đúng trong LibreOffice Calc, WPS Office và Google Sheets.',
+    changes: [
+      {
+        claim: 'Google Sheets trên Wayland: click sang ô khác rồi gõ không còn ra lẫn chữ của ô trước.',
+        source: 'Trước đó, sau vài ô, chữ ra lẫn chữ cũ và không thành tiếng Việt, như “afoc”, “ieengs”.',
+        pr: 86,
+      },
+      {
+        claim: 'LibreOffice Calc trên Wayland: click sang ô khác rồi gõ không còn mở hộp thoại “Delete Contents”.',
+        source: 'Trước đó, sau một chữ có dấu, bộ gõ xoá nhầm và từ đó không gõ được tiếng Việt nữa.',
+        pr: 87,
+      },
+      {
+        claim: 'LibreOffice Calc mở thẳng trên Wayland, không qua module Qt của fcitx, cũng hết lỗi này.',
+        source: 'Trước đó chữ ra lẫn chữ của ô trước, hoặc mở hộp thoại “Delete Contents”.',
+        pr: 90,
+      },
+      {
+        claim: 'WPS Office không còn mất phím thứ hai khi gõ hai phím giống nhau liền nhau.',
+        source: 'Trước đó “dd” không ra “đ”, “oo” không ra “ô”.',
+        pr: 90,
+      },
+      {
+        claim: 'WPS Office qua Xwayland: click sang ô khác rồi gõ không còn ra lẫn chữ của ô trước.',
+        source: 'Bản sửa áp dụng cho mọi app X11 chạy trên phiên Wayland.',
+        pr: 90,
+      },
+      {
+        claim: 'Có gói Nix cho NixOS, build từ source của Ngó Sen.',
+        source: 'Cách cài nằm trong README. CI build gói, chạy test và nạp nó vào fcitx5 trên màn hình X ảo.',
+        pr: 82,
+      },
+    ],
+  },
+  {
     version: '0.5.1-1',
     date: '09/10/2026',
     summary: 'Sửa lỗi Gõ Sen trên Sway và Hyprland, và cài mới thì dùng Gõ Sen luôn.',
@@ -75,6 +113,10 @@ export const RELEASES: { version: string; date: string; summary: string; changes
 
 // The release whose notes the tested levels below are copied from.
 export const RELEASE = RELEASES[0];
+
+// Mirrors the paragraph under the table in packaging/release-notes.md.
+export const LEVELS_NOTE =
+  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox.';
 
 export type Level = 'daily' | 'vm' | 'built';
 

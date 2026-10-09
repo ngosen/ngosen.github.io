@@ -1,7 +1,7 @@
 ---
 import Page from '../layouts/Page.astro';
 import InstallStrip from '../components/InstallStrip.astro';
-import { DISTRIBUTIONS, LEVELS, RELEASE, REPO } from '../data/site';
+import { DISTRIBUTIONS, LEVELS, LEVELS_NOTE, RELEASE, REPO } from '../data/site';
 
 const buildGuide = `${REPO}/blob/main/TU-DUNG.md`;
 const rustDistros = DISTRIBUTIONS.filter((item) => item.core === 'Rust').map((item) => item.name);
@@ -89,7 +89,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </div>
   <p>
     “Chỉ build” nghĩa là gói build được và qua test lúc build, chưa ai gõ thử trên distro đó. Chép theo
-    ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}.
+    ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}. {LEVELS_NOTE}
   </p>
 
   <h3 id="loi-ghep-dau">Lõi ghép dấu: Rust hay Go</h3>
