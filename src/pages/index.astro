@@ -30,10 +30,9 @@ const notFixed = [
       <h2 id="scope-tieu-de">{SCOPE.title}</h2>
     </div>
     <div class="sheet scope-note">
-      <p>{SCOPE.text}</p>
       <p>
-        Mã bản IBus dở dang vẫn nằm ở nhánh <a href={`${REPO}/tree/${SCOPE.branch}`}><code>{SCOPE.branch}</code></a>,
-        không cập nhật nữa. Lý do chi tiết ở bài <a href="/blog/chi-lam-cho-fcitx5/">Ngó Sen chỉ làm cho fcitx5</a>.
+        {SCOPE.text} Mã bản IBus vẫn còn ở nhánh
+        <a href={`${REPO}/tree/${SCOPE.branch}`}><code>{SCOPE.branch}</code></a>.
       </p>
     </div>
   </section>
@@ -584,10 +583,6 @@ const notFixed = [
 
   .scope-note p {
     max-width: 62ch;
-  }
-
-  .scope-note p + p {
-    margin-top: 0.8rem;
   }
 
   /* Modes and the Telex board */
