@@ -195,10 +195,6 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
     title: 'Cài bằng một dòng lệnh',
     text: 'Trên Fedora, Ubuntu, Debian, Arch, CachyOS, openSUSE; script kiểm hash trước khi cài.',
   },
-  {
-    title: 'Chuyển từ fcitx5-lotus không mất gì',
-    text: 'Gói tự thay bản cũ, giữ nguyên cấu hình, chế độ cũ tự chuyển sang Gõ Sen.',
-  },
 ];
 
 // Mirrors the "Roadmap" section of README.md.
