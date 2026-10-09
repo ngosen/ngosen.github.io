@@ -176,8 +176,8 @@ export const TAGLINE = 'Bộ gõ tiếng Việt tối ưu cho Linux.';
 
 export const HIGHLIGHTS: { title: string; text: string }[] = [
   {
-    title: 'Không chạy ngầm với quyền root',
-    text: 'Bỏ hẳn uinput server, Ngó Sen chỉ dùng đúng quyền của fcitx5. Cài xong là gõ, không bật dịch vụ, không cấp quyền thiết bị.',
+    title: 'Bỏ hẳn uinput server',
+    text: 'Ngó Sen chỉ dùng đúng quyền của fcitx5. Cài xong là gõ, không bật dịch vụ, không cấp quyền thiết bị.',
   },
   {
     title: 'Gõ thẳng, không gạch chân',
