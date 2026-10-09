@@ -2,6 +2,7 @@
 title: "WPS Office không phù hợp với IBus"
 description: "Gõ tiếng Việt trong WPS Spreadsheets qua IBus ra hocọc thay vì học. Plugin IBus của WPS bỏ qua mọi cách xoá chữ. Trên fcitx5 thì gõ được."
 pubDate: 2026-10-09
+outdated: "Cũng ngày 09/10/2026, Ngó Sen thôi làm bản IBus và chỉ làm cho fcitx5. Bài giữ lại vì nó cho thấy một lý do của quyết định đó; xem bài Ngó Sen chỉ làm cho fcitx5."
 ---
 
 Gõ `hocj tieengs vieetj` vào một ô của WPS Spreadsheets, đáng ra phải thấy `học tiếng việt`. Qua IBus,
