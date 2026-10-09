@@ -169,9 +169,18 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 
   <h2 id="tu-build">Tự build từ source</h2>
   <p>
-    Dành cho distro chưa có gói, hoặc khi muốn tự build. Làm theo <a href={buildGuide}>TU-DUNG.md</a>
-    trong repo. Hai điều dễ sai: gỡ gói Lotus cài sẵn trước, và cài vào <code>/usr</code>.
+    Dành cho distro chưa có gói, hoặc khi muốn tự build. Lệnh đầy đủ nằm trong
+    <a href={buildGuide}>TU-DUNG.md</a>, viết cho Arch và CachyOS; distro khác cài các gói tương ứng, các
+    bước còn lại giống hệt. NixOS có cách riêng, xem <a href="#nixos">mục NixOS</a>.
   </p>
+  <ol>
+    <li>Gỡ gói fcitx5-lotus nếu máy đang có, để file của hai bản không đè lên nhau.</li>
+    <li>Cài công cụ build: cmake, gcc, go, git, python, fcitx5 và vài gói khác, liệt kê trong TU-DUNG.md.</li>
+    <li>
+      Tải source và build. Phải cài vào <code>/usr</code>, vì fcitx5 tìm bộ gõ ở đó, và nhớ
+      <code>--recurse-submodules</code>, vì lõi ghép dấu nằm ở repo con <code>bamboo-core</code>.
+    </li>
+  </ol>
   <pre tabindex="0"><code>{`git clone --recurse-submodules -b main https://github.com/ngosen/ngosen.git
 cd ngosen
 cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib
@@ -179,8 +188,21 @@ cmake --build build -j8
 sudo cmake --install build`}</code></pre>
   <p>
     Trên Fedora và openSUSE dùng <code>-DCMAKE_INSTALL_LIBDIR=lib64</code> thay cho <code>/usr/lib</code>.
-    Máy từng chạy uinput server của Lotus hoặc Ngó Sen bản cũ thì làm thêm bước 4 trong TU-DUNG.md để tắt
-    nó và xoá các file nó để lại, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
+  </p>
+  <ol start="4">
+    <li>
+      Máy từng chạy uinput server của Lotus hoặc Ngó Sen bản cũ thì tắt nó và xoá các file nó để lại, theo
+      bước 4 trong TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
+    </li>
+    <li>Làm ba việc ở mục <a href="#sau-khi-cai">Cài xong</a>: khởi động lại fcitx5, thêm Ngó Sen, và trên KDE Wayland chọn “Fcitx 5”.</li>
+  </ol>
+  <p>
+    <strong>Cập nhật về sau:</strong> trong thư mục <code>ngosen</code>, chạy
+    <code>git pull --recurse-submodules</code>, lặp lại bước 3, rồi <code>fcitx5 -rd</code>.
+  </p>
+  <p>
+    <strong>Chạy test:</strong> build thêm một lần với <code>-DBUILD_TESTING=ON</code> rồi chạy
+    <code>unshare -Urn ctest</code>; lệnh đầy đủ ở mục “Chạy bộ kiểm” trong TU-DUNG.md.
   </p>
 
   <h2 id="go">Gỡ cài đặt</h2>
