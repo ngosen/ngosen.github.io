@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "tools/og/card.html"
+        ],
+        "createdAt": "2026-10-09T00:19:07.056Z",
+        "reason": "agent: the 4px element is the typing caret drawn after 'tiếng Việt', not a card border"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "tools/og/card.html"
+        ],
+        "createdAt": "2026-10-09T00:19:07.071Z",
+        "reason": "agent: three short Barlow Condensed labels, the same legend style the site uses for nav keys"
+      }
+    ]
+  }
+}
