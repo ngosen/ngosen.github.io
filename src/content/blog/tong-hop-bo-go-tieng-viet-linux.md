@@ -14,7 +14,7 @@ Ngày 24/09/2026, người giữ dự án đọc mã của 18 bộ gõ trong [da
 
 **Preedit, nhưng tắt gạch chân.** Chữ đang gõ nằm tạm trong ô, có gạch chân, cho tới khi xong từ, như chế độ Preedit của Ngó Sen. Bộ gõ xin app đừng gạch chân để trông giống chữ thường. App có chiều theo hay không thì tuỳ từng app. pinakey, TypeVN, vietc dùng cách này.
 
-**Tự làm bộ gõ Wayland riêng.** vi-ime không chạy trong fcitx5 mà tự nói chuyện với Wayland, gõ ra chữ Việt bằng một bàn phím ảo mang sẵn bảng phím có dấu. Lệnh xoá và lệnh chèn tới app cùng một lần. Cách này chỉ chạy trên Sway, Hyprland và các môi trường wlroots; KDE chưa có phần Wayland cần thiết.
+**Tự làm bộ gõ Wayland riêng.** vi-ime không chạy trong fcitx5 mà tự nói chuyện với Wayland, gõ ra chữ Việt bằng một bàn phím ảo mang sẵn bảng phím có dấu. Lệnh xoá và lệnh chèn tới app cùng một lần. Cách này chỉ chạy trên compositor có input-method-v2 và bàn phím ảo của Wayland, như Sway và Hyprland; KDE chưa có hai phần đó.
 
 **Hai bước: bấm Backspace rồi gõ chữ mới.** Bộ gõ bấm Backspace qua bàn phím ảo, rồi commit chữ mới theo đường riêng, canh nhịp bằng đồng hồ hoặc bằng tin báo của app. skey, ArecaIME, VMK, fcitx5-lilypad, fcitx5-lotus và Ngó Sen lúc đó đều cùng họ này.
 

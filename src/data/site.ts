@@ -211,7 +211,7 @@ export const ROADMAP: { goal: string; detail: string; progress?: string }[] = [
     progress: 'Đã xong phần nền cho bản IBus.',
   },
   {
-    goal: 'wlroots, không cần fcitx5',
+    goal: 'Sway, Hyprland, không cần fcitx5',
     detail: 'Ngó Sen chạy thẳng trên Sway, Hyprland, river, labwc, Wayfire, gọn nhẹ hơn cài cả fcitx5.',
   },
 ];

@@ -24,7 +24,7 @@ Cách nào cũng chỉ chạy được nếu app và đường nối tới app h
 Chữ đi từ bộ gõ tới app qua nhiều đường khác nhau, tuỳ ba thứ:
 
 - **Phiên đăng nhập:** X11, Wayland, hay app X11 chạy trên Wayland qua XWayland.
-- **Desktop:** GNOME chuyển chữ qua GNOME Shell; KDE Plasma dùng giao thức text-input của KWin; Sway, Hyprland và các môi trường wlroots dùng input-method-v2.
+- **Desktop:** GNOME chuyển chữ qua GNOME Shell; KDE Plasma dùng giao thức text-input của KWin; Sway, Hyprland và các compositor tương tự dùng giao thức input-method-v2.
 - **Cách app nối với bộ gõ:** qua XIM (giao thức cũ của X11), qua mô-đun IBus hoặc fcitx5 trong GTK và Qt, qua Wayland, hoặc qua mô-đun fcitx đời cũ nằm sẵn trong gói snap.
 
 Mỗi tổ hợp là một đường, và mỗi đường hỗ trợ một phần khác nhau. Vài ví dụ Ngó Sen đã gặp và sửa trong bản 0.5.0:
