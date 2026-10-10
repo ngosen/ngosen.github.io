@@ -30,7 +30,7 @@ const levels: Record<Level, string> = {
   <p>
     The script picks the prebuilt package for your distribution from the latest GitHub release, asks
     before it downloads the package, checks the file against <code>SHA256SUMS</code> and installs it
-    with your package manager. It replaces <code>fcitx5-lotus</code> if that is installed; your
+    with your package manager. Since 1.1.0 it installs alongside <code>fcitx5-lotus</code>; your
     configuration is kept. Its prompts are in Vietnamese: answer <kbd>c</kbd> to continue. The source is
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>

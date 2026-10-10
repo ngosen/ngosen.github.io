@@ -36,7 +36,7 @@ const download = (version: string) => `${REPO}/releases/tag/ngosen-${version}`;
           {release.changes.map((change) => (
             <li>
               <strong>{change.claim}</strong> {change.source}{' '}
-              <a href={`${release.prRepo ?? REPO}/pull/${change.pr}`}>#{change.pr}</a>
+              <a href={`${change.repo ?? release.prRepo ?? REPO}/pull/${change.pr}`}>#{change.pr}</a>
             </li>
           ))}
         </ul>

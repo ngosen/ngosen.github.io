@@ -49,8 +49,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper); lúc này máy hỏi mật khẩu sudo.</li>
   </ol>
   <p>
-    Máy đang có <code>fcitx5-lotus</code> thì Ngó Sen thay nó, vì hai gói dùng chung tên file và không
-    cài song song được. Cấu hình cũ giữ nguyên. Script làm gì thì đọc được trong
+    Cập nhật từ bản cũ thì cấu hình giữ nguyên. Script làm gì thì đọc được trong
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>
@@ -162,9 +161,10 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 
   <h2 id="tu-lotus">Đang dùng fcitx5-lotus</h2>
   <p>
-    Lệnh cài tự thay gói <code>fcitx5-lotus</code> và giữ cấu hình cũ. Trên Arch và CachyOS, nếu
-    máy có gói phụ <code>fcitx5-lotus-openrc</code> hoặc <code>fcitx5-lotus-runit</code> thì script dừng
-    lại và in ra lệnh gỡ hai gói đó, vì hai gói đó cần <code>fcitx5-lotus</code>.
+    Từ bản 1.1.0, Ngó Sen cài chung được với gói <code>fcitx5-lotus</code>, nên lệnh cài không gỡ gói đó nữa.
+    Các file <code>lotus*.conf</code> được chép sang <code>ngosen*.conf</code> khi fcitx5 nạp Ngó Sen lần đầu.
+    Thêm Ngó Sen vào danh sách bộ gõ trong “Fcitx5 Configuration”. Muốn chỉ dùng Ngó Sen thì gỡ
+    <code>fcitx5-lotus</code>.
   </p>
 
   <h2 id="tu-build">Tự build từ source</h2>
@@ -174,7 +174,11 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     bước còn lại giống hệt. NixOS có cách riêng, xem <a href="#nixos">mục NixOS</a>.
   </p>
   <ol>
-    <li>Gỡ gói fcitx5-lotus nếu máy đang có, để file của hai bản không đè lên nhau.</li>
+    <li>
+      Máy từng tự build Ngó Sen 1.0.0 trở về trước thì xoá các file mang tên <code>lotus</code> mà bản đó
+      cài, theo bước 1 trong TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá. Máy có cài gói <code>fcitx5-lotus</code> thì
+      bỏ qua bước này, vì các file đó thuộc gói đó.
+    </li>
     <li>Cài công cụ build: cmake, gcc, go, git, python, fcitx5 và vài gói khác, liệt kê trong TU-DUNG.md.</li>
     <li>
       Tải source và build. Phải cài vào <code>/usr</code>, vì fcitx5 tìm bộ gõ ở đó, và nhớ
@@ -218,12 +222,9 @@ fcitx5 -rd`}</code></pre>
     </li>
   </ol>
   <p>
-    Các file cấu hình <code>lotus*.conf</code> trong <code>~/.config/fcitx5/conf/</code> vẫn ở lại
-    máy để lần cài sau dùng tiếp. Muốn xoá sạch thì xoá các file đó.
-  </p>
-  <p>
-    Muốn quay về fcitx5-lotus thì gỡ xong cài gói của bản gốc. Hai bản dùng chung tên file cấu hình nên
-    cấu hình cũ dùng tiếp được.
+    Các file cấu hình <code>ngosen*.conf</code> trong <code>~/.config/fcitx5/conf/</code>, và
+    <code>lotus*.conf</code> nếu từng dùng bản trước 1.1.0, vẫn ở lại máy để lần cài sau dùng tiếp. Muốn
+    xoá sạch thì xoá các file đó.
   </p>
 
   <h2 id="nixos">NixOS</h2>

@@ -9,6 +9,8 @@ export interface Change {
   claim: string;
   source: string;
   pr: number;
+  // Repository this pr number refers to, when it differs from the release's.
+  repo?: string;
 }
 
 // User-visible changes per release, newest first, picked from CHANGELOG.md.
@@ -21,6 +23,30 @@ export const RELEASES: {
   // Repository the pr numbers refer to; defaults to REPO.
   prRepo?: string;
 }[] = [
+  {
+    version: '1.1.0-1',
+    date: '10/10/2026',
+    summary:
+      'Bản 1.1: file cài vào máy mang tên ngosen, cấu hình cũ tự chuyển sang. Có icon khay mới và nhật ký gõ để gửi kèm khi báo lỗi.',
+    changes: [
+      {
+        claim: 'Cập nhật lên 1.1 không phải chỉnh lại gì: cấu hình cũ được chép sang tên mới, Ngó Sen vẫn nằm trong danh sách bộ gõ.',
+        source: 'Cấu hình được chép một lần, lúc fcitx5 khởi động lần đầu sau khi cập nhật. File cấu hình cũ vẫn ở lại máy.',
+        pr: 7,
+      },
+      {
+        claim: 'Icon trên khay hệ thống được vẽ lại thành một lát cắt ngó sen.',
+        source: 'Icon xám đi khi tắt gõ tiếng Việt và thành mặt cười ở chế độ Emoji. Kiểu icon chữ giữ nguyên.',
+        pr: 8,
+      },
+      {
+        claim: 'Gõ ra chữ sai thì chọn “Lưu nhật ký gõ” trong menu fcitx5 để lưu các phím vừa gõ vào một file, gửi kèm khi báo lỗi.',
+        source: 'Nhật ký chỉ nằm trong bộ nhớ cho tới lúc lưu, và không ghi gì gõ trong ô mật khẩu.',
+        pr: 93,
+        repo: ARCHIVE_REPO,
+      },
+    ],
+  },
   {
     version: '1.0.0-1',
     prRepo: ARCHIVE_REPO,
@@ -129,7 +155,7 @@ export const RELEASE = RELEASES[0];
 
 // Mirrors the paragraph under the table in packaging/release-notes.md.
 export const LEVELS_NOTE =
-  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox.';
+  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ.';
 
 export type Level = 'daily' | 'vm' | 'built';
 

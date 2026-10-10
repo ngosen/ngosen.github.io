@@ -154,8 +154,8 @@ const jsonLd = {
       <h2 id="cai-tieu-de">Cài bằng một dòng lệnh</h2>
       <p>
         Lệnh này tìm gói build sẵn cho đúng distro của máy trong bản release mới nhất, hỏi lại rồi mới
-        tải, so hash SHA-256 của file tải về, rồi cài bằng trình quản lý gói của máy. Gói
-        <code>fcitx5-lotus</code> nếu có sẽ bị thay; cấu hình cũ giữ nguyên.
+        tải, so hash SHA-256 của file tải về, rồi cài bằng trình quản lý gói của máy. Cấu hình
+        cũ giữ nguyên.
       </p>
     </div>
     <InstallStrip />
@@ -213,7 +213,7 @@ const jsonLd = {
             <li>
               <p class="claim">{line.claim}</p>
               <p class="source">
-                {line.source} <a href={`${RELEASE.prRepo ?? REPO}/pull/${line.pr}`}>#{line.pr}</a>
+                {line.source} <a href={`${line.repo ?? RELEASE.prRepo ?? REPO}/pull/${line.pr}`}>#{line.pr}</a>
               </p>
             </li>
           ))

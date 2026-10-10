@@ -24,8 +24,8 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
   the top of the README. The README has no roadmap; do not add one, and never show dates or promises. Do not mention vibecoding (dropped at the
   maintainer's request) or list fork lineage outside the footer credit and the comparison page.
-- Internal names stay `lotus` (config paths such as `lotus*.conf`). Do not rename them in commands
-  shown to users.
+- Since 1.1.0 installed names are `ngosen` (`ngosen*.conf`, `fcitx5 --verbose ngosen=4`). Show `lotus`
+  names only for versions before 1.1.0 and for moving off them.
 - Vietnamese page text keeps common technical terms in English: file, repo, script, test, build,
   source, release, changelog, roadmap, hash/SHA-256, distro, app, container, key names such as Backspace, and input-method terms: uinput server, preedit, surrounding text, commit, forward key. Translate lỗi, phiên
   bản, cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
