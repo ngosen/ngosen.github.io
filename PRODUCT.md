@@ -66,7 +66,7 @@ is, they have it installed and typing without opening the source repository.
 - Primary language is Vietnamese. One short English page or section is enough.
 - Blog posts come from the maintainer's private notes; each is a real account of something measured
   or fixed. The first three are to be chosen with the maintainer.
-- Undecided: custom domain; a pictorial logo.
+- Undecided: custom domain.
 - Versions: Ngó Sen numbers its own releases from 0.5.0 (package `1:0.5.0-1`; the epoch keeps it newer
   than `3.5.10-4`). Tags are `ngosen-<version>`.
 
@@ -74,7 +74,8 @@ is, they have it installed and typing without opening the source repository.
 
 - Name: **Ngó Sen** (lotus stem), always with diacritics. Package name `fcitx5-ngosen`, organisation
   `ngosen`.
-- No pictorial logo yet. The mark is the two words "Ngó Sen" set in type.
+- No pictorial logo. The mark is the two words "Ngó Sen" set in type. The favicon copies the app's
+  tray icon, a lotus-root slice.
 - Voice: plain, first person where the maintainer speaks, specific about what was and was not tested.
   No hype, no claims of being the best or fastest.
 - Credit: based on fcitx5-lotus, which descends from VMK; upstream authors are named.

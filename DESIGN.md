@@ -432,5 +432,5 @@ technology as one labelled image.
 - **Don't** make a command scroll sideways on a narrow screen.
 - **Don't** set running text in Xanh Mono or body paragraphs in the legend font.
 - **Don't** set Xanh Mono in bold; only regular and italic exist.
-- **Don't** draw a pictorial logo. The mark is the two words "Ngó Sen" set in Xanh Mono, always with diacritics.
+- **Don't** draw a pictorial logo. The mark is the two words "Ngó Sen" set in Xanh Mono, always with diacritics. The one picture is the favicon, a copy of the app's tray icon (a lotus-root slice on enamel); change it only together with that icon.
 - **Don't** float surfaces with wide ambient shadows or glows; shadows are contact shadows under an edge.
