@@ -8,13 +8,22 @@ interface Props {
   lang?: string;
   type?: 'website' | 'article';
   published?: Date;
+  modified?: Date;
   jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, heading, lang, type, published, jsonLd } = Astro.props;
+const { title, description, heading, lang, type, published, modified, jsonLd } = Astro.props;
 ---
 
-<Base title={title} description={description} lang={lang} type={type} published={published} jsonLd={jsonLd}>
+<Base
+  title={title}
+  description={description}
+  lang={lang}
+  type={type}
+  published={published}
+  modified={modified}
+  jsonLd={jsonLd}
+>
   <article class="wrap">
     <div class="sheet page">
       <header>

@@ -2,6 +2,7 @@
 title: "Vì sao gõ tiếng Việt trên Linux hay bị nuốt chữ, lặp chữ"
 description: "Linux không có một đường duy nhất để bộ gõ đưa chữ vào app; mỗi desktop, mỗi toolkit làm một kiểu, nên chữ hay bị nuốt hoặc lặp."
 pubDate: 2026-10-04
+updatedDate: 2026-10-09
 outdated: "Phần Messenger kể cách làm trước bản 0.5.0. Từ 0.5.0, chế độ Uinput đổi tên thành Gõ Sen, không còn uinput server, và trên KDE ô soạn tin Facebook được xử lý như ô thường."
 ---
 

@@ -8,6 +8,8 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string().max(160),
     pubDate: z.date(),
+    // Set when the post was substantially rewritten, not for copy edits; search engines read it.
+    updatedDate: z.date().optional(),
     draft: z.boolean().default(false),
     // Set when a later release changed what the post describes.
     outdated: z.string().optional(),

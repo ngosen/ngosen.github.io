@@ -63,6 +63,8 @@ Two rules apply to every update:
 - Blog posts must not contradict the latest release. On each release, search `src/content/blog/` for
   version numbers and for wording such as "bản tiếp theo", "bản kế tiếp" or "bản hiện tại". Correct the
   text, or add an `outdated` note when the post describes an older state on purpose.
+- When a post's content changes (new facts, a rewritten section, an `outdated` note), set `updatedDate`
+  in its frontmatter; the sitemap and the post's structured data read it. Copy edits leave it alone.
 
 After a merged PR, before any release: change the site only when users can see the change or the
 README's scope changed (`SCOPE`). Never present unreleased work as a new version.

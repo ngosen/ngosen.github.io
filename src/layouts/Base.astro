@@ -18,11 +18,13 @@ interface Props {
   wordmark?: boolean;
   type?: 'website' | 'article';
   published?: Date;
+  modified?: Date;
   // Structured data for search engines, rendered as JSON-LD.
   jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, lang = 'vi', wordmark = true, type = 'website', published, jsonLd } = Astro.props;
+const { title, description, lang = 'vi', wordmark = true, type = 'website', published, modified, jsonLd } =
+  Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // / and /en/ are the only pages that exist in both languages.
 const languagePair = Astro.url.pathname === '/' || Astro.url.pathname === '/en/';
@@ -53,6 +55,7 @@ const jsonLdText = jsonLd && JSON.stringify({ '@context': 'https://schema.org', 
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
     {published && <meta property="article:published_time" content={published.toISOString()} />}
+    {modified && <meta property="article:modified_time" content={modified.toISOString()} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Ngó Sen" />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'vi_VN'} />

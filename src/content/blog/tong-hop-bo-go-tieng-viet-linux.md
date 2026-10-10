@@ -2,6 +2,7 @@
 title: "Tổng hợp các bộ gõ tiếng Việt trên Linux và cơ chế gõ"
 description: "Đọc mã 16 bộ gõ tiếng Việt cho Linux: năm cách đưa chữ vào app, mỗi bộ gõ làm gì và ý nào đáng học."
 pubDate: 2026-10-08
+updatedDate: 2026-10-09
 ---
 
 Khi gõ `as` ra `á`, mọi bộ gõ đều phải làm cùng một việc: xoá `a` rồi viết `á`. Cách làm việc đó quyết

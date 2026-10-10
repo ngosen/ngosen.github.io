@@ -17,6 +17,7 @@ const jsonLd = {
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString().slice(0, 10),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString().slice(0, 10),
   inLanguage: 'vi',
   url: new URL(Astro.url.pathname, Astro.site).href,
   image: new URL('/og.png', Astro.site).href,
@@ -29,6 +30,7 @@ const jsonLd = {
   heading={post.data.title}
   type="article"
   published={post.data.pubDate}
+  modified={post.data.updatedDate}
   jsonLd={jsonLd}
 >
   <p slot="lede">
