@@ -227,12 +227,12 @@ export const DISTRIBUTIONS: Distribution[] = [
 ];
 
 // Mirrors the opening of README.md in ngosen/ngosen (PR #75): the tagline and its points.
-export const TAGLINE = 'Bộ gõ tiếng Việt tối ưu cho Linux.';
+export const TAGLINE = 'Bộ gõ tiếng Việt cho fcitx5 trên Linux.';
 
 export const HIGHLIGHTS: { title: string; text: string }[] = [
   {
-    title: 'Bỏ hẳn uinput server',
-    text: 'Ngó Sen chỉ dùng đúng quyền của fcitx5. Cài xong là gõ, không bật dịch vụ, không cấp quyền thiết bị.',
+    title: 'Không cần quyền đặc biệt',
+    text: 'Ngó Sen không còn uinput server, chỉ dùng đúng quyền của fcitx5. Cài xong gõ được ngay, không phải bật service hay cấp quyền thiết bị.',
   },
   {
     title: 'Gõ thẳng, không gạch chân',
