@@ -1,4 +1,7 @@
 export const REPO = 'https://github.com/ngosen/ngosen';
+// Pull requests up to 1.0.0-1 live in the old fork, archived when the project left the
+// fcitx5-lotus fork network; the new repository numbers its pull requests from #1 again.
+export const ARCHIVE_REPO = 'https://github.com/ngosen/ngosen-fork-archive';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
 
@@ -10,9 +13,17 @@ export interface Change {
 
 // User-visible changes per release, newest first, picked from CHANGELOG.md.
 // Internal refactors ("người dùng không thấy gì khác") stay in the changelog only.
-export const RELEASES: { version: string; date: string; summary: string; changes: Change[] }[] = [
+export const RELEASES: {
+  version: string;
+  date: string;
+  summary: string;
+  changes: Change[];
+  // Repository the pr numbers refer to; defaults to REPO.
+  prRepo?: string;
+}[] = [
   {
     version: '1.0.0-1',
+    prRepo: ARCHIVE_REPO,
     date: '09/10/2026',
     summary:
       'Bản 1.0: Ngó Sen chỉ làm cho fcitx5. Click sang ô khác rồi gõ nay ra đúng trong LibreOffice Calc, WPS Office và Google Sheets.',
@@ -51,6 +62,7 @@ export const RELEASES: { version: string; date: string; summary: string; changes
   },
   {
     version: '0.5.1-1',
+    prRepo: ARCHIVE_REPO,
     date: '09/10/2026',
     summary: 'Sửa lỗi Gõ Sen trên Sway và Hyprland, và cài mới thì dùng Gõ Sen luôn.',
     changes: [
@@ -68,6 +80,7 @@ export const RELEASES: { version: string; date: string; summary: string; changes
   },
   {
     version: '0.5.0-1',
+    prRepo: ARCHIVE_REPO,
     date: '08/10/2026',
     summary: 'Bản đầu tiên đánh số riêng: bỏ uinput server, gom chế độ gõ vào Gõ Sen, lõi ghép dấu Rust.',
     changes: [

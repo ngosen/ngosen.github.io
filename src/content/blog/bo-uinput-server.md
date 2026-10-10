@@ -16,15 +16,15 @@ Mã của server chỉ xử lý nút chuột. Nhưng nếu nó có lỗi và b�
 
 ## Bước đầu: thu quyền lại
 
-Cuối tháng 9/2026, server bị thu bớt quyền: chỉ mở chuột và touchpad ở chế độ chỉ đọc, ra khỏi group `input`, bỏ `CAP_SYS_PTRACE`, và từ chối lệnh có số phím quá lớn ([#7](https://github.com/ngosen/ngosen/pull/7), [#8](https://github.com/ngosen/ngosen/pull/8), [#9](https://github.com/ngosen/ngosen/pull/9), [#10](https://github.com/ngosen/ngosen/pull/10), [#18](https://github.com/ngosen/ngosen/pull/18)). Nhưng máy vẫn phải chạy một service có quyền đặc biệt.
+Cuối tháng 9/2026, server bị thu bớt quyền: chỉ mở chuột và touchpad ở chế độ chỉ đọc, ra khỏi group `input`, bỏ `CAP_SYS_PTRACE`, và từ chối lệnh có số phím quá lớn ([#7](https://github.com/ngosen/ngosen-fork-archive/pull/7), [#8](https://github.com/ngosen/ngosen-fork-archive/pull/8), [#9](https://github.com/ngosen/ngosen-fork-archive/pull/9), [#10](https://github.com/ngosen/ngosen-fork-archive/pull/10), [#18](https://github.com/ngosen/ngosen-fork-archive/pull/18)). Nhưng máy vẫn phải chạy một service có quyền đặc biệt.
 
 ## Quyết định: bỏ hẳn
 
-Từ bản 0.5.0, bộ gõ xoá chữ cũ bằng forward key: gửi phím Backspace hộ qua chính fcitx5, hoặc bấm phím qua XTEST trên phiên X11. Không còn service chạy nền, tài khoản `uinput_proxy` hay luật udev cấp quyền thiết bị ([#43](https://github.com/ngosen/ngosen/pull/43)).
+Từ bản 0.5.0, bộ gõ xoá chữ cũ bằng forward key: gửi phím Backspace hộ qua chính fcitx5, hoặc bấm phím qua XTEST trên phiên X11. Không còn service chạy nền, tài khoản `uinput_proxy` hay luật udev cấp quyền thiết bị ([#43](https://github.com/ngosen/ngosen-fork-archive/pull/43)).
 
 Cập nhật từ bản cũ thì gói tự tắt service và xoá tài khoản `uinput_proxy`. Ai từng tự build từ source thì làm theo bước 4 trong [TU-DUNG.md](https://github.com/ngosen/ngosen/blob/main/TU-DUNG.md) để dọn file server cũ để lại.
 
 ## Cái giá
 
 - Game dùng SDL ngoài X11 không nhận forward key, nên gõ ra chữ không dấu.
-- GNOME 50.0 tới 50.3 trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi. Gói Ngó Sen kèm extension `forward-keys@ngosen.github.io` để sửa, phải bật một lần sau khi cài ([#41](https://github.com/ngosen/ngosen/pull/41)).
+- GNOME 50.0 tới 50.3 trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi. Gói Ngó Sen kèm extension `forward-keys@ngosen.github.io` để sửa, phải bật một lần sau khi cài ([#41](https://github.com/ngosen/ngosen-fork-archive/pull/41)).

@@ -213,7 +213,7 @@ const jsonLd = {
             <li>
               <p class="claim">{line.claim}</p>
               <p class="source">
-                {line.source} <a href={`${REPO}/pull/${line.pr}`}>#{line.pr}</a>
+                {line.source} <a href={`${RELEASE.prRepo ?? REPO}/pull/${line.pr}`}>#{line.pr}</a>
               </p>
             </li>
           ))

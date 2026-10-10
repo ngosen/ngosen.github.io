@@ -1,10 +1,10 @@
 ---
 import Page from '../layouts/Page.astro';
-import { REPO, SCOPE } from '../data/site';
+import { ARCHIVE_REPO, REPO, SCOPE } from '../data/site';
 
 const upstream = 'https://github.com/LotusInputMethod/fcitx5-lotus';
 const changelog = `${REPO}/blob/main/CHANGELOG.md`;
-const pr = (n: number) => `${REPO}/pull/${n}`;
+const pr = (n: number) => `${ARCHIVE_REPO}/pull/${n}`;
 ---
 
 <Page

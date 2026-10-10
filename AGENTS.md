@@ -16,6 +16,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - `src/data/site.ts` mirrors the release notes of the main repository. Change them together. On each
   release, add an entry at the top of `RELEASES` (user-visible changes only, picked from
   `CHANGELOG.md`); the home page shows the first entry and `/ban-phat-hanh/` lists them all.
+- Pull requests up to release 1.0.0-1 live in the archived fork `ngosen/ngosen-fork-archive`; the
+  repository was recreated outside the fcitx5-lotus fork network and numbers its pull requests from #1
+  again. Old entries carry `prRepo: ARCHIVE_REPO`; new release entries leave it out.
 - Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
   page.
 - The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
