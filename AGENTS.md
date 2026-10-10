@@ -26,6 +26,14 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - Vietnamese page text keeps common technical terms in English: file, repo, script, test, build,
   source, release, changelog, roadmap, hash/SHA-256, distro, app, container, key names such as Backspace, and input-method terms: uinput server, preedit, surrounding text, commit, forward key. Translate lỗi, phiên
   bản, cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
+- One name per concept across every page and post: "service" (not "dịch vụ"), "uinput server" (not
+  "chương trình chạy ngầm"), "module" (not "mô-đun"), "compositor" (not an unexplained "WM"), "click"
+  for the mouse and "bấm" for keys, "test" and "lỗi" (not "thử", "hỏng") when talking about checking
+  apps, and upstream spellings such as Xwayland. The tested-level labels ("Đã thử tới đâu") stay as
+  they are until the maintainer decides.
+- Avoid machine-sounding Vietnamese: no explanatory analogies for technical readers, no empty "không
+  phải X mà là Y" contrasts, no dramatic closing lines, no "Label: phrase" headings. The patterns and
+  rewrites are listed in the `vietnamese-writing` skill (`references/ai-tells.md`).
 - `public/telex/telex.wasm` is a build output kept in the repository. Rebuild it with
   `tools/telex-wasm/build.sh`, then run `npm run check:telex` and
   `node tools/telex-wasm/demo-steps.mjs`.

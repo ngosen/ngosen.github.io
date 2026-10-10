@@ -25,10 +25,10 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
 
   <h2 id="may-chu-nen">Không còn uinput server</h2>
   <p>
-    Ở bản gốc, một chương trình chạy ngầm có quyền đặc biệt bấm phím Backspace thay bộ gõ. Ngó Sen bỏ hẳn nó:
-    bộ gõ xoá chữ cũ bằng forward key qua fcitx5, hoặc qua XTEST trên phiên X11. Cài xong là gõ, không
-    phải bật dịch vụ, không cần quyền thiết bị. Cập nhật từ bản cũ thì gói tự tắt dịch vụ đó và xoá tài
-    khoản <code>uinput_proxy</code> (<a href={pr(43)}>#43</a>).
+    Ở bản gốc, uinput server là một service chạy nền có quyền đặc biệt, bấm phím Backspace thay bộ gõ. Ngó
+    Sen bỏ server này: bộ gõ xoá chữ cũ bằng forward key qua fcitx5, hoặc qua XTEST trên phiên X11. Cài xong
+    gõ được ngay, không phải bật service hay cấp quyền thiết bị. Cập nhật từ bản cũ thì gói tự tắt service
+    đó và xoá tài khoản <code>uinput_proxy</code> (<a href={pr(43)}>#43</a>).
   </p>
 
   <h2 id="che-do">Hai chế độ gõ: Gõ Sen và Preedit</h2>
@@ -61,7 +61,7 @@ const pr = (n: number) => `${REPO}/pull/${n}`;
       <code>đi</code> (<a href={pr(33)}>#33</a>).
     </li>
     <li>
-      <strong>App X11 chạy qua XWayland trên KDE không còn bị kẹt</strong>, nuốt hết phím sau một lần
+      <strong>App X11 chạy qua Xwayland trên KDE không còn bị kẹt</strong>, nuốt hết phím sau một lần
       thay chữ (<a href={pr(33)}>#33</a>).
     </li>
     <li>
