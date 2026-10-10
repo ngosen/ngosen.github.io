@@ -5,7 +5,7 @@ pubDate: 2026-10-09
 ---
 
 Từ ngày 09/10/2026, Ngó Sen chỉ làm cho fcitx5. Hai hướng trong roadmap cũ đã thôi làm: bản cho IBus
-(bộ gõ mặc định của GNOME và Ubuntu) và bản chạy thẳng trên Sway, Hyprland không cần fcitx5.
+(bộ gõ nền mặc định của GNOME và Ubuntu) và bản chạy thẳng trên Sway, Hyprland không cần fcitx5.
 
 ## Vì sao
 
@@ -16,13 +16,13 @@ Một ví dụ là WPS Office. Trên IBus, ở Ubuntu 26.04 GNOME, gõ `tieengs`
 thay vì `tiếng`. Trên fcitx5, cùng app đó gõ đúng. Chi tiết ở bài
 [WPS Office không phù hợp với IBus](/blog/wps-office-ibus/).
 
-Mỗi app lỗi kiểu riêng như vậy phải sửa riêng cho từng nền, rồi test lại sau mỗi bản cập nhật. Một người
-làm dự án không kham nổi hai ba bản cùng lúc mà vẫn test kỹ từng bản.
+Mỗi app lỗi kiểu riêng như vậy phải sửa riêng cho từng nền, rồi test lại sau mỗi bản cập nhật. Dự án chỉ
+có một người giữ, không kham nổi hai ba bản cùng lúc mà vẫn test kỹ từng bản.
 
-## Người dùng GNOME và Ubuntu
+## Trên GNOME và Ubuntu
 
-Vẫn gõ được: cài fcitx5 cùng Ngó Sen, như hướng dẫn ở [trang cài đặt](/cai-dat/). Trên Ubuntu 26.04,
-bật thêm extension `forward-keys@ngosen.github.io` một lần, xem mục
+Người dùng vẫn gõ được: cài fcitx5 cùng Ngó Sen, như hướng dẫn ở [trang cài đặt](/cai-dat/). Trên
+Ubuntu 26.04, bật thêm extension `forward-keys@ngosen.github.io` một lần, xem mục
 [Ubuntu 26.04](/cai-dat/#ubuntu-26-04).
 
 ## Mã bản IBus

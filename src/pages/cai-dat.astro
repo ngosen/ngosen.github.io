@@ -28,7 +28,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 
 <Page
   title="Cài đặt Ngó Sen"
-  description="Cài Ngó Sen bằng một dòng lệnh, bằng gói tải tay, hoặc tự build từ source. Kèm việc cần làm sau khi cài, cách cập nhật và cách gỡ."
+  description="Cài Ngó Sen bằng một dòng lệnh, bằng gói tải tay hoặc tự build từ source. Kèm việc cần làm sau khi cài, cách cập nhật và cách gỡ."
   heading="Cài đặt"
 >
   <p slot="lede">
@@ -54,8 +54,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>
-    Các gói không có chữ ký số. File tải về chỉ được đối chiếu bằng hash SHA-256, lấy qua HTTPS từ
-    GitHub.
+    Các gói không có chữ ký số. File tải về chỉ được so hash SHA-256, lấy qua HTTPS từ GitHub.
   </p>
 
   <h2 id="ban-nao">Distro nào có gói</h2>
@@ -96,7 +95,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   <p>
     Lõi ghép dấu là phần biến <code>tieengs</code> thành <code>tiếng</code>. Gói cho
     {rustDistros.join(', ')} dùng bản viết bằng Rust. Gói cho {goDistros.join(', ')} vẫn dùng bản Go,
-    vì Rust có sẵn trên các distro đó quá cũ. Hai bản gõ ra chữ như nhau.
+    vì bản Rust trong kho gói của các distro đó quá cũ. Hai bản gõ ra chữ như nhau.
   </p>
 
   <h2 id="sau-khi-cai">Cài xong, còn ba việc</h2>
@@ -109,12 +108,12 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”.</li>
   </ol>
   <p>
-    Trong cửa sổ cài đặt Ngó Sen, chọn chế độ mặc định là <strong>Gõ Sen</strong>. Chế độ này dùng cho
-    mọi chỗ: gõ nhanh không mất chữ, gõ đúng trong trình duyệt, thanh địa chỉ, Facebook, app Electron như
-    Zalo, và terminal. Chế độ còn lại là Preedit, hiện chữ gạch chân trong lúc gõ, dành cho app không
+    Trong cửa sổ cài đặt Ngó Sen, chọn chế độ mặc định là <strong>Gõ Sen</strong>. Chế độ này dùng được
+    cho hầu hết app: gõ nhanh không mất chữ, gõ đúng trong trình duyệt, thanh địa chỉ, Facebook, app
+    Electron như Zalo và terminal. Chế độ còn lại là Preedit, hiện chữ gạch chân trong lúc gõ, dành cho app không
     hợp với Gõ Sen.
   </p>
-  <p>Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa kiểm kỹ.</p>
+  <p>Kiểu gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.</p>
 
   <h3 id="ubuntu-26-04">Ubuntu 26.04: bật extension sửa lỗi gõ</h3>
   <p>
@@ -124,7 +123,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </p>
   <pre tabindex="0"><code>gnome-extensions enable forward-keys@ngosen.github.io</code></pre>
   <p>
-    Khi Ubuntu tự sửa lỗi này (<a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784"
+    Khi Ubuntu đưa bản sửa của GNOME vào (<a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784"
       >báo lỗi trên Launchpad</a
     >) thì tắt extension:
   </p>
@@ -135,8 +134,9 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     Cài VS Code bằng gói <code>.deb</code> từ
     <a href="https://code.visualstudio.com/download">trang của Microsoft</a> hoặc bằng Flatpak từ
     <a href="https://flathub.org/apps/com.visualstudio.code">Flathub</a> thì gõ được tiếng Việt ngay. Bản
-    snap (cài từ App Center) gõ ra Telex thô như <code>tieengs</code>; cách chữa tạm nằm ở mục “Ubuntu:
-    VS Code” trong <a href={`${REPO}#ubuntu-vs-code`}>README</a>.
+    snap (cài từ App Center) gõ ra Telex thô như <code>tieengs</code>. Cách chữa tạm là cho nó gõ qua XIM,
+    theo mục “Ubuntu: VS Code” trong <a href={`${REPO}#ubuntu-vs-code`}>README</a>; khi đó khoảng một câu
+    trong mười có một chữ sai dấu.
   </p>
 
   <h2 id="tai-tay">Không muốn chạy script tải từ mạng</h2>
@@ -147,12 +147,12 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 
   <h2 id="cap-nhat">Cập nhật</h2>
   <p>
-    Chạy lại đúng dòng lệnh cài, rồi khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>. Không có cơ chế
+    Chạy lại đúng lệnh cài, rồi khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>. Không có cơ chế
     tự cập nhật.
   </p>
   <p>
     Từ bản 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 của bản gốc nữa. Trình quản lý gói vẫn coi
-    bản này mới hơn 3.5.10-4, nên cập nhật như thường.
+    các bản này mới hơn 3.5.10-4, nên cập nhật như thường.
   </p>
   <p>
     Bản 0.5.0 cũng bỏ uinput server, service chạy nền từng bấm phím Backspace thay bộ gõ. Cập nhật từ bản
@@ -162,14 +162,14 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 
   <h2 id="tu-lotus">Đang dùng fcitx5-lotus</h2>
   <p>
-    Dòng lệnh cài tự thay gói <code>fcitx5-lotus</code> và giữ cấu hình cũ. Trên Arch và CachyOS, nếu
+    Lệnh cài tự thay gói <code>fcitx5-lotus</code> và giữ cấu hình cũ. Trên Arch và CachyOS, nếu
     máy có gói phụ <code>fcitx5-lotus-openrc</code> hoặc <code>fcitx5-lotus-runit</code> thì script dừng
-    lại và chỉ lệnh gỡ, vì hai gói đó cần <code>fcitx5-lotus</code>.
+    lại và in ra lệnh gỡ hai gói đó, vì hai gói đó cần <code>fcitx5-lotus</code>.
   </p>
 
   <h2 id="tu-build">Tự build từ source</h2>
   <p>
-    Dành cho distro chưa có gói, hoặc khi muốn tự build. Lệnh đầy đủ nằm trong
+    Dành cho distro chưa có gói hoặc khi muốn tự build. Lệnh đầy đủ nằm trong
     <a href={buildGuide}>TU-DUNG.md</a>, viết cho Arch và CachyOS; distro khác cài các gói tương ứng, các
     bước còn lại giống hệt. NixOS có cách riêng, xem <a href="#nixos">mục NixOS</a>.
   </p>
@@ -194,7 +194,7 @@ sudo cmake --install build`}</code></pre>
       Máy từng chạy uinput server của Lotus hoặc Ngó Sen bản cũ thì tắt nó và xoá các file nó để lại, theo
       bước 4 trong TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
     </li>
-    <li>Làm ba việc ở mục <a href="#sau-khi-cai">Cài xong</a>: khởi động lại fcitx5, thêm Ngó Sen, và trên KDE Wayland chọn “Fcitx 5”.</li>
+    <li>Làm ba việc ở mục <a href="#sau-khi-cai">Cài xong</a>: khởi động lại fcitx5, thêm Ngó Sen, rồi trên KDE Wayland chọn “Fcitx 5”.</li>
   </ol>
   <p>
     <strong>Cập nhật về sau:</strong> trong thư mục <code>ngosen</code>, chạy
@@ -218,7 +218,7 @@ fcitx5 -rd`}</code></pre>
     </li>
   </ol>
   <p>
-    Cấu hình, là các file <code>lotus*.conf</code> trong <code>~/.config/fcitx5/conf/</code>, vẫn ở lại
+    Các file cấu hình <code>lotus*.conf</code> trong <code>~/.config/fcitx5/conf/</code> vẫn ở lại
     máy để lần cài sau dùng tiếp. Muốn xoá sạch thì xoá các file đó.
   </p>
   <p>
@@ -228,7 +228,7 @@ fcitx5 -rd`}</code></pre>
 
   <h2 id="nixos">NixOS</h2>
   <p>
-    Lệnh cài một dòng không dùng cho NixOS. Trên NixOS, thêm flake của repo Ngó Sen vào cấu hình rồi đưa
+    Lệnh cài không dùng cho NixOS. Trên NixOS, thêm flake của repo Ngó Sen vào cấu hình rồi đưa
     gói vào addon của fcitx5. Gói được build từ source trong repo, kèm lõi Rust.
   </p>
   <pre tabindex="0"><code>{nixInput}</code></pre>

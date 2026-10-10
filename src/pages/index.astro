@@ -11,10 +11,10 @@ const levels = Object.keys(LEVELS) as Level[];
 
 // Every line is a user-visible change from CHANGELOG.md in the main repository; `pr` is its pull request.
 const notFixed = [
-  'Game dùng SDL ngoài X11 không nhận forward key, nên gõ ra chữ không dấu.',
-  'VS Code bản snap phải gõ qua XIM, và khoảng một câu trong mười có một chữ sai dấu.',
-  'Ubuntu 26.04 cần bật một extension của Ngó Sen cho tới khi GNOME tự sửa lỗi làm mất phím Backspace.',
-  'Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.',
+  'Game dùng SDL không chạy trên X11 thì không nhận forward key, nên gõ ra chữ không dấu.',
+  'VS Code bản snap gõ ra Telex thô. Cách chữa tạm là cho nó gõ qua XIM, và khi đó khoảng một câu trong mười có một chữ sai dấu.',
+  'Ubuntu 26.04 cần bật một extension của Ngó Sen để sửa lỗi GNOME làm mất phím Backspace, cho tới khi Ubuntu đưa bản sửa của GNOME vào.',
+  'Kiểu gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.',
 ];
 
 // Only facts the README states: no ratings or reviews, which Google would need for a rich result.
@@ -35,7 +35,7 @@ const jsonLd = {
 
 <Base
   title="Ngó Sen: bộ gõ tiếng Việt cho Linux"
-  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào."
+  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã test trên distro nào."
   wordmark={false}
   jsonLd={jsonLd}
 >
@@ -59,17 +59,17 @@ const jsonLd = {
         <h2 id="telex-tieu-de">Nên dùng chế độ nào</h2>
         <p>
           Dùng <strong>Gõ Sen</strong> làm chế độ gõ chính: chọn trong cửa sổ cài đặt Ngó Sen, mục chế độ
-          mặc định. Gõ Sen dùng cho mọi chỗ: gõ nhanh không mất chữ, gõ đúng trong trình duyệt, thanh địa
-          chỉ, Facebook, app Electron như Zalo, và terminal. Chế độ này trước tên là Uinput; cấu hình cũ tự
+          mặc định. Gõ Sen dùng được cho hầu hết app: gõ nhanh không mất chữ, gõ đúng trong trình duyệt,
+          thanh địa chỉ, Facebook, app Electron như Zalo và terminal. Chế độ này trước đây tên là Uinput; cấu hình cũ tự
           chuyển sang tên mới.
         </p>
         <p>
           <strong>Preedit</strong> hiện chữ gạch chân trong lúc gõ, dành cho app không hợp với Gõ Sen. Kiểu
-          gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa kiểm kỹ.
+          gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.
         </p>
       </div>
       <h3 class="board-title">Telex nằm ở những phím này</h3>
-      <p class="board-note">Phím mờ là phím chữ thường; phím đậm làm thêm một việc.</p>
+      <p class="board-note">Phím mờ chỉ gõ ra chữ của nó; phím đậm còn thêm dấu hoặc bỏ dấu.</p>
       <TelexBoard />
       <dl class="telex-notes">
         <div>
@@ -80,7 +80,7 @@ const jsonLd = {
           </dd>
         </div>
         <div>
-          <dt>Mũ, móc, trăng</dt>
+          <dt>Mũ, móc, trăng, gạch</dt>
           <dd>
             <kbd>aa</kbd> â, <kbd>ee</kbd> ê, <kbd>oo</kbd> ô, <kbd>aw</kbd> ă, <kbd>ow</kbd> ơ,
             <kbd>uw</kbd> ư, <kbd>dd</kbd> đ.
@@ -98,7 +98,7 @@ const jsonLd = {
     <div class="intro">
       <h2 id="may-nao-tieu-de">Máy tôi có chạy được không?</h2>
       <p>
-        Dòng lệnh cài chọn được gói cho các distro dưới đây, trên máy x86_64. Build được gói chưa có
+        Lệnh cài chọn được gói cho các distro dưới đây, trên máy x86_64. Build được gói chưa có
         nghĩa là gõ được, nên mỗi distro mang một dấu ghi nó đã được thử tới đâu.
       </p>
       <dl class="legend">
@@ -220,7 +220,7 @@ const jsonLd = {
         }
       </ul>
       <p class="sheet-note">
-        Các bản trước: <a href="/ban-phat-hanh/">Các bản phát hành</a>. So với bản gốc:
+        Các bản trước: xem trang <a href="/ban-phat-hanh/">Các bản release</a>. So với bản gốc:
         <a href="/khac-gi-ban-goc/">Khác gì bản gốc</a>.
       </p>
     </div>

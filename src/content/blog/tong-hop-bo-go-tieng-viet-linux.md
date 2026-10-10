@@ -1,18 +1,18 @@
 ---
 title: "Tổng hợp các bộ gõ tiếng Việt trên Linux và cơ chế gõ"
-description: "Đọc mã của 18 bộ gõ tiếng Việt khác cho Linux: năm cách đưa chữ vào app, mỗi bộ gõ làm gì, ý nào đáng học, và Ngó Sen chọn hướng nào."
+description: "Đọc mã 16 bộ gõ tiếng Việt cho Linux: năm cách đưa chữ vào app, mỗi bộ gõ làm gì và ý nào đáng học."
 pubDate: 2026-10-08
 ---
 
 Khi gõ `as` ra `á`, mọi bộ gõ đều phải làm cùng một việc: xoá `a` rồi viết `á`. Cách làm việc đó quyết
 định chuyện người dùng có bị mất chữ, lặp chữ hay không.
 
-Ngày 24/09/2026, người giữ dự án đọc mã của 18 bộ gõ trong
+Ngày 24/09/2026, để tìm câu trả lời, người giữ dự án xem 18 bộ gõ trong
 [danh sách cộng đồng](https://docs.google.com/spreadsheets/d/1DhW_jVM3IPSR1fX2CJyZstNFqoHDL3u6aLOrj2tYDk4/edit?gid=1097134275)
-để tìm câu trả lời. Chỉ đọc mã, không cài, không chạy. Bản đầy đủ, ghi rõ file và dòng đã đọc, nằm
-trong [repo chính](https://github.com/ngosen/ngosen/blob/main/NGHIEN-CUU-BO-GO-KHAC.md). Mã của các bộ
-gõ có thể đã đổi sau ngày đó; commit đã đọc ghi ở bảng cuối bài. Danh sách cộng đồng nay có thêm vài bộ
-gõ ra đời sau, bài này chưa xét tới.
+(kể cả Ngó Sen) và đọc được mã của 16 bộ. Không bộ gõ nào được cài hay chạy, chỉ đọc mã. Bản đầy đủ, ghi
+rõ file và dòng đã đọc, nằm trong [repo chính](https://github.com/ngosen/ngosen/blob/main/NGHIEN-CUU-BO-GO-KHAC.md).
+Mã của các bộ gõ có thể đã đổi sau ngày đó; phiên bản mã đã đọc (commit) ghi ở bảng cuối bài. Danh sách
+cộng đồng nay có thêm vài bộ gõ ra đời sau, bài này chưa xét tới.
 
 ## Vì sao hỏi câu này
 
@@ -58,35 +58,28 @@ cần quyền đặc biệt trên máy.
 **Đổi bảng phím rồi bấm (X11).** Với mỗi chữ có dấu, bộ gõ đổi tạm bảng phím rồi bấm phím. Cách này
 không dùng được trên Wayland.
 
-## Năm bộ gõ đáng học nhất
+## Năm hướng đáng học nhất
 
 ### Funput: gõ luôn, rồi đọc lại ô xem app có làm đúng không
 
 [Funput](https://github.com/Funput/Funput) chạy trên fcitx5, có cả bản IBus dùng chung lõi. Nó xoá bằng
 surrounding text rồi commit, cùng một đường, không dùng uinput.
 
-Điểm đáng học là cách chống mất chữ. Funput không chờ trước khi gõ. Nó gõ luôn, rồi đọc nội dung ô mà
-app báo lại và xếp vào ba loại: app làm đúng, app bỏ qua lệnh xoá, hoặc app chưa trả lời. App nào bỏ qua
-lệnh xoá thì **riêng app đó** chuyển sang gõ bằng preedit, và Funput nhớ tên app đó cho lần sau.
+Funput gõ luôn, không chờ trước. Sau đó nó đọc nội dung ô mà app báo lại và xếp vào ba loại: app làm
+đúng, app bỏ qua lệnh xoá, hoặc app chưa trả lời. App nào bỏ qua lệnh xoá thì **riêng app đó** chuyển sang gõ bằng preedit, và Funput nhớ tên app đó cho lần sau.
 
 README của họ ghi vài số đo, Ngó Sen chưa kiểm lại: app chỉ trả lời 61% số lần commit; chờ trả lời từng
 lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau không nghỉ thì ra sai chữ.
-
-Ngó Sen nhận ra ô khó qua hình dạng của ô; Funput nhận ra qua cách ô phản ứng thật.
 
 ### Unikey-Wayland-Final: giữ phím gõ tiếp tới khi app xác nhận
 
 [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final) là bộ gõ Wayland riêng,
 dùng giao thức input-method-v1, đúng giao thức mà KWin của KDE có. Nó xoá rồi chèn, một đường.
 
-Ý chính: sau mỗi lần thay chữ, nó đánh dấu "đang chờ", và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô
-báo lại đúng đuôi chữ mong đợi thì hàng mới được thả ra. Thấy dấu hiệu lệnh xoá bị bỏ qua thì làm lại,
+Sau mỗi lần thay chữ, nó đánh dấu "đang chờ", và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô báo lại đúng đuôi chữ mong đợi thì hàng mới được thả ra. Thấy dấu hiệu lệnh xoá bị bỏ qua thì làm lại,
 tối đa 3 lần. Đồng hồ 750 ms chỉ để phòng khi ô không báo lại.
 
-Mã của họ có một ghi chú khớp với điều Ngó Sen đo được: trên KDE, lệnh xoá và lệnh commit tới app thành
-hai lần riêng.
-
-Ngó Sen chờ app trong từng lần thay chữ; Unikey-Wayland-Final thì giữ lại cả chuỗi phím gõ sau đó.
+Mã của họ có ghi chú: trên KDE, lệnh xoá và lệnh commit tới app thành hai lần riêng.
 
 ### vi-ime: bàn phím ảo gõ thẳng chữ Việt
 
@@ -101,19 +94,20 @@ chỗ cho chữ Việt. Tác giả ghi lại các bẫy đã gặp:
 - Đổi bảng phím giữa chừng thì Chrome và Edge áp dụng trễ, chữ `ấ` rơi vào phím Enter. Vì vậy bảng phím
   phải cố định từ đầu.
 
-vi-ime không chạy trên KDE: KWin trên Plasma 6.7.5 không có input-method-v2 lẫn bàn phím ảo Wayland
+vi-ime không chạy trên KDE: KWin trên Plasma 6.7.5 không có cả input-method-v2 lẫn bàn phím ảo Wayland
 (kiểm bằng `wayland-info`). Nó chạy trên Sway, Hyprland và các compositor tương tự.
 
 ### pinakey và TypeVN: preedit không gạch chân
 
 [pinakey](https://github.com/trananhtung/pinakey) chạy trên fcitx5, mặc định gõ bằng preedit với cờ
 "không gạch chân". Chế độ uinput có sẵn nhưng tắt, phải bật bằng biến môi trường `PINAKEY_UINPUT=1`. Lý
-do họ ghi: trên GNOME, đường D-Bus không bảo đảm thứ tự, kể cả cách uinput kèm tin báo như fcitx5-lotus.
+do họ ghi: trên GNOME, đường D-Bus không bảo đảm thứ tự, nên cả cách uinput có kèm tin báo như của
+fcitx5-lotus cũng không chắc đúng.
 
-[TypeVN](https://github.com/vithanhlam/TypeVN) chạy trên IBus, cũng dùng preedit không gạch chân, và tự
+[TypeVN](https://github.com/vithanhlam/TypeVN) chạy trên IBus, cũng dùng preedit không gạch chân và tự
 commit sau 800 ms không gõ hoặc khi rời ô.
 
-App có thật sự bỏ gạch chân khi được xin hay không thì chưa kiểm; phải thử từng app. Nếu đủ giống chữ
+App có thật sự bỏ gạch chân khi được xin hay không thì chưa kiểm; phải test từng app. Nếu đủ giống chữ
 thường, đây là đường dự phòng rẻ cho những ô khó như Messenger.
 
 ### CanType: không biết ô có gì thì không xoá
@@ -124,14 +118,14 @@ không bao giờ xoá.
 
 ## Các bộ gõ còn lại
 
-Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc không có cơ chế chống mất chữ nào khác đáng kể.
+Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc không có cơ chế chống mất chữ nào khác.
 
 - [skey](https://github.com/collyn/skey): fcitx5, lõi Rust, uinput. Bấm thừa một Backspace làm mốc, đồng
-  hồ tự chỉnh theo trung bình, theo dõi ô qua AT-SPI, và có bộ test dài 1.481 dòng. Luật polkit của nó cho
+  hồ tự chỉnh theo trung bình, theo dõi ô qua AT-SPI và có bộ test dài 1.481 dòng. Luật polkit của nó cho
   mọi người dùng trên máy quyền nạp lại service.
 - [ArecaIME](https://github.com/xhkzeroone/ArecaIME): 5 cách thay chữ đổi được, đều canh nhịp bằng đồng
   hồ, tự tăng 5 ms mỗi bước tới 50 ms. Có cách bôi đen bằng Shift+mũi tên trái rồi gõ đè, ghi rõ là để
-  trị Facebook, giống hướng Ngó Sen chọn, nhưng nó chốt bằng đồng hồ chứ không chờ ô xác nhận. Luật udev
+  trị Facebook, và cũng chốt bằng đồng hồ. Luật udev
   cho người dùng quyền đọc cả chuột và touchpad. Lõi Go để ở dạng file đã build sẵn.
 - [VMK](https://github.com/thanhpy2009/VMK): bấm thừa một Backspace rồi chờ cố định 20 ms.
 - [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad): bản fcitx5-lotus đổi tên từ đầu tháng
@@ -145,14 +139,17 @@ Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc 
 
 ## Ngó Sen chọn gì
 
-Người giữ dự án quyết định chỉ đi tiếp một hướng: **gõ thẳng chữ Việt bằng bàn phím ảo**, học từ vi-ime,
-với bảng phím cố định ngay từ đầu. Các ý còn lại (giữ phím chờ xác nhận, nhớ app hay mất chữ, preedit
-không gạch chân) chưa làm.
+Ngày 24/09, người giữ dự án quyết định chỉ đi tiếp một hướng: **gõ thẳng chữ Việt bằng bàn phím ảo**,
+học từ vi-ime, với bảng phím cố định ngay từ đầu. Các ý còn lại (giữ phím chờ xác nhận, nhớ app hay mất
+chữ, preedit không gạch chân) thì không làm.
 
-Từ đó tới nay, bản 0.5.0 đã đổi cách Ngó Sen xoá chữ. Vẫn là hai bước, nhưng Backspace đi bằng forward
-key qua chính fcitx5 thay vì qua bàn phím ảo, nên không cần uinput server nữa.
+Sau đó, bản 0.5.0 đổi cách Ngó Sen xoá chữ. Vẫn là hai bước, nhưng Backspace đi bằng forward key qua
+chính fcitx5 thay vì qua bàn phím ảo, nên không cần uinput server nữa.
 
-## Các commit đã đọc
+Từ ngày 09/10/2026, hướng bàn phím ảo cũng thôi làm, vì Ngó Sen chỉ làm cho fcitx5. Chuyện này kể ở bài
+[Ngó Sen chỉ làm cho fcitx5](/blog/chi-lam-cho-fcitx5/).
+
+## Phiên bản mã đã đọc
 
 <div class="table-scroll">
 

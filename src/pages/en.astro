@@ -17,7 +17,7 @@ const levels: Record<Level, string> = {
 >
   <p slot="lede">
     A Vietnamese input method for fcitx5 on Linux. It needs no special permissions, and has no underlined
-    preedit: one typing mode, Gõ Sen, for every app.
+    preedit: one typing mode, Gõ Sen, for most apps.
   </p>
 
   <p>
@@ -114,13 +114,14 @@ const levels: Record<Level, string> = {
     </li>
   </ul>
   <p>
-    Not fixed: SDL games outside X11 ignore forwarded keys and get text without tone marks, and the snap
-    build of VS Code types through XIM, where about one sentence in ten gets a wrong tone mark. Telex is
-    the method used and checked daily; VNI works but has not been checked closely.
+    Not fixed: SDL games not running on X11 ignore forwarded keys and get text without tone marks, and the
+    snap build of VS Code types raw Telex; the workaround routes it through XIM, where about one sentence
+    in ten gets a wrong tone mark. Telex is the method used and tested daily; VNI and the other methods
+    work but have not been tested closely.
   </p>
   <p>
-    Ngó Sen targets fcitx5 only. The IBus build and a build running directly on Sway and Hyprland were
-    dropped; the IBus code stays on the <code>feat/ibus-engine</code> branch. Source, releases and the
+    Ngó Sen targets fcitx5 only. The IBus build and a build running directly on Sway and Hyprland
+    without fcitx5 were dropped; Sway and Hyprland still work through fcitx5. The IBus code stays on the <code>feat/ibus-engine</code> branch. Source, releases and the
     changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>

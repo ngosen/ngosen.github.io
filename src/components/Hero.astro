@@ -33,14 +33,14 @@ const firstText = first?.steps.at(-1) ?? '';
         />
       </div>
       <p class="status" id="go-thu-ghi-chu" data-demo-status>
-        Tắt bộ gõ tiếng Việt trên máy trước khi gõ. Ô này ghép dấu bằng bamboo-core bản Go; gói cài dùng bản Go
-        hoặc Rust, gõ ra chữ như nhau. Trang web chỉ thử được phần ghép dấu, còn đưa chữ vào đúng chỗ trong
+        Tắt bộ gõ tiếng Việt trên máy trước khi gõ. Ô này ghép dấu bằng bamboo-core bản Go; gói Ngó Sen dùng bản
+        Go hoặc Rust tuỳ distro, gõ ra chữ như nhau. Trang web chỉ thử được phần ghép dấu, còn đưa chữ vào đúng chỗ trong
         từng app thì phải cài Ngó Sen.
       </p>
     </div>
 
     <aside class="tested" aria-labelledby="diem-noi-bat">
-      <h2 id="diem-noi-bat">Điểm nổi bật</h2>
+      <h2 id="diem-noi-bat">Ngó Sen làm được gì</h2>
       <ul>
         {
           HIGHLIGHTS.map((item) => (
@@ -507,7 +507,7 @@ const firstText = first?.steps.at(-1) ?? '';
       if (core !== 'none') return;
       core = 'loading';
       status.dataset.kind = 'loading';
-      status.textContent = 'Đang tải lõi ghép chữ. Chữ sẽ tự ghép khi tải xong.';
+      status.textContent = 'Đang tải lõi ghép dấu. Chữ sẽ tự ghép khi tải xong.';
       try {
         await loadScript('/telex/wasm_exec.js');
         if (!window.Go) throw new Error('wasm_exec.js did not define Go');
@@ -523,7 +523,7 @@ const firstText = first?.steps.at(-1) ?? '';
         core = 'failed';
         status.dataset.kind = 'error';
         status.textContent =
-          'Không tải được lõi ghép chữ nên chữ chưa ghép dấu. Tải lại trang để thử lần nữa.';
+          'Không tải được lõi ghép dấu nên chữ chưa có dấu. Tải lại trang để thử lần nữa.';
       }
     };
 

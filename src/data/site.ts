@@ -39,7 +39,7 @@ export const RELEASES: {
         pr: 87,
       },
       {
-        claim: 'LibreOffice Calc mở thẳng trên Wayland, không qua module Qt của fcitx, cũng hết lỗi này.',
+        claim: 'LibreOffice Calc mở thẳng trên Wayland, không qua module Qt của fcitx5, cũng không còn hai lỗi trên.',
         source: 'Trước đó chữ ra lẫn chữ của ô trước, hoặc mở hộp thoại “Delete Contents”.',
         pr: 90,
       },
@@ -64,16 +64,16 @@ export const RELEASES: {
     version: '0.5.1-1',
     prRepo: ARCHIVE_REPO,
     date: '09/10/2026',
-    summary: 'Sửa lỗi Gõ Sen trên Sway và Hyprland, và cài mới thì dùng Gõ Sen luôn.',
+    summary: 'Sửa lỗi chế độ Gõ Sen trên Sway và Hyprland; cài mới thì chế độ mặc định là Gõ Sen.',
     changes: [
       {
-        claim: 'Gõ Sen gõ được trên Sway, Hyprland và các compositor dùng input-method-v2.',
+        claim: 'Chế độ Gõ Sen gõ được trên Sway, Hyprland và các compositor dùng input-method-v2.',
         source: 'Trước đó chữ đầu tiên cần thêm dấu làm bộ gõ kẹt, mọi phím sau đó không ra chữ.',
         pr: 73,
       },
       {
         claim: 'Cài mới thì chế độ mặc định là Gõ Sen thay cho Preedit.',
-        source: 'Khớp với cửa sổ cài đặt. Ai đã chọn chế độ thì giữ nguyên.',
+        source: 'Giờ khớp với chế độ mặc định trong cửa sổ cài đặt Ngó Sen. Ai đã tự chọn chế độ thì giữ chế độ đó.',
         pr: 74,
       },
     ],
@@ -91,12 +91,12 @@ export const RELEASES: {
         pr: 43,
       },
       {
-        claim: 'Chỉ còn hai chế độ gõ: Gõ Sen và Preedit, cùng chế độ Emoji.',
+        claim: 'Chế độ gõ chỉ còn Gõ Sen và Preedit; chế độ Emoji vẫn giữ.',
         source: 'Uinput đổi tên thành Gõ Sen; Surrounding Text gộp vào Gõ Sen. Cấu hình cũ tự chuyển sang tên mới.',
         pr: 43,
       },
       {
-        claim: 'Lõi ghép dấu viết bằng Rust trong gói Fedora, Arch, openSUSE và Ubuntu 24.04 trở lên.',
+        claim: 'Gói cho Fedora, Arch, openSUSE và Ubuntu 24.04 trở lên dùng lõi ghép dấu viết bằng Rust.',
         source: 'Debian 12, 13 và Ubuntu 22.04 vẫn dùng lõi Go. Hai lõi gõ ra chữ như nhau.',
         pr: 71,
       },
@@ -112,11 +112,11 @@ export const RELEASES: {
       },
       {
         claim: 'Thanh địa chỉ Chrome, Edge và Chromium trên X11 không còn giữ dấu cũ.',
-        source: 'Gõ lại một địa chỉ đã từng vào từng ra “tiêng” thay cho “tiếng”.',
+        source: 'Trước đó, gõ lại một địa chỉ đã vào trước đây có lúc ra “tiêng” thay cho “tiếng”.',
         pr: 38,
       },
       {
-        claim: 'VS Code bản Flatpak, và bản .deb chạy Wayland, gõ được tiếng Việt.',
+        claim: 'VS Code gõ được tiếng Việt khi cài bằng Flatpak, hoặc bằng gói .deb chạy Wayland.',
         source: 'Bộ gõ không còn coi việc VS Code nhích con trỏ sau mỗi phím là một cú click chuột.',
         pr: 58,
       },
@@ -199,28 +199,28 @@ export const DISTRIBUTIONS: Distribution[] = [
   {
     name: 'Fedora 43',
     level: 'built',
-    basis: 'gói build sẵn',
+    basis: 'chỉ build và chạy test lúc build',
     file: 'fcitx5-ngosen-*.fc43.x86_64.rpm',
     core: 'Rust',
   },
   {
     name: 'openSUSE Tumbleweed',
     level: 'built',
-    basis: 'gói build sẵn',
+    basis: 'chỉ build và chạy test lúc build',
     file: 'fcitx5-ngosen-*.opensuse-tumbleweed.x86_64.rpm',
     core: 'Rust',
   },
   {
     name: 'Ubuntu 22.04',
     level: 'built',
-    basis: 'gói build sẵn',
+    basis: 'chỉ build và chạy test lúc build',
     file: 'fcitx5-ngosen_*_jammy_amd64.deb',
     core: 'Go',
   },
   {
     name: 'Debian 12',
     level: 'built',
-    basis: 'gói build sẵn',
+    basis: 'chỉ build và chạy test lúc build',
     file: 'fcitx5-ngosen_*_bookworm_amd64.deb',
     core: 'Go',
   },
@@ -236,10 +236,10 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Gõ thẳng, không gạch chân',
-    text: 'Chế độ Gõ Sen đưa chữ vào app ngay khi gõ. Ô gợi ý của thanh địa chỉ hay ô tìm kiếm chạy theo từng phím.',
+    text: 'Chế độ Gõ Sen đưa chữ vào app ngay khi gõ. Gợi ý ở thanh địa chỉ hay ô tìm kiếm hiện ra theo từng phím gõ.',
   },
   {
-    title: 'Một chế độ cho mọi app',
+    title: 'Một chế độ cho hầu hết app',
     text: 'Trình duyệt, terminal, Zalo, LibreOffice đều dùng Gõ Sen. Ngó Sen tự nhận ra app nhận chữ kiểu gì, không phải đổi chế độ.',
   },
   {
@@ -248,14 +248,14 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Cài bằng một dòng lệnh',
-    text: 'Trên Fedora, Ubuntu, Debian, Arch, CachyOS, openSUSE; script kiểm hash trước khi cài.',
+    text: 'Có cho Fedora, Ubuntu, Debian, Arch, CachyOS và openSUSE. Script so hash SHA-256 trước khi cài.',
   },
 ];
 
 // Mirrors the "Chỉ cho fcitx5" section of README.md, which replaced the roadmap.
 export const SCOPE = {
   title: 'Chỉ cho fcitx5',
-  text: 'Ngó Sen chỉ làm cho fcitx5. Bản IBus và bản chạy thẳng trên Sway, Hyprland đã bỏ.',
+  text: 'Ngó Sen chỉ làm cho fcitx5. Bản IBus và bản chạy thẳng trên Sway, Hyprland mà không qua fcitx5 đã bỏ; trên Sway và Hyprland vẫn gõ được qua fcitx5.',
   branch: 'feat/ibus-engine',
 };
 
