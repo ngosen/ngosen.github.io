@@ -4,7 +4,7 @@ description: "Ngó Sen từng cần một uinput server chạy nền, có quyề
 pubDate: 2026-10-08
 ---
 
-Gõ Telex thì dấu tới sau chữ, nên muốn thêm dấu, bộ gõ phải xoá chữ cũ rồi gõ chữ mới. Ở chế độ Uinput (nay là Gõ Sen), `fcitx5-lotus-server` bấm Backspace hộ bộ gõ: một uinput server chạy nền, bấm phím qua bàn phím ảo của kernel.
+Gõ Telex thì dấu tới sau chữ, nên muốn thêm dấu, bộ gõ phải xoá chữ cũ rồi gõ chữ mới. Ở chế độ Uinput (nay là Gõ Sen), một uinput server chạy nền bấm Backspace hộ bộ gõ, qua bàn phím ảo của kernel.
 
 Server chỉ cần bấm Backspace, nhưng lại được cấp quyền đọc mọi bàn phím trên máy.
 

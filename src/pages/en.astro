@@ -30,8 +30,7 @@ const levels: Record<Level, string> = {
   <p>
     The script picks the prebuilt package for your distribution from the latest GitHub release, asks
     before it downloads the package, checks the file against <code>SHA256SUMS</code> and installs it
-    with your package manager. Since 1.1.0 it installs alongside <code>fcitx5-lotus</code>; your
-    configuration is kept. Its prompts are in Vietnamese: answer <kbd>c</kbd> to continue. The source is
+    with your package manager. Your configuration is kept. Its prompts are in Vietnamese: answer <kbd>c</kbd> to continue. The source is
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>Then:</p>
@@ -96,29 +95,7 @@ const levels: Record<Level, string> = {
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
   </p>
 
-  <h2 id="differences">What differs from fcitx5-lotus</h2>
-  <ul>
-    <li>
-      No background server. Old text is deleted with keys forwarded through fcitx5, or through XTEST on
-      X11, so nothing runs with special device permissions.
-    </li>
-    <li>
-      Two typing modes: Gõ Sen, for fast typing, browsers, Electron apps and terminals, and Preedit,
-      plus an Emoji mode. Old Uinput and Surrounding Text settings move to Gõ Sen on their own.
-    </li>
-    <li>
-      The Bamboo composition core is written in Rust in the Fedora, Arch, openSUSE and Ubuntu 24.04+
-      packages. Debian 12, 13 and Ubuntu 22.04 keep the Go core; both type the same text.
-    </li>
-    <li>
-      Since 1.1.0 every installed file is named <code>ngosen</code>, so it installs alongside
-      fcitx5-lotus. Old <code>lotus*.conf</code> settings are copied over on first start.
-    </li>
-    <li>
-      Ngó Sen numbers its own releases from 0.5.0. Packages carry an epoch, so package managers still
-      treat 0.5.0 as newer than 3.5.10.
-    </li>
-  </ul>
+  <h2 id="known-issues">Known issues</h2>
   <p>
     Not fixed: SDL games not running on X11 ignore forwarded keys and get text without tone marks, and the
     snap build of VS Code types raw Telex; the workaround routes it through XIM, where about one sentence

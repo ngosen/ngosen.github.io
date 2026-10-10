@@ -103,7 +103,7 @@ vi-ime không chạy trên KDE: KWin trên Plasma 6.7.5 không có cả input-me
 [pinakey](https://github.com/trananhtung/pinakey) chạy trên fcitx5, mặc định gõ bằng preedit với cờ
 "không gạch chân". Chế độ uinput có sẵn nhưng tắt, phải bật bằng biến môi trường `PINAKEY_UINPUT=1`. Lý
 do họ ghi: trên GNOME, đường D-Bus không bảo đảm thứ tự, nên cả cách uinput có kèm tin báo như của
-fcitx5-lotus cũng không chắc đúng.
+Ngó Sen lúc đó cũng không chắc đúng.
 
 [TypeVN](https://github.com/vithanhlam/TypeVN) chạy trên IBus, cũng dùng preedit không gạch chân và tự
 commit sau 800 ms không gõ hoặc khi rời ô.
@@ -129,10 +129,8 @@ Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc 
   trị Facebook, và cũng chốt bằng đồng hồ. Luật udev
   cho người dùng quyền đọc cả chuột và touchpad. Lõi Go để ở dạng file đã build sẵn.
 - [VMK](https://github.com/thanhpy2009/VMK): bấm thừa một Backspace rồi chờ cố định 20 ms.
-- [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad): bản fcitx5-lotus đổi tên từ đầu tháng
-  8/2026, thêm chế độ gõ canh theo đồng hồ và tự gửi tin xác nhận.
-- [fcitx5-lotus](https://github.com/LotusInputMethod/fcitx5-lotus): bản gốc mà Ngó Sen tách ra, cùng cách
-  hai đường.
+- [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad): có thêm chế độ gõ canh theo đồng hồ và tự
+  gửi tin xác nhận.
 - [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) (bản cũ): chạy trên X11, đổi bảng
   phím cho từng chữ rồi bấm, có nghỉ giữa các bước. Không áp được cho Wayland.
 - [vietc](https://github.com/vndangkhoa/vietc), [vnkey](https://github.com/marixdev/vnkey),

@@ -9,7 +9,6 @@ const base = 'http://127.0.0.1:4391';
 const pages = [
   ['home', '/'],
   ['cai-dat', '/cai-dat/'],
-  ['khac-gi', '/khac-gi-ban-goc/'],
   ['blog', '/blog/'],
   ['post', '/blog/vi-sao-go-tieng-viet-bi-nuot-chu/'],
   ['en', '/en/'],

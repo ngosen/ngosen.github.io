@@ -17,13 +17,15 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   release, add an entry at the top of `RELEASES` (user-visible changes only, picked from
   `CHANGELOG.md`); the home page shows the first entry and `/ban-phat-hanh/` lists them all.
 - Pull requests up to release 1.0.0-1 live in the archived fork `ngosen/ngosen-fork-archive`; the
-  repository was recreated outside the fcitx5-lotus fork network and numbers its pull requests from #1
+  repository was recreated outside the old fork network and numbers its pull requests from #1
   again. Old entries carry `prRepo: ARCHIVE_REPO`; new release entries leave it out.
 - Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
   page.
 - The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
   the top of the README. The README has no roadmap; do not add one, and never show dates or promises. Do not mention vibecoding (dropped at the
-  maintainer's request) or list fork lineage outside the footer credit and the comparison page.
+  maintainer's request).
+- fcitx5-lotus appears once, in the footer credit line. No comparison page, no "forked from" lines,
+  no instructions aimed at fcitx5-lotus users. Old `lotus` file names stay only where a command needs them.
 - Since 1.1.0 installed names are `ngosen` (`ngosen*.conf`, `fcitx5 --verbose ngosen=4`). Show `lotus`
   names only for versions before 1.1.0 and for moving off them.
 - Vietnamese page text keeps common technical terms in English: file, repo, script, test, build,

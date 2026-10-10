@@ -2,7 +2,7 @@
 
 Source of the website for [Ngó Sen](https://github.com/ngosen/ngosen), a Vietnamese input method for
 fcitx5 on Linux. It is a static [Astro](https://astro.build) site meant for GitHub Pages at
-`ngosen.github.io`: a home page, an install guide, a page on what differs from fcitx5-lotus, a blog
+`ngosen.github.io`: a home page, an install guide, a blog
 with an RSS feed, and one English page.
 
 ## Commands

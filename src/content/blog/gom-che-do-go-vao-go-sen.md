@@ -1,10 +1,10 @@
 ---
 title: "Vì sao gom các chế độ gõ vào Gõ Sen"
-description: "Bảng chọn của fcitx5-lotus có tám mục, người dùng phải tự đoán app nào hợp chế độ nào. Ngó Sen gom lại còn Gõ Sen và Preedit."
+description: "Bảng chọn chế độ cũ có tám mục, người dùng phải tự đoán app nào hợp chế độ nào. Ngó Sen gom lại còn Gõ Sen và Preedit."
 pubDate: 2026-10-08
 ---
 
-Lúc Ngó Sen tách ra từ fcitx5-lotus, bảng chọn chế độ có tám mục: Uinput (Slow), Uinput (Smooth), Uinput (Super Smooth), Surrounding Text, Preedit, Minecraft, Emoji Picker và OFF. Gõ sai ở app nào thì người dùng phải tự thử từng chế độ, rồi đặt luật riêng cho app đó.
+Trước bản 0.5.0, bảng chọn chế độ có tám mục: Uinput (Slow), Uinput (Smooth), Uinput (Super Smooth), Surrounding Text, Preedit, Minecraft, Emoji Picker và OFF. Gõ sai ở app nào thì người dùng phải tự thử từng chế độ, rồi đặt luật riêng cho app đó.
 
 Từ bản 0.5.0, chỉ còn **Gõ Sen** để gõ ở mọi chỗ, **Preedit** cho app không hợp với Gõ Sen, cùng Emoji (trước là Emoji Picker) và OFF. Bộ gõ tự chọn cách thay chữ cho từng app, người dùng không phải thử từng chế độ nữa.
 

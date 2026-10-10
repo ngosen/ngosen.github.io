@@ -48,13 +48,13 @@ Tiếng Việt thì khác: mỗi phím ra ngay một chữ, dấu thêm vào ch�
 
 ## Nhiều đường thì sinh ra nhiều chế độ
 
-Bản gốc fcitx5-lotus đối phó bằng cách cho người dùng chọn: ba chế độ Uinput (Slow, Smooth, Super Smooth), Surrounding Text, Preedit, Minecraft. Gõ sai ở app nào thì người dùng tự thử từng chế độ cho app đó.
+Các bản Ngó Sen trước 0.5.0 đối phó bằng cách cho người dùng chọn: ba chế độ Uinput (Slow, Smooth, Super Smooth), Surrounding Text, Preedit, Minecraft. Gõ sai ở app nào thì người dùng tự thử từng chế độ cho app đó.
 
 Ở Ngó Sen, bộ gõ tự nhận ra app nhận chữ kiểu gì và chọn cách xoá phù hợp, người dùng chỉ cần một chế độ Gõ Sen. Chuyện gom chế độ được kể ở bài [Vì sao gom các chế độ gõ vào Gõ Sen](/blog/gom-che-do-go-vao-go-sen/).
 
 ## Chuyện ở ô chat Messenger
 
-Lỗi `iếngiệt` xảy ra khi bước xoá và bước commit lệch nhịp nhau. Lỗi này được báo ở dự án gốc từ tháng 5/2026 ([issue #267](https://github.com/LotusInputMethod/fcitx5-lotus/issues/267)). Ở chế độ Uinput lúc đó, uinput server bấm Backspace qua bàn phím ảo, rồi bộ gõ commit chữ mới theo một đường khác. Nếu chữ mới tới ô chat trước khi Backspace chạy xong, Backspace xoá luôn cả chữ mới.
+Lỗi `iếngiệt` xảy ra khi bước xoá và bước commit lệch nhịp nhau. Ở chế độ Uinput lúc đó, uinput server bấm Backspace qua bàn phím ảo, rồi bộ gõ commit chữ mới theo một đường khác. Nếu chữ mới tới ô chat trước khi Backspace chạy xong, Backspace xoá luôn cả chữ mới.
 
 Phần lỗi do bộ gõ đã sửa. Phần còn lại nhiều khả năng do Facebook: xoá xong, ô soạn tin tự vẽ lại, và chữ nào tới đúng lúc đó thì bị nuốt. Đợi thêm một chút sau khi xoá thì đỡ, nhưng máy càng bận càng dễ lọt, không có mức chờ nào đủ cho mọi lúc.
 

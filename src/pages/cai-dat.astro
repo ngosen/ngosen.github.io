@@ -150,21 +150,13 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     tự cập nhật.
   </p>
   <p>
-    Từ bản 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 của bản gốc nữa. Trình quản lý gói vẫn coi
+    Từ bản 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 cũ nữa. Trình quản lý gói vẫn coi
     các bản này mới hơn 3.5.10-4, nên cập nhật như thường.
   </p>
   <p>
     Bản 0.5.0 cũng bỏ uinput server, service chạy nền từng bấm phím Backspace thay bộ gõ. Cập nhật từ bản
     cũ thì gói tự tắt service đó và xoá tài khoản <code>uinput_proxy</code> của nó, không phải làm gì
     thêm.
-  </p>
-
-  <h2 id="tu-lotus">Đang dùng fcitx5-lotus</h2>
-  <p>
-    Từ bản 1.1.0, Ngó Sen cài chung được với gói <code>fcitx5-lotus</code>, nên lệnh cài không gỡ gói đó nữa.
-    Các file <code>lotus*.conf</code> được chép sang <code>ngosen*.conf</code> khi fcitx5 nạp Ngó Sen lần đầu.
-    Thêm Ngó Sen vào danh sách bộ gõ trong “Fcitx5 Configuration”. Muốn chỉ dùng Ngó Sen thì gỡ
-    <code>fcitx5-lotus</code>.
   </p>
 
   <h2 id="tu-build">Tự build từ source</h2>
@@ -175,9 +167,8 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </p>
   <ol>
     <li>
-      Máy từng tự build Ngó Sen 1.0.0 trở về trước thì xoá các file mang tên <code>lotus</code> mà bản đó
-      cài, theo bước 1 trong TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá. Máy có cài gói <code>fcitx5-lotus</code> thì
-      bỏ qua bước này, vì các file đó thuộc gói đó.
+      Máy từng tự build Ngó Sen 1.0.0 trở về trước thì xoá các file cũ mà bản đó cài, theo bước 1 trong
+      TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
     </li>
     <li>Cài công cụ build: cmake, gcc, go, git, python, fcitx5 và vài gói khác, liệt kê trong TU-DUNG.md.</li>
     <li>
@@ -195,7 +186,7 @@ sudo cmake --install build`}</code></pre>
   </p>
   <ol start="4">
     <li>
-      Máy từng chạy uinput server của Lotus hoặc Ngó Sen bản cũ thì tắt nó và xoá các file nó để lại, theo
+      Máy từng chạy uinput server của Ngó Sen bản cũ thì tắt nó và xoá các file nó để lại, theo
       bước 4 trong TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
     </li>
     <li>Làm ba việc ở mục <a href="#sau-khi-cai">Cài xong</a>: khởi động lại fcitx5, thêm Ngó Sen, rồi trên KDE Wayland chọn “Fcitx 5”.</li>

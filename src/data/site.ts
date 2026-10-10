@@ -287,7 +287,6 @@ export const SCOPE = {
 
 export const NAV = [
   { href: '/cai-dat/', label: 'Cài đặt' },
-  { href: '/khac-gi-ban-goc/', label: 'Khác gì bản gốc' },
   { href: '/blog/', label: 'Blog' },
   { href: '/en/', label: 'English' },
 ];

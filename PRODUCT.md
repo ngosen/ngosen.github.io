@@ -24,7 +24,7 @@ how a problem was measured and fixed.
 
 ## Product Purpose
 
-Ngó Sen is a Vietnamese input method for fcitx5, forked from fcitx5-lotus 3.5.10. The website is its
+Ngó Sen is a Vietnamese input method for fcitx5. The website is its
 public home: it explains what the project is, tells visitors honestly which systems it has been used
 on, gets them installed with one command, and publishes write-ups of what was measured and changed.
 
@@ -59,8 +59,7 @@ is, they have it installed and typing without opening the source repository.
 
 ## Capabilities and Constraints
 
-- Internal names stay `lotus` (config paths, gettext domain), so the
-  package cannot be installed alongside fcitx5-lotus; installing Ngó Sen replaces it.
+- Since 1.1.0 every installed file is named `ngosen`; old `lotus*.conf` settings are copied over on first start.
 - The site must not imply a support channel or a team; bug reports go to Issues. The README's roadmap
   may appear, as a direction without dates.
 - Primary language is Vietnamese. One short English page or section is enough.
@@ -78,7 +77,7 @@ is, they have it installed and typing without opening the source repository.
   tray icon, a lotus-root slice.
 - Voice: plain, first person where the maintainer speaks, specific about what was and was not tested.
   No hype, no claims of being the best or fastest.
-- Credit: based on fcitx5-lotus, which descends from VMK; upstream authors are named.
+- Credit: one line in the footer naming fcitx5-lotus and VMK. Nowhere else on the site.
 
 ## Evidence on Hand
 
