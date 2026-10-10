@@ -70,7 +70,7 @@ app báo lại và xếp vào ba loại: app làm đúng, app bỏ qua lệnh xo
 lệnh xoá thì **riêng app đó** chuyển sang gõ bằng preedit, và Funput nhớ tên app đó cho lần sau.
 
 README của họ ghi vài số đo, Ngó Sen chưa kiểm lại: app chỉ trả lời 61% số lần commit; chờ trả lời từng
-lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau không nghỉ thì hỏng chữ.
+lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau không nghỉ thì ra sai chữ.
 
 Ngó Sen nhận ra ô khó qua hình dạng của ô; Funput nhận ra qua cách ô phản ứng thật.
 
@@ -81,12 +81,12 @@ dùng giao thức input-method-v1, đúng giao thức mà KWin của KDE có. N�
 
 Ý chính: sau mỗi lần thay chữ, nó đánh dấu "đang chờ", và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô
 báo lại đúng đuôi chữ mong đợi thì hàng mới được thả ra. Thấy dấu hiệu lệnh xoá bị bỏ qua thì làm lại,
-tối đa 3 lần. Đồng hồ 750 ms chỉ là lưới an toàn.
+tối đa 3 lần. Đồng hồ 750 ms chỉ để phòng khi ô không báo lại.
 
 Mã của họ có một ghi chú khớp với điều Ngó Sen đo được: trên KDE, lệnh xoá và lệnh commit tới app thành
 hai lần riêng.
 
-Ngó Sen chờ app trong từng lần thay chữ. Cái chốt của Unikey-Wayland-Final chặn cả chuỗi phím phía sau.
+Ngó Sen chờ app trong từng lần thay chữ; Unikey-Wayland-Final thì giữ lại cả chuỗi phím gõ sau đó.
 
 ### vi-ime: bàn phím ảo gõ thẳng chữ Việt
 
@@ -97,7 +97,7 @@ cùng lúc.
 Nó gõ chữ có dấu bằng một bảng phím cố định nạp một lần lúc đầu: 8 mức trên 36 phím hàng chữ, khoảng 280
 chỗ cho chữ Việt. Tác giả ghi lại các bẫy đã gặp:
 
-- Vài mã phím bị app hiểu thành phím chức năng: mã 107 là phím End, mã 162 cũng hỏng.
+- Vài mã phím bị app hiểu thành phím chức năng: mã 107 là phím End, mã 162 cũng bị hiểu sai.
 - Đổi bảng phím giữa chừng thì Chrome và Edge áp dụng trễ, chữ `ấ` rơi vào phím Enter. Vì vậy bảng phím
   phải cố định từ đầu.
 
@@ -128,7 +128,7 @@ Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc 
 
 - [skey](https://github.com/collyn/skey): fcitx5, lõi Rust, uinput. Bấm thừa một Backspace làm mốc, đồng
   hồ tự chỉnh theo trung bình, theo dõi ô qua AT-SPI, và có bộ test dài 1.481 dòng. Luật polkit của nó cho
-  mọi người dùng trên máy quyền nạp lại dịch vụ.
+  mọi người dùng trên máy quyền nạp lại service.
 - [ArecaIME](https://github.com/xhkzeroone/ArecaIME): 5 cách thay chữ đổi được, đều canh nhịp bằng đồng
   hồ, tự tăng 5 ms mỗi bước tới 50 ms. Có cách bôi đen bằng Shift+mũi tên trái rồi gõ đè, ghi rõ là để
   trị Facebook, giống hướng Ngó Sen chọn, nhưng nó chốt bằng đồng hồ chứ không chờ ô xác nhận. Luật udev

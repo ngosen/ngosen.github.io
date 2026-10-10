@@ -6,19 +6,19 @@ pubDate: 2026-10-08
 
 Lúc Ngó Sen tách ra từ fcitx5-lotus, bảng chọn chế độ có tám mục: Uinput (Slow), Uinput (Smooth), Uinput (Super Smooth), Surrounding Text, Preedit, Minecraft, Emoji Picker và OFF. Gõ sai ở app nào thì người dùng phải tự thử từng chế độ, rồi đặt luật riêng cho app đó.
 
-Từ bản 0.5.0, chỉ còn **Gõ Sen** để gõ ở mọi chỗ, **Preedit** cho app không hợp với Gõ Sen, cùng Emoji và OFF. Người dùng không phải chọn giữa nhiều chế độ khó hiểu nữa. Việc chọn cách thay chữ nào cho từng app là việc của bộ gõ.
+Từ bản 0.5.0, chỉ còn **Gõ Sen** để gõ ở mọi chỗ, **Preedit** cho app không hợp với Gõ Sen, cùng Emoji và OFF. Bộ gõ tự chọn cách thay chữ cho từng app, người dùng không phải thử từng chế độ nữa.
 
 ## Ba chế độ Uinput thành một
 
 Slow, Smooth và Super Smooth đều xoá chữ cũ bằng uinput server rồi commit chữ mới, chỉ khác nhau ở cách canh nhịp giữa hai bước đó. App nào hợp chế độ nào thì người dùng phải tự thử.
 
-Ngó Sen gộp cả ba thành một chế độ **Uinput** ([#6](https://github.com/ngosen/ngosen-fork-archive/pull/6)). Thay vì ngủ một khoảng cố định, bộ gõ chờ app báo surrounding text đã đổi rồi mới gõ. App nhanh thì gõ ngay, app chậm thì chờ lâu hơn, không ai phải đoán.
+Ngó Sen gộp cả ba thành một chế độ **Uinput** ([#6](https://github.com/ngosen/ngosen-fork-archive/pull/6)). Thay vì chờ một khoảng cố định, bộ gõ chờ app báo surrounding text đã đổi rồi mới gõ, nên app nhanh thì gõ ngay, app chậm thì chờ lâu hơn.
 
 ## Bỏ Minecraft
 
 Chế độ Minecraft là Uinput bớt đi một lần Backspace, vì Minecraft nhận cả phím mà bộ gõ giữ lại cho mình. Bản gốc thêm nó để chữa tạm khi chưa rõ nguyên nhân, và tới nay vẫn chưa ai tìm ra. Đặt nhầm chế độ này cho app thường thì mỗi lần thêm dấu, app còn sót một chữ cũ.
 
-Ngó Sen bỏ chế độ này ([#29](https://github.com/ngosen/ngosen-fork-archive/pull/29)). Cái giá: ai gõ trong Minecraft sẽ bị xoá dư một chữ mỗi lần thêm dấu.
+Ngó Sen bỏ chế độ này ([#29](https://github.com/ngosen/ngosen-fork-archive/pull/29)). Đổi lại, ai gõ trong Minecraft sẽ bị xoá dư một chữ mỗi lần thêm dấu.
 
 ## Surrounding Text gộp vào, Uinput đổi tên
 

@@ -1,12 +1,12 @@
 ---
-title: "Ubuntu 26.04 làm mất phím Backspace của bộ gõ, và cách giúp Ubuntu sửa sớm"
-description: "GNOME Shell trên Ubuntu 26.04 bỏ rơi phím Backspace mà bộ gõ gửi, nên Chrome gõ ra tieêngếng. Bản sửa đã có; còn chờ Ubuntu đưa vào bản cập nhật."
+title: "Ubuntu 26.04: Chrome gõ ra tieêngếng, và cách giúp Ubuntu sửa sớm"
+description: "GNOME Shell trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi, nên Chrome gõ ra tieêngếng. Bản sửa đã có; còn chờ Ubuntu đưa vào bản cập nhật."
 pubDate: 2026-10-09
 ---
 
 Trên Ubuntu 26.04, gõ `tieengs` trong Chrome, Edge hay app Electron chạy Wayland, đáng ra phải thấy
-`tiếng`, màn hình lại hiện `tieêngếng`. Lỗi nằm ở GNOME Shell chứ không ở bộ gõ, nên bộ gõ tiếng Việt
-nào đi qua đường này cũng bị, không riêng Ngó Sen.
+`tiếng`, màn hình lại hiện `tieêngếng`. Lỗi do GNOME Shell, nên bộ gõ tiếng Việt nào gửi Backspace
+qua GNOME Shell cũng bị, không riêng Ngó Sen.
 
 ## Chuyện gì xảy ra
 
@@ -27,7 +27,7 @@ bản sửa đó. Ubuntu 24.04 không bị, vì GNOME bản 46 không có lỗi 
 ## Ngó Sen đang chữa tạm thế nào
 
 Từ bản 0.5.0-1, gói Ngó Sen kèm một extension GNOME Shell tên `forward-keys@ngosen.github.io`. Nó thay
-đường forward key bị hỏng bằng một bàn phím ảo của chính GNOME Shell, nên Backspace tới được app. Cài
+đường forward key bị lỗi bằng một bàn phím ảo của chính GNOME Shell, nên Backspace tới được app. Cài
 xong, đăng xuất rồi đăng nhập lại, sau đó bật một lần:
 
 ```
@@ -58,8 +58,8 @@ bản sửa mới tới máy mọi người. Báo lỗi càng nhiều người b
 Nếu đang dùng Ubuntu 26.04 và đã gặp lỗi `tieêngếng`:
 
 1. Đăng nhập Launchpad (dùng tài khoản Ubuntu One), mở
-   [Bug #2169784](https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784), bấm **"Does this bug
-   affect you?"** rồi chọn **"Yes, it affects me"**. Mỗi người bấm làm tăng điểm "heat", con số
+   [Bug #2169784](https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784), click **"Does this bug
+   affect you?"** rồi chọn **"Yes, it affects me"**. Mỗi người chọn làm tăng điểm "heat", con số
    Launchpad dùng để cho thấy lỗi nào đang ảnh hưởng nhiều người.
 2. Không cần viết bình luận chỉ để nói "mình cũng bị". Bình luận có ích khi có thông tin mới: app nào bị,
    bộ gõ nào (fcitx5, IBus), và phiên bản GNOME Shell lấy từ lệnh `gnome-shell --version`.

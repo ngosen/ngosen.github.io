@@ -9,7 +9,7 @@ Từ ngày 09/10/2026, Ngó Sen chỉ làm cho fcitx5. Hai hướng trong roadma
 
 ## Vì sao
 
-Phần tốn công không nằm ở code mà ở việc test. Mỗi bộ gõ nền, fcitx5 hay IBus, đưa chữ vào app theo cách
+Tốn công nhất là test. Mỗi bộ gõ nền, fcitx5 hay IBus, đưa chữ vào app theo cách
 riêng, nên mỗi bản phải test lại từng app. Cùng một app có thể lỗi theo kiểu khác hẳn trên mỗi nền.
 
 Một ví dụ là WPS Office. Trên IBus, ở Ubuntu 26.04 GNOME, gõ `tieengs` trong một ô ra `tieêngếng`

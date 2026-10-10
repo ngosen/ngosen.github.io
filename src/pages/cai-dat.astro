@@ -54,8 +54,8 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>
-    Các gói không có chữ ký số. Thứ bảo đảm file tải về đúng là file đã release là hash SHA-256, lấy qua
-    HTTPS từ GitHub.
+    Các gói không có chữ ký số. File tải về chỉ được đối chiếu bằng hash SHA-256, lấy qua HTTPS từ
+    GitHub.
   </p>
 
   <h2 id="ban-nao">Distro nào có gói</h2>
@@ -156,7 +156,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </p>
   <p>
     Bản 0.5.0 cũng bỏ uinput server, service chạy nền từng bấm phím Backspace thay bộ gõ. Cập nhật từ bản
-    cũ thì gói tự tắt dịch vụ đó và xoá tài khoản <code>uinput_proxy</code> của nó, không phải làm gì
+    cũ thì gói tự tắt service đó và xoá tài khoản <code>uinput_proxy</code> của nó, không phải làm gì
     thêm.
   </p>
 
@@ -235,8 +235,8 @@ fcitx5 -rd`}</code></pre>
   <pre tabindex="0"><code>{nixConfig}</code></pre>
   <p>Áp cấu hình xong thì khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>.</p>
   <p>
-    Mức đã kiểm: CI build gói, chạy 42 test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
-    thử trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa thử. Gặp lỗi xin
+    Mức đã test: CI build gói, chạy 42 test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
+    test trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa test. Gặp lỗi xin
     <a href={`${REPO}/issues`}>mở issue</a>.
   </p>
   <h3 id="nixos-tu-build">NixOS: tự build từ bản clone</h3>

@@ -67,7 +67,7 @@ export const RELEASES: {
     summary: 'Sửa lỗi Gõ Sen trên Sway và Hyprland, và cài mới thì dùng Gõ Sen luôn.',
     changes: [
       {
-        claim: 'Gõ Sen gõ được trên Sway, Hyprland và các WM dùng input-method-v2.',
+        claim: 'Gõ Sen gõ được trên Sway, Hyprland và các compositor dùng input-method-v2.',
         source: 'Trước đó chữ đầu tiên cần thêm dấu làm bộ gõ kẹt, mọi phím sau đó không ra chữ.',
         pr: 73,
       },
@@ -87,7 +87,7 @@ export const RELEASES: {
       {
         claim: 'Không còn uinput server.',
         source:
-          'Bộ gõ xoá chữ cũ bằng forward key qua fcitx5, hoặc qua XTEST trên X11. Không còn chương trình chạy ngầm có quyền đặc biệt, không cần quyền thiết bị.',
+          'Bộ gõ xoá chữ cũ bằng forward key qua fcitx5, hoặc qua XTEST trên X11. Không còn service chạy nền có quyền đặc biệt, không cần quyền thiết bị.',
         pr: 43,
       },
       {
@@ -117,7 +117,7 @@ export const RELEASES: {
       },
       {
         claim: 'VS Code bản Flatpak, và bản .deb chạy Wayland, gõ được tiếng Việt.',
-        source: 'Bộ gõ không còn coi việc VS Code nhích con trỏ sau mỗi phím là một cú bấm chuột.',
+        source: 'Bộ gõ không còn coi việc VS Code nhích con trỏ sau mỗi phím là một cú click chuột.',
         pr: 58,
       },
     ],
