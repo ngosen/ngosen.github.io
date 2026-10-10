@@ -16,12 +16,28 @@ const notFixed = [
   'Ubuntu 26.04 cần bật một extension của Ngó Sen cho tới khi GNOME tự sửa lỗi làm mất phím Backspace.',
   'Kiểu gõ được dùng và kiểm hằng ngày là Telex. VNI và các kiểu khác chưa kiểm kỹ.',
 ];
+
+// Only facts the README states: no ratings or reviews, which Google would need for a rich result.
+const jsonLd = {
+  '@type': 'SoftwareApplication',
+  name: 'Ngó Sen',
+  description: 'Bộ gõ tiếng Việt cho fcitx5 trên Linux.',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Linux',
+  softwareVersion: RELEASE.version,
+  url: 'https://ngosen.github.io/',
+  downloadUrl: `${REPO}/releases/latest`,
+  license: 'https://spdx.org/licenses/GPL-3.0-or-later.html',
+  inLanguage: 'vi',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' },
+};
 ---
 
 <Base
   title="Ngó Sen: bộ gõ tiếng Việt cho Linux"
   description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã thử trên máy nào."
   wordmark={false}
+  jsonLd={jsonLd}
 >
   <Hero />
 

@@ -16,10 +16,18 @@ interface Props {
   lang?: string;
   // The home page carries its own large wordmark, so the header leaves it out there.
   wordmark?: boolean;
+  type?: 'website' | 'article';
+  published?: Date;
+  // Structured data for search engines, rendered as JSON-LD.
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, lang = 'vi', wordmark = true } = Astro.props;
+const { title, description, lang = 'vi', wordmark = true, type = 'website', published, jsonLd } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// / and /en/ are the only pages that exist in both languages.
+const languagePair = Astro.url.pathname === '/' || Astro.url.pathname === '/en/';
+// Escape "<" so post text can never close the script element.
+const jsonLdText = jsonLd && JSON.stringify({ '@context': 'https://schema.org', ...jsonLd }).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -30,11 +38,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      languagePair && (
+        <>
+          <link rel="alternate" hreflang="vi" href={new URL('/', Astro.site)} />
+          <link rel="alternate" hreflang="en" href={new URL('/en/', Astro.site)} />
+          <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+        </>
+      )
+    }
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="Blog Ngó Sen" href="/rss.xml" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
+    {published && <meta property="article:published_time" content={published.toISOString()} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Ngó Sen" />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'vi_VN'} />
@@ -45,6 +63,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#1c6b5f" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#145247" media="(prefers-color-scheme: dark)" />
+    {jsonLdText && <script type="application/ld+json" set:html={jsonLdText} />}
   </head>
   <body>
     <a class="skip" href="#noi-dung">{lang === 'en' ? 'Skip to content' : 'Tới nội dung'}</a>
