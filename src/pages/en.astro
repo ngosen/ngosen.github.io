@@ -86,11 +86,13 @@ const levels: Record<Level, string> = {
     build from source. “Builds only” means the package builds and passes the test suite at build time;
     nobody has typed with it there. These levels come from testing release 0.5; the spreadsheet fixes in
     1.0 were tested in a CachyOS virtual machine (KDE Wayland) with LibreOffice Calc, WPS Office and
-    Google Sheets in Firefox.
+    Google Sheets in Firefox. Release 1.1 renames the installed files; the update from 1.0.0-1 was
+    tested in a Linux Mint 22 virtual machine (Cinnamon, X11): the settings were copied over, the input
+    method stayed in the list and typed the right text.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
-    <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the 42 tests and loads the addon into fcitx5 on
+    <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
   </p>
 
@@ -107,6 +109,10 @@ const levels: Record<Level, string> = {
     <li>
       The Bamboo composition core is written in Rust in the Fedora, Arch, openSUSE and Ubuntu 24.04+
       packages. Debian 12, 13 and Ubuntu 22.04 keep the Go core; both type the same text.
+    </li>
+    <li>
+      Since 1.1.0 every installed file is named <code>ngosen</code>, so it installs alongside
+      fcitx5-lotus. Old <code>lotus*.conf</code> settings are copied over on first start.
     </li>
     <li>
       Ngó Sen numbers its own releases from 0.5.0. Packages carry an epoch, so package managers still
