@@ -58,14 +58,15 @@ const jsonLd = {
       <div class="telex-head">
         <h2 id="telex-tieu-de">Nên dùng chế độ nào</h2>
         <p>
-          Dùng <strong>Gõ Sen</strong> làm chế độ gõ chính: chọn trong cửa sổ cài đặt Ngó Sen, mục chế độ
-          mặc định. Gõ Sen dùng được cho hầu hết app: gõ nhanh không mất chữ, gõ đúng trong trình duyệt,
-          thanh địa chỉ, Facebook, app Electron như Zalo và terminal. Chế độ này trước đây tên là Uinput; cấu hình cũ tự
-          chuyển sang tên mới.
+          Dùng <strong>Gõ Sen</strong> làm chế độ gõ chính: trong cửa sổ cài đặt Ngó Sen, trang Gõ chữ, click
+          nút Gõ Sen ở hàng Chế độ gõ. Gõ Sen dùng được cho hầu hết app: gõ nhanh không mất chữ, gõ đúng trong
+          trình duyệt, thanh địa chỉ, Facebook, app Electron như Zalo và terminal. Chế độ này trước đây tên là
+          Uinput; cấu hình cũ tự chuyển sang tên mới.
         </p>
         <p>
-          <strong>Preedit</strong> hiện chữ gạch chân trong lúc gõ, dành cho app không hợp với Gõ Sen. Kiểu
-          gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.
+          Chế độ <strong>Gạch chân</strong> (Preedit) hiện chữ gạch chân trong lúc gõ, dành cho app không hợp
+          với Gõ Sen. Kiểu gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa
+          test kỹ.
         </p>
       </div>
       <h3 class="board-title">Telex nằm ở những phím này</h3>
@@ -91,6 +92,60 @@ const jsonLd = {
           <dd><kbd>z</kbd> bỏ dấu thanh vừa gõ: <kbd>asz</kbd> ra a.</dd>
         </div>
       </dl>
+    </div>
+  </section>
+
+  <section class="settings wrap" id="cua-so-cai-dat" aria-labelledby="cai-dat-tieu-de">
+    <div class="intro">
+      <h2 id="cai-dat-tieu-de">Cửa sổ cài đặt</h2>
+      <p>
+        Sáng hay tối, KDE hay GNOME, cửa sổ dùng giao diện đang có. Đổi gì lưu ngay, có nút Hoàn tác.
+      </p>
+      <p>
+        Cửa sổ có 5 trang: Gõ chữ, Ứng dụng, Gõ tắt &amp; Từ điển, Phím, Khác. Ô tìm ở đầu thanh bên tìm được
+        cả khi gõ không dấu. Sao lưu và Khôi phục là hai nút ở thanh dưới.
+      </p>
+    </div>
+    <div class="shots">
+      <figure class="shot shot--main">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="/screenshots/settings-dark.png" />
+          <img
+            src="/screenshots/settings-light.png"
+            width="750"
+            height="528"
+            loading="lazy"
+            alt="Cửa sổ cài đặt Ngó Sen, trang Gõ chữ: hàng nút Chế độ gõ với Gõ Sen đang chọn, Kiểu gõ Telex, Bảng mã Unicode."
+          />
+        </picture>
+        <figcaption>Trang Gõ chữ trên KDE Plasma. Ảnh sáng hay tối tuỳ theo máy đang mở trang này.</figcaption>
+      </figure>
+      <figure class="shot">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="/screenshots/apps-dark.png" />
+          <img
+            src="/screenshots/apps-light.png"
+            width="980"
+            height="640"
+            loading="lazy"
+            alt="Trang Ứng dụng: danh sách app bên trái, app code đang chọn với chế độ Gõ Sen."
+          />
+        </picture>
+        <figcaption>Trang Ứng dụng: chọn chế độ gõ riêng cho từng app.</figcaption>
+      </figure>
+      <figure class="shot">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="/screenshots/saved-dark.png" />
+          <img
+            src="/screenshots/saved-light.png"
+            width="980"
+            height="640"
+            loading="lazy"
+            alt="Dòng “Đã lưu Kiểm tra chính tả” ở đầu trang Gõ chữ, bên phải là nút Hoàn tác."
+          />
+        </picture>
+        <figcaption>Mỗi lần lưu hiện dòng “Đã lưu” kèm nút Hoàn tác.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -263,6 +318,35 @@ const jsonLd = {
     margin-top: 1.4rem;
     font-size: var(--step--1);
     color: var(--ink-muted);
+  }
+
+  /* Settings window: screenshots lie on the desk like sheets. */
+  .settings {
+    padding-block: clamp(3.5rem, 9vw, 7rem) 0;
+    display: grid;
+    gap: 2.25rem;
+  }
+
+  .shots {
+    display: grid;
+    gap: 1.75rem 1.5rem;
+  }
+
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    box-shadow:
+      0 0 0 1px var(--paper-edge),
+      0 1.4rem 2rem -1.4rem rgb(0 0 0 / 0.35);
+  }
+
+  .shot figcaption {
+    margin-top: 0.7rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    max-width: 52ch;
   }
 
   /* Which machines */
@@ -544,6 +628,14 @@ const jsonLd = {
   }
 
   @media (min-width: 44rem) {
+    .shots {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .shot--main {
+      grid-column: 1 / -1;
+    }
+
     .telex-notes {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -562,6 +654,7 @@ const jsonLd = {
   }
 
   @media (min-width: 62rem) {
+    .settings,
     .can-it-run {
       grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
       gap: clamp(2.5rem, 5vw, 5rem);

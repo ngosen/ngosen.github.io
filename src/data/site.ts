@@ -24,6 +24,40 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.2.0-1',
+    date: '11/10/2026',
+    summary:
+      'Bản 1.2: cửa sổ cài đặt mới theo giao diện máy, lưu ngay khi đổi và có Hoàn tác. Hết lỗi đảo chữ khi gõ nhanh trong gnome-terminal.',
+    changes: [
+      {
+        claim: 'Gõ nhanh trong gnome-terminal và các app GTK3 khác không còn đảo chữ.',
+        source: 'Trước đó, bấm chồng hai phím có lúc làm “rồi” ra “riồ”, “ngày” ra “ngyà”.',
+        pr: 11,
+      },
+      {
+        claim: 'Cửa sổ cài đặt lưu ngay khi đổi, không còn nút OK, Áp dụng, Huỷ.',
+        source:
+          'Mỗi lần lưu hiện dòng “Đã lưu” kèm nút Hoàn tác, đưa lại đúng cài đặt trước đó, kể cả luật app, gõ tắt và từ điển riêng.',
+        pr: 14,
+      },
+      {
+        claim: 'Cửa sổ cài đặt dùng giao diện của hệ thống: KDE hay GNOME, sáng hay tối.',
+        source: 'Danh sách, bảng, thẻ chế độ của app và trang Giới thiệu theo theme đang dùng, thay cho màu và viền tự vẽ.',
+        pr: 19,
+      },
+      {
+        claim: 'Ô tìm ở đầu thanh bên tìm được cài đặt cả khi gõ không dấu.',
+        source: 'Gõ “chinh ta” ra “Kiểm tra chính tả”. Chọn kết quả thì mở đúng trang, đúng tab và đưa con trỏ tới tuỳ chọn đó.',
+        pr: 17,
+      },
+      {
+        claim: 'Nút Mặc định đưa mọi trang về mặc định, kể cả trang chưa mở, luật cho từng app và từ điển riêng.',
+        source: 'Trước đây nút này gần như không đổi gì. Sửa từ điển riêng giờ có tác dụng ngay, không phải khởi động lại fcitx5.',
+        pr: 12,
+      },
+    ],
+  },
+  {
     version: '1.1.0-1',
     date: '10/10/2026',
     summary:
@@ -155,7 +189,7 @@ export const RELEASE = RELEASES[0];
 
 // Mirrors the paragraph under the table in packaging/release-notes.md.
 export const LEVELS_NOTE =
-  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ.';
+  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Bản 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), bản 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ.';
 
 export type Level = 'daily' | 'vm' | 'built';
 
@@ -275,6 +309,10 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   {
     title: 'Cài bằng một dòng lệnh',
     text: 'Có cho Fedora, Ubuntu, Debian, Arch, CachyOS và openSUSE. Script so hash SHA-256 trước khi cài.',
+  },
+  {
+    title: 'Cửa sổ cài đặt theo giao diện máy',
+    text: 'Sáng hay tối, KDE hay GNOME, cửa sổ dùng giao diện đang có. Đổi gì lưu ngay, có nút Hoàn tác.',
   },
 ];
 

@@ -39,9 +39,24 @@ const levels: Record<Level, string> = {
     <li>Open “Fcitx5 Configuration” and add the input method named Ngó Sen.</li>
     <li>On KDE Wayland, select “Fcitx 5” under System Settings, Virtual Keyboard.</li>
     <li>
-      In the Ngó Sen settings window, pick <strong>Gõ Sen</strong> as the default mode.
+      In the Ngó Sen settings window, on the Gõ chữ page, press <strong>Gõ Sen</strong> in the Chế độ gõ
+      row.
     </li>
   </ol>
+  <p>
+    Since 1.2 the settings window follows the desktop's look, light or dark, KDE or GNOME. Every change is
+    saved at once, with an Undo button (Hoàn tác).
+  </p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="/screenshots/settings-dark.png" />
+    <img
+      src="/screenshots/settings-light.png"
+      width="750"
+      height="528"
+      loading="lazy"
+      alt="The Ngó Sen settings window on KDE Plasma, Gõ chữ page, with the Gõ Sen mode selected."
+    />
+  </picture>
   <p>
     On Ubuntu 26.04, log out and back in after installing, then run
     <code>gnome-extensions enable forward-keys@ngosen.github.io</code> once. The extension works around a
@@ -87,7 +102,11 @@ const levels: Record<Level, string> = {
     1.0 were tested in a CachyOS virtual machine (KDE Wayland) with LibreOffice Calc, WPS Office and
     Google Sheets in Firefox. Release 1.1 renames the installed files; the update from 1.0.0-1 was
     tested in a Linux Mint 22 virtual machine (Cinnamon, X11): the settings were copied over, the input
-    method stayed in the list and typed the right text.
+    method stayed in the list and typed the right text. Release 1.2 replaces the settings window: saving
+    and undo through a real fcitx5 were tested in Linux Mint 22 (Cinnamon, X11), CachyOS (KDE Wayland) and
+    Ubuntu 26.04 (GNOME Wayland) virtual machines, and 1.2 typed the right text in GNOME Text Editor on
+    CachyOS. The fix for swapped letters in gnome-terminal was tested with a simulated D-Bus client and
+    by typing in gnome-terminal by hand: no letters were swapped.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
@@ -109,3 +128,15 @@ const levels: Record<Level, string> = {
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>
 </Page>
+
+<style>
+  img {
+    display: block;
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    margin-top: 1.4rem;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px var(--paper-edge);
+  }
+</style>

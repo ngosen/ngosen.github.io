@@ -284,12 +284,16 @@ second-level heading. The blog index is a column of sheets sharing one left edge
 sideways read as misalignment.
 
 The home page alternates grounds: enamel hero with the ink install strip closing it, desk with a paper
-table, enamel Telex band, desk with two overlapping sheets, a second full-width install strip, then
+table, enamel Telex band, desk with the settings window screenshots, desk with two overlapping sheets, a second full-width install strip, then
 open desk for the post list. Vertical rhythm between sections is `clamp(3.5rem, 9vw, 7rem)`; enamel
 bands pad `clamp(3rem, 8vw, 6rem)`.
 
 Sheets may overlap and turn slightly where one is a note left on another (the "Chưa sửa" sheet lies on
 the report at 1.2 degrees, from 62rem up). Body text never rotates below that width.
+
+Screenshots of the app lie flat on the desk like sheets: the Sheet on desk shadow, 2px corners, no
+rotation. Each one is a light/dark pair in `public/screenshots/` switched by `prefers-color-scheme`,
+taken from the real window, never mocked up.
 
 Responsive behaviour is structural:
 - **Below 30rem:** nav keys shrink and tighten so all five fit in two rows.
