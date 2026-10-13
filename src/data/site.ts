@@ -24,6 +24,70 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.3.0-1',
+    date: '13/10/2026',
+    summary:
+      'Bản 1.3: tuỳ chọn Backspace chỉ xoá dấu thanh, icon mới hai cọng ngó sen, và icon khay rõ trên panel tối.',
+    changes: [
+      {
+        claim: 'Có tuỳ chọn “Backspace xoá dấu thanh”, mặc định tắt.',
+        source:
+          'Bật ở trang Gõ chữ, nhóm Cách bỏ dấu: bấm Backspace lúc đang gõ chữ “tiếng” thì ra “tiêng”. Chữ không có dấu thanh thì Backspace xoá như thường.',
+        pr: 37,
+      },
+      {
+        claim: 'Icon mới: hai cọng ngó sen chụm thành chữ V, thay cho lát củ sen 7 lỗ.',
+        source: 'Cửa sổ cài đặt dùng bản đầy đủ có đổ bóng. Icon trên khay dùng bản giản lược, xám đi khi tắt tiếng Việt.',
+        pr: 43,
+      },
+      {
+        claim: 'Khay mặc định hiện icon Ngó Sen có nền màu, rõ trên panel sáng lẫn tối.',
+        source:
+          'Máy đã lưu cài đặt Ngó Sen thì giữ lựa chọn cũ. Muốn đổi thì bật “Sử dụng biểu tượng trạng thái Ngó Sen” trong cài đặt.',
+        pr: 45,
+      },
+      {
+        claim: 'Chữ V trên khay không còn màu đen chìm trên panel tối của Linux Mint, MX Linux và các desktop khác có panel tối.',
+        source: 'Panel sáng thì chọn “Màu biểu tượng: Sáng” trong cài đặt.',
+        pr: 44,
+      },
+      {
+        claim: 'Icon trên khay cân với các icon bên cạnh, và không còn mờ trên panel Xfce.',
+        source: 'Chữ V trắng cũng thành hai cọng ngó như logo.',
+        pr: 46,
+      },
+      {
+        claim: 'Cập nhật từ bản trước 1.1.0 rồi chạy fcitx5 -rd không còn làm mất Ngó Sen khỏi danh sách bộ gõ.',
+        source: 'Trước đó phải thêm lại Ngó Sen trong “Fcitx5 Configuration”.',
+        pr: 47,
+      },
+      {
+        claim: 'Có bản thử, build tự động mỗi khi nhánh next thay đổi.',
+        source:
+          'Lệnh cài nằm ở trang Cài đặt. Bản thử cài đè lên bản chính thức được, và bản chính thức sau đó vẫn tự nâng lên.',
+        pr: 38,
+      },
+    ],
+  },
+  {
+    version: '1.2.2-1',
+    date: '11/10/2026',
+    summary: 'Bản vá nhỏ: chữ “vi” thay hình bông sen cạnh con trỏ, và hết lỗi mất dấu khi gõ trên thanh địa chỉ Edge.',
+    changes: [
+      {
+        claim: 'Khi bật Ngó Sen, ô nhỏ cạnh con trỏ hiện “vi” thay cho hình bông sen.',
+        source: 'Giống bàn phím tiếng Anh hiện “us”.',
+        pr: 28,
+      },
+      {
+        claim: 'Gõ trên thanh địa chỉ Edge lúc đang có gợi ý tự điền không còn mất dấu.',
+        source:
+          'Trước đó gõ “ngos” có lúc vẫn ra “ngos” thay vì “ngó”, vì Ngó Sen tưởng con trỏ nhích theo gợi ý là một cú click chuột.',
+        pr: 29,
+      },
+    ],
+  },
+  {
     version: '1.2.1-1',
     date: '11/10/2026',
     summary: 'Bản vá nhỏ: cửa sổ cài đặt bỏ trang Ứng dụng, còn 4 trang. Bộ gõ không đổi.',
@@ -202,7 +266,7 @@ export const RELEASE = RELEASES[0];
 
 // Mirrors the paragraph under the table in packaging/release-notes.md.
 export const LEVELS_NOTE =
-  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Bản 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), bản 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Bản 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối.';
+  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Bản 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), bản 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Bản 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối. Bản 1.2.2 sửa nhãn cạnh con trỏ và lỗi mất dấu trên thanh địa chỉ Edge. Lỗi Edge được tái hiện bằng một test viết lại từ log gõ phím trên Fedora 44 (KDE Wayland), rồi gõ tay lại trên Edge sau khi sửa: ra đúng “ngó”, cạnh con trỏ hiện “vi”. Bản 1.3.0 thêm tuỳ chọn Backspace xoá dấu thanh, được gõ tay trên Fedora 44 (KDE Wayland) với bản build từ nhánh next. Icon khay mới được xem trên máy ảo Linux Mint 22.3 (Cinnamon) và MX Linux 25.3 (Xfce). Gói Debian 13 được cài trên máy ảo MX Linux 25.3: Telex “vieejt” ra “việt” trong terminal GTK. Lần cập nhật từ 1.0.0-1 rồi chạy fcitx5 -rd cũng được test trên máy ảo MX Linux 25.3: Ngó Sen vẫn nằm trong danh sách bộ gõ.';
 
 export type Level = 'daily' | 'vm' | 'built';
 

@@ -102,6 +102,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>
       Khởi động lại fcitx5:
       <pre tabindex="0"><code>fcitx5 -rd</code></pre>
+      Trên KDE Wayland: đăng xuất rồi đăng nhập lại, vì KDE tự mở fcitx5 và lệnh trên không thay được.
     </li>
     <li>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</li>
     <li>Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”.</li>
@@ -146,8 +147,19 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 
   <h2 id="cap-nhat">Cập nhật</h2>
   <p>
-    Chạy lại đúng lệnh cài, rồi khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>. Không có cơ chế
-    tự cập nhật.
+    Chạy lại đúng lệnh cài, rồi khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>; trên KDE Wayland thì
+    đăng xuất rồi đăng nhập lại. Không có cơ chế tự cập nhật.
+  </p>
+  <h3 id="ban-thu">Bản thử</h3>
+  <p>
+    Muốn test tính năng chưa phát hành thì cài <a href={`${REPO}/releases/tag/next-build`}>bản thử</a>,
+    build tự động mỗi khi nhánh <code>next</code> thay đổi:
+  </p>
+  <pre
+    tabindex="0"><code>{`curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/next/install.sh | NGOSEN_RELEASE_URL=https://github.com/ngosen/ngosen/releases/download/next-build bash`}</code></pre>
+  <p>
+    Số phiên bản của bản thử có thêm ngày giờ và mã commit, nên cài đè lên bản chính thức được, và bản
+    chính thức sau đó vẫn tự nâng lên.
   </p>
   <p>
     Từ bản 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 cũ nữa. Trình quản lý gói vẫn coi
