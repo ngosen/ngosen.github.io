@@ -34,14 +34,16 @@ const levels: Record<Level, string> = {
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>
-    On GNOME, and on X11 desktops that pick the input method with im-config such as Xfce, Cinnamon and
-    MATE, the script also makes fcitx5 the input method for your account, adds Ngó Sen to the input
+    On GNOME, on KDE Plasma (Wayland), and on X11 desktops that pick the input method with im-config such
+    as Xfce, Cinnamon and MATE, the script also makes fcitx5 the input method for your account, adds Ngó Sen to the input
     method list and sets Ctrl+Shift to switch Vietnamese on, unless you already chose another key. Log out
     and back in, then press Ctrl+Shift. On GNOME it also hides the fcitx5 launchers you do not need, and
     adds the Input Method Panel extension when there is no system tray, as on Fedora. These steps apply to
-    the account that runs the script; add <code>--no-setup</code> to install the package only.
+    the account that runs the script; add <code>--no-setup</code> to install the package only. On KDE
+    Plasma it selects fcitx5 as KDE's virtual keyboard (System Settings, Virtual Keyboard), so Qt apps
+    such as Kate and Dolphin can type too.
   </p>
-  <p>On other desktops such as KDE, or after installing a package by hand:</p>
+  <p>On other desktops, or after installing a package by hand:</p>
   <ol>
     <li>
       Restart fcitx5 with <code>fcitx5 -rd</code>. Do this again after every update. On KDE Wayland, log
@@ -77,6 +79,8 @@ const levels: Record<Level, string> = {
     To uninstall, run the script with <code>--uninstall</code>. On GNOME it also undoes what the script
     changed, so GNOME uses IBus again after you log back in. On Xfce, Cinnamon and MATE it resets the
     input method to the system default; fcitx5 stays installed and may still start, typing English only.
+    On KDE it leaves fcitx5 as the virtual keyboard, since another input method may use it; choose None
+    under System Settings, Virtual Keyboard to drop it.
   </p>
   <pre
     tabindex="0"><code>{`curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash -s -- --uninstall`}</code></pre>
@@ -144,7 +148,14 @@ const levels: Record<Level, string> = {
     Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon, X11) and MX Linux 25 (Xfce, X11) virtual machines
     with a build from the <code>next</code> branch: after logging back in, Ctrl+Shift and then Telex
     <code>tieengs vieetj</code> typed <code>tiếng việt</code> in a GTK3 text field, 3 times out of 3 on
-    each machine. Uninstalling was tested in Ubuntu 26.04 (IBus came back) and MX Linux 25.
+    each machine. Uninstalling was tested in Ubuntu 26.04 (IBus came back) and MX Linux 25. Release 1.4.1
+    only changes the installer; the input method is the same as in 1.4.0. The KDE setup was run in a
+    CachyOS virtual machine (Plasma 6.7 Wayland) on an account with no input method configured: after
+    logging back in, Ctrl+Shift and then Telex <code>tieengs vieetj</code> typed <code>tiếng việt</code>
+    3 times out of 3 in a Qt6 text field and 3 times out of 3 in a GTK3 one; before the fix the Qt6 field
+    got raw keystrokes. With the 1.4.0 package, Chrome 155, VS Code, Discord, Firefox and GNOME Text Editor
+    (Flatpak) typed correctly in an Ubuntu 26.04 (GNOME Wayland) virtual machine; Chrome forced through
+    XWayland was wrong 5 times out of 30.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
