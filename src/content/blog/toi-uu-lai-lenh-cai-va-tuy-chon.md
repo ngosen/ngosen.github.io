@@ -61,11 +61,14 @@ curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bas
 ## Gỡ bằng một dòng lệnh
 
 Lệnh cài có thêm `--uninstall`. Nó gỡ Ngó Sen, và trên GNOME thì trả lại những gì lệnh cài đã đổi, để lần
-đăng nhập sau GNOME dùng lại IBus. Trên Xfce, Cinnamon, MATE, lệnh gỡ trả lại bộ gõ đã chọn trước khi cài:
+đăng nhập sau GNOME dùng lại IBus:
 
 ```
 curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash -s -- --uninstall
 ```
+
+Trên Xfce, Cinnamon, MATE, lệnh gỡ trả bộ gõ về mặc định của máy. Gói fcitx5 vẫn còn trên máy, nên fcitx5
+có thể vẫn tự chạy khi đăng nhập, chỉ gõ được tiếng Anh. Muốn gỡ hẳn thì chạy `sudo apt remove fcitx5`.
 
 ## Bớt tuỳ chọn thừa
 
