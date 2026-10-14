@@ -2,6 +2,7 @@
 title: "Ubuntu 26.04 lỗi gõ tiếng Việt ra chữ sai với nhiều bộ gõ"
 description: "GNOME Shell trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi, nên Chrome gõ ra tieêngếng. Bản sửa đã có; còn chờ Ubuntu đưa vào bản cập nhật."
 pubDate: 2026-10-09
+updatedDate: 2026-10-14
 ---
 
 Trên Ubuntu 26.04, gõ `tieengs` trong Chrome, Edge hay app Electron chạy Wayland thì màn hình hiện
@@ -27,7 +28,8 @@ chưa có bản sửa đó. Ubuntu 24.04 dùng GNOME 46, bản ra trước khi c
 ## Ngó Sen đang chữa tạm thế nào
 
 Từ bản 0.5.0-1, gói Ngó Sen kèm một extension GNOME Shell tên `forward-keys@ngosen.github.io` để
-Backspace tới được app. Cài xong, đăng xuất rồi đăng nhập lại, sau đó bật một lần:
+Backspace tới được app. Từ bản 1.4.0-1, lệnh cài một dòng tự bật extension này trên GNOME 50.0 đến 50.3.
+Cài gói bằng tay thì đăng xuất rồi đăng nhập lại, sau đó bật một lần:
 
 ```
 gnome-extensions enable forward-keys@ngosen.github.io

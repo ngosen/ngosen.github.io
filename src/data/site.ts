@@ -24,6 +24,58 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.4.0-1',
+    date: '14/10/2026',
+    summary:
+      'Bản 1.4: lệnh cài một dòng tự đặt fcitx5 làm bộ gõ trên GNOME và Xfce, Cinnamon, MATE, có thêm lệnh gỡ, cửa sổ cấu hình bớt mục thừa.',
+    changes: [
+      {
+        claim: 'Trên GNOME, lệnh cài tự đặt fcitx5 làm bộ gõ thay IBus và thêm Ngó Sen vào danh sách bộ gõ.',
+        source:
+          'Lệnh cài còn ẩn các icon fcitx5 thừa trong danh sách app và bật extension sửa lỗi gõ trên GNOME 50.0 đến 50.3. Cài xong chỉ cần đăng xuất rồi đăng nhập lại. Thêm --no-setup để chỉ cài gói như trước.',
+        pr: 52,
+      },
+      {
+        claim: 'Trên Xfce, Cinnamon, MATE (MX Linux, Linux Mint), lệnh cài cũng tự đặt fcitx5 làm bộ gõ và thêm Ngó Sen.',
+        source:
+          'Trên Debian và Ubuntu, lệnh cài luôn cài kèm im-config và các gói giúp app GTK, Qt gõ được qua fcitx5.',
+        pr: 61,
+      },
+      {
+        claim: 'Phím bật tiếng Việt mà lệnh cài đặt là Ctrl+Shift, thay cho Ctrl+Space.',
+        source: 'Ctrl+Space là phím gợi ý code của VS Code. Ai đã tự chọn phím khác cho fcitx5 thì giữ nguyên.',
+        pr: 55,
+      },
+      {
+        claim: 'Lệnh cài có thêm --uninstall để gỡ Ngó Sen.',
+        source:
+          'Trên GNOME, lệnh này trả lại những gì lệnh cài đã đổi, để lần đăng nhập sau GNOME dùng lại IBus. Trên Xfce, Cinnamon, MATE, nó trả bộ gõ về mặc định của máy.',
+        pr: 55,
+      },
+      {
+        claim: 'GNOME không có khay hệ thống, như Fedora, thì lệnh cài thêm extension Input Method Panel.',
+        source: 'Icon và menu bộ gõ hiện trên thanh trên cùng. Ubuntu đã có khay nên không cài thêm.',
+        pr: 54,
+      },
+      {
+        claim: 'Gỡ rồi cài lại trên GNOME không còn làm mất Ngó Sen khỏi danh sách bộ gõ.',
+        source: 'Trước đó phải thêm lại Ngó Sen bằng tay sau khi cài lại.',
+        pr: 60,
+      },
+      {
+        claim: 'Cửa sổ cấu hình chung của fcitx5 không còn hiện 10 mục “Experiment” của Ngó Sen.',
+        source: 'Các mục này chỉ dùng khi dò lỗi. Giá trị cũ vẫn giữ, và vẫn chỉnh được trong file ngosen.conf.',
+        pr: 56,
+      },
+      {
+        claim: 'Trang Gõ chữ bỏ mục “Đọc chữ quanh con trỏ”.',
+        source:
+          'Mục này mặc định tắt, và là cách chữa tạm lỗi gõ trên Messenger từ trước khi Ngó Sen có cách sửa riêng. Ai từng bật nó thì giờ gõ như mọi người khác.',
+        pr: 59,
+      },
+    ],
+  },
+  {
     version: '1.3.0-1',
     date: '13/10/2026',
     summary:
@@ -266,7 +318,7 @@ export const RELEASE = RELEASES[0];
 
 // Mirrors the paragraph under the table in packaging/release-notes.md.
 export const LEVELS_NOTE =
-  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Bản 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), bản 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Bản 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối. Bản 1.2.2 sửa nhãn cạnh con trỏ và lỗi mất dấu trên thanh địa chỉ Edge. Lỗi Edge được tái hiện bằng một test viết lại từ log gõ phím trên Fedora 44 (KDE Wayland), rồi gõ tay lại trên Edge sau khi sửa: ra đúng “ngó”, cạnh con trỏ hiện “vi”. Bản 1.3.0 thêm tuỳ chọn Backspace xoá dấu thanh, được gõ tay trên Fedora 44 (KDE Wayland) với bản build từ nhánh next. Icon khay mới được xem trên máy ảo Linux Mint 22.3 (Cinnamon) và MX Linux 25.3 (Xfce). Gói Debian 13 được cài trên máy ảo MX Linux 25.3: Telex “vieejt” ra “việt” trong terminal GTK. Lần cập nhật từ 1.0.0-1 rồi chạy fcitx5 -rd cũng được test trên máy ảo MX Linux 25.3: Ngó Sen vẫn nằm trong danh sách bộ gõ.';
+  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Bản 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), bản 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Bản 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối. Bản 1.2.2 sửa nhãn cạnh con trỏ và lỗi mất dấu trên thanh địa chỉ Edge. Lỗi Edge được tái hiện bằng một test viết lại từ log gõ phím trên Fedora 44 (KDE Wayland), rồi gõ tay lại trên Edge sau khi sửa: ra đúng “ngó”, cạnh con trỏ hiện “vi”. Bản 1.3.0 thêm tuỳ chọn Backspace xoá dấu thanh, được gõ tay trên Fedora 44 (KDE Wayland) với bản build từ nhánh next. Icon khay mới được xem trên máy ảo Linux Mint 22.3 (Cinnamon) và MX Linux 25.3 (Xfce). Gói Debian 13 được cài trên máy ảo MX Linux 25.3: Telex “vieejt” ra “việt” trong terminal GTK. Lần cập nhật từ 1.0.0-1 rồi chạy fcitx5 -rd cũng được test trên máy ảo MX Linux 25.3: Ngó Sen vẫn nằm trong danh sách bộ gõ. Bản 1.4.0 chủ yếu đổi lệnh cài một dòng. Lệnh cài được chạy trên máy ảo Ubuntu 26.04 (GNOME Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon X11) và MX Linux 25 (Xfce X11) với bản build từ nhánh next: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” trong ô chữ GTK3, 3/3 lần trên mỗi máy. Lệnh gỡ được test trên Ubuntu 26.04 (IBus chạy lại) và MX Linux 25.';
 
 export type Level = 'daily' | 'vm' | 'built';
 

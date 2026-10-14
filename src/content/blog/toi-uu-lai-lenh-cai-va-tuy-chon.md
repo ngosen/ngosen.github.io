@@ -2,7 +2,6 @@
 title: "Ngó Sen 1.4 tối ưu lại lệnh cài và bỏ bớt tuỳ chọn thừa"
 description: "Trên GNOME và Xfce, Cinnamon, MATE, lệnh cài một dòng tự đặt fcitx5 làm bộ gõ và thêm Ngó Sen. Có thêm lệnh gỡ, cửa sổ cấu hình bớt mục thừa."
 pubDate: 2026-10-14
-draft: true
 ---
 
 Ngó Sen 1.4 tối ưu lại nhiều chỗ. Lệnh cài một dòng tự làm các bước cấu hình mà trước đây người dùng
