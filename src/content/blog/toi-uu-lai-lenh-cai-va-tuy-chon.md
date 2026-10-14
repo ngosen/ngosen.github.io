@@ -80,18 +80,10 @@ khác.
 
 Một phần code không còn chỗ nào dùng cũng được bỏ. Người dùng không thấy khác gì.
 
-## Sửa lỗi
-
-Gỡ rồi cài lại trên GNOME không còn làm mất Ngó Sen khỏi danh sách bộ gõ.
-
-Gói Ngó Sen dựng lại được. Kho mã lõi Go mà Ngó Sen dùng đã bị xoá khỏi GitHub, nên mọi lần dựng gói đều
-hỏng ngay bước tải mã. Lõi Go giờ lấy từ bản sao [ngosen/bamboo-go-core](https://github.com/ngosen/bamboo-go-core),
-cùng đúng bản code như trước.
-
 ## Đã test trên máy nào
 
 Lệnh cài được chạy trên máy ảo Ubuntu 26.04 (GNOME Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon X11)
-và MX Linux 25 (Xfce X11), với bản dựng từ nhánh `next`. Sau khi đăng nhập lại, bấm Ctrl+Shift rồi gõ Telex
+và MX Linux 25 (Xfce X11), với bản build từ nhánh `next`. Sau khi đăng nhập lại, bấm Ctrl+Shift rồi gõ Telex
 `tieengs vieetj` ra `tiếng việt` trong ô chữ GTK3, 3/3 lần trên mỗi máy. Lệnh gỡ được test trên Ubuntu 26.04
 (IBus chạy lại) và MX Linux 25.
 
