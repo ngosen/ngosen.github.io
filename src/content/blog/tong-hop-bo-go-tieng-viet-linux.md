@@ -1,8 +1,8 @@
 ---
 title: "Tổng hợp các bộ gõ tiếng Việt trên Linux và cơ chế gõ"
-description: "Đọc mã 16 bộ gõ tiếng Việt cho Linux: năm cách đưa chữ vào app, mỗi bộ gõ làm gì và ý nào đáng học."
+description: "Đọc mã 20 bộ gõ tiếng Việt cho Linux: năm cách đưa chữ vào app, mỗi bộ gõ làm gì và ý nào đáng học."
 pubDate: 2026-10-08
-updatedDate: 2026-10-09
+updatedDate: 2026-10-14
 ---
 
 Khi gõ `as` ra `á`, mọi bộ gõ đều phải làm cùng một việc: xoá `a` rồi viết `á`. Cách làm việc đó quyết
@@ -12,8 +12,10 @@ Ngày 24/09/2026, để tìm câu trả lời, người giữ dự án xem 18 b�
 [danh sách cộng đồng](https://docs.google.com/spreadsheets/d/1DhW_jVM3IPSR1fX2CJyZstNFqoHDL3u6aLOrj2tYDk4/edit?gid=1097134275)
 (kể cả Ngó Sen) và đọc được mã của 16 bộ. Không bộ gõ nào được cài hay chạy, chỉ đọc mã. Bản đầy đủ, ghi
 rõ file và dòng đã đọc, nằm trong [repo chính](https://github.com/ngosen/ngosen/blob/main/NGHIEN-CUU-BO-GO-KHAC.md).
-Mã của các bộ gõ có thể đã đổi sau ngày đó; phiên bản mã đã đọc (commit) ghi ở bảng cuối bài. Danh sách
-cộng đồng nay có thêm vài bộ gõ ra đời sau, bài này chưa xét tới.
+Mã của các bộ gõ có thể đã đổi sau ngày đó; phiên bản mã đã đọc (commit) ghi ở bảng cuối bài.
+
+Ngày 14/10/2026, bài có thêm bốn bộ gõ có sẵn gói trong distro, vốn không có trong danh sách cộng đồng,
+và một danh sách bộ gõ mới đang được làm.
 
 ## Vì sao hỏi câu này
 
@@ -21,22 +23,23 @@ Lúc đó Ngó Sen xoá chữ bằng **hai đường**: một bàn phím ảo b�
 của bộ gõ (commit). Lỗi mất chữ ở Messenger và ô đăng bài Facebook đều do hai đường này lệch nhịp. Vì
 vậy, bộ gõ nào xoá rồi viết **chỉ bằng một đường** là bộ gõ đáng học.
 
-## 18 bộ gõ, năm cách
+## 22 bộ gõ, năm cách
 
 <div class="table-scroll">
 
 | Cách đưa chữ vào app                                                             | Bộ gõ                                                                                                                                                                                                                                                                                                                                               |
 | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Một đường: nhờ app xoá chữ quanh con trỏ (surrounding text), rồi chèn chữ mới    | [Funput](https://github.com/Funput/Funput), [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final), [CanType](https://github.com/LumeWorks/CanType), [pinakey](https://github.com/trananhtung/pinakey) (chế độ phụ), [vnkey](https://github.com/marixdev/vnkey), [telebit](https://github.com/sonnam0904/telebit)            |
-| Preedit nhưng tắt gạch chân, cho giống chữ thường                                | [pinakey](https://github.com/trananhtung/pinakey) (mặc định), [TypeVN](https://github.com/vithanhlam/TypeVN), [vietc](https://github.com/vndangkhoa/vietc)                                                                                                                                                                                          |
+| Một đường: nhờ app xoá chữ quanh con trỏ (surrounding text), rồi chèn chữ mới    | [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (chế độ phụ), [Funput](https://github.com/Funput/Funput), [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final), [CanType](https://github.com/LumeWorks/CanType), [pinakey](https://github.com/trananhtung/pinakey) (chế độ phụ), [vnkey](https://github.com/marixdev/vnkey), [telebit](https://github.com/sonnam0904/telebit)            |
+| Preedit: chữ đang gõ nằm tạm trong ô tới khi xong từ, có hoặc không gạch chân    | [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey), [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo), [ibus-unikey](https://github.com/vn-input/ibus-unikey), [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (mặc định), [pinakey](https://github.com/trananhtung/pinakey) (mặc định), [TypeVN](https://github.com/vithanhlam/TypeVN), [vietc](https://github.com/vndangkhoa/vietc)                                                                                                                                                                                          |
 | Tự làm bộ gõ Wayland riêng, gõ bằng bàn phím ảo mang bảng phím chữ Việt          | [vi-ime](https://github.com/nhanth87/vi-ime)                                                                                                                                                                                                                                                                                                        |
-| Hai đường: bấm Backspace (hoặc bôi đen) qua uinput, rồi commit, canh nhịp bằng đồng hồ hoặc tin báo của app | [skey](https://github.com/collyn/skey), [ArecaIME](https://github.com/xhkzeroone/ArecaIME), [VMK](https://github.com/thanhpy2009/VMK), [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad), [fcitx5-lotus](https://github.com/LotusInputMethod/fcitx5-lotus), Ngó Sen lúc đó |
+| Hai đường: bấm Backspace (hoặc bôi đen) qua uinput, forward key hoặc XTest, rồi commit, canh nhịp bằng đồng hồ hoặc tin báo của app | [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (chế độ phụ), [skey](https://github.com/collyn/skey), [ArecaIME](https://github.com/xhkzeroone/ArecaIME), [VMK](https://github.com/thanhpy2009/VMK), [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad), [fcitx5-lotus](https://github.com/LotusInputMethod/fcitx5-lotus), Ngó Sen lúc đó |
 | X11: đổi bảng phím cho từng chữ rồi bấm                                          | [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) (bản cũ), nhánh X11 của Unikey-Wayland-Final                                                                                                                                                                                                                                     |
 
 </div>
 
 Hai bộ gõ không đọc được: [UniLume](https://github.com/dismonjames/UniLume) không có mã và đã chuyển
-thành CanType; codekeyvn thì link trong danh sách trả về lỗi 404.
+thành CanType; link codekeyvn trong danh sách gõ sai tên tài khoản nên trả về lỗi 404. Repo thật là
+[codekeyvn](https://github.com/toilaai2212hp22-lgtm/codekeyvn), bài này chưa nghiên cứu sâu.
 
 ## Năm cách, người dùng thấy gì
 
@@ -44,16 +47,16 @@ thành CanType; codekeyvn thì link trong danh sách trả về lỗi 404.
 bảo app xoá đúng phần cần bỏ, rồi chèn chữ mới. Tất cả đi một đường nên không lệch nhịp. Nhưng cách này
 chỉ chạy tốt khi app báo đúng surrounding text, mà nhiều app báo sai hoặc không báo.
 
-**Preedit, nhưng tắt gạch chân.** Chữ đang gõ nằm tạm trong ô cho tới khi xong từ, như chế độ Preedit
-của Ngó Sen. Bộ gõ xin app đừng gạch chân để trông giống chữ thường. App có chiều theo hay không thì tuỳ
-từng app.
+**Preedit.** Chữ đang gõ nằm tạm trong ô cho tới khi xong từ, như chế độ Preedit của Ngó Sen. fcitx5-unikey,
+fcitx5-bamboo và ibus-unikey mặc định gạch chân phần này. Các bộ gõ còn lại trong nhóm xin app đừng gạch chân để trông giống chữ thường. App có chiều theo hay không thì
+tuỳ từng app.
 
 **Tự làm bộ gõ Wayland riêng.** Bộ gõ không chạy trong fcitx5 mà tự nói chuyện với Wayland. Lệnh xoá và
 lệnh chèn tới app cùng một lần. Cách này chỉ chạy trên compositor có input-method-v2 và bàn phím ảo của
 Wayland, như Sway và Hyprland; KDE chưa có hai phần đó.
 
-**Hai đường: bấm Backspace rồi gõ chữ mới.** Bộ gõ bấm Backspace qua bàn phím ảo, rồi commit chữ mới
-theo đường riêng. Chạy được ở gần như mọi app, nhưng hai đường có thể lệch nhịp, và bàn phím ảo uinput
+**Hai đường: bấm Backspace rồi gõ chữ mới.** Bộ gõ bấm Backspace qua bàn phím ảo (hoặc nhờ fcitx5,
+IBus chuyển phím Backspace tới app), rồi commit chữ mới theo đường riêng. Chạy được ở gần như mọi app, nhưng hai đường có thể lệch nhịp, và bàn phím ảo uinput
 cần quyền đặc biệt trên máy.
 
 **Đổi bảng phím rồi bấm (X11).** Với mỗi chữ có dấu, bộ gõ đổi tạm bảng phím rồi bấm phím. Cách này
@@ -117,6 +120,24 @@ thường, đây là đường dự phòng rẻ cho những ô khó như Messeng
 chữ trước con trỏ có kết thúc bằng đúng chữ nó vừa gõ không. App không báo nội dung ô thì nó chỉ chèn,
 không bao giờ xoá.
 
+## Bốn bộ gõ có sẵn trong distro
+
+- [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey): do nhóm làm fcitx5 giữ. Có gói trong Debian,
+  Ubuntu, Fedora, Arch, openSUSE và NixOS. Gõ bằng preedit, có tuỳ chọn bỏ gạch chân. Một tuỳ chọn bật
+  sẵn cho nó đọc surrounding text để gõ tiếp vào từ ngay trước con trỏ. Tuỳ chọn sửa thẳng chữ trong ô
+  vẫn ghi là thử nghiệm và tắt sẵn.
+- [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo): cũng do nhóm làm fcitx5 giữ, dùng chung lõi
+  bamboo-core với ibus-bamboo. Có gói trong Debian, Ubuntu, Arch và NixOS. Chỉ gõ bằng preedit, có tuỳ
+  chọn bỏ gạch chân.
+- [ibus-unikey](https://github.com/vn-input/ibus-unikey): chỉ gõ bằng preedit, luôn gạch chân. Commit
+  cuối từ tháng 7/2025, bản cuối từ năm 2020, nhưng vẫn có gói trong hầu hết distro, kể cả Ubuntu 26.04.
+- [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo): nhiều cách gõ nhất, chọn được cho từng app.
+  Mặc định là preedit không gạch chân. Các chế độ phụ gồm surrounding text, bấm Backspace qua IBus (một
+  chế độ gửi cả chữ mới thành phím), bôi đen bằng Shift+mũi tên trái rồi gõ đè, và trên X11 thì bấm phím
+  giả bằng XTest. Các chế độ bấm phím đều chờ một khoảng cố định giữa lúc xoá và lúc commit. Có gói trong
+  Fedora, AUR và NixOS. README ghi dự án đã lâu không tiến triển, có thể không được duy trì nữa, và gợi ý
+  dùng fcitx5-unikey thay thế.
+
 ## Các bộ gõ còn lại
 
 Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc không có cơ chế chống mất chữ nào khác.
@@ -148,6 +169,38 @@ chính fcitx5 thay vì qua bàn phím ảo, nên không cần uinput server nữ
 Từ ngày 09/10/2026, hướng bàn phím ảo cũng thôi làm, vì Ngó Sen chỉ làm cho fcitx5. Chuyện này kể ở bài
 [Ngó Sen chỉ làm cho fcitx5](/blog/chi-lam-cho-fcitx5/).
 
+## Bộ gõ mới, chưa nghiên cứu sâu
+
+Các bộ gõ dưới đây có commit trong 30 ngày tính tới 14/10/2026. Cách gõ ghi theo README của từng dự án.
+
+Chạy trên fcitx5:
+
+- [Clak](https://github.com/versenilvis/ClakIME): có gói .deb, AUR và Nix.
+- [BambooMintKey](https://github.com/thatislg/BambooMintKey): lõi viết bằng F#, có bản Flatpak cho Steam Deck.
+- [Gõ Nhanh](https://github.com/khaphanspace/gonhanh.org): bản chính cho macOS, addon fcitx5 còn là bản beta.
+- [VietnameseKey](https://github.com/dangnhatphi001-vibe-AI/vietnamesekey): gõ bằng preedit.
+
+Chạy trên IBus:
+
+- [GoTV](https://github.com/isthaison/gotv): lõi viết bằng C, có bản cho Windows và macOS.
+- [ibus-vie](https://github.com/IDev4life/ibus-vie): viết bằng Rust, có kho apt riêng.
+- [ibus-gokien](https://github.com/libgokien/ibus-gokien): viết bằng Rust, mới có Telex.
+- [ibus-telex](https://github.com/manhavn/ibus-telex) và [rs-telex](https://github.com/duyphan0503/rs-telex):
+  viết bằng Rust, nói chuyện thẳng với IBus qua D-Bus.
+
+Chạy trên cả fcitx5 và IBus:
+
+- [TextVN](https://github.com/hunglinhpt/TextVN): preedit không gạch chân, có bản cho Windows và macOS.
+- [UVie](https://github.com/uvie-project/uvie-linux): có thêm service đọc bàn phím rồi gõ ra qua uinput.
+
+Không qua fcitx5 hay IBus:
+
+- [SenKey](https://github.com/coderabangai/senkey): đọc thẳng bàn phím, gõ ra qua uinput hoặc bàn phím ảo
+  của Wayland.
+- [VNIKey](https://github.com/hideonhp/vnikey-linux): input-method-v2 trên Wayland, XTest trên X11, và một
+  engine IBus cho GNOME.
+- [Mimi IME](https://github.com/Mimi-IME/mimi-ime): bộ gõ Wayland chỉ gõ bằng preedit, cài qua Nix.
+
 ## Phiên bản mã đã đọc
 
 <div class="table-scroll">
@@ -167,5 +220,9 @@ Từ ngày 09/10/2026, hướng bàn phím ảo cũng thôi làm, vì Ngó Sen c
 | [vnkey](https://github.com/marixdev/vnkey/tree/b75cdc0)                          | `b75cdc0` | 03/04/2026 |
 | [telebit](https://github.com/sonnam0904/telebit/tree/969efe2)                    | `969efe2` | 15/09/2026 |
 | [VMK](https://github.com/thanhpy2009/VMK/tree/4973ec3)                           | `4973ec3` | 20/09/2026 |
+| [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey/tree/ed9170c)             | `ed9170c` | 06/09/2026 |
+| [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo/tree/fb02a24)             | `fb02a24` | 06/09/2026 |
+| [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo/tree/49e03d7)          | `49e03d7` | 19/05/2026 |
+| [ibus-unikey](https://github.com/vn-input/ibus-unikey/tree/ede78c3)              | `ede78c3` | 21/07/2025 |
 
 </div>
