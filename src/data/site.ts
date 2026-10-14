@@ -461,7 +461,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 // Mirrors the "Chỉ cho fcitx5" section of README.md, which replaced the roadmap.
 export const SCOPE = {
   title: 'Chỉ cho fcitx5',
-  text: 'Ngó Sen chỉ làm cho fcitx5. Bản IBus và bản chạy thẳng trên Sway, Hyprland mà không qua fcitx5 đã bỏ; trên Sway và Hyprland vẫn gõ được qua fcitx5.',
+  text: 'Ngó Sen chỉ làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce lẫn Sway, Hyprland, có nhiều tính năng và nhẹ RAM. Làm cho một bộ gõ nền cũng đỡ công giữ nhiều bản.',
   branch: 'feat/ibus-engine',
 };
 
