@@ -37,6 +37,7 @@ export default defineConfig({
   redirects: {
     '/blog/may-chu-nen-chi-doc-chuot': '/blog/bo-uinput-server/',
     '/blog/dong-goi-cho-muoi-ban-linux': '/cai-dat/',
+    '/blog/loi-gnome-shell-ubuntu-26-04': '/blog/ubuntu-26-04-go-tieng-viet-ra-chu-sai/',
     '/khac-gi-ban-goc': '/',
   },
 });

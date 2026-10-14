@@ -1,5 +1,5 @@
 ---
-title: "Ubuntu 26.04: Chrome gõ ra tieêngếng và cách giúp Ubuntu sửa sớm"
+title: "Ubuntu 26.04 lỗi gõ tiếng Việt ra chữ sai với nhiều bộ gõ"
 description: "GNOME Shell trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi, nên Chrome gõ ra tieêngếng. Bản sửa đã có; còn chờ Ubuntu đưa vào bản cập nhật."
 pubDate: 2026-10-09
 ---
