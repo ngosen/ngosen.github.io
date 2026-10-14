@@ -48,9 +48,11 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>Tải gói về và so hash SHA-256 với file <code>SHA256SUMS</code>. Không khớp thì không cài.</li>
     <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper); lúc này máy hỏi mật khẩu sudo.</li>
     <li>
-      Trên GNOME và trên các desktop X11 chọn bộ gõ bằng im-config, như Xfce, Cinnamon, MATE (MX Linux,
-      Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản, thêm Ngó Sen vào danh sách bộ gõ và đặt phím bật
-      tiếng Việt là Ctrl+Shift, trừ khi đã tự chọn phím khác cho fcitx5.
+      Trên GNOME, KDE Plasma (Wayland) và các desktop X11 chọn bộ gõ bằng im-config, như Xfce, Cinnamon,
+      MATE (MX Linux, Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản, thêm Ngó Sen vào danh sách bộ gõ và
+      đặt phím bật tiếng Việt là Ctrl+Shift, trừ khi đã tự chọn phím khác cho fcitx5. Trên KDE Plasma,
+      lệnh cài chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual Keyboard), để app Qt như
+      Kate, Dolphin cũng gõ được.
     </li>
   </ol>
   <p>
@@ -117,10 +119,10 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
 
   <h2 id="sau-khi-cai">Cài xong</h2>
   <p>
-    Cài bằng lệnh một dòng trên GNOME hoặc Xfce, Cinnamon, MATE thì đăng xuất rồi đăng nhập lại, sau đó bấm
-    Ctrl+Shift để bật tiếng Việt.
+    Cài bằng lệnh một dòng trên GNOME, KDE Plasma (Wayland) hoặc Xfce, Cinnamon, MATE thì đăng xuất rồi đăng
+    nhập lại, sau đó bấm Ctrl+Shift để bật tiếng Việt.
   </p>
-  <p>Trên desktop khác như KDE, hoặc khi cài gói bằng tay, còn ba việc:</p>
+  <p>Trên desktop khác, hoặc khi cài gói bằng tay, còn ba việc:</p>
   <ol>
     <li>
       Khởi động lại fcitx5:
@@ -128,7 +130,10 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
       Trên KDE Wayland: đăng xuất rồi đăng nhập lại, vì KDE tự mở fcitx5 và lệnh trên không thay được.
     </li>
     <li>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</li>
-    <li>Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”.</li>
+    <li>
+      Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”. Từ bản 1.4.1, lệnh cài
+      một dòng tự chọn mục này, chỉ khi cài gói bằng tay mới phải làm.
+    </li>
   </ol>
   <p>
     Trong cửa sổ cài đặt Ngó Sen, trang Gõ chữ, click nút <strong>Gõ Sen</strong> ở hàng Chế độ gõ. Chế độ
@@ -248,6 +253,10 @@ sudo cmake --install build`}</code></pre>
   <p>
     Trên Xfce, Cinnamon, MATE, lệnh gỡ trả bộ gõ về mặc định của máy. fcitx5 vẫn còn cài nên có thể vẫn tự
     chạy, chỉ gõ được tiếng Anh. Muốn gỡ hẳn thì chạy <code>sudo apt remove fcitx5</code>.
+  </p>
+  <p>
+    Trên KDE, lệnh gỡ để fcitx5 làm bàn phím ảo như cũ, vì fcitx5 có thể đang dùng cho bộ gõ khác. Muốn bỏ
+    thì chọn None ở System Settings, mục Virtual Keyboard.
   </p>
   <p>Gỡ bằng tay:</p>
   <ol>
