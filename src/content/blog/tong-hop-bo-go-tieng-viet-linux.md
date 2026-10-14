@@ -8,16 +8,16 @@ updatedDate: 2026-10-14
 Khi gõ `as` ra `á`, mọi bộ gõ đều phải làm cùng một việc: xoá `a` rồi viết `á`. Cách làm việc đó quyết
 định chuyện người dùng có bị mất chữ, lặp chữ hay không.
 
-Ngày 24/09/2026, để tìm câu trả lời, người giữ dự án xem 18 bộ gõ trong
+Ngày 24/09/2026, người giữ dự án xem mỗi bộ gõ làm việc đó ra sao. Danh sách là 18 bộ gõ trong
 [danh sách cộng đồng](https://docs.google.com/spreadsheets/d/1DhW_jVM3IPSR1fX2CJyZstNFqoHDL3u6aLOrj2tYDk4/edit?gid=1097134275)
-(kể cả Ngó Sen) và đọc được mã của 16 bộ. Không bộ gõ nào được cài hay chạy, chỉ đọc mã. Bản đầy đủ, ghi
+(kể cả Ngó Sen); đọc được mã của 16 bộ. Không bộ gõ nào được cài hay chạy, chỉ đọc mã. Bản đầy đủ, ghi
 rõ file và dòng đã đọc, nằm trong [repo chính](https://github.com/ngosen/ngosen/blob/main/NGHIEN-CUU-BO-GO-KHAC.md).
 Mã của các bộ gõ có thể đã đổi sau ngày đó; phiên bản mã đã đọc (commit) ghi ở bảng cuối bài.
 
 Ngày 14/10/2026, bài có thêm bốn bộ gõ có sẵn gói trong distro, vốn không có trong danh sách cộng đồng,
 và một danh sách bộ gõ mới đang được làm.
 
-## Vì sao hỏi câu này
+## Vì sao đọc mã bộ gõ khác
 
 Lúc đó Ngó Sen xoá chữ bằng **hai đường**: một bàn phím ảo bấm Backspace, còn chữ mới đi đường riêng
 của bộ gõ (commit). Lỗi mất chữ ở Messenger và ô đăng bài Facebook đều do hai đường này lệch nhịp. Vì
@@ -37,8 +37,8 @@ vậy, bộ gõ nào xoá rồi viết **chỉ bằng một đường** là bộ
 
 </div>
 
-Hai bộ gõ không đọc được: [UniLume](https://github.com/dismonjames/UniLume) không có mã và đã chuyển
-thành CanType; link codekeyvn trong danh sách gõ sai tên tài khoản nên trả về lỗi 404. Repo thật là
+Hai bộ gõ không đọc được. [UniLume](https://github.com/dismonjames/UniLume) không có mã và đã chuyển
+thành CanType. Link codekeyvn trong danh sách gõ sai tên tài khoản nên trả về lỗi 404; repo thật là
 [codekeyvn](https://github.com/toilaai2212hp22-lgtm/codekeyvn), bài này chưa nghiên cứu sâu.
 
 ## Năm cách, người dùng thấy gì
@@ -47,17 +47,17 @@ thành CanType; link codekeyvn trong danh sách gõ sai tên tài khoản nên t
 bảo app xoá đúng phần cần bỏ, rồi chèn chữ mới. Tất cả đi một đường nên không lệch nhịp. Nhưng cách này
 chỉ chạy tốt khi app báo đúng surrounding text, mà nhiều app báo sai hoặc không báo.
 
-**Preedit.** Chữ đang gõ nằm tạm trong ô cho tới khi xong từ, như chế độ Preedit của Ngó Sen. fcitx5-unikey,
-fcitx5-bamboo và ibus-unikey mặc định gạch chân phần này. Các bộ gõ còn lại trong nhóm xin app đừng gạch chân để trông giống chữ thường. App có chiều theo hay không thì
-tuỳ từng app.
+**Preedit.** Chữ đang gõ nằm tạm trong ô cho tới khi xong từ, như chế độ Preedit của Ngó Sen.
+fcitx5-unikey, fcitx5-bamboo và ibus-unikey mặc định gạch chân phần này. Các bộ gõ khác trong hàng này
+của bảng xin app đừng gạch chân để trông giống chữ thường. App có chiều theo hay không thì tuỳ từng app.
 
 **Tự làm bộ gõ Wayland riêng.** Bộ gõ không chạy trong fcitx5 mà tự nói chuyện với Wayland. Lệnh xoá và
 lệnh chèn tới app cùng một lần. Cách này chỉ chạy trên compositor có input-method-v2 và bàn phím ảo của
 Wayland, như Sway và Hyprland; KDE chưa có hai phần đó.
 
-**Hai đường: bấm Backspace rồi gõ chữ mới.** Bộ gõ bấm Backspace qua bàn phím ảo (hoặc nhờ fcitx5,
-IBus chuyển phím Backspace tới app), rồi commit chữ mới theo đường riêng. Chạy được ở gần như mọi app, nhưng hai đường có thể lệch nhịp, và bàn phím ảo uinput
-cần quyền đặc biệt trên máy.
+**Hai đường: bấm Backspace rồi gõ chữ mới.** Bộ gõ bấm Backspace qua bàn phím ảo, hoặc nhờ fcitx5 hay
+IBus chuyển phím Backspace tới app, rồi commit chữ mới theo đường riêng. Cách này chạy được ở gần như mọi
+app, nhưng hai đường có thể lệch nhịp, và bàn phím ảo uinput cần quyền đặc biệt trên máy.
 
 **Đổi bảng phím rồi bấm (X11).** Với mỗi chữ có dấu, bộ gõ đổi tạm bảng phím rồi bấm phím. Cách này
 không dùng được trên Wayland.
@@ -70,7 +70,8 @@ không dùng được trên Wayland.
 surrounding text rồi commit, cùng một đường, không dùng uinput.
 
 Funput gõ luôn, không chờ trước. Sau đó nó đọc nội dung ô mà app báo lại và xếp vào ba loại: app làm
-đúng, app bỏ qua lệnh xoá, hoặc app chưa trả lời. App nào bỏ qua lệnh xoá thì **riêng app đó** chuyển sang gõ bằng preedit, và Funput nhớ tên app đó cho lần sau.
+đúng, app bỏ qua lệnh xoá, hoặc app chưa trả lời. App nào bỏ qua lệnh xoá thì **riêng app đó** chuyển
+sang gõ bằng preedit, và Funput nhớ tên app đó cho lần sau.
 
 README của họ ghi vài số đo, Ngó Sen chưa kiểm lại: app chỉ trả lời 61% số lần commit; chờ trả lời từng
 lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau không nghỉ thì ra sai chữ.
@@ -80,8 +81,9 @@ lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau k
 [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final) là bộ gõ Wayland riêng,
 dùng giao thức input-method-v1, đúng giao thức mà KWin của KDE có. Nó xoá rồi chèn, một đường.
 
-Sau mỗi lần thay chữ, nó đánh dấu "đang chờ", và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô báo lại đúng đuôi chữ mong đợi thì hàng mới được thả ra. Thấy dấu hiệu lệnh xoá bị bỏ qua thì làm lại,
-tối đa 3 lần. Đồng hồ 750 ms chỉ để phòng khi ô không báo lại.
+Sau mỗi lần thay chữ, nó đánh dấu "đang chờ", và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô báo lại
+đúng đuôi chữ mong đợi thì hàng mới được thả ra. Thấy dấu hiệu lệnh xoá bị bỏ qua thì nó làm lại, tối đa
+3 lần. Đồng hồ 750 ms chỉ để phòng khi ô không báo lại.
 
 Mã của họ có ghi chú: trên KDE, lệnh xoá và lệnh commit tới app thành hai lần riêng.
 
@@ -120,40 +122,23 @@ thường, đây là đường dự phòng rẻ cho những ô khó như Messeng
 chữ trước con trỏ có kết thúc bằng đúng chữ nó vừa gõ không. App không báo nội dung ô thì nó chỉ chèn,
 không bao giờ xoá.
 
-## Bốn bộ gõ có sẵn trong distro
-
-- [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey): do nhóm làm fcitx5 giữ. Có gói trong Debian,
-  Ubuntu, Fedora, Arch, openSUSE và NixOS. Gõ bằng preedit, có tuỳ chọn bỏ gạch chân. Một tuỳ chọn bật
-  sẵn cho nó đọc surrounding text để gõ tiếp vào từ ngay trước con trỏ. Tuỳ chọn sửa thẳng chữ trong ô
-  vẫn ghi là thử nghiệm và tắt sẵn.
-- [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo): cũng do nhóm làm fcitx5 giữ, dùng chung lõi
-  bamboo-core với ibus-bamboo. Có gói trong Debian, Ubuntu, Arch và NixOS. Chỉ gõ bằng preedit, có tuỳ
-  chọn bỏ gạch chân.
-- [ibus-unikey](https://github.com/vn-input/ibus-unikey): chỉ gõ bằng preedit, luôn gạch chân. Commit
-  cuối từ tháng 7/2025, bản cuối từ năm 2020, nhưng vẫn có gói trong hầu hết distro, kể cả Ubuntu 26.04.
-- [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo): nhiều cách gõ nhất, chọn được cho từng app.
-  Mặc định là preedit không gạch chân. Các chế độ phụ gồm surrounding text, bấm Backspace qua IBus (một
-  chế độ gửi cả chữ mới thành phím), bôi đen bằng Shift+mũi tên trái rồi gõ đè, và trên X11 thì bấm phím
-  giả bằng XTest. Các chế độ bấm phím đều chờ một khoảng cố định giữa lúc xoá và lúc commit. Có gói trong
-  Fedora, AUR và NixOS. README ghi dự án đã lâu không tiến triển, có thể không được duy trì nữa, và gợi ý
-  dùng fcitx5-unikey thay thế.
-
 ## Các bộ gõ còn lại
 
-Những bộ gõ này cùng họ hai đường với Ngó Sen lúc đó, hoặc không có cơ chế chống mất chữ nào khác.
+Phần lớn bộ gõ dưới đây đi hai đường như Ngó Sen lúc đó. Số còn lại không có cách chống mất chữ nào
+ngoài cách đã ghi trong bảng.
 
 - [skey](https://github.com/collyn/skey): fcitx5, lõi Rust, uinput. Bấm thừa một Backspace làm mốc, đồng
   hồ tự chỉnh theo trung bình, theo dõi ô qua AT-SPI và có bộ test dài 1.481 dòng. Luật polkit của nó cho
   mọi người dùng trên máy quyền nạp lại service.
 - [ArecaIME](https://github.com/xhkzeroone/ArecaIME): 5 cách thay chữ đổi được, đều canh nhịp bằng đồng
   hồ, tự tăng 5 ms mỗi bước tới 50 ms. Có cách bôi đen bằng Shift+mũi tên trái rồi gõ đè, ghi rõ là để
-  trị Facebook, và cũng chốt bằng đồng hồ. Luật udev
-  cho người dùng quyền đọc cả chuột và touchpad. Lõi Go để ở dạng file đã build sẵn.
+  trị Facebook, và cũng chốt bằng đồng hồ. Luật udev cho người dùng quyền đọc cả chuột và touchpad. Lõi
+  Go để ở dạng file đã build sẵn.
 - [VMK](https://github.com/thanhpy2009/VMK): bấm thừa một Backspace rồi chờ cố định 20 ms.
-- [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad): có thêm chế độ gõ canh theo đồng hồ và tự
-  gửi tin xác nhận.
+- [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad): có thêm chế độ gõ canh theo đồng hồ và
+  tự gửi tin xác nhận.
 - [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) (bản cũ): chạy trên X11, đổi bảng
-  phím cho từng chữ rồi bấm, có nghỉ giữa các bước. Không áp được cho Wayland.
+  phím cho từng chữ rồi bấm, có nghỉ giữa các bước. Không dùng được trên Wayland.
 - [vietc](https://github.com/vndangkhoa/vietc), [vnkey](https://github.com/marixdev/vnkey),
   [telebit](https://github.com/sonnam0904/telebit): một đường, bằng surrounding text hoặc preedit.
 
@@ -168,6 +153,28 @@ chính fcitx5 thay vì qua bàn phím ảo, nên không cần uinput server nữ
 
 Từ ngày 09/10/2026, hướng bàn phím ảo cũng thôi làm, vì Ngó Sen chỉ làm cho fcitx5. Chuyện này kể ở bài
 [Ngó Sen chỉ làm cho fcitx5](/blog/chi-lam-cho-fcitx5/).
+
+## Bốn bộ gõ có sẵn trong distro
+
+Bốn bộ gõ này có gói trong kho của nhiều distro nhưng không có trong danh sách cộng đồng. Mã được đọc
+ngày 14/10/2026.
+
+- [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey) do nhóm làm fcitx5 giữ, có gói trong Debian,
+  Ubuntu, Fedora, Arch, openSUSE và NixOS. Nó gõ bằng preedit, có tuỳ chọn bỏ gạch chân. Một tuỳ chọn bật
+  sẵn cho nó đọc surrounding text để gõ tiếp vào từ ngay trước con trỏ. Tuỳ chọn sửa thẳng chữ trong ô
+  vẫn ghi là thử nghiệm và tắt sẵn.
+- [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo) cũng do nhóm làm fcitx5 giữ, dùng chung lõi
+  bamboo-core với ibus-bamboo, có gói trong Debian, Ubuntu, Arch và NixOS. Nó chỉ gõ bằng preedit, có tuỳ
+  chọn bỏ gạch chân.
+- [ibus-unikey](https://github.com/vn-input/ibus-unikey) chỉ gõ bằng preedit, luôn gạch chân. Commit cuối
+  từ tháng 7/2025, bản cuối từ năm 2020, nhưng nó vẫn có gói trong hầu hết distro, kể cả Ubuntu 26.04.
+- [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) có nhiều cách gõ nhất, chọn được cho từng
+  app, mặc định là preedit không gạch chân. Các chế độ phụ gồm surrounding text, bấm Backspace qua IBus
+  (một chế độ gửi cả chữ mới thành phím), bôi đen bằng Shift+mũi tên trái rồi gõ đè, và trên X11 thì bấm
+  phím giả bằng XTest. Các chế độ bấm phím đều chờ một khoảng cố định giữa lúc xoá và lúc commit.
+
+  Nó có gói trong Fedora, AUR và NixOS. README ghi dự án đã lâu không tiến triển, có thể không được duy
+  trì nữa, và gợi ý dùng fcitx5-unikey thay thế.
 
 ## Bộ gõ mới, chưa nghiên cứu sâu
 
