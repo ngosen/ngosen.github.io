@@ -1,12 +1,12 @@
 ---
 title: "Ngó Sen 1.4 tối ưu lại lệnh cài và bỏ bớt tuỳ chọn thừa"
-description: "Trên GNOME, lệnh cài một dòng tự đặt fcitx5 thay IBus, thêm Ngó Sen vào danh sách bộ gõ và ẩn icon fcitx5 thừa. Cửa sổ cấu hình bớt mục chỉ dùng để dò lỗi."
+description: "Trên GNOME và Xfce, Cinnamon, MATE, lệnh cài một dòng tự đặt fcitx5 làm bộ gõ và thêm Ngó Sen. Có thêm lệnh gỡ, cửa sổ cấu hình bớt mục thừa."
 pubDate: 2026-10-14
 draft: true
 ---
 
 Ngó Sen 1.4 tối ưu lại nhiều chỗ. Lệnh cài một dòng tự làm các bước cấu hình mà trước đây người dùng
-phải làm tay, nhất là trên GNOME. Các tuỳ chọn và đoạn code không còn cần thì được bỏ đi.
+phải làm tay, trên GNOME và trên các desktop X11 như Xfce, Cinnamon. Các tuỳ chọn và đoạn code không còn cần thì được bỏ đi.
 
 ## Cài trên GNOME
 
@@ -38,7 +38,16 @@ Gói fcitx5 cài kèm vài icon trong danh sách app mà người dùng Ngó Sen
 
 Icon chỉ ẩn với tài khoản đang chạy lệnh, app vẫn nằm nguyên trên máy.
 
-### Nhiều tài khoản và cài tay
+## Cài trên Xfce, Cinnamon, MATE
+
+Trên các desktop X11 chọn bộ gõ bằng im-config, như Xfce, Cinnamon, MATE (MX Linux, Linux Mint), lệnh cài
+cũng tự đặt fcitx5 làm bộ gõ cho tài khoản: fcitx5 tự chạy khi đăng nhập, app gõ qua fcitx5. Lệnh thêm Ngó
+Sen vào danh sách bộ gõ và đặt phím Ctrl+Shift như trên GNOME.
+
+Trên Debian và Ubuntu, lệnh cài luôn cài kèm `im-config` và các gói giúp app GTK, Qt gõ được qua fcitx5,
+kể cả trên máy tắt cài gói đi kèm như MX Linux.
+
+## Nhiều tài khoản và cài tay
 
 Lệnh cài chỉ đổi cấu hình của tài khoản đang chạy nó. Máy có nhiều tài khoản thì đăng nhập vào từng tài
 khoản rồi chạy lại lệnh cài.
@@ -52,7 +61,7 @@ curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bas
 ## Gỡ bằng một dòng lệnh
 
 Lệnh cài có thêm `--uninstall`. Nó gỡ Ngó Sen, và trên GNOME thì trả lại những gì lệnh cài đã đổi, để lần
-đăng nhập sau GNOME dùng lại IBus:
+đăng nhập sau GNOME dùng lại IBus. Trên Xfce, Cinnamon, MATE, lệnh gỡ trả lại bộ gõ đã chọn trước khi cài:
 
 ```
 curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash -s -- --uninstall
@@ -71,11 +80,20 @@ Một phần code không còn chỗ nào dùng cũng được bỏ. Người dù
 
 ## Sửa lỗi
 
+Gỡ rồi cài lại trên GNOME không còn làm mất Ngó Sen khỏi danh sách bộ gõ.
+
 Gói Ngó Sen dựng lại được. Kho mã lõi Go mà Ngó Sen dùng đã bị xoá khỏi GitHub, nên mọi lần dựng gói đều
 hỏng ngay bước tải mã. Lõi Go giờ lấy từ bản sao [ngosen/bamboo-go-core](https://github.com/ngosen/bamboo-go-core),
 cùng đúng bản code như trước.
 
+## Đã test trên máy nào
+
+Lệnh cài được chạy trên máy ảo Ubuntu 26.04 (GNOME Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon X11)
+và MX Linux 25 (Xfce X11), với bản dựng từ nhánh `next`. Sau khi đăng nhập lại, bấm Ctrl+Shift rồi gõ Telex
+`tieengs vieetj` ra `tiếng việt` trong ô chữ GTK3, 3/3 lần trên mỗi máy. Lệnh gỡ được test trên Ubuntu 26.04
+(IBus chạy lại) và MX Linux 25.
+
 ## Cập nhật
 
-Chạy lại lệnh cài ở [trang Cài đặt](/cai-dat/). Cấu hình cũ giữ nguyên. Trên GNOME, đăng xuất rồi đăng
-nhập lại để các bước cấu hình mới có tác dụng.
+Chạy lại lệnh cài ở [trang Cài đặt](/cai-dat/). Cấu hình cũ giữ nguyên. Trên GNOME và Xfce, Cinnamon, MATE,
+đăng xuất rồi đăng nhập lại để các bước cấu hình mới có tác dụng.
