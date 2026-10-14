@@ -226,7 +226,12 @@ const jsonLd = {
         với file <code>SHA256SUMS</code> rồi cài bằng trình quản lý gói.
         <a href="/cai-dat/#tai-tay">Chọn đúng file cho từng distro</a>.
       </p>
-      <h3 class="after-title">Cài xong, còn ba việc</h3>
+      <p class="install-manual">
+        Trên GNOME và Xfce, Cinnamon, MATE, lệnh cài tự đặt fcitx5 làm bộ gõ và thêm Ngó Sen. Cài xong chỉ cần
+        đăng xuất rồi đăng nhập lại, sau đó bấm Ctrl+Shift để bật tiếng Việt.
+        <a href="/cai-dat/#mot-dong-lenh">Lệnh cài làm những gì</a>.
+      </p>
+      <h3 class="after-title">Trên desktop khác như KDE, còn ba việc</h3>
       <ol class="after">
         <li>
           <span class="key" aria-hidden="true">1</span>
@@ -253,13 +258,13 @@ const jsonLd = {
       </ol>
       <div class="install-notes">
         <p>
-          <strong>Ubuntu 26.04:</strong> cài xong, đăng xuất rồi đăng nhập lại, sau đó chạy một lần
-          <code>gnome-extensions enable forward-keys@ngosen.github.io</code>. Extension này sửa lỗi GNOME
-          làm mất phím Backspace.
+          <strong>Ubuntu 26.04:</strong> lệnh cài tự bật extension sửa lỗi GNOME làm mất phím Backspace.
+          Cài gói bằng tay thì đăng xuất rồi đăng nhập lại, sau đó chạy một lần
+          <code>gnome-extensions enable forward-keys@ngosen.github.io</code>.
         </p>
         <p>
-          <strong>Gỡ:</strong> bỏ Ngó Sen khỏi danh sách bộ gõ, gỡ gói <code>fcitx5-ngosen</code>, rồi chạy
-          <code>fcitx5 -rd</code>. <a href="/cai-dat/#go">Lệnh gỡ cho từng distro</a>.
+          <strong>Gỡ:</strong> chạy lệnh cài với <code>--uninstall</code>. Trên GNOME, lệnh này trả lại
+          những gì lệnh cài đã đổi. <a href="/cai-dat/#go">Lệnh gỡ và cách gỡ tay</a>.
         </p>
       </div>
     </div>

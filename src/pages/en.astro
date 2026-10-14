@@ -33,7 +33,15 @@ const levels: Record<Level, string> = {
     with your package manager. Your configuration is kept. Its prompts are in Vietnamese: answer <kbd>c</kbd> to continue. The source is
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
-  <p>Then:</p>
+  <p>
+    On GNOME, and on X11 desktops that pick the input method with im-config such as Xfce, Cinnamon and
+    MATE, the script also makes fcitx5 the input method for your account, adds Ngó Sen to the input
+    method list and sets Ctrl+Shift to switch Vietnamese on, unless you already chose another key. Log out
+    and back in, then press Ctrl+Shift. On GNOME it also hides the fcitx5 launchers you do not need, and
+    adds the Input Method Panel extension when there is no system tray, as on Fedora. These steps apply to
+    the account that runs the script; add <code>--no-setup</code> to install the package only.
+  </p>
+  <p>On other desktops such as KDE, or after installing a package by hand:</p>
   <ol>
     <li>
       Restart fcitx5 with <code>fcitx5 -rd</code>. Do this again after every update. On KDE Wayland, log
@@ -61,10 +69,17 @@ const levels: Record<Level, string> = {
     />
   </picture>
   <p>
-    On Ubuntu 26.04, log out and back in after installing, then run
-    <code>gnome-extensions enable forward-keys@ngosen.github.io</code> once. The extension works around a
-    GNOME bug that drops the backspaces the input method sends.
+    On Ubuntu 26.04 the script turns on an extension that works around a GNOME bug that drops the
+    backspaces the input method sends. After installing a package by hand, log out and back in, then run
+    <code>gnome-extensions enable forward-keys@ngosen.github.io</code> once.
   </p>
+  <p>
+    To uninstall, run the script with <code>--uninstall</code>. On GNOME it also undoes what the script
+    changed, so GNOME uses IBus again after you log back in. On Xfce, Cinnamon and MATE it resets the
+    input method to the system default; fcitx5 stays installed and may still start, typing English only.
+  </p>
+  <pre
+    tabindex="0"><code>{`curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash -s -- --uninstall`}</code></pre>
   <p>
     To try unreleased changes, install the <a href={`${REPO}/releases/tag/next-build`}>test build</a>,
     built automatically whenever the <code>next</code> branch changes:
@@ -125,7 +140,11 @@ const levels: Record<Level, string> = {
     Linux Mint 22.3 (Cinnamon) and MX Linux 25.3 (Xfce) virtual machines. The Debian 13 package was
     installed in MX Linux 25.3, where Telex <code>vieejt</code> typed <code>việt</code> in a GTK terminal,
     and updating there from 1.0.0-1 and running <code>fcitx5 -rd</code> kept Ngó Sen in the input
-    method list.
+    method list. Release 1.4.0 mostly changes the one-line installer. It was run in Ubuntu 26.04 (GNOME
+    Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon, X11) and MX Linux 25 (Xfce, X11) virtual machines
+    with a build from the <code>next</code> branch: after logging back in, Ctrl+Shift and then Telex
+    <code>tieengs vieetj</code> typed <code>tiếng việt</code> in a GTK3 text field, 3 times out of 3 on
+    each machine. Uninstalling was tested in Ubuntu 26.04 (IBus came back) and MX Linux 25.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

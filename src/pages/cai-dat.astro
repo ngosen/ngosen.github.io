@@ -47,7 +47,25 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>In ra gói sẽ cài và hỏi lại. Trả lời <kbd>c</kbd> thì mới đi tiếp; bấm Enter là dừng.</li>
     <li>Tải gói về và so hash SHA-256 với file <code>SHA256SUMS</code>. Không khớp thì không cài.</li>
     <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper); lúc này máy hỏi mật khẩu sudo.</li>
+    <li>
+      Trên GNOME và trên các desktop X11 chọn bộ gõ bằng im-config, như Xfce, Cinnamon, MATE (MX Linux,
+      Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản, thêm Ngó Sen vào danh sách bộ gõ và đặt phím bật
+      tiếng Việt là Ctrl+Shift, trừ khi đã tự chọn phím khác cho fcitx5.
+    </li>
   </ol>
+  <p>
+    Trên GNOME, lệnh cài còn ẩn các icon fcitx5 thừa trong danh sách app và bật extension sửa lỗi gõ trên
+    GNOME 50.0 đến 50.3. GNOME không có khay hệ thống, như Fedora, thì lệnh cài thêm extension
+    <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a> để icon và menu bộ gõ hiện
+    trên thanh trên cùng. Trên Debian và Ubuntu, lệnh cài luôn cài kèm <code>im-config</code> và các gói
+    giúp app GTK, Qt gõ được qua fcitx5.
+  </p>
+  <p>
+    Các bước cấu hình chỉ áp dụng cho tài khoản đang chạy lệnh. Tài khoản khác trên cùng máy thì đăng nhập
+    vào đó rồi chạy lại lệnh cài. Muốn tự làm các bước đó thì thêm <code>--no-setup</code>, lệnh chỉ cài gói:
+  </p>
+  <pre
+    tabindex="0"><code>{`curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash -s -- --no-setup`}</code></pre>
   <p>
     Cập nhật từ bản cũ thì cấu hình giữ nguyên. Script làm gì thì đọc được trong
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
@@ -97,7 +115,12 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     vì bản Rust trong kho gói của các distro đó quá cũ. Hai bản gõ ra chữ như nhau.
   </p>
 
-  <h2 id="sau-khi-cai">Cài xong, còn ba việc</h2>
+  <h2 id="sau-khi-cai">Cài xong</h2>
+  <p>
+    Cài bằng lệnh một dòng trên GNOME hoặc Xfce, Cinnamon, MATE thì đăng xuất rồi đăng nhập lại, sau đó bấm
+    Ctrl+Shift để bật tiếng Việt.
+  </p>
+  <p>Trên desktop khác như KDE, hoặc khi cài gói bằng tay, còn ba việc:</p>
   <ol>
     <li>
       Khởi động lại fcitx5:
@@ -115,11 +138,11 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </p>
   <p>Kiểu gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.</p>
 
-  <h3 id="ubuntu-26-04">Ubuntu 26.04: bật extension sửa lỗi gõ</h3>
+  <h3 id="ubuntu-26-04">Ubuntu 26.04: extension sửa lỗi gõ</h3>
   <p>
     GNOME trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi, nên Chrome, Edge và app Electron gõ ra
-    <code>tieêngếng</code>. Gói Ngó Sen kèm một extension sửa lỗi này. Cài xong, đăng xuất rồi đăng nhập
-    lại, sau đó chạy một lần:
+    <code>tieêngếng</code>. Gói Ngó Sen kèm một extension sửa lỗi này. Lệnh cài một dòng tự bật extension
+    trên GNOME 50.0 đến 50.3. Nếu cài gói bằng tay, đăng xuất rồi đăng nhập lại, sau đó chạy một lần:
   </p>
   <pre tabindex="0"><code>gnome-extensions enable forward-keys@ngosen.github.io</code></pre>
   <p>
@@ -213,6 +236,20 @@ sudo cmake --install build`}</code></pre>
   </p>
 
   <h2 id="go">Gỡ cài đặt</h2>
+  <p>Một dòng lệnh, hỏi lại rồi mới gỡ:</p>
+  <pre
+    tabindex="0"><code>{`curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash -s -- --uninstall`}</code></pre>
+  <p>
+    Trên GNOME, lệnh này còn trả lại những gì lệnh cài đã đổi cho tài khoản đang chạy: fcitx5 thôi tự chạy
+    khi đăng nhập, app dùng lại IBus, tắt extension sửa lỗi gõ và gỡ Input Method Panel nếu lệnh cài đã
+    thêm. Đăng xuất rồi đăng nhập lại là GNOME dùng IBus như cũ. File nào đã tự sửa thì để nguyên.
+    fcitx5 vẫn còn trên máy; muốn gỡ luôn thì chạy <code>sudo apt autoremove</code> (Ubuntu, Debian) sau đó.
+  </p>
+  <p>
+    Trên Xfce, Cinnamon, MATE, lệnh gỡ trả bộ gõ về mặc định của máy. fcitx5 vẫn còn cài nên có thể vẫn tự
+    chạy, chỉ gõ được tiếng Anh. Muốn gỡ hẳn thì chạy <code>sudo apt remove fcitx5</code>.
+  </p>
+  <p>Gỡ bằng tay:</p>
   <ol>
     <li>Mở “Fcitx5 Configuration” và bỏ Ngó Sen khỏi danh sách bộ gõ.</li>
     <li>
