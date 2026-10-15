@@ -41,57 +41,75 @@
         position: relative;
       }
 
+      /* Small previews (Facebook comments, chat apps) crop the centre 630x630 square, so the name,
+         tagline and sheet stay inside x 285-915; the side columns are extras for the wide card. */
       .copy {
         position: absolute;
-        left: 80px;
-        top: 92px;
-        width: 520px;
+        left: 300px;
+        top: 44px;
+        width: 600px;
+        text-align: center;
       }
 
       h1 {
         font-family: 'Xanh Mono', monospace;
         font-weight: 400;
-        font-size: 128px;
+        font-size: 112px;
         line-height: 1;
         letter-spacing: -0.01em;
       }
 
       .tagline {
-        margin-top: 26px;
-        font-size: 36px;
+        margin-top: 12px;
+        font-size: 27px;
         line-height: 1.25;
         color: var(--on-enamel);
-        text-wrap: balance;
       }
 
       .points {
-        margin-top: 30px;
+        position: absolute;
+        left: 56px;
+        top: 50%;
+        width: 210px;
+        transform: translateY(-50%);
         font-family: 'Barlow Condensed', sans-serif;
         font-weight: 600;
-        font-size: 25px;
-        letter-spacing: 0.06em;
+        font-size: 24px;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         color: var(--on-enamel-muted);
-        line-height: 1.6;
+        line-height: 1.25;
+      }
+
+      .points li {
+        list-style: none;
+        padding: 14px 0;
+        border-top: 1px solid rgba(240, 245, 238, 0.28);
+      }
+
+      .points li:last-child {
+        border-bottom: 1px solid rgba(240, 245, 238, 0.28);
       }
 
       .url {
         position: absolute;
-        left: 80px;
-        bottom: 64px;
+        right: 56px;
+        bottom: 56px;
+        width: 210px;
+        text-align: right;
         font-family: 'Barlow Condensed', sans-serif;
         font-weight: 600;
-        font-size: 30px;
+        font-size: 28px;
         letter-spacing: 0.05em;
         color: var(--on-enamel);
       }
 
       .sheet {
         position: absolute;
-        right: 72px;
-        top: 96px;
-        width: 470px;
-        padding: 40px 42px 44px;
+        left: 382px;
+        top: 222px;
+        width: 436px;
+        padding: 26px 32px 28px;
         background: var(--paper);
         color: var(--ink);
         border-radius: 2px;
@@ -114,12 +132,12 @@
         margin-top: 18px;
         display: flex;
         flex-wrap: wrap;
-        gap: 9px;
+        gap: 8px;
       }
 
       .key {
-        width: 46px;
-        height: 50px;
+        width: 42px;
+        height: 46px;
         display: grid;
         place-items: center;
         background: var(--cap);
@@ -129,7 +147,7 @@
         padding-bottom: 6px;
         font-family: 'Barlow Condensed', sans-serif;
         font-weight: 600;
-        font-size: 24px;
+        font-size: 22px;
       }
 
       .key.space {
@@ -139,14 +157,14 @@
       }
 
       .rule {
-        margin: 30px 0 24px;
+        margin: 24px 0 18px;
         border: 0;
         border-top: 1px solid var(--paper-edge);
       }
 
       .typed {
         font-family: 'Xanh Mono', monospace;
-        font-size: 66px;
+        font-size: 60px;
         line-height: 1.05;
         white-space: nowrap;
       }
@@ -165,8 +183,12 @@
     <div class="copy">
       <h1>Ngó Sen</h1>
       <p class="tagline">Bộ gõ tiếng Việt cho fcitx5 trên Linux.</p>
-      <p class="points">Gõ thẳng, không gạch chân<br />Một chế độ cho hầu hết app<br />Không cần quyền đặc biệt</p>
     </div>
+    <ul class="points">
+      <li>Gõ thẳng, không gạch chân</li>
+      <li>Một chế độ cho hầu hết app</li>
+      <li>Không cần quyền đặc biệt</li>
+    </ul>
     <p class="url">ngosen.github.io</p>
 
     <div class="sheet" aria-hidden="true">

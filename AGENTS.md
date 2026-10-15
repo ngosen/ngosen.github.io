@@ -51,7 +51,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   starts a new, empty thread.
 - `public/og.png` is the link preview image, rendered from `tools/og/card.html` by
   `tools/og/render.sh`. Its tagline and three points copy `TAGLINE` and `HIGHLIGHTS`; re-render it
-  when those change.
+  when those change. Small previews (Facebook comments, chat apps) crop the centre 630×630 square, so
+  the name, tagline and sheet stay inside it. After re-rendering, bump the query in `OG_IMAGE`
+  (`src/data/site.ts`) so caches fetch the new image.
 
 ## Keeping up with the main repository
 

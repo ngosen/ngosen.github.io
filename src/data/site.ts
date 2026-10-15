@@ -2,6 +2,9 @@ export const REPO = 'https://github.com/ngosen/ngosen';
 // Pull requests up to 1.0.0-1 live in the old fork, archived when the project left the
 // fcitx5-lotus fork network; the new repository numbers its pull requests from #1 again.
 export const ARCHIVE_REPO = 'https://github.com/ngosen/ngosen-fork-archive';
+// Link preview image. Bump the query after re-rendering it: Facebook, Zalo and Telegram cache
+// previews by image URL.
+export const OG_IMAGE = '/og.png?v=2';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
 

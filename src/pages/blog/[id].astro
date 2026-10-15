@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Comments from '../../components/Comments.astro';
 import Page from '../../layouts/Page.astro';
-import { REPO } from '../../data/site';
+import { OG_IMAGE, REPO } from '../../data/site';
 import { formatDay, getPosts } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -20,7 +20,7 @@ const jsonLd = {
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString().slice(0, 10),
   inLanguage: 'vi',
   url: new URL(Astro.url.pathname, Astro.site).href,
-  image: new URL('/og.png', Astro.site).href,
+  image: new URL(OG_IMAGE, Astro.site).href,
 };
 ---
 
