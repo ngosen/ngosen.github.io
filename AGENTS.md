@@ -50,8 +50,10 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   the Announcements category of `ngosen/ngosen.github.io`, matched by URL path. Renaming a post's slug
   starts a new, empty thread.
 - `public/og.png` is the link preview image, rendered from `tools/og/card.html` by
-  `tools/og/render.sh`. Its tagline and three points copy `TAGLINE` and `HIGHLIGHTS`; re-render it
-  when those change.
+  `tools/og/render.sh`. It shows the logo from `public/favicon.svg`, the name and `TAGLINE`; re-render
+  it when either changes. Small previews (Facebook comments, chat apps) crop the centre 630×630
+  square, so everything stays inside it, large enough to read as a thumbnail. After re-rendering, bump the query in `OG_IMAGE`
+  (`src/data/site.ts`) so caches fetch the new image.
 
 ## Keeping up with the main repository
 
