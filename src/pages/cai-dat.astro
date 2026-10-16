@@ -51,10 +51,9 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>
       Trên GNOME, KDE Plasma (Wayland) và các desktop X11 chọn bộ gõ bằng im-config, như Xfce, Cinnamon,
       MATE (MX Linux, Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản và thêm Ngó Sen vào danh sách bộ gõ.
-      Lệnh cài không đổi phím bật tiếng Việt: dùng Ctrl+Space, phím mặc định của fcitx5; máy đã được bản cũ
-      đặt Ctrl+Shift thì giữ nguyên. Trên KDE Plasma,
-      lệnh cài chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual Keyboard), để app Qt như
-      Kate, Dolphin cũng gõ được.
+      Trên KDE Plasma, lệnh cài còn chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual
+      Keyboard) để app Qt như Kate, Dolphin cũng gõ được. Phím bật tiếng Việt thì lệnh cài không đổi: dùng
+      Ctrl+Space, phím mặc định của fcitx5. Máy đã được bản cũ đặt Ctrl+Shift thì vẫn giữ Ctrl+Shift.
     </li>
   </ol>
   <p>
@@ -183,7 +182,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </p>
   <h3 id="ban-thu">Bản thử</h3>
   <p>
-    Muốn test tính năng chưa phát hành thì cài <a href={`${REPO}/releases/tag/next-build`}>bản thử</a>,
+    Muốn test những thay đổi chưa có trong bản release thì cài <a href={`${REPO}/releases/tag/next-build`}>bản thử</a>,
     build tự động mỗi khi nhánh <code>next</code> thay đổi:
   </p>
   <pre
@@ -235,12 +234,12 @@ sudo cmake --install build`}</code></pre>
     <li>Làm ba việc ở mục <a href="#sau-khi-cai">Cài xong</a>: khởi động lại fcitx5, thêm Ngó Sen, rồi trên KDE Wayland chọn “Fcitx 5”.</li>
   </ol>
   <p>
-    <strong>Cập nhật về sau:</strong> trong thư mục <code>ngosen</code>, chạy
-    <code>git pull --recurse-submodules</code>, lặp lại bước 3, rồi <code>fcitx5 -rd</code>.
+    Muốn cập nhật về sau thì vào thư mục <code>ngosen</code>, chạy
+    <code>git pull --recurse-submodules</code>, lặp lại bước 3, rồi chạy <code>fcitx5 -rd</code>.
   </p>
   <p>
-    <strong>Chạy test:</strong> build thêm một lần với <code>-DBUILD_TESTING=ON</code> rồi chạy
-    <code>unshare -Urn ctest</code>; lệnh đầy đủ ở mục “Chạy bộ kiểm” trong TU-DUNG.md.
+    Muốn chạy test thì build thêm một lần với <code>-DBUILD_TESTING=ON</code> rồi chạy
+    <code>unshare -Urn ctest</code>. Lệnh đầy đủ nằm ở mục “Chạy bộ kiểm” trong TU-DUNG.md.
   </p>
 
   <h2 id="go">Gỡ cài đặt</h2>
