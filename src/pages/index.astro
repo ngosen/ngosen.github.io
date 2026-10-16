@@ -204,7 +204,7 @@ const jsonLd = {
         </tbody>
       </table>
       <p class="sheet-note">
-        Chép theo ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}. {LEVELS_NOTE} Distro khác thì
+        Chép theo ghi chú của version {RELEASE.version}, ngày {RELEASE.date}. {LEVELS_NOTE} Distro khác thì
         <a href="/cai-dat/#tu-build">tự build từ source</a>.
       </p>
     </div>
@@ -214,7 +214,7 @@ const jsonLd = {
     <div class="wrap install-head">
       <h2 id="cai-tieu-de">Cài bằng một dòng lệnh</h2>
       <p>
-        Lệnh này tìm gói build sẵn cho đúng distro của máy trong bản release mới nhất, hỏi lại rồi mới
+        Lệnh này tìm gói build sẵn cho đúng distro của máy trong release mới nhất, hỏi lại rồi mới
         tải, so hash SHA-256 của file tải về, rồi cài bằng trình quản lý gói của máy. Cấu hình
         cũ giữ nguyên.
       </p>
@@ -223,7 +223,7 @@ const jsonLd = {
     <div class="wrap">
       <p class="install-manual">
         Không muốn chạy lệnh qua curl? Tải gói <code>.rpm</code>, <code>.deb</code> hoặc
-        <code>.pkg.tar.zst</code> ở <a href={`${REPO}/releases/latest`}>bản release mới nhất</a>, so hash
+        <code>.pkg.tar.zst</code> ở <a href={`${REPO}/releases/latest`}>release mới nhất</a>, so hash
         với file <code>SHA256SUMS</code> rồi cài bằng trình quản lý gói.
         <a href="/cai-dat/#tai-tay">Chọn đúng file cho từng distro</a>.
       </p>
@@ -273,7 +273,7 @@ const jsonLd = {
 
   <section class="measured wrap" aria-labelledby="da-do-tieu-de">
     <div class="sheet report">
-      <h2 id="da-do-tieu-de">Bản {RELEASE.version} đổi gì</h2>
+      <h2 id="da-do-tieu-de">Version {RELEASE.version} đổi gì</h2>
       <ul>
         {
           RELEASE.changes.map((line) => (
@@ -287,7 +287,7 @@ const jsonLd = {
         }
       </ul>
       <p class="sheet-note">
-        Các bản trước: xem trang <a href="/ban-phat-hanh/">Các bản release</a>.
+        Các version trước: xem trang <a href="/ban-phat-hanh/">Các release</a>.
       </p>
     </div>
     <div class="sheet open-items">

@@ -3,7 +3,7 @@ title: "Ngó Sen 1.4 tối ưu lại lệnh cài và bỏ bớt tuỳ chọn th�
 description: "Trên GNOME và Xfce, Cinnamon, MATE, lệnh cài một dòng tự đặt fcitx5 làm bộ gõ và thêm Ngó Sen. Có thêm lệnh gỡ, cửa sổ cấu hình bớt mục thừa."
 pubDate: 2026-10-14
 updatedDate: 2026-10-16
-outdated: "Từ bản 1.4.2, lệnh cài không đổi phím bật tiếng Việt nữa: dùng Ctrl+Space, phím mặc định của fcitx5. Máy đã được đặt Ctrl+Shift vẫn giữ nguyên."
+outdated: "Từ version 1.4.2, lệnh cài không đổi phím bật tiếng Việt nữa: dùng Ctrl+Space, phím mặc định của fcitx5. Máy đã được đặt Ctrl+Shift vẫn giữ nguyên."
 ---
 
 Ngó Sen 1.4 tối ưu lại nhiều chỗ. Lệnh cài một dòng tự làm các bước cấu hình mà trước đây người dùng
@@ -17,7 +17,7 @@ rồi tự thêm Ngó Sen vào danh sách bộ gõ. Giờ lệnh cài làm các 
 - đặt fcitx5 làm bộ gõ thay IBus: fcitx5 tự chạy khi đăng nhập, app được đặt biến môi trường để gõ qua
   fcitx5;
 - thêm Ngó Sen vào danh sách bộ gõ;
-- bật extension sửa lỗi gõ, chỉ trên GNOME 50.0 đến 50.3 là các bản có lỗi kể ở bài
+- bật extension sửa lỗi gõ, chỉ trên GNOME 50.0 đến 50.3 là các version có lỗi kể ở bài
   [Ubuntu 26.04 lỗi gõ tiếng Việt ra chữ sai](/blog/ubuntu-26-04-go-tieng-viet-ra-chu-sai/);
 - trên GNOME không có khay hệ thống, như Fedora, cài thêm extension
   [Input Method Panel](https://extensions.gnome.org/extension/261/) để biểu tượng và menu bộ gõ hiện trên
