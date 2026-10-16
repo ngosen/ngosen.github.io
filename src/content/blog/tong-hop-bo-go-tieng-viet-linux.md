@@ -33,7 +33,7 @@ vậy, bộ gõ nào xoá rồi viết **chỉ bằng một đường** là bộ
 | Preedit: chữ đang gõ nằm tạm trong ô tới khi xong từ, có hoặc không gạch chân    | [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey), [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo), [ibus-unikey](https://github.com/vn-input/ibus-unikey), [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (mặc định), [pinakey](https://github.com/trananhtung/pinakey) (mặc định), [TypeVN](https://github.com/vithanhlam/TypeVN), [vietc](https://github.com/vndangkhoa/vietc)                                                                                                                                                                                          |
 | Tự làm bộ gõ Wayland riêng, gõ bằng bàn phím ảo mang bảng phím chữ Việt          | [vi-ime](https://github.com/nhanth87/vi-ime)                                                                                                                                                                                                                                                                                                        |
 | Hai đường: bấm Backspace (hoặc bôi đen) qua uinput, forward key hoặc XTest, rồi commit, canh nhịp bằng đồng hồ hoặc tin báo của app | [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (chế độ phụ), [skey](https://github.com/collyn/skey), [ArecaIME](https://github.com/xhkzeroone/ArecaIME), [VMK](https://github.com/thanhpy2009/VMK), [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad), [fcitx5-lotus](https://github.com/LotusInputMethod/fcitx5-lotus), Ngó Sen lúc đó |
-| X11: đổi bảng phím cho từng chữ rồi bấm                                          | [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) (bản cũ), nhánh X11 của Unikey-Wayland-Final                                                                                                                                                                                                                                     |
+| X11: đổi bảng phím cho từng chữ rồi bấm                                          | [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) (version cũ), nhánh X11 của Unikey-Wayland-Final                                                                                                                                                                                                                                     |
 
 </div>
 
@@ -137,7 +137,7 @@ ngoài cách đã ghi trong bảng.
 - [VMK](https://github.com/thanhpy2009/VMK): bấm thừa một Backspace rồi chờ cố định 20 ms.
 - [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad): có thêm chế độ gõ canh theo đồng hồ và
   tự gửi tin xác nhận.
-- [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) (bản cũ): chạy trên X11, đổi bảng
+- [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) (version cũ): chạy trên X11, đổi bảng
   phím cho từng chữ rồi bấm, có nghỉ giữa các bước. Không dùng được trên Wayland.
 - [vietc](https://github.com/vndangkhoa/vietc), [vnkey](https://github.com/marixdev/vnkey),
   [telebit](https://github.com/sonnam0904/telebit): một đường, bằng surrounding text hoặc preedit.
@@ -148,7 +148,7 @@ Ngày 24/09, người giữ dự án quyết định chỉ đi tiếp một hư�
 học từ vi-ime, với bảng phím cố định ngay từ đầu. Các ý còn lại (giữ phím chờ xác nhận, nhớ app hay mất
 chữ, preedit không gạch chân) thì không làm.
 
-Sau đó, bản 0.5.0 đổi cách Ngó Sen xoá chữ. Vẫn là hai bước, nhưng Backspace đi bằng forward key qua
+Sau đó, version 0.5.0 đổi cách Ngó Sen xoá chữ. Vẫn là hai bước, nhưng Backspace đi bằng forward key qua
 chính fcitx5 thay vì qua bàn phím ảo, nên không cần uinput server nữa.
 
 Từ ngày 09/10/2026, hướng bàn phím ảo cũng thôi làm, vì Ngó Sen chỉ làm cho fcitx5. Chuyện này kể ở bài
@@ -167,7 +167,7 @@ ngày 14/10/2026.
   bamboo-core với ibus-bamboo, có gói trong Debian, Ubuntu, Arch và NixOS. Nó chỉ gõ bằng preedit, có tuỳ
   chọn bỏ gạch chân.
 - [ibus-unikey](https://github.com/vn-input/ibus-unikey) chỉ gõ bằng preedit, luôn gạch chân. Commit cuối
-  từ tháng 7/2025, bản cuối từ năm 2020, nhưng nó vẫn có gói trong hầu hết distro, kể cả Ubuntu 26.04.
+  từ tháng 7/2025, version cuối từ năm 2020, nhưng nó vẫn có gói trong hầu hết distro, kể cả Ubuntu 26.04.
 - [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) có nhiều cách gõ nhất, chọn được cho từng
   app, mặc định là preedit không gạch chân. Các chế độ phụ gồm surrounding text, bấm Backspace qua IBus
   (một chế độ gửi cả chữ mới thành phím), bôi đen bằng Shift+mũi tên trái rồi gõ đè, và trên X11 thì bấm

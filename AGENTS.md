@@ -29,8 +29,10 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - Since 1.1.0 installed names are `ngosen` (`ngosen*.conf`, `fcitx5 --verbose ngosen=4`). Show `lotus`
   names only for versions before 1.1.0 and for moving off them.
 - Vietnamese page text keeps common technical terms in English: file, repo, script, test, build,
-  source, release, changelog, roadmap, hash/SHA-256, distro, app, container, key names such as Backspace, and input-method terms: uinput server, preedit, surrounding text, commit, forward key. Translate lỗi, phiên
-  bản, cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
+  source, release, version, changelog, roadmap, hash/SHA-256, distro, app, container, key names such as Backspace, and input-method terms: uinput server, preedit, surrounding text, commit, forward key. Translate lỗi,
+  cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
+- A release number is a "version" ("version 1.4.2", "version thử", "version sửa lỗi"), as in the main
+  repository; "bản" stays where it means something else (bản gốc, bản snap, bản IBus, bản sửa, bản build).
 - One name per concept across every page and post: "service" (not "dịch vụ"), "uinput server" (not
   "chương trình chạy ngầm"), "module" (not "mô-đun"), "compositor" (not an unexplained "WM"), "click"
   for the mouse and "bấm" for keys, "test" and "lỗi" (not "thử", "hỏng") when talking about checking

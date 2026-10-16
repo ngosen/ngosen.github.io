@@ -25,4 +25,4 @@ bật extension `forward-keys@ngosen.github.io`; cài gói bằng tay thì bật
 [Ubuntu 26.04](/cai-dat/#ubuntu-26-04).
 
 Trên fcitx5, WPS từng có hai lỗi: gõ hai phím giống nhau liền nhau (như `dd`, `ee`) có lúc mất một
-phím, và click sang ô khác có lúc dính chữ. Bản [1.0.0-1](/ban-phat-hanh/) đã sửa các lỗi này.
+phím, và click sang ô khác có lúc dính chữ. Version [1.0.0-1](/ban-phat-hanh/) đã sửa các lỗi này.

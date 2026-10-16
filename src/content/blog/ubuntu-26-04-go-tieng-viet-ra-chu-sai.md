@@ -21,14 +21,14 @@ vẫn được commit:
 - Gõ thêm `ng`: `tieêng`.
 - Gõ `s`: bộ gõ xoá `êng` để thay bằng `ếng`. Lại không xoá được, ô còn `tieêngếng`.
 
-Lỗi đã được sửa ở GNOME từ bản 50.4 ([mutter#4853](https://gitlab.gnome.org/GNOME/mutter/-/work_items/4853)).
-Bản sửa chỉ là một dòng code. Ubuntu 26.04 vẫn dùng mutter (phần lõi của GNOME Shell) bản 50.1, nên
-chưa có bản sửa đó. Ubuntu 24.04 dùng GNOME 46, bản ra trước khi có lỗi này, nên không bị.
+Lỗi đã được sửa ở GNOME từ version 50.4 ([mutter#4853](https://gitlab.gnome.org/GNOME/mutter/-/work_items/4853)).
+Bản sửa chỉ là một dòng code. Ubuntu 26.04 vẫn dùng mutter (phần lõi của GNOME Shell) version 50.1, nên
+chưa có bản sửa đó. Ubuntu 24.04 dùng GNOME 46, version ra trước khi có lỗi này, nên không bị.
 
 ## Ngó Sen đang chữa tạm thế nào
 
-Từ bản 0.5.0-1, gói Ngó Sen kèm một extension GNOME Shell tên `forward-keys@ngosen.github.io` để
-Backspace tới được app. Từ bản 1.4.0-1, lệnh cài một dòng tự bật extension này trên GNOME 50.0 đến 50.3.
+Từ version 0.5.0-1, gói Ngó Sen kèm một extension GNOME Shell tên `forward-keys@ngosen.github.io` để
+Backspace tới được app. Từ version 1.4.0-1, lệnh cài một dòng tự bật extension này trên GNOME 50.0 đến 50.3.
 Cài gói bằng tay thì đăng xuất rồi đăng nhập lại, sau đó bật một lần:
 
 ```
@@ -50,7 +50,7 @@ Tới ngày 09/10/2026, trạng thái trên Launchpad là:
 - **Ubuntu 26.04:** đã được xác nhận (Confirmed) và đưa vào danh sách chờ bản cập nhật `resolute-updates`,
   nhưng chưa có ai nhận làm.
 
-Với một phiên bản Ubuntu đã phát hành, mỗi bản cập nhật phải qua quy trình SRU (Stable Release Update):
+Với một version Ubuntu đã phát hành, mỗi bản cập nhật phải qua quy trình SRU (Stable Release Update):
 có người đóng gói bản sửa và đưa lên repo `resolute-proposed`, người dùng cài để test rồi xác nhận, sau đó
 bản sửa mới tới máy mọi người. Báo lỗi càng nhiều người bị thì càng dễ được làm sớm.
 
@@ -63,7 +63,7 @@ Nếu đang dùng Ubuntu 26.04 và đã gặp lỗi `tieêngếng`:
    affect you?"** rồi chọn **"Yes, it affects me"**. Mỗi người chọn làm tăng điểm "heat", con số
    Launchpad dùng để cho thấy lỗi nào đang ảnh hưởng nhiều người.
 2. Không cần viết bình luận chỉ để nói "mình cũng bị". Bình luận có ích khi có thông tin mới: app nào bị,
-   bộ gõ nền nào (fcitx5, IBus) và phiên bản GNOME Shell lấy từ lệnh `gnome-shell --version`.
+   bộ gõ nền nào (fcitx5, IBus) và version GNOME Shell lấy từ lệnh `gnome-shell --version`.
 3. Khi bản sửa lên repo `resolute-proposed`, báo lỗi sẽ có thẻ `verification-needed-resolute`. Lúc đó,
    ai bật được repo `resolute-proposed` thì cập nhật, gõ lại `tieengs` trong Chrome với extension đã tắt
    rồi bình luận kết quả. Không có người xác nhận thì bản sửa không ra khỏi `resolute-proposed` được.

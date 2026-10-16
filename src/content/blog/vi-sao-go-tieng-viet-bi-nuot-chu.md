@@ -3,7 +3,7 @@ title: "Vì sao gõ tiếng Việt trên Linux hay bị nuốt chữ, lặp ch�
 description: "Linux không có một đường duy nhất để bộ gõ đưa chữ vào app; mỗi desktop, mỗi toolkit làm một kiểu, nên chữ hay bị nuốt hoặc lặp."
 pubDate: 2026-10-04
 updatedDate: 2026-10-09
-outdated: "Phần Messenger kể cách làm trước bản 0.5.0. Từ 0.5.0, chế độ Uinput đổi tên thành Gõ Sen, không còn uinput server, và trên KDE ô soạn tin Facebook được xử lý như ô thường."
+outdated: "Phần Messenger kể cách làm trước version 0.5.0. Từ 0.5.0, chế độ Uinput đổi tên thành Gõ Sen, không còn uinput server, và trên KDE ô soạn tin Facebook được xử lý như ô thường."
 ---
 
 Gõ `tieengs vieetj` vào ô chat Messenger, đáng ra phải thấy `tiếng việt`. Trên Linux, có lúc màn hình lại hiện `iếngiệt`: chữ có dấu vẫn đúng, còn `t`, dấu cách và `v` phía trước thì biến mất. Ở thanh địa chỉ trình duyệt thì ngược lại: gõ `tooi` ra `toôi`. Trên Ubuntu 26.04, Chrome có lúc gõ ra `tieêngếng`.
@@ -28,7 +28,7 @@ Chữ đi từ bộ gõ tới app qua nhiều đường khác nhau, tuỳ ba th�
 - Desktop: GNOME chuyển chữ qua GNOME Shell; KDE Plasma dùng giao thức text-input của Wayland qua KWin; Sway, Hyprland và các compositor tương tự dùng giao thức input-method-v2.
 - Cách app nối với bộ gõ: qua XIM (giao thức cũ của X11), qua module IBus hoặc fcitx5 trong GTK và Qt, qua Wayland, hoặc qua module fcitx đời cũ nằm sẵn trong gói snap.
 
-Mỗi tổ hợp là một đường. Vài ví dụ Ngó Sen đã gặp khi làm bản 0.5.0, có cái đã sửa, có cái chưa:
+Mỗi tổ hợp là một đường. Vài ví dụ Ngó Sen đã gặp khi làm version 0.5.0, có cái đã sửa, có cái chưa:
 
 - GNOME 50.0 tới 50.3 trên Ubuntu 26.04 làm mất Backspace mà bộ gõ gửi qua GNOME Shell, nên Chrome, Edge và app Electron gõ ra `tieêngếng`.
 - Module GTK4 bỏ qua forward key, nên app GTK4 phải xoá bằng surrounding text.
@@ -48,7 +48,7 @@ Tiếng Việt thì khác: mỗi phím ra ngay một chữ, dấu thêm vào ch�
 
 ## Nhiều đường thì sinh ra nhiều chế độ
 
-Các bản Ngó Sen trước 0.5.0 đối phó bằng cách cho người dùng chọn: ba chế độ Uinput (Slow, Smooth, Super Smooth), Surrounding Text, Preedit, Minecraft. Gõ sai ở app nào thì người dùng tự thử từng chế độ cho app đó.
+Các version Ngó Sen trước 0.5.0 đối phó bằng cách cho người dùng chọn: ba chế độ Uinput (Slow, Smooth, Super Smooth), Surrounding Text, Preedit, Minecraft. Gõ sai ở app nào thì người dùng tự thử từng chế độ cho app đó.
 
 Ở Ngó Sen, bộ gõ tự nhận ra app nhận chữ kiểu gì và chọn cách xoá phù hợp, người dùng chỉ cần một chế độ Gõ Sen. Chuyện gom chế độ được kể ở bài [Vì sao gom các chế độ gõ vào Gõ Sen](/blog/gom-che-do-go-vao-go-sen/).
 
