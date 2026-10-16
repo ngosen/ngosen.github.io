@@ -43,7 +43,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   <ol>
     <li>
       Nhận ra distro và loại máy (x86_64 hay ARM 64-bit), rồi chọn đúng gói trong
-      <a href={`${REPO}/releases/latest`}>bản release mới nhất</a> trên GitHub.
+      <a href={`${REPO}/releases/latest`}>release mới nhất</a> trên GitHub.
     </li>
     <li>In ra gói sẽ cài và hỏi lại. Trả lời <kbd>c</kbd> thì mới đi tiếp; bấm Enter là dừng.</li>
     <li>Tải gói về và so hash SHA-256 với file <code>SHA256SUMS</code>. Không khớp thì không cài.</li>
@@ -53,7 +53,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
       MATE (MX Linux, Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản và thêm Ngó Sen vào danh sách bộ gõ.
       Trên KDE Plasma, lệnh cài còn chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual
       Keyboard) để app Qt như Kate, Dolphin cũng gõ được. Phím bật tiếng Việt thì lệnh cài không đổi: dùng
-      Ctrl+Space, phím mặc định của fcitx5. Máy đã được bản cũ đặt Ctrl+Shift thì vẫn giữ Ctrl+Shift.
+      Ctrl+Space, phím mặc định của fcitx5. Máy đã được version cũ đặt Ctrl+Shift thì vẫn giữ Ctrl+Shift.
     </li>
   </ol>
   <p>
@@ -70,7 +70,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   <pre
     tabindex="0"><code>{`curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash -s -- --no-setup`}</code></pre>
   <p>
-    Cập nhật từ bản cũ thì cấu hình giữ nguyên. Script làm gì thì đọc được trong
+    Cập nhật từ version cũ thì cấu hình giữ nguyên. Script làm gì thì đọc được trong
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>
@@ -108,7 +108,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </div>
   <p>
     “Chỉ build” nghĩa là gói build được và qua test lúc build, chưa ai gõ thử trên distro đó. Chép theo
-    ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}. {LEVELS_NOTE}
+    ghi chú của version {RELEASE.version}, ngày {RELEASE.date}. {LEVELS_NOTE}
   </p>
   <p>
     {ARM_NOTE.packages} Bạn <a href={ARM_TESTER.url}>{ARM_TESTER.name}</a> {ARM_NOTE.tested}
@@ -135,7 +135,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     </li>
     <li>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</li>
     <li>
-      Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”. Từ bản 1.4.1, lệnh cài
+      Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”. Từ version 1.4.1, lệnh cài
       một dòng tự chọn mục này, chỉ khi cài gói bằng tay mới phải làm.
     </li>
   </ol>
@@ -182,23 +182,23 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     Chạy lại đúng lệnh cài, rồi khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>; trên KDE Wayland thì
     đăng xuất rồi đăng nhập lại. Không có cơ chế tự cập nhật.
   </p>
-  <h3 id="ban-thu">Bản thử</h3>
+  <h3 id="ban-thu">Version thử</h3>
   <p>
-    Muốn test những thay đổi chưa có trong bản release thì cài <a href={`${REPO}/releases/tag/next-build`}>bản thử</a>,
+    Muốn test những thay đổi chưa có trong release thì cài <a href={`${REPO}/releases/tag/next-build`}>version thử</a>,
     build tự động mỗi khi nhánh <code>next</code> thay đổi:
   </p>
   <pre
     tabindex="0"><code>{`curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/next/install.sh | NGOSEN_RELEASE_URL=https://github.com/ngosen/ngosen/releases/download/next-build bash`}</code></pre>
   <p>
-    Số phiên bản của bản thử có thêm ngày giờ và mã commit, nên cài đè lên bản chính thức được, và bản
+    Version thử mang số có thêm ngày giờ và mã commit, nên cài đè lên version chính thức được, và version
     chính thức sau đó vẫn tự nâng lên.
   </p>
   <p>
-    Từ bản 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 cũ nữa. Trình quản lý gói vẫn coi
-    các bản này mới hơn 3.5.10-4, nên cập nhật như thường.
+    Từ version 0.5.0, Ngó Sen đánh số riêng, không theo số 3.5.10 cũ nữa. Trình quản lý gói vẫn coi
+    các version này mới hơn 3.5.10-4, nên cập nhật như thường.
   </p>
   <p>
-    Bản 0.5.0 cũng bỏ uinput server, service chạy nền từng bấm phím Backspace thay bộ gõ. Cập nhật từ bản
+    Version 0.5.0 cũng bỏ uinput server, service chạy nền từng bấm phím Backspace thay bộ gõ. Cập nhật từ version
     cũ thì gói tự tắt service đó và xoá tài khoản <code>uinput_proxy</code> của nó, không phải làm gì
     thêm.
   </p>
@@ -211,7 +211,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   </p>
   <ol>
     <li>
-      Máy từng tự build Ngó Sen 1.0.0 trở về trước thì xoá các file cũ mà bản đó cài, theo bước 1 trong
+      Máy từng tự build Ngó Sen 1.0.0 trở về trước thì xoá các file cũ mà version đó cài, theo bước 1 trong
       TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
     </li>
     <li>Cài công cụ build: cmake, gcc, go, git, python, fcitx5 và vài gói khác, liệt kê trong TU-DUNG.md.</li>
@@ -230,7 +230,7 @@ sudo cmake --install build`}</code></pre>
   </p>
   <ol start="4">
     <li>
-      Máy từng chạy uinput server của Ngó Sen bản cũ thì tắt nó và xoá các file nó để lại, theo
+      Máy từng chạy uinput server của version Ngó Sen cũ thì tắt nó và xoá các file nó để lại, theo
       bước 4 trong TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
     </li>
     <li>Làm ba việc ở mục <a href="#sau-khi-cai">Cài xong</a>: khởi động lại fcitx5, thêm Ngó Sen, rồi trên KDE Wayland chọn “Fcitx 5”.</li>
@@ -277,7 +277,7 @@ fcitx5 -rd`}</code></pre>
   </ol>
   <p>
     Các file cấu hình <code>ngosen*.conf</code> trong <code>~/.config/fcitx5/conf/</code>, và
-    <code>lotus*.conf</code> nếu từng dùng bản trước 1.1.0, vẫn ở lại máy để lần cài sau dùng tiếp. Muốn
+    <code>lotus*.conf</code> nếu từng dùng version trước 1.1.0, vẫn ở lại máy để lần cài sau dùng tiếp. Muốn
     xoá sạch thì xoá các file đó.
   </p>
 
