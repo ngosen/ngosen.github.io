@@ -35,9 +35,10 @@ const levels: Record<Level, string> = {
   </p>
   <p>
     On GNOME, on KDE Plasma (Wayland), and on X11 desktops that pick the input method with im-config such
-    as Xfce, Cinnamon and MATE, the script also makes fcitx5 the input method for your account, adds Ngó Sen to the input
-    method list and sets Ctrl+Shift to switch Vietnamese on, unless you already chose another key. Log out
-    and back in, then press Ctrl+Shift. On GNOME it also hides the fcitx5 launchers you do not need, and
+    as Xfce, Cinnamon and MATE, the script also makes fcitx5 the input method for your account and adds Ngó
+    Sen to the input method list. Log out and back in, then press Ctrl+Space, fcitx5's default key, to
+    switch Vietnamese on; the script does not change the key, and machines where an earlier version set
+    Ctrl+Shift keep it. On GNOME it also hides the fcitx5 launchers you do not need, and
     adds the Input Method Panel extension when there is no system tray, as on Fedora. These steps apply to
     the account that runs the script; add <code>--no-setup</code> to install the package only. On KDE
     Plasma it selects fcitx5 as KDE's virtual keyboard (System Settings, Virtual Keyboard), so Qt apps
@@ -93,7 +94,10 @@ const levels: Record<Level, string> = {
 
   <h2 id="tested">Where it has been tested</h2>
   <p>
-    Packages exist for these distributions on x86_64. A package that builds is not a package that works,
+    Packages exist for these distributions on x86_64. Fedora 43 and 44, Ubuntu, Debian and Kali also
+    have ARM 64-bit (aarch64) packages, and the script picks the one for your machine; ansidev installed
+    and ran the ARM package on Ubuntu 26.04 (a VMware virtual machine), and the other ARM packages are
+    build-only. A package that builds is not a package that works,
     so each one is labelled by how far it was tested, as listed in the notes of release
     {RELEASE.version}.
   </p>
@@ -155,7 +159,15 @@ const levels: Record<Level, string> = {
     3 times out of 3 in a Qt6 text field and 3 times out of 3 in a GTK3 one; before the fix the Qt6 field
     got raw keystrokes. With the 1.4.0 package, Chrome 155, VS Code, Discord, Firefox and GNOME Text Editor
     (Flatpak) typed correctly in an Ubuntu 26.04 (GNOME Wayland) virtual machine; Chrome forced through
-    XWayland was wrong 5 times out of 30.
+    XWayland was wrong 5 times out of 30. Release 1.4.2 is a bug-fix release, tested with a build from
+    the <code>release/1.4.2</code> branch. In the Gemini prompt box in Chromium on a CachyOS virtual
+    machine (Plasma Wayland), <code>ddown</code> at the start of an empty box typed <code>đơn</code> in 3
+    of 3 sentences (before the fix it gave <code>n</code>). On Sway (CachyOS), a line starting
+    <code>dduwowngf tieengs vieetj</code> typed <code>đường tiếng việt</code> correctly in a GTK3 text
+    field and in Firefox. In an Ubuntu 26.04 (GNOME Wayland) virtual machine,
+    <code>ddwowngf tieengs vieetj</code> typed <code>đường tiếng việt</code> 2 times out of 2 in Ptyxis
+    and 2 times out of 2 in GNOME Console. Kali Rolling is new: the script was run in a Kali 2026.2 (Xfce,
+    X11) virtual machine.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

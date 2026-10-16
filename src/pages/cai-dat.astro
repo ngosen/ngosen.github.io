@@ -1,7 +1,7 @@
 ---
 import Page from '../layouts/Page.astro';
 import InstallStrip from '../components/InstallStrip.astro';
-import { DISTRIBUTIONS, LEVELS, LEVELS_NOTE, RELEASE, REPO } from '../data/site';
+import { ARM_NOTE, DISTRIBUTIONS, LEVELS, LEVELS_NOTE, RELEASE, REPO } from '../data/site';
 
 const buildGuide = `${REPO}/blob/main/TU-DUNG.md`;
 const rustDistros = DISTRIBUTIONS.filter((item) => item.core === 'Rust').map((item) => item.name);
@@ -32,8 +32,9 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   heading="Cài đặt"
 >
   <p slot="lede">
-    Một dòng lệnh cho Fedora, Ubuntu, Debian, Arch, CachyOS và openSUSE Tumbleweed trên máy x86_64.
-    NixOS dùng flake; distro khác thì tự build từ source.
+    Một dòng lệnh cho Fedora, Ubuntu, Debian, Kali, Arch, CachyOS và openSUSE Tumbleweed trên máy x86_64;
+    Fedora, Ubuntu, Debian và Kali có cả gói cho máy ARM 64-bit. NixOS dùng flake; distro khác thì tự build
+    từ source.
   </p>
 
   <h2 id="mot-dong-lenh">Cài bằng một dòng lệnh</h2>
@@ -41,7 +42,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   <p>Lệnh này làm lần lượt các việc sau:</p>
   <ol>
     <li>
-      Nhận ra distro của máy và chọn đúng gói trong
+      Nhận ra distro và loại máy (x86_64 hay ARM 64-bit), rồi chọn đúng gói trong
       <a href={`${REPO}/releases/latest`}>bản release mới nhất</a> trên GitHub.
     </li>
     <li>In ra gói sẽ cài và hỏi lại. Trả lời <kbd>c</kbd> thì mới đi tiếp; bấm Enter là dừng.</li>
@@ -49,8 +50,9 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper); lúc này máy hỏi mật khẩu sudo.</li>
     <li>
       Trên GNOME, KDE Plasma (Wayland) và các desktop X11 chọn bộ gõ bằng im-config, như Xfce, Cinnamon,
-      MATE (MX Linux, Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản, thêm Ngó Sen vào danh sách bộ gõ và
-      đặt phím bật tiếng Việt là Ctrl+Shift, trừ khi đã tự chọn phím khác cho fcitx5. Trên KDE Plasma,
+      MATE (MX Linux, Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản và thêm Ngó Sen vào danh sách bộ gõ.
+      Lệnh cài không đổi phím bật tiếng Việt: dùng Ctrl+Space, phím mặc định của fcitx5; máy đã được bản cũ
+      đặt Ctrl+Shift thì giữ nguyên. Trên KDE Plasma,
       lệnh cài chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual Keyboard), để app Qt như
       Kate, Dolphin cũng gõ được.
     </li>
@@ -109,6 +111,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     “Chỉ build” nghĩa là gói build được và qua test lúc build, chưa ai gõ thử trên distro đó. Chép theo
     ghi chú của bản {RELEASE.version}, ngày {RELEASE.date}. {LEVELS_NOTE}
   </p>
+  <p>{ARM_NOTE}</p>
 
   <h3 id="loi-ghep-dau">Lõi ghép dấu: Rust hay Go</h3>
   <p>
@@ -120,7 +123,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
   <h2 id="sau-khi-cai">Cài xong</h2>
   <p>
     Cài bằng lệnh một dòng trên GNOME, KDE Plasma (Wayland) hoặc Xfce, Cinnamon, MATE thì đăng xuất rồi đăng
-    nhập lại, sau đó bấm Ctrl+Shift để bật tiếng Việt.
+    nhập lại, sau đó bấm Ctrl+Space để bật tiếng Việt.
   </p>
   <p>Trên desktop khác, hoặc khi cài gói bằng tay, còn ba việc:</p>
   <ol>
