@@ -2,6 +2,7 @@
 title: "Bỏ uinput server"
 description: "Ngó Sen từng cần một uinput server chạy nền, có quyền đọc mọi bàn phím, để bấm Backspace hộ bộ gõ. Từ bản 0.5.0, server đó không còn."
 pubDate: 2026-10-08
+updatedDate: 2026-10-16
 ---
 
 Gõ Telex thì dấu tới sau chữ, nên muốn thêm dấu, bộ gõ phải xoá chữ cũ rồi gõ chữ mới. Ở chế độ Uinput (nay là Gõ Sen), một uinput server chạy nền bấm Backspace hộ bộ gõ, qua bàn phím ảo của kernel.
@@ -27,4 +28,4 @@ Cập nhật từ bản cũ thì gói tự tắt service và xoá tài khoản `
 ## Những chỗ còn vướng sau khi bỏ
 
 - Game dùng SDL ngoài X11 không nhận forward key, nên gõ ra chữ không dấu.
-- GNOME 50.0 tới 50.3 trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi. Gói Ngó Sen kèm extension `forward-keys@ngosen.github.io` để sửa, phải bật một lần sau khi cài ([#41](https://github.com/ngosen/ngosen-fork-archive/pull/41)).
+- GNOME 50.0 tới 50.3 trên Ubuntu 26.04 làm mất phím Backspace mà bộ gõ gửi. Gói Ngó Sen kèm extension `forward-keys@ngosen.github.io` để sửa ([#41](https://github.com/ngosen/ngosen-fork-archive/pull/41)). Từ bản 1.4.0, lệnh cài một dòng tự bật extension này; cài gói bằng tay thì bật một lần.

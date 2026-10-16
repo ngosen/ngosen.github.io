@@ -2,6 +2,8 @@
 title: "Ngó Sen 1.4 tối ưu lại lệnh cài và bỏ bớt tuỳ chọn thừa"
 description: "Trên GNOME và Xfce, Cinnamon, MATE, lệnh cài một dòng tự đặt fcitx5 làm bộ gõ và thêm Ngó Sen. Có thêm lệnh gỡ, cửa sổ cấu hình bớt mục thừa."
 pubDate: 2026-10-14
+updatedDate: 2026-10-16
+outdated: "Từ bản 1.4.2, lệnh cài không đổi phím bật tiếng Việt nữa: dùng Ctrl+Space, phím mặc định của fcitx5. Máy đã được đặt Ctrl+Shift vẫn giữ nguyên."
 ---
 
 Ngó Sen 1.4 tối ưu lại nhiều chỗ. Lệnh cài một dòng tự làm các bước cấu hình mà trước đây người dùng
