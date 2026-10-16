@@ -16,7 +16,7 @@ Ngó Sen gộp cả ba thành một chế độ **Uinput** ([#6](https://github.
 
 ## Bỏ Minecraft
 
-Chế độ Minecraft là Uinput bớt đi một lần Backspace, vì Minecraft nhận cả những phím bộ gõ đã chặn lại, không cho tới app. Bản gốc thêm nó để chữa tạm khi chưa rõ nguyên nhân, và tới nay vẫn chưa ai tìm ra. Đặt nhầm chế độ này cho app thường thì mỗi lần thêm dấu, app còn sót một chữ cũ.
+Chế độ Minecraft là Uinput bớt đi một lần Backspace, vì Minecraft nhận cả những phím bộ gõ đã chặn lại, không cho tới app. Chế độ này được thêm vào để chữa tạm khi chưa rõ nguyên nhân, và tới nay vẫn chưa ai tìm ra. Đặt nhầm chế độ này cho app thường thì mỗi lần thêm dấu, app còn sót một chữ cũ.
 
 Ngó Sen bỏ chế độ này ([#29](https://github.com/ngosen/ngosen-fork-archive/pull/29)). Vì vậy, ai gõ trong Minecraft sẽ bị xoá thừa một chữ mỗi lần thêm dấu.
 

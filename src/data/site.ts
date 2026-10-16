@@ -2,6 +2,9 @@ export const REPO = 'https://github.com/ngosen/ngosen';
 // Pull requests up to 1.0.0-1 live in the old fork, archived when the project left the
 // fcitx5-lotus fork network; the new repository numbers its pull requests from #1 again.
 export const ARCHIVE_REPO = 'https://github.com/ngosen/ngosen-fork-archive';
+// Link preview image. Bump the query after re-rendering it: Facebook, Zalo and Telegram cache
+// previews by image URL.
+export const OG_IMAGE = '/og.png?v=2';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
 
@@ -23,6 +26,66 @@ export const RELEASES: {
   // Repository the pr numbers refer to; defaults to REPO.
   prRepo?: string;
 }[] = [
+  {
+    version: '1.4.2-1',
+    date: '16/10/2026',
+    summary:
+      'Bản sửa lỗi: Gõ Sen hết mất chữ trên Sway và ở ô trống trên Wayland, hết chữ lặp trong Ptyxis và GNOME Console. Có thêm gói cho máy ARM, và lệnh cài chạy được trên Kali.',
+    changes: [
+      {
+        claim: 'Gõ Sen không còn mất chữ đầu tiên gõ vào ô trống trên Wayland, như ô hỏi của Gemini trên Chromium hay Zed.',
+        source: 'Trước đó chữ có dd, ow… gõ đầu tiên trong ô trống có thể bị mất.',
+        pr: 94,
+      },
+      {
+        claim: 'Trên Sway, chữ có dấu trong app GTK và Firefox không còn bị mất khi gõ Gõ Sen.',
+        source: 'Trước đó gõ “đường” ra “ường”.',
+        pr: 87,
+      },
+      {
+        claim: 'Gõ Sen trong Ptyxis, terminal mặc định của Ubuntu 26.04 và Fedora, không còn ra chữ lặp.',
+        source: 'Trước đó “tieengs” ra “tieeenngss” rồi đứng.',
+        pr: 74,
+      },
+      {
+        claim: 'Gõ Sen trong GNOME Console cũng hết chữ lặp.',
+        source: 'Ptyxis trên phiên X11, như KDE Plasma X11, khi máy có cài IBus cũng gõ đúng dấu.',
+        pr: 81,
+      },
+      {
+        claim: 'Lõi Rust gõ được từ dài hơn 16 phím khi đang bật tiếng Việt, như tên biến getUserNameByIdentifier.',
+        source: 'Trước đó từ dài bị cắt hoặc mất phím. “tuowf” giờ ra “tườ” thay vì “từơ”. Gói dùng lõi Go không đổi.',
+        pr: 78,
+      },
+      {
+        claim: 'Kiểm tra chính tả bằng từ điển nhận cả kiểu đặt dấu cũ lẫn mới.',
+        source:
+          'Trước đó “chói lóa” có thể ra “chói loas”. Chỉ có ở gói lõi Rust; gói Debian 12, Debian 13 và Ubuntu 22.04 còn dùng lõi Go nên chưa có.',
+        pr: 92,
+      },
+      {
+        claim: 'Trên COSMIC, icon Ngó Sen ở khay hiện đúng.',
+        source: 'Trước đó icon là một ô vuông trắng, giờ là chữ V có màu.',
+        pr: 75,
+      },
+      {
+        claim: 'Có gói cho máy ARM 64-bit (aarch64): Debian, Ubuntu, Kali và Fedora 43, 44.',
+        source: 'Lệnh cài một dòng tự chọn gói theo máy.',
+        pr: 86,
+      },
+      {
+        claim: 'Lệnh cài một dòng chạy được trên Kali Linux.',
+        source:
+          'Kali dựa trên Debian testing nên lệnh cài lấy gói build cho Debian testing. Lệnh cài cũng không còn dừng giữa chừng trên máy X11 dùng im-config 1.1 và trên máy chưa từng chạy apt update.',
+        pr: 85,
+      },
+      {
+        claim: 'Lệnh cài không đổi phím bật tiếng Việt nữa: dùng Ctrl+Space, phím mặc định của fcitx5.',
+        source: 'Máy đã được đặt Ctrl+Shift vẫn giữ nguyên. Muốn đổi phím thì vào cài đặt của fcitx5.',
+        pr: 76,
+      },
+    ],
+  },
   {
     version: '1.4.1-1',
     date: '14/10/2026',
@@ -331,7 +394,17 @@ export const RELEASE = RELEASES[0];
 
 // Mirrors the paragraph under the table in packaging/release-notes.md.
 export const LEVELS_NOTE =
-  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Bản 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), bản 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Bản 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối. Bản 1.2.2 sửa nhãn cạnh con trỏ và lỗi mất dấu trên thanh địa chỉ Edge. Lỗi Edge được tái hiện bằng một test viết lại từ log gõ phím trên Fedora 44 (KDE Wayland), rồi gõ tay lại trên Edge sau khi sửa: ra đúng “ngó”, cạnh con trỏ hiện “vi”. Bản 1.3.0 thêm tuỳ chọn Backspace xoá dấu thanh, được gõ tay trên Fedora 44 (KDE Wayland) với bản build từ nhánh next. Icon khay mới được xem trên máy ảo Linux Mint 22.3 (Cinnamon) và MX Linux 25.3 (Xfce). Gói Debian 13 được cài trên máy ảo MX Linux 25.3: Telex “vieejt” ra “việt” trong terminal GTK. Lần cập nhật từ 1.0.0-1 rồi chạy fcitx5 -rd cũng được test trên máy ảo MX Linux 25.3: Ngó Sen vẫn nằm trong danh sách bộ gõ. Bản 1.4.0 chủ yếu đổi lệnh cài một dòng. Lệnh cài được chạy trên máy ảo Ubuntu 26.04 (GNOME Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon X11) và MX Linux 25 (Xfce X11) với bản build từ nhánh next: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” trong ô chữ GTK3, 3/3 lần trên mỗi máy. Lệnh gỡ được test trên Ubuntu 26.04 (IBus chạy lại) và MX Linux 25. Bản 1.4.1 chỉ đổi lệnh cài, bộ gõ giữ nguyên như 1.4.0. Lệnh cài trên KDE được chạy trên máy ảo CachyOS (Plasma 6.7 Wayland) với tài khoản chưa cấu hình bộ gõ: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” 3/3 lần trong ô chữ Qt6 và 3/3 lần trong ô chữ GTK3; trước khi sửa, ô chữ Qt6 ra chữ thô. Với gói 1.4.0, Chrome 155, VS Code, Discord, Firefox và GNOME Text Editor (Flatpak) gõ đúng trên máy ảo Ubuntu 26.04 (GNOME Wayland); Chrome ép chạy qua XWayland sai 5/30 lần.';
+  'Mức đã test lấy từ lần test bản 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Bản 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Bản 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), bản 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Bản 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối. Bản 1.2.2 sửa nhãn cạnh con trỏ và lỗi mất dấu trên thanh địa chỉ Edge. Lỗi Edge được tái hiện bằng một test viết lại từ log gõ phím trên Fedora 44 (KDE Wayland), rồi gõ tay lại trên Edge sau khi sửa: ra đúng “ngó”, cạnh con trỏ hiện “vi”. Bản 1.3.0 thêm tuỳ chọn Backspace xoá dấu thanh, được gõ tay trên Fedora 44 (KDE Wayland) với bản build từ nhánh next. Icon khay mới được xem trên máy ảo Linux Mint 22.3 (Cinnamon) và MX Linux 25.3 (Xfce). Gói Debian 13 được cài trên máy ảo MX Linux 25.3: Telex “vieejt” ra “việt” trong terminal GTK. Lần cập nhật từ 1.0.0-1 rồi chạy fcitx5 -rd cũng được test trên máy ảo MX Linux 25.3: Ngó Sen vẫn nằm trong danh sách bộ gõ. Bản 1.4.0 chủ yếu đổi lệnh cài một dòng. Lệnh cài được chạy trên máy ảo Ubuntu 26.04 (GNOME Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon X11) và MX Linux 25 (Xfce X11) với bản build từ nhánh next: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” trong ô chữ GTK3, 3/3 lần trên mỗi máy. Lệnh gỡ được test trên Ubuntu 26.04 (IBus chạy lại) và MX Linux 25. Bản 1.4.1 chỉ đổi lệnh cài, bộ gõ giữ nguyên như 1.4.0. Lệnh cài trên KDE được chạy trên máy ảo CachyOS (Plasma 6.7 Wayland) với tài khoản chưa cấu hình bộ gõ: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” 3/3 lần trong ô chữ Qt6 và 3/3 lần trong ô chữ GTK3; trước khi sửa, ô chữ Qt6 ra chữ thô. Với gói 1.4.0, Chrome 155, VS Code, Discord, Firefox và GNOME Text Editor (Flatpak) gõ đúng trên máy ảo Ubuntu 26.04 (GNOME Wayland); Chrome ép chạy qua Xwayland sai 5/30 lần. Bản 1.4.2 là bản sửa lỗi, test với bản build từ nhánh release/1.4.2. Ô hỏi của Gemini trong Chromium trên máy ảo CachyOS (Plasma Wayland): “ddown” ở đầu ô trống ra “đơn” 3/3 câu (trước khi sửa ra “n”). Trên Sway (CachyOS), dòng “dduwowngf tieengs vieetj…” ra đúng “đường tiếng việt…” trong ô chữ GTK3 và Firefox. Trên máy ảo Ubuntu 26.04 (GNOME Wayland), “ddwowngf tieengs vieetj” ra “đường tiếng việt” 2/2 lần trong Ptyxis và 2/2 lần trong GNOME Console. Gói ARM 64-bit được bạn ansidev cài và chạy trên Ubuntu 26.04 (máy ảo VMware) từ bản thử.';
+
+// Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
+export const ARM_NOTE = {
+  packages:
+    'Máy ARM 64-bit (aarch64) có gói .deb arm64 cho Debian, Ubuntu, Kali và gói .aarch64.rpm cho Fedora 43, 44; lệnh cài một dòng tự chọn gói theo máy.',
+  tested: 'đã cài và chạy được gói ARM trên Ubuntu 26.04 (máy ảo VMware); các gói ARM khác chỉ build.',
+};
+
+// The user who tested the ARM package; linked wherever the ARM test is mentioned.
+export const ARM_TESTER = { name: 'ansidev', url: 'https://github.com/ansidev' };
 
 export type Level = 'daily' | 'vm' | 'built';
 
@@ -397,6 +470,13 @@ export const DISTRIBUTIONS: Distribution[] = [
     basis: '6 app trên máy ảo MX 25 (cùng nền Debian 13)',
     file: 'fcitx5-ngosen_*_trixie_amd64.deb',
     core: 'Go',
+  },
+  {
+    name: 'Kali Rolling',
+    level: 'vm',
+    basis: 'lệnh cài chạy trên máy ảo Kali 2026.2 (Xfce X11)',
+    file: 'fcitx5-ngosen_*_forky_amd64.deb',
+    core: 'Rust',
   },
   {
     name: 'Fedora 43',
