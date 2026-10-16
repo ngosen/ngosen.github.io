@@ -402,6 +402,17 @@ page except the home page, where the hero sheet carries it. The current page's k
 shows a ribbon line along its bottom edge. The footer is the ink strip: provenance in ivory, a note in
 muted text, and a row of legend-type links.
 
+### On-page index
+A read page with several sections gets a slip: a small sheet on the desk listing its `h2` and `h3`
+headings in body type, small and muted, with `h3` entries indented. Above the slip, sibling pages
+(the two install pages) sit as keys, the current one pressed with the ribbon line like a nav key.
+- **From 76rem:** the slip stands beside the sheet in a 15rem column and stays in view while the page
+  scrolls; its "Trên trang này" legend is a plain label.
+- **Below 76rem:** the slip sits above the sheet, folded behind a "Trên trang này" summary with a drawn
+  chevron, and folds again when an entry is followed. Without scripts it stays open.
+- **Current section:** ink colour, weight 600 and a small filled ink square before the entry, never
+  ribbon red. The last section is marked once the page reaches its end.
+
 ### The typing run
 The hero's signature. A row of keycaps shows the keys of a phrase; each goes down in turn (220ms per
 key) while the composed Vietnamese appears on the sheet's single typed line, followed by a red caret.
