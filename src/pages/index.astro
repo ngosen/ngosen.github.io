@@ -58,8 +58,8 @@ const jsonLd = {
       <div class="telex-head">
         <h2 id="telex-tieu-de">Nên dùng chế độ nào</h2>
         <p>
-          Dùng <strong>Gõ Sen</strong> làm chế độ gõ chính: trong cửa sổ cài đặt Ngó Sen, trang Gõ chữ, click
-          nút Gõ Sen ở hàng Chế độ gõ. Gõ Sen dùng được cho hầu hết app: gõ nhanh không mất chữ, gõ đúng trong
+          Dùng <strong>Gõ Sen</strong> làm chế độ gõ chính: trong cửa sổ cài đặt Ngó Sen, trang Gõ chữ, chọn
+          Gõ Sen ở hàng Chế độ gõ. Gõ Sen dùng được cho hầu hết app: gõ nhanh không mất chữ, gõ đúng trong
           trình duyệt, thanh địa chỉ, Facebook, app Electron như Zalo và terminal. Chế độ này trước đây tên là
           Uinput; cấu hình cũ tự chuyển sang tên mới.
         </p>
@@ -239,7 +239,7 @@ const jsonLd = {
           <div>
             <p>Khởi động lại fcitx5.</p>
             <pre tabindex="0"><code>fcitx5 -rd</code></pre>
-            <p>Trên KDE Wayland: đăng xuất rồi đăng nhập lại, vì KDE tự mở fcitx5 và lệnh trên không thay được.</p>
+            <p>Trên KDE Wayland: đăng xuất rồi đăng nhập lại thay cho lệnh trên, vì fcitx5 bật bằng <code>fcitx5 -rd</code> không gõ được trong app Qt như Kate, Dolphin.</p>
           </div>
         </li>
         <li>

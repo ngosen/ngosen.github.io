@@ -131,7 +131,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>
       Khởi động lại fcitx5:
       <pre tabindex="0"><code>fcitx5 -rd</code></pre>
-      Trên KDE Wayland: đăng xuất rồi đăng nhập lại, vì KDE tự mở fcitx5 và lệnh trên không thay được.
+      Trên KDE Wayland: đăng xuất rồi đăng nhập lại thay cho lệnh trên, vì fcitx5 bật bằng <code>fcitx5 -rd</code> không gõ được trong app Qt như Kate, Dolphin.
     </li>
     <li>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</li>
     <li>
@@ -291,7 +291,7 @@ fcitx5 -rd`}</code></pre>
   <p>Áp cấu hình xong thì khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>.</p>
   <p>
     Mức đã test: CI build gói, chạy test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
-    test trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa test. Gặp lỗi xin
+    test trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa test. Gặp lỗi thì
     <a href={`${REPO}/issues`}>mở issue</a>.
   </p>
   <h3 id="nixos-tu-build">NixOS: tự build từ bản clone</h3>
