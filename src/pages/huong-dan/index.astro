@@ -1,0 +1,55 @@
+---
+import Page from '../../layouts/Page.astro';
+import { GUIDE } from '../../data/site';
+---
+
+<Page
+  title="Hướng dẫn dùng Ngó Sen"
+  description="Cách dùng Ngó Sen sau khi cài: bật tiếng Việt, chọn kiểu gõ, chế độ gõ, gõ emoji."
+  heading="Hướng dẫn"
+>
+  <p slot="lede">
+    Mỗi trang hướng dẫn một việc, kèm ảnh chụp cửa sổ thật. Chưa cài Ngó Sen thì xem trang
+    <a href="/cai-dat/">Cài đặt</a> trước.
+  </p>
+
+  {
+    GUIDE.map((group) => (
+      <section aria-labelledby={`nhom-${group.pages[0].href.split('/')[2]}`}>
+        <h2 id={`nhom-${group.pages[0].href.split('/')[2]}`}>{group.title}</h2>
+        <ol class="tasks">
+          {group.pages.map((page) => (
+            <li>
+              <a href={page.href}>{page.label}</a>
+              <p>{page.summary}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))
+  }
+</Page>
+
+<style>
+  .tasks {
+    list-style: none;
+    padding-left: 0;
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  .tasks li {
+    margin: 0;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .tasks a {
+    font-size: var(--step-1);
+    font-weight: 600;
+  }
+
+  .tasks p {
+    margin-top: 0.25rem;
+    color: var(--ink-muted);
+  }
+</style>

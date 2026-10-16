@@ -551,8 +551,40 @@ export const INSTALL_PAGES = [
   { href: '/cai-dat/nang-cao/', label: 'Cài nâng cao' },
 ];
 
+// The usage guide, one task per page, in reading order. Groups follow the order set in AGENTS.md.
+export const GUIDE = [
+  {
+    title: 'Gõ hằng ngày',
+    pages: [
+      {
+        href: '/huong-dan/bat-tat-tieng-viet/',
+        label: 'Bật và tắt tiếng Việt',
+        summary: 'Phím Ctrl+Space, dấu hiệu đang bật, đổi phím khác.',
+      },
+      {
+        href: '/huong-dan/kieu-go-bang-ma/',
+        label: 'Chọn kiểu gõ và bảng mã',
+        summary: 'Telex hay VNI, Unicode hay bảng mã cũ, gõ thử ngay trong cửa sổ cài đặt.',
+      },
+      {
+        href: '/huong-dan/che-do-go/',
+        label: 'Chọn chế độ gõ',
+        summary: 'Gõ Sen hay Gạch chân, chế độ riêng cho từng app.',
+      },
+      {
+        href: '/huong-dan/go-emoji/',
+        label: 'Gõ emoji',
+        summary: 'Tìm emoji bằng từ khoá ngay chỗ đang gõ.',
+      },
+    ],
+  },
+];
+
+export const GUIDE_PAGES = GUIDE.flatMap((group) => group.pages);
+
 export const NAV = [
   { href: '/cai-dat/', label: 'Cài đặt' },
+  { href: '/huong-dan/', label: 'Hướng dẫn' },
   { href: '/blog/', label: 'Blog' },
   { href: '/en/', label: 'English' },
 ];

@@ -1,0 +1,82 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'chon-che-do', label: 'Gõ Sen hay Gạch chân' },
+  { id: 'che-do-chung', label: 'Chế độ chung' },
+  { id: 'rieng-mot-app', label: 'Chế độ riêng cho một app' },
+];
+---
+
+<Guide
+  title="Chọn chế độ gõ"
+  description="Các chế độ gõ của Ngó Sen: Gõ Sen, Gạch chân, Chọn Emoji, Tắt; chọn chế độ chung và chế độ riêng cho từng app."
+  toc={toc}
+>
+  <p slot="lede">Ngó Sen có bốn chế độ: “Gõ Sen”, “Gạch chân”, “Chọn Emoji” và “Tắt”.</p>
+
+  <ul>
+    <li>
+      “Gõ Sen” đưa chữ vào app ngay khi gõ. Dùng chế độ này cho hầu hết app: trình duyệt, terminal, Zalo,
+      LibreOffice.
+    </li>
+    <li>
+      “Gạch chân” giữ chữ đang gõ tạm trong ô, tới khi xong từ mới đưa hẳn vào app. Tuỳ app và desktop, chữ
+      tạm có thể có gạch chân hoặc trông như chữ thường.
+    </li>
+    <li>“Chọn Emoji” tìm emoji bằng từ khoá, xem bài <a href="/huong-dan/go-emoji/">Gõ emoji</a>.</li>
+    <li>“Tắt” để phím gõ ra như bàn phím thường.</li>
+  </ul>
+
+  <h2 id="chon-che-do">Gõ Sen hay Gạch chân</h2>
+  <p>
+    Gạch chân là cách gõ ổn định trên Linux. Cách này sinh ra cho tiếng Trung, Nhật, Hàn: chữ đang soạn nằm
+    tạm, chọn xong mới đưa vào ô, nên được app và desktop trên Linux hỗ trợ lâu và rộng nhất. Bộ gõ không phải
+    xoá chữ cũ trong app rồi gõ lại, nên ít gặp lỗi mất chữ hay sai dấu.
+  </p>
+  <p>
+    Nhược điểm chính nằm ở những ô có gợi ý khi gõ, như thanh địa chỉ trình duyệt hay ô tìm kiếm: gợi ý không
+    hiện theo từng phím, gõ xong từ thì gợi ý mới hiện. Mở menu chế độ giữa chừng một chữ thì chữ đó được đưa
+    luôn vào ô.
+  </p>
+  <p>
+    Gõ Sen đưa chữ thẳng vào ô ngay khi gõ, gợi ý hiện theo từng phím, và Ngó Sen tự chọn cách thay chữ cho
+    từng app. Vì vậy Gõ Sen là chế độ chung nên dùng. Chỉ chuyển một app sang Gạch chân khi app đó gõ sai với
+    Gõ Sen.
+  </p>
+
+  <h2 id="che-do-chung">Chế độ chung</h2>
+  <ol class="steps">
+    <li>Vào “Cài đặt Ngó Sen › Gõ chữ”.</li>
+    <li>Ở hàng “Chế độ gõ”, chọn “Gõ Sen”.</li>
+  </ol>
+
+  <h2 id="rieng-mot-app">Chế độ riêng cho một app</h2>
+  <ol class="steps">
+    <li>
+      Khi đang gõ trong app đó, bấm phím <kbd>`</kbd> (“Phím tắt menu chế độ gõ”). Menu chế độ hiện cạnh con
+      trỏ, dòng đầu ghi tên app.
+    </li>
+    <li>
+      Bấm phím ghi trong ngoặc trước chế độ muốn dùng: <kbd>1</kbd> Gõ Sen, <kbd>q</kbd> Gạch chân,
+      <kbd>w</kbd> Chọn Emoji, <kbd>e</kbd> Tắt.
+    </li>
+    <li>Ngó Sen nhớ chế độ đó cho app này, kể cả khi mở lại app.</li>
+  </ol>
+  <Shot
+    name="guide-menu"
+    width={650}
+    height={400}
+    alt="Menu chế độ hiện dưới con trỏ trong xed: dòng App: xed, rồi [1] Gõ Sen, [q] Gạch chân, [w] Chọn Emoji, [e] Tắt, [r] Chế độ gõ mặc định, [`] Gõ `."
+    caption="Menu chế độ trong xed. Dấu >> đánh dấu chế độ đang dùng. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+  />
+  <p>
+    Muốn app quay về chế độ chung, mở lại menu và bấm <kbd>r</kbd> (“Chế độ gõ mặc định”). Muốn gõ ra chính
+    dấu <code>`</code>, bấm <kbd>`</kbd> hai lần.
+  </p>
+  <p>
+    Nút “Mặc định” ở góc dưới cửa sổ cài đặt xoá mọi chế độ đã nhớ cho từng app, đồng thời đưa mọi cài đặt
+    khác về mặc định. Cửa sổ hỏi lại trước khi làm.
+  </p>
+</Guide>

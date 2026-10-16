@@ -345,6 +345,16 @@ tbody th {
   color: var(--ink-muted);
 }
 
+/* Keys named in running text on a sheet: the small inline key. */
+.sheet kbd {
+  padding: 0.02em 0.35em 0.06em;
+  border-bottom: 0.14em solid var(--cap-skirt);
+  border-radius: 0.25em;
+  background: var(--cap);
+  color: var(--cap-ink);
+  white-space: nowrap;
+}
+
 .prose :not(pre) > code {
   padding: 0.08em 0.3em;
   background: var(--desk);

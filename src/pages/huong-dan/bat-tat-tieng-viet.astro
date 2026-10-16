@@ -1,0 +1,54 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'dau-hieu', label: 'Biết tiếng Việt đang bật' },
+  { id: 'moi-cua-so', label: 'Mỗi cửa sổ bật riêng' },
+  { id: 'doi-phim', label: 'Đổi phím bật/tắt' },
+];
+---
+
+<Guide
+  title="Bật và tắt tiếng Việt"
+  description="Bật, tắt tiếng Việt trong Ngó Sen bằng Ctrl+Space, nhận biết đang bật và đổi sang phím khác."
+  toc={toc}
+>
+  <p slot="lede">
+    Bấm <kbd>Ctrl+Space</kbd> để bật hoặc tắt tiếng Việt. Đây là phím mặc định của fcitx5. Máy cài bằng
+    version cũ có thể đang dùng <kbd>Ctrl+Shift</kbd>; lệnh cài bây giờ để nguyên phím đó.
+  </p>
+
+  <h2 id="dau-hieu">Biết tiếng Việt đang bật</h2>
+  <p>
+    Bấm xong, ô nhỏ cạnh con trỏ hiện <code>vi</code> khi tiếng Việt bật, <code>en</code> khi tắt. Icon trên
+    khay là chữ V nền xanh khi bật, icon bàn phím khi tắt. Click vào icon trên khay cũng bật hoặc tắt tiếng
+    Việt.
+  </p>
+  <Shot
+    name="guide-vi"
+    width={650}
+    height={400}
+    alt="Trình soạn chữ xed với dòng “Ngó Sen gõ tiếng Việt”; ngay dưới con trỏ là ô nhỏ ghi “vi”."
+    caption="Ô “vi” hiện cạnh con trỏ ngay sau khi bấm Ctrl+Space. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+  />
+
+  <h2 id="moi-cua-so">Mỗi cửa sổ bật riêng</h2>
+  <p>
+    fcitx5 nhớ bật hay tắt riêng cho từng cửa sổ. Mở một cửa sổ mới thì tiếng Việt ở đó đang tắt, bấm
+    <kbd>Ctrl+Space</kbd> một lần.
+  </p>
+
+  <h2 id="doi-phim">Đổi phím bật/tắt</h2>
+  <p>Phím này là cài đặt của fcitx5, không nằm trong cửa sổ Cài đặt Ngó Sen.</p>
+  <ol class="steps">
+    <li>Click chuột phải vào icon trên khay, chọn “Cấu hình”.</li>
+    <li>
+      Mở tab “Global Options”. Ở nhóm “Phím tắt”, dòng “Trigger Input Method”, click vào nút đang ghi
+      “Điều khiển+Space”.
+    </li>
+    <li>Bấm tổ hợp phím mới. Nút đổi sang tên phím vừa bấm.</li>
+    <li>Bấm “Apply”. Phím mới dùng được ngay.</li>
+  </ol>
+  <p>Cửa sổ này của fcitx5 phần lớn vẫn để chữ tiếng Anh, kể cả khi máy để tiếng Việt.</p>
+</Guide>
