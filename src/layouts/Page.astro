@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import OnThisPage, { type TocItem, type TocPage } from '../components/OnThisPage.astro';
 
 interface Props {
   title: string;
@@ -10,9 +11,11 @@ interface Props {
   published?: Date;
   modified?: Date;
   jsonLd?: Record<string, unknown>;
+  toc?: TocItem[];
+  tocPages?: TocPage[];
 }
 
-const { title, description, heading, lang, type, published, modified, jsonLd } = Astro.props;
+const { title, description, heading, lang, type, published, modified, jsonLd, toc, tocPages } = Astro.props;
 ---
 
 <Base
@@ -24,7 +27,8 @@ const { title, description, heading, lang, type, published, modified, jsonLd } =
   modified={modified}
   jsonLd={jsonLd}
 >
-  <article class="wrap">
+  <article class:list={['wrap', { 'with-toc': toc }]}>
+    {toc && <OnThisPage items={toc} pages={tocPages} />}
     <div class="sheet page">
       <header>
         <h1>{heading}</h1>
@@ -40,6 +44,25 @@ const { title, description, heading, lang, type, published, modified, jsonLd } =
 <style>
   article {
     padding-top: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  /* With an index: the slip sits above the sheet, then beside it once both fit. */
+  .with-toc {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .with-toc .page :global(h2),
+  .with-toc .page :global(h3) {
+    scroll-margin-top: 1.5rem;
+  }
+
+  @media (min-width: 76rem) {
+    .with-toc {
+      grid-template-columns: 15rem minmax(0, 60rem);
+      gap: 2.5rem;
+      align-items: start;
+    }
   }
 
   .page {

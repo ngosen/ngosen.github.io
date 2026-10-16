@@ -1,0 +1,249 @@
+---
+// A slip on the desk that lists the page's sections; beside the sheet on wide screens, folded above it
+// on narrow ones. `pages` are sibling pages shown as keys, the current one pressed.
+export interface TocItem {
+  id: string;
+  label: string;
+  level?: 2 | 3;
+}
+
+export interface TocPage {
+  href: string;
+  label: string;
+  current?: boolean;
+}
+
+interface Props {
+  items: TocItem[];
+  pages?: TocPage[];
+}
+
+const { items, pages = [] } = Astro.props;
+---
+
+<nav class="toc" aria-label="Trên trang này">
+  {
+    pages.length > 0 && (
+      <ul class="toc-pages">
+        {pages.map((page) => (
+          <li>
+            <a class="key" href={page.href} aria-current={page.current ? 'page' : undefined}>
+              {page.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  <details class="toc-fold" open>
+    <summary>Trên trang này</summary>
+    <ol class="toc-list">
+      {
+        items.map((item) => (
+          <li class={item.level === 3 ? 'sub' : undefined}>
+            <a href={`#${item.id}`}>{item.label}</a>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
+</nav>
+<script is:inline>
+  // Folded on narrow screens; open beside the sheet on wide ones. Without JS it stays open.
+  (() => {
+    const fold = document.currentScript.previousElementSibling.querySelector('.toc-fold');
+    const wide = window.matchMedia('(min-width: 76rem)');
+    const sync = () => (fold.open = wide.matches);
+    sync();
+    wide.addEventListener('change', sync);
+    fold.addEventListener('click', (event) => {
+      if (!wide.matches && event.target.closest('a')) fold.open = false;
+    });
+
+    // Mark the section being read: the last heading near the top of the screen, or the last one at the
+    // end of the page, where short closing sections never reach the top.
+    // This script runs before the sheet is parsed, so the headings are looked up once the page is in.
+    const spy = () => {
+      const links = new Map(
+        [...fold.querySelectorAll('a')].map((link) => [decodeURIComponent(link.hash.slice(1)), link]),
+      );
+      const headings = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+      if (!headings.length) return;
+      const mark = () => {
+        let current = headings[0];
+        for (const heading of headings) if (heading.getBoundingClientRect().top <= 112) current = heading;
+        const end = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        if (end) current = headings[headings.length - 1];
+        for (const [id, link] of links) {
+          if (id === current.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        }
+      };
+      let queued = false;
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (queued) return;
+          queued = true;
+          requestAnimationFrame(() => {
+            queued = false;
+            mark();
+          });
+        },
+        { passive: true },
+      );
+      mark();
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', spy);
+    else spy();
+  })();
+</script>
+
+<style>
+  .toc {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  .toc-pages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.5rem;
+    margin: 0;
+    padding: 0 0 0.3rem;
+    list-style: none;
+  }
+
+  .toc-pages .key {
+    font-size: 0.95rem;
+    min-height: 2.75rem;
+  }
+
+  .toc-pages .key:focus-visible {
+    outline-color: var(--ribbon-text);
+  }
+
+  /* The slip: a small sheet resting on the desk. */
+  .toc-fold {
+    background: var(--paper);
+    border-radius: 2px;
+    box-shadow:
+      0 0 0 1px var(--paper-edge),
+      0 1rem 1.4rem -1rem rgb(0 0 0 / 0.3);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 1.1rem;
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* A drawn chevron: turns when the slip opens. */
+  summary::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-0.15rem) rotate(45deg);
+    transition: transform 160ms var(--ease-out);
+  }
+
+  .toc-fold[open] summary::after {
+    transform: translateY(0.1rem) rotate(-135deg);
+  }
+
+  .toc-list {
+    margin: 0;
+    padding: 0.2rem 1.1rem 1rem;
+    list-style: none;
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  .toc-list li {
+    margin: 0;
+  }
+
+  .toc-list a {
+    position: relative;
+    display: block;
+    padding: 0.42rem 0 0.42rem 1rem;
+    font-size: var(--step--1);
+    line-height: 1.4;
+    text-decoration: none;
+    color: var(--ink-muted);
+  }
+
+  .toc-list .sub a {
+    padding-left: 2rem;
+  }
+
+  .toc-list a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+
+  /* The section being read: ink weight and a typed block mark, not a colour. */
+  .toc-list a[aria-current='location'] {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .toc-list a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.82rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    background: currentColor;
+    opacity: 0;
+    transform: scale(0.4);
+    transition:
+      opacity 160ms var(--ease-out),
+      transform 160ms var(--ease-out);
+  }
+
+  .toc-list .sub a::before {
+    left: 1rem;
+  }
+
+  .toc-list a[aria-current='location']::before {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (min-width: 76rem) {
+    .toc {
+      position: sticky;
+      top: 1.5rem;
+      max-height: calc(100dvh - 3rem);
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    summary {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    summary::after {
+      display: none;
+    }
+  }
+</style>

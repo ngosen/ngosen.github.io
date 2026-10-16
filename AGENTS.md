@@ -56,6 +56,31 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   it when either changes. Small previews (Facebook comments, chat apps) crop the centre 630×630
   square, so everything stays inside it, large enough to read as a thumbnail. After re-rendering, bump the query in `OG_IMAGE`
   (`src/data/site.ts`) so caches fetch the new image.
+- The install guide is two pages, `/cai-dat/` (what most machines need) and `/cai-dat/nang-cao/`
+  (manual download, preview builds, building from source, NixOS), listed in `INSTALL_PAGES`. A page
+  with a `toc` gets the on-page index (`src/components/OnThisPage.astro`); keep its entries in step with
+  the page's `h2`/`h3` ids. A section that moves between the two keeps its id and goes into the
+  `moved` list at the end of `cai-dat.astro`, so old `/cai-dat/#…` links still land on it.
+
+## Usage guide
+
+`/huong-dan/` explains how to use Ngó Sen once it is installed, one task per page. It is Vietnamese
+only. These rules add to the ones above:
+
+- Sources: page, tab, button and option names are the Vietnamese strings the settings window shows,
+  from `po/vi.po` and `settings-gui/` on `main` of `ngosen/ngosen`; the options are defined in
+  `src/ngosen-config.h`. What an option does comes from `CHANGELOG.md` and `README.md`. Quote a UI
+  string exactly, in “…”.
+- Every step is carried out on a virtual machine with a released package before it is written. A step
+  that was not tried stays out.
+- Name a page after the task ("Gõ tắt một cụm từ hay dùng"), and give the path in the window as well:
+  “Cài đặt Ngó Sen › Gõ tắt & Từ điển › Gõ tắt”.
+- Numbered steps, about five at most; one or two screenshots per page, light/dark pairs taken from the
+  real window like the ones on the home page.
+- Leave out the hidden "Experiment" options, how fixes work inside, and internal measurements. An option
+  the window marks as "(thử nghiệm)" is described as experimental.
+- Typing comes first: turning Vietnamese on and off, input method, typing modes and emoji, then marks
+  and spelling, then macros, then customising, then reporting a bug.
 
 ## Keeping up with the main repository
 
@@ -83,7 +108,8 @@ When a version is released, in this order:
 3. Update the tested levels in `DISTRIBUTIONS` from `packaging/release-notes.md`.
 4. If the README changed, update the intro, highlights and scope note (`TAGLINE`, `HIGHLIGHTS`,
    `SCOPE`).
-5. Update `/en/` and the blog posts as described above.
+5. Update `/en/` and the blog posts as described above. If the settings window changed (a renamed
+   page, button or option, a new option), check the `/huong-dan/` pages that show it.
 6. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
    to `main`.
 

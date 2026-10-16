@@ -545,6 +545,12 @@ export const SCOPE = {
   branch: 'feat/ibus-engine',
 };
 
+// The install guide spans two pages; each shows both as keys above its index.
+export const INSTALL_PAGES = [
+  { href: '/cai-dat/', label: 'Cài đặt' },
+  { href: '/cai-dat/nang-cao/', label: 'Cài nâng cao' },
+];
+
 export const NAV = [
   { href: '/cai-dat/', label: 'Cài đặt' },
   { href: '/blog/', label: 'Blog' },
