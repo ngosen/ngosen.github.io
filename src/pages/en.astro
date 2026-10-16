@@ -48,7 +48,8 @@ const levels: Record<Level, string> = {
   <ol>
     <li>
       Restart fcitx5 with <code>fcitx5 -rd</code>. Do this again after every update. On KDE Wayland, log
-      out and back in instead: KDE starts fcitx5 itself, and the command cannot replace it.
+      out and back in instead: fcitx5 started with <code>fcitx5 -rd</code> cannot type in Qt apps such
+      as Kate and Dolphin.
     </li>
     <li>Open “Fcitx5 Configuration” and add the input method named Ngó Sen.</li>
     <li>On KDE Wayland, select “Fcitx 5” under System Settings, Virtual Keyboard.</li>
@@ -183,8 +184,9 @@ const levels: Record<Level, string> = {
     work but have not been tested closely.
   </p>
   <p>
-    Ngó Sen targets fcitx5 only. The IBus build and a build running directly on Sway and Hyprland
-    without fcitx5 were dropped; Sway and Hyprland still work through fcitx5. The IBus code stays on the <code>feat/ibus-engine</code> branch. Source, releases and the
+    Ngó Sen targets fcitx5 only. fcitx5 runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
+    plenty of features and is light on RAM, and one input method framework is less to maintain than
+    several. The old IBus code stays on the <code>feat/ibus-engine</code> branch. Source, releases and the
     changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>

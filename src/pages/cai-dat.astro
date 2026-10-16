@@ -131,7 +131,7 @@ const nixLocal = 'inputs.ngosen.url = "git+file:///home/ten-ban/ngosen";';
     <li>
       Khởi động lại fcitx5:
       <pre tabindex="0"><code>fcitx5 -rd</code></pre>
-      Trên KDE Wayland: đăng xuất rồi đăng nhập lại, vì KDE tự mở fcitx5 và lệnh trên không thay được.
+      Trên KDE Wayland: đăng xuất rồi đăng nhập lại thay cho lệnh trên, vì fcitx5 bật bằng <code>fcitx5 -rd</code> không gõ được trong app Qt như Kate, Dolphin.
     </li>
     <li>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</li>
     <li>
@@ -251,7 +251,8 @@ sudo cmake --install build`}</code></pre>
   <p>
     Trên GNOME, lệnh này còn trả lại những gì lệnh cài đã đổi cho tài khoản đang chạy: fcitx5 thôi tự chạy
     khi đăng nhập, app dùng lại IBus, tắt extension sửa lỗi gõ và gỡ Input Method Panel nếu lệnh cài đã
-    thêm. Đăng xuất rồi đăng nhập lại là GNOME dùng IBus như cũ. File nào đã tự sửa thì để nguyên.
+    thêm. Đăng xuất rồi đăng nhập lại là GNOME dùng IBus như cũ. File nào đã bị sửa tay sau khi cài thì lệnh gỡ để
+    nguyên.
     fcitx5 vẫn còn trên máy; muốn gỡ luôn thì chạy <code>sudo apt autoremove</code> (Ubuntu, Debian) sau đó.
   </p>
   <p>
@@ -290,7 +291,7 @@ fcitx5 -rd`}</code></pre>
   <p>Áp cấu hình xong thì khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>.</p>
   <p>
     Mức đã test: CI build gói, chạy test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
-    test trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa test. Gặp lỗi xin
+    test trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa test. Gặp lỗi thì
     <a href={`${REPO}/issues`}>mở issue</a>.
   </p>
   <h3 id="nixos-tu-build">NixOS: tự build từ bản clone</h3>
