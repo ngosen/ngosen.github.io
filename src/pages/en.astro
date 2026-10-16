@@ -1,6 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
-import { DISTRIBUTIONS, INSTALL_COMMAND, RELEASE, REPO, type Level } from '../data/site';
+import { ARM_TESTER, DISTRIBUTIONS, INSTALL_COMMAND, RELEASE, REPO, type Level } from '../data/site';
 
 const levels: Record<Level, string> = {
   daily: 'Main setup',
@@ -95,7 +95,7 @@ const levels: Record<Level, string> = {
   <h2 id="tested">Where it has been tested</h2>
   <p>
     Packages exist for these distributions on x86_64. Fedora 43 and 44, Ubuntu, Debian and Kali also
-    have ARM 64-bit (aarch64) packages, and the script picks the one for your machine; ansidev installed
+    have ARM 64-bit (aarch64) packages, and the script picks the one for your machine; <a href={ARM_TESTER.url}>{ARM_TESTER.name}</a> installed
     and ran the ARM package on Ubuntu 26.04 (a VMware virtual machine), and the other ARM packages are
     build-only. A package that builds is not a package that works,
     so each one is labelled by how far it was tested, as listed in the notes of release
