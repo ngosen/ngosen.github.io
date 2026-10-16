@@ -1,0 +1,45 @@
+---
+// A screenshot lying flat on the desk: a light/dark pair from public/screenshots/, switched by the
+// visitor's colour scheme. `name` is the file stem without the -light/-dark suffix.
+interface Props {
+  name: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+}
+
+const { name, alt, width, height, caption } = Astro.props;
+---
+
+<figure class="shot">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset={`/screenshots/${name}-dark.png`} />
+    <img src={`/screenshots/${name}-light.png`} width={width} height={height} loading="lazy" alt={alt} />
+  </picture>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .shot {
+    margin-block: 1.75rem;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+    box-shadow:
+      0 0 0 1px var(--paper-edge),
+      0 1.4rem 2rem -1.4rem rgb(0 0 0 / 0.35);
+  }
+
+  figcaption {
+    margin-top: 0.7rem;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    max-width: 52ch;
+  }
+</style>

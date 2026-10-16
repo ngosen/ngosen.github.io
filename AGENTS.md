@@ -73,10 +73,15 @@ only. These rules add to the ones above:
   string exactly, in “…”.
 - Every step is carried out on a virtual machine with a released package before it is written. A step
   that was not tried stays out.
-- Name a page after the task ("Gõ tắt một cụm từ hay dùng"), and give the path in the window as well:
-  “Cài đặt Ngó Sen › Gõ tắt & Từ điển › Gõ tắt”.
+- Name a page after the task ("Gõ tắt một cụm từ hay dùng"), and give the path in the window as well,
+  as a sentence: Vào “Cài đặt Ngó Sen › Gõ tắt & Từ điển › Gõ tắt”.
 - Numbered steps, about five at most; one or two screenshots per page, light/dark pairs taken from the
-  real window like the ones on the home page.
+  real window. Reusing a screenshot from another page is fine.
+- Pages use `src/layouts/Guide.astro`, steps go in `<ol class="steps">`, and screenshots go through
+  `src/components/Shot.astro` with a caption naming the system and the version shown. New screenshots
+  are named `guide-*` in `public/screenshots/`.
+- The pages and their order are listed in `GUIDE` (`src/data/site.ts`), grouped as on `/huong-dan/`;
+  the previous/next keys at the end of each page follow that order.
 - Leave out the hidden "Experiment" options, how fixes work inside, and internal measurements. An option
   the window marks as "(thử nghiệm)" is described as experimental.
 - Typing comes first: turning Vietnamese on and off, input method, typing modes and emoji, then marks

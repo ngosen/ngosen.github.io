@@ -1,0 +1,44 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'cac-buoc', label: 'Chọn một emoji' },
+  { id: 'luu-y', label: 'Thoát chế độ emoji' },
+];
+---
+
+<Guide
+  title="Gõ emoji"
+  description="Gõ emoji bằng Ngó Sen: mở chế độ Chọn Emoji, tìm bằng từ khoá tiếng Anh và chọn ngay chỗ đang gõ."
+  toc={toc}
+>
+  <p slot="lede">
+    Chế độ “Chọn Emoji” tìm emoji bằng từ khoá ngay chỗ đang gõ, không phải mở bảng ký tự riêng.
+  </p>
+
+  <h2 id="cac-buoc">Chọn một emoji</h2>
+  <ol class="steps">
+    <li>Bấm <kbd>`</kbd> để mở menu chế độ, rồi bấm <kbd>w</kbd> (“Chọn Emoji”). Icon trên khay đổi thành mặt cười.</li>
+    <li>Gõ từ khoá tiếng Anh, ví dụ <code>smile</code> hay <code>heart</code>. Danh sách emoji hiện cạnh con trỏ.</li>
+    <li>
+      Bấm số trước emoji để chọn luôn, hoặc đi qua danh sách bằng <kbd>Tab</kbd> và phím mũi tên rồi bấm
+      <kbd>Space</kbd> hay <kbd>Enter</kbd>. Danh sách dài thì có nhiều trang, lật bằng <kbd>Page Down</kbd>,
+      <kbd>Page Up</kbd>.
+    </li>
+  </ol>
+  <Shot
+    name="guide-emoji"
+    width={650}
+    height={400}
+    alt="Trong xed, từ khoá heart đang gõ có gạch chân; bên dưới là danh sách Trang 1/1 với bốn emoji trái tim, mục 1 đang chọn."
+    caption="Gõ heart ra bốn emoji. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+  />
+
+  <h2 id="luu-y">Thoát chế độ emoji</h2>
+  <p>
+    Gõ xong emoji, mở lại menu bằng <kbd>`</kbd> và chọn chế độ cũ để gõ chữ tiếp. <kbd>Esc</kbd> chỉ xoá từ
+    khoá đang gõ, chưa thoát chế độ emoji.
+  </p>
+  <p>Chọn “Chọn Emoji” không làm app nhớ chế độ emoji; menu vẫn đánh dấu chế độ cũ của app.</p>
+</Guide>

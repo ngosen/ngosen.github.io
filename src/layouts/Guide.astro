@@ -1,0 +1,127 @@
+---
+// One page of the usage guide: a read page with its index, a key back to the guide's contents, and
+// keys to the previous and next task at the end.
+import Page from './Page.astro';
+import { type TocItem } from '../components/OnThisPage.astro';
+import { GUIDE_PAGES } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  toc: TocItem[];
+}
+
+const { title, description, toc } = Astro.props;
+const here = Astro.url.pathname;
+const index = GUIDE_PAGES.findIndex((page) => page.href === here);
+const prev = index > 0 ? GUIDE_PAGES[index - 1] : undefined;
+const next = index >= 0 && index < GUIDE_PAGES.length - 1 ? GUIDE_PAGES[index + 1] : undefined;
+---
+
+<Page
+  title={`${title} | Hướng dẫn Ngó Sen`}
+  description={description}
+  heading={title}
+  toc={toc}
+  tocPages={[{ href: '/huong-dan/', label: 'Mục lục hướng dẫn' }]}
+>
+  <slot name="lede" slot="lede" />
+  <slot />
+  <nav class="pager" aria-label="Bài trước và bài sau">
+    {
+      prev && (
+        <a class="key prev" href={prev.href} rel="prev">
+          <span class="dir">Bài trước</span>
+          <span class="name">{prev.label}</span>
+        </a>
+      )
+    }
+    {
+      next && (
+        <a class="key next" href={next.href} rel="next">
+          <span class="dir">Bài sau</span>
+          <span class="name">{next.label}</span>
+        </a>
+      )
+    }
+  </nav>
+</Page>
+
+<style>
+  /* Steps are numbered on keycaps standing beside each line. */
+  :global(.prose ol.steps) {
+    counter-reset: step;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  :global(.prose ol.steps > li) {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2.6rem;
+    min-height: 2rem;
+  }
+
+  :global(.prose ol.steps > li + li) {
+    margin-top: 0.9rem;
+  }
+
+  :global(.prose ol.steps > li)::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: -0.1rem;
+    display: grid;
+    place-items: center;
+    width: 1.8rem;
+    height: 1.55rem;
+    border-bottom: 0.22em solid var(--cap-skirt);
+    border-radius: 0.3em;
+    background: var(--cap);
+    color: var(--cap-ink);
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 0.35em 0.5em -0.3em rgb(0 0 0 / 0.45);
+  }
+
+  .pager {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  .pager .key {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    min-height: 2.75rem;
+    padding: 0.5em 0.9em 0.45em;
+    text-transform: none;
+    letter-spacing: 0;
+    text-align: left;
+  }
+
+  .pager .next {
+    margin-left: auto;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .dir {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  .name {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+</style>

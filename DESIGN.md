@@ -293,7 +293,8 @@ the report at 1.2 degrees, from 62rem up). Body text never rotates below that wi
 
 Screenshots of the app lie flat on the desk like sheets: the Sheet on desk shadow, 2px corners, no
 rotation. Each one is a light/dark pair in `public/screenshots/` switched by `prefers-color-scheme`,
-taken from the real window, never mocked up.
+taken from the real window, never mocked up. Inside a guide page a screenshot is a figure with a small
+muted caption naming the system and the version it shows.
 
 Responsive behaviour is structural:
 - **Below 30rem:** nav keys shrink and tighten so all five fit in two rows.
@@ -405,13 +406,26 @@ muted text, and a row of legend-type links.
 ### On-page index
 A read page with several sections gets a slip: a small sheet on the desk listing its `h2` and `h3`
 headings in body type, small and muted, with `h3` entries indented. Above the slip, sibling pages
-(the two install pages) sit as keys, the current one pressed with the ribbon line like a nav key.
+(the two install pages, or the guide's contents) sit as keys, the current one pressed with the ribbon line like a nav key.
 - **From 76rem:** the slip stands beside the sheet in a 15rem column and stays in view while the page
   scrolls; its "Trên trang này" legend is a plain label.
 - **Below 76rem:** the slip sits above the sheet, folded behind a "Trên trang này" summary with a drawn
   chevron, and folds again when an entry is followed. Without scripts it stays open.
 - **Current section:** ink colour, weight 600 and a small filled ink square before the entry, never
   ribbon red. The last section is marked once the page reaches its end.
+
+### Step list
+The numbered steps of a guide page. Each number sits on a small keycap (1.8rem by 1.55rem, ivory top,
+0.22em skirt, the key-at-rest shadow) standing at the left of its line; the text hangs beside it.
+
+### Inline key
+A key named in running text on paper (`kbd`): a flat ivory chip with a thin skirt (0.14em), Xanh Mono,
+never wrapping. It does not move; it is a label, not a control.
+
+### Pager
+The end of a guide page: a hairline, then the previous task as a keycap on the left and the next on the
+right. Each key carries a small uppercase direction ("Bài trước", "Bài sau") above the task name in
+body type, and presses like any other key.
 
 ### The typing run
 The hero's signature. A row of keycaps shows the keys of a phrase; each goes down in turn (220ms per
