@@ -1,0 +1,200 @@
+---
+import Page from '../layouts/Page.astro';
+import { REPO, ROADMAP, ROADMAP_FILE } from '../data/site';
+
+// Backticks in ROADMAP text mark what is typed or produced; render them as code.
+const parts = (text: string) => text.split('`').map((part, i) => ({ part, code: i % 2 === 1 }));
+const ref = (n: number) => `${REPO}/issues/${n}`;
+const nextIndex = ROADMAP.findIndex((stop) => stop.version);
+---
+
+<Page
+  title="Roadmap của Ngó Sen"
+  description="Những gì Ngó Sen định làm tiếp, theo thứ tự: mỗi version một tính năng chính, không ghi ngày phát hành."
+  heading="Roadmap"
+>
+  <p slot="lede">
+    Những gì Ngó Sen định làm tiếp, theo thứ tự. Mỗi version mang một tính năng chính, để mỗi lần cập nhật bạn
+    chỉ phải làm quen một thứ mới. Tính năng làm xong trước lượt thì để dành cho version sau.
+  </p>
+
+  <p>
+    Ở đây không ghi ngày phát hành. Chỉ những việc đã gắn <a href={`${REPO}/milestones`}>milestone</a> mới có số
+    version, và từ 1.6.0 trở đi thứ tự có thể đổi. Muốn đề nghị hay góp ý thì mở
+    <a href={`${REPO}/issues`}>issue</a>.
+  </p>
+
+  <ol class="roadmap">
+    {
+      ROADMAP.map((stop, index) => (
+        <li class:list={['stop', { next: index === nextIndex, later: !stop.version }]}>
+          <h2 id={stop.version ? `v${stop.version.replaceAll('.', '-')}` : 'sau-do'}>
+            <span class="num">
+              {stop.version ?? 'Sau đó'}
+              {index === nextIndex && <span class="caret" aria-hidden="true" />}
+            </span>
+            {index === nextIndex && <span class="mark">Kế tiếp</span>}
+          </h2>
+          <div class="body">
+            {!stop.version && <p class="note">Chưa có số version, xếp theo thứ tự định làm:</p>}
+            <ol class:list={['items', { numbered: !stop.version }]}>
+              {stop.items.map((item) => (
+                <li>
+                  <span>
+                  {parts(item.text).map(({ part, code }) => (code ? <code>{part}</code> : part))}
+                  {item.refs && (
+                    <span class="refs">
+                      {item.refs.map((n) => (
+                        <>
+                          {' '}
+                          <a href={ref(n)}>#{n}</a>
+                        </>
+                      ))}
+                    </span>
+                  )}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p class="source">
+    Trang này chép từ <a href={ROADMAP_FILE}>ROADMAP.md</a> trong repo. Những gì đã phát hành nằm ở trang
+    <a href="/ban-phat-hanh/">Các release</a>.
+  </p>
+</Page>
+
+<style>
+  .roadmap {
+    list-style: none;
+    padding: 0;
+    margin-top: 2.4rem;
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  .stop {
+    display: grid;
+    gap: 0.6rem 2rem;
+    padding-block: 1.6rem 1.8rem;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  /* Wide enough: the version sits in the left margin like a tab stop. */
+  @media (min-width: 44rem) {
+    .stop {
+      grid-template-columns: 8.5rem minmax(0, 1fr);
+    }
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.6rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (min-width: 44rem) {
+    h2 {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .later h2 {
+    color: var(--ink-muted);
+  }
+
+  /* The machine is typing here: the one ribbon caret on the page, after the next version. */
+  .num {
+    white-space: nowrap;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 0.5em;
+    height: 0.1em;
+    margin-left: 0.08em;
+    background: var(--ribbon);
+    animation: blink 1.1s steps(1, end) infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .caret {
+      animation: none;
+    }
+  }
+
+  .mark {
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    word-spacing: normal;
+    text-transform: uppercase;
+    padding: 0.1em 0.55em 0.05em;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+  }
+
+  .body {
+    min-width: 0;
+  }
+
+  .items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .numbered {
+    counter-reset: step;
+  }
+
+  .numbered li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 1.8rem minmax(0, 1fr);
+  }
+
+  .numbered li::before {
+    content: counter(step) '.';
+    font-family: var(--font-typed);
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .note {
+    margin: 0 0 0.9rem;
+    color: var(--ink-muted);
+  }
+
+  .refs {
+    word-spacing: 0.25em;
+    font-family: var(--font-legend);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .source {
+    margin-top: 1.8rem;
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+  }
+</style>

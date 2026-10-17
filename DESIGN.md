@@ -370,6 +370,12 @@ paper, desk and enamel alike.
 "Chưa sửa": a stamp-shaped box in ribbon red, turned 2 degrees, heading the sheet of things not fixed.
 One use; it is the only red text on the site.
 
+### Roadmap stops
+`/roadmap/` is one sheet with a list of stops split by 1px paper-edge rules. From 44rem the version
+sits in a left column like a tab stop, the items beside it. The next version carries the ribbon caret,
+blinking (steady under reduced motion), and a 1px "Kế tiếp" mark like the release page's "Mới nhất".
+Work without a version is the last stop, in muted ink, numbered because the order is the content.
+
 ### Sheet
 - **Corner Style:** 2px.
 - **Background:** paper, ink text.
