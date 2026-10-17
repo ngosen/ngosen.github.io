@@ -27,7 +27,7 @@ const { name, alt, width, height, caption } = Astro.props;
 
   img {
     display: block;
-    width: 100%;
+    /* Natural size, shrunk only on narrow columns: upscaling blurs window text. */
     max-width: 100%;
     height: auto;
     border-radius: 2px;

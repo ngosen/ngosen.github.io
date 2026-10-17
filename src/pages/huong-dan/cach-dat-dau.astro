@@ -1,0 +1,55 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'cac-buoc', label: 'Đổi cách đặt dấu' },
+  { id: 'kieu-moi', label: 'Kiểu mới hay kiểu cũ' },
+  { id: 'go-tu-do', label: 'Gõ tự do' },
+];
+---
+
+<Guide
+  title="Chọn cách đặt dấu"
+  description="Bỏ dấu kiểu mới (hoà, thuý) hay kiểu cũ (hòa, thúy), và Gõ tự do: gõ phím dấu ở cuối từ hay ngay sau nguyên âm."
+  toc={toc}
+>
+  <p slot="lede">
+    Hai mục trong nhóm “Cách bỏ dấu” quyết định dấu thanh nằm ở đâu: “Bỏ dấu kiểu mới (oà, uý)” và “Gõ tự do”.
+    Cả hai bật sẵn.
+  </p>
+
+  <h2 id="cac-buoc">Đổi cách đặt dấu</h2>
+  <p>Vào “Cài đặt Ngó Sen › Gõ chữ”.</p>
+  <ol class="steps">
+    <li>Click chuột phải vào icon trên khay, chọn “Cài đặt”.</li>
+    <li>Ở nhóm “Cách bỏ dấu”, chọn hoặc bỏ chọn mục cần đổi. Đổi xong có tác dụng ngay.</li>
+    <li>Gõ thử ở ô “Gõ vào đây để test” cuối trang.</li>
+  </ol>
+  <Shot
+    name="guide-marks"
+    width={480}
+    height={220}
+    alt="Nhóm Cách bỏ dấu trong trang Gõ chữ: Kiểm tra chính tả, Tự khôi phục từ gõ sai, Vẫn gõ dd ra đ khi tự khôi phục, Bỏ dấu kiểu mới (oà, uý), Gõ tự do, tất cả đang bật."
+    caption="Nhóm “Cách bỏ dấu” với các mục để mặc định. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+  />
+
+  <h2 id="kieu-moi">Kiểu mới hay kiểu cũ</h2>
+  <ul>
+    <li>Bật “Bỏ dấu kiểu mới (oà, uý)”: <code>hoaf</code> ra <code>hoà</code>, <code>thuys</code> ra <code>thuý</code>.</li>
+    <li>Tắt: <code>hoaf</code> ra <code>hòa</code>, <code>thuys</code> ra <code>thúy</code>.</li>
+  </ul>
+  <p>Chữ có phụ âm cuối thì hai kiểu như nhau: <code>toanf</code> luôn ra <code>toàn</code>.</p>
+
+  <h2 id="go-tu-do">Gõ tự do</h2>
+  <ul>
+    <li>
+      Bật “Gõ tự do”: phím dấu gõ ở đâu trong từ cũng được, Ngó Sen tự đặt dấu vào đúng chữ. <code>toanf</code>
+      và <code>tofan</code> đều ra <code>toàn</code>, <code>tieensg</code> ra <code>tiếng</code>.
+    </li>
+    <li>
+      Tắt: dấu nằm ngay chỗ vừa gõ, nên <code>tofan</code> ra <code>tòan</code>. Phím dấu gõ sau phụ âm cuối thì
+      ra chữ thường: <code>toanf</code> giữ nguyên <code>toanf</code>.
+    </li>
+  </ul>
+</Guide>
