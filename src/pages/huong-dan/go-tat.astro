@@ -1,0 +1,90 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'them', label: 'Thêm một gõ tắt' },
+  { id: 'chu-hoa', label: 'Chữ hoa' },
+  { id: 'ngay-gio', label: 'Ngày và giờ hôm nay' },
+  { id: 'che-do-tat', label: 'Gõ tắt trong chế độ “Tắt”' },
+  { id: 'giu-nguyen', label: 'Giữ nguyên một từ' },
+];
+---
+
+<Guide
+  title="Gõ tắt một cụm từ hay dùng"
+  description="Gõ tắt trong Ngó Sen: thêm từ viết tắt, chữ hoa, ngày giờ hôm nay bằng $DATE và $TIME, giữ nguyên một từ."
+  toc={toc}
+>
+  <p slot="lede">
+    Gõ tắt đổi một từ viết tắt thành cụm từ đầy đủ khi bấm <kbd>Space</kbd>. “Bật gõ tắt” bật sẵn; danh sách lúc
+    đầu trống.
+  </p>
+
+  <h2 id="them">Thêm một gõ tắt</h2>
+  <p>Vào “Cài đặt Ngó Sen › Gõ tắt &amp; Từ điển › Gõ tắt”.</p>
+  <ol class="steps">
+    <li>Click vào ô “Khoá”, gõ từ viết tắt, ví dụ <code>kg</code>.</li>
+    <li>Click vào ô “Giá trị”, gõ cụm từ đầy đủ, ví dụ <code>Khô gà</code>. Ô này gõ tiếng Việt được như mọi app.</li>
+    <li>
+      Click “Thêm”. Gõ tắt có tác dụng ngay: gõ <code>kg</code> rồi bấm <kbd>Space</kbd> ra <code>khô gà</code>.
+    </li>
+  </ol>
+  <Shot
+    name="guide-macro"
+    width={480}
+    height={272}
+    alt="Tab Gõ tắt: ô Khoá có kg, ô Giá trị có Khô gà, nút Thêm bên phải; danh sách bên dưới có vn Việt Nam, hnay $DATE, bgio $TIME."
+    caption="Tab “Gõ tắt” với “kg” và “Khô gà” vừa gõ, chưa click “Thêm”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+
+  <h2 id="chu-hoa">Chữ hoa</h2>
+  <p>“Gõ tắt chữ hoa” bật sẵn. Cách gõ từ viết tắt quyết định cụm từ ra chữ hoa hay thường:</p>
+  <ul>
+    <li>Toàn chữ thường thì ra chữ thường: <code>kg</code> ra <code>khô gà</code>, <code>vn</code> ra <code>việt nam</code>.</li>
+    <li>Toàn chữ hoa thì ra chữ hoa: <code>KG</code> ra <code>KHÔ GÀ</code>.</li>
+    <li>
+      Có cả hoa lẫn thường thì ra đúng như ô “Giá trị”: <code>Kg</code> ra <code>Khô gà</code>, <code>Vn</code> ra
+      <code>Việt Nam</code>.
+    </li>
+  </ul>
+  <p>
+    Vì vậy nên lưu “Giá trị” có chữ hoa như khi viết đầu câu: <code>Khô gà</code>, <code>Việt Nam</code>. Lưu
+    <code>khô gà</code> thì <code>Kg</code> cũng chỉ ra <code>khô gà</code>.
+  </p>
+  <p>
+    Tắt mục này thì gõ kiểu nào cũng ra đúng như đã lưu: <code>kg</code>, <code>Kg</code>, <code>KG</code> đều ra
+    <code>Khô gà</code>, <code>vn</code> ra <code>Việt Nam</code>.
+  </p>
+
+  <h2 id="ngay-gio">Ngày và giờ hôm nay</h2>
+  <p>
+    Trong ô “Giá trị”, <code>$DATE</code> thành ngày hôm nay và <code>$TIME</code> thành giờ lúc gõ. Ví dụ thêm
+    <code>hnay</code> với giá trị <code>$DATE</code>: gõ <code>hnay</code> ra <code>17/10/2026</code>. Thêm
+    <code>bgio</code> với giá trị <code>$TIME</code>: gõ <code>bgio</code> ra <code>10:59</code>.
+  </p>
+  <p>Cách viết ngày giờ chọn ở “Định dạng ngày:” và “Định dạng giờ:” cuối trang, đổi xong có tác dụng ngay:</p>
+  <ul>
+    <li><code>%d/%m/%Y</code> (mặc định) ra <code>17/10/2026</code>, <code>%Y-%m-%d</code> ra <code>2026-10-17</code>.</li>
+    <li><code>%H:%M</code> (mặc định) ra <code>10:52</code>, <code>%H:%M:%S</code> ra <code>10:52:58</code>.</li>
+  </ul>
+
+  <h2 id="che-do-tat">Gõ tắt trong chế độ “Tắt”</h2>
+  <p>
+    Ở <a href="/huong-dan/che-do-go/">chế độ “Tắt”</a>, Ngó Sen không thêm dấu và mặc định cũng không đổi gõ tắt:
+    <code>kg</code> ra <code>kg</code>. Chọn “Gõ tắt trong chế độ "Tắt"” thì gõ tắt vẫn chạy: <code>kg</code> ra
+    <code>khô gà</code>.
+  </p>
+  <p>Mục này không áp dụng khi tắt tiếng Việt bằng <kbd>Ctrl+Space</kbd>: khi đó <code>kg</code> vẫn ra <code>kg</code>.</p>
+
+  <h2 id="giu-nguyen">Giữ nguyên một từ</h2>
+  <p>
+    Đôi khi cần gõ đúng <code>kg</code> mà không bị đổi. Ở hàng “Phím để bỏ qua gõ tắt cho từ tới:”, chọn Ctrl (mặc
+    định là “Tắt”). Bấm rồi nhả <kbd>Ctrl</kbd>, gõ <code>kg</code> rồi <kbd>Space</kbd> thì ra <code>kg</code>. Chỉ
+    một từ được giữ nguyên: bấm rồi nhả <kbd>Ctrl</kbd> rồi gõ <code>kg kg</code> thì ra <code>kg khô gà</code>.
+  </p>
+  <p>
+    Hàng này còn có Shift và Alt. Trên máy test, fcitx5 dùng <kbd>Shift</kbd> trái để tạm chuyển bộ gõ, nên bấm
+    <kbd>Shift</kbd> trái tắt luôn tiếng Việt. Chọn Shift thì dùng <kbd>Shift</kbd> phải.
+  </p>
+</Guide>

@@ -1,0 +1,53 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'gach-dai', label: 'Hai gạch nối thành gạch dài' },
+  { id: 'dau-cham', label: 'Hai dấu cách thành dấu chấm' },
+  { id: 'viet-hoa', label: 'Viết hoa đầu câu' },
+];
+---
+
+<Guide
+  title="Tự sửa dấu câu"
+  description="Hai gạch nối thành gạch dài, hai dấu cách thành dấu chấm và tự viết hoa đầu câu trong Ngó Sen."
+  toc={toc}
+>
+  <p slot="lede">Ba mục trong nhóm “Gõ nhanh” sửa dấu câu ngay khi gõ. Cả ba tắt sẵn.</p>
+
+  <ol class="steps">
+    <li>Vào “Cài đặt Ngó Sen › Gõ chữ”, kéo xuống nhóm “Gõ nhanh”.</li>
+    <li>Chọn mục cần dùng. Đổi xong có tác dụng ngay.</li>
+    <li>Gõ thử ở ô “Gõ thử” ngay bên dưới.</li>
+  </ol>
+  <Shot
+    name="guide-fast"
+    width={480}
+    height={190}
+    alt="Nhóm Gõ nhanh: Hai gạch nối thành gạch dài đang chọn, hai mục thử nghiệm còn lại tắt; ô Gõ thử bên dưới có Hà Nội — Huế."
+    caption="“Hai gạch nối thành gạch dài” đang chọn, ô “Gõ thử” ra “Hà Nội — Huế”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+
+  <h2 id="gach-dai">Hai gạch nối thành gạch dài</h2>
+  <!-- The em dash stays out of <code>: in a monospace font it looks like a hyphen. -->
+  <p>Gõ <code>--</code> ra gạch dài “—”: <code>a -- b</code> ra “a — b”.</p>
+
+  <h2 id="dau-cham">Hai dấu cách thành dấu chấm</h2>
+  <p>
+    “Hai dấu cách thành dấu chấm (thử nghiệm)” là mục thử nghiệm. Bấm <kbd>Space</kbd> hai lần sau một từ thì ra dấu
+    chấm và một dấu cách: <code>tooi</code>, <kbd>Space</kbd>, <kbd>Space</kbd>, <code>ddi</code> ra
+    <code>tôi. đi</code>.
+  </p>
+
+  <h2 id="viet-hoa">Viết hoa đầu câu</h2>
+  <p>
+    “Tự viết hoa đầu câu (thử nghiệm)” là mục thử nghiệm. Sau <code>.</code>, <code>!</code> hoặc <code>?</code> và
+    một dấu cách, chữ gõ tiếp theo thành chữ hoa: <code>ban! tooi</code> ra <code>ban! Tôi</code>,
+    <code>ban? tooi</code> ra <code>ban? Tôi</code>.
+  </p>
+  <p>
+    Bật cùng “Hai dấu cách thành dấu chấm” thì chữ sau hai dấu cách cũng viết hoa: <code>tooi</code>,
+    <kbd>Space</kbd>, <kbd>Space</kbd>, <code>ddi</code> ra <code>tôi. Đi</code>.
+  </p>
+</Guide>
