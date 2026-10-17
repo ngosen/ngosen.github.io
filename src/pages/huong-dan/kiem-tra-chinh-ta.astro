@@ -1,0 +1,46 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'kiem-tra', label: 'Chữ không có trong từ điển' },
+  { id: 'them-chu', label: 'Thêm chữ vào từ điển' },
+];
+---
+
+<Guide
+  title="Kiểm tra chính tả"
+  description="Kiểm tra chính tả trong Ngó Sen: chữ không có trong từ điển trở lại như đã gõ, và cách thêm chữ vào từ điển riêng."
+  toc={toc}
+>
+  <p slot="lede">“Kiểm tra chính tả” so từng chữ với từ điển tiếng Việt đi kèm Ngó Sen.</p>
+
+  <h2 id="kiem-tra">Chữ không có trong từ điển</h2>
+  <p>
+    Mục này ở “Cài đặt Ngó Sen › Gõ chữ”, nhóm “Cách bỏ dấu”, bật sẵn, và chỉ có tác dụng khi “Tự khôi phục từ
+    gõ sai” cũng bật.
+  </p>
+  <p>
+    Khi cả hai bật, chữ không có trong từ điển trở lại như đã gõ, kể cả khi nó trông giống tiếng Việt:
+    <code>kaj</code> ra <code>kaj</code>. Tắt một trong hai thì <code>kaj</code> ra <code>kạ</code>.
+  </p>
+
+  <h2 id="them-chu">Thêm chữ vào từ điển</h2>
+  <p>Chữ đúng mà Ngó Sen không nhận, như tên riêng hay tiếng địa phương, thì thêm vào từ điển riêng.</p>
+  <p>Vào “Cài đặt Ngó Sen › Gõ tắt &amp; Từ điển › Từ điển”.</p>
+  <ol class="steps">
+    <li>Chọn “Từ điển tuỳ chỉnh”.</li>
+    <li>
+      Click vào ô “Từ”, bật tiếng Việt bằng <kbd>Ctrl+Space</kbd> rồi gõ chữ cần thêm, ví dụ <code>kạ</code>.
+    </li>
+    <li>Bấm “Thêm”. Chữ vừa thêm có tác dụng ngay: gõ <code>kaj</code> ra <code>kạ</code>.</li>
+  </ol>
+  <Shot
+    name="guide-dict"
+    width={480}
+    height={272}
+    alt="Tab Từ điển: Từ điển tuỳ chỉnh đang chọn, ô Từ có chữ kạ, nút Thêm bên phải, bên dưới là danh sách chữ trong từ điển."
+    caption="Tab “Từ điển” với chữ “kạ” vừa gõ, chưa bấm “Thêm”. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+  />
+  <p>Mỗi mục là một chữ, không có dấu cách.</p>
+</Guide>

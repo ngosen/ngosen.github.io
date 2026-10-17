@@ -578,6 +578,26 @@ export const GUIDE = [
       },
     ],
   },
+  {
+    title: 'Dấu và chính tả',
+    pages: [
+      {
+        href: '/huong-dan/cach-dat-dau/',
+        label: 'Chọn cách đặt dấu',
+        summary: 'Hoà hay hòa, gõ dấu ở cuối từ hay ngay sau nguyên âm.',
+      },
+      {
+        href: '/huong-dan/sua-khi-go-sai/',
+        label: 'Sửa khi gõ sai',
+        summary: 'Từ tiếng Anh tự trở lại, Backspace chỉ xoá dấu, w ra ư, phím [ ] ra ơ ư.',
+      },
+      {
+        href: '/huong-dan/kiem-tra-chinh-ta/',
+        label: 'Kiểm tra chính tả',
+        summary: 'Chữ không có trong từ điển, thêm chữ vào từ điển riêng.',
+      },
+    ],
+  },
 ];
 
 export const GUIDE_PAGES = GUIDE.flatMap((group) => group.pages);

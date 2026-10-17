@@ -1,0 +1,64 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'tu-khoi-phuc', label: 'Từ tiếng Anh trở lại như đã gõ' },
+  { id: 'backspace', label: 'Backspace chỉ xoá dấu thanh' },
+  { id: 'w-ra-u', label: 'Gõ w ra ư' },
+  { id: 'ngoac-vuong', label: 'Phím [ ] ra ơ ư' },
+];
+---
+
+<Guide
+  title="Sửa khi gõ sai"
+  description="Tự khôi phục từ tiếng Anh, Backspace chỉ xoá dấu thanh, Gõ w ra ư và phím [ ] ra ơ ư trong Ngó Sen."
+  toc={toc}
+>
+  <p slot="lede">
+    Các mục dưới đây ở “Cài đặt Ngó Sen › Gõ chữ”, nhóm “Cách bỏ dấu”. Đổi xong có tác dụng ngay.
+  </p>
+
+  <Shot
+    name="guide-fix"
+    width={480}
+    height={312}
+    alt="Phần dưới nhóm Cách bỏ dấu: Tự khôi phục từ gõ sai đang bật, Backspace xóa dấu thanh đang tắt, Gõ w ra ư đặt Không phải đầu từ, Phím [ ] ra ơ ư đặt Tắt."
+    caption="“Backspace xóa dấu thanh”, “Gõ w ra ư” và “Phím [ ] ra ơ ư” ở cuối nhóm. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+  />
+
+  <h2 id="tu-khoi-phuc">Từ tiếng Anh trở lại như đã gõ</h2>
+  <p>
+    “Tự khôi phục từ gõ sai” bật sẵn. Gõ xong một từ không thể là tiếng Việt rồi bấm <kbd>Space</kbd>, từ đó trở
+    lại đúng các phím đã gõ: <code>windows</code> ra <code>windows</code>, <code>google</code> ra
+    <code>google</code>. Tắt mục này thì ra <code>windớ</code>, <code>gôgle</code>.
+  </p>
+
+  <h2 id="backspace">Backspace chỉ xoá dấu thanh</h2>
+  <p>
+    “Backspace xóa dấu thanh” tắt sẵn. Bật lên thì bấm <kbd>Backspace</kbd> ngay sau <code>tiếng</code> ra
+    <code>tiêng</code>. Chữ không có dấu thanh thì <kbd>Backspace</kbd> xoá chữ như thường.
+  </p>
+  <p>Khi mục này tắt, Telex vẫn xoá dấu thanh bằng phím <kbd>z</kbd>: <code>tieengsz</code> ra <code>tiêng</code>.</p>
+
+  <h2 id="w-ra-u">Gõ w ra ư</h2>
+  <p>Hàng “Gõ w ra ư” có ba mức:</p>
+  <ul>
+    <li>
+      “Không phải đầu từ” (mặc định): <code>tw</code> ra <code>tư</code>; <code>w</code> ở đầu từ giữ là
+      <code>w</code>, nên <code>wa</code> ra <code>wa</code>.
+    </li>
+    <li>“Mọi nơi”: <code>w</code> ở đâu cũng ra <code>ư</code>, <code>wa</code> ra <code>ưa</code>.</li>
+    <li>“Tắt”: <code>tw</code> ra <code>tw</code>. <code>uw</code> vẫn ra <code>ư</code>.</li>
+  </ul>
+
+  <h2 id="ngoac-vuong">Phím [ ] ra ơ ư</h2>
+  <p>Hàng “Phím [ ] ra ơ ư” mặc định là “Tắt”. Hai mức còn lại:</p>
+  <ul>
+    <li>
+      “Không phải đầu từ”: <code>t[</code> ra <code>tơ</code>, <code>t]</code> ra <code>tư</code>;
+      <code>[</code> đứng riêng vẫn là <code>[</code>.
+    </li>
+    <li>“Mọi nơi”: <code>[</code> ra <code>ơ</code>, <code>]</code> ra <code>ư</code>, kể cả ở đầu từ.</li>
+  </ul>
+</Guide>
