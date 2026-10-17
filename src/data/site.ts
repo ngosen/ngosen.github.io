@@ -612,6 +612,21 @@ export const GUIDE = [
       },
     ],
   },
+  {
+    title: 'Gõ nhanh hơn',
+    pages: [
+      {
+        href: '/huong-dan/go-tat/',
+        label: 'Gõ tắt một cụm từ hay dùng',
+        summary: 'Từ viết tắt thành cụm từ đầy đủ, chữ hoa, ngày giờ hôm nay.',
+      },
+      {
+        href: '/huong-dan/tu-sua-dau-cau/',
+        label: 'Tự sửa dấu câu',
+        summary: 'Hai gạch nối thành gạch dài, hai dấu cách thành dấu chấm, viết hoa đầu câu.',
+      },
+    ],
+  },
 ];
 
 export const GUIDE_PAGES = GUIDE.flatMap((group) => group.pages);
