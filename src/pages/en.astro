@@ -167,8 +167,12 @@ const levels: Record<Level, string> = {
     <code>dduwowngf tieengs vieetj</code> typed <code>đường tiếng việt</code> correctly in a GTK3 text
     field and in Firefox. In an Ubuntu 26.04 (GNOME Wayland) virtual machine,
     <code>ddwowngf tieengs vieetj</code> typed <code>đường tiếng việt</code> 2 times out of 2 in Ptyxis
-    and 2 times out of 2 in GNOME Console. Kali Rolling is new: the script was run in a Kali 2026.2 (Xfce,
-    X11) virtual machine.
+    and 2 times out of 2 in GNOME Console. Kali Rolling came in 1.4.2: the script was run in a Kali 2026.2
+    (Xfce, X11) virtual machine. Release 1.4.3 is a bug-fix release, tested with an Ubuntu 24.04 package
+    built from PR #111 in a Linux Mint 22.1 virtual machine (Cinnamon, X11, fcitx5 5.1.7): with
+    <code>kạ</code> added to the custom dictionary, <code>kaj</code> typed <code>kạ</code> 2 times out of 2
+    with the custom dictionary ticked and <code>kaj</code> 2 times out of 2 with it unticked. The same steps
+    on 1.4.2 typed <code>kạ</code> both times.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
