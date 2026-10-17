@@ -5,6 +5,7 @@ import Shot from '../../components/Shot.astro';
 const toc = [
   { id: 'kiem-tra', label: 'Chữ không có trong từ điển' },
   { id: 'them-chu', label: 'Thêm chữ vào từ điển' },
+  { id: 'tu-dien-goc', label: 'Quay về từ điển gốc' },
 ];
 ---
 
@@ -43,4 +44,14 @@ const toc = [
     caption="Tab “Từ điển” với chữ “kạ” vừa gõ, chưa bấm “Thêm”. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
   />
   <p>Mỗi mục là một chữ, không có dấu cách.</p>
+
+  <h2 id="tu-dien-goc">Quay về từ điển gốc</h2>
+  <p>
+    Bỏ chọn “Từ điển tuỳ chỉnh” thì Ngó Sen dùng lại từ điển gốc ngay: <code>kaj</code> lại ra
+    <code>kaj</code>. Chữ đã thêm vẫn còn trong danh sách; chọn lại thì <code>kaj</code> ra <code>kạ</code>.
+  </p>
+  <p>
+    Trên Ubuntu 22.04, 24.04, Linux Mint 22, Debian 12, 13 và MX Linux 25, việc này cần version 1.4.3 trở lên.
+    Version cũ hơn vẫn dùng từ điển tuỳ chỉnh sau khi bỏ chọn.
+  </p>
 </Guide>
