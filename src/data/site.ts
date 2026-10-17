@@ -616,6 +616,57 @@ export const GUIDE = [
 
 export const GUIDE_PAGES = GUIDE.flatMap((group) => group.pages);
 
+// Mirrors ROADMAP.md on main of the main repository; change them together. Backticks mark typed text.
+// `version` is set only for work with a GitHub milestone; `refs` are issue or PR numbers.
+export const ROADMAP_FILE = `${REPO}/blob/main/ROADMAP.md`;
+
+export const ROADMAP: {
+  version?: string;
+  items: { text: string; refs?: number[] }[];
+}[] = [
+  {
+    version: '1.5.0',
+    items: [
+      {
+        text: 'Nút “Kiểm tra máy tôi…” trong cửa sổ cài đặt: xem fcitx5 và Ngó Sen đã cài đúng chưa, lỗi nào cũng kèm cách sửa, và test được một app gõ đúng hay sai.',
+        refs: [88, 90],
+      },
+      {
+        text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
+        refs: [112],
+      },
+    ],
+  },
+  {
+    version: '1.6.0',
+    items: [
+      {
+        text: 'Cứu chữ: quên bật tiếng Việt mà đã gõ `tieengs vieetj`, bấm phím chuyển sang Ngó Sen là chữ thành `tiếng việt`.',
+        refs: [71, 80, 82, 83],
+      },
+      {
+        text: 'Cứu dấu: sửa dấu chữ đã gõ xong. Bôi đen chữ, gõ dấu rồi bấm Tab (`nhanh` + `s` → `nhánh`). Ở app hỗ trợ surrounding text, chỉ cần click vào chữ rồi gõ dấu.',
+        refs: [118],
+      },
+    ],
+  },
+  {
+    version: '1.7.0',
+    items: [{ text: 'Làm lại cách chèn emoji.', refs: [110] }],
+  },
+  {
+    items: [
+      { text: 'Chữ tiếng Anh có chữ cái đôi không còn mất phím khi trả về: `affect` không thành `afect`, `coffee` không thành `cofee`.' },
+      { text: 'Bớt đổi nhầm chữ tiếng Anh thành tiếng Việt, như `nest` thành `nét`, `too` thành `tô`.' },
+      { text: 'Đoán dấu: gõ cả câu không dấu rồi bấm một phím để thêm dấu.' },
+      { text: 'Bôi đen một đoạn rồi thêm dấu, bỏ dấu, hoặc chuyển chữ mã cũ (TCVN3, VNI) sang Unicode.' },
+      { text: 'Sửa lỗi gõ vội, như `tiếgn` thành `tiếng`.' },
+      { text: 'Tự chạy “Kiểm tra máy tôi” lần đầu mở cửa sổ cài đặt. Có thêm bảng các app gõ được, lấy từ kết quả test người dùng gửi về.' },
+      { text: 'Đưa Ngó Sen vào kho phần mềm của các distro: nixpkgs và AUR trước, rồi COPR, PPA, OBS, sau cùng là Debian.' },
+    ],
+  },
+];
+
 export const NAV = [
   { href: '/cai-dat/', label: 'Cài đặt' },
   { href: '/huong-dan/', label: 'Hướng dẫn' },
