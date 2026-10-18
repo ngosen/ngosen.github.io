@@ -646,10 +646,6 @@ export const ROADMAP: {
         text: 'Nút “Kiểm tra máy tôi…” trong cửa sổ cài đặt: xem fcitx5 và Ngó Sen đã cài đúng chưa, lỗi nào cũng kèm cách sửa, và test được một app gõ đúng hay sai.',
         refs: [88, 90],
       },
-      {
-        text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
-        refs: [112],
-      },
     ],
   },
   {
@@ -667,7 +663,13 @@ export const ROADMAP: {
   },
   {
     version: '1.7.0',
-    items: [{ text: 'Làm lại cách chèn emoji.', refs: [110] }],
+    items: [
+      { text: 'Làm lại cách chèn emoji.', refs: [110] },
+      {
+        text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
+        refs: [112],
+      },
+    ],
   },
   {
     items: [
