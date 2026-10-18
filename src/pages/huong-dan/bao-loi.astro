@@ -4,13 +4,14 @@ import Shot from '../../components/Shot.astro';
 
 const toc = [
   { id: 'luu-nhat-ky', label: 'Lưu nhật ký gõ' },
+  { id: 'kiem-tra-may', label: 'Kiểm tra máy' },
   { id: 'bao-loi', label: 'Báo lỗi' },
 ];
 ---
 
 <Guide
   title="Báo một lỗi gõ"
-  description="Lưu nhật ký gõ của Ngó Sen ngay khi gõ ra chữ sai, rồi báo lỗi bằng mẫu trong mục Issues trên GitHub."
+  description="Lưu nhật ký gõ của Ngó Sen ngay khi gõ ra chữ sai, kiểm tra máy bằng nút Kiểm tra máy tôi, rồi báo lỗi bằng mẫu trong mục Issues trên GitHub."
   toc={toc}
 >
   <p slot="lede">
@@ -37,17 +38,48 @@ const toc = [
   </p>
   <p>Vì file có cả chữ vừa gõ trong ô đang dùng, hãy đọc qua trước khi gửi.</p>
 
+  <h2 id="kiem-tra-may">Kiểm tra máy</h2>
+  <p>
+    Từ version 1.5.1, nút “Kiểm tra máy tôi…” xem fcitx5 có chạy không, Ngó Sen có trong danh sách bộ gõ không và các
+    biến môi trường của bộ gõ có đúng không. Lỗi nào cũng kèm cách sửa. Cửa sổ này còn test được một app gõ đúng hay
+    sai.
+  </p>
+  <ol class="steps">
+    <li>
+      Vào “Cài đặt Ngó Sen › Khác › Giới thiệu”, click “Kiểm tra máy tôi…”. Máy không có lỗi thì cửa sổ ghi “Không
+      thấy lỗi cài đặt nào”.
+    </li>
+    <li>Mở app cần test, chuyển sang Ngó Sen và gõ <code>Tieengs Vieetj cos daaus</code>.</li>
+    <li>Click chuột phải vào icon Ngó Sen trên khay, rồi click “Lưu nhật ký gõ”.</li>
+    <li>
+      Quay lại cửa sổ “Kiểm tra máy tôi”, click “Đọc nhật ký gõ”. App gõ đúng thì cửa sổ ghi tên app kèm “nhận đúng câu
+      mẫu”.
+    </li>
+  </ol>
+  <Shot
+    name="guide-check"
+    width={520}
+    height={291}
+    alt="Cửa sổ Kiểm tra máy tôi: Không thấy lỗi cài đặt nào, danh sách app đang nối với fcitx5, phần Test một app với dòng xed (dbus) nhận đúng câu mẫu, và các nút Kiểm tra lại, Chép kết quả, Báo cáo lỗi…, Close."
+    caption="Cửa sổ “Kiểm tra máy tôi” sau khi test xed: “xed (dbus) nhận đúng câu mẫu.”. Linux Mint 22.1 Cinnamon, version 1.5.1-1."
+  />
+  <p>
+    Kết quả có cả tên các app đang nối với fcitx5 và sẽ nằm trong báo lỗi, nên đọc qua trước khi gửi. Chưa gửi báo lỗi
+    thì không có gì rời khỏi máy.
+  </p>
+
   <h2 id="bao-loi">Báo lỗi</h2>
   <p>
-    Vào “Cài đặt Ngó Sen › Khác › Giới thiệu”, click “Báo cáo lỗi”. Trình duyệt mở mẫu báo lỗi trong mục Issues của Ngó
-    Sen trên GitHub; cần đăng nhập GitHub mới gửi được.
+    Trong cửa sổ “Kiểm tra máy tôi”, click “Báo cáo lỗi…”. Trình duyệt mở mẫu báo lỗi trong mục Issues của Ngó Sen
+    trên GitHub, đã điền sẵn kết quả kiểm tra, version và distro; cần đăng nhập GitHub mới gửi được. Không chạy kiểm
+    tra thì click “Báo cáo lỗi” ở tab “Giới thiệu”.
   </p>
   <Shot
     name="guide-about"
     width={480}
-    height={318}
-    alt="Tab Giới thiệu của cửa sổ cài đặt, có dòng Phiên bản 1.4.3 (Stable) và nút Báo cáo lỗi."
-    caption="Tab “Giới thiệu” với dòng “Phiên bản 1.4.3 (Stable)” và nút “Báo cáo lỗi”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+    height={368}
+    alt="Tab Giới thiệu của cửa sổ cài đặt, có dòng Phiên bản 1.5.1 (Stable), nút Kiểm tra máy tôi… và nút Báo cáo lỗi."
+    caption="Tab “Giới thiệu” với dòng “Phiên bản 1.5.1 (Stable)”, nút “Kiểm tra máy tôi…” và nút “Báo cáo lỗi”. Linux Mint 22.1 Cinnamon, version 1.5.1-1."
   />
   <p>
     Mẫu hỏi lỗi gì, các bước gõ ra lỗi, chữ đáng lẽ ra và chữ thật sự ra, version, cách cài, distro, desktop và kiểu
@@ -55,6 +87,6 @@ const toc = [
   </p>
   <pre tabindex="0"><code>dpkg-query -W fcitx5-ngosen</code></pre>
   <p>
-    Máy test ra <code>fcitx5-ngosen 1:1.4.3-1</code>. Trang “Giới thiệu” ghi gọn hơn: “Phiên bản 1.4.3 (Stable)”.
+    Máy test ra <code>fcitx5-ngosen 1:1.5.1-1</code>. Trang “Giới thiệu” ghi gọn hơn: “Phiên bản 1.5.1 (Stable)”.
   </p>
 </Guide>
