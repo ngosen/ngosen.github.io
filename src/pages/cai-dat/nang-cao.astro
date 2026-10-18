@@ -49,6 +49,7 @@ const toc = [
   <pre tabindex="0"><code>sha256sum -c SHA256SUMS --ignore-missing</code></pre>
   <p>Cài gói bằng trình quản lý gói của máy, rồi khởi động lại fcitx5:</p>
   <pre tabindex="0"><code>fcitx5 -rd</code></pre>
+  <p>Trên KDE Wayland: đăng xuất rồi đăng nhập lại thay cho lệnh trên, để app Qt như Kate, Dolphin gõ được.</p>
 
   <h2 id="ban-thu">Version thử</h2>
   <p>
@@ -81,9 +82,9 @@ const toc = [
   <ol>
     <li>
       Máy từng tự build Ngó Sen 1.0.0 trở về trước thì xoá các file cũ mà version đó cài, theo bước 1 trong
-      TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
+      <a href={buildGuide}>TU-DUNG.md</a>, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
     </li>
-    <li>Cài công cụ build: cmake, gcc, go, git, python, fcitx5 và vài gói khác, liệt kê trong TU-DUNG.md.</li>
+    <li>Cài công cụ build: cmake, gcc, go, git, python, fcitx5 và vài gói khác, liệt kê trong <a href={buildGuide}>TU-DUNG.md</a>.</li>
     <li>
       Tải source và build. Phải cài vào <code>/usr</code>, vì fcitx5 tìm bộ gõ ở đó, và nhớ
       <code>--recurse-submodules</code>, vì lõi ghép dấu nằm ở repo con <code>bamboo-core</code>.
@@ -100,7 +101,7 @@ sudo cmake --install build`}</code></pre>
   <ol start="4">
     <li>
       Máy từng chạy uinput server của version Ngó Sen cũ thì tắt nó và xoá các file nó để lại, theo
-      bước 4 trong TU-DUNG.md, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
+      bước 4 trong <a href={buildGuide}>TU-DUNG.md</a>, vì <code>cmake --install</code> chỉ thêm file chứ không xoá.
     </li>
     <li>Làm ba việc ở mục <a href="/cai-dat/#sau-khi-cai">Cài xong</a>: khởi động lại fcitx5, thêm Ngó Sen, rồi trên KDE Wayland chọn “Fcitx 5”.</li>
   </ol>
@@ -122,7 +123,7 @@ sudo cmake --install build`}</code></pre>
   <pre tabindex="0"><code>{nixConfig}</code></pre>
   <p>Áp cấu hình xong thì khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>.</p>
   <p>
-    Mức đã test: CI build gói, chạy test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
+    Gói NixOS mới được CI build, chạy test và nạp addon vào fcitx5 trên màn hình X ảo (Xvfb). Chưa ai
     test trên máy NixOS thật; Wayland, GNOME và máy aarch64 cũng chưa test. Gặp lỗi thì
     <a href={`${REPO}/issues`}>mở issue</a>.
   </p>

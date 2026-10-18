@@ -34,7 +34,7 @@ Gói fcitx5 cài kèm vài icon trong danh sách app mà người dùng Ngó Sen
 
 - icon mở fcitx5, vì fcitx5 đã tự chạy khi đăng nhập;
 - icon công cụ chuyển cấu hình từ fcitx4, vì người dùng Ngó Sen không cần chuyển cấu hình cũ;
-- icon "Fcitx5 Configuration", nhưng chỉ khi khay hệ thống hoặc menu của Input Method Panel đã mở được
+- icon “Fcitx5 Configuration”, nhưng chỉ khi khay hệ thống hoặc menu của Input Method Panel đã mở được
   cùng cửa sổ đó.
 
 Icon chỉ ẩn với tài khoản đang chạy lệnh, app vẫn nằm nguyên trên máy.
@@ -73,14 +73,14 @@ có thể vẫn tự chạy khi đăng nhập, chỉ gõ được tiếng Anh. M
 
 ## Bớt tuỳ chọn thừa
 
-Cửa sổ cấu hình chung của fcitx5 không còn hiện 10 mục "Experiment" của Ngó Sen. Các mục này chỉ dùng khi
+Cửa sổ cấu hình chung của fcitx5 không còn hiện 10 mục “Experiment” của Ngó Sen. Các mục này chỉ dùng khi
 dò lỗi. Giá trị cũ vẫn giữ, và vẫn chỉnh được trong file `ngosen.conf` khi cần.
 
-Trang Gõ chữ trong cửa sổ cài đặt bỏ mục "Đọc chữ quanh con trỏ". Mục này mặc định tắt, và là cách chữa
+Trang “Gõ chữ” trong cửa sổ cài đặt bỏ mục “Đọc chữ quanh con trỏ”. Mục này mặc định tắt, và là cách chữa
 tạm lỗi gõ trên Messenger từ trước khi Ngó Sen có cách sửa riêng. Ai từng bật nó thì giờ gõ như mọi người
 khác.
 
-Một phần code không còn chỗ nào dùng cũng được bỏ. Người dùng không thấy khác gì.
+Một phần code không còn chỗ nào dùng cũng được bỏ. Người dùng không thấy gì khác.
 
 ## Đã test trên máy nào
 
