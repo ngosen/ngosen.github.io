@@ -710,7 +710,7 @@ export const GUIDE = [
     pages: [
       {
         href: '/huong-dan/bao-loi/',
-        label: 'Báo một lỗi gõ',
+        label: 'Báo lỗi',
         summary: 'Lưu nhật ký gõ ngay khi gõ ra chữ sai, kiểm tra máy, rồi báo lỗi trên GitHub.',
       },
     ],
