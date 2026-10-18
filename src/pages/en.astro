@@ -181,7 +181,11 @@ const levels: Record<Level, string> = {
     settings window, and “Kiểm tra máy tôi…” (check my machine) found no setup problem. The 1.5.1
     packages were tried again on Mint and Ubuntu 26.04: with sentence capitalisation on,
     <code>ban. tooi</code>, Enter, <code>xin</code> typed <code>Xin</code> on the new line (1.5.0 typed
-    <code>xin</code>), and plain typing still gave <code>tiếng việt</code>.
+    <code>xin</code>), and plain typing still gave <code>tiếng việt</code>. Release 1.5.2 fixes the settings
+    window and was tested in an Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package) virtual machine:
+    on the Phím › Phím tắt page the key buttons of all five modes showed with the window small, maximized,
+    and restored afterwards (1.5.1 lost them when maximized), and <code>tieengs vieetj</code> still typed
+    <code>tiếng việt</code>.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

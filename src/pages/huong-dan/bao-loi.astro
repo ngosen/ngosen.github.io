@@ -5,12 +5,12 @@ import Shot from '../../components/Shot.astro';
 const toc = [
   { id: 'luu-nhat-ky', label: 'Lưu nhật ký gõ' },
   { id: 'kiem-tra-may', label: 'Kiểm tra máy' },
-  { id: 'bao-loi', label: 'Báo lỗi' },
+  { id: 'bao-loi', label: 'Gửi báo lỗi' },
 ];
 ---
 
 <Guide
-  title="Báo một lỗi gõ"
+  title="Báo lỗi"
   description="Lưu nhật ký gõ của Ngó Sen ngay khi gõ ra chữ sai, kiểm tra máy bằng nút Kiểm tra máy tôi, rồi báo lỗi bằng mẫu trong mục Issues trên GitHub."
   toc={toc}
 >
@@ -68,7 +68,7 @@ const toc = [
     thì không có gì rời khỏi máy.
   </p>
 
-  <h2 id="bao-loi">Báo lỗi</h2>
+  <h2 id="bao-loi">Gửi báo lỗi</h2>
   <p>
     Trong cửa sổ “Kiểm tra máy tôi”, click “Báo cáo lỗi…”. Trình duyệt mở mẫu báo lỗi trong mục Issues của Ngó Sen
     trên GitHub, đã điền sẵn kết quả kiểm tra, version và distro; cần đăng nhập GitHub mới gửi được. Không chạy kiểm
