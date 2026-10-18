@@ -172,7 +172,16 @@ const levels: Record<Level, string> = {
     built from PR #111 in a Linux Mint 22.1 virtual machine (Cinnamon, X11, fcitx5 5.1.7): with
     <code>kạ</code> added to the custom dictionary, <code>kaj</code> typed <code>kạ</code> 2 times out of 2
     with the custom dictionary ticked and <code>kaj</code> 2 times out of 2 with it unticked. The same steps
-    on 1.4.2 typed <code>kạ</code> both times.
+    on 1.4.2 typed <code>kạ</code> both times. Release 1.5.0 was never published. The 1.5.0 packages were
+    tried in Linux Mint 22.1 (Cinnamon, X11, <code>noble</code> package), Ubuntu 26.04 (GNOME Wayland,
+    <code>resolute</code> package) and MX Linux 25 (Xfce, X11, <code>trixie</code> package, the first one
+    with the Rust core) virtual machines: on all three, <code>tieengs vieetj</code> typed
+    <code>tiếng việt</code> in a GTK3 text field, and on MX <code>nguwowif vieetj nam</code> typed
+    <code>người việt nam</code>. On Ubuntu 26.04, choosing the Custom input method showed the hint in the
+    settings window, and “Kiểm tra máy tôi…” (check my machine) found no setup problem. The 1.5.1
+    packages were tried again on Mint and Ubuntu 26.04: with sentence capitalisation on,
+    <code>ban. tooi</code>, Enter, <code>xin</code> typed <code>Xin</code> on the new line (1.5.0 typed
+    <code>xin</code>), and plain typing still gave <code>tiếng việt</code>.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

@@ -3,7 +3,6 @@ import Page from '../layouts/Page.astro';
 import InstallStrip from '../components/InstallStrip.astro';
 import { ARM_NOTE, ARM_TESTER, DISTRIBUTIONS, INSTALL_PAGES, LEVELS, LEVELS_NOTE, RELEASE, REPO } from '../data/site';
 
-const rustDistros = DISTRIBUTIONS.filter((item) => item.core === 'Rust').map((item) => item.name);
 const goDistros = DISTRIBUTIONS.filter((item) => item.core === 'Go').map((item) => item.name);
 
 const toc = [
@@ -110,9 +109,9 @@ const toc = [
 
   <h3 id="loi-ghep-dau">Lõi ghép dấu: Rust hay Go</h3>
   <p>
-    Lõi ghép dấu là phần biến <code>tieengs</code> thành <code>tiếng</code>. Gói cho
-    {rustDistros.join(', ')} dùng bản viết bằng Rust. Gói cho {goDistros.join(', ')} vẫn dùng bản Go,
-    vì bản Rust trong kho gói của các distro đó quá cũ. Hai bản gõ ra chữ như nhau.
+    Lõi ghép dấu là phần biến <code>tieengs</code> thành <code>tiếng</code>. Mọi gói dùng bản viết bằng
+    Rust, trừ gói cho {goDistros.join(', ')} vẫn dùng bản Go, vì Rust có sẵn ở đó quá cũ. Hai bản gõ ra
+    chữ như nhau.
   </p>
 
   <h2 id="sau-khi-cai">Cài xong</h2>
