@@ -1,0 +1,60 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'luu-nhat-ky', label: 'Lưu nhật ký gõ' },
+  { id: 'bao-loi', label: 'Báo lỗi' },
+];
+---
+
+<Guide
+  title="Báo một lỗi gõ"
+  description="Lưu nhật ký gõ của Ngó Sen ngay khi gõ ra chữ sai, rồi báo lỗi bằng mẫu trong mục Issues trên GitHub."
+  toc={toc}
+>
+  <p slot="lede">
+    Gõ ra chữ sai thì lưu nhật ký gõ ngay, rồi gửi file đó kèm khi báo lỗi. Những lỗi đã biết mà chưa sửa nằm ở mục
+    <a href="/#chua-sua">“Chưa sửa”</a> trên trang chủ.
+  </p>
+
+  <h2 id="luu-nhat-ky">Lưu nhật ký gõ</h2>
+  <ol class="steps">
+    <li>Ngay sau khi gõ ra chữ sai, click chuột phải vào icon Ngó Sen trên khay.</li>
+    <li>Click “Lưu nhật ký gõ”. Cạnh con trỏ hiện “Đã lưu nhật ký gõ:” kèm đường dẫn file.</li>
+  </ol>
+  <Shot
+    name="guide-log"
+    width={377}
+    height={374}
+    alt="Menu chuột phải của icon Ngó Sen trên khay, có dòng Lưu nhật ký gõ."
+    caption="Menu của fcitx5 khi click chuột phải vào icon Ngó Sen, có dòng “Lưu nhật ký gõ”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+  <p>
+    File được lưu vào <code>~/.local/state/ngosen/</code>, tên dạng <code>typing-20261018-124826.log</code>. Trong đó
+    có vài trăm phím bấm gần nhất, chữ Ngó Sen gửi cho app và chữ app báo lại. Trước lúc lưu, nhật ký chỉ nằm trong bộ
+    nhớ; chữ gõ trong ô mật khẩu không được ghi.
+  </p>
+  <p>Vì file có cả chữ vừa gõ trong ô đang dùng, hãy đọc qua trước khi gửi.</p>
+
+  <h2 id="bao-loi">Báo lỗi</h2>
+  <p>
+    Vào “Cài đặt Ngó Sen › Khác › Giới thiệu”, click “Báo cáo lỗi”. Trình duyệt mở mẫu báo lỗi trong mục Issues của Ngó
+    Sen trên GitHub; cần đăng nhập GitHub mới gửi được.
+  </p>
+  <Shot
+    name="guide-about"
+    width={480}
+    height={318}
+    alt="Tab Giới thiệu của cửa sổ cài đặt, có dòng Phiên bản 1.4.3 (Stable) và nút Báo cáo lỗi."
+    caption="Tab “Giới thiệu” với dòng “Phiên bản 1.4.3 (Stable)” và nút “Báo cáo lỗi”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+  <p>
+    Mẫu hỏi lỗi gì, các bước gõ ra lỗi, chữ đáng lẽ ra và chữ thật sự ra, version, cách cài, distro, desktop và kiểu
+    gõ. Version của gói xem bằng lệnh sau trên Ubuntu, Debian, Linux Mint:
+  </p>
+  <pre tabindex="0"><code>dpkg-query -W fcitx5-ngosen</code></pre>
+  <p>
+    Máy test ra <code>fcitx5-ngosen 1:1.4.3-1</code>. Trang “Giới thiệu” ghi gọn hơn: “Phiên bản 1.4.3 (Stable)”.
+  </p>
+</Guide>
