@@ -1,0 +1,37 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [{ id: 'mau', label: 'Màu chữ V' }];
+---
+
+<Guide
+  title="Đổi icon trên khay"
+  description="Chọn icon Ngó Sen có nền hay chữ V trên khay hệ thống, và màu chữ V theo panel sáng hay tối."
+  toc={toc}
+>
+  <p slot="lede">Vào “Cài đặt Ngó Sen › Khác › Giao diện”.</p>
+
+  <Shot
+    name="guide-tray"
+    width={480}
+    height={124}
+    alt="Nhóm Biểu tượng khay: ô Sử dụng biểu tượng trạng thái Ngó Sen đã chọn, Màu biểu tượng là Tự động."
+    caption="Nhóm “Biểu tượng khay”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+  <ul>
+    <li>
+      “Sử dụng biểu tượng trạng thái Ngó Sen” chọn sẵn: khay hiện icon Ngó Sen nền xanh, rõ trên panel sáng lẫn tối.
+    </li>
+    <li>Bỏ chọn thì khay hiện chữ V, không có nền.</li>
+  </ul>
+
+  <h2 id="mau">Màu chữ V</h2>
+  <p>“Màu biểu tượng:” chọn màu cho chữ V, theo màu panel:</p>
+  <ul>
+    <li>“Tự động” (mặc định): Ngó Sen tự đọc màu panel. Panel của Linux Mint màu tối, nên chữ V màu trắng.</li>
+    <li>“Sáng”: cho panel sáng, chữ V màu đen.</li>
+    <li>“Tối”: cho panel tối, chữ V màu trắng.</li>
+  </ul>
+  <p>Mục này không đổi icon Ngó Sen nền xanh.</p>
+</Guide>

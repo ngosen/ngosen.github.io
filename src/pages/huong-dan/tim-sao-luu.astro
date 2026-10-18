@@ -1,0 +1,72 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'tim', label: 'Tìm một cài đặt' },
+  { id: 'hoan-tac', label: 'Hoàn tác' },
+  { id: 'sao-luu', label: 'Sao lưu và khôi phục' },
+  { id: 'mac-dinh', label: 'Đưa mọi thứ về mặc định' },
+];
+---
+
+<Guide
+  title="Tìm cài đặt, hoàn tác và sao lưu"
+  description="Tìm một cài đặt của Ngó Sen bằng chữ không dấu, hoàn tác lần lưu vừa rồi, sao lưu, khôi phục và đưa mọi thứ về mặc định."
+  toc={toc}
+>
+  <p slot="lede">
+    Cửa sổ cài đặt lưu ngay mỗi khi đổi. Ô tìm ở đầu thanh bên, các nút sao lưu ở thanh dưới cùng.
+  </p>
+
+  <h2 id="tim">Tìm một cài đặt</h2>
+  <p>
+    Gõ vào ô “Tìm cài đặt” ở đầu thanh bên. Gõ không dấu cũng được: <code>chinh ta</code> ra “Kiểm tra chính tả — Gõ
+    chữ”. Bấm <kbd>Enter</kbd> thì cửa sổ mở trang có cài đặt đó và đưa con trỏ tới nó.
+  </p>
+  <Shot
+    name="guide-search"
+    width={198}
+    height={100}
+    alt="Ô Tìm cài đặt có chữ chinh ta, bên dưới là một kết quả: Kiểm tra chính tả — Gõ chữ."
+    caption="Ô “Tìm cài đặt” với “chinh ta”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+
+  <h2 id="hoan-tac">Hoàn tác</h2>
+  <p>
+    Mỗi lần lưu, cửa sổ hiện một dòng như “Đã lưu “Gõ tự do”.” kèm nút “Hoàn tác”. Click “Hoàn tác” để đưa cài đặt
+    về như trước lần lưu đó; cửa sổ báo “Đã hoàn tác.”. Chỉ hoàn tác được lần lưu gần nhất.
+  </p>
+
+  <h2 id="sao-luu">Sao lưu và khôi phục</h2>
+  <p>Hai nút “Sao lưu…” và “Khôi phục…” nằm ở góc dưới bên phải cửa sổ.</p>
+  <Shot
+    name="guide-bar"
+    width={540}
+    height={52}
+    alt="Thanh dưới cùng của cửa sổ cài đặt: nút Mặc định bên trái, nút Sao lưu… và Khôi phục… bên phải."
+    caption="Thanh dưới cùng: “Mặc định”, “Sao lưu…”, “Khôi phục…”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+  <ol class="steps">
+    <li>
+      Click “Sao lưu…”. Hộp lưu file mở ra ở thư mục nhà, tên có sẵn dạng
+      <code>ngosen-backup-20261018-090517.json</code>.
+    </li>
+    <li>
+      Click “Save”. Cửa sổ báo “Đã sao lưu vào …”. File giữ mọi cài đặt, kể cả gõ tắt, keymap và từ điển riêng.
+    </li>
+    <li>
+      Khi cần dùng lại, click “Khôi phục…”, chọn file đó rồi click “Open”. Cài đặt đổi ngay, không hỏi lại; cửa sổ
+      báo “Đã khôi phục từ …” kèm nút “Hoàn tác”.
+    </li>
+  </ol>
+
+  <h2 id="mac-dinh">Đưa mọi thứ về mặc định</h2>
+  <p>
+    “Mặc định” xoá cả gõ tắt, keymap, từ điển riêng và chế độ đã nhớ cho từng app, nên sao lưu trước khi bấm.
+  </p>
+  <p>
+    Click “Mặc định”, rồi chọn “Yes”. Cửa sổ báo “Đã đưa về mặc định.” kèm nút “Hoàn tác”. Khi mọi thứ đã ở mặc
+    định, nút này mờ đi.
+  </p>
+</Guide>

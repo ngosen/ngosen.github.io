@@ -627,6 +627,31 @@ export const GUIDE = [
       },
     ],
   },
+  {
+    title: 'Tuỳ chỉnh',
+    pages: [
+      {
+        href: '/huong-dan/phim-tat-che-do/',
+        label: 'Đổi phím tắt của chế độ gõ',
+        summary: 'Đổi phím trong menu chế độ, ẩn chế độ không dùng, phím chuyển nhanh.',
+      },
+      {
+        href: '/huong-dan/keymap/',
+        label: 'Tự đặt phím bỏ dấu',
+        summary: 'Keymap riêng: phím nào thêm dấu nào, dựa trên Telex hay VNI.',
+      },
+      {
+        href: '/huong-dan/icon-khay/',
+        label: 'Đổi icon trên khay',
+        summary: 'Icon Ngó Sen có nền hay chữ V, màu chữ V theo panel sáng hay tối.',
+      },
+      {
+        href: '/huong-dan/tim-sao-luu/',
+        label: 'Tìm cài đặt, hoàn tác và sao lưu',
+        summary: 'Ô tìm cài đặt, nút Hoàn tác, Mặc định, Sao lưu và Khôi phục.',
+      },
+    ],
+  },
 ];
 
 export const GUIDE_PAGES = GUIDE.flatMap((group) => group.pages);
