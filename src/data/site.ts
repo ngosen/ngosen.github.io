@@ -652,6 +652,16 @@ export const GUIDE = [
       },
     ],
   },
+  {
+    title: 'Khi gặp lỗi',
+    pages: [
+      {
+        href: '/huong-dan/bao-loi/',
+        label: 'Báo một lỗi gõ',
+        summary: 'Lưu nhật ký gõ ngay khi gõ ra chữ sai, rồi báo lỗi trên GitHub.',
+      },
+    ],
+  },
 ];
 
 export const GUIDE_PAGES = GUIDE.flatMap((group) => group.pages);
