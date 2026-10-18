@@ -42,7 +42,7 @@ Rồi trong cùng một đường, mỗi app lại xử lý một kiểu. LibreO
 
 Các bộ gõ trên Linux lớn lên cùng tiếng Trung, Nhật và Hàn. IBus, bộ gõ nền mặc định của GNOME, ra đời theo đề xuất của Northeast Asia OSS Forum, diễn đàn mã nguồn mở của ba nước này ([Wikipedia](https://en.wikipedia.org/wiki/Intelligent_Input_Bus)).
 
-Với các thứ tiếng đó, phím gõ chưa phải chữ cuối cùng. Gõ pinyin của tiếng Trung hay romaji của tiếng Nhật, bộ gõ hiện chuỗi đang soạn có gạch chân, người dùng chọn chữ trong danh sách gợi ý rồi mới commit. Giao thức text-input-v3 của Wayland cũng gọi preedit là "composing text", chữ đang soạn ([đặc tả](https://wayland.app/protocols/text-input-unstable-v3)). Vì vậy preedit là đường mà app và desktop trên Linux quen hỗ trợ nhất.
+Với các thứ tiếng đó, phím gõ chưa phải chữ cuối cùng. Gõ pinyin của tiếng Trung hay romaji của tiếng Nhật, bộ gõ hiện chuỗi đang soạn có gạch chân, người dùng chọn chữ trong danh sách gợi ý rồi mới commit. Giao thức text-input-v3 của Wayland cũng gọi preedit là “composing text”, chữ đang soạn ([đặc tả](https://wayland.app/protocols/text-input-unstable-v3)). Vì vậy preedit là đường mà app và desktop trên Linux quen hỗ trợ nhất.
 
 Tiếng Việt thì khác: mỗi phím ra ngay một chữ, dấu thêm vào chữ đã có. Gõ bằng preedit thì chữ có gạch chân cho tới khi xong từ, còn gợi ý ở thanh địa chỉ hay ô tìm kiếm không hiện theo từng phím, gõ xong từ thì gợi ý mới hiện. Muốn gõ thẳng, không gạch chân, thì bộ gõ phải dùng forward key và surrounding text, như các ví dụ ở trên.
 

@@ -81,7 +81,7 @@ lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau k
 [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final) là bộ gõ Wayland riêng,
 dùng giao thức input-method-v1, đúng giao thức mà KWin của KDE có. Nó xoá rồi chèn, một đường.
 
-Sau mỗi lần thay chữ, nó đánh dấu "đang chờ", và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô báo lại
+Sau mỗi lần thay chữ, nó đánh dấu “đang chờ”, và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô báo lại
 đúng đuôi chữ mong đợi thì hàng mới được thả ra. Thấy dấu hiệu lệnh xoá bị bỏ qua thì nó làm lại, tối đa
 3 lần. Đồng hồ 750 ms chỉ để phòng khi ô không báo lại.
 
@@ -106,7 +106,7 @@ vi-ime không chạy trên KDE: KWin trên Plasma 6.7.5 không có cả input-me
 ### pinakey và TypeVN: preedit không gạch chân
 
 [pinakey](https://github.com/trananhtung/pinakey) chạy trên fcitx5, mặc định gõ bằng preedit với cờ
-"không gạch chân". Chế độ uinput có sẵn nhưng tắt, phải bật bằng biến môi trường `PINAKEY_UINPUT=1`. Lý
+“không gạch chân”. Chế độ uinput có sẵn nhưng tắt, phải bật bằng biến môi trường `PINAKEY_UINPUT=1`. Lý
 do họ ghi: trên GNOME, đường D-Bus không bảo đảm thứ tự, nên cả cách uinput có kèm tin báo như của
 Ngó Sen lúc đó cũng không chắc đúng.
 

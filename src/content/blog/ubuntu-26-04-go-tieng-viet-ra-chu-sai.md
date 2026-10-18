@@ -59,10 +59,10 @@ bản sửa mới tới máy mọi người. Báo lỗi càng nhiều người b
 Nếu đang dùng Ubuntu 26.04 và đã gặp lỗi `tieêngếng`:
 
 1. Đăng nhập Launchpad (dùng tài khoản Ubuntu One), mở
-   [Bug #2169784](https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784), click **"Does this bug
-   affect you?"** rồi chọn **"Yes, it affects me"**. Mỗi người chọn làm tăng điểm "heat", con số
+   [Bug #2169784](https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784), click **“Does this bug
+   affect you?”** rồi chọn **“Yes, it affects me”**. Mỗi người chọn làm tăng điểm “heat”, con số
    Launchpad dùng để cho thấy lỗi nào đang ảnh hưởng nhiều người.
-2. Không cần viết bình luận chỉ để nói "mình cũng bị". Bình luận có ích khi có thông tin mới: app nào bị,
+2. Không cần viết bình luận chỉ để nói “mình cũng bị”. Bình luận có ích khi có thông tin mới: app nào bị,
    bộ gõ nền nào (fcitx5, IBus) và version GNOME Shell lấy từ lệnh `gnome-shell --version`.
 3. Khi bản sửa lên repo `resolute-proposed`, báo lỗi sẽ có thẻ `verification-needed-resolute`. Lúc đó,
    ai bật được repo `resolute-proposed` thì cập nhật, gõ lại `tieengs` trong Chrome với extension đã tắt
