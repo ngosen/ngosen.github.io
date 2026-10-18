@@ -1,0 +1,48 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [{ id: 'quay-lai', label: 'Quay lại Telex hay VNI' }];
+---
+
+<Guide
+  title="Tự đặt phím bỏ dấu"
+  description="Keymap tuỳ chỉnh của Ngó Sen: chọn phím nào thêm dấu nào, bắt đầu từ bảng Telex có sẵn."
+  toc={toc}
+>
+  <p slot="lede">
+    Keymap là bảng ghi phím nào làm gì khi gõ: thêm dấu sắc, đổi <code>a</code> thành <code>â</code>,
+    <code>d</code> thành <code>đ</code>… Dùng khi muốn thêm hay đổi phím so với Telex, VNI.
+  </p>
+
+  <p>Vào “Cài đặt Ngó Sen › Phím › Keymap”.</p>
+  <ol class="steps">
+    <li>Chọn “Keymap tuỳ chỉnh”.</li>
+    <li>
+      Ở “Kiểu gõ gốc:”, chọn kiểu gõ gần với cách muốn gõ, ví dụ Telex. Click “Áp dụng cài đặt sẵn”, rồi chọn
+      “Yes”. Bảng hiện các phím của Telex, thay cho mọi phím đã có trong bảng.
+    </li>
+    <li>
+      Thêm một phím: gõ phím vào ô “Phím (Ví dụ: s)”, chọn việc của nó ở ô bên cạnh, rồi click “Thêm”. Ví dụ
+      <code>q</code> với “Dấu sắc”.
+    </li>
+    <li>
+      Vào “Cài đặt Ngó Sen › Gõ chữ”, chọn “Custom” ở “Kiểu gõ:”. Giờ <code>tieengq</code> ra “tiếng”,
+      <code>tieengs</code> cũng ra “tiếng”.
+    </li>
+  </ol>
+  <Shot
+    name="guide-keymap"
+    width={480}
+    height={480}
+    alt="Tab Keymap: Keymap tuỳ chỉnh đã chọn, Kiểu gõ gốc Telex, bảng hai cột Phím và Hành động với z Xóa dấu thanh, s Dấu sắc, f Dấu huyền, r Dấu hỏi, x Dấu ngã, j Dấu nặng, a, e, o, w."
+    caption="Tab “Keymap” với “Keymap tuỳ chỉnh” đã chọn và bảng Telex. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+  <p>Đừng bỏ bước 4. Khi “Kiểu gõ:” còn là Telex, Ngó Sen gõ theo Telex và bảng keymap chưa có tác dụng.</p>
+
+  <h2 id="quay-lai">Quay lại Telex hay VNI</h2>
+  <p>
+    Chọn lại Telex hay VNI ở “Kiểu gõ:”. Nếu bỏ chọn “Keymap tuỳ chỉnh” mà “Kiểu gõ:” vẫn là “Custom” thì không phím
+    nào thêm dấu nữa: <code>tieengs</code> ra nguyên <code>tieengs</code>.
+  </p>
+</Guide>

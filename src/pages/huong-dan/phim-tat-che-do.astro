@@ -1,0 +1,62 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'doi-phim', label: 'Đổi phím của một chế độ' },
+  { id: 'an-che-do', label: 'Ẩn một chế độ khỏi menu' },
+  { id: 'thu-tu', label: 'Đổi thứ tự trong menu' },
+  { id: 'chuyen-nhanh', label: 'Phím chuyển nhanh chế độ' },
+];
+---
+
+<Guide
+  title="Đổi phím tắt của chế độ gõ"
+  description="Đổi phím của từng chế độ trong menu chế độ của Ngó Sen, ẩn chế độ không dùng, đổi thứ tự và đặt phím chuyển nhanh."
+  toc={toc}
+>
+  <p slot="lede">
+    <a href="/huong-dan/che-do-go/">Menu chế độ</a> (phím <kbd>`</kbd>) có một phím cho mỗi chế độ: <kbd>1</kbd> Gõ
+    Sen, <kbd>q</kbd> Gạch chân, <kbd>w</kbd> Chọn Emoji, <kbd>e</kbd> Tắt, <kbd>r</kbd> Chế độ gõ mặc định. Các
+    phím này, thứ tự trong menu và chế độ nào hiện ra đều đổi được.
+  </p>
+
+  <p>Vào “Cài đặt Ngó Sen › Phím › Phím tắt”.</p>
+  <Shot
+    name="guide-shortcuts"
+    width={495}
+    height={360}
+    alt="Tab Phím tắt: ô Phím tắt menu chế độ gõ có phím `, ô Phím tắt chuyển nhanh chế độ để Rỗng; nhóm Đổi chế độ có năm hàng, mỗi hàng một ô đánh dấu và một nút phím: 1, Q, W, E, R."
+    caption="Tab “Phím tắt” với phím mặc định. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+  />
+
+  <h2 id="doi-phim">Đổi phím của một chế độ</h2>
+  <ol class="steps">
+    <li>
+      Ở nhóm “Đổi chế độ”, click nút phím bên phải chế độ cần đổi, ví dụ nút Q của “Phím tắt cho Gạch chân”.
+    </li>
+    <li>
+      Bấm phím mới, ví dụ <kbd>a</kbd>. Đổi xong có tác dụng ngay: bấm <kbd>`</kbd> rồi <kbd>a</kbd> là sang Gạch
+      chân.
+    </li>
+  </ol>
+  <p>
+    Hai chế độ đang hiện trong menu không dùng chung một phím được. Bấm trùng thì cửa sổ báo “Phím tắt '1' được sử
+    dụng bởi một chế độ gõ khác đang được bật.” và không lưu cho tới khi đổi sang phím khác.
+  </p>
+
+  <h2 id="an-che-do">Ẩn một chế độ khỏi menu</h2>
+  <p>
+    Bỏ chọn ô bên trái chế độ đó. Ví dụ bỏ chọn ở “Phím tắt cho Chọn Emoji” thì menu không còn dòng Chọn Emoji.
+  </p>
+
+  <h2 id="thu-tu">Đổi thứ tự trong menu</h2>
+  <p>Kéo biểu tượng ở đầu hàng lên hoặc xuống. Kéo “Phím tắt cho Tắt” lên trên cùng thì Tắt đứng đầu menu.</p>
+
+  <h2 id="chuyen-nhanh">Phím chuyển nhanh chế độ</h2>
+  <p>
+    “Phím tắt chuyển nhanh chế độ” lúc đầu để “Rỗng”. Click vào ô đó rồi bấm một phím, ví dụ <kbd>F2</kbd>. Từ đó,
+    bấm <kbd>F2</kbd> khi đang gõ là sang chế độ kế tiếp theo thứ tự trong danh sách, không cần mở menu. Chế độ đã
+    ẩn thì bị bỏ qua.
+  </p>
+</Guide>
