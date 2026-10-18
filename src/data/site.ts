@@ -580,7 +580,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Lõi Rust',
-    text: 'Phần biến tieengs thành tiếng được viết lại bằng Rust. Gói cho Fedora, Arch, openSUSE và Ubuntu 24.04 trở lên dùng lõi Rust.',
+    text: 'Phần biến tieengs thành tiếng được viết lại bằng Rust. Mọi gói đều dùng lõi Rust, trừ gói cho Debian 12.',
   },
   {
     title: 'Cài bằng một dòng lệnh',
@@ -715,19 +715,6 @@ export const ROADMAP: {
   items: { text: string; refs?: number[] }[];
 }[] = [
   {
-    version: '1.5.0',
-    items: [
-      {
-        text: 'Nút “Kiểm tra máy tôi…” trong cửa sổ cài đặt: xem fcitx5 và Ngó Sen đã cài đúng chưa, lỗi nào cũng kèm cách sửa, và test được một app gõ đúng hay sai.',
-        refs: [88, 90],
-      },
-      {
-        text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
-        refs: [112],
-      },
-    ],
-  },
-  {
     version: '1.6.0',
     items: [
       {
@@ -742,7 +729,13 @@ export const ROADMAP: {
   },
   {
     version: '1.7.0',
-    items: [{ text: 'Làm lại cách chèn emoji.', refs: [110] }],
+    items: [
+      { text: 'Làm lại cách chèn emoji.', refs: [110] },
+      {
+        text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
+        refs: [112],
+      },
+    ],
   },
   {
     items: [
