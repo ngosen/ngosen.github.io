@@ -15,7 +15,7 @@ WPS nối với bộ gõ theo cách khác, và lệnh xoá chữ chạy đúng.
 ## Một phần lý do thôi làm bản IBus
 
 Trước ngày 09/10/2026, Ngó Sen còn làm một bản cho IBus, bộ gõ nền mặc định của GNOME và Ubuntu. WPS cho thấy cùng một app
-có thể lỗi mỗi bộ gõ nền một kiểu, và mỗi kiểu phải sửa riêng. Vì vậy, cùng vài lý do khác, Ngó Sen
+có thể gặp lỗi khác nhau trên từng bộ gõ nền; mỗi kiểu lỗi phải sửa riêng. Vì vậy, cùng vài lý do khác, Ngó Sen
 thôi làm bản IBus và chỉ làm cho fcitx5, kể ở bài [Ngó Sen chỉ làm cho fcitx5](/blog/chi-lam-cho-fcitx5/).
 
 ## Dùng WPS thế nào

@@ -11,7 +11,7 @@ const levels = Object.keys(LEVELS) as Level[];
 
 // Every line is a user-visible change from CHANGELOG.md in the main repository; `pr` is its pull request.
 const notFixed = [
-  'Game dùng SDL không chạy trên X11 thì không nhận forward key, nên gõ ra chữ không dấu.',
+  'Khi chạy ngoài X11, game dùng SDL không nhận forward key nên gõ ra chữ không dấu.',
   'VS Code bản snap gõ ra Telex thô. Cách chữa tạm là cho nó gõ qua XIM, và khi đó khoảng một câu trong mười có một chữ sai dấu.',
   'Ubuntu 26.04 cần bật một extension của Ngó Sen để sửa lỗi GNOME làm mất phím Backspace, cho tới khi Ubuntu đưa bản sửa của GNOME vào.',
   'Kiểu gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.',
@@ -227,7 +227,7 @@ const jsonLd = {
         <a href="/cai-dat/nang-cao/#tai-tay">Chọn đúng file cho từng distro</a>.
       </p>
       <p class="install-manual">
-        Trên GNOME, KDE Plasma (Wayland) và Xfce, Cinnamon, MATE, lệnh cài tự đặt fcitx5 làm bộ gõ và thêm Ngó
+        Trên GNOME, KDE Plasma (Wayland), Xfce, Cinnamon và MATE, lệnh cài tự đặt fcitx5 làm bộ gõ và thêm Ngó
         Sen. Cài xong chỉ cần đăng xuất rồi đăng nhập lại, sau đó bấm Ctrl+Space để bật tiếng Việt.
         <a href="/cai-dat/#mot-dong-lenh">Lệnh cài làm những gì</a>.
       </p>

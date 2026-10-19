@@ -46,7 +46,7 @@ cũng tự đặt fcitx5 làm bộ gõ cho tài khoản: fcitx5 tự chạy khi 
 Sen vào danh sách bộ gõ và đặt phím Ctrl+Shift như trên GNOME.
 
 Trên Debian và Ubuntu, lệnh cài luôn cài kèm `im-config` và các gói giúp app GTK, Qt gõ được qua fcitx5,
-kể cả trên máy tắt cài gói đi kèm như MX Linux.
+kể cả trên máy đã tắt việc cài gói đi kèm, như MX Linux.
 
 ## Nhiều tài khoản và cài tay
 

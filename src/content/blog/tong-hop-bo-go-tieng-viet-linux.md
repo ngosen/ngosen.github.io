@@ -39,8 +39,8 @@ vậy, bộ gõ nào xoá rồi viết **chỉ bằng một đường** là bộ
 </div>
 
 Hai bộ gõ không đọc được. Lúc đó nhánh chính của [UniLume](https://github.com/LumeWorks/UniLume) không có
-mã, và dự án đã chuyển thành CanType. Mã cũ (lõi UniKey, addon fcitx5) nằm ở nhánh `legacy`, có bản phát
-hành v0.1.1 ngày 01/08/2026; README ở nhánh chính ghi dự án đã dời sang CanType và
+mã, và dự án đã chuyển thành CanType. Mã cũ (lõi UniKey, addon fcitx5) nằm ở nhánh `legacy`, có release
+v0.1.1 ngày 01/08/2026; README ở nhánh chính ghi dự án đã dời sang CanType và
 [Cadence](https://github.com/LumeWorks/Cadence). Link codekeyvn trong danh sách gõ sai tên tài khoản nên trả về lỗi 404; repo thật là
 [codekeyvn](https://github.com/toilaai2212hp22-lgtm/codekeyvn), bài này chưa nghiên cứu sâu.
 
@@ -55,7 +55,7 @@ fcitx5-unikey, fcitx5-bamboo và ibus-unikey mặc định gạch chân phần n
 của bảng xin app đừng gạch chân để trông giống chữ thường. App có chiều theo hay không thì tuỳ từng app.
 
 **Tự làm bộ gõ Wayland riêng.** Bộ gõ không chạy trong fcitx5 mà tự nói chuyện với Wayland. Lệnh xoá và
-lệnh chèn tới app cùng một lần. Cách này chỉ chạy trên compositor có input-method-v2 và bàn phím ảo của
+lệnh chèn tới app cùng một lần. Cách này thường cần compositor có input-method-v2 và bàn phím ảo của
 Wayland, như Sway và Hyprland; KDE chưa có hai phần đó.
 
 **Hai đường: bấm Backspace rồi gõ chữ mới.** Bộ gõ bấm Backspace qua bàn phím ảo, hoặc nhờ fcitx5 hay
@@ -73,7 +73,7 @@ không dùng được trên Wayland.
 surrounding text rồi commit, cùng một đường, không dùng uinput.
 
 Funput gõ luôn, không chờ trước. Sau đó nó đọc nội dung ô mà app báo lại và xếp vào ba loại: app làm
-đúng, app bỏ qua lệnh xoá, hoặc app chưa trả lời. App nào bỏ qua lệnh xoá thì **riêng app đó** chuyển
+đúng, app bỏ qua lệnh xoá hoặc app chưa trả lời. App nào bỏ qua lệnh xoá thì **riêng app đó** chuyển
 sang gõ bằng preedit, và Funput nhớ tên app đó cho lần sau.
 
 README của họ ghi vài số đo, Ngó Sen chưa kiểm lại: app chỉ trả lời 61% số lần commit; chờ trả lời từng
@@ -175,8 +175,8 @@ ngày 14/10/2026.
   từ tháng 7/2025, version cuối từ năm 2020, nhưng nó vẫn có gói trong hầu hết distro, kể cả Ubuntu 26.04.
 - [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) có nhiều cách gõ nhất, chọn được cho từng
   app, mặc định là preedit không gạch chân. Các chế độ phụ gồm surrounding text, bấm Backspace qua IBus
-  (một chế độ gửi cả chữ mới thành phím), bôi đen bằng Shift+mũi tên trái rồi gõ đè, và trên X11 thì bấm
-  phím giả bằng XTest. Các chế độ bấm phím đều chờ một khoảng cố định giữa lúc xoá và lúc commit.
+  (một chế độ gửi cả chữ mới thành phím) và bôi đen bằng Shift+mũi tên trái rồi gõ đè. Trên X11 còn có chế
+  độ bấm phím giả bằng XTest. Các chế độ bấm phím đều chờ một khoảng cố định giữa lúc xoá và lúc commit.
 
   Nó có gói trong Fedora, AUR và NixOS. README ghi dự án đã lâu không tiến triển, có thể không được duy
   trì nữa, và gợi ý dùng fcitx5-unikey thay thế.
@@ -209,14 +209,14 @@ Không qua fcitx5 hay IBus:
 
 - [SenKey](https://github.com/coderabangai/senkey): đọc thẳng bàn phím, gõ ra qua uinput hoặc bàn phím ảo
   của Wayland.
-- [VNIKey](https://github.com/hideonhp/vnikey-linux): input-method-v2 trên Wayland, XTest trên X11, và một
+- [VNIKey](https://github.com/hideonhp/vnikey-linux): input-method-v2 trên Wayland, XTest trên X11 và một
   engine IBus cho GNOME.
 - [Mimi IME](https://github.com/Mimi-IME/mimi-ime): bộ gõ Wayland chỉ gõ bằng preedit, cài qua Nix.
 
 Hai bộ gõ dưới đây thêm ngày 19/10/2026. Bản chính của cả hai là cho macOS, và OpenKey không có commit
 nào trong 30 ngày:
 
-- [OpenKey](https://github.com/tuyenvm/OpenKey): README ghi bản Linux “đang phát triển”. Bản phát hành cuối
+- [OpenKey](https://github.com/tuyenvm/OpenKey): README ghi bản Linux “đang phát triển”. Version cuối
   là 2.0.5, ngày 19/03/2022.
 - [gõkey](https://github.com/huytd/goxkey): viết bằng Rust. Bản IBus cho Linux nằm ở nhánh
   `ibus-implementation` ([PR #155](https://github.com/huytd/goxkey/pull/155), chưa gộp). README ghi bản này

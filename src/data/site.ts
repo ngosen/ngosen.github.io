@@ -170,7 +170,7 @@ export const RELEASES: {
     version: '1.4.0-1',
     date: '14/10/2026',
     summary:
-      'Version 1.4: lệnh cài một dòng tự đặt fcitx5 làm bộ gõ trên GNOME và Xfce, Cinnamon, MATE, có thêm lệnh gỡ, cửa sổ cấu hình bớt mục thừa.',
+      'Version 1.4: lệnh cài một dòng tự đặt fcitx5 làm bộ gõ trên GNOME, Xfce, Cinnamon và MATE, có thêm lệnh gỡ, cửa sổ cấu hình bớt mục thừa.',
     changes: [
       {
         claim: 'Trên GNOME, lệnh cài tự đặt fcitx5 làm bộ gõ thay IBus và thêm Ngó Sen vào danh sách bộ gõ.',
@@ -541,7 +541,7 @@ export const DISTRIBUTIONS: Distribution[] = [
   {
     name: 'Kali Rolling',
     level: 'vm',
-    basis: 'lệnh cài chạy trên máy ảo Kali 2026.2 (Xfce X11)',
+    basis: 'đã gõ thử trên máy ảo Kali 2026.2 (Xfce X11)',
     file: 'fcitx5-ngosen_*_forky_amd64.deb',
     core: 'Rust',
   },
