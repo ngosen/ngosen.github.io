@@ -2,7 +2,7 @@
 title: "Tổng hợp các bộ gõ tiếng Việt trên Linux và cơ chế gõ"
 description: "Đọc mã 20 bộ gõ tiếng Việt cho Linux: năm cách đưa chữ vào app, mỗi bộ gõ làm gì và ý nào đáng học."
 pubDate: 2026-10-08
-updatedDate: 2026-10-14
+updatedDate: 2026-10-19
 ---
 
 Khi gõ `as` ra `á`, mọi bộ gõ đều phải làm cùng một việc: xoá `a` rồi viết `á`. Cách làm việc đó quyết
@@ -15,7 +15,8 @@ rõ file và dòng đã đọc, nằm trong [repo chính](https://github.com/ngo
 Mã của các bộ gõ có thể đã đổi sau ngày đó; phiên bản mã đã đọc (commit) ghi ở bảng cuối bài.
 
 Ngày 14/10/2026, bài có thêm bốn bộ gõ có sẵn gói trong distro, vốn không có trong danh sách cộng đồng,
-và một danh sách bộ gõ mới đang được làm.
+và một danh sách bộ gõ mới đang được làm. Ngày 19/10/2026, bài có thêm số sao, fork và commit của từng
+bộ gõ, cùng hai bộ gõ chưa có trước đó.
 
 ## Vì sao đọc mã bộ gõ khác
 
@@ -29,7 +30,7 @@ vậy, bộ gõ nào xoá rồi viết **chỉ bằng một đường** là bộ
 
 | Cách đưa chữ vào app                                                             | Bộ gõ                                                                                                                                                                                                                                                                                                                                               |
 | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Một đường: nhờ app xoá chữ quanh con trỏ (surrounding text), rồi chèn chữ mới    | [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (chế độ phụ), [Funput](https://github.com/Funput/Funput), [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final), [CanType](https://github.com/LumeWorks/CanType), [pinakey](https://github.com/trananhtung/pinakey) (chế độ phụ), [vnkey](https://github.com/marixdev/vnkey), [telebit](https://github.com/sonnam0904/telebit)            |
+| Một đường: nhờ app xoá chữ quanh con trỏ (surrounding text), rồi chèn chữ mới    | [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (chế độ phụ), [Funput](https://github.com/Funput/Funput), [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Pro), [CanType](https://github.com/LumeWorks/CanType), [pinakey](https://github.com/trananhtung/pinakey) (chế độ phụ), [vnkey](https://github.com/marixdev/vnkey), [telebit](https://github.com/sonnam0904/telebit)            |
 | Preedit: chữ đang gõ nằm tạm trong ô tới khi xong từ, có hoặc không gạch chân    | [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey), [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo), [ibus-unikey](https://github.com/vn-input/ibus-unikey), [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (mặc định), [pinakey](https://github.com/trananhtung/pinakey) (mặc định), [TypeVN](https://github.com/vithanhlam/TypeVN), [vietc](https://github.com/vndangkhoa/vietc)                                                                                                                                                                                          |
 | Tự làm bộ gõ Wayland riêng, gõ bằng bàn phím ảo mang bảng phím chữ Việt          | [vi-ime](https://github.com/nhanth87/vi-ime)                                                                                                                                                                                                                                                                                                        |
 | Hai đường: bấm Backspace (hoặc bôi đen) qua uinput, forward key hoặc XTest, rồi commit, canh nhịp bằng đồng hồ hoặc tin báo của app | [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) (chế độ phụ), [skey](https://github.com/collyn/skey), [ArecaIME](https://github.com/xhkzeroone/ArecaIME), [VMK](https://github.com/thanhpy2009/VMK), [fcitx5-lilypad](https://github.com/chiconcota/fcitx5-lilypad), [fcitx5-lotus](https://github.com/LotusInputMethod/fcitx5-lotus), Ngó Sen lúc đó |
@@ -37,8 +38,10 @@ vậy, bộ gõ nào xoá rồi viết **chỉ bằng một đường** là bộ
 
 </div>
 
-Hai bộ gõ không đọc được. [UniLume](https://github.com/dismonjames/UniLume) không có mã và đã chuyển
-thành CanType. Link codekeyvn trong danh sách gõ sai tên tài khoản nên trả về lỗi 404; repo thật là
+Hai bộ gõ không đọc được. Lúc đó nhánh chính của [UniLume](https://github.com/LumeWorks/UniLume) không có
+mã, và dự án đã chuyển thành CanType. Mã cũ (lõi UniKey, addon fcitx5) nằm ở nhánh `legacy`, có bản phát
+hành v0.1.1 ngày 01/08/2026; README ở nhánh chính ghi dự án đã dời sang CanType và
+[Cadence](https://github.com/LumeWorks/Cadence). Link codekeyvn trong danh sách gõ sai tên tài khoản nên trả về lỗi 404; repo thật là
 [codekeyvn](https://github.com/toilaai2212hp22-lgtm/codekeyvn), bài này chưa nghiên cứu sâu.
 
 ## Năm cách, người dùng thấy gì
@@ -78,8 +81,10 @@ lần thì chậm khoảng 25 ms mỗi phím; xoá và chèn dồn liền nhau k
 
 ### Unikey-Wayland-Final: giữ phím gõ tiếp tới khi app xác nhận
 
-[Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final) là bộ gõ Wayland riêng,
-dùng giao thức input-method-v1, đúng giao thức mà KWin của KDE có. Nó xoá rồi chèn, một đường.
+[Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Pro) là bộ gõ Wayland riêng,
+dùng giao thức input-method-v1, đúng giao thức mà KWin của KDE có. Nó xoá rồi chèn, một đường. Ngày
+19/10/2026, repo này đã đổi tên thành Unikey-Wayland-Pro; GitHub ghi nó là fork của Unikey-Wayland, 0 sao,
+đẩy mã lần cuối ngày 30/09/2026.
 
 Sau mỗi lần thay chữ, nó đánh dấu “đang chờ”, và **mọi phím gõ tiếp bị xếp hàng**. Chỉ khi ô báo lại
 đúng đuôi chữ mong đợi thì hàng mới được thả ra. Thấy dấu hiệu lệnh xoá bị bỏ qua thì nó làm lại, tối đa
@@ -208,6 +213,64 @@ Không qua fcitx5 hay IBus:
   engine IBus cho GNOME.
 - [Mimi IME](https://github.com/Mimi-IME/mimi-ime): bộ gõ Wayland chỉ gõ bằng preedit, cài qua Nix.
 
+Hai bộ gõ dưới đây thêm ngày 19/10/2026. Bản chính của cả hai là cho macOS, và OpenKey không có commit
+nào trong 30 ngày:
+
+- [OpenKey](https://github.com/tuyenvm/OpenKey): README ghi bản Linux “đang phát triển”. Bản phát hành cuối
+  là 2.0.5, ngày 19/03/2022.
+- [gõkey](https://github.com/huytd/goxkey): viết bằng Rust. Bản IBus cho Linux nằm ở nhánh
+  `ibus-implementation` ([PR #155](https://github.com/huytd/goxkey/pull/155), chưa gộp). README ghi bản này
+  còn đang làm nhưng đã thử được, và tự đổi giữa surrounding text và preedit.
+
+## Bộ gõ nào đang được làm, bộ gõ nào nhiều người theo dõi
+
+Số đo ngày 19/10/2026 qua GitHub API. “Commit 30 ngày” là số commit trên nhánh mặc định từ 19/09/2026;
+API trả tối đa 100 commit một lần, nên 100 ghi là 100+. Người đóng góp không tính người gửi commit mà không
+có tài khoản GitHub.
+
+Số sao không phải số người dùng. fcitx5-unikey, ibus-bamboo và ibus-unikey có gói trong kho của distro, nên
+có thể có nhiều người dùng hơn số sao và số commit cho thấy. Đây là phỏng đoán: không có số lượt tải để
+kiểm.
+
+<div class="table-scroll">
+
+| Bộ gõ                                                        | Sao  | Fork | Commit 30 ngày | Người đóng góp | Đẩy mã lần cuối |
+| ------------------------------------------------------------ | ---: | ---: | -------------: | -------------: | --------------- |
+| [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo)   | 1.505 |  100 |              0 |             15 | 03/07/2026      |
+| [OpenKey](https://github.com/tuyenvm/OpenKey)                |  968 |  282 |              0 |             16 | 15/06/2026      |
+| [Gõ Nhanh](https://github.com/khaphanspace/gonhanh.org)      |  766 |  103 |             48 |             10 | 19/10/2026      |
+| [fcitx5-lotus](https://github.com/LotusInputMethod/fcitx5-lotus) | 506 | 53 |           100+ |             22 | 19/10/2026      |
+| [gõkey](https://github.com/huytd/goxkey)                     |  280 |   35 |              1 |             14 | 23/09/2026      |
+| [ibus-unikey](https://github.com/vn-input/ibus-unikey)       |  146 |   42 |              0 |              4 | 21/07/2025      |
+| [fcitx5-unikey](https://github.com/fcitx/fcitx5-unikey)      |  133 |   24 |              0 |              7 | 06/09/2026      |
+| [Unikey-Wayland](https://github.com/ubuntu2310fake/Unikey-Wayland) | 102 | 79 |            6 |              1 | 01/10/2026      |
+| [vnkey](https://github.com/marixdev/vnkey)                   |  101 |   12 |              0 |              1 | 03/04/2026      |
+| [VMK](https://github.com/thanhpy2009/VMK)                    |  100 |   14 |              1 |              1 | 20/09/2026      |
+| [fcitx5-bamboo](https://github.com/fcitx/fcitx5-bamboo)      |   76 |   17 |              0 |              2 | 06/09/2026      |
+| [vietc](https://github.com/vndangkhoa/vietc)                 |   59 |    9 |              2 |              6 | 06/10/2026      |
+| [Funput](https://github.com/Funput/Funput)                   |   49 |    4 |           100+ |              3 | 18/10/2026      |
+| [skey](https://github.com/collyn/skey)                       |   27 |    5 |             40 |              1 | 15/10/2026      |
+| [ArecaIME](https://github.com/xhkzeroone/ArecaIME)           |   19 |    1 |             81 |              2 | 18/10/2026      |
+| [Ngó Sen](https://github.com/ngosen/ngosen)                  |   19 |    1 |           100+ |             21 | 19/10/2026      |
+| [UniLume](https://github.com/LumeWorks/UniLume)              |   12 |    0 |              0 |              1 | 07/08/2026      |
+
+</div>
+
+Các bộ gõ còn lại trong bài đều dưới 11 sao: BambooMintKey 10, TextVN 9, telebit 8, vi-ime 7, pinakey 7,
+fcitx5-lilypad 6, codekeyvn 6, Mimi IME 4, TypeVN 3, GoTV 2, Clak 2, VietnameseKey 1, ibus-gokien 1,
+CanType 1. SenKey, rs-telex, VNIKey, ibus-vie, ibus-telex và UVie chưa có sao nào. Trong số đó,
+BambooMintKey, TextVN và Clak có 100+ commit trong 30 ngày, SenKey có 92.
+
+fcitx5-lotus và Gõ Nhanh vừa nhiều sao vừa có nhiều commit. Bản chính của Gõ Nhanh là cho macOS, addon
+fcitx5 còn là bản beta, và 48 commit là của cả repo. Funput, ArecaIME và skey ít sao nhưng commit nhiều.
+
+ibus-bamboo nhiều sao nhất nhưng không có commit nào trong 30 ngày, và README của nó tự ghi có thể không
+còn được duy trì. ibus-unikey đẩy mã lần cuối từ tháng 7/2025, vnkey từ tháng 4/2026. fcitx5-unikey và
+fcitx5-bamboo cũng không có commit trong 30 ngày; cả hai do nhóm làm fcitx5 giữ. Unikey-Wayland và VMK có
+vài commit.
+
+Repo Ngó Sen mới chuyển sang chỗ hiện tại ngày 10/10/2026; 21 người đóng góp tính cả lịch sử của repo cũ.
+
 ## Phiên bản mã đã đọc
 
 <div class="table-scroll">
@@ -215,7 +278,7 @@ Không qua fcitx5 hay IBus:
 | Bộ gõ                                                                 | Commit    | Ngày       |
 | --------------------------------------------------------------------- | --------- | ---------- |
 | [Funput](https://github.com/Funput/Funput/tree/a0278f1)                          | `a0278f1` | 23/09/2026 |
-| [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Final/tree/1d7c107) | `1d7c107` | 04/09/2026 |
+| [Unikey-Wayland-Final](https://github.com/quannguyen247/Unikey-Wayland-Pro/tree/1d7c107) | `1d7c107` | 04/09/2026 |
 | [TypeVN](https://github.com/vithanhlam/TypeVN/tree/1fd1910)                      | `1fd1910` | 10/09/2026 |
 | [CanType](https://github.com/LumeWorks/CanType/tree/603a20a)                     | `603a20a` | 07/08/2026 |
 | [ArecaIME](https://github.com/xhkzeroone/ArecaIME/tree/5c6e34a)                  | `5c6e34a` | 13/09/2026 |
