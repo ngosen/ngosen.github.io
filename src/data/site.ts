@@ -27,6 +27,79 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.5.3-1',
+    date: '19/10/2026',
+    summary:
+      'Sửa lỗi Gõ Sen khi xoá lùi, trong gnome-text-editor, thanh địa chỉ Firefox ESR và các trình duyệt dựa trên Firefox, XIM trên X11 và Wine trên Wayland. Có thêm kho cài đặt và gói Ubuntu 26.10.',
+    changes: [
+      {
+        claim: 'Mỗi version phát hành được tự build trên kho COPR `nguyenphi/ngosen` cho Fedora.',
+        source: '',
+        pr: 133,
+      },
+      {
+        claim: 'Có kho APT có chữ ký cho Debian, Ubuntu và các distro dựa trên chúng.',
+        source: '',
+        pr: 135,
+      },
+      {
+        claim: 'Có kho pacman có chữ ký cho Arch, CachyOS và EndeavourOS.',
+        source: '',
+        pr: 137,
+      },
+      {
+        claim: 'Có kho openSUSE Tumbleweed có chữ ký.',
+        source: '',
+        pr: 140,
+      },
+      {
+        claim: 'Có gói cho Ubuntu 26.10 trên máy x86_64 và ARM 64-bit.',
+        source: 'Lệnh cài một dòng và kho APT nhận Ubuntu 26.10.',
+        pr: 150,
+      },
+      {
+        claim: 'Gõ Sen trong WordCraft và các app dùng XIM trên X11 không còn rối chữ.',
+        source: 'Trước đó có thể ra `dââấ` thay vì `dấu`. Ngó Sen xoá chữ bằng phím thật qua XTEST.',
+        pr: 156,
+      },
+      {
+        claim: 'Gõ Sen trong Wine 11 trên Wayland không còn rối chữ như `tiêến` thay vì `tiếng`.',
+        source: 'Ngó Sen gửi phím xoá thẳng vào cửa sổ app, không hiện hộp hỏi quyền điều khiển.',
+        pr: 158,
+      },
+      {
+        claim: 'Thanh địa chỉ Firefox ESR, bản Firefox mặc định của Debian, không còn ra chữ thừa khi tự điền địa chỉ.',
+        source: 'Trước đó có thể ra `coờ` thay vì `cờ`.',
+        pr: 162,
+      },
+      {
+        claim: 'Thanh địa chỉ các trình duyệt dựa trên Firefox cũng không còn ra chữ thừa khi tự điền địa chỉ.',
+        source: 'Áp dụng cho Zen, LibreWolf, Waterfox, Floorp, Mullvad Browser và GNU IceCat. Trước đó có thể ra `moờ` thay vì `mờ`.',
+        pr: 164,
+      },
+      {
+        claim: 'Gõ Sen sửa tiếp đúng từ khi xoá lùi qua dấu cách vào từ vừa gõ rồi gõ tiếp, kể cả trong kitty.',
+        source: 'Gõ `duyeet`, dấu cách, xoá còn `du` rồi gõ `yeejt` ra `duyệt`, trước đó ra `duyeejt`.',
+        pr: 142,
+      },
+      {
+        claim: 'Gõ Sen trong gnome-text-editor không còn mất chữ khi xoá lùi giữa từ rồi gõ tiếp.',
+        source: 'Gõ `toan`, xoá một chữ rồi gõ `nf` ra `toàn`, trước đó ra `toòn`.',
+        pr: 149,
+      },
+      {
+        claim: 'Nhật ký gõ ghi đúng app khi chuyển qua lại giữa các cửa sổ.',
+        source: 'Trước đó quay lại ô đã gõ thì phím ở đó bị ghi dưới tên app vừa rời.',
+        pr: 143,
+      },
+      {
+        claim: 'Nút “Mặc định” sáng ngay khi có gõ tắt, keymap riêng hay từ thêm vào từ điển.',
+        source: 'Không cần mở trang đó trước.',
+        pr: 132,
+      },
+    ],
+  },
+  {
     version: '1.5.2-1',
     date: '18/10/2026',
     summary:
@@ -54,7 +127,7 @@ export const RELEASES: {
       {
         claim: '“Kiểm tra máy tôi” test được một app: gõ câu mẫu trong app, lưu nhật ký gõ rồi đọc lại trong cửa sổ đó.',
         source:
-          'App có báo chữ cho bộ gõ thì tự biết gõ đúng hay sai. Nút “Báo cáo lỗi…” mở trang báo lỗi trên GitHub đã điền sẵn kết quả, không tự gửi gì.',
+          'Nếu app có báo chữ cho bộ gõ, “Kiểm tra máy tôi” tự biết gõ đúng hay sai. Nút “Báo cáo lỗi…” mở trang báo lỗi trên GitHub đã điền sẵn kết quả, không tự gửi gì.',
         pr: 90,
       },
       {
@@ -222,7 +295,7 @@ export const RELEASES: {
     version: '1.3.0-1',
     date: '13/10/2026',
     summary:
-      'Version 1.3: tuỳ chọn Backspace chỉ xoá dấu thanh, icon mới hai cọng ngó sen, và icon khay rõ trên panel tối.',
+      'Version 1.3: tuỳ chọn Backspace chỉ xoá dấu thanh, icon mới hai cọng ngó sen và icon khay rõ trên panel tối.',
     changes: [
       {
         claim: 'Có tuỳ chọn “Backspace xoá dấu thanh”, mặc định tắt.',
@@ -309,7 +382,7 @@ export const RELEASES: {
       {
         claim: 'Cửa sổ cài đặt lưu ngay khi đổi, không còn nút OK, Áp dụng, Huỷ.',
         source:
-          'Mỗi lần lưu hiện dòng “Đã lưu” kèm nút Hoàn tác, đưa lại đúng cài đặt trước đó, kể cả luật app, gõ tắt và từ điển riêng.',
+          'Mỗi lần lưu hiện dòng “Đã lưu” kèm nút Hoàn tác để khôi phục đúng cài đặt trước đó, kể cả luật app, gõ tắt và từ điển riêng.',
         pr: 14,
       },
       {
@@ -358,7 +431,7 @@ export const RELEASES: {
     prRepo: ARCHIVE_REPO,
     date: '09/10/2026',
     summary:
-      'Version 1.0: Ngó Sen chỉ làm cho fcitx5. Click sang ô khác rồi gõ nay ra đúng trong LibreOffice Calc, WPS Office và Google Sheets.',
+      'Version 1.0: Ngó Sen chỉ làm cho fcitx5. Click sang ô khác rồi gõ giờ đã ra đúng chữ trong LibreOffice Calc, WPS Office và Google Sheets.',
     changes: [
       {
         claim: 'Google Sheets trên Wayland: click sang ô khác rồi gõ không còn ra lẫn chữ của ô trước.',
@@ -372,7 +445,7 @@ export const RELEASES: {
       },
       {
         claim: 'LibreOffice Calc mở thẳng trên Wayland, không qua module Qt của fcitx5, cũng không còn hai lỗi trên.',
-        source: 'Trước đó chữ ra lẫn chữ của ô trước, hoặc mở hộp thoại “Delete Contents”.',
+        source: 'Trước đó chữ ra lẫn chữ của ô trước hoặc hộp thoại “Delete Contents” mở ra.',
         pr: 90,
       },
       {
@@ -461,7 +534,9 @@ export const RELEASE = RELEASES[0];
 
 // Mirrors the paragraph under the table in packaging/release-notes.md.
 export const LEVELS_NOTE =
-  'Mức đã test lấy từ lần test version 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Version 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Version 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), version 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Version 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối. Version 1.2.2 sửa nhãn cạnh con trỏ và lỗi mất dấu trên thanh địa chỉ Edge. Lỗi Edge được tái hiện bằng một test viết lại từ log gõ phím trên Fedora 44 (KDE Wayland), rồi gõ tay lại trên Edge sau khi sửa: ra đúng “ngó”, cạnh con trỏ hiện “vi”. Version 1.3.0 thêm tuỳ chọn Backspace xoá dấu thanh, được gõ tay trên Fedora 44 (KDE Wayland) với bản build từ nhánh next. Icon khay mới được xem trên máy ảo Linux Mint 22.3 (Cinnamon) và MX Linux 25.3 (Xfce). Gói Debian 13 được cài trên máy ảo MX Linux 25.3: Telex “vieejt” ra “việt” trong terminal GTK. Lần cập nhật từ 1.0.0-1 rồi chạy fcitx5 -rd cũng được test trên máy ảo MX Linux 25.3: Ngó Sen vẫn nằm trong danh sách bộ gõ. Version 1.4.0 chủ yếu đổi lệnh cài một dòng. Lệnh cài được chạy trên máy ảo Ubuntu 26.04 (GNOME Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon X11) và MX Linux 25 (Xfce X11) với bản build từ nhánh next: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” trong ô chữ GTK3, 3/3 lần trên mỗi máy. Lệnh gỡ được test trên Ubuntu 26.04 (IBus chạy lại) và MX Linux 25. Version 1.4.1 chỉ đổi lệnh cài, bộ gõ giữ nguyên như 1.4.0. Lệnh cài trên KDE được chạy trên máy ảo CachyOS (Plasma 6.7 Wayland) với tài khoản chưa cấu hình bộ gõ: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” 3/3 lần trong ô chữ Qt6 và 3/3 lần trong ô chữ GTK3; trước khi sửa, ô chữ Qt6 ra chữ thô. Với gói 1.4.0, Chrome 155, VS Code, Discord, Firefox và GNOME Text Editor (Flatpak) gõ đúng trên máy ảo Ubuntu 26.04 (GNOME Wayland); Chrome ép chạy qua Xwayland sai 5/30 lần. Version 1.4.2 là version sửa lỗi, test với bản build từ nhánh release/1.4.2. Ô hỏi của Gemini trong Chromium trên máy ảo CachyOS (Plasma Wayland): “ddown” ở đầu ô trống ra “đơn” 3/3 câu (trước khi sửa ra “n”). Trên Sway (CachyOS), dòng “dduwowngf tieengs vieetj…” ra đúng “đường tiếng việt…” trong ô chữ GTK3 và Firefox. Trên máy ảo Ubuntu 26.04 (GNOME Wayland), “ddwowngf tieengs vieetj” ra “đường tiếng việt” 2/2 lần trong Ptyxis và 2/2 lần trong GNOME Console. Gói ARM 64-bit được bạn ansidev cài và chạy trên Ubuntu 26.04 (máy ảo VMware) từ version thử. Version 1.4.3 là version sửa lỗi, test bằng gói Ubuntu 24.04 build từ PR #111 trên máy ảo Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7): sau khi thêm “kạ” vào từ điển tuỳ chỉnh, bật “Từ điển tuỳ chỉnh” thì “kaj” ra “kạ” 2/2 lần, bỏ chọn thì ra “kaj” 2/2 lần. Cùng các bước đó với 1.4.2 thì cả hai lần đều ra “kạ”. Version 1.5.0 không được phát hành. Gói 1.5.0 được gõ thử trên máy ảo Linux Mint 22.1 (Cinnamon X11, gói noble), Ubuntu 26.04 (GNOME Wayland, gói resolute) và MX Linux 25 (Xfce X11, gói trixie, lần đầu dùng lõi Rust): trên cả ba, “tieengs vieetj” ra “tiếng việt” trong ô chữ GTK3; trên MX, “nguwowif vieetj nam” ra “người việt nam”. Trên Ubuntu 26.04, chọn kiểu gõ Custom thì cửa sổ cài đặt hiện dòng nhắc, và “Kiểm tra máy tôi…” báo không có lỗi cài đặt. Gói 1.5.1 được gõ thử lại trên Mint và Ubuntu 26.04: bật “Tự viết hoa đầu câu”, gõ “ban. tooi”, Enter, “xin” ra “Xin” ở dòng mới (gói 1.5.0 ra “xin”); gõ thường vẫn ra “tiếng việt”. Version 1.5.2 là version sửa lỗi cửa sổ cài đặt, test trên máy ảo Ubuntu 26.04 (GNOME Wayland, gói resolute): ở trang Phím › Phím tắt, nút phím của cả năm chế độ hiện đủ khi cửa sổ nhỏ, khi phóng to, và khi thu nhỏ lại sau đó (1.5.1 mất nút khi phóng to); gõ “tieengs vieetj” vẫn ra “tiếng việt”.';
+  'Mức đã test lấy từ lần test version 0.5. Các bản sửa bảng tính trong 1.0 được test trên máy ảo CachyOS (KDE Wayland), với LibreOffice Calc, WPS Office và Google Sheets trong Firefox. Version 1.1 đổi tên các file cài vào máy. Lần cập nhật từ 1.0.0-1 được test trên máy ảo Linux Mint 22 (Cinnamon X11): cấu hình cũ được chép sang, bộ gõ vẫn nằm trong danh sách và gõ ra đúng chữ. Version 1.2 thay cửa sổ cài đặt. Lưu và Hoàn tác qua fcitx5 thật được test trên máy ảo Linux Mint 22 (Cinnamon X11), CachyOS (KDE Wayland) và Ubuntu 26.04 (GNOME Wayland). Trên máy ảo CachyOS (KDE Wayland), version 1.2 gõ ra đúng chữ trong GNOME Text Editor. Bản sửa lỗi đảo chữ trong gnome-terminal được test bằng client D-Bus giả lập và gõ tay trong gnome-terminal: không còn đảo chữ. Version 1.2.1 chỉ bỏ trang Ứng dụng khỏi cửa sổ cài đặt, bộ gõ không đổi. Cửa sổ 4 trang được mở trên máy ảo CachyOS (KDE Wayland), cả giao diện sáng và tối. Version 1.2.2 sửa nhãn cạnh con trỏ và lỗi mất dấu trên thanh địa chỉ Edge. Lỗi Edge được tái hiện bằng một test viết lại từ log gõ phím trên Fedora 44 (KDE Wayland), rồi gõ tay lại trên Edge sau khi sửa: ra đúng “ngó”, cạnh con trỏ hiện “vi”. Version 1.3.0 thêm tuỳ chọn Backspace xoá dấu thanh, được gõ tay trên Fedora 44 (KDE Wayland) với bản build từ nhánh next. Icon khay mới được xem trên máy ảo Linux Mint 22.3 (Cinnamon) và MX Linux 25.3 (Xfce). Gói Debian 13 được cài trên máy ảo MX Linux 25.3: Telex “vieejt” ra “việt” trong terminal GTK. Lần cập nhật từ 1.0.0-1 rồi chạy fcitx5 -rd cũng được test trên máy ảo MX Linux 25.3: Ngó Sen vẫn nằm trong danh sách bộ gõ. Version 1.4.0 chủ yếu đổi lệnh cài một dòng. Lệnh cài được chạy trên máy ảo Ubuntu 26.04 (GNOME Wayland), CachyOS (GNOME 51), Linux Mint (Cinnamon X11) và MX Linux 25 (Xfce X11) với bản build từ nhánh next: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” trong ô chữ GTK3, 3/3 lần trên mỗi máy. Lệnh gỡ được test trên Ubuntu 26.04 (IBus chạy lại) và MX Linux 25. Version 1.4.1 chỉ đổi lệnh cài, bộ gõ giữ nguyên như 1.4.0. Lệnh cài trên KDE được chạy trên máy ảo CachyOS (Plasma 6.7 Wayland) với tài khoản chưa cấu hình bộ gõ: sau khi đăng nhập lại, Ctrl+Shift rồi Telex “tieengs vieetj” ra “tiếng việt” 3/3 lần trong ô chữ Qt6 và 3/3 lần trong ô chữ GTK3; trước khi sửa, ô chữ Qt6 ra chữ thô. Với gói 1.4.0, Chrome 155, VS Code, Discord, Firefox và GNOME Text Editor (Flatpak) gõ đúng trên máy ảo Ubuntu 26.04 (GNOME Wayland); Chrome ép chạy qua Xwayland sai 5/30 lần. Version 1.4.2 là version sửa lỗi, test với bản build từ nhánh release/1.4.2. Ô hỏi của Gemini trong Chromium trên máy ảo CachyOS (Plasma Wayland): “ddown” ở đầu ô trống ra “đơn” 3/3 câu (trước khi sửa ra “n”). Trên Sway (CachyOS), dòng “dduwowngf tieengs vieetj…” ra đúng “đường tiếng việt…” trong ô chữ GTK3 và Firefox. Trên máy ảo Ubuntu 26.04 (GNOME Wayland), “ddwowngf tieengs vieetj” ra “đường tiếng việt” 2/2 lần trong Ptyxis và 2/2 lần trong GNOME Console. Gói ARM 64-bit được bạn ansidev cài và chạy trên Ubuntu 26.04 (máy ảo VMware) từ version thử. Version 1.4.3 là version sửa lỗi, test bằng gói Ubuntu 24.04 build từ PR #111 trên máy ảo Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7): sau khi thêm “kạ” vào từ điển tuỳ chỉnh, bật “Từ điển tuỳ chỉnh” thì “kaj” ra “kạ” 2/2 lần, bỏ chọn thì ra “kaj” 2/2 lần. Cùng các bước đó với 1.4.2 thì cả hai lần đều ra “kạ”. Version 1.5.0 không được phát hành. Gói 1.5.0 được gõ thử trên máy ảo Linux Mint 22.1 (Cinnamon X11, gói noble), Ubuntu 26.04 (GNOME Wayland, gói resolute) và MX Linux 25 (Xfce X11, gói trixie, lần đầu dùng lõi Rust): trên cả ba, “tieengs vieetj” ra “tiếng việt” trong ô chữ GTK3; trên MX, “nguwowif vieetj nam” ra “người việt nam”. Trên Ubuntu 26.04, chọn kiểu gõ Custom thì cửa sổ cài đặt hiện dòng nhắc, và “Kiểm tra máy tôi…” báo không có lỗi cài đặt. Gói 1.5.1 được gõ thử lại trên Mint và Ubuntu 26.04: bật “Tự viết hoa đầu câu”, gõ “ban. tooi”, Enter, “xin” ra “Xin” ở dòng mới (gói 1.5.0 ra “xin”); gõ thường vẫn ra “tiếng việt”. Version 1.5.2 là version sửa lỗi cửa sổ cài đặt, test trên máy ảo Ubuntu 26.04 (GNOME Wayland, gói resolute): ở trang Phím › Phím tắt, nút phím của cả năm chế độ hiện đủ khi cửa sổ nhỏ, khi phóng to, và khi thu nhỏ lại sau đó (1.5.1 mất nút khi phóng to); gõ “tieengs vieetj” vẫn ra “tiếng việt”.' +
+  ' Version 1.5.3 (PR #151, sau các sửa cuối) được test bằng cách gửi phím vào máy ảo, dùng Gõ Sen, Telex. Mỗi lượt gõ hai lần cùng một dòng: “duyeet”, dấu cách, 5 Backspace, “yeejt” ra “duyệt”; “toan”, dấu cách, 2 Backspace, “nf” ra “toàn”; “ban”, dấu cách, 1 Backspace, “f” ra “bàn”; rồi “tieengs vieetj xin chaof cacs banj, hoom nay trowif ddepj quas” ra “tiếng việt xin chào các bạn, hôm nay trời đẹp quá”. Trên Linux Mint 22.1 (Cinnamon X11, gói noble), ô chữ GTK3, ô chữ GTK3 ép dùng XIM và xed đều đúng; xterm (XIM) đúng 5/10 lượt, các lượt còn lại lỗi vài từ khi phím dồn tới. Gói 1.5.2 trên cùng máy lỗi 2/5 lượt, nên lỗi này đã có trước 1.5.3. Trên Ubuntu 26.04 (GNOME Wayland, gói resolute), ô chữ GTK3, gnome-text-editor và xterm đều đúng; Wine 11.20 Notepad đúng cả ba trường hợp Backspace, nhưng 2/4 dòng có một hoặc hai từ lỗi (“chaà”, “tiêễn”), so với 4/4 dòng lỗi ở 1.5.2 trên cùng máy. Các lỗi còn lại đến từ Wine.' +
+  ' Gói build từ nhánh patch sau #143 và từ PR #149 (cùng code với 1.5.3, chỉ khác số version) được gõ thử trên máy ảo Ubuntu 26.04 (GNOME Wayland, gói resolute), Linux Mint 22.1 (Cinnamon X11, gói noble) và CachyOS (KDE Plasma Wayland, gói Arch), dùng Gõ Sen, Telex. Gõ “duyeet”, dấu cách, xoá còn “du” rồi “yeejt” ra “duyệt”; “toan”, xoá một chữ rồi “nf” ra “toàn”; “ban”, dấu cách, xoá một chữ rồi “f” ra “bàn”. Đã test trong gnome-text-editor, xed, ô chữ GTK3 và GTK4, Ptyxis, gnome-terminal, Konsole, kitty, VS Code, Chrome và Firefox; giữ phím xoá rồi gõ tiếp vẫn đúng. VNI cũng được gõ thử với lỗi xoá qua dấu cách. LibreOffice và Firefox bản snap chưa được sửa lỗi xoá qua dấu cách, nhưng gõ không bị lỗi thêm.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -560,6 +635,13 @@ export const DISTRIBUTIONS: Distribution[] = [
     core: 'Rust',
   },
   {
+    name: 'Ubuntu 26.10',
+    level: 'built',
+    basis: 'chỉ build và chạy test lúc build',
+    file: 'fcitx5-ngosen_*_stonking_amd64.deb',
+    core: 'Rust',
+  },
+  {
     name: 'Ubuntu 22.04',
     level: 'built',
     basis: 'chỉ build và chạy test lúc build',
@@ -575,14 +657,10 @@ export const DISTRIBUTIONS: Distribution[] = [
   },
 ];
 
-// Mirrors the opening of README.md in ngosen/ngosen (PR #75): the tagline and its points.
+// Mirrors the introduction and features in README.md in ngosen/ngosen.
 export const TAGLINE = 'Bộ gõ tiếng Việt cho fcitx5 trên Linux.';
 
 export const HIGHLIGHTS: { title: string; text: string }[] = [
-  {
-    title: 'Không cần quyền đặc biệt',
-    text: 'Ngó Sen không còn uinput server, chỉ dùng đúng quyền của fcitx5. Cài xong gõ được ngay, không phải bật service hay cấp quyền thiết bị.',
-  },
   {
     title: 'Gõ thẳng, không gạch chân',
     text: 'Chế độ Gõ Sen đưa chữ vào app ngay khi gõ. Gợi ý ở thanh địa chỉ hay ô tìm kiếm hiện ra theo từng phím gõ.',
@@ -597,7 +675,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Cài bằng một dòng lệnh',
-    text: 'Có cho Fedora, Ubuntu, Debian, Arch, CachyOS và openSUSE. Script so hash SHA-256 trước khi cài.',
+    text: 'Có cho Fedora, Ubuntu, Debian, Kali, Arch, CachyOS và openSUSE Tumbleweed trên x86_64. Fedora, Ubuntu, Debian và Kali còn có gói ARM 64-bit. Script so hash SHA-256 và hỏi lại trước khi cài.',
   },
   {
     title: 'Cửa sổ cài đặt theo giao diện máy',
@@ -605,10 +683,10 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
 ];
 
-// Mirrors the "Chỉ cho fcitx5" section of README.md, which replaced the roadmap.
+// Mirrors the opening paragraph of README.md; the IBus branch is linked on the home page.
 export const SCOPE = {
   title: 'Chỉ cho fcitx5',
-  text: 'Ngó Sen chỉ làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce lẫn Sway, Hyprland, có nhiều tính năng và nhẹ RAM. Làm cho một bộ gõ nền cũng đỡ công giữ nhiều bản.',
+  text: 'Ngó Sen chỉ làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Làm cho một bộ gõ nền cũng đỡ công giữ nhiều bản.',
   branch: 'feat/ibus-engine',
 };
 
@@ -755,7 +833,7 @@ export const ROADMAP: {
       { text: 'Chữ tiếng Anh có chữ cái đôi không còn mất phím khi trả về: `affect` không thành `afect`, `coffee` không thành `cofee`.' },
       { text: 'Bớt đổi nhầm chữ tiếng Anh thành tiếng Việt, như `nest` thành `nét`, `too` thành `tô`.' },
       { text: 'Đoán dấu: gõ cả câu không dấu rồi bấm một phím để thêm dấu.' },
-      { text: 'Bôi đen một đoạn rồi thêm dấu, bỏ dấu, hoặc chuyển chữ mã cũ (TCVN3, VNI) sang Unicode.' },
+      { text: 'Bôi đen một đoạn rồi thêm dấu, bỏ dấu hoặc chuyển chữ mã cũ (TCVN3, VNI) sang Unicode.' },
       { text: 'Sửa lỗi gõ vội, như `tiếgn` thành `tiếng`.' },
       { text: 'Tự chạy “Kiểm tra máy tôi” lần đầu mở cửa sổ cài đặt. Có thêm bảng các app gõ được, lấy từ kết quả test người dùng gửi về.' },
       { text: 'Đưa Ngó Sen vào kho phần mềm của các distro: nixpkgs và AUR trước, rồi COPR, PPA, OBS, sau cùng là Debian.' },

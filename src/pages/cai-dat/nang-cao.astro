@@ -50,6 +50,10 @@ const toc = [
   <p>Cài gói bằng trình quản lý gói của máy, rồi khởi động lại fcitx5:</p>
   <pre tabindex="0"><code>fcitx5 -rd</code></pre>
   <p>Trên KDE Wayland: đăng xuất rồi đăng nhập lại thay cho lệnh trên, để app Qt như Kate, Dolphin gõ được.</p>
+  <p>
+    Các bước thêm Ngó Sen và thiết lập desktop ở mục <a href="/cai-dat/#sau-khi-cai">Cài xong</a>.
+    Cài gói bằng tay trên Ubuntu 26.04 còn cần bật <a href="/cai-dat/#ubuntu-26-04">extension sửa lỗi gõ</a>.
+  </p>
 
   <h2 id="ban-thu">Version thử</h2>
   <p>
@@ -108,6 +112,7 @@ sudo cmake --install build`}</code></pre>
   <p>
     Muốn cập nhật về sau thì vào thư mục <code>ngosen</code>, chạy
     <code>git pull --recurse-submodules</code>, lặp lại bước 3, rồi chạy <code>fcitx5 -rd</code>.
+    Trên KDE Wayland thì đăng xuất rồi đăng nhập lại thay cho lệnh đó.
   </p>
   <p>
     Muốn chạy test thì build thêm một lần với <code>-DBUILD_TESTING=ON</code> rồi chạy

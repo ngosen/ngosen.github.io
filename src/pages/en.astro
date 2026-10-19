@@ -16,16 +16,66 @@ const levels: Record<Level, string> = {
   lang="en"
 >
   <p slot="lede">
-    A Vietnamese input method for fcitx5 on Linux. It needs no special permissions, and has no underlined
-    preedit: one typing mode, Gõ Sen, for most apps.
+    A Vietnamese input method for fcitx5 on Linux. Gõ Sen puts text straight into the app without
+    underlining it; address-bar and search suggestions update with each key.
   </p>
 
   <p>
     Ngó Sen means “lotus stem”. Bugs can be reported in
     <a href={`${REPO}/issues`}>Issues</a>. The rest of this site is in Vietnamese.
   </p>
+  <p>
+    Use Gõ Sen as the main typing mode: open the Ngó Sen settings window, go to Gõ chữ and select
+    Gõ Sen in the Chế độ gõ row. Browsers, terminals, Zalo and LibreOffice all use this mode;
+    Ngó Sen detects how each app accepts text, so there is no need to switch modes. All packages
+    use the Rust composition core except Debian 12, which keeps the Go core.
+  </p>
+
+  <h2 id="release">Version {RELEASE.version}</h2>
+  <p>
+    This release fixes Gõ Sen when backspacing, in gnome-text-editor, Firefox-based browser address
+    bars, XIM on X11 and Wine on Wayland. It also adds package repositories and Ubuntu 26.10 packages.
+  </p>
+  <ul>
+    <li>
+      Each release is built on the COPR repository <code>nguyenphi/ngosen</code> for Fedora. Signed
+      repositories are also available for Debian, Ubuntu and their derivatives (APT), Arch, CachyOS and
+      EndeavourOS (pacman), and openSUSE Tumbleweed.
+    </li>
+    <li>
+      Ubuntu 26.10 has x86_64 and ARM 64-bit packages, recognised by the one-line installer and APT
+      repository.
+    </li>
+    <li>
+      WordCraft and other XIM apps on X11 no longer get scrambled text such as <code>dââấ</code>
+      instead of <code>dấu</code>. Wine 11 on Wayland no longer gets text such as <code>tiêến</code>
+      instead of <code>tiếng</code>; deletion keys go straight to the app without a remote-control
+      permission dialog.
+    </li>
+    <li>
+      Address-bar autocomplete in Firefox ESR, Debian's default Firefox, no longer adds extra letters
+      such as <code>coờ</code> instead of <code>cờ</code>. The same fix covers Zen, LibreWolf, Waterfox,
+      Floorp, Mullvad Browser and GNU IceCat, which could produce <code>moờ</code> instead of <code>mờ</code>.
+    </li>
+    <li>
+      Backspacing across a space into the previous word and typing again continues editing that word,
+      including in kitty: <code>duyeet</code>, Space, delete back to <code>du</code>, then
+      <code>yeejt</code> gives <code>duyệt</code> instead of <code>duyeejt</code>. In gnome-text-editor,
+      <code>toan</code>, delete one letter, then <code>nf</code> gives <code>toàn</code> instead of
+      <code>toòn</code>.
+    </li>
+    <li>
+      Typing logs record the right app when switching windows. The “Mặc định” (Defaults) button
+      becomes active as soon as there are macros, a custom keymap or dictionary entries, without
+      opening their settings page first.
+    </li>
+  </ul>
 
   <h2 id="install">Install</h2>
+  <p>
+    One command for Fedora, Ubuntu (including 26.10), Debian, Kali, Arch, CachyOS and openSUSE
+    Tumbleweed on x86_64. Fedora, Ubuntu, Debian and Kali also have ARM 64-bit packages.
+  </p>
   <pre tabindex="0"><code>{INSTALL_COMMAND}</code></pre>
   <p>
     The script picks the prebuilt package for your distribution from the latest GitHub release, asks
@@ -44,7 +94,7 @@ const levels: Record<Level, string> = {
     Plasma it selects fcitx5 as KDE's virtual keyboard (System Settings, Virtual Keyboard), so Qt apps
     such as Kate and Dolphin can type too.
   </p>
-  <p>On other desktops, or after installing a package by hand:</p>
+  <p>On other desktops, or after installing with <code>--no-setup</code> or a package by hand:</p>
   <ol>
     <li>
       Restart fcitx5 with <code>fcitx5 -rd</code>. Do this again after every update. On KDE Wayland, log
@@ -53,11 +103,13 @@ const levels: Record<Level, string> = {
     </li>
     <li>Open “Fcitx5 Configuration” and add the input method named Ngó Sen.</li>
     <li>On KDE Wayland, select “Fcitx 5” under System Settings, Virtual Keyboard.</li>
-    <li>
-      In the Ngó Sen settings window, on the Gõ chữ page, press <strong>Gõ Sen</strong> in the Chế độ gõ
-      row.
-    </li>
   </ol>
+  <p>
+    To update, run the same install command again, then restart fcitx5 with <code>fcitx5 -rd</code>;
+    on KDE Wayland, log out and back in instead. For manual downloads, Ubuntu 26.10 uses
+    <code>fcitx5-ngosen_*_stonking_amd64.deb</code>, or the same name ending in <code>_arm64.deb</code>
+    on ARM 64-bit. Check the download against <code>SHA256SUMS</code>.
+  </p>
   <p>
     Since 1.2 the settings window follows the desktop's look, light or dark, KDE or GNOME. Every change is
     saved at once, with an Undo button (Hoàn tác).
@@ -188,6 +240,34 @@ const levels: Record<Level, string> = {
     <code>tiếng việt</code>.
   </p>
   <p>
+    Version 1.5.3 (PR #151, after the final fixes) was tested by sending keys into virtual machines,
+    using Gõ Sen and Telex. Each run typed the same line twice: <code>duyeet</code>, Space, 5 Backspaces,
+    <code>yeejt</code> gave <code>duyệt</code>; <code>toan</code>, Space, 2 Backspaces, <code>nf</code>
+    gave <code>toàn</code>; <code>ban</code>, Space, 1 Backspace, <code>f</code> gave <code>bàn</code>;
+    then <code>tieengs vieetj xin chaof cacs banj, hoom nay trowif ddepj quas</code> gave
+    <code>tiếng việt xin chào các bạn, hôm nay trời đẹp quá</code>. On Linux Mint 22.1 (Cinnamon, X11,
+    <code>noble</code> package), a GTK3 text field, a GTK3 field forced through XIM and xed all typed
+    correctly. xterm (XIM) was correct in 5/10 runs; the others had a few wrong words when keys arrived
+    in a burst. Version 1.5.2 failed in 2/5 runs on the same machine, so this bug predates 1.5.3.
+    On Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package), the GTK3 field, gnome-text-editor
+    and xterm all typed correctly. Wine 11.20 Notepad passed all three Backspace cases, but 2/4 lines
+    had one or two wrong words (<code>chaà</code>, <code>tiêễn</code>), compared with 4/4 wrong lines
+    in 1.5.2 on the same machine. The remaining errors come from Wine.
+  </p>
+  <p>
+    Builds from the <code>patch</code> branch after #143 and PR #149 (the same code as 1.5.3, with a
+    different version number) were also tried with Gõ Sen and Telex in Ubuntu 26.04 (GNOME Wayland,
+    <code>resolute</code> package), Linux Mint 22.1 (Cinnamon, X11, <code>noble</code> package) and
+    CachyOS (KDE Plasma Wayland, Arch package) virtual machines. <code>duyeet</code>, Space, delete
+    back to <code>du</code>, then <code>yeejt</code> gave <code>duyệt</code>; <code>toan</code>,
+    delete one letter, then <code>nf</code> gave <code>toàn</code>; <code>ban</code>, Space, delete
+    one letter, then <code>f</code> gave <code>bàn</code>. These were tried in gnome-text-editor, xed,
+    GTK3 and GTK4 text fields, Ptyxis, gnome-terminal, Konsole, kitty, VS Code, Chrome and Firefox;
+    holding Backspace and typing again also worked. The backspace-across-space case was tried with
+    VNI too. LibreOffice and the snap build of Firefox still have that bug, but typing was not made
+    worse.
+  </p>
+  <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
     <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
@@ -203,7 +283,7 @@ const levels: Record<Level, string> = {
   <p>
     Ngó Sen targets fcitx5 only. fcitx5 runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
     plenty of features and is light on RAM, and one input method framework is less to maintain than
-    several. The old IBus code stays on the <code>feat/ibus-engine</code> branch. Source, releases and the
+    several. The old IBus code stays unmaintained on the <code>feat/ibus-engine</code> branch. Source, releases and the
     changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>
