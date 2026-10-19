@@ -44,11 +44,11 @@ Ngay trong cùng một đường, mỗi app cũng xử lý khác nhau. LibreOffi
 
 Các bộ gõ trên Linux lớn lên cùng tiếng Trung, Nhật và Hàn. IBus, bộ gõ nền mặc định của GNOME, ra đời theo đề xuất của Northeast Asia OSS Forum, diễn đàn mã nguồn mở của ba nước này ([Wikipedia](https://en.wikipedia.org/wiki/Intelligent_Input_Bus)).
 
-Với các thứ tiếng đó, phím gõ chưa phải chữ cuối cùng. Gõ pinyin của tiếng Trung hay romaji của tiếng Nhật, bộ gõ hiện chuỗi đang soạn có gạch chân. Người dùng chọn chữ trong danh sách gợi ý rồi mới commit. Giao thức text-input-v3 của Wayland cũng gọi preedit là “composing text”, chữ đang soạn ([đặc tả](https://wayland.app/protocols/text-input-unstable-v3)). Preedit vì thế là đường mà app và desktop trên Linux quen hỗ trợ nhất. Muốn gõ thẳng, không gạch chân, bộ gõ phải dùng forward key và surrounding text.
+Với các thứ tiếng đó, phím gõ chưa phải chữ cuối cùng. Gõ pinyin của tiếng Trung hay romaji của tiếng Nhật, bộ gõ hiện chuỗi đang soạn có gạch chân. Người dùng chọn chữ trong danh sách gợi ý rồi mới commit. Giao thức text-input-v3 của Wayland cũng gọi preedit là “composing text”, chữ đang soạn ([đặc tả](https://wayland.app/protocols/text-input-unstable-v3)). Preedit vì thế là đường mà app và desktop trên Linux quen hỗ trợ nhất.
 
 ## Nhiều đường thì sinh ra nhiều chế độ
 
-Các version Ngó Sen trước 0.5.0 cho người dùng chọn ba chế độ Uinput (Slow, Smooth, Super Smooth), Surrounding Text, Preedit và Minecraft. Gõ sai ở app nào thì người dùng tự thử từng chế độ cho app đó.
+Các version Ngó Sen trước 0.5.0 cho người dùng chọn ba chế độ Uinput (Slow, Smooth, Super Smooth), Surrounding Text, Preedit và Minecraft. Gõ sai ở app nào thì người dùng tự test từng chế độ cho app đó.
 
 Ở Ngó Sen, bộ gõ tự nhận ra app nhận chữ kiểu gì và chọn cách xoá phù hợp, người dùng chỉ cần một chế độ Gõ Sen. Chuyện gom chế độ được kể ở bài [Vì sao gom các chế độ gõ vào Gõ Sen](/blog/gom-che-do-go-vao-go-sen/).
 

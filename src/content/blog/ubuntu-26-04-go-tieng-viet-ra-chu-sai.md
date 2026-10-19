@@ -52,7 +52,7 @@ Tới ngày 09/10/2026, trạng thái trên Launchpad là:
 
 Với một version Ubuntu đã phát hành, mỗi bản cập nhật phải qua quy trình SRU (Stable Release Update):
 có người đóng gói bản sửa và đưa lên repo `resolute-proposed`, người dùng cài để test rồi xác nhận, sau đó
-bản sửa mới tới máy mọi người. Báo lỗi càng nhiều người bị thì càng dễ được làm sớm.
+bản sửa mới tới máy mọi người. Càng nhiều người gặp lỗi thì báo lỗi càng dễ được xử lý sớm.
 
 ## Anh chị em có thể giúp
 

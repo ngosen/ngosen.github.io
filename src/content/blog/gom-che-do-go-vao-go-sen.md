@@ -4,9 +4,9 @@ description: "Bảng chọn chế độ cũ có tám mục, người dùng phả
 pubDate: 2026-10-08
 ---
 
-Trước version 0.5.0, bảng chọn chế độ có tám mục: Uinput (Slow), Uinput (Smooth), Uinput (Super Smooth), Surrounding Text, Preedit, Minecraft, Emoji Picker và OFF. Gõ sai ở app nào thì người dùng phải tự thử từng chế độ, rồi đặt luật riêng cho app đó.
+Trước version 0.5.0, bảng chọn chế độ có tám mục: Uinput (Slow), Uinput (Smooth), Uinput (Super Smooth), Surrounding Text, Preedit, Minecraft, Emoji Picker và OFF. Gõ sai ở app nào thì người dùng phải tự test từng chế độ, rồi đặt luật riêng cho app đó.
 
-Từ version 0.5.0, chỉ còn **Gõ Sen** để gõ ở mọi chỗ, **Preedit** cho app không hợp với Gõ Sen, cùng Emoji (trước là Emoji Picker) và OFF. Bộ gõ tự chọn cách thay chữ cho từng app, người dùng không phải thử từng chế độ nữa.
+Từ version 0.5.0, chỉ còn **Gõ Sen** để gõ ở mọi chỗ, **Preedit** cho app không hợp với Gõ Sen, cùng Emoji (trước là Emoji Picker) và OFF. Bộ gõ tự chọn cách thay chữ cho từng app, người dùng không phải test từng chế độ nữa.
 
 ## Ba chế độ Uinput thành một
 
