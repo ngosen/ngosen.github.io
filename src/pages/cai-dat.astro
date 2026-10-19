@@ -13,6 +13,7 @@ const toc = [
   { id: 'ubuntu-26-04', label: 'Ubuntu 26.04: extension sửa lỗi gõ', level: 3 as const },
   { id: 'vs-code', label: 'Ubuntu: VS Code', level: 3 as const },
   { id: 'cap-nhat', label: 'Cập nhật' },
+  { id: 'repo-goi', label: 'Cập nhật qua trình quản lý gói', level: 3 as const },
   { id: 'go', label: 'Gỡ cài đặt' },
 ];
 ---
@@ -173,6 +174,48 @@ const toc = [
     đăng xuất rồi đăng nhập lại. Version thử và cách cập nhật từ version
     trước 0.5.0 nằm ở trang <a href="/cai-dat/nang-cao/">Cài nâng cao</a>.
   </p>
+
+  <h3 id="repo-goi">Cập nhật qua trình quản lý gói</h3>
+  <p>
+    Từ version 1.5.3, mỗi release đều có trên repo có chữ ký. Thêm repo một lần để nhận version mới
+    khi cập nhật hệ thống bằng <code>dnf upgrade</code>, <code>apt upgrade</code>,
+    <code>pacman -Syu</code> hoặc <code>zypper up</code>.
+  </p>
+  <p>
+    Máy đã cài Ngó Sen bằng lệnh một dòng chỉ cần thêm repo. Lệnh cài gói trong mỗi khối dưới đây
+    dành cho máy chưa có Ngó Sen.
+  </p>
+  <p>
+    Các repo dùng chung một key có fingerprint <code>6D4A 2075 F985 3BE8 F6B6 FE7E 7550 1858 158B 36CD</code>.
+    Đối chiếu fingerprint này với thông tin trình quản lý gói hiển thị.
+  </p>
+  <p>Fedora dùng COPR (x86_64 và aarch64):</p>
+  <pre tabindex="0"><code>{`sudo dnf copr enable nguyenphi/ngosen
+sudo dnf install fcitx5-ngosen`}</code></pre>
+  <p>Debian, Ubuntu và các distro dựa trên chúng (Linux Mint, MX…) dùng repo APT (x86_64 và arm64):</p>
+  <pre tabindex="0"><code>{`sudo curl -fsSL -o /usr/share/keyrings/ngosen.gpg https://ngosen.github.io/ngosen/apt/ngosen.gpg
+echo "deb [signed-by=/usr/share/keyrings/ngosen.gpg] https://ngosen.github.io/ngosen/apt $(. /etc/os-release && echo \${UBUNTU_CODENAME:-$VERSION_CODENAME}) main" | sudo tee /etc/apt/sources.list.d/ngosen.list
+sudo apt update
+sudo apt install fcitx5-ngosen`}</code></pre>
+  <p>
+    Trên Kali, thay phần <code>{`$(. /etc/os-release && echo \${UBUNTU_CODENAME:-$VERSION_CODENAME})`}</code>
+    bằng <code>forky</code>.
+  </p>
+  <p>Arch, CachyOS và EndeavourOS dùng repo pacman (x86_64):</p>
+  <pre tabindex="0"><code>{`curl -fsSL https://ngosen.github.io/ngosen/arch/ngosen.asc | sudo pacman-key --add -
+sudo pacman-key --lsign-key 6D4A2075F9853BE8F6B6FE7E75501858158B36CD
+printf '\\n[ngosen]\\nServer = https://ngosen.github.io/ngosen/arch/$arch\\n' | sudo tee -a /etc/pacman.conf
+sudo pacman -Syu fcitx5-ngosen`}</code></pre>
+  <p>openSUSE Tumbleweed dùng repo zypper (x86_64):</p>
+  <pre tabindex="0"><code>{`sudo zypper addrepo https://ngosen.github.io/ngosen/opensuse/ngosen.repo
+sudo zypper refresh
+sudo zypper install fcitx5-ngosen`}</code></pre>
+  <p>zypper hỏi một lần có tin cậy key không; đối chiếu fingerprint rồi chọn tin cậy.</p>
+  <p>
+    Cập nhật xong thì khởi động lại fcitx5 theo <a href="#cap-nhat">mục Cập nhật</a> ở trên:
+    chạy <code>fcitx5 -rd</code>; trên KDE Wayland thì đăng xuất rồi đăng nhập lại.
+  </p>
+
   <h2 id="go">Gỡ cài đặt</h2>
   <p>Một dòng lệnh, hỏi lại rồi mới gỡ:</p>
   <pre
