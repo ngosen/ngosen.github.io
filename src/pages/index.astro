@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import InstallStrip from '../components/InstallStrip.astro';
+import InlineCode from '../components/InlineCode.astro';
 import TelexBoard from '../components/TelexBoard.astro';
 import { DISTRIBUTIONS, LEVELS, LEVELS_NOTE, RELEASE, REPO, SCOPE, type Level } from '../data/site';
 import { formatDay, getPosts } from '../lib/posts';
@@ -47,8 +48,8 @@ const jsonLd = {
     </div>
     <div class="sheet scope-note">
       <p>
-        {SCOPE.text} Mã bản IBus cũ vẫn còn ở nhánh
-        <a href={`${REPO}/tree/${SCOPE.branch}`}><code>{SCOPE.branch}</code></a>.
+        {SCOPE.text} Mã IBus cũ ở nhánh
+        <a href={`${REPO}/tree/${SCOPE.branch}`}><code>{SCOPE.branch}</code></a>, không còn được bảo trì.
       </p>
     </div>
   </section>
@@ -277,9 +278,9 @@ const jsonLd = {
         {
           RELEASE.changes.map((line) => (
             <li>
-              <p class="claim">{line.claim}</p>
+              <p class="claim"><InlineCode text={line.claim} /></p>
               <p class="source">
-                {line.source} <a href={`${line.repo ?? RELEASE.prRepo ?? REPO}/pull/${line.pr}`}>#{line.pr}</a>
+                <InlineCode text={line.source} /> <a href={`${line.repo ?? RELEASE.prRepo ?? REPO}/pull/${line.pr}`}>#{line.pr}</a>
               </p>
             </li>
           ))
