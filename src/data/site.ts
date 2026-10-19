@@ -34,22 +34,22 @@ export const RELEASES: {
     changes: [
       {
         claim: 'Mỗi version phát hành được tự build trên kho COPR `nguyenphi/ngosen` cho Fedora.',
-        source: 'Bật kho bằng `sudo dnf copr enable nguyenphi/ngosen`, rồi lên version mới bằng `dnf upgrade`.',
+        source: '',
         pr: 133,
       },
       {
         claim: 'Có kho APT có chữ ký cho Debian, Ubuntu và các distro dựa trên chúng.',
-        source: 'Lên version mới bằng `apt upgrade`.',
+        source: '',
         pr: 135,
       },
       {
         claim: 'Có kho pacman có chữ ký cho Arch, CachyOS và EndeavourOS.',
-        source: 'Lên version mới bằng `pacman -Syu`.',
+        source: '',
         pr: 137,
       },
       {
         claim: 'Có kho openSUSE Tumbleweed có chữ ký.',
-        source: 'Lên version mới bằng `zypper up`.',
+        source: '',
         pr: 140,
       },
       {
