@@ -133,6 +133,11 @@ a {
   overflow-wrap: anywhere;
 }
 
+/* In a table that would squeeze a name column to a letter per line; the table scrolls instead. */
+.prose :is(td, th) a {
+  overflow-wrap: normal;
+}
+
 a:hover {
   text-decoration-thickness: 0.14em;
 }
