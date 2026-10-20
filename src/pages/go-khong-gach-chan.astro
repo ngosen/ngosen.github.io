@@ -153,10 +153,13 @@ const toc = [
     <li>
       <strong>Trình duyệt dựa trên Chromium và app Electron</strong> (Chrome, Chromium, Edge, Brave,
       Vivaldi, Opera; VS Code, Discord, Zalo và các app Electron khác) không báo surrounding text
-      cho fcitx5 trên Linux và không xử lý <code>deleteSurroundingText</code>, nên Ngó Sen forward
-      key Backspace. Thanh địa chỉ chọn phần gợi ý tự điền ngay sau chữ đã gõ, và forward key
-      Backspace xoá phần đó. Cách sửa: báo surrounding text và triển khai xoá chữ trong phần xử lý
-      IME trên Linux, như trên macOS và Windows.
+      cho fcitx5 qua module IM của GTK mà chúng dùng trên X11 và mặc định trên Wayland, nên Ngó Sen
+      không kiểm tra được chữ trước con trỏ và forward key Backspace. Thanh địa chỉ chọn phần gợi ý
+      tự điền trong dòng, ngay sau chữ đã gõ; forward key Backspace xoá phần đó. Nếu dùng Wayland
+      text-input thay cho module này (<code>--enable-wayland-ime</code>), Chromium có gửi surrounding
+      text; KWin chuyển tiếp thông tin này, còn Sway bỏ nó sau lần cập nhật đầu tiên
+      (<a href="https://github.com/swaywm/sway/issues/9191">swaywm/sway#9191</a>). Cách sửa: báo
+      surrounding text qua module IM của GTK như khi dùng Wayland text-input.
     </li>
     <li>
       <strong>Firefox và các fork</strong> (Firefox ESR trên Debian, Zen, LibreWolf, Waterfox,
