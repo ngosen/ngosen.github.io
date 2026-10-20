@@ -206,12 +206,32 @@ const toc = [
   </ul>
 
   <h2 id="upstream">Các báo cáo gửi upstream</h2>
-  <p>Đã gửi:</p>
+  <p>Ngó Sen đã gửi:</p>
   <ul>
     <li>
       Ubuntu 26.04, mutter: mất sự kiện phím dưới GNOME 50 (extension “forward-keys” trong
       <a href={`${REPO}#readme`}>README</a> dùng để xử lý tạm lỗi này):
       <a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784">https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784</a>
+    </li>
+  </ul>
+  <p>Người khác đã gửi, Ngó Sen đã xác nhận:</p>
+  <ul>
+    <li>
+      Sway bỏ surrounding text Chromium gửi qua Wayland text-input; đã xác nhận lại trên Sway 1.12
+      với Chromium 154 và fcitx5:
+      <a href="https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263">https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263</a>
+    </li>
+  </ul>
+  <p>Người khác đã gửi:</p>
+  <ul>
+    <li>
+      Firefox qua Wayland text-input gửi surrounding text chậm một lần sửa, nên bộ gõ xoá chữ
+      qua surrounding text sẽ làm sai từ:
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478</a>
+    </li>
+    <li>
+      SDL không xử lý <code>delete_surrounding_text</code>:
+      <a href="https://github.com/libsdl-org/SDL/issues/15987">https://github.com/libsdl-org/SDL/issues/15987</a>
     </li>
   </ul>
   <p>

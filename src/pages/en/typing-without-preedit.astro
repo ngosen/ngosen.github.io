@@ -203,12 +203,32 @@ const toc = [
   </ul>
 
   <h2 id="upstream">Upstream reports</h2>
-  <p>Filed so far:</p>
+  <p>Filed by Ngó Sen:</p>
   <ul>
     <li>
       Ubuntu 26.04, mutter: key events lost under GNOME 50 (the “forward-keys” extension in
       <a href={`${REPO}#readme`}>the README</a> works around it):
       <a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784">https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784</a>
+    </li>
+  </ul>
+  <p>Filed by others, confirmed here:</p>
+  <ul>
+    <li>
+      Sway drops the surrounding text Chromium sends over Wayland text-input; confirmed on Sway 1.12
+      with Chromium 154 and fcitx5:
+      <a href="https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263">https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263</a>
+    </li>
+  </ul>
+  <p>Filed by others:</p>
+  <ul>
+    <li>
+      Firefox on Wayland text-input sends surrounding text one edit late, so an input method that
+      deletes surrounding text corrupts the word:
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478</a>
+    </li>
+    <li>
+      SDL does not handle <code>delete_surrounding_text</code>:
+      <a href="https://github.com/libsdl-org/SDL/issues/15987">https://github.com/libsdl-org/SDL/issues/15987</a>
     </li>
   </ul>
   <p>
