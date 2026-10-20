@@ -49,6 +49,8 @@ const { title, description, heading, lang, type, published, modified, jsonLd, to
   /* With an index: the slip sits above the sheet, then beside it once both fit. */
   .with-toc {
     display: grid;
+    /* minmax(0, …) keeps a wide table from stretching the column past a phone screen. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
 
