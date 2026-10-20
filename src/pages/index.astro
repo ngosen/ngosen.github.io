@@ -275,7 +275,7 @@ const jsonLd = {
 
   <section class="measured wrap" aria-labelledby="da-do-tieu-de">
     <div class="sheet report">
-      <h2 id="da-do-tieu-de">Version {RELEASE.version} đổi gì</h2>
+      <h2 id="da-do-tieu-de">Version <span class="version">{RELEASE.version}</span> đổi gì</h2>
       <ul>
         {
           RELEASE.changes.map((line) => (
@@ -480,6 +480,11 @@ const jsonLd = {
     display: grid;
     gap: 2rem;
     align-items: start;
+  }
+
+  /* A version number breaks at its hyphen on a phone otherwise. */
+  .report .version {
+    white-space: nowrap;
   }
 
   .report {
