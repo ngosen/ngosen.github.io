@@ -42,6 +42,9 @@ const nextIndex = ROADMAP.findIndex((stop) => stop.version);
                 <li>
                   <span>
                   {parts(item.text).map(({ part, code }) => (code ? <code>{part}</code> : part))}
+                  {item.links?.map((link) => (
+                    <>{' '}<a href={link.href}>{link.label}</a></>
+                  ))}
                   {item.refs && (
                     <span class="refs">
                       {item.refs.map((n) => (

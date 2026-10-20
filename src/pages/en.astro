@@ -35,43 +35,29 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.5.3-2 is a packaging revision that fixes the Fedora COPR build
-    (<a href={`${REPO}/pull/169`}>#169</a>). The program code is identical to 1.5.3-1,
-    so existing 1.5.3-1 installations do not need updating.
+    Version 1.5.4-1 fixes Gõ Sen tone-mark composition in Chrome/Chromium on Wayland in TikTok and
+    Draft.js, and fixes macros losing spaces.
   </p>
-  <p>The changes in version 1.5.3 are:</p>
   <ul>
     <li>
-      Each release is built on the COPR repository <code>nguyenphi/ngosen</code> for Fedora. Signed
-      repositories are also available for Debian, Ubuntu and their derivatives (APT), Arch, CachyOS and
-      EndeavourOS (pacman), and openSUSE Tumbleweed.
+      TikTok comments no longer leave <code>ddungs rooif</code> unchanged instead of
+      <code>đúng rồi</code>, and the first word in a Draft.js field composes correctly when the
+      placeholder disappears. Chrome on GNOME also fixes lost text in TikTok comments and ordinary
+      Draft.js fields, such as <code>xin chào</code> becoming <code>xin ch</code> or <code>đẹp</code>
+      becoming <code>ẹp</code>. Ngó Sen keeps the word when the field briefly loses and regains focus,
+      and waits for the page to redraw the field before committing
+      (<a href={`${REPO}/pull/176`}>#176</a>, <a href={`${REPO}/pull/180`}>#180</a>).
+      However, in Chrome on GNOME, the first word with a tone mark typed immediately after clicking
+      into a Draft.js field can still lose letters; subsequent words work normally.
     </li>
     <li>
-      Ubuntu 26.10 has x86_64 and ARM 64-bit packages, recognised by the one-line installer and APT
-      repository.
+      Macros whose expansion starts with the abbreviation, such as <code>e</code> → <code>em</code>,
+      no longer lose the space when pressing Space: <code>e ko</code> gives <code>em không</code>
+      instead of <code>emkhông</code> (<a href={`${REPO}/pull/179`}>#179</a>).
     </li>
     <li>
-      WordCraft and other XIM apps on X11 no longer get scrambled text such as <code>dââấ</code>
-      instead of <code>dấu</code>. Wine 11 on Wayland no longer gets text such as <code>tiêến</code>
-      instead of <code>tiếng</code>; deletion keys go straight to the app without a remote-control
-      permission dialog.
-    </li>
-    <li>
-      Address-bar autocomplete in Firefox ESR, Debian's default Firefox, no longer adds extra letters
-      such as <code>coờ</code> instead of <code>cờ</code>. The same fix covers Zen, LibreWolf, Waterfox,
-      Floorp, Mullvad Browser and GNU IceCat, which could produce <code>moờ</code> instead of <code>mờ</code>.
-    </li>
-    <li>
-      Backspacing across a space into the previous word and typing again continues editing that word,
-      including in kitty: <code>duyeet</code>, Space, delete back to <code>du</code>, then
-      <code>yeejt</code> gives <code>duyệt</code> instead of <code>duyeejt</code>. In gnome-text-editor,
-      <code>toan</code>, delete one letter, then <code>nf</code> gives <code>toàn</code> instead of
-      <code>toòn</code>.
-    </li>
-    <li>
-      Typing logs record the right app when switching windows. The “Mặc định” (Defaults) button
-      becomes active as soon as there are macros, a custom keymap or dictionary entries, without
-      opening their settings page first.
+      The README adds instructions for repository updates with dnf, apt, pacman or zypper. The
+      “How Vietnamese people type” document explains typing without preedit.
     </li>
   </ul>
 
@@ -275,8 +261,27 @@ const levels: Record<Level, string> = {
     GTK3 and GTK4 text fields, Ptyxis, gnome-terminal, Konsole, kitty, VS Code, Chrome and Firefox;
     holding Backspace and typing again also worked. The backspace-across-space case was tried with
     VNI too. LibreOffice and the snap build of Firefox still have that bug, but typing was not made
-    worse. Version 1.5.3-2 was not retested for typing in virtual machines; the 1.5.3 typing tests
-    still apply because the program code is identical to 1.5.3-1.
+    worse.
+  </p>
+  <p>
+    On 20 October 2026, a build from the <code>patch</code> branch, with the same program code as
+    1.5.4-1, was copied over installed packages in virtual machines and tested with Gõ Sen and Telex.
+    Typing <code>tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif</code>
+    gave <code>tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi</code> on two test pages:
+    an ordinary Draft.js field and a field redrawn after every key.
+  </p>
+  <p>
+    On Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package), Chrome was correct in 6/6 runs
+    with no lost commits, Firefox in 4/4 runs, and a GTK3 text field in 2/2 runs. With macros
+    <code>e</code> → <code>em</code> and <code>ko</code> → <code>không</code>, typing <code>e ko a</code>
+    gave <code>em không a</code> in the GTK3 field and Chrome. A real TikTok comment field in Chrome
+    on Ubuntu had been tried while testing #176, with 23/23 words correct; it was not retested with
+    the final package.
+  </p>
+  <p>
+    On Linux Mint 22.1 (Cinnamon X11, <code>noble</code> package), Chromium was correct in 4/4 runs.
+    On CachyOS (KDE Plasma Wayland, Arch package), Chromium was correct in 6/6 runs across the two
+    Draft.js pages and an ordinary textarea.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
