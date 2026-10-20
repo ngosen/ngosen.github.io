@@ -1,7 +1,6 @@
 ---
 import Guide from '../../layouts/Guide.astro';
 import Shot from '../../components/Shot.astro';
-import { REPO } from '../../data/site';
 
 const toc = [
   { id: 'luu-nhat-ky', label: 'Lưu nhật ký gõ' },
@@ -18,8 +17,6 @@ const toc = [
   <p slot="lede">
     Gõ ra chữ sai thì lưu nhật ký gõ ngay, rồi gửi file đó kèm khi báo lỗi. Những lỗi đã biết mà chưa sửa nằm ở mục
     <a href="/#chua-sua">“Chưa sửa”</a> trên trang chủ.
-    Câu hỏi về cách cài, cách dùng (không phải lỗi) thì hỏi ở
-    <a href={`${REPO}/discussions/categories/h%E1%BB%8Fi-%C4%91%C3%A1p`}>“Hỏi đáp”</a> trên Discussions.
   </p>
 
   <h2 id="luu-nhat-ky">Lưu nhật ký gõ</h2>
