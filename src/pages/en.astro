@@ -35,29 +35,42 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.5.4-1 fixes Gõ Sen tone-mark composition in Chrome/Chromium on Wayland in TikTok and
-    Draft.js, and fixes macros losing spaces.
+    Version 1.5.5-1 fixes diacritic typing in the Firefox Flatpak address bar during autofill and
+    macros with uppercase abbreviations.
   </p>
   <ul>
     <li>
-      TikTok comments no longer leave <code>ddungs rooif</code> unchanged instead of
-      <code>đúng rồi</code>, and the first word in a Draft.js field composes correctly when the
-      placeholder disappears. Chrome on GNOME also fixes lost text in TikTok comments and ordinary
-      Draft.js fields, such as <code>xin chào</code> becoming <code>xin ch</code> or <code>đẹp</code>
-      becoming <code>ẹp</code>. Ngó Sen keeps the word when the field briefly loses and regains focus,
-      and waits for the page to redraw the field before committing
-      (<a href={`${REPO}/pull/176`}>#176</a>, <a href={`${REPO}/pull/180`}>#180</a>).
-      However, in Chrome on GNOME, the first word with a tone mark typed immediately after clicking
-      into a Draft.js field can still lose letters; subsequent words work normally.
+      Typing diacritics in the address bar of Firefox installed from Flatpak during URL autofill
+      no longer garbles words: <code>ee</code> gives <code>ê</code> instead of <code>eê</code>,
+      <code>es</code> gives <code>é</code> instead of <code>eé</code>, and <code>dduowcj</code> gives
+      <code>được</code> instead of <code>dđược</code>
+      (<a href={`${REPO}/issues/200`}>#200</a>, <a href={`${REPO}/pull/204`}>#204</a>).
+      Ngó Sen recognises Flatpak apps by their usual names; the typing log records both names,
+      such as <code>firefox (org.mozilla.firefox)</code>.
     </li>
     <li>
-      Macros whose expansion starts with the abbreviation, such as <code>e</code> → <code>em</code>,
-      no longer lose the space when pressing Space: <code>e ko</code> gives <code>em không</code>
-      instead of <code>emkhông</code> (<a href={`${REPO}/pull/179`}>#179</a>).
+      Macros saved with uppercase abbreviations, such as <code>VN</code> → <code>Việt Nam</code>,
+      now expand; previously they never matched. If the same abbreviation is saved with different
+      capitalisation, Ngó Sen uses the lowercase entry, or the first saved entry if there is none.
+      The macro editor treats <code>VN</code> and <code>vn</code> as the same abbreviation and offers
+      to update it instead of adding a second entry (<a href={`${REPO}/pull/194`}>#194</a>).
     </li>
     <li>
-      The README adds instructions for repository updates with dnf, apt, pacman or zypper. The
-      “How Vietnamese people type” document explains typing without preedit.
+      In the Firefox address bar during autofill, typing a letter that matches the next letter of
+      the suggested address no longer loses the word being typed. Ngó Sen previously mistook it for
+      a mouse click: <code>gox</code> stayed <code>gox</code>, and <code>daaus</code> gave
+      <code>daáu</code>. They now give <code>gõ</code> and <code>dấu</code>. Tested with Firefox
+      installed from Flatpak on Ubuntu GNOME (<a href={`${REPO}/pull/209`}>#209</a>).
+    </li>
+    <li>
+      Added checks to prevent errors when Gõ Sen reopens macros ending in quotation marks or an
+      ellipsis, or words using VNI Windows. Automated tests found incorrect reconstruction after
+      backspacing into the previous word: the macro <code>q</code> → <code>“quá”</code>, followed
+      by Backspace and <code>s</code>, gave <code>“qua”s</code>, or a VNI Windows word gave
+      <code>ñöä</code>. This has not been encountered in apps: the previous version did not show
+      the error in tests on Ubuntu GNOME and Linux Mint in GTK text fields, LibreOffice Writer
+      and xterm. The change is preventive; ordinary words can still be reopened in VNI Windows /
+      TCVN3 (<a href={`${REPO}/pull/199`}>#199</a>).
     </li>
   </ul>
 
@@ -282,6 +295,29 @@ const levels: Record<Level, string> = {
     On Linux Mint 22.1 (Cinnamon X11, <code>noble</code> package), Chromium was correct in 4/4 runs.
     On CachyOS (KDE Plasma Wayland, Arch package), Chromium was correct in 6/6 runs across the two
     Draft.js pages and an ordinary textarea.
+  </p>
+  <p>
+    The 1.5.5 package from release PR #208 was tried in virtual machines on 20–21 October 2026,
+    using Gõ Sen and Telex except for the VNI Windows run noted below.
+    On Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package), in the address bar of Firefox
+    installed from Flatpak during autofill, <code>gox</code> → <code>gõ</code>,
+    <code>daaus</code> → <code>dấu</code>, <code>ee</code> → <code>ê</code>,
+    <code>es</code> → <code>é</code> and <code>dduowcj</code> → <code>được</code> were each correct
+    in 3/3 runs. With 1.5.4-3 in the same virtual machine, <code>ee</code> → <code>eê</code> in
+    3/3 runs, <code>gox</code> stayed <code>gox</code> in 3/3 runs, and <code>daaus</code> →
+    <code>daáu</code> in 3/3 runs.
+    On Ubuntu 26.04 and Linux Mint 22.1 (Cinnamon X11, <code>noble</code> package), in GTK3 text
+    fields with macros <code>VN</code> → <code>Việt Nam</code> and <code>q</code> → <code>“quá”</code>,
+    typing <code>Vn VN q</code>, Space, Backspace, <code>s</code> gave
+    <code>Việt Nam VIỆT NAM “quá”s</code> (1.5.4-3 gave <code>Vn VN “quá”s</code>).
+    The 13-word sentence <code>tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif</code>
+    gave <code>tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi</code> in both virtual machines.
+    On Ubuntu 26.04, clicking inside the text immediately after typing in a GTK3 field was still
+    recognised as a mouse click, correctly in 2/2 runs and one additional run with the final package.
+    On Linux Mint 22.1 in xterm, reopening the last word still worked: <code>vieetj</code>, Space,
+    Backspace, <code>s</code> → <code>viết</code>; with VNI Windows, <code>ban</code>, Space,
+    Backspace, <code>f</code> → <code>baøn</code>.
+    CachyOS, Fedora, Debian, openSUSE and Kali have not been tried with 1.5.5.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

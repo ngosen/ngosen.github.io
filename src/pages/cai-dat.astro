@@ -1,6 +1,7 @@
 ---
 import Page from '../layouts/Page.astro';
 import InstallStrip from '../components/InstallStrip.astro';
+import InlineCode from '../components/InlineCode.astro';
 import { ARM_NOTE, ARM_TESTER, DISTRIBUTIONS, INSTALL_PAGES, LEVELS, LEVELS_NOTE, RELEASE, REPO } from '../data/site';
 
 const goDistros = DISTRIBUTIONS.filter((item) => item.core === 'Go').map((item) => item.name);
@@ -106,7 +107,7 @@ const toc = [
   </p>
   <details class="test-log" id="da-test">
     <summary>Đã test những gì ở từng version</summary>
-    <p>{LEVELS_NOTE}</p>
+    <p><InlineCode text={LEVELS_NOTE} /></p>
   </details>
   <p>
     {ARM_NOTE.packages} Bạn <a href={ARM_TESTER.url}>{ARM_TESTER.name}</a> {ARM_NOTE.tested}

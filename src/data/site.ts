@@ -27,6 +27,60 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.5.5-1',
+    date: '21/10/2026',
+    summary:
+      'Sửa lỗi gõ dấu trên thanh địa chỉ Firefox Flatpak khi autofill và lỗi macro có chữ viết tắt viết hoa.',
+    changes: [
+      {
+        claim: 'Gõ dấu trên thanh địa chỉ Firefox cài từ Flatpak khi đang autofill URL không còn làm rối từ.',
+        source: '`ee` ra `ê` thay vì `eê`, `es` ra `é` thay vì `eé`, `dduowcj` ra `được` thay vì `dđược` (#200). Ngó Sen nhận ra app Flatpak theo tên thường dùng; nhật ký gõ ghi cả hai tên, như `firefox (org.mozilla.firefox)`.',
+        pr: 204,
+      },
+      {
+        claim: 'Macro có chữ viết tắt lưu bằng chữ hoa, như `VN` → `Việt Nam`, giờ mở rộng được.',
+        source: 'Trước đây không bao giờ khớp. Nếu cùng chữ viết tắt được lưu với nhiều cách viết hoa, Ngó Sen dùng bản viết thường, nếu không có thì dùng bản lưu đầu tiên. Trình sửa macro coi `VN` và `vn` là cùng chữ viết tắt, đề nghị cập nhật thay vì thêm bản thứ hai.',
+        pr: 194,
+      },
+      {
+        claim: 'Trên thanh địa chỉ Firefox khi autofill, gõ chữ trùng với chữ tiếp theo của địa chỉ không còn làm mất từ đang gõ.',
+        source: 'Trước đây Ngó Sen hiểu nhầm là click: `gox` vẫn là `gox`, `daaus` ra `daáu`. Giờ `gox` ra `gõ`, `daaus` ra `dấu`. Đã test với Firefox cài từ Flatpak trên Ubuntu GNOME.',
+        pr: 209,
+      },
+      {
+        claim: 'Thêm kiểm tra để phòng lỗi khi Gõ Sen mở lại macro kết thúc bằng dấu ngoặc kép hoặc dấu ba chấm, hoặc từ dùng VNI Windows.',
+        source: 'Test tự động tìm thấy lỗi khi Backspace về từ vừa gõ: macro `q` → `“quá”`, rồi Backspace và `s` ra `“qua”s`, hoặc từ dùng VNI Windows ra `ñöä`. Chưa gặp lỗi này trong app: version trước không bị khi test trên Ubuntu GNOME và Linux Mint trong ô chữ GTK, LibreOffice Writer và xterm. Thay đổi chỉ để phòng lỗi; từ thường vẫn mở lại được trong VNI Windows / TCVN3.',
+        pr: 199,
+      },
+    ],
+  },
+  {
+    version: '1.5.4-3',
+    date: '20/10/2026',
+    summary:
+      'Version đóng gói lại, code chương trình giống 1.5.4-1 nên ai đã cài 1.5.4-1 hoặc 1.5.4-2 không cần cập nhật. Danh sách thay đổi của 1.5.4 nằm ở mục 1.5.4-1.',
+    changes: [
+      {
+        claim: 'Form yêu cầu tính năng trên GitHub ngắn hơn, có thêm form báo lỗi cài đặt hoặc cập nhật.',
+        source: 'Issue mới phải đi qua một form, không còn mở issue trống; câu hỏi chuyển sang “Hỏi đáp” ở Discussions. Tăng lần đóng gói để đưa các form mới lên nhánh mặc định của GitHub.',
+        pr: 190,
+      },
+    ],
+  },
+  {
+    version: '1.5.4-2',
+    date: '20/10/2026',
+    summary:
+      'Version đóng gói lại, code chương trình giống 1.5.4-1 nên ai đã cài 1.5.4-1 không cần cập nhật. Danh sách thay đổi của 1.5.4 nằm ở mục 1.5.4-1.',
+    changes: [
+      {
+        claim: 'Mẫu báo lỗi mới ưu tiên “Kiểm tra máy tôi…” để tự điền báo cáo, yêu cầu nhật ký từ “Lưu nhật ký gõ”.',
+        source: 'Mẫu hỏi chế độ gõ, app và Wayland hay X11; hướng dẫn lấy log fcitx5 hoặc backtrace khi fcitx5 bị treo. Tăng lần đóng gói để đưa mẫu mới lên nhánh mặc định của GitHub.',
+        pr: 188,
+      },
+    ],
+  },
+  {
     version: '1.5.4-1',
     date: '20/10/2026',
     summary:
@@ -570,7 +624,13 @@ export const LEVELS_NOTE =
   ' Gói build từ nhánh patch sau #143 và từ PR #149 (cùng code với 1.5.3, chỉ khác số version) được gõ thử trên máy ảo Ubuntu 26.04 (GNOME Wayland, gói resolute), Linux Mint 22.1 (Cinnamon X11, gói noble) và CachyOS (KDE Plasma Wayland, gói Arch), dùng Gõ Sen, Telex. Gõ “duyeet”, dấu cách, xoá còn “du” rồi “yeejt” ra “duyệt”; “toan”, xoá một chữ rồi “nf” ra “toàn”; “ban”, dấu cách, xoá một chữ rồi “f” ra “bàn”. Đã test trong gnome-text-editor, xed, ô chữ GTK3 và GTK4, Ptyxis, gnome-terminal, Konsole, kitty, VS Code, Chrome và Firefox; giữ phím xoá rồi gõ tiếp vẫn đúng. VNI cũng được gõ thử với lỗi xoá qua dấu cách. LibreOffice và Firefox bản snap chưa được sửa lỗi xoá qua dấu cách, nhưng gõ không bị lỗi thêm.' +
   ' Ngày 20/10/2026, bản build từ nhánh patch (cùng code chương trình với 1.5.4-1), chép đè lên gói đã cài trên máy ảo, được test bằng Gõ Sen, Telex. Gõ “tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif” ra “tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi” trên hai trang test: ô Draft.js thường và ô vẽ lại sau mỗi phím.' +
   ' Ubuntu 26.04 (GNOME Wayland, gói resolute): Chrome đúng 6/6 lượt, không mất commit; Firefox đúng 4/4 lượt; ô chữ GTK3 đúng 2/2 lượt. Với macro “e” → “em”, “ko” → “không”, gõ “e ko a” ra “em không a” trong ô chữ GTK3 và Chrome. Ô bình luận TikTok thật trong Chrome trên Ubuntu đã được test ở #176, đúng 23/23 từ; không được test lại trên gói cuối.' +
-  ' Linux Mint 22.1 (Cinnamon X11, gói noble): Chromium đúng 4/4 lượt. CachyOS (KDE Plasma Wayland, gói Arch): Chromium đúng 6/6 lượt trên hai trang Draft.js và một ô textarea thường.';
+  ' Linux Mint 22.1 (Cinnamon X11, gói noble): Chromium đúng 4/4 lượt. CachyOS (KDE Plasma Wayland, gói Arch): Chromium đúng 6/6 lượt trên hai trang Draft.js và một ô textarea thường.' +
+  ' Gói 1.5.5 từ PR phát hành #208 được gõ thử trên máy ảo ngày 20–21/10/2026, dùng Gõ Sen, Telex, trừ lượt VNI Windows ghi riêng bên dưới.' +
+  ' Ubuntu 26.04 (GNOME Wayland, gói “resolute”), Firefox cài từ Flatpak, thanh địa chỉ khi Firefox autofill: “gox” → “gõ”, “daaus” → “dấu”, “ee” → “ê”, “es” → “é”, “dduowcj” → “được”, mỗi trường hợp đúng 3/3 lượt. Với 1.5.4-3 trên cùng máy ảo: “ee” → “eê” 3/3 lượt, “gox” vẫn là “gox” 3/3 lượt, “daaus” → “daáu” 3/3 lượt.' +
+  ' Ubuntu 26.04 và Linux Mint 22.1 (Cinnamon X11, gói “noble”), ô chữ GTK3, macro “VN” → “Việt Nam” và “q” → `“quá”`: gõ “Vn VN q”, Space, Backspace, “s” ra `Việt Nam VIỆT NAM “quá”s` (1.5.4-3 ra `Vn VN “quá”s`). Câu 13 từ “tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif” ra “tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi” trên cả hai máy ảo.' +
+  ' Ubuntu 26.04, ô chữ GTK3: click vào trong văn bản ngay sau khi gõ vẫn được nhận là click, đúng 2/2 lượt và thêm một lượt trên gói cuối.' +
+  ' Linux Mint 22.1, xterm: mở lại từ cuối vẫn được, “vieetj”, Space, Backspace, “s” → “viết”; với VNI Windows, “ban”, Space, Backspace, “f” → “baøn”.' +
+  ' CachyOS, Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.5.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
