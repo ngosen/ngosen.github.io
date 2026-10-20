@@ -28,7 +28,7 @@ const { title, description, heading, lang, type, published, modified, jsonLd, to
   jsonLd={jsonLd}
 >
   <article class:list={['wrap', { 'with-toc': toc }]}>
-    {toc && <OnThisPage items={toc} pages={tocPages} />}
+    {toc && <OnThisPage items={toc} pages={tocPages} lang={lang} />}
     <div class="sheet page">
       <header>
         <h1>{heading}</h1>

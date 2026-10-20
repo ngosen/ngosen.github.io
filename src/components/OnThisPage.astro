@@ -16,12 +16,14 @@ export interface TocPage {
 interface Props {
   items: TocItem[];
   pages?: TocPage[];
+  lang?: string;
 }
 
-const { items, pages = [] } = Astro.props;
+const { items, pages = [], lang = 'vi' } = Astro.props;
+const label = lang === 'en' ? 'On this page' : 'Trên trang này';
 ---
 
-<nav class="toc" aria-label="Trên trang này">
+<nav class="toc" aria-label={label}>
   {
     pages.length > 0 && (
       <ul class="toc-pages">
@@ -36,7 +38,7 @@ const { items, pages = [] } = Astro.props;
     )
   }
   <details class="toc-fold" open>
-    <summary>Trên trang này</summary>
+    <summary>{label}</summary>
     <ol class="toc-list">
       {
         items.map((item) => (

@@ -19,8 +19,8 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
 - Pull requests up to release 1.0.0-1 live in the archived fork `ngosen/ngosen-fork-archive`; the
   repository was recreated outside the old fork network and numbers its pull requests from #1
   again. Old entries carry `prRepo: ARCHIVE_REPO`; new release entries leave it out.
-- Page text is Vietnamese; code, comments and commit messages are English. `/en/` is the only English
-  page.
+- Page text is Vietnamese except for `/en/` and `/en/typing-without-preedit/`; code, comments and commit messages are English.
+  The bilingual typing-without-preedit page takes facts from `docs/typing-without-preedit.md` on `main` of the main repository, including how Ngó Sen deletes text (maintainer-approved exception, 20 October 2026).
 - The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
   the top of the README. Do not mention vibecoding (dropped at the maintainer's request).
 - `/roadmap/` mirrors `ROADMAP.md` on `main` of the main repository through `ROADMAP` in

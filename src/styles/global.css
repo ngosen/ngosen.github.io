@@ -368,6 +368,15 @@ tbody th {
   color: var(--ink-muted);
 }
 
+.prose .todo {
+  padding: 0.9rem 1.1rem;
+  border: 1px dashed var(--ink-muted);
+  border-radius: 3px;
+  background: var(--desk);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
 .prose .table-scroll {
   overflow-x: auto;
 }

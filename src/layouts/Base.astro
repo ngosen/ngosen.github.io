@@ -27,8 +27,15 @@ interface Props {
 const { title, description, lang = 'vi', wordmark = true, type = 'website', published, modified, jsonLd } =
   Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-// / and /en/ are the only pages that exist in both languages.
-const languagePair = Astro.url.pathname === '/' || Astro.url.pathname === '/en/';
+const languagePairs = [
+  { vi: '/', en: '/en/', default: '/' },
+  {
+    vi: '/go-khong-gach-chan/',
+    en: '/en/typing-without-preedit/',
+    default: '/en/typing-without-preedit/',
+  },
+];
+const languagePair = languagePairs.find(({ vi, en }) => [vi, en].includes(Astro.url.pathname));
 // Escape "<" so post text can never close the script element.
 const jsonLdText = jsonLd && JSON.stringify({ '@context': 'https://schema.org', ...jsonLd }).replace(/</g, '\\u003c');
 ---
@@ -44,9 +51,9 @@ const jsonLdText = jsonLd && JSON.stringify({ '@context': 'https://schema.org', 
     {
       languagePair && (
         <>
-          <link rel="alternate" hreflang="vi" href={new URL('/', Astro.site)} />
-          <link rel="alternate" hreflang="en" href={new URL('/en/', Astro.site)} />
-          <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+          <link rel="alternate" hreflang="vi" href={new URL(languagePair.vi, Astro.site)} />
+          <link rel="alternate" hreflang="en" href={new URL(languagePair.en, Astro.site)} />
+          <link rel="alternate" hreflang="x-default" href={new URL(languagePair.default, Astro.site)} />
         </>
       )
     }

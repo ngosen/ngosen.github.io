@@ -1,0 +1,240 @@
+---
+import Page from '../layouts/Page.astro';
+import { REPO } from '../data/site';
+
+const toc = [
+  { id: 'why', label: 'Vì sao gõ tiếng Việt cần sửa chữ đã commit' },
+  { id: 'protocols', label: 'Các giao thức đã có gì' },
+  { id: 'how-ngosen-deletes', label: 'Ngó Sen hiện xoá chữ như thế nào' },
+  { id: 'workarounds', label: 'Hành vi app mà Ngó Sen phải đi vòng, và cách sửa từng chỗ' },
+  { id: 'upstream', label: 'Các báo cáo gửi upstream' },
+  { id: 'help', label: 'Cách giúp' },
+];
+---
+
+<Page
+  title="Gõ tiếng Việt không gạch chân — Ngó Sen"
+  description="Gõ tiếng Việt không preedit cần gì ở app và toolkit, Ngó Sen hiện xoá chữ thế nào và những cách sửa ở upstream có thể thay thế các workaround."
+  heading="Gõ tiếng Việt không gạch chân"
+  toc={toc}
+>
+  <p slot="lede"><a href="/en/typing-without-preedit/" lang="en" hreflang="en">English</a></p>
+
+  <p>
+    Gõ Sen, chế độ mặc định của Ngó Sen, đưa từng chữ thẳng vào app và sửa từ ngay tại chỗ khi người
+    dùng gõ thêm dấu thanh. Trang này giải thích app và toolkit cần làm gì để đáp ứng cách gõ đó,
+    Ngó Sen hiện xử lý ra sao và những chỗ upstream có thể sửa để bỏ được workaround. Trang này viết
+    cho người duy trì app, toolkit và các bộ gõ khác. Đây là bản dịch của
+    <a href="/en/typing-without-preedit/">trang tiếng Anh</a>, theo
+    <a href={`${REPO}/blob/patch/docs/typing-without-preedit.md`}><code>docs/typing-without-preedit.md</code></a>
+    trong repo.
+  </p>
+
+  <h2 id="why">Vì sao gõ tiếng Việt cần sửa chữ đã commit</h2>
+  <p>
+    Với Telex, kiểu gõ tiếng Việt phổ biến nhất, dấu được gõ sau chữ cần đổi:
+    <code>tieengs</code> thành <code>tiếng</code> qua từng phím. <code>tieeng</code> đã có trên màn hình
+    khi phím <code>s</code> tới và đổi <code>ê</code> thành <code>ế</code>. Có hai cách hiển thị:
+  </p>
+  <ul>
+    <li>
+      <strong>Preedit:</strong> bộ gõ giữ từ đang gõ trong một đoạn có gạch chân cho đến khi gõ xong
+      từ. Mọi toolkit đều hỗ trợ cách này; các bộ gõ tiếng Trung, Nhật và Hàn hoạt động như vậy.
+      Người dùng tiếng Việt không thích vì gạch chân nhấp nháy theo từng từ, còn các ô có gợi ý ngay
+      trong dòng (thanh địa chỉ, ô tìm kiếm, ô nhắc tên trong chat) không thấy chữ cho đến khi gõ
+      xong từ.
+    </li>
+    <li>
+      <strong>Commit chữ rồi sửa ngay tại chỗ:</strong> bộ gõ commit ngay từng chữ; khi dấu làm thay
+      đổi từ, bộ gõ xoá các ký tự trước con trỏ rồi commit từ đã sửa. Không có gạch chân; gợi ý cập
+      nhật theo từng phím. Unikey đã làm như vậy trên Windows suốt hai mươi năm, và người dùng
+      tiếng Việt mong đợi cách gõ này.
+    </li>
+  </ul>
+  <p>
+    Cách thứ hai cần một thứ mà cách đầu không cần: <strong>một cách đáng tin để xoá chữ app đã
+    nhận.</strong>
+  </p>
+
+  <h2 id="protocols">Các giao thức đã có gì</h2>
+  <p>Cách xử lý theo chuẩn đã có ở mọi lớp:</p>
+  <ul>
+    <li>
+      Wayland <code>text-input-v3</code>: <code>delete_surrounding_text(before, after)</code> và
+      <code>set_surrounding_text</code> để bộ gõ biết đang có chữ gì.
+    </li>
+    <li>
+      fcitx5: <code>InputContext::deleteSurroundingText</code>, với cờ khả năng
+      <code>SurroundingText</code> cho bộ gõ biết client có hỗ trợ hay không, cùng sự kiện forward
+      key làm phương án dự phòng.
+    </li>
+    <li>GTK 3 và 4: <code>gtk_im_context_delete_surrounding</code> và <code>retrieve_surrounding</code>.</li>
+    <li>Qt: <code>QInputMethodEvent</code> với vùng cần thay thế.</li>
+    <li>IBus: <code>delete-surrounding-text</code>, với cờ khả năng tương ứng.</li>
+  </ul>
+  <p>
+    XIM, giao thức của X11, hoàn toàn không có yêu cầu xoá chữ; client qua XIM chỉ có thể nhận sự
+    kiện phím.
+  </p>
+  <p>
+    Vì vậy, bộ gõ tiếng Việt không cần giao thức mới. Client cần triển khai những gì các giao thức
+    đã quy định và báo đúng khả năng của mình.
+  </p>
+
+  <h2 id="how-ngosen-deletes">Ngó Sen hiện xoá chữ như thế nào</h2>
+  <p>
+    Ngó Sen chọn cách xoá dựa trên thông tin ô nhập báo về (frontend, cờ khả năng, surrounding text),
+    chỉ đối chiếu tên chương trình khi thông tin đó không đủ để phân biệt app. Các điều kiện kiểm
+    tra nằm trong
+    <a href={`${REPO}/blob/main/src/core/ngosen-app-quirks.cpp`}><code>src/core/ngosen-app-quirks.cpp</code></a>;
+    các test trong <a href={`${REPO}/blob/main/test/host-field-mapping.cpp`}><code>test/host-field-mapping.cpp</code></a>,
+    <a href={`${REPO}/blob/main/test/ibus-dbus-forward-backspaces.cpp`}><code>test/ibus-dbus-forward-backspaces.cpp</code></a>
+    và <a href={`${REPO}/blob/main/test/x11-xtest-replacement.cpp`}><code>test/x11-xtest-replacement.cpp</code></a>
+    kiểm chứng từng trường hợp.
+  </p>
+  <p>
+    Mặc định, Ngó Sen không dùng cách xử lý theo chuẩn mà forward key Backspace, vì mọi frontend
+    trừ XIM đều chuyển được các sự kiện này và client xử lý chúng đúng thứ tự với các commit theo
+    sau. Ngó Sen chỉ dùng <code>deleteSurroundingText</code> ở những nơi đã biết forward key bị bỏ
+    hoặc đảo thứ tự. Khi client báo surrounding text, Ngó Sen đọc để kiểm tra chữ trước con trỏ,
+    không dùng để xoá.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Cách xoá</th>
+          <th scope="col">Dùng cho</th>
+          <th scope="col">Chỗ gặp lỗi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Forward key Backspace</th>
+          <td>Mặc định: app GTK 3 và Qt qua các module fcitx5, app Chromium và Electron, app snap dùng module GTK của fcitx4, client của các frontend Wayland (KDE Plasma text-input; Sway và Hyprland input-method-v2), client XIM dưới Xwayland.</td>
+          <td>Ô có gợi ý tự điền ngay trong dòng: Backspace xoá phần gợi ý trước, nên gõ <code>cowf</code> trên thanh địa chỉ thành <code>coờ</code>. Các module IM của GTK 4 bỏ forward key. LibreOffice xử lý Backspace bất đồng bộ, nên commit tiếp theo tới trước khi xoá.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>deleteSurroundingText</code></th>
+          <td>Client gặp lỗi với forward key: app GTK 4 qua fcitx5-gtk4 hoặc IBus và LibreOffice.</td>
+          <td>Cần client báo surrounding text. Qua IBus bridge của GNOME Shell, surrounding text đến trễ hàng chục mili giây và thường vẫn là nội dung trước lần sửa gần nhất, nên các bước kiểm tra dựa vào đó phải chờ.</td>
+        </tr>
+        <tr>
+          <th scope="row">Chọn rồi ghi đè (Shift+Left, sau đó commit)</th>
+          <td>Trình duyệt dựa trên Chromium qua D-Bus, có thanh địa chỉ chọn phần gợi ý tự điền ngay sau chữ đã gõ; có thể tuỳ chọn dùng cho các ô soạn thảo của Facebook.</td>
+          <td>Terminal khớp cùng các cờ sẽ in Shift+Left ra thay vì chọn chữ.</td>
+        </tr>
+        <tr>
+          <th scope="row">Giả lập phím qua XTEST</th>
+          <td>Client XIM trong phiên X11: Wine, WordCraft, game SDL.</td>
+          <td>Cần X11. Dưới Xwayland, XTEST hỏi quyền người dùng trước, nên Ngó Sen gửi sự kiện phím tới cửa sổ của Wine thay cho XTEST.</td>
+        </tr>
+        <tr>
+          <th scope="row">Commit ký tự DEL</th>
+          <td>Terminal VTE dùng GTK 4 (Ptyxis, GNOME Console) không nhận forward key lẫn surrounding text, nhưng chuyển chữ đã commit tới shell, nơi DEL xoá như Backspace.</td>
+          <td>Chỉ dùng được với terminal.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Mỗi dòng là một workaround cho cùng một thiếu sót: bộ gõ chưa thể tin cậy rằng mọi client Linux
+    đều triển khai <code>delete_surrounding_text</code> và xử lý đúng thứ tự với commit. Khi có thể
+    tin cậy như vậy, sẽ không cần giả lập phím nữa.
+  </p>
+
+  <h2 id="workarounds">Hành vi app mà Ngó Sen phải đi vòng, và cách sửa từng chỗ</h2>
+  <p>
+    Đã đo trên các app được nêu tên, với version và desktop ghi trong issue hoặc PR Ngó Sen được
+    dẫn link. “Cách sửa” là những gì client có thể thay đổi; không trường hợp nào cần đổi giao thức.
+  </p>
+  <ul>
+    <li>
+      <strong>Trình duyệt dựa trên Chromium và app Electron</strong> (Chrome, Chromium, Edge, Brave,
+      Vivaldi, Opera; VS Code, Discord, Zalo và các app Electron khác) không báo surrounding text
+      cho fcitx5 trên Linux và không xử lý <code>deleteSurroundingText</code>, nên Ngó Sen forward
+      key Backspace. Thanh địa chỉ chọn phần gợi ý tự điền ngay sau chữ đã gõ, và forward key
+      Backspace xoá phần đó. Cách sửa: báo surrounding text và triển khai xoá chữ trong phần xử lý
+      IME trên Linux, như trên macOS và Windows.
+    </li>
+    <li>
+      <strong>Firefox và các fork</strong> (Firefox ESR trên Debian, Zen, LibreWolf, Waterfox,
+      Floorp, Mullvad Browser, GNU IceCat) không đặt mục đích nhập URL cho thanh địa chỉ, nên bộ gõ
+      không phân biệt được thanh địa chỉ với ô nhập chữ và phải đoán từ phần chữ sau con trỏ
+      (<a href={`${REPO}/issues/161`}>#161</a>, <a href={`${REPO}/pull/162`}>#162</a>,
+      <a href={`${REPO}/pull/164`}>#164</a>). Cách sửa: đặt <code>GTK_INPUT_PURPOSE_URL</code> cho thanh
+      địa chỉ.
+    </li>
+    <li>
+      <strong>IBus bridge của GNOME Shell</strong>, mà mọi app dưới GNOME đều đi qua, chuyển
+      surrounding text trễ hàng chục mili giây và thường vẫn là nội dung trước lần sửa gần nhất.
+      Cách sửa: chuyển surrounding text của client đồng bộ với sự kiện phím, hoặc ít nhất trước
+      phím tiếp theo.
+    </li>
+    <li>
+      <strong>Các module IM của GTK 4</strong> (fcitx5-gtk4 và module GTK 4 của IBus) bỏ sự kiện
+      forward key và không chuyển tiếp mục đích nhập terminal mà VTE đã đặt, nên terminal GTK 4
+      không dùng được cả hai cách xoá. Cách sửa: chuyển forward key tới widget như các module GTK 3
+      và chuyển tiếp mục đích nhập.
+    </li>
+    <li>
+      <strong>SDL</strong> chỉ nhận commit và preedit từ bộ gõ, nên chỉ có thể xoá chữ trong game SDL
+      bằng sự kiện bấm phím thật, mà chỉ XTEST trên X11 mới gửi được. Cách sửa: triển khai
+      <code>delete_surrounding_text</code> trong phần code text-input Wayland và IBus của SDL.
+    </li>
+    <li>
+      <strong>LibreOffice</strong> xử lý Backspace như phím tắt bất đồng bộ, nên commit gửi ngay sau
+      đó lại tới trước khi xoá. Calc qua Wayland text-input chỉ báo ô nhập khi nhận được phím,
+      không báo khi một ô được chọn. Cách sửa: xử lý forward key Backspace đúng thứ tự với commit;
+      báo focus khi chọn ô.
+    </li>
+    <li>
+      <strong>Wine qua XIM dưới Xwayland</strong> xử lý sự kiện forward key sau một commit gửi tới
+      muộn hơn (<a href={`${REPO}/pull/158`}>#158</a>). Cách sửa: xử lý sự kiện phím X đúng thứ tự với
+      commit XIM.
+    </li>
+    <li>
+      <strong>Bản thân XIM</strong> không có yêu cầu xoá chữ. Client chỉ dùng XIM (Wine, WordCraft,
+      các app Java cũ) nhận sự kiện bấm phím thật qua XTEST trên X11; Xwayland yêu cầu người dùng
+      cấp quyền trước khi cho dùng XTEST. Cách sửa ở client: dùng phần xử lý IM gốc của toolkit
+      thay cho XIM.
+    </li>
+  </ul>
+
+  <h2 id="upstream">Các báo cáo gửi upstream</h2>
+  <p>Đã gửi:</p>
+  <ul>
+    <li>
+      Ubuntu 26.04, mutter: mất sự kiện phím dưới GNOME 50 (extension “forward-keys” trong
+      <a href={`${REPO}#readme`}>README</a> dùng để xử lý tạm lỗi này):
+      <a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784">https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784</a>
+    </li>
+  </ul>
+  <p>
+    Những hành vi khác nêu trên chưa được báo upstream. Báo cáo nên kèm cách tái hiện tối giản
+    không dùng Ngó Sen (một client fcitx5 hoặc <code>text-input-v3</code> nhỏ có commit và xoá chữ),
+    version app, desktop và link tới trang này. Mỗi báo cáo có một issue trong repo Ngó Sen dẫn link
+    tới nó.
+  </p>
+
+  <h2 id="help">Cách giúp</h2>
+  <ul>
+    <li>
+      <strong>Người dùng Linux:</strong> mở cài đặt Ngó Sen, chạy “Kiểm tra máy tôi…” và báo những app
+      vẫn gõ sai tại <a href={`${REPO}/issues`}>trang issue của Ngó Sen</a>, kèm tên app, version và
+      desktop đang dùng. Mỗi báo cáo sẽ bổ sung một trường hợp test hoặc tìm ra một lỗi nêu trên.
+    </li>
+    <li>
+      <strong>Người phát triển app và toolkit:</strong> trên Linux, báo surrounding text cho bộ gõ
+      và xử lý <code>delete_surrounding_text</code>; đặt mục đích nhập URL cho thanh địa chỉ; chuyển
+      forward key tới widget đang có focus. <a href="#how-ngosen-deletes">Các test nêu trên</a> cho
+      thấy bộ gõ mong đợi gì; chỉ cần <a href={`${REPO}/issues`}>một issue</a> ghi tên app là bản sửa
+      sẽ được test với Ngó Sen.
+    </li>
+    <li>
+      <strong>Các dự án bộ gõ khác:</strong> các bộ gõ tiếng Việt trên Linux đều gặp những vấn đề
+      này, cũng như mọi bộ gõ sửa chữ đã commit. Xác nhận báo cáo upstream bằng cách tái hiện riêng
+      của dự án mình có sức thuyết phục hơn báo cáo từ một dự án đơn lẻ.
+    </li>
+  </ul>
+</Page>
