@@ -33,9 +33,11 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    This release fixes Gõ Sen when backspacing, in gnome-text-editor, Firefox-based browser address
-    bars, XIM on X11 and Wine on Wayland. It also adds package repositories and Ubuntu 26.10 packages.
+    Version 1.5.3-2 is a packaging revision that fixes the Fedora COPR build
+    (<a href={`${REPO}/pull/169`}>#169</a>). The program code is identical to 1.5.3-1,
+    so existing 1.5.3-1 installations do not need updating.
   </p>
+  <p>The changes in version 1.5.3 are:</p>
   <ul>
     <li>
       Each release is built on the COPR repository <code>nguyenphi/ngosen</code> for Fedora. Signed
@@ -265,7 +267,8 @@ const levels: Record<Level, string> = {
     GTK3 and GTK4 text fields, Ptyxis, gnome-terminal, Konsole, kitty, VS Code, Chrome and Firefox;
     holding Backspace and typing again also worked. The backspace-across-space case was tried with
     VNI too. LibreOffice and the snap build of Firefox still have that bug, but typing was not made
-    worse.
+    worse. Version 1.5.3-2 was not retested for typing in virtual machines; the 1.5.3 typing tests
+    still apply because the program code is identical to 1.5.3-1.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
