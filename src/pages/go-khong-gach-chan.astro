@@ -57,7 +57,7 @@ const toc = [
   </p>
 
   <h2 id="protocols">Các giao thức đã có gì</h2>
-  <p>Cách xử lý theo chuẩn đã có ở mọi lớp:</p>
+  <p>Cách yêu cầu app xoá chữ quanh con trỏ theo chuẩn đã có ở mọi lớp:</p>
   <ul>
     <li>
       Wayland <code>text-input-v3</code>: <code>delete_surrounding_text(before, after)</code> và
@@ -93,11 +93,11 @@ const toc = [
     kiểm chứng từng trường hợp.
   </p>
   <p>
-    Mặc định, Ngó Sen không dùng cách xử lý theo chuẩn mà forward key Backspace, vì mọi frontend
-    trừ XIM đều chuyển được các sự kiện này và client xử lý chúng đúng thứ tự với các commit theo
-    sau. Ngó Sen chỉ dùng <code>deleteSurroundingText</code> ở những nơi đã biết forward key bị bỏ
-    hoặc đảo thứ tự. Khi client báo surrounding text, Ngó Sen đọc để kiểm tra chữ trước con trỏ,
-    không dùng để xoá.
+    Mặc định, Ngó Sen không yêu cầu app xoá chữ quanh con trỏ theo cách chuẩn nêu trên. Thay vào đó,
+    Ngó Sen gửi phím Backspace giả qua fcitx5 (forward key), vì mọi frontend trừ XIM đều chuyển được
+    các sự kiện phím này và client xử lý chúng đúng thứ tự với các commit theo sau. Ngó Sen chỉ dùng
+    <code>deleteSurroundingText</code> ở những nơi đã biết forward key bị bỏ hoặc đảo thứ tự. Khi
+    client báo surrounding text, Ngó Sen đọc để kiểm tra chữ trước con trỏ, không dùng để xoá.
   </p>
   <div class="table-scroll">
     <table>
