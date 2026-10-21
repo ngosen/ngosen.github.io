@@ -94,5 +94,3 @@ Khi ghi VIQR, UniKey escape dấu chấm, còn bộ chuyển mã của bamboo-co
 
 UniKey cho Windows hiện tại (version 4.x, không công khai source) chưa được chạy để test, nên chưa
 biết version đó còn lỗi này hay không.
-
-Tới ngày 21/10/2026, lỗi chưa được báo cho fcitx5-unikey hay ibus-unikey, và PR #23 chưa được merge.
