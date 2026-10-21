@@ -372,6 +372,11 @@ tbody th {
   overflow-wrap: anywhere;
 }
 
+/* Short codes such as 0x8E stay whole in a table cell; a wide table scrolls instead. */
+.prose :is(td, th) > code {
+  overflow-wrap: normal;
+}
+
 .prose blockquote {
   padding-left: 1.1rem;
   border-left: 1px solid var(--ink-muted);

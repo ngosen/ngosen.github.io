@@ -2,7 +2,6 @@
 title: "Phát hiện lỗi charset trong UniKey có từ năm 2004"
 description: "Bộ chuyển mã của UniKey đọc sai 8 chữ Việt khi chuyển từ VISCII, VPS và BKHCM 1 về Unicode: cách test, nguyên nhân và những gì chưa kiểm tra."
 pubDate: 2026-10-21
-draft: true
 ---
 
 Chuyển “VIỆT NAM” từ UTF-8 sang VISCII rồi về UTF-8 bằng bộ chuyển mã của UniKey thì được “VIŽT NAM”.
@@ -21,6 +20,8 @@ Ngày 21/10/2026, VnConv trong [thư mục `unikey/` của fcitx5-unikey](https:
 Có 8 chữ được ghi sang bảng mã cũ đúng byte, nhưng khi chuyển về Unicode lại thành ký hiệu. Các chữ
 này dùng 7 byte trong ba bảng mã:
 
+<div class="table-scroll">
+
 | Bảng mã | Chữ ban đầu | Byte | Chuyển về thành |
 | --- | --- | --- | --- |
 | VISCII | Ạ | `0x80` | € |
@@ -28,8 +29,10 @@ này dùng 7 byte trong ba bảng mã:
 | VISCII | Ụ | `0x9E` | ž |
 | VPS | Ằ | `0x8E` | Ž |
 | VPS | Ờ | `0x9E` | ž |
-| BKHCM 1 | Á | `0x80` | € |
-| BKHCM 1 | Ị, Ỵ | `0x8E` | Ž |
+| BKHCM&nbsp;1 | Á | `0x80` | € |
+| BKHCM&nbsp;1 | Ị, Ỵ | `0x8E` | Ž |
+
+</div>
 
 Với BKHCM 1, “THÁNG” đi một vòng thành “TH€NG”.
 
