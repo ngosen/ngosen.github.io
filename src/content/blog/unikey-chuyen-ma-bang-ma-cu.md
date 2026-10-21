@@ -82,7 +82,10 @@ Người giữ dự án Ngó Sen gặp lỗi này khi viết bộ chuyển mã �
 [PR #23](https://github.com/bamboo-vi/bamboo-core/pull/23);
 [một bình luận trong PR](https://github.com/bamboo-vi/bamboo-core/pull/23#issuecomment-6310888512) mô tả lỗi.
 
-Bộ chuyển mã đó không sai 8 chữ nói trên. Với Ặ/Ụ trong BKHCM 1, nó giữ nguyên byte thay vì đoán chữ.
+Bộ chuyển mã đó không sai 8 chữ nói trên, vì bảng của bamboo-core không có danh sách ký hiệu cp1252 ở
+cuối. Còn chỗ chung byte thì bamboo-core cũng có: bảng BKHCM 1 của nó gán Ặ và Ụ cùng `0x98`, Ị và Ỵ
+cùng `0x8E`, nên chữ ghi ra bằng bảng mã này cũng không tách lại được. Gặp `0x98`, bộ chuyển mã mới giữ
+nguyên byte thay vì đoán là Ặ hay Ụ.
 UniKey làm tốt hơn ở một chỗ: khi ghi VIQR, UniKey escape dấu chấm, còn bộ chuyển mã của bamboo-core
 chưa làm.
 
