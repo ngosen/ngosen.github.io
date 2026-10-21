@@ -113,12 +113,12 @@ const toc = [
         <tr>
           <th scope="row">Forward key Backspace</th>
           <td>Mặc định: app GTK 3 và Qt qua các module fcitx5, app Chromium và Electron, app snap dùng module GTK của fcitx4, client của các frontend Wayland (KDE Plasma text-input; Sway và Hyprland input-method-v2), client XIM dưới Xwayland.</td>
-          <td>Ô có gợi ý tự điền ngay trong dòng: Backspace xoá phần gợi ý trước, nên gõ <code>cowf</code> trên thanh địa chỉ thành <code>coờ</code>. Các module IM của GTK 4 bỏ forward key. LibreOffice xử lý Backspace bất đồng bộ, nên commit tiếp theo tới trước khi xoá.</td>
+          <td>Ô có gợi ý tự điền ngay trong dòng: Backspace xoá phần gợi ý trước, nên gõ <code>cowf</code> trên thanh địa chỉ thành <code>coờ</code>. Các module IM của GTK 4 bỏ forward key. App GTK qua Wayland text-input thường xử lý commit trước sự kiện forward key Backspace được gửi ngay trước đó. LibreOffice xử lý Backspace bất đồng bộ, nên commit tiếp theo tới trước khi xoá.</td>
         </tr>
         <tr>
           <th scope="row"><code>deleteSurroundingText</code></th>
           <td>Client gặp lỗi với forward key: app GTK 4 qua fcitx5-gtk4 hoặc IBus và LibreOffice.</td>
-          <td>Cần client báo surrounding text. Qua IBus bridge của GNOME Shell, surrounding text đến trễ hàng chục mili giây và thường vẫn là nội dung trước lần sửa gần nhất, nên các bước kiểm tra dựa vào đó phải chờ.</td>
+          <td>Cần client báo surrounding text.</td>
         </tr>
         <tr>
           <th scope="row">Chọn rồi ghi đè (Shift+Left, sau đó commit)</th>
@@ -163,17 +163,18 @@ const toc = [
     </li>
     <li>
       <strong>Firefox và các fork</strong> (Firefox ESR trên Debian, Zen, LibreWolf, Waterfox,
-      Floorp, Mullvad Browser, GNU IceCat) không đặt mục đích nhập URL cho thanh địa chỉ, nên bộ gõ
+      Floorp, Mullvad Browser, GNU IceCat) không đặt mục đích nhập URL cho thanh địa chỉ trên Linux, nên bộ gõ
       không phân biệt được thanh địa chỉ với ô nhập chữ và phải đoán từ phần chữ sau con trỏ
       (<a href={`${REPO}/issues/161`}>#161</a>, <a href={`${REPO}/pull/162`}>#162</a>,
-      <a href={`${REPO}/pull/164`}>#164</a>). Cách sửa: đặt <code>GTK_INPUT_PURPOSE_URL</code> cho thanh
-      địa chỉ.
+      <a href={`${REPO}/pull/164`}>#164</a>). Thanh địa chỉ dùng chế độ nhập <code>mozAwesomebar</code>,
+      mà Firefox ánh xạ sang URL trên Windows và Android nhưng không ánh xạ trên GTK. Cách sửa:
+      ánh xạ chế độ này sang <code>GTK_INPUT_PURPOSE_URL</code>.
     </li>
     <li>
-      <strong>IBus bridge của GNOME Shell</strong>, mà mọi app dưới GNOME đều đi qua, chuyển
-      surrounding text trễ hàng chục mili giây và thường vẫn là nội dung trước lần sửa gần nhất.
-      Cách sửa: chuyển surrounding text của client đồng bộ với sự kiện phím, hoặc ít nhất trước
-      phím tiếp theo.
+      <strong>GTK 3 và GTK 4 qua Wayland text-input</strong>, mà app GTK dùng mặc định dưới GNOME,
+      xử lý commit trước sự kiện phím vừa tới trước đó, nên forward key Backspace rồi commit
+      thường xoá chữ mới thay vì chữ cũ. Cách sửa: xử lý sự kiện phím và sự kiện text-input
+      theo thứ tự nhận được.
     </li>
     <li>
       <strong>Các module IM của GTK 4</strong> (fcitx5-gtk4 và module GTK 4 của IBus) bỏ sự kiện
@@ -188,8 +189,8 @@ const toc = [
     </li>
     <li>
       <strong>LibreOffice</strong> xử lý Backspace như phím tắt bất đồng bộ, nên commit gửi ngay sau
-      đó lại tới trước khi xoá. Calc qua Wayland text-input chỉ báo ô nhập khi nhận được phím,
-      không báo khi một ô được chọn. Cách sửa: xử lý forward key Backspace đúng thứ tự với commit;
+      đó lại tới trước khi xoá. Với giao diện Qt và KDE, mặc định trên KDE Plasma, Calc chỉ báo ô nhập
+      khi nhận được phím, không báo khi một ô được chọn. Cách sửa: xử lý forward key Backspace đúng thứ tự với commit;
       báo focus khi chọn ô.
     </li>
     <li>
@@ -213,6 +214,16 @@ const toc = [
       <a href={`${REPO}#readme`}>README</a> dùng để xử lý tạm lỗi này):
       <a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784">https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784</a>
     </li>
+    <li>
+      Thanh địa chỉ Firefox báo mục đích nhập văn bản tự do thay vì URL trên GTK; đã đo trên KDE
+      Plasma với Firefox 157 (<a href={`${REPO}/issues/215`}>#215</a>):
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2084459">https://bugzilla.mozilla.org/show_bug.cgi?id=2084459</a>
+    </li>
+    <li>
+      GTK xử lý commit text-input trước sự kiện phím đã nhận trước đó, nên forward key Backspace
+      xoá chữ vừa commit; đã đo bằng một bộ gõ IBus dùng để test trên GNOME 51, GTK 3.24 và 4.24:
+      <a href="https://gitlab.gnome.org/GNOME/gtk/-/issues/8431">https://gitlab.gnome.org/GNOME/gtk/-/issues/8431</a>
+    </li>
   </ul>
   <p>Người khác đã gửi, Ngó Sen đã xác nhận:</p>
   <ul>
@@ -226,6 +237,29 @@ const toc = [
       qua surrounding text sẽ làm sai từ, kể cả khi hai phím cách nhau 1,5 giây; đã xác nhận lại
       trên KDE Plasma với Firefox 157, kèm log giao thức:
       <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2</a>
+    </li>
+    <li>
+      Chromium qua module IM của GTK không báo surrounding text; đã xác nhận lại trên KDE Plasma
+      với Chromium 154 bằng các cờ khả năng của fcitx5 (<a href={`${REPO}/issues/220`}>#220</a>):
+      <a href="https://issues.chromium.org/issues/40146869#comment20">https://issues.chromium.org/issues/40146869#comment20</a>
+    </li>
+    <li>
+      Các module IM của GTK 4 không chuyển được forward key tới widget; đã xác nhận lại trên GNOME 51
+      với GTK 4.24.1, khi module GTK 4 của IBus bỏ 19 trong 19 sự kiện forward key Backspace còn
+      module GTK 3 của IBus xử lý chúng (<a href={`${REPO}/issues/225`}>#225</a>):
+      <a href="https://gitlab.gnome.org/GNOME/gtk/-/issues/3465">https://gitlab.gnome.org/GNOME/gtk/-/issues/3465</a>
+    </li>
+    <li>
+      LibreOffice xử lý Backspace như phím tắt bất đồng bộ, nên chữ commit sau đó lại tới trước;
+      đã xác nhận lại trong Writer 26.8.1 bằng một bộ gõ IBus dùng để test, 17 trong 19 lần sửa
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=139807">https://bugs.documentfoundation.org/show_bug.cgi?id=139807</a>
+    </li>
+    <li>
+      Giao diện Qt và KDE của LibreOffice không báo gì cho bộ gõ khi con trỏ di chuyển bằng click
+      chuột; đã xác nhận lại trong Calc 26.8.1 trên KDE Plasma, kèm log giao thức Wayland
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=173064">https://bugs.documentfoundation.org/show_bug.cgi?id=173064</a>
     </li>
   </ul>
   <p>Người khác đã gửi:</p>

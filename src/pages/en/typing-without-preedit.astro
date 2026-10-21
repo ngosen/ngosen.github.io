@@ -114,12 +114,12 @@ const toc = [
         <tr>
           <th scope="row">Forwarded Backspace key events</th>
           <td>The default: GTK 3 and Qt apps through the fcitx5 modules, Chromium and Electron apps, snap apps with the fcitx4 GTK module, clients of the Wayland frontends (KDE Plasma text-input; Sway and Hyprland input-method-v2), XIM clients under Xwayland.</td>
-          <td>Fields with inline autocompletion: a Backspace removes the suggested text first, so <code>cowf</code> in an address bar comes out as <code>coờ</code>. GTK 4 IM modules drop forwarded keys. LibreOffice runs Backspace asynchronously, so the next commit overtakes it.</td>
+          <td>Fields with inline autocompletion: a Backspace removes the suggested text first, so <code>cowf</code> in an address bar comes out as <code>coờ</code>. GTK 4 IM modules drop forwarded keys. GTK apps on Wayland text-input often apply a commit before the Backspace forwarded just ahead of it. LibreOffice runs Backspace asynchronously, so the next commit overtakes it.</td>
         </tr>
         <tr>
           <th scope="row"><code>deleteSurroundingText</code></th>
           <td>Clients where forwarded keys fail: GTK 4 apps through fcitx5-gtk4 or IBus, and LibreOffice.</td>
-          <td>Needs the client to report surrounding text. Under GNOME Shell's IBus bridge the surrounding text arrives tens of milliseconds late and often one edit behind, so checks built on it have to wait.</td>
+          <td>Needs the client to report surrounding text.</td>
         </tr>
         <tr>
           <th scope="row">Select and overtype (Shift+Left, then commit)</th>
@@ -164,15 +164,18 @@ const toc = [
     </li>
     <li>
       <strong>Firefox and its forks</strong> (Firefox ESR on Debian, Zen, LibreWolf, Waterfox, Floorp,
-      Mullvad Browser, GNU IceCat) set no URL input purpose on the address bar, so an input method
-      cannot tell it from a text field and has to guess from the text after the cursor
+      Mullvad Browser, GNU IceCat) set no URL input purpose on the address bar on Linux, so an input
+      method cannot tell it from a text field and has to guess from the text after the cursor
       (<a href={`${REPO}/issues/161`}>#161</a>, <a href={`${REPO}/pull/162`}>#162</a>,
-      <a href={`${REPO}/pull/164`}>#164</a>). Fix: set <code>GTK_INPUT_PURPOSE_URL</code> on the address bar.
+      <a href={`${REPO}/pull/164`}>#164</a>). The address bar uses the <code>mozAwesomebar</code> input
+      mode, which Firefox maps to URL on Windows and Android but not on GTK. Fix: map it to
+      <code>GTK_INPUT_PURPOSE_URL</code>.
     </li>
     <li>
-      <strong>GNOME Shell's IBus bridge</strong>, which every app under GNOME goes through, delivers
-      surrounding text tens of milliseconds late and often one edit behind. Fix: forward the
-      client's surrounding text synchronously with the key event, or at least before the next key.
+      <strong>GTK 3 and GTK 4 on Wayland text-input</strong>, which GTK apps use under GNOME by default,
+      apply a commit before a key event that arrived just before it, so a forwarded Backspace followed
+      by a commit often deletes the new text instead of the old. Fix: apply key events and text-input
+      events in the order they arrive.
     </li>
     <li>
       <strong>GTK 4 IM modules</strong> (fcitx5-gtk4 and IBus's GTK 4 module) drop forwarded key events
@@ -187,8 +190,8 @@ const toc = [
     </li>
     <li>
       <strong>LibreOffice</strong> runs Backspace as an asynchronous shortcut, so a commit sent right
-      after it lands before the deletion. Calc over Wayland text-input reports the field only once
-      a key reaches it, not when a cell is selected. Fix: apply forwarded Backspace in order with
+      after it lands before the deletion. With its Qt and KDE interface, the default on KDE Plasma,
+      Calc reports the field only once a key reaches it, not when a cell is selected. Fix: apply forwarded Backspace in order with
       commits; report focus on cell selection.
     </li>
     <li>
@@ -210,6 +213,16 @@ const toc = [
       <a href={`${REPO}#readme`}>the README</a> works around it):
       <a href="https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784">https://bugs.launchpad.net/ubuntu/+source/mutter/+bug/2169784</a>
     </li>
+    <li>
+      Firefox's address bar reports a free-form input purpose instead of URL on GTK; measured on KDE
+      Plasma with Firefox 157 (<a href={`${REPO}/issues/215`}>#215</a>):
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2084459">https://bugzilla.mozilla.org/show_bug.cgi?id=2084459</a>
+    </li>
+    <li>
+      GTK applies a text-input commit before a key event received earlier, so a forwarded Backspace
+      deletes the committed text; measured with an IBus test engine on GNOME 51, GTK 3.24 and 4.24:
+      <a href="https://gitlab.gnome.org/GNOME/gtk/-/issues/8431">https://gitlab.gnome.org/GNOME/gtk/-/issues/8431</a>
+    </li>
   </ul>
   <p>Filed by others, confirmed here:</p>
   <ul>
@@ -223,6 +236,29 @@ const toc = [
       deletes surrounding text corrupts the word, even with 1.5 s between keys; confirmed on KDE
       Plasma with Firefox 157, with a protocol log:
       <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2</a>
+    </li>
+    <li>
+      Chromium's GTK IM path reports no surrounding text; confirmed with fcitx5's capability flags on
+      KDE Plasma with Chromium 154 (<a href={`${REPO}/issues/220`}>#220</a>):
+      <a href="https://issues.chromium.org/issues/40146869#comment20">https://issues.chromium.org/issues/40146869#comment20</a>
+    </li>
+    <li>
+      GTK 4 IM modules cannot deliver a forwarded key to the widget; confirmed on GNOME 51 with GTK
+      4.24.1, where IBus's GTK 4 module dropped 19 of 19 forwarded Backspaces and its GTK 3 module
+      applied them (<a href={`${REPO}/issues/225`}>#225</a>):
+      <a href="https://gitlab.gnome.org/GNOME/gtk/-/issues/3465">https://gitlab.gnome.org/GNOME/gtk/-/issues/3465</a>
+    </li>
+    <li>
+      LibreOffice runs Backspace as an asynchronous shortcut, so text committed after it lands first;
+      confirmed in Writer 26.8.1 with an IBus test engine, 17 of 19 edits
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=139807">https://bugs.documentfoundation.org/show_bug.cgi?id=139807</a>
+    </li>
+    <li>
+      LibreOffice's Qt and KDE interface tells the input method nothing when the cursor moves by mouse
+      click; confirmed in Calc 26.8.1 on KDE Plasma with a Wayland protocol log
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=173064">https://bugs.documentfoundation.org/show_bug.cgi?id=173064</a>
     </li>
   </ul>
   <p>Filed by others:</p>
