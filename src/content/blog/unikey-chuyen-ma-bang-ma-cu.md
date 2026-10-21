@@ -1,5 +1,5 @@
 ---
-title: "Lỗi chuyển bảng mã cũ về Unicode trong bộ chuyển mã UniKey"
+title: "Phát hiện lỗi charset trong UniKey có từ năm 2004"
 description: "Bộ chuyển mã của UniKey đọc sai 8 chữ Việt khi chuyển từ VISCII, VPS và BKHCM 1 về Unicode: cách test, nguyên nhân và những gì chưa kiểm tra."
 pubDate: 2026-10-21
 draft: true
@@ -62,7 +62,8 @@ ký tự <code># @ \ ^ &#96; | ~</code> đều chuyển về thành Ự.
 ## Có từ năm 2004
 
 Các byte này đã có trong [lần nhập source UniKey đầu tiên ở bản sao xmirror/unikey](https://github.com/xmirror/unikey/tree/b5c58fb87)
-(commit `b5c58fb`, ngày 04/02/2004). Đầu file ghi “Copyleft (C) 1998-2002 Pham Kim Long”. Lỗi đã có
+(commit `b5c58fb`, ngày 04/02/2004). Đây là x-unikey 0.9.1, UniKey cho X Window trên Linux.
+Đầu file ghi “Copyleft (C) 1998-2002 Pham Kim Long”. Lỗi đã có
 ít nhất 22 năm.
 
 Các giá trị đó vẫn còn trong commit `ed9170c`, commit mới nhất trên nhánh `master` của fcitx5-unikey
