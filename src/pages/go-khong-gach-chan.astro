@@ -189,8 +189,8 @@ const toc = [
     </li>
     <li>
       <strong>LibreOffice</strong> xử lý Backspace như phím tắt bất đồng bộ, nên commit gửi ngay sau
-      đó lại tới trước khi xoá. Calc qua Wayland text-input chỉ báo ô nhập khi nhận được phím,
-      không báo khi một ô được chọn. Cách sửa: xử lý forward key Backspace đúng thứ tự với commit;
+      đó lại tới trước khi xoá. Với giao diện Qt và KDE, mặc định trên KDE Plasma, Calc chỉ báo ô nhập
+      khi nhận được phím, không báo khi một ô được chọn. Cách sửa: xử lý forward key Backspace đúng thứ tự với commit;
       báo focus khi chọn ô.
     </li>
     <li>
@@ -248,6 +248,18 @@ const toc = [
       với GTK 4.24.1, khi module GTK 4 của IBus bỏ 19 trong 19 sự kiện forward key Backspace còn
       module GTK 3 của IBus xử lý chúng (<a href={`${REPO}/issues/225`}>#225</a>):
       <a href="https://gitlab.gnome.org/GNOME/gtk/-/issues/3465">https://gitlab.gnome.org/GNOME/gtk/-/issues/3465</a>
+    </li>
+    <li>
+      LibreOffice xử lý Backspace như phím tắt bất đồng bộ, nên chữ commit sau đó lại tới trước;
+      đã xác nhận lại trong Writer 26.8.1 bằng một bộ gõ IBus dùng để test, 17 trong 19 lần sửa
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=139807">https://bugs.documentfoundation.org/show_bug.cgi?id=139807</a>
+    </li>
+    <li>
+      Giao diện Qt và KDE của LibreOffice không báo gì cho bộ gõ khi con trỏ di chuyển bằng click
+      chuột; đã xác nhận lại trong Calc 26.8.1 trên KDE Plasma, kèm log giao thức Wayland
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=173064">https://bugs.documentfoundation.org/show_bug.cgi?id=173064</a>
     </li>
   </ul>
   <p>Người khác đã gửi:</p>

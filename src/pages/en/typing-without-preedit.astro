@@ -190,8 +190,8 @@ const toc = [
     </li>
     <li>
       <strong>LibreOffice</strong> runs Backspace as an asynchronous shortcut, so a commit sent right
-      after it lands before the deletion. Calc over Wayland text-input reports the field only once
-      a key reaches it, not when a cell is selected. Fix: apply forwarded Backspace in order with
+      after it lands before the deletion. With its Qt and KDE interface, the default on KDE Plasma,
+      Calc reports the field only once a key reaches it, not when a cell is selected. Fix: apply forwarded Backspace in order with
       commits; report focus on cell selection.
     </li>
     <li>
@@ -247,6 +247,18 @@ const toc = [
       4.24.1, where IBus's GTK 4 module dropped 19 of 19 forwarded Backspaces and its GTK 3 module
       applied them (<a href={`${REPO}/issues/225`}>#225</a>):
       <a href="https://gitlab.gnome.org/GNOME/gtk/-/issues/3465">https://gitlab.gnome.org/GNOME/gtk/-/issues/3465</a>
+    </li>
+    <li>
+      LibreOffice runs Backspace as an asynchronous shortcut, so text committed after it lands first;
+      confirmed in Writer 26.8.1 with an IBus test engine, 17 of 19 edits
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=139807">https://bugs.documentfoundation.org/show_bug.cgi?id=139807</a>
+    </li>
+    <li>
+      LibreOffice's Qt and KDE interface tells the input method nothing when the cursor moves by mouse
+      click; confirmed in Calc 26.8.1 on KDE Plasma with a Wayland protocol log
+      (<a href={`${REPO}/issues/227`}>#227</a>):
+      <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=173064">https://bugs.documentfoundation.org/show_bug.cgi?id=173064</a>
     </li>
   </ul>
   <p>Filed by others:</p>
