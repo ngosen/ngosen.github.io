@@ -221,14 +221,15 @@ const toc = [
       với Chromium 154 và fcitx5:
       <a href="https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263">https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263</a>
     </li>
+    <li>
+      Firefox qua Wayland text-input gửi surrounding text chậm một lần sửa, nên bộ gõ xoá chữ
+      qua surrounding text sẽ làm sai từ, kể cả khi hai phím cách nhau 1,5 giây; đã xác nhận lại
+      trên KDE Plasma với Firefox 157, kèm log giao thức:
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2</a>
+    </li>
   </ul>
   <p>Người khác đã gửi:</p>
   <ul>
-    <li>
-      Firefox qua Wayland text-input gửi surrounding text chậm một lần sửa, nên bộ gõ xoá chữ
-      qua surrounding text sẽ làm sai từ:
-      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478</a>
-    </li>
     <li>
       SDL không xử lý <code>delete_surrounding_text</code>:
       <a href="https://github.com/libsdl-org/SDL/issues/15987">https://github.com/libsdl-org/SDL/issues/15987</a>

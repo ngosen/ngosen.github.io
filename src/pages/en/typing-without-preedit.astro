@@ -218,14 +218,15 @@ const toc = [
       with Chromium 154 and fcitx5:
       <a href="https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263">https://github.com/swaywm/sway/issues/9191#issuecomment-6287333263</a>
     </li>
+    <li>
+      Firefox on Wayland text-input sends surrounding text one edit late, so an input method that
+      deletes surrounding text corrupts the word, even with 1.5 s between keys; confirmed on KDE
+      Plasma with Firefox 157, with a protocol log:
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478#c2</a>
+    </li>
   </ul>
   <p>Filed by others:</p>
   <ul>
-    <li>
-      Firefox on Wayland text-input sends surrounding text one edit late, so an input method that
-      deletes surrounding text corrupts the word:
-      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2080478">https://bugzilla.mozilla.org/show_bug.cgi?id=2080478</a>
-    </li>
     <li>
       SDL does not handle <code>delete_surrounding_text</code>:
       <a href="https://github.com/libsdl-org/SDL/issues/15987">https://github.com/libsdl-org/SDL/issues/15987</a>
