@@ -4,7 +4,7 @@ export const REPO = 'https://github.com/ngosen/ngosen';
 export const ARCHIVE_REPO = 'https://github.com/ngosen/ngosen-fork-archive';
 // Link preview image. Bump the query after re-rendering it: Facebook, Zalo and Telegram cache
 // previews by image URL.
-export const OG_IMAGE = '/og.png?v=2';
+export const OG_IMAGE = '/og.png?v=3';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
 
@@ -752,7 +752,7 @@ export const DISTRIBUTIONS: Distribution[] = [
 ];
 
 // Mirrors the introduction and features in README.md in ngosen/ngosen.
-export const TAGLINE = 'Bộ gõ tiếng Việt cho fcitx5 trên Linux.';
+export const TAGLINE = 'Bộ gõ tiếng Việt cho fcitx5 trên Linux, cho trải nghiệm gõ như UniKey trên Windows.';
 
 export const HIGHLIGHTS: { title: string; text: string }[] = [
   {
