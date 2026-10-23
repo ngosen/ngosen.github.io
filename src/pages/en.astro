@@ -37,42 +37,50 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.5.5-1 fixes diacritic typing in the Firefox Flatpak address bar during autofill and
-    macros with uppercase abbreviations.
+    Version 1.5.6-1 fixes Gõ Sen in Google Sheets on X11 with Chromium-based browsers, in GLFW apps
+    through Xwayland such as Minecraft Java, and the install command on KDE Plasma Wayland.
   </p>
   <ul>
     <li>
-      Typing diacritics in the address bar of Firefox installed from Flatpak during URL autofill
-      no longer garbles words: <code>ee</code> gives <code>ê</code> instead of <code>eê</code>,
-      <code>es</code> gives <code>é</code> instead of <code>eé</code>, and <code>dduowcj</code> gives
-      <code>được</code> instead of <code>dđược</code>
-      (<a href={`${REPO}/issues/200`}>#200</a>, <a href={`${REPO}/pull/204`}>#204</a>).
-      Ngó Sen recognises Flatpak apps by their usual names; the typing log records both names,
-      such as <code>firefox (org.mozilla.firefox)</code>.
+      Gõ Sen no longer jumps or loses text in Google Sheets on X11 with Chromium-based browsers.
+      Tested on Linux Mint 22.1 (Cinnamon X11) in Chromium: typing directly into a cell then pressing
+      Enter, fast typing (30 ms between keys), Backspace corrections, and fast typing after pressing
+      F2 to open the cell. Each case was correct in 3/3 runs
+      (<a href={`${REPO}/pull/258`}>#258</a>, <a href={`${REPO}/pull/261`}>#261</a>).
     </li>
     <li>
-      Macros saved with uppercase abbreviations, such as <code>VN</code> → <code>Việt Nam</code>,
-      now expand; previously they never matched. If the same abbreviation is saved with different
-      capitalisation, Ngó Sen uses the lowercase entry, or the first saved entry if there is none.
-      The macro editor treats <code>VN</code> and <code>vn</code> as the same abbreviation and offers
-      to update it instead of adding a second entry (<a href={`${REPO}/pull/194`}>#194</a>).
+      Fixed adding diacritics after Backspace in Gõ Sen in GLFW apps through Xwayland such as
+      Minecraft Java. Previously, after pressing Backspace once, adding diacritics could produce
+      incorrect text such as <code>tieengs</code> giving <code>tieêngếng</code>
+      (<a href={`${REPO}/pull/247`}>#247</a>).
     </li>
     <li>
-      In the Firefox address bar during autofill, typing a letter that matches the next letter of
-      the suggested address no longer loses the word being typed. Ngó Sen previously mistook it for
-      a mouse click: <code>gox</code> stayed <code>gox</code>, and <code>daaus</code> gave
-      <code>daáu</code>. They now give <code>gõ</code> and <code>dấu</code>. Tested with Firefox
-      installed from Flatpak on Ubuntu GNOME (<a href={`${REPO}/pull/209`}>#209</a>).
+      The install command on KDE Plasma Wayland sets <code>XMODIFIERS</code> so X11 apps through
+      Xwayland can type Vietnamese. Previously, apps such as Minecraft 26.2 and earlier or xterm
+      produced raw Telex. Log out and back in to apply the change
+      (<a href={`${REPO}/pull/251`}>#251</a>).
     </li>
     <li>
-      Added checks to prevent errors when Gõ Sen reopens macros ending in quotation marks or an
-      ellipsis, or words using VNI Windows. Automated tests found incorrect reconstruction after
-      backspacing into the previous word: the macro <code>q</code> → <code>“quá”</code>, followed
-      by Backspace and <code>s</code>, gave <code>“qua”s</code>, or a VNI Windows word gave
-      <code>ñöä</code>. This has not been encountered in apps: the previous version did not show
-      the error in tests on Ubuntu GNOME and Linux Mint in GTK text fields, LibreOffice Writer
-      and xterm. The change is preventive; ordinary words can still be reopened in VNI Windows /
-      TCVN3 (<a href={`${REPO}/pull/199`}>#199</a>).
+      The About page warns when fcitx5 is still using the old version after a package update.
+      A red line below the version number asks you to log out and back in; “Kiểm tra máy tôi…”
+      also lists this as a warning. Previously, the page showed the new version number even while
+      fcitx5 was still using the old version for typing (<a href={`${REPO}/pull/212`}>#212</a>).
+    </li>
+    <li>
+      Typing logs saved from the tray menu keep a longer stretch of typing by skipping field
+      contents identical to the previous report. One real Edge log shrank from 401 lines to 118,
+      letting the log keep roughly three times as much typing
+      (<a href={`${REPO}/pull/213`}>#213</a>).
+    </li>
+    <li>
+      The settings window no longer clips text or shows a horizontal scrollbar on the typing page
+      with large system fonts (<a href={`${REPO}/pull/250`}>#250</a>).
+      The About description matches the README (<a href={`${REPO}/pull/249`}>#249</a>).
+      On GNOME without a Qt theme installed, scrollbars are thin and rounded, have no arrow buttons,
+      and follow the light or dark theme (<a href={`${REPO}/pull/252`}>#252</a>).
+      With Qt 6.8 or newer, the window follows GNOME's light or dark mode when opened and when the
+      mode changes; older Qt versions keep the light interface
+      (<a href={`${REPO}/pull/253`}>#253</a>).
     </li>
   </ul>
 
@@ -322,6 +330,32 @@ const levels: Record<Level, string> = {
     CachyOS, Fedora, Debian, openSUSE and Kali have not been tried with 1.5.5.
   </p>
   <p>
+    The 1.5.6 package from release PR #268 was tried in virtual machines on 23 October 2026,
+    using Gõ Sen and Telex.
+    On Linux Mint 22.1 (Cinnamon X11, <code>noble</code> package), in Google Sheets in Chromium,
+    typing directly into a cell and pressing Enter was correct in 3/3 runs for each case:
+    <code>dduowcj</code> → <code>được</code>;
+    <code>tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam</code> typed quickly
+    (30 ms between keys) → <code>tiếng việt là ngôn ngữ của người việt nam</code>;
+    <code>Haf Nooij ddeens 2026 thangs 10</code> → <code>Hà Nội đến 2026 tháng 10</code>;
+    <code>toan</code>, Backspace, <code>s</code> → <code>toán</code>;
+    <code>duyeet</code>, 5 Backspaces, <code>yeejt</code> → <code>duyệt</code>.
+    The same long sentence was also correct in 3/3 runs when typed quickly after pressing F2 to open the cell.
+    On Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package), in a GLFW app through Xwayland
+    (a text box built with LWJGL 3.4.1 and GLFW 3.5.0, like Minecraft Java):
+    <code>tieengs</code>, Backspace, <code> vieetj</code> → <code>tiến việt</code>;
+    <code>tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam</code> →
+    <code>tiếng việt là ngôn ngữ của người việt nam</code>, correct in 3/3 runs.
+    On Ubuntu 26.04 in Chrome, typing <code>tieen</code> then Enter in a chat field was correct in
+    3/3 runs; typing then pressing Tab to another field was correct in 3/3 runs.
+    In GNOME Text Editor, the 13-word sentence
+    <code>tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif</code> →
+    <code>tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi</code> was correct in 3/3 runs.
+    The settings window (#212, #249, #250, #252, #253) and the KDE install command (#251) were not
+    retested with the 1.5.6 package; CachyOS, Fedora, Debian, openSUSE and Kali have not been tried
+    with 1.5.6.
+  </p>
+  <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
     <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
@@ -331,7 +365,9 @@ const levels: Record<Level, string> = {
   <p>
     Not fixed: SDL games not running on X11 ignore forwarded keys and get text without tone marks, and the
     snap build of VS Code types raw Telex; the workaround routes it through XIM, where about one sentence
-    in ten gets a wrong tone mark. Telex is the method used and tested daily; VNI and the other methods
+    in ten gets a wrong tone mark. In Preedit mode on GNOME Wayland, Chrome and Chromium-based apps
+    running natively on Wayland lose the word being typed on a mouse click until the distribution
+    ships fcitx5 5.1.20. Telex is the method used and tested daily; VNI and the other methods
     work but have not been tested closely.
   </p>
   <p>
