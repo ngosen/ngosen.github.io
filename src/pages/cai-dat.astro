@@ -12,6 +12,7 @@ const toc = [
   { id: 'loi-ghep-dau', label: 'Lõi ghép dấu: Rust hay Go', level: 3 as const },
   { id: 'sau-khi-cai', label: 'Cài xong' },
   { id: 'ubuntu-26-04', label: 'Ubuntu 26.04: extension sửa lỗi gõ', level: 3 as const },
+  { id: 'gnome-wayland-click', label: 'GNOME Wayland: click chuột mất chữ đang gõ', level: 3 as const },
   { id: 'vs-code', label: 'Ubuntu: VS Code', level: 3 as const },
   { id: 'cap-nhat', label: 'Cập nhật' },
   { id: 'repo-goi', label: 'Cập nhật qua trình quản lý gói', level: 3 as const },
@@ -47,7 +48,9 @@ const toc = [
       Trên GNOME, KDE Plasma (Wayland) và các desktop X11 chọn bộ gõ bằng im-config, như Xfce, Cinnamon,
       MATE (MX Linux, Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản và thêm Ngó Sen vào danh sách bộ gõ.
       Trên KDE Plasma, lệnh cài còn chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual
-      Keyboard) để app Qt như Kate, Dolphin cũng gõ được. Lệnh cài không đổi phím bật tiếng Việt: dùng
+      Keyboard) để app Qt như Kate, Dolphin cũng gõ được. Trên KDE Plasma, lệnh cài còn đặt
+      <code>XMODIFIERS</code> để app X11 qua Xwayland, như Minecraft version cũ, gõ được tiếng Việt.
+      Lệnh cài không đổi phím bật tiếng Việt: dùng
       Ctrl+Space, phím mặc định của fcitx5. Máy đã được version cũ đặt Ctrl+Shift thì vẫn giữ nguyên Ctrl+Shift.
     </li>
   </ol>
@@ -167,6 +170,19 @@ const toc = [
     >) thì tắt extension:
   </p>
   <pre tabindex="0"><code>gnome-extensions disable forward-keys@ngosen.github.io</code></pre>
+
+  <h3 id="gnome-wayland-click">GNOME Wayland: click chuột mất chữ đang gõ</h3>
+  <p>
+    Ở chế độ Preedit, Chrome, Chromium và app dựa trên Chromium (Edge, Brave, app Electron) chạy thẳng
+    trên GNOME Wayland mất chữ đang gõ khi click chuột vào cùng ô hay ô khác. App GTK và app
+    trên X11 không bị.
+  </p>
+  <p>
+    fcitx5 5.1.19 trở về trước bảo GNOME Shell bỏ chữ đang gõ khi app reset; version 5.1.20 đã sửa.
+    Ubuntu 24.04, Ubuntu 26.04, Debian 13 và openSUSE Tumbleweed còn fcitx5 cũ. Đã nhờ Ubuntu đưa bản sửa vào
+    (<a href="https://bugs.launchpad.net/ubuntu/+source/fcitx5/+bug/2172006">báo lỗi trên Launchpad</a>).
+    Trong lúc chờ, dùng Gõ Sen hoặc gõ xong chữ bằng phím cách rồi mới click chuột.
+  </p>
 
   <h3 id="vs-code">Ubuntu: VS Code</h3>
   <p>

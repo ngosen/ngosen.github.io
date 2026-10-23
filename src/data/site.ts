@@ -27,6 +27,44 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.5.6-1',
+    date: '23/10/2026',
+    summary:
+      'Sửa lỗi Gõ Sen trong Google Sheets trên X11 với trình duyệt dựa trên Chromium, trong app GLFW qua Xwayland như Minecraft Java và lỗi lệnh cài trên KDE Plasma Wayland.',
+    changes: [
+      {
+        claim: 'Gõ Sen trong Google Sheets trên X11 với trình duyệt dựa trên Chromium không còn nhảy, mất chữ.',
+        source: 'Đã test trên Linux Mint 22.1 (Cinnamon X11), Chromium: gõ thẳng vào ô rồi Enter, gõ nhanh (30 ms giữa các phím), sửa chữ bằng Backspace và gõ nhanh sau khi bấm F2 mở ô. Mỗi trường hợp đúng 3/3 lượt (#258, #261).',
+        pr: 258,
+      },
+      {
+        claim: 'Sửa lỗi thêm dấu sau Backspace khi dùng Gõ Sen trong app GLFW qua Xwayland như Minecraft Java.',
+        source: 'Trước đây sau khi bấm Backspace một lần, thêm dấu có thể ra chữ sai như `tieengs` ra `tieêngếng`.',
+        pr: 247,
+      },
+      {
+        claim: 'Lệnh cài trên KDE Plasma Wayland đặt `XMODIFIERS` để app X11 qua Xwayland gõ được tiếng Việt.',
+        source: 'Trước đây app như Minecraft 26.2 trở về trước hay xterm chỉ ra chữ Telex thô. Đăng xuất rồi đăng nhập lại để áp dụng.',
+        pr: 251,
+      },
+      {
+        claim: 'Trang “Giới thiệu” cảnh báo khi fcitx5 còn dùng version cũ sau khi cập nhật gói Ngó Sen.',
+        source: 'Dòng đỏ dưới số version nhắc đăng xuất rồi đăng nhập lại; “Kiểm tra máy tôi…” cũng liệt kê tình trạng này là cảnh báo. Trước đây trang đã hiện số version mới dù fcitx5 vẫn dùng version cũ để gõ.',
+        pr: 212,
+      },
+      {
+        claim: 'Log gõ lưu từ menu khay giữ được đoạn gõ dài hơn.',
+        source: 'Không lưu nội dung ô giống hệt lần báo ngay trước. Với một log thực tế từ Edge, 401 dòng còn 118 dòng, nên log giữ được đoạn gõ dài gấp khoảng ba lần.',
+        pr: 213,
+      },
+      {
+        claim: 'Cửa sổ cài đặt không còn cắt chữ, hiện thanh cuộn ngang ở trang “Gõ chữ” khi dùng font hệ thống lớn; sửa mô tả và giao diện trên GNOME.',
+        source: 'Mô tả trang “Giới thiệu” khớp README (#249). Trên GNOME khi chưa cài Qt theme, thanh cuộn mảnh, bo tròn, không có nút mũi tên và theo theme sáng/tối (#252). Với Qt 6.8 trở lên, cửa sổ đổi sáng/tối theo GNOME khi mở và khi chuyển chế độ; Qt cũ hơn vẫn dùng giao diện sáng (#253).',
+        pr: 250,
+      },
+    ],
+  },
+  {
     version: '1.5.5-1',
     date: '21/10/2026',
     summary:
@@ -630,7 +668,12 @@ export const LEVELS_NOTE =
   ' Ubuntu 26.04 và Linux Mint 22.1 (Cinnamon X11, gói “noble”), ô chữ GTK3, macro “VN” → “Việt Nam” và “q” → `“quá”`: gõ “Vn VN q”, Space, Backspace, “s” ra `Việt Nam VIỆT NAM “quá”s` (1.5.4-3 ra `Vn VN “quá”s`). Câu 13 từ “tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif” ra “tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi” trên cả hai máy ảo.' +
   ' Ubuntu 26.04, ô chữ GTK3: click vào trong văn bản ngay sau khi gõ vẫn được nhận là click, đúng 2/2 lượt và thêm một lượt trên gói cuối.' +
   ' Linux Mint 22.1, xterm: mở lại từ cuối vẫn được, “vieetj”, Space, Backspace, “s” → “viết”; với VNI Windows, “ban”, Space, Backspace, “f” → “baøn”.' +
-  ' CachyOS, Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.5.';
+  ' CachyOS, Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.5.' +
+  ' Gói 1.5.6 từ PR phát hành #268 được gõ thử trên máy ảo ngày 23/10/2026, dùng Gõ Sen, Telex.' +
+  ' Linux Mint 22.1 (Cinnamon X11, gói “noble”), Chromium, Google Sheets: gõ thẳng vào ô rồi Enter, mỗi trường hợp đúng 3/3 lượt: “dduowcj” → “được”; câu “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam” gõ nhanh (30 ms giữa các phím) → “tiếng việt là ngôn ngữ của người việt nam”; “Haf Nooij ddeens 2026 thangs 10” → “Hà Nội đến 2026 tháng 10”; “toan”, Backspace, “s” → “toán”; “duyeet”, 5 Backspace, “yeejt” → “duyệt”. Câu dài trên cũng đúng 3/3 lượt khi gõ nhanh sau khi bấm F2 mở ô.' +
+  ' Ubuntu 26.04 (GNOME Wayland, gói “resolute”), app GLFW chạy qua Xwayland (hộp chữ dựng bằng LWJGL 3.4.1, GLFW 3.5.0, giống Minecraft Java): “tieengs”, Backspace, “ vieetj” → “tiến việt”; câu “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam” → “tiếng việt là ngôn ngữ của người việt nam”, đúng 3/3 lượt.' +
+  ' Ubuntu 26.04, Chrome: gõ “tieen” rồi Enter trong ô chat đúng 3/3 lượt; gõ rồi Tab sang ô khác đúng 3/3 lượt. GNOME Text Editor: câu 13 từ “tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif” → “tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi”, đúng 3/3 lượt.' +
+  ' Cửa sổ cài đặt (#212, #249, #250, #252, #253) và lệnh cài trên KDE (#251) không được test lại trên gói 1.5.6; CachyOS, Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.6.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
