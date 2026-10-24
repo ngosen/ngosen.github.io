@@ -37,50 +37,55 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.5.6-1 fixes Gõ Sen in Google Sheets on X11 with Chromium-based browsers, in GLFW apps
-    through Xwayland such as Minecraft Java, and the install command on KDE Plasma Wayland.
+    Version 1.5.7-1 fixes opening and saving settings, adding diacritics and key order with Gõ Sen
+    in Firefox, and having to press Enter twice to send on gemini.google.com with Preedit.
   </p>
   <ul>
     <li>
-      Gõ Sen no longer jumps or loses text in Google Sheets on X11 with Chromium-based browsers.
-      Tested on Linux Mint 22.1 (Cinnamon X11) in Chromium: typing directly into a cell then pressing
-      Enter, fast typing (30 ms between keys), Backspace corrections, and fast typing after pressing
-      F2 to open the cell. Each case was correct in 3/3 runs
-      (<a href={`${REPO}/pull/258`}>#258</a>, <a href={`${REPO}/pull/261`}>#261</a>).
+      The settings window opens from the tray menu on KDE Plasma Wayland when both PyQt5 and PyQt6
+      are installed. Previously, it closed immediately if another package had installed PyQt5.
+      Tested on CachyOS with both PyQt5 and PyQt6: the window opened and was still running after
+      10 seconds (<a href={`${REPO}/pull/278`}>#278</a>).
     </li>
     <li>
-      Fixed adding diacritics after Backspace in Gõ Sen in GLFW apps through Xwayland such as
-      Minecraft Java. Previously, after pressing Backspace once, adding diacritics could produce
-      incorrect text such as <code>tieengs</code> giving <code>tieêngếng</code>
-      (<a href={`${REPO}/pull/247`}>#247</a>).
+      Settings changes are saved when fcitx5 restarts while the settings window is open.
+      Previously, the window said “Đã lưu” (saved) without saving anything. This was not retested
+      with the 1.5.7 package (<a href={`${REPO}/pull/279`}>#279</a>).
     </li>
     <li>
-      The install command on KDE Plasma Wayland sets <code>XMODIFIERS</code> so X11 apps through
-      Xwayland can type Vietnamese. Previously, apps such as Minecraft 26.2 and earlier or xterm
-      produced raw Telex. Log out and back in to apply the change
-      (<a href={`${REPO}/pull/251`}>#251</a>).
+      The .deb package no longer installs PyQt6 dependencies that the settings window does not use.
+      On a clean Ubuntu 26.04 installation, the additional space beyond fcitx5 dropped from about
+      456 MB to 22 MB. The size was not retested with the 1.5.7 package; the .deb dependencies were
+      re-read, leaving only <code>python3-pyqt6</code>. Use <code>sudo apt autoremove</code> to remove
+      previously installed packages if no other package needs them
+      (<a href={`${REPO}/pull/280`}>#280</a>).
     </li>
     <li>
-      The About page warns when fcitx5 is still using the old version after a package update.
-      A red line below the version number asks you to log out and back in; “Kiểm tra máy tôi…”
-      also lists this as a warning. Previously, the page showed the new version number even while
-      fcitx5 was still using the old version for typing (<a href={`${REPO}/pull/212`}>#212</a>).
+      Gõ Sen adds diacritics correctly after deleting a space in Firefox rich-text fields.
+      Previously, <code>toan</code>, Space, Backspace, then <code>s</code> gave <code>toans</code>
+      instead of <code>toán</code>. Tested in Firefox X11 (Linux Mint) and ordinary text fields
+      on CachyOS; Firefox installed as a snap on Ubuntu 26.04 still gives <code>toans</code>,
+      as in 1.5.6 (<a href={`${REPO}/pull/285`}>#285</a>).
     </li>
     <li>
-      Typing logs saved from the tray menu keep a longer stretch of typing by skipping field
-      contents identical to the previous report. One real Edge log shrank from 401 lines to 118,
-      letting the log keep roughly three times as much typing
-      (<a href={`${REPO}/pull/213`}>#213</a>).
+      Preedit mode on gemini.google.com sends with one press of Enter. Previously, the first press
+      inserted a new line and a second press was needed to send. Tested in Firefox on Ubuntu 26.04;
+      on Linux Mint without signing in to Gemini, <code>xin chaof</code> followed by one press
+      of Enter sent the message, correctly in 3/3 runs (<a href={`${REPO}/pull/286`}>#286</a>).
     </li>
     <li>
-      The settings window no longer clips text or shows a horizontal scrollbar on the typing page
-      with large system fonts (<a href={`${REPO}/pull/250`}>#250</a>).
-      The About description matches the README (<a href={`${REPO}/pull/249`}>#249</a>).
-      On GNOME without a Qt theme installed, scrollbars are thin and rounded, have no arrow buttons,
-      and follow the light or dark theme (<a href={`${REPO}/pull/252`}>#252</a>).
-      With Qt 6.8 or newer, the window follows GNOME's light or dark mode when opened and when the
-      mode changes; older Qt versions keep the light interface
-      (<a href={`${REPO}/pull/253`}>#253</a>).
+      Fast typing with Gõ Sen in Firefox X11 keeps keys in the order typed. Previously, a space or
+      letter after a word with a newly added diacritic could appear inside the word, turning
+      <code>tiếng việt</code> into <code>ti ếngvi ệt</code> in ordinary text fields, TinyMCE and Lexical.
+      Tested on Linux Mint 22.1 with 120 ms and 30 ms between keys
+      (<a href={`${REPO}/pull/289`}>#289</a>).
+    </li>
+    <li>
+      Gõ Sen adds diacritics correctly after Backspace deletes a space in xterm.js terminals in
+      Firefox X11. Previously, <code>toan</code>, Space, Backspace, then <code>s</code> gave
+      <code>toans</code> instead of <code>toán</code>. Tested in xterm.js in Firefox X11 (Linux Mint),
+      correctly in 4/4 runs; Chromium on X11 already typed correctly
+      (<a href={`${REPO}/pull/292`}>#292</a>).
     </li>
   </ul>
 
@@ -354,6 +359,32 @@ const levels: Record<Level, string> = {
     The settings window (#212, #249, #250, #252, #253) and the KDE install command (#251) were not
     retested with the 1.5.6 package; CachyOS, Fedora, Debian, openSUSE and Kali have not been tried
     with 1.5.6.
+  </p>
+  <p>
+    The 1.5.7 package from release PR #293 was tried in virtual machines on 24 October 2026,
+    using Gõ Sen and Telex except for the Preedit run noted below.
+    On Linux Mint 22.1 (Cinnamon X11, <code>noble</code> package), in Firefox ordinary text fields,
+    contenteditable fields, TinyMCE and Lexical, the sentence
+    <code>tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam</code> typed with 120 ms and 30 ms
+    between keys gave <code>tiếng việt là ngôn ngữ của người việt nam</code>;
+    <code>toan</code>, Space, Backspace, <code>s</code> → <code>toán</code>.
+    Results were correct in 11/12 runs; in the remaining run, the Lexical page reported an empty field
+    rather than incorrect text, and retrying was correct in 3/3 runs.
+    In an xterm.js terminal, <code>toan</code>, Space, Backspace, <code>s</code> → <code>toán</code>
+    was correct in 4/4 runs. On gemini.google.com without signing in, in Preedit mode,
+    <code>xin chaof</code> followed by one press of Enter sent the message, correctly in 3/3 runs.
+    On CachyOS (KDE Plasma Wayland, Arch package), in ordinary text fields in Firefox and Chromium,
+    the same sentence typed with 120 ms and 30 ms between keys, and
+    <code>toan</code>, Space, Backspace, <code>s</code> → <code>toán</code>, were correct in 12/12 runs;
+    an earlier first run just after Firefox opened failed in 2 cases because the virtual machine stalled.
+    Both PyQt5 and PyQt6 were installed; the settings window opened and was still running after 10 seconds.
+    On Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package), the settings window opened;
+    in an ordinary text field in Firefox installed as a snap, the same sentence was correct at both speeds.
+    <code>toan</code>, Space, Backspace, <code>s</code> gave <code>toans</code> in 3/3 runs, as did
+    1.5.6 on the same machine: the snap build of Firefox still has the backspace-across-space bug.
+    Saving settings when fcitx5 restarts while the window is open (#279) and the installation size on
+    clean Ubuntu (#280) were not retested with the 1.5.7 package; the .deb dependencies were re-read,
+    leaving only <code>python3-pyqt6</code>. Fedora, Debian, openSUSE and Kali have not been tried with 1.5.7.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

@@ -29,6 +29,49 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.5.7-1',
+    date: '24/10/2026',
+    summary:
+      'Sửa lỗi mở và lưu cài đặt, thêm dấu và thứ tự phím với Gõ Sen trên Firefox, cùng lỗi phải bấm Enter hai lần để gửi trên gemini.google.com với Preedit.',
+    changes: [
+      {
+        claim: 'Cửa sổ cài đặt mở được từ menu khay trên KDE Plasma Wayland khi máy có cả PyQt5 và PyQt6.',
+        source: 'Trước đây cửa sổ đóng ngay khi mở nếu gói khác đã cài PyQt5. Đã test trên CachyOS có cả PyQt5 và PyQt6: cửa sổ mở được và vẫn chạy sau 10 giây.',
+        pr: 278,
+      },
+      {
+        claim: 'Thay đổi cài đặt được lưu khi fcitx5 khởi động lại lúc cửa sổ cài đặt đang mở.',
+        source: 'Trước đây cửa sổ báo “Đã lưu” nhưng không lưu gì. Không được test lại trên gói 1.5.7.',
+        pr: 279,
+      },
+      {
+        claim: 'Gói .deb không còn cài các phụ thuộc PyQt6 mà cửa sổ cài đặt không dùng.',
+        source: 'Trên Ubuntu 26.04 sạch, dung lượng cài thêm ngoài fcitx5 giảm từ khoảng 456 MB xuống 22 MB. Dung lượng không được test lại trên gói 1.5.7; phụ thuộc của gói .deb đã được đọc lại, chỉ còn `python3-pyqt6`; dùng `sudo apt autoremove` để gỡ các gói đã cài nếu không còn gói nào khác cần chúng.',
+        pr: 280,
+      },
+      {
+        claim: 'Gõ Sen thêm dấu đúng sau khi xoá dấu cách trong ô soạn thảo có định dạng trên Firefox.',
+        source: 'Trước đây gõ `toan`, dấu cách, Backspace rồi `s` ra `toans` thay vì `toán`. Đã test trên Firefox X11 (Linux Mint) và ô chữ thường trên CachyOS; Firefox cài từ snap trên Ubuntu 26.04 vẫn ra `toans`, như 1.5.6.',
+        pr: 285,
+      },
+      {
+        claim: 'Chế độ Preedit trên gemini.google.com gửi được khi bấm Enter một lần.',
+        source: 'Trước đây Enter lần đầu xuống dòng, phải bấm lần hai để gửi. Đã test trên Firefox ở Ubuntu 26.04; trên Linux Mint với Gemini không đăng nhập, gõ `xin chaof` rồi Enter một lần là gửi, đúng 3/3 lượt.',
+        pr: 286,
+      },
+      {
+        claim: 'Gõ nhanh với Gõ Sen trên Firefox X11 giữ đúng thứ tự phím.',
+        source: 'Trước đây dấu cách hoặc chữ sau từ vừa thêm dấu có thể chen vào giữa từ, như `tiếng việt` thành `ti ếngvi ệt`, trong ô chữ thường, TinyMCE và Lexical. Đã test trên Linux Mint 22.1 với 120 ms và 30 ms giữa các phím.',
+        pr: 289,
+      },
+      {
+        claim: 'Gõ Sen thêm dấu đúng sau Backspace xoá dấu cách trong terminal dùng xterm.js trên Firefox X11.',
+        source: 'Trước đây gõ `toan`, dấu cách, Backspace rồi `s` ra `toans` thay vì `toán`. Đã test trong xterm.js trên Firefox X11 (Linux Mint), đúng 4/4 lượt; Chromium X11 đã gõ đúng từ trước.',
+        pr: 292,
+      },
+    ],
+  },
+  {
     version: '1.5.6-1',
     date: '23/10/2026',
     summary:
@@ -675,7 +718,12 @@ export const LEVELS_NOTE =
   ' Linux Mint 22.1 (Cinnamon X11, gói “noble”), Chromium, Google Sheets: gõ thẳng vào ô rồi Enter, mỗi trường hợp đúng 3/3 lượt: “dduowcj” → “được”; câu “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam” gõ nhanh (30 ms giữa các phím) → “tiếng việt là ngôn ngữ của người việt nam”; “Haf Nooij ddeens 2026 thangs 10” → “Hà Nội đến 2026 tháng 10”; “toan”, Backspace, “s” → “toán”; “duyeet”, 5 Backspace, “yeejt” → “duyệt”. Câu dài trên cũng đúng 3/3 lượt khi gõ nhanh sau khi bấm F2 mở ô.' +
   ' Ubuntu 26.04 (GNOME Wayland, gói “resolute”), app GLFW chạy qua Xwayland (hộp chữ dựng bằng LWJGL 3.4.1, GLFW 3.5.0, giống Minecraft Java): “tieengs”, Backspace, “ vieetj” → “tiến việt”; câu “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam” → “tiếng việt là ngôn ngữ của người việt nam”, đúng 3/3 lượt.' +
   ' Ubuntu 26.04, Chrome: gõ “tieen” rồi Enter trong ô chat đúng 3/3 lượt; gõ rồi Tab sang ô khác đúng 3/3 lượt. GNOME Text Editor: câu 13 từ “tieengs vieetj xin chaof cacs banj hoom nay trowif ddepj quas ddungs rooif” → “tiếng việt xin chào các bạn hôm nay trời đẹp quá đúng rồi”, đúng 3/3 lượt.' +
-  ' Cửa sổ cài đặt (#212, #249, #250, #252, #253) và lệnh cài trên KDE (#251) không được test lại trên gói 1.5.6; CachyOS, Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.6.';
+  ' Cửa sổ cài đặt (#212, #249, #250, #252, #253) và lệnh cài trên KDE (#251) không được test lại trên gói 1.5.6; CachyOS, Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.6.' +
+  ' Gói 1.5.7 từ PR phát hành #293 được gõ thử trên máy ảo ngày 24/10/2026, dùng Gõ Sen, Telex, trừ lượt Preedit ghi riêng bên dưới.' +
+  ' Linux Mint 22.1 (Cinnamon X11, gói “noble”), Firefox, ô chữ thường, ô contenteditable, TinyMCE và Lexical: câu “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam” gõ 120 ms và 30 ms giữa các phím → “tiếng việt là ngôn ngữ của người việt nam”; “toan”, dấu cách, Backspace, “s” → “toán”. Đúng 11/12 lượt; lượt còn lại trang Lexical báo ô trống chứ không ra chữ sai, gõ lại 3/3 lượt đúng. Terminal xterm.js: “toan”, dấu cách, Backspace, “s” → “toán”, đúng 4/4 lượt. gemini.google.com không đăng nhập, chế độ Preedit: gõ “xin chaof” rồi Enter một lần là gửi, đúng 3/3 lượt.' +
+  ' CachyOS (KDE Plasma Wayland, gói Arch): ô chữ thường trong Firefox và Chromium, câu trên gõ 120 ms và 30 ms, “toan”, dấu cách, Backspace, “s” → “toán”, đúng 12/12 lượt; trước đó lượt đầu ngay sau khi Firefox mới mở sai 2 ca do máy ảo khựng. Máy có cả PyQt5 và PyQt6; cửa sổ cài đặt mở được và vẫn chạy sau 10 giây.' +
+  ' Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cửa sổ cài đặt mở được; Firefox snap, ô chữ thường: câu trên đúng ở cả hai tốc độ. “toan”, dấu cách, Backspace, “s” ra “toans” (3/3 lượt, 1.5.6 trên cùng máy cũng vậy): Firefox bản snap vẫn chưa được sửa lỗi xoá qua dấu cách.' +
+  ' Lưu cài đặt khi fcitx5 khởi động lại lúc cửa sổ đang mở (#279) và dung lượng cài trên Ubuntu sạch (#280) không được test lại trên gói 1.5.7; phụ thuộc của gói .deb đã được đọc lại, chỉ còn “python3-pyqt6”. Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.7.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
