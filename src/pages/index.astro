@@ -19,8 +19,9 @@ const notFixed = [
   'Kiểu gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.',
 ];
 
+// WebSite gives Google the site name; without it a github.io page is shown as "GitHub".
 // Only facts the README states: no ratings or reviews, which Google would need for a rich result.
-const jsonLd = {
+const app = {
   '@type': 'SoftwareApplication',
   name: 'Ngó Sen',
   description: 'Bộ gõ tiếng Việt cho fcitx5 trên Linux.',
@@ -33,11 +34,14 @@ const jsonLd = {
   inLanguage: 'vi',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'VND' },
 };
+const jsonLd = {
+  '@graph': [{ '@type': 'WebSite', name: 'Ngó Sen', url: 'https://ngosen.github.io/', inLanguage: 'vi' }, app],
+};
 ---
 
 <Base
   title="Ngó Sen: bộ gõ tiếng Việt cho Linux"
-  description="Bộ gõ tiếng Việt cho fcitx5 trên Linux. Cài bằng một dòng lệnh, ghi rõ đã test trên distro nào."
+  description="Ngó Sen là bộ gõ tiếng Việt cho fcitx5 trên Linux, gõ như UniKey trên Windows. Chế độ Gõ Sen đưa chữ thẳng vào hầu hết app, không gạch chân."
   wordmark={false}
   jsonLd={jsonLd}
 >
