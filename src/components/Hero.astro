@@ -32,11 +32,12 @@ const firstText = first?.steps.at(-1) ?? '';
           aria-describedby="go-thu-ghi-chu"
         />
       </div>
-      <p class="status" id="go-thu-ghi-chu" data-demo-status>
+      <!-- A div because Google honours data-nosnippet only on div, span and section; it kept quoting this note. -->
+      <div class="status" id="go-thu-ghi-chu" data-demo-status data-nosnippet>
         Tắt bộ gõ tiếng Việt trên máy trước khi gõ. Ô này ghép dấu bằng bamboo-core bản Go; gói Ngó Sen dùng bản
         Go hoặc Rust tuỳ distro, gõ ra chữ như nhau. Trang web chỉ thử được phần ghép dấu, còn đưa chữ vào đúng chỗ trong
         từng app thì phải cài Ngó Sen.
-      </p>
+      </div>
     </div>
 
     <aside class="tested" aria-labelledby="diem-noi-bat">
