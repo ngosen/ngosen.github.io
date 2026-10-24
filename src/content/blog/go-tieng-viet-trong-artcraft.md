@@ -4,8 +4,8 @@ description: "Kết quả test Ngó Sen trong ArtCraft trên Ubuntu 26.04 GNOME 
 pubDate: 2026-10-24
 ---
 
-Nếu dùng Ngó Sen để gõ tiếng Việt trong ArtCraft, bạn có thể gặp chữ sai ở một số app.
-Kết quả test trên Ubuntu 26.04 GNOME Wayland ghi nhận sáu app gõ đúng và bốn app gặp lỗi.
+Nếu các bạn quan tâm đến việc gõ tiếng Việt trong ArtCraft, đây là kết quả test của mình với Ngó Sen để các bạn tham khảo.
+Trên Ubuntu 26.04 GNOME Wayland, sáu app gõ đúng và bốn app gặp lỗi.
 ArtCraft là bộ app của storytold trên GitHub, gồm WordCraft, DeckCraft, GridCraft, CADCraft, PdfCraft…
 
 ## Test thế nào
@@ -46,6 +46,6 @@ Với GridCraft, bấm F2 trên ô trước rồi mới gõ. CADCraft chưa có 
 ## Những chỗ chưa test
 
 EffectCraft, FilmCraft, SoundCraft, phiên X11 (Linux Mint…) và KDE Plasma chưa được test
-trong đợt này. Nếu dùng các app hoặc môi trường đó, bạn có thể test rồi báo kết quả tại
+trong đợt này. Nếu dùng các app hoặc môi trường đó, các bạn có thể test rồi báo kết quả tại
 [Ngó Sen #295](https://github.com/ngosen/ngosen/issues/295).
 Bảng trong issue được cập nhật khi app phát hành version có bản sửa.
