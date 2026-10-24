@@ -1,6 +1,6 @@
 ---
 title: "Tổng hợp các bộ gõ tiếng Việt trên Linux và cơ chế gõ"
-description: "Đọc mã 20 bộ gõ tiếng Việt cho Linux: năm cách đưa chữ vào app, mỗi bộ gõ làm gì và ý nào đáng học."
+description: "Đọc mã các bộ gõ tiếng Việt trên Linux, kể cả Ngó Sen: năm cách đưa chữ vào app, vì sao có bộ gõ làm mất chữ, lặp chữ và ý nào đáng học."
 pubDate: 2026-10-08
 updatedDate: 2026-10-19
 ---
