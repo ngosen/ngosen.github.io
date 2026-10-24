@@ -5,6 +5,8 @@ export const ARCHIVE_REPO = 'https://github.com/ngosen/ngosen-fork-archive';
 // Link preview image. Bump the query after re-rendering it: Facebook, Zalo and Telegram cache
 // previews by image URL.
 export const OG_IMAGE = '/og.png?v=3';
+// The project's Facebook Page; it posts new versions and blog posts.
+export const FACEBOOK = 'https://www.facebook.com/profile.php?id=61595753582618';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
 

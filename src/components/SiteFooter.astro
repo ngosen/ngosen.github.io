@@ -1,5 +1,5 @@
 ---
-import { REPO } from '../data/site';
+import { FACEBOOK, REPO } from '../data/site';
 
 const english = Astro.url.pathname.startsWith('/en/');
 ---
@@ -27,6 +27,11 @@ const english = Astro.url.pathname.startsWith('/en/');
         </a>
       </li>
       <li><a href="/rss.xml">RSS của blog</a></li>
+      <li>
+        <a href={FACEBOOK} lang={english ? 'en' : 'vi'}>
+          {english ? 'Facebook (in Vietnamese)' : 'Facebook'}
+        </a>
+      </li>
     </ul>
   </div>
 </footer>
