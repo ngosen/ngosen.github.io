@@ -6,27 +6,31 @@ const toc = [
   { id: 'gach-dai', label: 'Hai gạch nối thành gạch dài' },
   { id: 'dau-cham', label: 'Hai dấu cách thành dấu chấm' },
   { id: 'viet-hoa', label: 'Viết hoa đầu câu' },
+  { id: 'dau-dong', label: 'Viết hoa đầu văn bản và đầu dòng' },
 ];
 ---
 
 <Guide
   title="Tự sửa dấu câu"
-  description="Bật tự sửa dấu câu ở nhóm “Gõ nhanh” trong Ngó Sen. Hai gạch nối thành gạch dài; hai dấu cách thành dấu chấm và viết hoa đầu câu còn là thử nghiệm."
+  description="Bật tự sửa dấu câu và viết hoa ở nhóm “Gõ nhanh” trong Ngó Sen. Hai dấu cách thành dấu chấm và các mục tự viết hoa còn là thử nghiệm."
   toc={toc}
 >
-  <p slot="lede">Ba mục trong nhóm “Gõ nhanh” sửa dấu câu ngay khi gõ. Cả ba tắt sẵn.</p>
+  <p slot="lede">
+    Bốn mục đầu trong nhóm “Gõ nhanh” sửa dấu câu và viết hoa ngay khi gõ. Cả bốn tắt sẵn.
+    Hai mục còn lại là <a href="/huong-dan/cuu-chu-cuu-dau/">Cứu chữ và Cứu dấu</a>.
+  </p>
 
   <ol class="steps">
     <li>Vào “Cài đặt Ngó Sen › Gõ chữ”, kéo xuống nhóm “Gõ nhanh”.</li>
     <li>Chọn mục cần dùng. Đổi xong có tác dụng ngay.</li>
-    <li>Gõ thử ở ô “Gõ thử” ngay bên dưới.</li>
+    <li>Gõ thử ở ô “Gõ vào đây để test” cuối trang.</li>
   </ol>
   <Shot
     name="guide-fast"
-    width={480}
-    height={190}
-    alt="Nhóm Gõ nhanh: Hai gạch nối thành gạch dài đang chọn, hai mục thử nghiệm còn lại tắt; ô Gõ thử bên dưới có Hà Nội — Huế."
-    caption="“Hai gạch nối thành gạch dài” đang chọn, ô “Gõ thử” ra “Hà Nội — Huế”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+    width={505}
+    height={215}
+    alt="Bốn mục đầu nhóm Gõ nhanh: Hai dấu cách thành dấu chấm (thử nghiệm), Hai gạch nối thành gạch dài, Tự viết hoa đầu câu (thử nghiệm), Tự viết hoa chữ đầu văn bản và đầu dòng (thử nghiệm)."
+    caption="Các mục sửa dấu câu và tự viết hoa trong nhóm “Gõ nhanh”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
   />
 
   <h2 id="gach-dai">Hai gạch nối thành gạch dài</h2>
@@ -47,11 +51,25 @@ const toc = [
     <code>ban? tooi</code> ra <code>ban? Tôi</code>.
   </p>
   <p>
-    Bật cùng “Hai dấu cách thành dấu chấm” thì chữ sau hai dấu cách cũng viết hoa: <code>tooi</code>,
+    Bật cùng “Hai dấu cách thành dấu chấm (thử nghiệm)” thì chữ sau hai dấu cách cũng viết hoa: <code>tooi</code>,
     <kbd>Space</kbd>, <kbd>Space</kbd>, <code>ddi</code> ra <code>tôi. Đi</code>.
   </p>
   <p>
     Từ version 1.5.1, trong app GTK như xed, chữ đầu dòng sau <kbd>Enter</kbd> cũng viết hoa, kể cả khi dòng trên
     không có dấu chấm: <code>ban tooi</code>, <kbd>Enter</kbd>, <code>xin</code> ra <code>Xin</code> ở dòng mới.
+  </p>
+  <h2 id="dau-dong">Viết hoa đầu văn bản và đầu dòng</h2>
+  <p>
+    “Tự viết hoa chữ đầu văn bản và đầu dòng (thử nghiệm)” là mục thử nghiệm, tắt sẵn. Bật lên rồi gõ
+    <code>xin chaof</code>, <kbd>Enter</kbd>, <code>ban</code> trong ô trống của xed thì ra
+    <code>Xin chào</code> và <code>Ban</code> ở dòng mới.
+  </p>
+  <p>
+    Mục này không áp dụng ở thanh địa chỉ, ô mật khẩu hay app không cho bộ gõ đọc chữ trong ô. Trên GNOME 47
+    trở lên, Chrome và app tương tự chưa viết hoa ở ô trống.
+  </p>
+  <p>
+    Menu khay có mục “Tự viết hoa” để bật, tắt nhanh từng kiểu: “Sau dấu . ! ? và Enter” và
+    “Đầu văn bản, đầu dòng”. Có thể tắt ở đây khi gõ lệnh trong terminal.
   </p>
 </Guide>

@@ -28,31 +28,30 @@ const toc = [
     <li>Ở trang “Gõ chữ”, chọn kiểu gõ ở hàng “Kiểu gõ”. Mặc định là Telex.</li>
     <li>Chọn bảng mã ở hàng “Bảng mã”. Mặc định là Unicode; thường không cần đổi.</li>
     <li>
-      Gõ thử ở ô “Gõ vào đây để test” cuối trang. Ô này cũng cần bật tiếng Việt bằng <kbd>Ctrl+Space</kbd>.
+      Gõ thử ở ô “Gõ vào đây để test” cuối trang. Ô này cũng cần bật tiếng Việt bằng
+      <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>.
     </li>
   </ol>
   <Shot
-    name="settings"
-    width={750}
-    height={500}
+    name="guide-typing"
+    width={505}
+    height={255}
     alt="Cửa sổ cài đặt Ngó Sen, trang Gõ chữ: hàng nút Chế độ gõ với Gõ Sen đang chọn, Kiểu gõ Telex, Bảng mã Unicode."
-    caption="Trang “Gõ chữ”: “Kiểu gõ” và “Bảng mã” nằm ngay dưới hàng chế độ gõ. CachyOS (GNOME), giao diện Breeze."
+    caption="Trang “Gõ chữ” với “Kiểu gõ” và “Bảng mã”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
   />
   <p>
     Đổi gì lưu ngay, không cần click nút lưu. Đầu trang hiện dòng “Đã lưu” kèm tên cài đặt vừa đổi; muốn quay
     lại thì click “Hoàn tác” ở dòng đó.
   </p>
-  <Shot
-    name="saved"
-    width={750}
-    height={500}
-    alt="Dòng “Đã lưu Kiểm tra chính tả” ở đầu trang Gõ chữ, bên phải là nút Hoàn tác."
-    caption="Dòng “Đã lưu” và nút “Hoàn tác” sau khi đổi một cài đặt."
-  />
   <p>Bảng mã cũng đổi được từ khay: click chuột phải vào icon, mục “Bảng mã”.</p>
+  <p>
+    Menu khay còn có mục “Kiểu gõ” với Telex và VNI. Chọn một mục thì đổi ngay và được lưu như khi chọn
+    trong cửa sổ cài đặt: chọn VNI, gõ <code>vie65t</code> ra <code>việt</code>. Các kiểu gõ khác vẫn chọn ở “Gõ chữ”.
+  </p>
   <p>Telex là kiểu gõ được dùng và test hằng ngày. VNI và các kiểu khác dùng được nhưng chưa test kỹ.</p>
 
   <h2 id="bang-ma-khac">Khi nào cần bảng mã khác</h2>
+  <p><a href="/huong-dan/cuu-chu-cuu-dau/">Cứu dấu</a> chỉ chạy với Unicode.</p>
   <p>
     Unicode là cách lưu chữ tiếng Việt mà mọi app và mọi máy bây giờ đều đọc được. Gõ bằng Unicode thì gửi
     cho ai, mở ở đâu cũng ra đúng chữ.

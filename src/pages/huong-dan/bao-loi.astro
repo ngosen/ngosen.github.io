@@ -11,7 +11,7 @@ const toc = [
 
 <Guide
   title="Báo lỗi"
-  description="Lưu nhật ký gõ của Ngó Sen ngay khi gõ ra chữ sai, kiểm tra máy bằng nút Kiểm tra máy tôi, rồi báo lỗi bằng mẫu trong mục Issues trên GitHub."
+  description="Lưu nhật ký gõ từ menu khay hoặc bằng lệnh ngosen-save-log, kiểm tra máy rồi báo lỗi bằng mẫu trong mục Issues trên GitHub."
   toc={toc}
 >
   <p slot="lede">
@@ -26,13 +26,15 @@ const toc = [
   </ol>
   <Shot
     name="guide-log"
-    width={377}
-    height={374}
-    alt="Menu chuột phải của icon Ngó Sen trên khay, có dòng Lưu nhật ký gõ."
-    caption="Menu của fcitx5 khi click chuột phải vào icon Ngó Sen, có dòng “Lưu nhật ký gõ”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+    width={378}
+    height={415}
+    alt="Menu chuột phải của icon Ngó Sen trên khay, có các mục Kiểu gõ, Bảng mã, Tự viết hoa và dòng Lưu nhật ký gõ."
+    caption="Menu khi click chuột phải vào icon Ngó Sen, có dòng “Lưu nhật ký gõ”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
   />
+  <p>Icon hay menu khay bị mất hoặc đứng thì chạy lệnh sau trong terminal:</p>
+  <pre tabindex="0"><code>ngosen-save-log</code></pre>
   <p>
-    File được lưu vào <code>~/.local/state/ngosen/</code>, tên dạng <code>typing-20261018-124826.log</code>. Trong đó
+    File được lưu vào <code>~/.local/state/ngosen/typing-&lt;ngày giờ&gt;.log</code>. Chỉ tài khoản của bạn đọc được file. Trong đó
     có vài trăm phím bấm gần nhất, chữ Ngó Sen gửi cho app và chữ app báo lại. Trước lúc lưu, nhật ký chỉ nằm trong bộ
     nhớ; chữ gõ trong ô mật khẩu không được ghi.
   </p>
@@ -46,10 +48,13 @@ const toc = [
   </p>
   <ol class="steps">
     <li>
-      Vào “Cài đặt Ngó Sen › Khác › Giới thiệu”, click “Kiểm tra máy tôi…”. Máy không có lỗi thì cửa sổ ghi “Không
+      Vào “Cài đặt Ngó Sen › Giới thiệu”, click “Kiểm tra máy tôi…”. Máy không có lỗi thì cửa sổ ghi “Không
       thấy lỗi cài đặt nào”.
     </li>
-    <li>Mở app cần test, chuyển sang Ngó Sen và gõ <code>Tieengs Vieetj cos daaus</code>.</li>
+    <li>
+      Mở app cần test, bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>
+      và gõ <code>Tieengs Vieetj cos daaus</code> để ra <code>Tiếng Việt có dấu</code>.
+    </li>
     <li>Click chuột phải vào icon Ngó Sen trên khay, rồi click “Lưu nhật ký gõ”.</li>
     <li>
       Quay lại cửa sổ “Kiểm tra máy tôi”, click “Đọc nhật ký gõ”. App gõ đúng thì cửa sổ ghi tên app kèm “nhận đúng câu
@@ -61,7 +66,7 @@ const toc = [
     width={520}
     height={291}
     alt="Cửa sổ Kiểm tra máy tôi: Không thấy lỗi cài đặt nào, danh sách app đang nối với fcitx5, phần Test một app với dòng xed (dbus) nhận đúng câu mẫu, và các nút Kiểm tra lại, Chép kết quả, Báo cáo lỗi…, Close."
-    caption="Cửa sổ “Kiểm tra máy tôi” sau khi test xed: “xed (dbus) nhận đúng câu mẫu.” Linux Mint 22.1 Cinnamon, version 1.5.1-1."
+    caption="Cửa sổ “Kiểm tra máy tôi” sau khi test xed: “xed (dbus) nhận đúng câu mẫu.” Linux Mint 22.1 Cinnamon, version 1.6.0-1."
   />
   <p>
     Kết quả có cả tên các app đang nối với fcitx5 và sẽ nằm trong báo lỗi, nên đọc qua trước khi gửi. Chưa gửi báo lỗi
@@ -76,10 +81,10 @@ const toc = [
   </p>
   <Shot
     name="guide-about"
-    width={480}
-    height={368}
-    alt="Tab Giới thiệu của cửa sổ cài đặt, có dòng Phiên bản 1.5.1 (Stable), nút Kiểm tra máy tôi… và nút Báo cáo lỗi."
-    caption="Tab “Giới thiệu” với dòng “Phiên bản 1.5.1 (Stable)”, nút “Kiểm tra máy tôi…” và nút “Báo cáo lỗi”. Linux Mint 22.1 Cinnamon, version 1.5.1-1."
+    width={500}
+    height={360}
+    alt="Trang Giới thiệu có logo, tên Ngó Sen, Phiên bản 1.6.0 (Stable), các nút Kiểm tra máy tôi…, Báo cáo lỗi và Đề xuất tính năng."
+    caption="Trang “Giới thiệu” với dòng “Phiên bản 1.6.0 (Stable)”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
   />
   <p>
     Mẫu hỏi lỗi gì, các bước gõ ra lỗi, chữ đáng lẽ ra và chữ thật sự ra, version, cách cài, distro, desktop và kiểu
@@ -87,6 +92,6 @@ const toc = [
   </p>
   <pre tabindex="0"><code>dpkg-query -W fcitx5-ngosen</code></pre>
   <p>
-    Máy test ra <code>fcitx5-ngosen 1:1.5.1-1</code>. Trang “Giới thiệu” ghi gọn hơn: “Phiên bản 1.5.1 (Stable)”.
+    Máy test ra <code>fcitx5-ngosen 1:1.6.0-1</code>. Trang “Giới thiệu” ghi gọn hơn: “Phiên bản 1.6.0 (Stable)”.
   </p>
 </Guide>
