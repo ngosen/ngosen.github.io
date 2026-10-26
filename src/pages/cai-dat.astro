@@ -128,19 +128,32 @@ const toc = [
     Cài bằng lệnh một dòng thì đăng xuất rồi đăng nhập lại, sau đó bấm <kbd>Ctrl+Space</kbd>, phím mặc định
     của fcitx5, để bật tiếng Việt. Máy đã được version cũ đặt Ctrl+Shift vẫn giữ nguyên phím đó.
   </p>
-  <p>Trên desktop khác, hoặc khi cài bằng <code>--no-setup</code> hay tải gói bằng tay, còn ba việc:</p>
+  <p>
+    Trên desktop khác, hoặc khi cài từ repo, bằng <code>--no-setup</code> hay tải gói bằng tay, làm theo
+    các bước dưới đây. Máy chưa từng thiết lập Ngó Sen sẽ chưa gõ được tiếng Việt bằng
+    <kbd>Ctrl+Space</kbd> cho tới khi làm xong.
+  </p>
   <ol>
     <li>
       Khởi động lại fcitx5:
       <pre tabindex="0"><code>fcitx5 -rd</code></pre>
       Trên KDE Wayland: đăng xuất rồi đăng nhập lại thay cho lệnh trên, vì fcitx5 bật bằng <code>fcitx5 -rd</code> không gõ được trong app Qt như Kate, Dolphin.
     </li>
-    <li>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</li>
+    <li>Mở “Cấu hình Fcitx 5” bằng <code>fcitx5-configtool</code>, vào tab bộ gõ và thêm “Ngó Sen” vào danh sách.</li>
+    <li>
+      Với Xfce, Cinnamon, MATE trên Debian/Ubuntu/Mint, chạy <code>im-config -n fcitx5</code>, sau đó
+      đăng xuất rồi đăng nhập lại. Nếu có IBus, bước này giúp fcitx5 khởi động khi đăng nhập và gõ được
+      trong app dùng XIM như PlanMaker.
+    </li>
     <li>
       Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”. Từ version 1.4.1, lệnh cài
       một dòng tự chọn mục này, chỉ khi cài gói bằng tay mới phải làm.
     </li>
   </ol>
+  <p>
+    Lệnh cài một dòng làm cả hai bước thêm Ngó Sen vào danh sách bộ gõ và thiết lập fcitx5.
+    Máy đã dùng lệnh cài một dòng và chỉ thêm repo để cập nhật thì không cần làm thêm.
+  </p>
   <p>
     Trong cửa sổ cài đặt Ngó Sen, trang “Gõ chữ”, chọn <strong>Gõ Sen</strong> ở hàng “Chế độ gõ”. Chế độ
     này đưa chữ thẳng vào app, không gạch chân; trình duyệt, terminal, Zalo và LibreOffice đều dùng Gõ Sen.
@@ -209,7 +222,7 @@ const toc = [
   </p>
   <p>
     Máy đã cài Ngó Sen bằng lệnh một dòng chỉ cần thêm repo. Lệnh cài gói trong mỗi khối dưới đây
-    dành cho máy chưa có Ngó Sen.
+    dành cho máy chưa có Ngó Sen. Cài xong, máy đó làm theo mục <a href="#sau-khi-cai">Cài xong</a>.
   </p>
   <p>
     Các repo dùng chung một key có fingerprint <code>6D4A 2075 F985 3BE8 F6B6 FE7E 7550 1858 158B 36CD</code>.

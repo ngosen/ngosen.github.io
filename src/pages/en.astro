@@ -37,55 +37,18 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.5.7-1 fixes opening and saving settings, adding diacritics and key order with Gõ Sen
-    in Firefox, and having to press Enter twice to send on gemini.google.com with Preedit.
+    Version 1.5.8-1 is a quick fix release for the settings window; users of version 1.5.7 should update.
   </p>
   <ul>
     <li>
-      The settings window opens from the tray menu on KDE Plasma Wayland when both PyQt5 and PyQt6
-      are installed. Previously, it closed immediately if another package had installed PyQt5.
-      Tested on CachyOS with both PyQt5 and PyQt6: the window opened and was still running after
-      10 seconds (<a href={`${REPO}/pull/278`}>#278</a>).
-    </li>
-    <li>
-      Settings changes are saved when fcitx5 restarts while the settings window is open.
-      Previously, the window said “Đã lưu” (saved) without saving anything. This was not retested
-      with the 1.5.7 package (<a href={`${REPO}/pull/279`}>#279</a>).
-    </li>
-    <li>
-      The .deb package no longer installs PyQt6 dependencies that the settings window does not use.
-      On a clean Ubuntu 26.04 installation, the additional space beyond fcitx5 dropped from about
-      456 MB to 22 MB. The size was not retested with the 1.5.7 package; the .deb dependencies were
-      re-read, leaving only <code>python3-pyqt6</code>. Use <code>sudo apt autoremove</code> to remove
-      previously installed packages if no other package needs them
-      (<a href={`${REPO}/pull/280`}>#280</a>).
-    </li>
-    <li>
-      Gõ Sen adds diacritics correctly after deleting a space in Firefox rich-text fields.
-      Previously, <code>toan</code>, Space, Backspace, then <code>s</code> gave <code>toans</code>
-      instead of <code>toán</code>. Tested in Firefox X11 (Linux Mint) and ordinary text fields
-      on CachyOS; Firefox installed as a snap on Ubuntu 26.04 still gives <code>toans</code>,
-      as in 1.5.6 (<a href={`${REPO}/pull/285`}>#285</a>).
-    </li>
-    <li>
-      Preedit mode on gemini.google.com sends with one press of Enter. Previously, the first press
-      inserted a new line and a second press was needed to send. Tested in Firefox on Ubuntu 26.04;
-      on Linux Mint without signing in to Gemini, <code>xin chaof</code> followed by one press
-      of Enter sent the message, correctly in 3/3 runs (<a href={`${REPO}/pull/286`}>#286</a>).
-    </li>
-    <li>
-      Fast typing with Gõ Sen in Firefox X11 keeps keys in the order typed. Previously, a space or
-      letter after a word with a newly added diacritic could appear inside the word, turning
-      <code>tiếng việt</code> into <code>ti ếngvi ệt</code> in ordinary text fields, TinyMCE and Lexical.
-      Tested on Linux Mint 22.1 with 120 ms and 30 ms between keys
-      (<a href={`${REPO}/pull/289`}>#289</a>).
-    </li>
-    <li>
-      Gõ Sen adds diacritics correctly after Backspace deletes a space in xterm.js terminals in
-      Firefox X11. Previously, <code>toan</code>, Space, Backspace, then <code>s</code> gave
-      <code>toans</code> instead of <code>toán</code>. Tested in xterm.js in Firefox X11 (Linux Mint),
-      correctly in 4/4 runs; Chromium on X11 already typed correctly
-      (<a href={`${REPO}/pull/292`}>#292</a>).
+      The settings window saves changes while fcitx5 is running. In version 1.5.7 it saved nothing
+      and showed “Không lưu được” (could not save), even though fcitx5 was running.
+      Tested in virtual machines on Ubuntu 26.04 and CachyOS by calling the window's saving code
+      directly with fcitx5 running, once per machine: changing one main setting and saving one macro,
+      then reading them back; both were saved. With the released 1.5.7-1 package on the same two
+      machines, fcitx5 refused both saves and the settings stayed unchanged. Saving by clicking
+      in the window has not been tested
+      (<a href={`${REPO}/pull/303`}>#303</a>, <a href={`${REPO}/pull/305`}>#305</a>).
     </li>
   </ul>
 
@@ -112,16 +75,32 @@ const levels: Record<Level, string> = {
     Plasma it selects fcitx5 as KDE's virtual keyboard (System Settings, Virtual Keyboard), so Qt apps
     such as Kate and Dolphin can type too.
   </p>
-  <p>On other desktops, or after installing with <code>--no-setup</code> or a package by hand:</p>
+  <p id="after-install">
+    On other desktops, or after installing from a repo, with <code>--no-setup</code> or a package
+    by hand, follow the steps below. On a machine where Ngó Sen has never been set up,
+    Ctrl+Space will not type Vietnamese until these steps are done.
+  </p>
   <ol>
     <li>
       Restart fcitx5 with <code>fcitx5 -rd</code>. Do this again after every update. On KDE Wayland, log
       out and back in instead: fcitx5 started with <code>fcitx5 -rd</code> cannot type in Qt apps such
       as Kate and Dolphin.
     </li>
-    <li>Open “Fcitx5 Configuration” and add the input method named Ngó Sen.</li>
+    <li>
+      Open “Fcitx5 Configuration” with <code>fcitx5-configtool</code>, go to the input method tab
+      and add “Ngó Sen” to the list.
+    </li>
+    <li>
+      On Xfce, Cinnamon or MATE on Debian/Ubuntu/Mint, run <code>im-config -n fcitx5</code>, then log
+      out and back in. If IBus is present, this makes fcitx5 start at login and type in apps that
+      use XIM, such as PlanMaker.
+    </li>
     <li>On KDE Wayland, select “Fcitx 5” under System Settings, Virtual Keyboard.</li>
   </ol>
+  <p>
+    The one-line install command both adds Ngó Sen to the input method list and sets up fcitx5.
+    A machine that used the one-line command and only added a repo for updates needs no further setup.
+  </p>
   <p>
     To update, run the same install command again, then restart fcitx5 with <code>fcitx5 -rd</code>;
     on KDE Wayland, log out and back in instead. For manual downloads, Ubuntu 26.10 uses
@@ -131,6 +110,9 @@ const levels: Record<Level, string> = {
   <p>
     Since version 1.5.3, each release is available through signed repositories for dnf (COPR), APT,
     pacman and zypper. See the <a href="/cai-dat/#repo-goi">repository commands</a> to add one.
+    Machines that used the one-line install command only need to add the repo. The package install
+    command in each block is for machines without Ngó Sen; after installing, follow the
+    <a href="#after-install">post-install steps</a>.
     The shared key fingerprint is <code>6D4A 2075 F985 3BE8 F6B6 FE7E 7550 1858 158B 36CD</code>;
     compare it with what the package manager shows.
   </p>
@@ -385,6 +367,16 @@ const levels: Record<Level, string> = {
     Saving settings when fcitx5 restarts while the window is open (#279) and the installation size on
     clean Ubuntu (#280) were not retested with the 1.5.7 package; the .deb dependencies were re-read,
     leaving only <code>python3-pyqt6</code>. Fedora, Debian, openSUSE and Kali have not been tried with 1.5.7.
+  </p>
+  <p>
+    The 1.5.8 package from release PR #306 was tested in virtual machines on 26 October 2026 on
+    Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package) and CachyOS (KDE Plasma Wayland,
+    Arch package). On each machine, the settings window opened and was still running after 10 seconds.
+    The window's saving code was called directly with fcitx5 running, once per machine: one main
+    setting was changed and one macro was saved, then both were read back; both were saved.
+    With the released 1.5.7-1 package on the same two machines, fcitx5 refused both saves and the
+    settings stayed unchanged. Saving by clicking in the window has not been tested; Fedora,
+    Debian, Mint, openSUSE and Kali have not been tested with 1.5.8.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
