@@ -108,7 +108,7 @@ const jsonLd = {
         Sáng hay tối, KDE hay GNOME, cửa sổ dùng giao diện đang có. Đổi gì lưu ngay, có nút “Hoàn tác”.
       </p>
       <p>
-        Cửa sổ có 4 trang: “Gõ chữ”, “Gõ tắt &amp; Từ điển”, “Phím”, “Khác”. Ô tìm ở đầu thanh bên tìm được cả khi gõ
+        Cửa sổ có 5 trang: “Gõ chữ”, “Gõ tắt &amp; Từ điển”, “Phím”, “Giao diện”, “Giới thiệu”. Ô tìm ở đầu thanh bên tìm được cả khi gõ
         không dấu. “Sao lưu” và “Khôi phục” là hai nút ở thanh dưới.
       </p>
       <p>
@@ -236,7 +236,10 @@ const jsonLd = {
       </p>
       <p class="install-manual">
         Trên GNOME, KDE Plasma (Wayland), Xfce, Cinnamon và MATE, lệnh cài tự đặt fcitx5 làm bộ gõ và thêm Ngó
-        Sen. Cài xong chỉ cần đăng xuất rồi đăng nhập lại, sau đó bấm Ctrl+Space để bật tiếng Việt.
+        Sen. Cài mới bắt đầu ở tiếng Anh, danh sách bộ gõ chỉ có Ngó Sen. Cài xong đăng xuất rồi đăng nhập lại,
+        sau đó bấm rồi thả Ctrl+Shift như UniKey để chuyển Anh/Việt; biểu tượng khay hiện V khi gõ tiếng Việt.
+        Máy đã cài Ngó Sen giữ phím chuyển cũ, thường là Ctrl+Space. Muốn đổi phím, mở cửa sổ cài đặt,
+        trang “Phím”, tab “Phím tắt”, ô “Phím chuyển Anh/Việt”.
         <a href="/cai-dat/#mot-dong-lenh">Lệnh cài làm những gì</a>.
       </p>
       <h3 class="after-title">Trên desktop khác hoặc khi cài gói bằng tay, còn ba việc</h3>
@@ -252,7 +255,7 @@ const jsonLd = {
         <li>
           <span class="key" aria-hidden="true">2</span>
           <div>
-            <p>Mở “Fcitx5 Configuration” và thêm bộ gõ Ngó Sen.</p>
+            <p>Mở “Cấu hình Fcitx 5” bằng <code>fcitx5-configtool</code>, vào tab bộ gõ và thêm “Ngó Sen” vào danh sách.</p>
           </div>
         </li>
         <li>

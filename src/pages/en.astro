@@ -31,24 +31,103 @@ const levels: Record<Level, string> = {
   <p>
     Use Gõ Sen as the main typing mode: open the Ngó Sen settings window, go to Gõ chữ and select
     Gõ Sen in the Chế độ gõ row. Browsers, terminals, Zalo and LibreOffice all use this mode;
-    Ngó Sen detects how each app accepts text, so there is no need to switch modes. All packages
-    use the Rust composition core except Debian 12, which keeps the Go core.
+    Ngó Sen detects how each app accepts text, so there is no need to switch modes. All packages,
+    including Debian 12, use the Rust composition core; the Go core was dropped in 1.6.0.
+    The core is the Rust <a href="https://github.com/bamboo-vi/bamboo-core">bamboo-core</a> by
+    <a href="https://github.com/nguyen10t2">@nguyen10t2</a>, ported from the Go
+    <a href="https://github.com/BambooEngine/bamboo-core">bamboo-core</a> by
+    <a href="https://github.com/t1ld3x">@t1ld3x</a>. Both projects are MIT licensed.
   </p>
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.5.8-1 is a quick fix release for the settings window; users of version 1.5.7 should update.
+    Version 1.6.0-1 adds Cứu chữ to recover text typed before switching Vietnamese on, Cứu dấu to
+    change the tone of selected words, and a separate English/Vietnamese key.
   </p>
   <ul>
     <li>
-      The settings window saves changes while fcitx5 is running. In version 1.5.7 it saved nothing
-      and showed “Không lưu được” (could not save), even though fcitx5 was running.
-      Tested in virtual machines on Ubuntu 26.04 and CachyOS by calling the window's saving code
-      directly with fcitx5 running, once per machine: changing one main setting and saving one macro,
-      then reading them back; both were saved. With the released 1.5.7-1 package on the same two
-      machines, fcitx5 refused both saves and the settings stayed unchanged. Saving by clicking
-      in the window has not been tested
-      (<a href={`${REPO}/pull/303`}>#303</a>, <a href={`${REPO}/pull/305`}>#305</a>).
+      Cứu chữ converts text typed before switching Vietnamese on: <code>tieengs vieetj</code>
+      becomes <code>tiếng việt</code>, and Tab or Esc restores the original. If some words would
+      stay unchanged, it only offers a suggestion for Enter to accept. Conversion, undo with Esc
+      and dismissing the <code>tieengs Nam</code> suggestion with Tab were tested in GTK3 text
+      fields on Ubuntu 26.04 and Linux Mint 22, and in Chrome on Ubuntu; Cứu chữ is enabled after
+      upgrades too
+      (<a href={`${REPO}/pull/290`}>#290</a>, <a href={`${REPO}/issues/82`}>#82</a>,
+      <a href={`${REPO}/pull/232`}>#232</a>, <a href={`${REPO}/pull/239`}>#239</a>,
+      <a href={`${REPO}/pull/243`}>#243</a>, <a href={`${REPO}/issues/80`}>#80</a>).
+    </li>
+    <li>
+      Cứu dấu changes the tone of a selected word as soon as you type a tone key:
+      <code>nhanh</code> + <code>s</code> → <code>nhánh</code>, then <code>f</code> →
+      <code>nhành</code>. Continuing with letters replaces the selection with a new word, so
+      <code>nhanh</code> + <code>sách</code> still gives <code>sách</code>. It is enabled under
+      “Gõ chữ › Gõ nhanh” in apps with surrounding text; Tab, Esc or repeating the tone key puts
+      back the key you typed
+      (<a href={`${REPO}/pull/272`}>#272</a>, <a href={`${REPO}/pull/290`}>#290</a>).
+    </li>
+    <li>
+      Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey,
+      and upgrades keep the old key. Change it under “Phím › Phím tắt”, in “Phím chuyển Anh/Việt”;
+      Ctrl+Shift is recorded on release and works on either side. A new install with install.sh
+      has only Ngó Sen in the input method list. New installs were tested starting in English
+      and switching with Ctrl+Shift; upgrades from 1.5.8-1 on Ubuntu 26.04 and Linux Mint 22 kept
+      Ctrl+Space
+      (<a href={`${REPO}/pull/234`}>#234</a>, <a href={`${REPO}/pull/242`}>#242</a>,
+      <a href={`${REPO}/pull/244`}>#244</a>, <a href={`${REPO}/pull/237`}>#237</a>,
+      <a href={`${REPO}/pull/248`}>#248</a>).
+    </li>
+    <li>
+      “Phím chốt chữ” replaces the skip-macro key: press and release it alone to keep the word
+      as shown, without further tone changes, automatic restoration or macro expansion; the next
+      key starts a new word. The default is Ctrl: <code>tunx</code>, Ctrl, Space keeps
+      <code>tũn</code>. Existing Shift, Ctrl or Alt choices are kept
+      (<a href={`${REPO}/pull/219`}>#219</a>).
+    </li>
+    <li>
+      The tray menu adds “Kiểu gõ” for switching Telex/VNI and “Tự viết hoa” for toggling
+      capitalisation options. Hide items under “Giao diện › Hiện trong menu khay”; “Cài đặt”
+      and “Lưu nhật ký gõ” stay visible. When Vietnamese is off, the icon is a lotus-root slice
+      on a grey square; GNOME with Input Method Panel (kimpanel) shows the Ngó Sen icon instead
+      of “vi”
+      (<a href={`${REPO}/pull/274`}>#274</a>, <a href={`${REPO}/pull/240`}>#240</a>,
+      <a href={`${REPO}/pull/275`}>#275</a>, <a href={`${REPO}/pull/233`}>#233</a>).
+    </li>
+    <li>
+      The settings window adds explanations, often with examples, and replaces “Khác” with
+      separate “Giao diện” and “Giới thiệu” pages. “Giao diện” previews the tray icons and
+      has “Ngôn ngữ giao diện” at the top. Ngó Sen's menus and window default to Vietnamese;
+      switching to English changes the tray menu immediately and the window when reopened,
+      while fcitx5's own menu items follow the desktop language. Typing is unchanged
+      (<a href={`${REPO}/pull/281`}>#281</a>, <a href={`${REPO}/pull/276`}>#276</a>,
+      <a href={`${REPO}/pull/277`}>#277</a>).
+    </li>
+    <li>
+      Updating with install.sh reloads fcitx5 automatically so you can type straight away;
+      KDE Wayland still needs a logout and login. Upgrades from 1.5.8-1 on Ubuntu 26.04 and
+      Linux Mint 22 reloaded fcitx5 and kept settings, macros and Ctrl+Space, with Cứu chữ
+      enabled. Uninstalling on GNOME now preserves
+      <code>~/.config/environment.d/90-ngosen.conf</code> if you edited it after installation
+      (<a href={`${REPO}/pull/230`}>#230</a>, <a href={`${REPO}/pull/317`}>#317</a>).
+    </li>
+    <li>
+      GTK3 apps through GNOME Shell no longer lose tone marks, such as <code>trơi</code>,
+      <code>ban</code> or <code>viêt</code> instead of <code>trời</code>, <code>bạn</code> or
+      <code>việt</code>. With the 1.6.0 package on Ubuntu 26.04 GNOME Wayland, the sentence
+      <code>dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij</code> produced the correct
+      text with tone marks in a GTK3 field, Chrome and GNOME Console
+      (<a href={`${REPO}/pull/231`}>#231</a>).
+    </li>
+    <li>
+      Run <code>ngosen-save-log</code> in a terminal to save the typing log when the tray icon
+      or menu is missing or stuck. It prints the saved file's path, such as
+      <code>~/.local/state/ngosen/typing-&lt;date time&gt;.log</code>; only your account can read it
+      (<a href={`${REPO}/pull/197`}>#197</a>).
+    </li>
+    <li>
+      Every package, including Debian 12, uses the Rust core; the Go core is dropped, with no
+      change to typing. Building from source needs Rust 1.88+ and cargo, with no Go dependency;
+      Debian has not been tested with the 1.6.0 package
+      (<a href={`${REPO}/pull/223`}>#223</a>).
     </li>
   </ul>
 
@@ -67,9 +146,11 @@ const levels: Record<Level, string> = {
   <p>
     On GNOME, on KDE Plasma (Wayland), and on X11 desktops that pick the input method with im-config such
     as Xfce, Cinnamon and MATE, the script also makes fcitx5 the input method for your account and adds Ngó
-    Sen to the input method list. Log out and back in, then press Ctrl+Space, fcitx5's default key, to
-    switch Vietnamese on; the script does not change the key, and machines where an earlier version set
-    Ctrl+Shift keep it. On GNOME it also hides the fcitx5 launchers you do not need, and
+    Sen to the input method list. New installs start in English with only Ngó Sen in the list.
+    Log out and back in, then press and release Ctrl+Shift, like UniKey, to switch between English
+    and Vietnamese; the tray icon shows V while typing Vietnamese. An existing install keeps its old
+    key, usually Ctrl+Space. Change it in the settings window under “Phím”, tab “Phím tắt”,
+    in “Phím chuyển Anh/Việt”. On GNOME the script also hides the fcitx5 launchers you do not need, and
     adds the Input Method Panel extension when there is no system tray, as on Fedora. These steps apply to
     the account that runs the script; add <code>--no-setup</code> to install the package only. On KDE
     Plasma it selects fcitx5 as KDE's virtual keyboard (System Settings, Virtual Keyboard), so Qt apps
@@ -78,11 +159,11 @@ const levels: Record<Level, string> = {
   <p id="after-install">
     On other desktops, or after installing from a repo, with <code>--no-setup</code> or a package
     by hand, follow the steps below. On a machine where Ngó Sen has never been set up,
-    Ctrl+Space will not type Vietnamese until these steps are done.
+    the English/Vietnamese key will not type Vietnamese until these steps are done.
   </p>
   <ol>
     <li>
-      Restart fcitx5 with <code>fcitx5 -rd</code>. Do this again after every update. On KDE Wayland, log
+      Restart fcitx5 with <code>fcitx5 -rd</code>. On KDE Wayland, log
       out and back in instead: fcitx5 started with <code>fcitx5 -rd</code> cannot type in Qt apps such
       as Kate and Dolphin.
     </li>
@@ -102,10 +183,17 @@ const levels: Record<Level, string> = {
     A machine that used the one-line command and only added a repo for updates needs no further setup.
   </p>
   <p>
-    To update, run the same install command again, then restart fcitx5 with <code>fcitx5 -rd</code>;
-    on KDE Wayland, log out and back in instead. For manual downloads, Ubuntu 26.10 uses
+    To update, run the same install command again: fcitx5 reloads the new version automatically,
+    and you can type straight away without logging out. On KDE Wayland, log out and back in.
+    Test builds and updates from before 0.5.0 are covered in the
+    <a href="/cai-dat/nang-cao/">advanced install page (in Vietnamese)</a>. For manual downloads, Ubuntu 26.10 uses
     <code>fcitx5-ngosen_*_stonking_amd64.deb</code>, or the same name ending in <code>_arm64.deb</code>
     on ARM 64-bit. Check the download against <code>SHA256SUMS</code>.
+  </p>
+  <p>
+    Since 1.6.0, packages no longer stop the old uinput server service or delete its
+    <code>uinput_proxy</code> account. If you built a version from before 0.5.0 yourself,
+    follow the cleanup steps in <a href={`${REPO}/blob/main/TU-DUNG.md`}>TU-DUNG.md</a>.
   </p>
   <p>
     Since version 1.5.3, each release is available through signed repositories for dnf (COPR), APT,
@@ -117,8 +205,13 @@ const levels: Record<Level, string> = {
     compare it with what the package manager shows.
   </p>
   <p>
+    After updating through a package manager, restart fcitx5 with <code>fcitx5 -rd</code>;
+    on KDE Wayland, log out and back in. Package-manager updates do not run install.sh.
+  </p>
+  <p>
     Since 1.2 the settings window follows the desktop's look, light or dark, KDE or GNOME. Every change is
     saved at once, with an Undo button (Hoàn tác).
+    It now has five sidebar pages: “Gõ chữ”, “Gõ tắt &amp; Từ điển”, “Phím”, “Giao diện” and “Giới thiệu”.
   </p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="/screenshots/settings-dark.png" />
@@ -137,7 +230,8 @@ const levels: Record<Level, string> = {
   </p>
   <p>
     To uninstall, run the script with <code>--uninstall</code>. On GNOME it also undoes what the script
-    changed, so GNOME uses IBus again after you log back in. On Xfce, Cinnamon and MATE it resets the
+    changed, so GNOME uses IBus again after you log back in. Since 1.6.0 it keeps <code>~/.config/environment.d/90-ngosen.conf</code> if you edited it after installation.
+    On Xfce, Cinnamon and MATE it resets the
     input method to the system default; fcitx5 stays installed and may still start, typing English only.
     On KDE it leaves fcitx5 as the virtual keyboard, since another input method may use it; choose None
     under System Settings, Virtual Keyboard to drop it.
@@ -379,6 +473,23 @@ const levels: Record<Level, string> = {
     Debian, Mint, openSUSE and Kali have not been tested with 1.5.8.
   </p>
   <p>
+    The 1.6.0 package from release PR #314 was tested in virtual machines on 26 October 2026 on
+    Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package) and Linux Mint 22 (Cinnamon X11,
+    <code>noble</code> package), using Gõ Sen and Telex. For the upgrade, each machine had 1.5.8-1
+    installed, with one setting and one macro saved, before running install.sh with the new package;
+    fcitx5 reloaded automatically, the setting, macro and Ctrl+Space were kept, and Cứu chữ was enabled.
+    Then, in a GTK3 text field on both machines: the sentence
+    <code>dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij</code> produced the correct text
+    with tone marks; typing <code>tieengs vieetj</code> in English and switching Vietnamese on let
+    Cứu chữ convert it to <code>tiếng việt</code>, and Esc restored the original; typing
+    <code>tieengs Nam</code> and switching Vietnamese on only showed a suggestion, and Tab kept the
+    original text. On Ubuntu, those four cases also passed in Chrome, and the sentence typed correctly
+    in GNOME Console; on Mint, the sentence typed correctly in Chrome. A fresh install (with the build
+    immediately before upgrade fix #315, which did not touch the fresh-install path) opened in English,
+    Ctrl+Shift switched to Vietnamese, and Cứu chữ was enabled by default. Fedora, Arch, Debian,
+    openSUSE, Kali and KDE have not been tested with 1.6.0.
+  </p>
+  <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
     <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
@@ -392,6 +503,13 @@ const levels: Record<Level, string> = {
     running natively on Wayland lose the word being typed on a mouse click until the distribution
     ships fcitx5 5.1.20. Telex is the method used and tested daily; VNI and the other methods
     work but have not been tested closely.
+  </p>
+  <p>
+    The <a href="/roadmap/">roadmap (in Vietnamese)</a> now starts at 1.7.0: a one-time “Có gì mới”
+    (What's new) notification for feature releases, reworked emoji insertion, and merging spell
+    checking into automatic restoration of invalid words. “Có gì mới” is not in 1.6.0.
+    Cứu dấu without selecting text, by clicking after a word and typing a tone key, remains in the
+    unversioned “Sau đó” list. The roadmap gives no release dates, and the order may change.
   </p>
   <p>
     Ngó Sen targets fcitx5 only. fcitx5 runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
