@@ -38,99 +38,41 @@ const levels: Record<Level, string> = {
     <a href="https://github.com/BambooEngine/bamboo-core">bamboo-core</a> by
     <a href="https://github.com/t1ld3x">@t1ld3x</a>. Both projects are MIT licensed.
   </p>
+  <p>
+    Ngó Sen includes Cứu chữ to retype what was typed before switching to Vietnamese, and Cứu dấu to
+    change the tone mark of a selected word. Ngó Sen has its own English/Vietnamese key: new installs
+    use Ctrl+Shift, like UniKey.
+  </p>
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.6.0-1 adds Cứu chữ to recover text typed before switching Vietnamese on, Cứu dấu to
-    change the tone of selected words, and a separate English/Vietnamese key.
+    Version 1.6.1-1 is a bug-fix release: the Cứu chữ and Cứu dấu hints default to Vietnamese,
+    Ngó Sen is in the input method list after a package install on a Vietnamese system, and the
+    debug log no longer records text typed in password fields.
   </p>
   <ul>
     <li>
-      Cứu chữ converts text typed before switching Vietnamese on: <code>tieengs vieetj</code>
-      becomes <code>tiếng việt</code>, and Tab or Esc restores the original. If some words would
-      stay unchanged, it only offers a suggestion for Enter to accept. Conversion, undo with Esc
-      and dismissing the <code>tieengs Nam</code> suggestion with Tab were tested in GTK3 text
-      fields on Ubuntu 26.04 and Linux Mint 22, and in Chrome on Ubuntu; Cứu chữ is enabled after
-      upgrades too
-      (<a href={`${REPO}/pull/290`}>#290</a>, <a href={`${REPO}/issues/82`}>#82</a>,
-      <a href={`${REPO}/pull/232`}>#232</a>, <a href={`${REPO}/pull/239`}>#239</a>,
-      <a href={`${REPO}/pull/243`}>#243</a>, <a href={`${REPO}/issues/80`}>#80</a>).
+      The hint next to the cursor for Cứu chữ and Cứu dấu follows Ngó Sen’s “Ngôn ngữ giao diện”,
+      like the tray menu: Vietnamese by default, even on an English desktop. Tested on Ubuntu 26.04
+      (GNOME Wayland, English desktop) after updating from 1.6.0-1 with install.sh: the Cứu chữ hint
+      was in Vietnamese; Cứu chữ turned <code>tieengs vieetj</code> into <code>tiếng việt</code>, Esc
+      restored the original and Tab kept <code>tieengs Nam</code>
+      (<a href={`${REPO}/pull/322`}>#322</a>).
     </li>
     <li>
-      Cứu dấu changes the tone of a selected word as soon as you type a tone key:
-      <code>nhanh</code> + <code>s</code> → <code>nhánh</code>, then <code>f</code> →
-      <code>nhành</code>. Continuing with letters replaces the selection with a new word, so
-      <code>nhanh</code> + <code>sách</code> still gives <code>sách</code>. It is enabled under
-      “Gõ chữ › Gõ nhanh” in apps with surrounding text; Tab, Esc or repeating the tone key puts
-      back the key you typed
-      (<a href={`${REPO}/pull/272`}>#272</a>, <a href={`${REPO}/pull/290`}>#290</a>).
+      Installing the package (apt or a downloaded package) on a system set to Vietnamese puts Ngó Sen
+      in the input method list the first time fcitx5 runs. A system set to English still needs it
+      added by hand or the one-line install command. Tested on Linux Mint 22: after installing with apt
+      and starting fcitx5 for the first time with <code>LANG=vi_VN.UTF-8</code>, Ngó Sen was in the
+      list. Mint set to Vietnamese through <code>LANGUAGE</code> while keeping
+      <code>LANG=en_US.UTF-8</code> still showed only the keyboard
+      (<a href={`${REPO}/pull/316`}>#316</a>, <a href={`${REPO}/issues/300`}>#300</a>).
     </li>
     <li>
-      Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey,
-      and upgrades keep the old key. Change it under “Phím › Phím tắt”, in “Phím chuyển Anh/Việt”;
-      Ctrl+Shift is recorded on release and works on either side. A new install with install.sh
-      has only Ngó Sen in the input method list. New installs were tested starting in English
-      and switching with Ctrl+Shift; upgrades from 1.5.8-1 on Ubuntu 26.04 and Linux Mint 22 kept
-      Ctrl+Space
-      (<a href={`${REPO}/pull/234`}>#234</a>, <a href={`${REPO}/pull/242`}>#242</a>,
-      <a href={`${REPO}/pull/244`}>#244</a>, <a href={`${REPO}/pull/237`}>#237</a>,
-      <a href={`${REPO}/pull/248`}>#248</a>).
-    </li>
-    <li>
-      “Phím chốt chữ” replaces the skip-macro key: press and release it alone to keep the word
-      as shown, without further tone changes, automatic restoration or macro expansion; the next
-      key starts a new word. The default is Ctrl: <code>tunx</code>, Ctrl, Space keeps
-      <code>tũn</code>. Existing Shift, Ctrl or Alt choices are kept
-      (<a href={`${REPO}/pull/219`}>#219</a>).
-    </li>
-    <li>
-      The tray menu adds “Kiểu gõ” for switching Telex/VNI and “Tự viết hoa” for toggling
-      capitalisation options. Hide items under “Giao diện › Hiện trong menu khay”; “Cài đặt”
-      and “Lưu nhật ký gõ” stay visible. When Vietnamese is off, the icon is a lotus-root slice
-      on a grey square; GNOME with Input Method Panel (kimpanel) shows the Ngó Sen icon instead
-      of “vi”
-      (<a href={`${REPO}/pull/274`}>#274</a>, <a href={`${REPO}/pull/240`}>#240</a>,
-      <a href={`${REPO}/pull/275`}>#275</a>, <a href={`${REPO}/pull/233`}>#233</a>).
-    </li>
-    <li>
-      The settings window adds explanations, often with examples, and replaces “Khác” with
-      separate “Giao diện” and “Giới thiệu” pages. “Giao diện” previews the tray icons and
-      has “Ngôn ngữ giao diện” at the top. Ngó Sen's menus and window default to Vietnamese;
-      switching to English changes the tray menu immediately and the window when reopened,
-      while fcitx5's own menu items follow the desktop language. Typing is unchanged
-      (<a href={`${REPO}/pull/281`}>#281</a>, <a href={`${REPO}/pull/276`}>#276</a>,
-      <a href={`${REPO}/pull/277`}>#277</a>).
-    </li>
-    <li>
-      Updating with install.sh reloads fcitx5 automatically so you can type straight away;
-      KDE Wayland still needs a logout and login. Upgrades from 1.5.8-1 on Ubuntu 26.04 and
-      Linux Mint 22 reloaded fcitx5 and kept settings, macros and Ctrl+Space, with Cứu chữ
-      enabled. Uninstalling on GNOME now preserves
-      <code>~/.config/environment.d/90-ngosen.conf</code> if you edited it after installation
-      (<a href={`${REPO}/pull/230`}>#230</a>, <a href={`${REPO}/pull/317`}>#317</a>).
-    </li>
-    <li>
-      GTK3 apps through GNOME Shell no longer lose tone marks, such as <code>trơi</code>,
-      <code>ban</code> or <code>viêt</code> instead of <code>trời</code>, <code>bạn</code> or
-      <code>việt</code>. With the 1.6.0 package on Ubuntu 26.04 GNOME Wayland, the sentence
-      <code>dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij</code> produced the correct
-      text with tone marks in a GTK3 field, Chrome and GNOME Console
-      (<a href={`${REPO}/pull/231`}>#231</a>).
-    </li>
-    <li>
-      Run <code>ngosen-save-log</code> in a terminal to save the typing log when the tray icon
-      or menu is missing or stuck. It prints the saved file's path, such as
-      <code>~/.local/state/ngosen/typing-&lt;date time&gt;.log</code>; only your account can read it
-      (<a href={`${REPO}/pull/197`}>#197</a>).
-    </li>
-    <li>
-      Every package, including Debian 12, uses the Rust core; the Go core is dropped, with no
-      change to typing. Building from source needs Rust 1.88+ and cargo, with no Go dependency;
-      Debian has not been tested with the 1.6.0 package
-      (<a href={`${REPO}/pull/223`}>#223</a>).
+      With debug logging on, text typed in password fields is no longer written to the log; the log
+      records “(hidden)” instead (<a href={`${REPO}/pull/321`}>#321</a>).
     </li>
   </ul>
-
   <h2 id="install">Install</h2>
   <p>
     One command for Fedora, Ubuntu (including 26.10), Debian, Kali, Arch, CachyOS and openSUSE
@@ -169,7 +111,10 @@ const levels: Record<Level, string> = {
     </li>
     <li>
       Open “Fcitx5 Configuration” with <code>fcitx5-configtool</code>, go to the input method tab
-      and add “Ngó Sen” to the list.
+      and add “Ngó Sen” to the list. Since 1.6.1, on a machine with <code>LANG=vi_VN.UTF-8</code>,
+      fcitx5 adds Ngó Sen by itself the first time it runs after a package install, so this step is
+      not needed. Linux Mint set to Vietnamese through <code>LANGUAGE</code> while keeping
+      <code>LANG=en_US.UTF-8</code> still needs it.
     </li>
     <li>
       On Xfce, Cinnamon or MATE on Debian/Ubuntu/Mint, run <code>im-config -n fcitx5</code>, then log
@@ -488,6 +433,20 @@ const levels: Record<Level, string> = {
     immediately before upgrade fix #315, which did not touch the fresh-install path) opened in English,
     Ctrl+Shift switched to Vietnamese, and Cứu chữ was enabled by default. Fedora, Arch, Debian,
     openSUSE, Kali and KDE have not been tested with 1.6.0.
+  </p>
+  <p>
+    The 1.6.1 package from release PR #323 was tested in virtual machines on 26 October 2026, using
+    Gõ Sen and Telex. Ubuntu 26.04 (GNOME Wayland, English desktop, <code>resolute</code> package):
+    after updating from 1.6.0-1 with install.sh, fcitx5 reloaded automatically; in a GTK3 text field,
+    the sentence <code>dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij</code> produced the
+    correct text with tone marks, Cứu chữ turned <code>tieengs vieetj</code> into <code>tiếng việt</code>,
+    Esc restored the original and Tab kept <code>tieengs Nam</code>; the Cứu chữ hint was in Vietnamese.
+    Linux Mint 22 (Cinnamon X11, <code>noble</code> package): after installing the package with apt,
+    without install.sh, and starting fcitx5 for the first time with <code>LANG=vi_VN.UTF-8</code>, Ngó Sen
+    was already in the input method list. Mint set to Vietnamese through <code>LANGUAGE</code> while
+    keeping <code>LANG=en_US.UTF-8</code> still listed only the keyboard. After installing with
+    install.sh and restarting, the four cases above passed in a GTK3 text field and the sentence typed
+    correctly in Chrome. Fedora, Arch, Debian, openSUSE, Kali and KDE have not been tested with 1.6.1.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

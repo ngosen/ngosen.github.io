@@ -29,6 +29,29 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.6.1-1',
+    date: '26/10/2026',
+    summary:
+      'Version sửa lỗi: gợi ý Cứu chữ, Cứu dấu mặc định tiếng Việt, Ngó Sen tự có trong danh sách bộ gõ khi cài gói trên máy tiếng Việt, log gỡ lỗi không ghi chữ trong ô mật khẩu.',
+    changes: [
+      {
+        claim: 'Dòng gợi ý cạnh con trỏ của Cứu chữ và Cứu dấu theo “Ngôn ngữ giao diện” của Ngó Sen, mặc định tiếng Việt.',
+        source: 'Giống menu tray, dòng gợi ý dùng tiếng Việt kể cả khi desktop dùng tiếng Anh. Đã test trên Ubuntu 26.04 (GNOME Wayland, desktop tiếng Anh): cập nhật từ 1.6.0-1 bằng install.sh, dòng gợi ý của Cứu chữ hiện tiếng Việt; Cứu chữ đổi `tieengs vieetj` thành `tiếng việt`, Esc trả lại chữ cũ, Tab giữ nguyên `tieengs Nam`.',
+        pr: 322,
+      },
+      {
+        claim: 'Cài gói (apt, gói tải về) trên máy để ngôn ngữ tiếng Việt thì lần đầu fcitx5 chạy, Ngó Sen đã có trong danh sách bộ gõ.',
+        source: 'Máy để tiếng Anh vẫn cần thêm tay hoặc dùng lệnh cài một dòng (#300). Đã test trên Linux Mint 22: cài gói bằng apt, chạy fcitx5 lần đầu với `LANG=vi_VN.UTF-8` thì Ngó Sen có sẵn. Mint chọn tiếng Việt bằng `LANGUAGE` mà giữ `LANG=en_US.UTF-8` thì danh sách vẫn chỉ có bàn phím.',
+        pr: 316,
+      },
+      {
+        claim: 'Khi bật log để gỡ lỗi, chữ gõ trong ô mật khẩu không còn bị ghi vào log.',
+        source: 'Log chỉ ghi “(hidden)” ở chỗ đó.',
+        pr: 321,
+      },
+    ],
+  },
+  {
     version: '1.6.0-1',
     date: '26/10/2026',
     summary:
@@ -796,7 +819,8 @@ export const LEVELS_NOTE =
   ' Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cửa sổ cài đặt mở được; Firefox snap, ô chữ thường: câu trên đúng ở cả hai tốc độ. “toan”, dấu cách, Backspace, “s” ra “toans” (3/3 lượt, 1.5.6 trên cùng máy cũng vậy): Firefox bản snap vẫn chưa được sửa lỗi xoá qua dấu cách.' +
   ' Lưu cài đặt khi fcitx5 khởi động lại lúc cửa sổ đang mở (#279) và dung lượng cài trên Ubuntu sạch (#280) không được test lại trên gói 1.5.7; phụ thuộc của gói .deb đã được đọc lại, chỉ còn “python3-pyqt6”. Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.7.' +
   ' Gói 1.5.8 từ PR phát hành #306 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và CachyOS (KDE Plasma Wayland, gói Arch). Trên mỗi máy, cửa sổ cài đặt mở được và vẫn chạy sau 10 giây. Phần lưu của cửa sổ cài đặt được gọi thẳng với fcitx5 đang chạy, mỗi máy một lượt: đổi một ô cài đặt chính và lưu một gõ tắt, rồi đọc lại; cả hai đều lưu được. Với gói 1.5.7-1 đã phát hành trên cùng hai máy, cả hai lần lưu đều bị fcitx5 từ chối và cài đặt không đổi. Chưa click lưu bằng chuột trong cửa sổ; Fedora, Debian, Mint, openSUSE và Kali chưa được test với 1.5.8.' +
-  ' Gói 1.6.0 từ PR phát hành #314 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và Linux Mint 22 (Cinnamon X11, gói “noble”), dùng Gõ Sen, Telex. Nâng cấp: mỗi máy cài 1.5.8-1, lưu một cài đặt và một gõ tắt, rồi chạy install.sh với gói mới; fcitx5 tự nạp lại, cài đặt, gõ tắt và phím Ctrl+Space còn nguyên, Cứu chữ đã bật. Sau đó, trong một ô chữ GTK3 trên cả hai máy: gõ câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu; gõ “tieengs vieetj” ở tiếng Anh rồi bật tiếng Việt, Cứu chữ đổi thành “tiếng việt”, bấm Esc trả lại chữ cũ; gõ “tieengs Nam” rồi bật tiếng Việt thì chỉ hiện gợi ý, bấm Tab giữ nguyên chữ đã gõ. Trên Ubuntu, bốn ca đó cũng đúng trong Chrome, và gõ câu trong terminal GNOME Console đúng; trên Mint, gõ câu trong Chrome đúng. Cài mới (gói build ngay trước bản sửa nâng cấp #315, bản sửa không đụng đường cài mới): mở ở tiếng Anh, Ctrl+Shift chuyển sang tiếng Việt, Cứu chữ bật sẵn. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.0.';
+  ' Gói 1.6.0 từ PR phát hành #314 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và Linux Mint 22 (Cinnamon X11, gói “noble”), dùng Gõ Sen, Telex. Nâng cấp: mỗi máy cài 1.5.8-1, lưu một cài đặt và một gõ tắt, rồi chạy install.sh với gói mới; fcitx5 tự nạp lại, cài đặt, gõ tắt và phím Ctrl+Space còn nguyên, Cứu chữ đã bật. Sau đó, trong một ô chữ GTK3 trên cả hai máy: gõ câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu; gõ “tieengs vieetj” ở tiếng Anh rồi bật tiếng Việt, Cứu chữ đổi thành “tiếng việt”, bấm Esc trả lại chữ cũ; gõ “tieengs Nam” rồi bật tiếng Việt thì chỉ hiện gợi ý, bấm Tab giữ nguyên chữ đã gõ. Trên Ubuntu, bốn ca đó cũng đúng trong Chrome, và gõ câu trong terminal GNOME Console đúng; trên Mint, gõ câu trong Chrome đúng. Cài mới (gói build ngay trước bản sửa nâng cấp #315, bản sửa không đụng đường cài mới): mở ở tiếng Anh, Ctrl+Shift chuyển sang tiếng Việt, Cứu chữ bật sẵn. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.0.' +
+  ' Gói 1.6.1 từ PR phát hành #323 được test trên máy ảo ngày 26/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, desktop tiếng Anh, gói “resolute”): cập nhật từ 1.6.0-1 bằng install.sh, fcitx5 tự nạp lại; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu, Cứu chữ đổi “tieengs vieetj” thành “tiếng việt”, Esc trả lại chữ cũ, Tab giữ nguyên “tieengs Nam”; dòng gợi ý của Cứu chữ hiện tiếng Việt. Linux Mint 22 (Cinnamon X11, gói “noble”): cài gói bằng apt, không qua install.sh, rồi chạy fcitx5 lần đầu với “LANG=vi_VN.UTF-8”: Ngó Sen có sẵn trong danh sách bộ gõ. Mint chọn tiếng Việt bằng “LANGUAGE” mà giữ “LANG=en_US.UTF-8” thì danh sách vẫn chỉ có bàn phím. Sau đó cài bằng install.sh rồi khởi động lại: bốn ca trên đúng trong ô chữ GTK3, câu thử đúng trong Chrome. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.1.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -922,16 +946,24 @@ export const TAGLINE = 'Bộ gõ tiếng Việt cho fcitx5 trên Linux, cho tr�
 
 export const HIGHLIGHTS: { title: string; text: string }[] = [
   {
+    title: 'Cứu chữ',
+    text: 'Quên bật tiếng Việt, gõ tieengs vieetj rồi bấm phím chuyển sang tiếng Việt thì chữ đổi thành tiếng việt. Tab hoặc Esc trả lại chữ đã gõ.',
+  },
+  {
+    title: 'Cứu dấu',
+    text: 'Bôi đen chữ rồi gõ phím dấu để thêm, đổi hoặc bỏ dấu thanh, như nhanh + s → nhánh.',
+  },
+  {
+    title: 'Phím chuyển Anh/Việt riêng',
+    text: 'Cài mới dùng Ctrl+Shift như UniKey; đã cài từ trước giữ Ctrl+Space. Khi ở tiếng Anh, gõ như không có bộ gõ.',
+  },
+  {
     title: 'Gõ thẳng, không gạch chân',
     text: 'Chế độ Gõ Sen đưa chữ vào app ngay khi gõ. Gợi ý ở thanh địa chỉ hay ô tìm kiếm hiện ra theo từng phím gõ.',
   },
   {
     title: 'Một chế độ cho hầu hết app',
     text: 'Trình duyệt, terminal, Zalo, LibreOffice đều dùng Gõ Sen. Ngó Sen tự nhận ra app nhận chữ kiểu gì, không phải đổi chế độ.',
-  },
-  {
-    title: 'Lõi Rust',
-    text: 'Phần biến tieengs thành tiếng được viết lại bằng Rust. Mọi gói, kể cả Debian 12, đều dùng lõi Rust.',
   },
   {
     title: 'Cài bằng một dòng lệnh',

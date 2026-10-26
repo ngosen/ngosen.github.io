@@ -138,7 +138,12 @@ const toc = [
       <pre tabindex="0"><code>fcitx5 -rd</code></pre>
       Trên KDE Wayland: đăng xuất rồi đăng nhập lại thay cho lệnh trên, vì fcitx5 bật bằng <code>fcitx5 -rd</code> không gõ được trong app Qt như Kate, Dolphin.
     </li>
-    <li>Mở “Cấu hình Fcitx 5” bằng <code>fcitx5-configtool</code>, vào tab bộ gõ và thêm “Ngó Sen” vào danh sách.</li>
+    <li>
+      Mở “Cấu hình Fcitx 5” bằng <code>fcitx5-configtool</code>, vào tab bộ gõ và thêm “Ngó Sen” vào danh sách.
+      Từ version 1.6.1, máy có <code>LANG=vi_VN.UTF-8</code> thì fcitx5 tự thêm Ngó Sen ở lần chạy đầu sau khi
+      cài gói, không cần bước này. Linux Mint chọn tiếng Việt bằng <code>LANGUAGE</code> mà giữ
+      <code>LANG=en_US.UTF-8</code> thì vẫn phải thêm tay.
+    </li>
     <li>
       Với Xfce, Cinnamon, MATE trên Debian/Ubuntu/Mint, chạy <code>im-config -n fcitx5</code>, sau đó
       đăng xuất rồi đăng nhập lại. Nếu có IBus, bước này giúp fcitx5 khởi động khi đăng nhập và gõ được
