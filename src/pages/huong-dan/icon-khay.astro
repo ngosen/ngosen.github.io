@@ -2,36 +2,55 @@
 import Guide from '../../layouts/Guide.astro';
 import Shot from '../../components/Shot.astro';
 
-const toc = [{ id: 'mau', label: 'Màu chữ V' }];
+const toc = [
+  { id: 'mau', label: 'Màu biểu tượng một màu' },
+  { id: 'menu-khay', label: 'Ẩn mục trong menu khay' },
+  { id: 'ngon-ngu', label: 'Ngôn ngữ giao diện' },
+];
 ---
 
 <Guide
   title="Đổi icon trên khay"
-  description="Chọn icon Ngó Sen có nền xanh hay chữ V trên khay hệ thống. Màu chữ V có thể theo panel tự động hoặc chọn “Sáng”, “Tối” trong cài đặt."
+  description="Chọn icon trạng thái hay icon một màu, màu icon và các mục hiện trong menu khay. Ngôn ngữ menu và cửa sổ cài đặt cũng chọn ở trang “Giao diện”."
   toc={toc}
 >
-  <p slot="lede">Vào “Cài đặt Ngó Sen › Khác › Giao diện”.</p>
+  <p slot="lede">Vào “Cài đặt Ngó Sen › Giao diện”.</p>
 
   <Shot
     name="guide-tray"
-    width={480}
-    height={124}
-    alt="Nhóm Biểu tượng khay: ô Sử dụng biểu tượng trạng thái Ngó Sen đã chọn, Màu biểu tượng là Tự động."
-    caption="Nhóm “Biểu tượng khay”. Linux Mint 22.1 Cinnamon, version 1.4.3-1."
+    width={505}
+    height={560}
+    alt="Trang Giao diện: ngôn ngữ Tiếng Việt, icon trạng thái, màu Tự động, phần xem trước chữ V xanh và lát củ sen xám, cùng các ô chọn mục hiện trong menu khay."
+    caption="Trang “Giao diện” với icon và các mục hiện trong menu khay. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
   />
   <ul>
     <li>
-      “Sử dụng biểu tượng trạng thái Ngó Sen” chọn sẵn: khay hiện icon Ngó Sen nền xanh, rõ trên panel sáng lẫn tối.
+      “Sử dụng biểu tượng trạng thái Ngó Sen” chọn sẵn: khay hiện chữ V màu xanh khi tiếng Việt bật,
+      lát củ sen màu xám khi tắt.
     </li>
-    <li>Bỏ chọn thì khay hiện chữ V, không có nền.</li>
+    <li>Bỏ chọn thì dùng icon một màu, theo màu chọn bên dưới.</li>
+  </ul>
+  <p>Phần “Trên khay:” xem trước icon cho tiếng Việt và tiếng Anh, đổi ngay theo lựa chọn.</p>
+
+  <h2 id="mau">Màu biểu tượng một màu</h2>
+  <p>“Màu biểu tượng” chỉ dùng cho icon một màu:</p>
+  <ul>
+    <li>“Tự động” (mặc định): theo chế độ sáng/tối của máy.</li>
+    <li>“Sáng”: hợp panel sáng.</li>
+    <li>“Tối”: hợp panel tối.</li>
   </ul>
 
-  <h2 id="mau">Màu chữ V</h2>
-  <p>“Màu biểu tượng:” chọn màu cho chữ V, theo màu panel:</p>
-  <ul>
-    <li>“Tự động” (mặc định): Ngó Sen tự đọc màu panel. Panel của Linux Mint màu tối, nên chữ V màu trắng.</li>
-    <li>“Sáng”: cho panel sáng, chữ V màu đen.</li>
-    <li>“Tối”: cho panel tối, chữ V màu trắng.</li>
-  </ul>
-  <p>Mục này không đổi icon Ngó Sen nền xanh.</p>
+  <h2 id="menu-khay">Ẩn mục trong menu khay</h2>
+  <ol class="steps">
+    <li>Ở nhóm “Hiện trong menu khay”, bỏ chọn mục không cần, ví dụ “Kiểu gõ”.</li>
+    <li>Click chuột phải vào icon trên khay. Menu không còn mục “Kiểu gõ”.</li>
+  </ol>
+  <p>“Cài đặt” và “Lưu nhật ký gõ” luôn có trong menu.</p>
+
+  <h2 id="ngon-ngu">Ngôn ngữ giao diện</h2>
+  <p>
+    “Ngôn ngữ giao diện” chọn ngôn ngữ cho menu khay và cửa sổ cài đặt. Mặc định là tiếng Việt, kể cả
+    trên desktop tiếng Anh; có thể đổi sang tiếng Anh ở đây. Menu khay đổi ngay, cửa sổ đổi ở lần mở sau.
+    Các mục cuối menu như “Restart” thuộc fcitx5 nên vẫn theo ngôn ngữ desktop.
+  </p>
 </Guide>

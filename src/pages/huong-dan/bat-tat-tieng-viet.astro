@@ -4,51 +4,60 @@ import Shot from '../../components/Shot.astro';
 
 const toc = [
   { id: 'dau-hieu', label: 'Biết tiếng Việt đang bật' },
-  { id: 'moi-cua-so', label: 'Mỗi cửa sổ bật riêng' },
   { id: 'doi-phim', label: 'Đổi phím bật/tắt' },
 ];
 ---
 
 <Guide
   title="Bật và tắt tiếng Việt"
-  description="Bật, tắt tiếng Việt trong Ngó Sen bằng Ctrl+Space và nhận biết trạng thái qua icon khay. Đổi phím bật, tắt trong cửa sổ cấu hình fcitx5."
+  description="Bật, tắt tiếng Việt bằng phím chuyển Anh/Việt và nhận biết trạng thái qua icon khay. Đổi phím trong cửa sổ “Cài đặt Ngó Sen”."
   toc={toc}
 >
   <p slot="lede">
-    Bấm <kbd>Ctrl+Space</kbd> để bật hoặc tắt tiếng Việt. Đây là phím mặc định của fcitx5. Máy cài bằng
-    version cũ có thể đang dùng <kbd>Ctrl+Shift</kbd>; lệnh cài bây giờ để nguyên phím đó.
+    Bấm phím chuyển Anh/Việt để bật hoặc tắt tiếng Việt. Máy cài mới bằng script cài đặt dùng
+    <kbd>Ctrl+Shift</kbd> và bắt đầu ở tiếng Anh. Máy cập nhật từ version cũ giữ phím đã dùng, thường là
+    <kbd>Ctrl+Space</kbd>.
   </p>
 
   <h2 id="dau-hieu">Biết tiếng Việt đang bật</h2>
   <p>
-    Bấm xong, ô nhỏ cạnh con trỏ hiện <code>vi</code> khi tiếng Việt bật, <code>en</code> khi tắt. Icon trên
-    khay là chữ V nền xanh khi bật, icon bàn phím khi tắt. Click vào icon trên khay cũng bật hoặc tắt tiếng
-    Việt.
+    Bấm xong, ô nhỏ cạnh con trỏ hiện “Ngó Sen (Telex)” khi tiếng Việt bật, “Ngó Sen (Tắt)” khi tắt.
+    Icon trên khay là chữ V màu xanh khi bật, lát củ sen màu xám khi tắt.
   </p>
   <Shot
     name="guide-vi"
-    width={650}
-    height={400}
-    alt="Trình soạn chữ xed với dòng “Ngó Sen gõ tiếng Việt”; ngay dưới con trỏ là ô nhỏ ghi “vi”."
-    caption="Ô “vi” hiện cạnh con trỏ ngay sau khi bấm Ctrl+Space. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+    width={420}
+    height={130}
+    alt="Trong xed có chữ “Ngó Sen”; ô dưới con trỏ ghi “Ngó Sen (Telex)”."
+    caption="Ô “Ngó Sen (Telex)” hiện cạnh con trỏ sau khi bấm phím chuyển Anh/Việt. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
   />
 
-  <h2 id="moi-cua-so">Mỗi cửa sổ bật riêng</h2>
   <p>
-    fcitx5 nhớ bật hay tắt riêng cho từng cửa sổ. Mở một cửa sổ mới thì tiếng Việt ở đó đang tắt, bấm
-    <kbd>Ctrl+Space</kbd> một lần.
+    Khi tắt tiếng Việt, phím gõ ra như khi không dùng bộ gõ. Trạng thái Anh/Việt dùng chung cho mọi cửa sổ
+    và được nhớ qua lần đăng xuất. App đã đặt <a href="/huong-dan/che-do-go/">chế độ gõ riêng</a> thì chuyển riêng.
   </p>
 
   <h2 id="doi-phim">Đổi phím bật/tắt</h2>
-  <p>Phím này là cài đặt của fcitx5, không nằm trong cửa sổ “Cài đặt Ngó Sen”.</p>
+  <p>Vào “Cài đặt Ngó Sen › Phím › Phím tắt”, hàng “Phím chuyển Anh/Việt”.</p>
   <ol class="steps">
-    <li>Click chuột phải vào icon trên khay, chọn “Cấu hình”.</li>
-    <li>
-      Mở tab “Global Options”. Ở nhóm “Phím tắt”, dòng “Trigger Input Method”, click vào nút đang ghi
-      “Điều khiển+Space”.
-    </li>
-    <li>Bấm tổ hợp phím mới. Nút đổi sang tên phím vừa bấm.</li>
-    <li>Click “Apply”. Phím mới dùng được ngay.</li>
+    <li>Click nút phím. Nút hiện “[ Đang ghi lại… ]”.</li>
+    <li>Bấm tổ hợp phím mới, ví dụ <kbd>Shift+Space</kbd>. Phím được lưu ngay.</li>
+    <li>Quay lại app đang gõ, bấm phím mới để chuyển Anh/Việt.</li>
   </ol>
-  <p>Cửa sổ này của fcitx5 phần lớn vẫn để chữ tiếng Anh, kể cả khi máy để tiếng Việt.</p>
+  <Shot
+    name="guide-switch"
+    width={515}
+    height={118}
+    alt="Hàng Phím chuyển Anh/Việt đang đặt Shift+Space; bên dưới có nút Dùng Ctrl+Shift."
+    caption="Phím chuyển Anh/Việt sau khi đổi sang Shift+Space. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+  />
+  <p>
+    Khi phím đang dùng khác <kbd>Ctrl+Shift</kbd>, hàng “Chuyển bằng Ctrl+Shift như UniKey?” có nút
+    “Dùng Ctrl+Shift”. Click nút này để đặt lại; hàng đó biến mất. Với <kbd>Ctrl+Shift</kbd>, dùng phím
+    bên nào và bấm phím nào trước cũng được.
+  </p>
+  <p>
+    Phím chuyển bộ gõ của fcitx5 vẫn chuyển sang bộ gõ khác nếu nhóm còn bộ gõ đó. Phím này nằm trong
+    cửa sổ mở từ “Cấu hình” ở menu khay.
+  </p>
 </Guide>

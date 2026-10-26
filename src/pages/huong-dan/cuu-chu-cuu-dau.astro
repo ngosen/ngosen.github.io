@@ -1,0 +1,80 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'cuu-chu', label: 'Sửa chữ quên bật tiếng Việt' },
+  { id: 'cuu-dau', label: 'Sửa dấu chữ đang bôi đen' },
+];
+---
+
+<Guide
+  title="Sửa chữ quên bật tiếng Việt"
+  description="Dùng Cứu chữ để đổi chữ gõ khi quên bật tiếng Việt, và Cứu dấu để sửa dấu chữ đang bôi đen. Có thể trả lại chữ hoặc phím vừa gõ."
+  toc={toc}
+>
+  <p slot="lede">
+    Vào “Cài đặt Ngó Sen › Gõ chữ”, nhóm “Gõ nhanh”. Hai mục “Cứu chữ: gõ lại có dấu khi quên bật tiếng Việt”
+    và “Cứu dấu: sửa dấu chữ đang bôi đen” bật sẵn, kể cả khi cập nhật từ version cũ.
+  </p>
+  <Shot
+    name="guide-rescue-options"
+    width={505}
+    height={104}
+    alt="Hai mục Cứu chữ: gõ lại có dấu khi quên bật tiếng Việt và Cứu dấu: sửa dấu chữ đang bôi đen đều được chọn."
+    caption="Hai mục Cứu chữ và Cứu dấu ở nhóm “Gõ nhanh”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+  />
+
+  <h2 id="cuu-chu">Sửa chữ quên bật tiếng Việt</h2>
+  <ol class="steps">
+    <li>Khi đang gõ tiếng Anh trong xed, gõ <code>tieengs vieetj</code>.</li>
+    <li>
+      Bấm <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>. Chữ đổi thành
+      <code>tiếng việt</code>, ô cạnh con trỏ ghi “Cứu chữ: Tab hoặc Esc để trả lại chữ đã gõ”. Bấm
+      <kbd>Esc</kbd> để trả lại <code>tieengs vieetj</code>.
+    </li>
+    <li>
+      Nếu gõ <code>abc tieengs</code> khi tiếng Việt tắt rồi bật lại, Ngó Sen chỉ gợi ý
+      <code>abc tieengs → abc tiếng</code> và ghi “Cứu chữ: Enter để đổi, Tab hoặc Esc để giữ nguyên”.
+      Bấm <kbd>Enter</kbd> để đổi thành <code>abc tiếng</code>.
+    </li>
+  </ol>
+  <Shot
+    name="guide-rescue"
+    width={420}
+    height={130}
+    alt="Trong xed có chữ tiếng việt; ô cạnh con trỏ ghi Ngó Sen (Telex) và Cứu chữ: Tab hoặc Esc để trả lại chữ đã gõ."
+    caption="Cứu chữ đổi “tieengs vieetj” thành “tiếng việt”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+  />
+  <p>
+    Khi có từ gõ lại vẫn giữ nguyên như <code>abc</code>, Cứu chữ chỉ gợi ý vì từ đó thường là tiếng Anh
+    được gõ có chủ ý.
+  </p>
+  <p>
+    Cứu chữ cũng chạy khi chuyển sang Ngó Sen bằng phím của fcitx5. Ngó Sen không nhớ chữ trong ô mật khẩu;
+    click chuột, bấm <kbd>Enter</kbd>, phím mũi tên hoặc chuyển sang ô khác thì quên chữ đã gõ. Cứu chữ
+    không hiện trong app không cho bộ gõ xoá chữ. Bỏ chọn mục này thì Ngó Sen không nhớ phím gõ khi tiếng Việt tắt.
+  </p>
+
+  <h2 id="cuu-dau">Sửa dấu chữ đang bôi đen</h2>
+  <ol class="steps">
+    <li>Khi tiếng Việt đang bật trong xed, gõ <code>nhanh</code>, rồi bôi đen từ đó bằng <kbd>Shift+Ctrl+Left</kbd>.</li>
+    <li>
+      Gõ <kbd>s</kbd>. Chữ đổi thành <code>nhánh</code>, ô cạnh con trỏ ghi
+      “Cứu dấu: Tab hoặc Esc để trả lại phím vừa gõ”.
+    </li>
+  </ol>
+  <Shot
+    name="guide-mark"
+    width={420}
+    height={130}
+    alt="Trong xed có chữ nhánh; ô cạnh con trỏ ghi Cứu dấu: Tab hoặc Esc để trả lại phím vừa gõ."
+    caption="Cứu dấu đổi “nhanh” thành “nhánh” sau khi bôi đen rồi gõ s. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+  />
+  <p>
+    Gõ phím dấu khác thì đổi dấu tiếp: <code>nhánh</code> rồi <kbd>f</kbd> thành <code>nhành</code>.
+    Bấm <kbd>Tab</kbd>, <kbd>Esc</kbd> hoặc gõ lại cùng phím dấu thì trả lại phím vừa gõ. Gõ chữ khác
+    là viết từ mới đè lên vùng bôi đen: bôi đen <code>nhanh</code> rồi gõ <code>sách</code> vẫn ra <code>sách</code>.
+  </p>
+  <p>Cứu dấu chỉ chạy với Unicode và trong app hỗ trợ surrounding text.</p>
+</Guide>

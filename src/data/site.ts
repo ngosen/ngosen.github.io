@@ -964,7 +964,7 @@ export const GUIDE = [
       {
         href: '/huong-dan/bat-tat-tieng-viet/',
         label: 'Bật và tắt tiếng Việt',
-        summary: 'Phím Ctrl+Space, dấu hiệu đang bật, đổi phím khác.',
+        summary: 'Phím chuyển Anh/Việt, dấu hiệu đang bật, đổi phím khác.',
       },
       {
         href: '/huong-dan/kieu-go-bang-ma/',
@@ -997,6 +997,11 @@ export const GUIDE = [
         summary: 'Từ tiếng Anh tự trở lại, Backspace chỉ xoá dấu, w ra ư, phím [ ] ra ơ ư.',
       },
       {
+        href: '/huong-dan/cuu-chu-cuu-dau/',
+        label: 'Sửa chữ quên bật tiếng Việt',
+        summary: 'Cứu chữ gõ khi quên bật tiếng Việt, Cứu dấu cho chữ đang bôi đen.',
+      },
+      {
         href: '/huong-dan/kiem-tra-chinh-ta/',
         label: 'Kiểm tra chính tả',
         summary: 'Chữ không có trong từ điển, thêm chữ vào từ điển riêng.',
@@ -1009,12 +1014,12 @@ export const GUIDE = [
       {
         href: '/huong-dan/go-tat/',
         label: 'Gõ tắt một cụm từ hay dùng',
-        summary: 'Từ viết tắt thành cụm từ đầy đủ, chữ hoa, ngày giờ hôm nay.',
+        summary: 'Từ viết tắt thành cụm từ đầy đủ, chữ hoa, ngày giờ và phím chốt chữ.',
       },
       {
         href: '/huong-dan/tu-sua-dau-cau/',
         label: 'Tự sửa dấu câu',
-        summary: 'Hai gạch nối thành gạch dài, hai dấu cách thành dấu chấm, viết hoa đầu câu.',
+        summary: 'Hai gạch nối thành gạch dài, hai dấu cách thành dấu chấm, viết hoa đầu câu và đầu dòng.',
       },
     ],
   },
@@ -1034,7 +1039,7 @@ export const GUIDE = [
       {
         href: '/huong-dan/icon-khay/',
         label: 'Đổi icon trên khay',
-        summary: 'Icon Ngó Sen có nền hay chữ V, màu chữ V theo panel sáng hay tối.',
+        summary: 'Icon trạng thái hay một màu, ẩn mục trong menu khay, ngôn ngữ giao diện.',
       },
       {
         href: '/huong-dan/tim-sao-luu/',
@@ -1049,7 +1054,7 @@ export const GUIDE = [
       {
         href: '/huong-dan/bao-loi/',
         label: 'Báo lỗi',
-        summary: 'Lưu nhật ký gõ ngay khi gõ ra chữ sai, kiểm tra máy, rồi báo lỗi trên GitHub.',
+        summary: 'Lưu nhật ký từ menu khay hoặc bằng lệnh ngosen-save-log, kiểm tra máy, báo lỗi trên GitHub.',
       },
     ],
   },
