@@ -29,6 +29,19 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.5.8-1',
+    date: '26/10/2026',
+    summary:
+      'Version sửa lỗi nhanh cho cửa sổ cài đặt; người dùng version 1.5.7 nên cập nhật.',
+    changes: [
+      {
+        claim: 'Cửa sổ cài đặt lưu được thay đổi khi fcitx5 đang chạy.',
+        source: 'Trước đây cửa sổ cài đặt của 1.5.7 không lưu được gì và báo “Không lưu được”, dù fcitx5 vẫn chạy (#305). Đã test trên máy ảo Ubuntu 26.04 và CachyOS: gọi thẳng phần lưu với fcitx5 đang chạy, mỗi máy một lượt, đổi một ô cài đặt chính và lưu một gõ tắt rồi đọc lại; cả hai đều lưu được. Với gói 1.5.7-1 trên cùng hai máy, cả hai lần lưu đều bị fcitx5 từ chối và cài đặt không đổi. Chưa click lưu bằng chuột trong cửa sổ.',
+        pr: 303,
+      },
+    ],
+  },
+  {
     version: '1.5.7-1',
     date: '24/10/2026',
     summary:
@@ -723,7 +736,8 @@ export const LEVELS_NOTE =
   ' Linux Mint 22.1 (Cinnamon X11, gói “noble”), Firefox, ô chữ thường, ô contenteditable, TinyMCE và Lexical: câu “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam” gõ 120 ms và 30 ms giữa các phím → “tiếng việt là ngôn ngữ của người việt nam”; “toan”, dấu cách, Backspace, “s” → “toán”. Đúng 11/12 lượt; lượt còn lại trang Lexical báo ô trống chứ không ra chữ sai, gõ lại 3/3 lượt đúng. Terminal xterm.js: “toan”, dấu cách, Backspace, “s” → “toán”, đúng 4/4 lượt. gemini.google.com không đăng nhập, chế độ Preedit: gõ “xin chaof” rồi Enter một lần là gửi, đúng 3/3 lượt.' +
   ' CachyOS (KDE Plasma Wayland, gói Arch): ô chữ thường trong Firefox và Chromium, câu trên gõ 120 ms và 30 ms, “toan”, dấu cách, Backspace, “s” → “toán”, đúng 12/12 lượt; trước đó lượt đầu ngay sau khi Firefox mới mở sai 2 ca do máy ảo khựng. Máy có cả PyQt5 và PyQt6; cửa sổ cài đặt mở được và vẫn chạy sau 10 giây.' +
   ' Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cửa sổ cài đặt mở được; Firefox snap, ô chữ thường: câu trên đúng ở cả hai tốc độ. “toan”, dấu cách, Backspace, “s” ra “toans” (3/3 lượt, 1.5.6 trên cùng máy cũng vậy): Firefox bản snap vẫn chưa được sửa lỗi xoá qua dấu cách.' +
-  ' Lưu cài đặt khi fcitx5 khởi động lại lúc cửa sổ đang mở (#279) và dung lượng cài trên Ubuntu sạch (#280) không được test lại trên gói 1.5.7; phụ thuộc của gói .deb đã được đọc lại, chỉ còn “python3-pyqt6”. Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.7.';
+  ' Lưu cài đặt khi fcitx5 khởi động lại lúc cửa sổ đang mở (#279) và dung lượng cài trên Ubuntu sạch (#280) không được test lại trên gói 1.5.7; phụ thuộc của gói .deb đã được đọc lại, chỉ còn “python3-pyqt6”. Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.7.' +
+  ' Gói 1.5.8 từ PR phát hành #306 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và CachyOS (KDE Plasma Wayland, gói Arch). Trên mỗi máy, cửa sổ cài đặt mở được và vẫn chạy sau 10 giây. Phần lưu của cửa sổ cài đặt được gọi thẳng với fcitx5 đang chạy, mỗi máy một lượt: đổi một ô cài đặt chính và lưu một gõ tắt, rồi đọc lại; cả hai đều lưu được. Với gói 1.5.7-1 đã phát hành trên cùng hai máy, cả hai lần lưu đều bị fcitx5 từ chối và cài đặt không đổi. Chưa click lưu bằng chuột trong cửa sổ; Fedora, Debian, Mint, openSUSE và Kali chưa được test với 1.5.8.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
