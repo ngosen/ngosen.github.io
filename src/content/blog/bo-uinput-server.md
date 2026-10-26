@@ -2,7 +2,8 @@
 title: "Bỏ uinput server"
 description: "Ngó Sen từng cần một uinput server chạy nền, có quyền đọc mọi bàn phím, để bấm Backspace hộ bộ gõ. Từ version 0.5.0, server đó không còn."
 pubDate: 2026-10-08
-updatedDate: 2026-10-16
+updatedDate: 2026-10-26
+outdated: "Từ version 1.6.0, các gói .deb, .rpm và Arch không còn dọn uinput server của các version trước 0.5.0 khi cài đặt hoặc cập nhật. Ai từng tự build version cũ làm theo các bước dọn trong TU-DUNG.md."
 ---
 
 Gõ Telex thì dấu tới sau chữ, nên muốn thêm dấu, bộ gõ phải xoá chữ cũ rồi gõ chữ mới. Ở chế độ Uinput (nay là Gõ Sen), một uinput server chạy nền bấm Backspace hộ bộ gõ, qua bàn phím ảo của kernel.

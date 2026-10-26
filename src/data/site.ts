@@ -29,6 +29,64 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.6.0-1',
+    date: '26/10/2026',
+    summary:
+      'Thêm Cứu chữ khi quên bật tiếng Việt, Cứu dấu cho chữ đã bôi đen và phím riêng chuyển Anh/Việt.',
+    changes: [
+      {
+        claim: 'Cứu chữ đổi chữ gõ khi quên bật tiếng Việt thành chữ có dấu khi bật lại.',
+        source: 'Gõ `tieengs vieetj` rồi bật tiếng Việt thì thành `tiếng việt`, Tab hoặc Esc trả lại chữ cũ; nếu có chữ giữ nguyên khi gõ lại, Ngó Sen chỉ hiện gợi ý để bấm Enter nhận (#82, #232, #239, #243, #80). Đã test trong ô chữ GTK3 trên Ubuntu 26.04 và Linux Mint 22, cùng Chrome trên Ubuntu: đổi chữ, Esc trả lại và Tab bỏ qua gợi ý `tieengs Nam` đều đúng; Cứu chữ bật sẵn cả khi nâng cấp.',
+        pr: 290,
+      },
+      {
+        claim: 'Cứu dấu cho bôi đen chữ đã gõ xong rồi gõ phím dấu để đổi dấu ngay.',
+        source: '`nhanh` + `s` → `nhánh`, gõ tiếp `f` → `nhành`; gõ tiếp chữ cái thì thay bằng chữ mới, như `nhanh` + `sách` vẫn ra `sách` (#290). Tuỳ chọn bật sẵn trong “Gõ chữ › Gõ nhanh”, dùng ở app hỗ trợ surrounding text; Tab, Esc hoặc gõ lại đúng phím dấu trả lại phím đã gõ.',
+        pr: 272,
+      },
+      {
+        claim: 'Ngó Sen có phím riêng chuyển Anh/Việt: cài mới dùng Ctrl+Shift như UniKey, cập nhật giữ phím cũ.',
+        source: 'Đổi ở “Phím › Phím tắt”, ô “Phím chuyển Anh/Việt”; ghi được Ctrl+Shift khi thả phím, dùng bên trái hay bên phải đều được (#242, #244), và cài mới bằng install.sh chỉ có Ngó Sen trong danh sách bộ gõ (#237, #248). Đã test cài mới: bắt đầu ở tiếng Anh, Ctrl+Shift chuyển sang tiếng Việt; nâng cấp từ 1.5.8-1 trên Ubuntu 26.04 và Linux Mint 22 giữ Ctrl+Space.',
+        pr: 234,
+      },
+      {
+        claim: '“Phím chốt chữ” thay tuỳ chọn bỏ qua gõ tắt, giữ nguyên từ đang gõ khi bấm rồi thả riêng phím.',
+        source: 'Mặc định là Ctrl: gõ `tunx`, Ctrl rồi Space giữ `tũn`, không thêm dấu, tự khôi phục hay bung macro; phím tiếp theo bắt đầu từ mới. Ai đã chọn Shift, Ctrl hoặc Alt vẫn giữ phím đó.',
+        pr: 219,
+      },
+      {
+        claim: 'Menu tray thêm “Kiểu gõ”, “Tự viết hoa”, cho ẩn các mục và đổi icon khi tắt tiếng Việt.',
+        source: 'Chuyển nhanh Telex/VNI, bật tắt từng kiểu viết hoa (#240), ẩn mục ở “Giao diện › Hiện trong menu khay” (#275); “Cài đặt” và “Lưu nhật ký gõ” luôn có trong menu. Khi tắt tiếng Việt, icon là lát củ sen trên ô xám; GNOME dùng Input Method Panel (kimpanel) hiện icon Ngó Sen thay chữ “vi” (#233).',
+        pr: 274,
+      },
+      {
+        claim: 'Cửa sổ cài đặt thêm giải thích, tách “Giao diện” và “Giới thiệu” thành hai trang, cho đổi ngôn ngữ giao diện.',
+        source: 'Bỏ trang “Khác”, trang “Giao diện” có xem trước icon tray (#276); giải thích dưới tuỳ chọn thường kèm ví dụ, cách gõ không đổi. Menu và cửa sổ Ngó Sen mặc định dùng tiếng Việt; đổi “Ngôn ngữ giao diện” ở đầu trang “Giao diện” sang tiếng Anh thì menu tray đổi ngay, cửa sổ đổi khi mở lại, còn các mục của fcitx5 theo ngôn ngữ desktop (#277).',
+        pr: 281,
+      },
+      {
+        claim: 'Cập nhật bằng install.sh tự nạp lại fcitx5, gõ được ngay, trừ KDE Wayland vẫn cần đăng xuất rồi đăng nhập lại.',
+        source: 'Đã test nâng cấp từ 1.5.8-1 trên Ubuntu 26.04 và Linux Mint 22: fcitx5 tự nạp lại, cài đặt, gõ tắt và Ctrl+Space còn nguyên, Cứu chữ đã bật. Khi gỡ trên GNOME, install.sh giữ file `~/.config/environment.d/90-ngosen.conf` nếu bạn đã sửa sau khi cài (#317).',
+        pr: 230,
+      },
+      {
+        claim: 'App GTK3 đi qua GNOME Shell không còn mất dấu khi gõ.',
+        source: 'Trước đây có thể ra `trơi`, `ban`, `viêt` thay vì `trời`, `bạn`, `việt`. Gói 1.6.0 được test trên Ubuntu 26.04 GNOME Wayland: câu `dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij` ra đúng chữ có dấu trong ô chữ GTK3, Chrome và GNOME Console.',
+        pr: 231,
+      },
+      {
+        claim: 'Chạy `ngosen-save-log` trong terminal để lưu nhật ký gõ khi icon hoặc menu tray mất hay treo.',
+        source: 'Lệnh in đường dẫn file đã lưu, như `~/.local/state/ngosen/typing-<ngày giờ>.log`. Chỉ tài khoản của bạn đọc được file này.',
+        pr: 197,
+      },
+      {
+        claim: 'Mọi gói Ngó Sen, kể cả Debian 12, đều dùng lõi Rust; lõi Go đã bỏ.',
+        source: 'Gói Debian 12 trước đây dùng lõi Go; cách gõ không đổi khi chuyển sang Rust. Build từ source cần Rust 1.88+ và cargo, không cần Go; Debian chưa được test với gói 1.6.0.',
+        pr: 223,
+      },
+    ],
+  },
+  {
     version: '1.5.8-1',
     date: '26/10/2026',
     summary:
@@ -737,7 +795,8 @@ export const LEVELS_NOTE =
   ' CachyOS (KDE Plasma Wayland, gói Arch): ô chữ thường trong Firefox và Chromium, câu trên gõ 120 ms và 30 ms, “toan”, dấu cách, Backspace, “s” → “toán”, đúng 12/12 lượt; trước đó lượt đầu ngay sau khi Firefox mới mở sai 2 ca do máy ảo khựng. Máy có cả PyQt5 và PyQt6; cửa sổ cài đặt mở được và vẫn chạy sau 10 giây.' +
   ' Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cửa sổ cài đặt mở được; Firefox snap, ô chữ thường: câu trên đúng ở cả hai tốc độ. “toan”, dấu cách, Backspace, “s” ra “toans” (3/3 lượt, 1.5.6 trên cùng máy cũng vậy): Firefox bản snap vẫn chưa được sửa lỗi xoá qua dấu cách.' +
   ' Lưu cài đặt khi fcitx5 khởi động lại lúc cửa sổ đang mở (#279) và dung lượng cài trên Ubuntu sạch (#280) không được test lại trên gói 1.5.7; phụ thuộc của gói .deb đã được đọc lại, chỉ còn “python3-pyqt6”. Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.7.' +
-  ' Gói 1.5.8 từ PR phát hành #306 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và CachyOS (KDE Plasma Wayland, gói Arch). Trên mỗi máy, cửa sổ cài đặt mở được và vẫn chạy sau 10 giây. Phần lưu của cửa sổ cài đặt được gọi thẳng với fcitx5 đang chạy, mỗi máy một lượt: đổi một ô cài đặt chính và lưu một gõ tắt, rồi đọc lại; cả hai đều lưu được. Với gói 1.5.7-1 đã phát hành trên cùng hai máy, cả hai lần lưu đều bị fcitx5 từ chối và cài đặt không đổi. Chưa click lưu bằng chuột trong cửa sổ; Fedora, Debian, Mint, openSUSE và Kali chưa được test với 1.5.8.';
+  ' Gói 1.5.8 từ PR phát hành #306 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và CachyOS (KDE Plasma Wayland, gói Arch). Trên mỗi máy, cửa sổ cài đặt mở được và vẫn chạy sau 10 giây. Phần lưu của cửa sổ cài đặt được gọi thẳng với fcitx5 đang chạy, mỗi máy một lượt: đổi một ô cài đặt chính và lưu một gõ tắt, rồi đọc lại; cả hai đều lưu được. Với gói 1.5.7-1 đã phát hành trên cùng hai máy, cả hai lần lưu đều bị fcitx5 từ chối và cài đặt không đổi. Chưa click lưu bằng chuột trong cửa sổ; Fedora, Debian, Mint, openSUSE và Kali chưa được test với 1.5.8.' +
+  ' Gói 1.6.0 từ PR phát hành #314 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và Linux Mint 22 (Cinnamon X11, gói “noble”), dùng Gõ Sen, Telex. Nâng cấp: mỗi máy cài 1.5.8-1, lưu một cài đặt và một gõ tắt, rồi chạy install.sh với gói mới; fcitx5 tự nạp lại, cài đặt, gõ tắt và phím Ctrl+Space còn nguyên, Cứu chữ đã bật. Sau đó, trong một ô chữ GTK3 trên cả hai máy: gõ câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu; gõ “tieengs vieetj” ở tiếng Anh rồi bật tiếng Việt, Cứu chữ đổi thành “tiếng việt”, bấm Esc trả lại chữ cũ; gõ “tieengs Nam” rồi bật tiếng Việt thì chỉ hiện gợi ý, bấm Tab giữ nguyên chữ đã gõ. Trên Ubuntu, bốn ca đó cũng đúng trong Chrome, và gõ câu trong terminal GNOME Console đúng; trên Mint, gõ câu trong Chrome đúng. Cài mới (gói build ngay trước bản sửa nâng cấp #315, bản sửa không đụng đường cài mới): mở ở tiếng Anh, Ctrl+Shift chuyển sang tiếng Việt, Cứu chữ bật sẵn. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.0.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -854,7 +913,7 @@ export const DISTRIBUTIONS: Distribution[] = [
     level: 'built',
     basis: 'chỉ build và chạy test lúc build',
     file: 'fcitx5-ngosen_*_bookworm_amd64.deb',
-    core: 'Go',
+    core: 'Rust',
   },
 ];
 
@@ -872,7 +931,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Lõi Rust',
-    text: 'Phần biến tieengs thành tiếng được viết lại bằng Rust. Mọi gói đều dùng lõi Rust, trừ gói cho Debian 12.',
+    text: 'Phần biến tieengs thành tiếng được viết lại bằng Rust. Mọi gói, kể cả Debian 12, đều dùng lõi Rust.',
   },
   {
     title: 'Cài bằng một dòng lệnh',
@@ -1007,25 +1066,11 @@ export const ROADMAP: {
   items: { text: string; refs?: number[]; links?: { label: string; href: string }[] }[];
 }[] = [
   {
-    version: '1.6.0',
+    version: '1.7.0',
     items: [
-      {
-        text: 'Cứu chữ: quên bật tiếng Việt mà đã gõ `tieengs vieetj`, bấm phím chuyển sang Ngó Sen là chữ thành `tiếng việt`. Đã xong.',
-        refs: [71, 80, 82, 83],
-        links: [{ label: 'Thử ngay bằng test build', href: `${REPO}#test-tính-năng-chưa-có-trong-release` }],
-      },
-      {
-        text: 'Cứu dấu: sửa dấu chữ đã gõ xong. Bôi đen chữ, gõ dấu rồi bấm Tab (`nhanh` + `s` → `nhánh`). Ở app hỗ trợ surrounding text, chỉ cần click vào chữ rồi gõ dấu.',
-        refs: [118],
-      },
       {
         text: 'Có gì mới: sau khi cập nhật lên version có tính năng mới, một thông báo nhỏ ở góc màn hình hiện một lần, bấm vào thì mở trang “Có gì mới” trong cửa sổ cài đặt, mỗi tính năng có cách dùng và nút tắt. Version chỉ sửa lỗi thì không báo.',
       },
-    ],
-  },
-  {
-    version: '1.7.0',
-    items: [
       { text: 'Làm lại cách chèn emoji.', refs: [110] },
       {
         text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
@@ -1042,6 +1087,7 @@ export const ROADMAP: {
       { text: 'Sửa lỗi gõ vội, như `tiếgn` thành `tiếng`.' },
       { text: 'Tự chạy “Kiểm tra máy tôi” lần đầu mở cửa sổ cài đặt. Có thêm bảng các app gõ được, lấy từ kết quả test người dùng gửi về.' },
       { text: 'Mẹo dùng Ngó Sen trong cửa sổ cài đặt, mỗi mẹo dẫn sang trang hướng dẫn trên website. Mẹo có sẵn trong gói cài, không tải gì từ mạng.' },
+      { text: 'Cứu dấu không cần bôi đen: click vào sau chữ rồi gõ dấu.', refs: [118] },
       {
         text: 'Đưa Ngó Sen vào repo của các distro: từ 1.5.3 đã có repo riêng có chữ ký cho Fedora (COPR), Debian và Ubuntu (APT), Arch (pacman) và openSUSE Tumbleweed. nixpkgs đang chờ review. Còn AUR, rồi Debian.',
         links: [{ label: 'NixOS/nixpkgs#575620', href: 'https://github.com/NixOS/nixpkgs/pull/575620' }],

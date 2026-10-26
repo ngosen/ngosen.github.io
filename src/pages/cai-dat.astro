@@ -4,12 +4,10 @@ import InstallStrip from '../components/InstallStrip.astro';
 import InlineCode from '../components/InlineCode.astro';
 import { ARM_NOTE, ARM_TESTER, DISTRIBUTIONS, INSTALL_PAGES, LEVELS, LEVELS_NOTE, RELEASE, REPO } from '../data/site';
 
-const goDistros = DISTRIBUTIONS.filter((item) => item.core === 'Go').map((item) => item.name);
-
 const toc = [
   { id: 'mot-dong-lenh', label: 'Cài bằng một dòng lệnh' },
   { id: 'ban-nao', label: 'Distro nào có gói' },
-  { id: 'loi-ghep-dau', label: 'Lõi ghép dấu: Rust hay Go', level: 3 as const },
+  { id: 'loi-ghep-dau', label: 'Lõi ghép dấu', level: 3 as const },
   { id: 'sau-khi-cai', label: 'Cài xong' },
   { id: 'ubuntu-26-04', label: 'Ubuntu 26.04: extension sửa lỗi gõ', level: 3 as const },
   { id: 'gnome-wayland-click', label: 'GNOME Wayland: click chuột mất chữ đang gõ', level: 3 as const },
@@ -50,8 +48,9 @@ const toc = [
       Trên KDE Plasma, lệnh cài còn chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual
       Keyboard) để app Qt như Kate, Dolphin cũng gõ được. Trên KDE Plasma, lệnh cài còn đặt
       <code>XMODIFIERS</code> để app X11 qua Xwayland, như Minecraft version cũ, gõ được tiếng Việt.
-      Lệnh cài không đổi phím bật tiếng Việt: dùng
-      Ctrl+Space, phím mặc định của fcitx5. Máy đã được version cũ đặt Ctrl+Shift thì vẫn giữ nguyên Ctrl+Shift.
+      Ngó Sen có phím riêng chuyển Anh/Việt. Cài mới bắt đầu ở tiếng Anh, dùng Ctrl+Shift như UniKey,
+      danh sách bộ gõ chỉ có Ngó Sen. Máy đã cài Ngó Sen giữ phím cũ, thường là Ctrl+Space.
+      Muốn đổi phím, mở cửa sổ cài đặt, trang “Phím”, tab “Phím tắt”, ô “Phím chuyển Anh/Việt”.
     </li>
   </ol>
   <p>
@@ -116,22 +115,22 @@ const toc = [
     {ARM_NOTE.packages} Bạn <a href={ARM_TESTER.url}>{ARM_TESTER.name}</a> {ARM_NOTE.tested}
   </p>
 
-  <h3 id="loi-ghep-dau">Lõi ghép dấu: Rust hay Go</h3>
+  <h3 id="loi-ghep-dau">Lõi ghép dấu</h3>
   <p>
-    Lõi ghép dấu là phần biến <code>tieengs</code> thành <code>tiếng</code>. Mọi gói dùng bản viết bằng
-    Rust, trừ gói cho {goDistros.join(', ')} vẫn dùng bản Go, vì Rust có sẵn ở đó quá cũ. Hai bản gõ ra
-    chữ như nhau.
+    Lõi ghép dấu là phần biến <code>tieengs</code> thành <code>tiếng</code>. Mọi gói, kể cả Debian 12,
+    đều dùng lõi Rust. Lõi Go đã bỏ từ version 1.6.0.
   </p>
 
   <h2 id="sau-khi-cai">Cài xong</h2>
   <p>
-    Cài bằng lệnh một dòng thì đăng xuất rồi đăng nhập lại, sau đó bấm <kbd>Ctrl+Space</kbd>, phím mặc định
-    của fcitx5, để bật tiếng Việt. Máy đã được version cũ đặt Ctrl+Shift vẫn giữ nguyên phím đó.
+    Cài bằng lệnh một dòng thì đăng xuất rồi đăng nhập lại, sau đó bấm rồi thả <kbd>Ctrl+Shift</kbd>
+    như UniKey để chuyển giữa tiếng Anh và tiếng Việt. Biểu tượng khay hiện chữ V khi đang gõ tiếng Việt.
+    Máy đã cài Ngó Sen từ trước giữ phím chuyển cũ, thường là <kbd>Ctrl+Space</kbd>.
   </p>
   <p>
     Trên desktop khác, hoặc khi cài từ repo, bằng <code>--no-setup</code> hay tải gói bằng tay, làm theo
     các bước dưới đây. Máy chưa từng thiết lập Ngó Sen sẽ chưa gõ được tiếng Việt bằng
-    <kbd>Ctrl+Space</kbd> cho tới khi làm xong.
+    phím chuyển Anh/Việt cho tới khi làm xong.
   </p>
   <ol>
     <li>
@@ -209,8 +208,8 @@ const toc = [
 
   <h2 id="cap-nhat">Cập nhật</h2>
   <p>
-    Chạy lại đúng lệnh cài, rồi khởi động lại fcitx5 bằng <code>fcitx5 -rd</code>; trên KDE Wayland thì
-    đăng xuất rồi đăng nhập lại. Version thử và cách cập nhật từ version
+    Chạy lại đúng lệnh cài: fcitx5 tự nạp version mới, gõ được ngay mà không cần đăng xuất.
+    Riêng KDE Wayland thì đăng xuất rồi đăng nhập lại. Version thử và cách cập nhật từ version
     trước 0.5.0 nằm ở trang <a href="/cai-dat/nang-cao/">Cài nâng cao</a>.
   </p>
 
@@ -276,7 +275,7 @@ sudo zypper install fcitx5-ngosen`}</code></pre>
   </p>
   <p>Gỡ bằng tay:</p>
   <ol>
-    <li>Mở “Fcitx5 Configuration” và bỏ Ngó Sen khỏi danh sách bộ gõ.</li>
+    <li>Mở “Cấu hình Fcitx 5” bằng <code>fcitx5-configtool</code> và bỏ Ngó Sen khỏi danh sách bộ gõ.</li>
     <li>
       Gỡ gói rồi khởi động lại fcitx5:
       <pre tabindex="0"><code>{`sudo dnf remove fcitx5-ngosen       # Fedora
