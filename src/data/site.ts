@@ -29,6 +29,34 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.6.2-1',
+    date: '27/10/2026',
+    summary:
+      'Cứu dấu nhanh hơn ở Gõ Sen: bấm chuột ngay sau chữ đã gõ rồi gõ phím dấu, không cần bôi đen. Lệnh cài có thêm --ibus để cài Ngó Sen cho GNOME, bản chạy trên IBus có sẵn của GNOME. Lệnh gỡ chỉ tắt những gì lệnh cài đã bật.',
+    changes: [
+      {
+        claim: 'Cứu dấu không cần bôi đen: bấm chuột ngay sau chữ đã gõ rồi gõ phím dấu là chữ đổi dấu (`nhanh|` + `s` → `nhánh`).',
+        source: 'Tab hoặc Esc trả lại chữ đã gõ. Bấm vào giữa chữ thì phím gõ như thường. Chỉ ở Gõ Sen (#118). Không được test lại trên gói 1.6.2.',
+        pr: 327,
+      },
+      {
+        claim: '`install.sh --ibus` cài Ngó Sen cho GNOME (bản IBus) và thêm vào nguồn nhập của GNOME.',
+        source: 'Tài khoản đang dùng bản fcitx5 thì lệnh hỏi lại trước khi chuyển; `--ibus --uninstall` gỡ bản IBus mà không đụng bản fcitx5 (#334). Đã test trên Ubuntu 26.04: chuyển sang Ngó Sen cho GNOME 1.0.0, đăng nhập lại, chọn Ngó Sen trên thanh trên cùng, `vieetj nam` ra `việt nam` trong ô chữ GTK 4; gỡ bản IBus thì bản fcitx5 vẫn còn.',
+        pr: 330,
+      },
+      {
+        claim: 'Repo APT và pacman của Ngó Sen có thêm gói `ibus-ngosen` (Ngó Sen cho GNOME).',
+        source: 'Cùng key và cùng dòng repo với gói fcitx5.',
+        pr: 333,
+      },
+      {
+        claim: '`install.sh --uninstall` chỉ tắt những gì lệnh cài đã bật.',
+        source: 'Extension Input Method Panel, extension sửa lỗi gõ của GNOME 50 và im-config mà người dùng tự bật từ trước được giữ nguyên.',
+        pr: 328,
+      },
+    ],
+  },
+  {
     version: '1.6.1-1',
     date: '26/10/2026',
     summary:
@@ -820,7 +848,8 @@ export const LEVELS_NOTE =
   ' Lưu cài đặt khi fcitx5 khởi động lại lúc cửa sổ đang mở (#279) và dung lượng cài trên Ubuntu sạch (#280) không được test lại trên gói 1.5.7; phụ thuộc của gói .deb đã được đọc lại, chỉ còn “python3-pyqt6”. Fedora, Debian, openSUSE và Kali chưa được gõ thử với 1.5.7.' +
   ' Gói 1.5.8 từ PR phát hành #306 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và CachyOS (KDE Plasma Wayland, gói Arch). Trên mỗi máy, cửa sổ cài đặt mở được và vẫn chạy sau 10 giây. Phần lưu của cửa sổ cài đặt được gọi thẳng với fcitx5 đang chạy, mỗi máy một lượt: đổi một ô cài đặt chính và lưu một gõ tắt, rồi đọc lại; cả hai đều lưu được. Với gói 1.5.7-1 đã phát hành trên cùng hai máy, cả hai lần lưu đều bị fcitx5 từ chối và cài đặt không đổi. Chưa click lưu bằng chuột trong cửa sổ; Fedora, Debian, Mint, openSUSE và Kali chưa được test với 1.5.8.' +
   ' Gói 1.6.0 từ PR phát hành #314 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và Linux Mint 22 (Cinnamon X11, gói “noble”), dùng Gõ Sen, Telex. Nâng cấp: mỗi máy cài 1.5.8-1, lưu một cài đặt và một gõ tắt, rồi chạy install.sh với gói mới; fcitx5 tự nạp lại, cài đặt, gõ tắt và phím Ctrl+Space còn nguyên, Cứu chữ đã bật. Sau đó, trong một ô chữ GTK3 trên cả hai máy: gõ câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu; gõ “tieengs vieetj” ở tiếng Anh rồi bật tiếng Việt, Cứu chữ đổi thành “tiếng việt”, bấm Esc trả lại chữ cũ; gõ “tieengs Nam” rồi bật tiếng Việt thì chỉ hiện gợi ý, bấm Tab giữ nguyên chữ đã gõ. Trên Ubuntu, bốn ca đó cũng đúng trong Chrome, và gõ câu trong terminal GNOME Console đúng; trên Mint, gõ câu trong Chrome đúng. Cài mới (gói build ngay trước bản sửa nâng cấp #315, bản sửa không đụng đường cài mới): mở ở tiếng Anh, Ctrl+Shift chuyển sang tiếng Việt, Cứu chữ bật sẵn. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.0.' +
-  ' Gói 1.6.1 từ PR phát hành #323 được test trên máy ảo ngày 26/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, desktop tiếng Anh, gói “resolute”): cập nhật từ 1.6.0-1 bằng install.sh, fcitx5 tự nạp lại; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu, Cứu chữ đổi “tieengs vieetj” thành “tiếng việt”, Esc trả lại chữ cũ, Tab giữ nguyên “tieengs Nam”; dòng gợi ý của Cứu chữ hiện tiếng Việt. Linux Mint 22 (Cinnamon X11, gói “noble”): cài gói bằng apt, không qua install.sh, rồi chạy fcitx5 lần đầu với “LANG=vi_VN.UTF-8”: Ngó Sen có sẵn trong danh sách bộ gõ. Mint chọn tiếng Việt bằng “LANGUAGE” mà giữ “LANG=en_US.UTF-8” thì danh sách vẫn chỉ có bàn phím. Sau đó cài bằng install.sh rồi khởi động lại: bốn ca trên đúng trong ô chữ GTK3, câu thử đúng trong Chrome. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.1.';
+  ' Gói 1.6.1 từ PR phát hành #323 được test trên máy ảo ngày 26/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, desktop tiếng Anh, gói “resolute”): cập nhật từ 1.6.0-1 bằng install.sh, fcitx5 tự nạp lại; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu, Cứu chữ đổi “tieengs vieetj” thành “tiếng việt”, Esc trả lại chữ cũ, Tab giữ nguyên “tieengs Nam”; dòng gợi ý của Cứu chữ hiện tiếng Việt. Linux Mint 22 (Cinnamon X11, gói “noble”): cài gói bằng apt, không qua install.sh, rồi chạy fcitx5 lần đầu với “LANG=vi_VN.UTF-8”: Ngó Sen có sẵn trong danh sách bộ gõ. Mint chọn tiếng Việt bằng “LANGUAGE” mà giữ “LANG=en_US.UTF-8” thì danh sách vẫn chỉ có bàn phím. Sau đó cài bằng install.sh rồi khởi động lại: bốn ca trên đúng trong ô chữ GTK3, câu thử đúng trong Chrome. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.1.' +
+  ' Gói 1.6.2 từ PR phát hành #335 được test trên máy ảo ngày 27/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cập nhật bằng install.sh từ bản 1.5.5 dựng từ nhánh next, fcitx5 tự nạp version mới; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng “đường tiếng Việt Nam có được không Hà Nội”. Trên cùng máy, “install.sh --ibus” hỏi lại rồi chuyển sang Ngó Sen cho GNOME 1.0.0; đăng nhập lại, chọn Ngó Sen trên thanh trên cùng, “vieetj nam” ra “việt nam” trong ô chữ GTK4; “install.sh --ibus --uninstall” gỡ bản IBus, bản fcitx5 vẫn còn. Linux Mint 22 (Cinnamon X11, gói “noble”): cập nhật bằng install.sh từ 1.5.7-1, câu thử đúng trong ô chữ GTK3 và Chromium. Cứu dấu sau khi bấm chuột (#327) không được test lại trên gói này. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.2.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -976,10 +1005,11 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 ];
 
 // Mirrors the opening paragraph of README.md; the IBus branch is linked on the home page.
+// Mirrors the top of the README on main.
 export const SCOPE = {
-  title: 'Chỉ cho fcitx5',
-  text: 'Ngó Sen chỉ làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Làm cho một bộ gõ nền cũng đỡ công giữ nhiều bản.',
-  branch: 'feat/ibus-engine',
+  title: 'fcitx5, và một bản cho GNOME',
+  text: 'Ngó Sen làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, đơn giản hơn và ít tính năng hơn bản fcitx5.',
+  ibusRepo: 'https://github.com/ngosen/ibus-ngosen',
 };
 
 // The install guide spans two pages; each shows both as keys above its index.
