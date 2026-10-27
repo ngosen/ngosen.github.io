@@ -46,31 +46,31 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.6.1-1 is a bug-fix release: the Cứu chữ and Cứu dấu hints default to Vietnamese,
-    Ngó Sen is in the input method list after a package install on a Vietnamese system, and the
-    debug log no longer records text typed in password fields.
+    Version 1.6.2-1 makes Cứu dấu quicker in Gõ Sen and adds an installer option for Ngó Sen for
+    GNOME, the edition that runs on GNOME’s built-in IBus.
   </p>
   <ul>
     <li>
-      The hint next to the cursor for Cứu chữ and Cứu dấu follows Ngó Sen’s “Ngôn ngữ giao diện”,
-      like the tray menu: Vietnamese by default, even on an English desktop. Tested on Ubuntu 26.04
-      (GNOME Wayland, English desktop) after updating from 1.6.0-1 with install.sh: the Cứu chữ hint
-      was in Vietnamese; Cứu chữ turned <code>tieengs vieetj</code> into <code>tiếng việt</code>, Esc
-      restored the original and Tab kept <code>tieengs Nam</code>
-      (<a href={`${REPO}/pull/322`}>#322</a>).
+      Cứu dấu without selecting: click right after a word you typed, then type a tone key, and the
+      word takes the new tone (<code>nhanh|</code> + <code>s</code> → <code>nhánh</code>). Tab or Esc
+      restores the original; clicking inside a word types as usual. Gõ Sen only. Not retested on the
+      1.6.2 package (<a href={`${REPO}/pull/327`}>#327</a>).
     </li>
     <li>
-      Installing the package (apt or a downloaded package) on a system set to Vietnamese puts Ngó Sen
-      in the input method list the first time fcitx5 runs. A system set to English still needs it
-      added by hand or the one-line install command. Tested on Linux Mint 22: after installing with apt
-      and starting fcitx5 for the first time with <code>LANG=vi_VN.UTF-8</code>, Ngó Sen was in the
-      list. Mint set to Vietnamese through <code>LANGUAGE</code> while keeping
-      <code>LANG=en_US.UTF-8</code> still showed only the keyboard
-      (<a href={`${REPO}/pull/316`}>#316</a>, <a href={`${REPO}/issues/300`}>#300</a>).
+      <code>install.sh --ibus</code> installs <a href="https://github.com/ngosen/ibus-ngosen">Ngó Sen
+      for GNOME</a> (the IBus edition) and adds it to GNOME’s input sources. On an account using the
+      fcitx5 edition it asks before switching; <code>--ibus --uninstall</code> removes the IBus edition
+      and leaves the fcitx5 one alone (<a href={`${REPO}/pull/330`}>#330</a>,
+      <a href={`${REPO}/pull/334`}>#334</a>).
     </li>
     <li>
-      With debug logging on, text typed in password fields is no longer written to the log; the log
-      records “(hidden)” instead (<a href={`${REPO}/pull/321`}>#321</a>).
+      The APT and pacman repositories also carry the <code>ibus-ngosen</code> package, with the same
+      key and repository line (<a href={`${REPO}/pull/333`}>#333</a>).
+    </li>
+    <li>
+      <code>install.sh --uninstall</code> turns off only what the installer turned on: the Input
+      Method Panel extension, the GNOME 50 typing-fix extension and an im-config choice the user had
+      made before stay as they were (<a href={`${REPO}/pull/328`}>#328</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -449,6 +449,20 @@ const levels: Record<Level, string> = {
     correctly in Chrome. Fedora, Arch, Debian, openSUSE, Kali and KDE have not been tested with 1.6.1.
   </p>
   <p>
+    The 1.6.2 package from release PR #335 was tested in virtual machines on 27 October 2026, using
+    Gõ Sen and Telex. Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package): after updating with
+    install.sh from a 1.5.5 build of the next branch, fcitx5 loaded the new version by itself; in a
+    GTK3 text field, <code>dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij</code> produced
+    <code>đường tiếng Việt Nam có được không Hà Nội</code>. On the same machine,
+    <code>install.sh --ibus</code> asked, then switched to Ngó Sen for GNOME 1.0.0; after logging back
+    in and picking Ngó Sen in the top bar, <code>vieetj nam</code> produced <code>việt nam</code> in a
+    GTK4 text field; <code>install.sh --ibus --uninstall</code> removed the IBus edition and kept the
+    fcitx5 one. Linux Mint 22 (Cinnamon X11, <code>noble</code> package): after updating with
+    install.sh from 1.5.7-1, the sentence typed correctly in a GTK3 text field and in Chromium. Cứu
+    dấu after a click (#327) was not retested on this package. Fedora, Arch, Debian, openSUSE, Kali and
+    KDE have not been tested with 1.6.2.
+  </p>
+  <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
     <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
@@ -471,9 +485,10 @@ const levels: Record<Level, string> = {
     unversioned “Sau đó” list. The roadmap gives no release dates, and the order may change.
   </p>
   <p>
-    Ngó Sen targets fcitx5 only. fcitx5 runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
-    plenty of features and is light on RAM, and one input method framework is less to maintain than
-    several. The old IBus code stays unmaintained on the <code>feat/ibus-engine</code> branch. Source, releases and the
+    Ngó Sen is built for fcitx5, which runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
+    plenty of features and is light on RAM. <a href="https://github.com/ngosen/ibus-ngosen">Ngó Sen
+    for GNOME</a> runs on GNOME’s built-in IBus instead; it is simpler and has fewer features than the
+    fcitx5 edition. Source, releases and the
     changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>
