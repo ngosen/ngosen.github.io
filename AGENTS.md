@@ -21,6 +21,11 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   again. Old entries carry `prRepo: ARCHIVE_REPO`; new release entries leave it out.
 - Page text is Vietnamese except for `/en/` and `/en/typing-without-preedit/`; code, comments and commit messages are English.
   The bilingual typing-without-preedit page takes facts from `docs/typing-without-preedit.md` on `main` of the main repository, including how Ngó Sen deletes text (maintainer-approved exception, 20 October 2026).
+- `/ngo-sen-cho-gnome/` describes Ngó Sen cho GNOME, the IBus edition. What it does, how to install,
+  remove and set it up comes from `README.md` on `main` of `ngosen/ibus-ngosen` (maintainer-approved
+  exception, 28 October 2026); what was tested still comes from the main repository's release notes. The
+  chooser on the home page and the ledes of `/cai-dat/` and `/huong-dan/` point to it. The install guide
+  and the usage guide describe the fcitx5 edition only. Neither edition is presented as the better one.
 - The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
   the top of the README. Do not mention vibecoding (dropped at the maintainer's request).
 - `/roadmap/` mirrors `ROADMAP.md` on `main` of the main repository through `ROADMAP` in

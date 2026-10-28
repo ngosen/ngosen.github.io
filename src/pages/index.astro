@@ -50,13 +50,26 @@ const jsonLd = {
   <section class="scope wrap" id="chi-cho-fcitx5" aria-labelledby="scope-tieu-de">
     <div class="intro">
       <h2 id="scope-tieu-de">{SCOPE.title}</h2>
-    </div>
-    <div class="sheet scope-note">
-      <p>
-        {SCOPE.text} Cách cài và các giới hạn của bản cho GNOME ở
-        <a href={SCOPE.ibusRepo}>README của Ngó Sen cho GNOME</a>.
-      </p>
+      <p>{SCOPE.text}</p>
       <p><a href="/go-khong-gach-chan/">Cách người Việt gõ, và cách giúp.</a></p>
+    </div>
+    <div class="editions">
+      <article class="sheet edition" aria-labelledby="ban-fcitx5">
+        <h3 id="ban-fcitx5">Ngó Sen cho fcitx5</h3>
+        <p>
+          Chọn bản fcitx5 để dùng đầy đủ tính năng trên GNOME, KDE, Xfce, Sway hoặc Hyprland. Chỉ bản này có
+          Cứu chữ, Cứu dấu, phím chuyển Anh/Việt riêng và gõ tắt khi ở tiếng Anh.
+        </p>
+        <a class="key" href="/cai-dat/">Cài bản fcitx5</a>
+      </article>
+      <article class="sheet edition" aria-labelledby="ban-gnome">
+        <h3 id="ban-gnome">Ngó Sen cho GNOME</h3>
+        <p>
+          Dành cho người dùng GNOME muốn bộ gõ đơn giản, dùng IBus có sẵn và đổi Anh/Việt bằng Super+Space.
+          Bản này ít tính năng hơn bản fcitx5.
+        </p>
+        <a class="key" href="/ngo-sen-cho-gnome/">Xem bản cho GNOME</a>
+      </article>
     </div>
   </section>
 
@@ -712,12 +725,40 @@ const jsonLd = {
     gap: 2.25rem;
   }
 
-  .scope-note {
-    padding: clamp(1.1rem, 3.5vw, 2.25rem) clamp(1.1rem, 3.5vw, 2.5rem);
+  .scope .intro p {
+    max-width: 62ch;
   }
 
-  .scope-note p {
-    max-width: 62ch;
+  .scope .intro p + p {
+    margin-top: 0.8rem;
+  }
+
+  /* The two editions side by side: same sheet, same key, neither ranked above the other. */
+  .editions {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .edition {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: clamp(1.1rem, 3.5vw, 2rem) clamp(1.1rem, 3.5vw, 2.25rem);
+  }
+
+  .edition h3 {
+    font-size: var(--step-2);
+  }
+
+  .edition .key {
+    margin-top: auto;
+  }
+
+  @media (min-width: 44rem) {
+    .editions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   /* Modes and the Telex board */
