@@ -3,14 +3,9 @@
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../node_modules/@fontsource/xanh-mono/400.css" />
-    <link rel="stylesheet" href="../../node_modules/@fontsource/barlow/400.css" />
     <style>
       :root {
-        --enamel: #1c6b5f;
         --enamel-deep: #134b43;
-        --on-enamel: #f0f5ee;
-        --cap: #f1ead9;
       }
 
       * {
@@ -25,69 +20,61 @@
         overflow: hidden;
       }
 
-      /* Small previews (Facebook comments, chat apps) crop the centre 630x630 square, so everything
-         sits in that column and is large enough to read at thumbnail size. */
+      /* The logo alone: the link card already shows the page title and description as text. Small
+         previews (Facebook comments, chat apps) crop the centre 630x630 square, so it stays inside. */
       body {
-        background: var(--enamel);
-        color: var(--on-enamel);
-        font-family: 'Barlow', sans-serif;
+        background: var(--enamel-deep);
         display: grid;
         place-items: center;
       }
 
-      main {
-        width: 560px;
-        text-align: center;
-      }
-
       .logo {
         display: block;
-        width: 196px;
-        height: 196px;
-        margin: 0 auto;
-        border-radius: 40px;
-        box-shadow:
-          inset 0 0 0 1px rgba(240, 245, 238, 0.12),
-          0 26px 50px -20px rgba(8, 30, 26, 0.6);
-      }
-
-      h1 {
-        margin-top: 34px;
-        font-family: 'Xanh Mono', monospace;
-        font-weight: 400;
-        font-size: 128px;
-        line-height: 1;
-        letter-spacing: -0.01em;
-      }
-
-      .tagline {
-        margin-top: 18px;
-        font-size: 38px;
-        line-height: 1.2;
-        text-wrap: balance;
+        width: 420px;
+        height: 420px;
+        border-radius: 86px;
+        box-shadow: 0 48px 90px -36px rgba(4, 20, 17, 0.7);
       }
     </style>
   </head>
   <body>
-    <main>
-      <!-- The two-shoot V from public/favicon.svg, on the deeper enamel. -->
-      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
-        <rect width="32" height="32" rx="6" fill="#134b43" />
-        <g transform="translate(16 26) rotate(-111.80)">
-          <path
-            d="M0 -1.55 C1.81 -2.50 3.62 -2.50 5.65 -2.50 L18.09 -2.60 C20.81 -2.60 22.39 -1.45 22.62 -1.00 C22.39 -0.55 20.81 1.40 18.09 2.10 L5.65 2.50 C3.62 2.50 1.81 2.50 0 1.55 A1.55 1.55 0 0 1 0 -1.55 Z"
-            fill="#f1ead9"
-          />
-        </g>
-        <g transform="translate(16 26) rotate(-68.20)">
-          <path
-            d="M0 -1.55 C1.81 -2.50 3.62 -2.50 5.65 -2.50 L18.09 -2.10 C20.81 -1.40 22.39 0.55 22.62 1.00 C22.39 1.45 20.81 2.60 18.09 2.60 L5.65 2.50 C3.62 2.50 1.81 2.50 0 1.55 A1.55 1.55 0 0 1 0 -1.55 Z"
-            fill="#f1ead9"
-          />
-        </g>
-      </svg>
-      <h1>Ngó Sen</h1>
-      <p class="tagline">Bộ gõ tiếng Việt cho fcitx5 trên Linux, cho trải nghiệm gõ như UniKey trên Windows.</p>
-    </main>
+    <!-- The app icon, data/icons/hicolor/scalable/apps/io.github.ngosen.NgoSen.Settings.svg in
+         ngosen/ngosen, on the deeper enamel so its tile stands out. -->
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+      <defs>
+        <linearGradient id="skin" gradientUnits="userSpaceOnUse" x1="0" y1="-2.7" x2="0" y2="2.7">
+          <stop offset="0" stop-color="#cfc09a"/>
+          <stop offset=".25" stop-color="#f5efdd"/>
+          <stop offset=".45" stop-color="#fffdf6"/>
+          <stop offset=".78" stop-color="#ebe1c6"/>
+          <stop offset="1" stop-color="#bfae84"/>
+        </linearGradient>
+        <linearGradient id="blush" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="22" y2="0">
+          <stop offset=".7" stop-color="#ecc3a6" stop-opacity="0"/>
+          <stop offset="1" stop-color="#e6a98a" stop-opacity=".85"/>
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="6" fill="#1c6b5f"/>
+      <g transform="translate(16 26) rotate(-111.80)">
+        <path d="M0 -1.49 C1.81 -2.40 3.62 -2.40 5.65 -2.40 L18.09 -2.56 C20.81 -2.64 22.39 -1.65 22.62 -1.20 C22.39 -0.75 20.81 1.20 18.09 1.96 L5.65 2.40 C3.62 2.40 1.81 2.40 0 1.49 A1.49 1.49 0 0 1 0 -1.49 Z" fill="url(#skin)"/>
+        <path d="M10.18 -2.33 Q10.78 0 10.18 2.33" fill="none" stroke="#a8925f" stroke-width=".45" opacity=".8"/>
+      </g>
+      <g transform="translate(16 26) rotate(-111.80)">
+        <path d="M0 -1.49 C1.81 -2.40 3.62 -2.40 5.65 -2.40 L18.09 -2.56 C20.81 -2.64 22.39 -1.65 22.62 -1.20 C22.39 -0.75 20.81 1.20 18.09 1.96 L5.65 2.40 C3.62 2.40 1.81 2.40 0 1.49 A1.49 1.49 0 0 1 0 -1.49 Z" fill="url(#blush)"/>
+      </g>
+      <g transform="translate(16 26) rotate(-68.20)">
+        <path d="M0 -1.49 C1.81 -2.40 3.62 -2.40 5.65 -2.40 L18.09 -1.96 C20.81 -1.20 22.39 0.75 22.62 1.20 C22.39 1.65 20.81 2.64 18.09 2.56 L5.65 2.40 C3.62 2.40 1.81 2.40 0 1.49 A1.49 1.49 0 0 1 0 -1.49 Z" fill="url(#skin)"/>
+        <path d="M10.18 -2.33 Q10.78 0 10.18 2.33" fill="none" stroke="#a8925f" stroke-width=".45" opacity=".8"/>
+      </g>
+      <g transform="translate(16 26) rotate(-68.20)">
+        <path d="M0 -1.49 C1.81 -2.40 3.62 -2.40 5.65 -2.40 L18.09 -1.96 C20.81 -1.20 22.39 0.75 22.62 1.20 C22.39 1.65 20.81 2.64 18.09 2.56 L5.65 2.40 C3.62 2.40 1.81 2.40 0 1.49 A1.49 1.49 0 0 1 0 -1.49 Z" fill="url(#blush)"/>
+      </g>
+      <g stroke="#a8925f" stroke-width=".55" stroke-linecap="round" fill="none">
+        <path d="M15 27.4 l-1 1.5"/>
+        <path d="M16 27.8 v1.7"/>
+        <path d="M17 27.4 l1 1.5"/>
+      </g>
+      <ellipse cx="16" cy="26.2" rx="2.4" ry="1.7" fill="#a8925f"/>
+    </svg>
   </body>
 </html>
