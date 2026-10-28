@@ -1011,7 +1011,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 // Mirrors the opening paragraph of README.md; the IBus branch is linked on the home page.
 // Mirrors the top of the README on main.
 export const SCOPE = {
-  title: 'fcitx5, và một bản cho GNOME',
+  title: 'fcitx5 và IBus',
   text: 'Ngó Sen làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, đơn giản hơn và ít tính năng hơn bản fcitx5.',
   ibusRepo: IBUS_REPO,
 };
