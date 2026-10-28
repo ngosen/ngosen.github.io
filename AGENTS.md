@@ -54,10 +54,11 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   the Announcements category of `ngosen/ngosen.github.io`, matched by URL path. Renaming a post's slug
   starts a new, empty thread.
 - `public/og.png` is the link preview image, rendered from `tools/og/card.html` by
-  `tools/og/render.sh`. It shows the logo from `public/favicon.svg`, the name and `TAGLINE`; re-render
-  it when either changes. Small previews (Facebook comments, chat apps) crop the centre 630×630
-  square, so everything stays inside it, large enough to read as a thumbnail. After re-rendering, bump the query in `OG_IMAGE`
-  (`src/data/site.ts`) so caches fetch the new image.
+  `tools/og/render.sh`. It shows only the app icon (`io.github.ngosen.NgoSen.Settings.svg` in the main
+  repository), since the link card already shows the page title and description as text; re-render it
+  when the icon changes. Small previews (Facebook comments, chat apps) crop the centre 630×630 square,
+  so the icon stays inside it. After re-rendering, bump the query in `OG_IMAGE` (`src/data/site.ts`)
+  so caches fetch the new image.
 - The install guide is two pages, `/cai-dat/` (what most machines need) and `/cai-dat/nang-cao/`
   (manual download, preview builds, building from source, NixOS), listed in `INSTALL_PAGES`. A page
   with a `toc` gets the on-page index (`src/components/OnThisPage.astro`); keep its entries in step with
