@@ -1,0 +1,129 @@
+---
+import Page from '../layouts/Page.astro';
+import InstallStrip from '../components/InstallStrip.astro';
+import { IBUS_INSTALL_COMMAND, IBUS_REPO, UNINSTALL_COMMAND } from '../data/site';
+
+// Facts come from README.md of ngosen/ibus-ngosen; the test run from the 1.6.2-1 release notes.
+const toc = [
+  { id: 'khac-gi', label: 'Khác gì với bản fcitx5' },
+  { id: 'cai', label: 'Cài bằng một dòng lệnh' },
+  { id: 'desktop-khac', label: 'Cài trên desktop khác' },
+  { id: 'cua-so-cai-dat', label: 'Cửa sổ cài đặt' },
+  { id: 'chuyen-ban', label: 'Chuyển giữa hai bản' },
+  { id: 'go', label: 'Gỡ cài đặt' },
+  { id: 'da-test', label: 'Đã test những gì' },
+  { id: 'bao-loi', label: 'Báo lỗi' },
+];
+---
+
+<Page
+  title="Ngó Sen cho GNOME: gõ tiếng Việt bằng IBus"
+  description="Gõ tiếng Việt bằng IBus có sẵn của GNOME, đổi Anh/Việt bằng Super+Space. Xem cách cài, cửa sổ cài đặt, chuyển từ bản fcitx5 và gỡ."
+  heading="Ngó Sen cho GNOME (IBus)"
+  toc={toc}
+>
+  <p slot="lede">
+    Ngó Sen cho GNOME là bộ gõ tiếng Việt chạy trên IBus có sẵn của GNOME, không cần fcitx5. Trên GNOME,
+    cài xong là gõ được ngay, không phải thiết lập gì thêm.
+  </p>
+
+  <h2 id="khac-gi">Khác gì với bản fcitx5</h2>
+  <p>
+    Chữ đang gõ được gạch chân (preedit) cho tới khi commit. Đây là cách gõ chính của IBus và GNOME, nên
+    dùng được ở hầu hết app trên Linux, kể cả terminal, game và app X11.
+  </p>
+  <p>
+    Tuỳ chọn “Gõ Sen ở app cho phép” mặc định tắt. Khi bật, chữ hiện thẳng vào ô, không gạch chân, ở những
+    app trên GNOME Wayland báo được chữ quanh con trỏ (surrounding text).
+  </p>
+  <p>Đổi Anh/Việt bằng Super+Space như các nguồn nhập khác của GNOME.</p>
+  <p>
+    Cứu chữ, Cứu dấu, phím chuyển Anh/Việt riêng, gõ tắt khi ở tiếng Anh, chế độ riêng theo từng app như
+    Vim mode, chèn emoji và Gõ Sen trên X11 chỉ có ở bản fcitx5. Nếu cần các tính năng này, xem
+    <a href="/cai-dat/">cách cài bản fcitx5</a>.
+  </p>
+
+  <h2 id="cai">Cài bằng một dòng lệnh</h2>
+  <InstallStrip inset command={IBUS_INSTALL_COMMAND} />
+  <p>
+    Lệnh tải gói <code>ibus-ngosen</code> đúng distro từ <a href={`${IBUS_REPO}/releases/latest`}>release mới
+    nhất</a> của <code>ibus-ngosen</code>, so hash SHA-256 và hỏi lại trước khi cài.
+  </p>
+  <p>
+    Có gói cho Debian 13, Kali, Ubuntu 24.04 trở lên, Fedora 43 và 44, Arch và CachyOS. Linux Mint 22 dùng
+    gói của Ubuntu 24.04. Có gói ARM 64-bit cho Debian, Ubuntu và Fedora; Arch chỉ có x86_64. Không có gói
+    cho openSUSE, Debian 12 và Ubuntu 22.04.
+  </p>
+  <p>
+    Trên GNOME, lệnh thêm “Tiếng Việt (Ngó Sen)” vào nguồn nhập, đặt app dùng IBus rồi khởi động lại IBus.
+  </p>
+  <p>
+    Repo APT và pacman của Ngó Sen cũng có <code>ibus-ngosen</code>. Dùng các dòng khai báo repo ở mục
+    <a href="/cai-dat/#repo-goi">Cập nhật qua trình quản lý gói</a>, rồi thay <code>fcitx5-ngosen</code> bằng
+    <code>ibus-ngosen</code> trong lệnh cài.
+  </p>
+  <p>
+    Muốn cài bằng tay, tải gói đúng distro và kiến trúc từ trang
+    <a href={`${IBUS_REPO}/releases`}>Releases của <code>ibus-ngosen</code></a>, rồi cài bằng trình quản lý
+    gói. Sau đó thiết lập IBus và thêm nguồn nhập theo <a href="#desktop-khac">các bước bên dưới</a>.
+  </p>
+  <p>
+    Cách build từ source nằm trong <a href={`${IBUS_REPO}#readme`}>README của <code>ngosen/ibus-ngosen</code></a>.
+  </p>
+
+  <h2 id="desktop-khac">Cài trên desktop khác</h2>
+  <p>Trên desktop khác GNOME như Cinnamon và Xfce, lệnh chỉ cài gói rồi in các bước tự làm:</p>
+  <ol>
+    <li>Chạy <code>im-config -n ibus</code> nếu máy có <code>im-config</code>.</li>
+    <li>Mở “IBus Preferences” bằng <code>ibus-setup</code>, thêm “Tiếng Việt (Ngó Sen)”.</li>
+    <li>Đăng xuất rồi đăng nhập lại.</li>
+  </ol>
+
+  <h2 id="cua-so-cai-dat">Cửa sổ cài đặt</h2>
+  <p>
+    Mở cửa sổ cài đặt từ “Cài đặt › Bàn phím › Tiếng Việt (Ngó Sen)”, hoặc tìm “Ngó Sen” trong danh sách app.
+  </p>
+  <p>Đổi gì lưu ngay. Nút “Hoàn tác” trên thông báo ở đáy cửa sổ đưa cài đặt về như trước lần đổi đó.</p>
+  <p>
+    Cài đặt nằm trong <code>~/.config/ngosen/</code>, cùng định dạng và tên khoá với <code>ngosen.conf</code>
+    của bản fcitx5.
+  </p>
+  <p>
+    Lần chạy đầu, nếu máy đã có bản fcitx5 thì kiểu gõ, gõ tắt, bảng phím riêng và từ điển riêng được chép
+    sang. File của bản fcitx5 giữ nguyên.
+  </p>
+
+  <h2 id="chuyen-ban">Chuyển giữa hai bản</h2>
+  <p>Hai bản không chạy cùng lúc trong một tài khoản; mỗi tài khoản chọn một.</p>
+  <p>
+    Nếu tài khoản đang dùng fcitx5, lệnh cài hỏi có bỏ fcitx5 để chuyển sang bản cho GNOME không. Cài đặt
+    từ bản fcitx5 được chép sang trong lần chạy đầu, như mô tả ở mục <a href="#cua-so-cai-dat">Cửa sổ cài đặt</a>.
+  </p>
+
+  <h2 id="go">Gỡ cài đặt</h2>
+  <pre tabindex="0"><code>{UNINSTALL_COMMAND}</code></pre>
+  <p>
+    Lệnh tự nhận bản đang cài. Nếu có cả hai bản, lệnh hỏi gỡ bản nào. Thêm <code>--ibus</code> vào lệnh để
+    chỉ gỡ bản cho GNOME, giữ bản fcitx5.
+  </p>
+  <p>
+    Trên GNOME, lệnh trả lại nguồn nhập và thiết lập IBus mà lệnh cài đã đổi. Gỡ xong, đăng xuất rồi đăng
+    nhập lại. Cài đặt trong <code>~/.config/ngosen/</code> được giữ lại.
+  </p>
+
+  <h2 id="da-test">Đã test những gì</h2>
+  <p>
+    Trên Ubuntu 26.04 (GNOME Wayland), <code>install.sh --ibus</code> đã hỏi trước khi chuyển sang Ngó Sen
+    cho GNOME version 1.0.0. Sau khi đăng nhập lại và chọn Ngó Sen trên thanh trên cùng, gõ
+    <code>vieetj nam</code> ra <code>việt nam</code> trong ô chữ GTK 4.
+  </p>
+  <p>
+    Lệnh <code>install.sh --ibus --uninstall</code> đã gỡ bản cho GNOME; bản fcitx5 vẫn còn. Trang này chỉ ghi
+    nhận kết quả test trên Ubuntu 26.04 (GNOME Wayland).
+  </p>
+
+  <h2 id="bao-loi">Báo lỗi</h2>
+  <p>
+    Báo lỗi của bản cho GNOME ở <a href={`${IBUS_REPO}/issues`}>Issues của repo <code>ngosen/ibus-ngosen</code></a>.
+  </p>
+</Page>

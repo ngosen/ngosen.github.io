@@ -9,6 +9,10 @@ export const OG_IMAGE = '/og.png?v=4';
 export const FACEBOOK = 'https://www.facebook.com/profile.php?id=61595753582618';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
+// Ngó Sen cho GNOME (the IBus edition) lives in its own repository; install.sh installs it with --ibus.
+export const IBUS_REPO = 'https://github.com/ngosen/ibus-ngosen';
+export const IBUS_INSTALL_COMMAND = `${INSTALL_COMMAND} -s -- --ibus`;
+export const UNINSTALL_COMMAND = `${INSTALL_COMMAND} -s -- --uninstall`;
 
 export interface Change {
   claim: string;
@@ -1009,7 +1013,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 export const SCOPE = {
   title: 'fcitx5, và một bản cho GNOME',
   text: 'Ngó Sen làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, đơn giản hơn và ít tính năng hơn bản fcitx5.',
-  ibusRepo: 'https://github.com/ngosen/ibus-ngosen',
+  ibusRepo: IBUS_REPO,
 };
 
 // The install guide spans two pages; each shows both as keys above its index.

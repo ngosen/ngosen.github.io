@@ -5,9 +5,10 @@ interface Props {
   lang?: 'vi' | 'en';
   // Inside a page sheet the strip is a block of the text column, not a full-width band.
   inset?: boolean;
+  command?: string;
 }
 
-const { lang = 'vi', inset = false } = Astro.props;
+const { lang = 'vi', inset = false, command = INSTALL_COMMAND } = Astro.props;
 const text =
   lang === 'en'
     ? { label: 'Install command', copy: 'Copy', copied: 'Copied', manual: 'Selected. Press Ctrl+C.' }
@@ -16,7 +17,7 @@ const text =
 
 <div class:list={['strip', { inset }]} data-install data-copied={text.copied} data-manual={text.manual}>
   <div class="inner">
-    <code class="command" aria-label={text.label} tabindex="0">{INSTALL_COMMAND}</code>
+    <code class="command" aria-label={text.label} tabindex="0">{command}</code>
     <button type="button" class="key key--ribbon">{text.copy}</button>
     <span class="note" role="status"></span>
   </div>
