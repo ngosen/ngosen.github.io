@@ -46,37 +46,56 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.6.2-1 makes Cứu dấu quicker in Gõ Sen and adds an installer option for Ngó Sen for
-    GNOME, the edition that runs on GNOME’s built-in IBus.
+    Version 1.6.4-1 is a bug-fix release: Antigravity on GNOME no longer drops tone marks when typing
+    fast, Cứu dấu works in Chrome, Chromium and Brave on X11, Super shortcuts are no longer typed as
+    letters in Preedit, the settings window and Undo are fixed, and the installer runs on deepin,
+    LMDE, Devuan, Parrot and Artix. Version 1.6.3-1, the day before, fixed typing in Antigravity’s
+    editor and chat on GNOME and Cứu dấu after Backspace or a click inside a word.
   </p>
   <ul>
     <li>
-      Cứu dấu without selecting: click right after a word you typed, then type a tone key, and the
-      word takes the new tone (<code>nhanh|</code> + <code>s</code> → <code>nhánh</code>). Tab or Esc
-      restores the original; clicking inside a word types as usual. Gõ Sen only. Not retested on the
-      1.6.2 package (<a href={`${REPO}/pull/327`}>#327</a>).
+      Antigravity on GNOME: Gõ Sen no longer drops tone marks when typing fast in the editor. Tested on
+      Ubuntu 26.04 (GNOME Wayland) with Antigravity 2.6.0: 18 words typed without pauses came out right
+      in the chat and the editor, read from the typing log
+      (<a href={`${REPO}/issues/362`}>#362</a>, <a href={`${REPO}/pull/395`}>#395</a>).
     </li>
     <li>
-      <code>install.sh --ibus</code> installs <a href="https://github.com/ngosen/ibus-ngosen">Ngó Sen
-      for GNOME</a> (the IBus edition) and adds it to GNOME’s input sources. On an account using the
-      fcitx5 edition it asks before switching; <code>--ibus --uninstall</code> removes the IBus edition
-      and leaves the fcitx5 one alone (<a href={`${REPO}/pull/330`}>#330</a>,
-      <a href={`${REPO}/pull/334`}>#334</a>).
+      Cứu dấu works in Chrome, Chromium and Brave in an X11 session: select <code>nhanh</code>
+      (double-click or Shift+arrow) and type <code>s</code> to get <code>nhánh</code>. Gõ Sen only; Tab or
+      Esc still restores the keys typed. Tested on MX Linux 25 (Xfce X11) in Chromium: 2 of 3 runs gave
+      <code>nhánh</code>; in the first run, right after Chromium opened, the first <code>d</code> was lost
+      before the text field connected to fcitx5 (<a href={`${REPO}/pull/390`}>#390</a>).
     </li>
     <li>
-      The APT and pacman repositories also carry the <code>ibus-ngosen</code> package, with the same
-      key and repository line (<a href={`${REPO}/pull/333`}>#333</a>).
+      Preedit: Super + letter shortcuts (such as Super+Q to switch workspace) are no longer typed as
+      <code>q</code> or <code>ư</code>; they go to the desktop and apps like Ctrl and Alt, and the word being
+      typed is kept. Not tested on the 1.6.4 package (<a href={`${REPO}/pull/392`}>#392</a>).
     </li>
     <li>
-      <code>install.sh --uninstall</code> turns off only what the installer turned on: the Input
-      Method Panel extension, the GNOME 50 typing-fix extension and an im-config choice the user had
-      made before stay as they were (<a href={`${REPO}/pull/328`}>#328</a>).
+      The settings window opens even when the custom dictionary file contains text that is not UTF-8,
+      and the Dictionary page says the file could not be read in full
+      (<a href={`${REPO}/pull/376`}>#376</a>). “Hoàn tác” (Undo) reverts only the change just saved
+      (<a href={`${REPO}/pull/383`}>#383</a>). Neither was tested on the 1.6.4 package.
+    </li>
+    <li>
+      <code>install.sh</code> installs im-config and the fcitx5 GTK and Qt modules on Debian, Ubuntu,
+      Mint and MX in every desktop language, not only English
+      (<a href={`${REPO}/pull/388`}>#388</a>), and no longer stops when another apt source is broken
+      (<a href={`${REPO}/pull/399`}>#399</a>).
+    </li>
+    <li>
+      <code>install.sh</code> installs on deepin 23 and 25; the <code>.deb</code> no longer needs
+      <code>python3-qtpy</code>, and the installer pulls in <code>whiptail</code> so im-config does not stop
+      on fresh deepin and Kali installs. Tested on deepin 25.2 (DDE X11, fresh install): the installer
+      finished without errors and added Ngó Sen to the input method list
+      (<a href={`${REPO}/pull/397`}>#397</a>, <a href={`${REPO}/pull/408`}>#408</a>). It also installs on
+      LMDE, Devuan, Parrot and Artix (<a href={`${REPO}/pull/403`}>#403</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
   <p>
-    One command for Fedora, Ubuntu (including 26.10), Debian, Kali, Arch, CachyOS and openSUSE
-    Tumbleweed on x86_64. Fedora, Ubuntu, Debian and Kali also have ARM 64-bit packages.
+    One command for Fedora, Ubuntu (including 26.10), Debian, Kali, deepin, LMDE, Devuan, Parrot, Arch,
+    Artix, CachyOS and openSUSE Tumbleweed on x86_64. Fedora, Ubuntu, Debian and Kali also have ARM 64-bit packages.
   </p>
   <pre tabindex="0"><code>{INSTALL_COMMAND}</code></pre>
   <p>
@@ -463,6 +482,35 @@ const levels: Record<Level, string> = {
     KDE have not been tested with 1.6.2.
   </p>
   <p>
+    The <code>resolute</code> packages built from PR #365 and PR #370 were tested on 27 October 2026 in an
+    Ubuntu 26.04 virtual machine (GNOME Wayland), using Gõ Sen and Telex. With the #365 package, 18 words
+    typed in Antigravity 2.6.0’s editor and chat came out right; version 1.6.2 left some words raw in
+    the editor, such as <code>vieetj</code>. The lost-text bug in the chat did not show up in the virtual
+    machine even with 1.6.2, so that part of the fix was checked only against the reporter’s typing log.
+    With the #370 package, in GNOME Text Editor, Firefox and Antigravity’s editor, the Backspace case gave
+    <code>muốn sứa</code>, the click case gave <code>abc nhánh xyz</code>, and Esc restored
+    <code>abc nhsanh xyz</code>. Version 1.6.3 was not tested on Fedora, Arch, Debian, openSUSE, Kali,
+    KDE, X11, Linux Mint or Chromium.
+  </p>
+  <p>
+    The 1.6.4-1 package built by CI from release PR #406 was tested in virtual machines on 28 October
+    2026, using Gõ Sen and Telex, installed with <code>dpkg -i</code>. Ubuntu 26.04 (GNOME Wayland,
+    <code>resolute</code> package): GNOME Text Editor turned
+    <code>dduwowngf tieengs vieetj nam cos dduwowjc khoong haf nooij</code> into
+    <code>đường tiếng việt nam có được không hà nội</code>; in Antigravity 2.6.0, 18 words typed without
+    pauses came out right in the chat and the editor, read from the typing log, not the screen. MX Linux
+    25 (Xfce X11, <code>trixie</code> package), Chromium: the same sentence plus <code>nhanh</code>,
+    selected with Ctrl+Shift+Left and followed by <code>s</code> (Cứu dấu), gave the sentence with
+    <code>nhánh</code> in 2 of 3 runs. The first run, right after Chromium opened, gave
+    <code>dường</code>: the first <code>d</code> was pressed before the text field connected to fcitx5;
+    this was not compared with 1.6.3. deepin 25.2 (DDE X11, fresh install): the installer from PR #408
+    with the 1.6.4-1 <code>bookworm</code> package finished without errors, pulled in
+    <code>whiptail</code> with im-config 1.1 and added Ngó Sen to the input method list; before the fix it
+    stopped at the im-config step 2 of 2 times. Updating through install.sh, Fedora, Arch, Debian 12,
+    openSUSE, Kali, KDE, Linux Mint, Firefox, Super shortcuts in Preedit (#392) and the settings window
+    (#376, #383) were not tested with 1.6.4.
+  </p>
+  <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
     <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
@@ -478,11 +526,10 @@ const levels: Record<Level, string> = {
     work but have not been tested closely.
   </p>
   <p>
-    The <a href="/roadmap/">roadmap (in Vietnamese)</a> now starts at 1.7.0: a one-time “Có gì mới”
-    (What's new) notification for feature releases, reworked emoji insertion, and merging spell
-    checking into automatic restoration of invalid words. “Có gì mới” is not in 1.6.0.
-    Cứu dấu without selecting text, by clicking after a word and typing a tone key, remains in the
-    unversioned “Sau đó” list. The roadmap gives no release dates, and the order may change.
+    The <a href="/roadmap/">roadmap (in Vietnamese)</a> starts at 1.7.0: a one-time “Có gì mới”
+    (What's new) notification for feature releases. Reworked emoji insertion and merging spell
+    checking into automatic restoration of invalid words moved to the unversioned “Sau đó” list. The
+    roadmap gives no release dates, and the order may change.
   </p>
   <p>
     Ngó Sen is built for fcitx5, which runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has

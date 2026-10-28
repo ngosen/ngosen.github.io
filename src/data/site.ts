@@ -33,6 +33,77 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.6.4-1',
+    date: '28/10/2026',
+    summary:
+      'Version sửa lỗi: Antigravity trên GNOME không còn mất dấu khi gõ nhanh, Cứu dấu chạy trên Chrome, Chromium và Brave ở X11, phím tắt Super không còn bị gõ thành chữ ở Gạch chân, cửa sổ cài đặt và Hoàn tác được sửa. Lệnh cài chạy được trên deepin, LMDE, Devuan, Parrot và Artix.',
+    changes: [
+      {
+        claim: 'Antigravity trên GNOME: Gõ Sen không còn mất dấu khi gõ nhanh trong vùng soạn thảo.',
+        source: 'Đã test trên Ubuntu 26.04 (GNOME Wayland) với Antigravity 2.6.0: gõ 18 từ không nghỉ giữa các phím trong chat và editor đều ra đúng, đọc từ log gõ (#362).',
+        pr: 395,
+      },
+      {
+        claim: 'Cứu dấu chạy trên Chrome, Chromium và Brave ở phiên X11: bôi đen `nhanh` (bấm đúp hoặc Shift+mũi tên) rồi gõ `s` ra `nhánh`.',
+        source: 'Chỉ ở Gõ Sen; Tab hoặc Esc vẫn trả lại phím đã gõ (#360). Đã test trên MX Linux 25 (Xfce X11) với Chromium: ra `nhánh` ở 2/3 lượt; ở lượt đầu, ngay sau khi mở Chromium, phím `d` đầu tiên bị mất trước khi ô chữ nối với fcitx5.',
+        pr: 390,
+      },
+      {
+        claim: 'Gạch chân: phím tắt Super + chữ (như Super+Q chuyển workspace) không còn bị gõ thành `q`, `ư`; nay đi thẳng tới desktop và app như Ctrl, Alt, giữ lại chữ đang gõ dở.',
+        source: 'Chưa test trên gói 1.6.4 (#391).',
+        pr: 392,
+      },
+      {
+        claim: 'Cửa sổ cài đặt không còn lỗi không mở được khi file từ điển riêng có chữ không phải UTF-8.',
+        source: 'Trang Từ điển báo không đọc trọn được file. Chưa test trên gói 1.6.4.',
+        pr: 376,
+      },
+      {
+        claim: 'Cửa sổ cài đặt: “Hoàn tác” chỉ trả lại đúng thay đổi vừa lưu.',
+        source: 'Không còn làm mất kiểu gõ đã nhớ cho app khi chọn từ menu Ngó Sen trong lúc cửa sổ đang mở. Chưa test trên gói 1.6.4.',
+        pr: 383,
+      },
+      {
+        claim: '`install.sh` trên máy để tiếng Việt cài đủ im-config và module gõ fcitx5 cho app GTK, Qt trên Debian, Ubuntu, Mint, MX.',
+        source: 'Trước đây lệnh bỏ sót các gói này khi máy để tiếng Việt; nay cài đủ ở mọi ngôn ngữ.',
+        pr: 388,
+      },
+      {
+        claim: '`install.sh` không còn dừng giữa chừng khi máy có một nguồn apt khác đang lỗi.',
+        source: 'Ví dụ Zorin OS có nguồn `github.io` hỏng; nay lệnh báo nguồn lỗi rồi vẫn cài tiếp.',
+        pr: 399,
+      },
+      {
+        claim: '`install.sh` cài được trên deepin 23 và 25. Gói `.deb` không còn đòi `python3-qtpy`.',
+        source: 'Cửa sổ cài đặt chạy thẳng với PyQt6. Lệnh cài kèm `whiptail` để im-config không dừng giữa chừng trên deepin và Kali mới cài (#408). Đã test trên deepin 25.2 (DDE X11, máy mới cài): lệnh cài chạy xong không lỗi và thêm Ngó Sen vào danh sách bộ gõ.',
+        pr: 397,
+      },
+      {
+        claim: '`install.sh` cài được trên LMDE, Devuan, Parrot và Artix.',
+        source: 'Trước đây lệnh báo không hỗ trợ dù gói Debian, Arch dùng được.',
+        pr: 403,
+      },
+    ],
+  },
+  {
+    version: '1.6.3-1',
+    date: '27/10/2026',
+    summary:
+      'Version sửa lỗi: gõ đúng trong editor và ô chat của Antigravity trên GNOME; Cứu dấu ở Gõ Sen chạy cả khi backspace về chữ trước hoặc bấm chuột vào giữa chữ.',
+    changes: [
+      {
+        claim: 'Antigravity trên GNOME: gõ trong vùng soạn thảo không còn để nguyên chữ thô (`vieetj`), và ô chat không còn mất hay rối chữ khi gõ nhanh.',
+        source: 'Đã test trên Ubuntu 26.04 (GNOME Wayland) với Antigravity 2.6.0: 18 từ trong editor và ô chat đều ra đúng. Lỗi mất chữ trong ô chat không hiện ra trên máy ảo, nên phần sửa này chỉ được đối chiếu với log gõ của người báo lỗi (#362).',
+        pr: 365,
+      },
+      {
+        claim: 'Sửa lỗi Cứu dấu khi backspace về chữ trước (`sưa oke|` → backspace 4 lần → `sưa|` + `s` → `sứa`) hoặc bấm chuột vào giữa chữ (`nh|anh` + `s` → `nhánh`).',
+        source: 'Chỉ ở Gõ Sen; Tab hoặc Esc vẫn trả lại phím đã gõ (#358). Đã test trên Ubuntu 26.04 trong GNOME Text Editor, Firefox và editor của Antigravity 2.6.0.',
+        pr: 370,
+      },
+    ],
+  },
+  {
     version: '1.6.2-1',
     date: '27/10/2026',
     summary:
@@ -853,7 +924,9 @@ export const LEVELS_NOTE =
   ' Gói 1.5.8 từ PR phát hành #306 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và CachyOS (KDE Plasma Wayland, gói Arch). Trên mỗi máy, cửa sổ cài đặt mở được và vẫn chạy sau 10 giây. Phần lưu của cửa sổ cài đặt được gọi thẳng với fcitx5 đang chạy, mỗi máy một lượt: đổi một ô cài đặt chính và lưu một gõ tắt, rồi đọc lại; cả hai đều lưu được. Với gói 1.5.7-1 đã phát hành trên cùng hai máy, cả hai lần lưu đều bị fcitx5 từ chối và cài đặt không đổi. Chưa click lưu bằng chuột trong cửa sổ; Fedora, Debian, Mint, openSUSE và Kali chưa được test với 1.5.8.' +
   ' Gói 1.6.0 từ PR phát hành #314 được test trên máy ảo ngày 26/10/2026 trên Ubuntu 26.04 (GNOME Wayland, gói “resolute”) và Linux Mint 22 (Cinnamon X11, gói “noble”), dùng Gõ Sen, Telex. Nâng cấp: mỗi máy cài 1.5.8-1, lưu một cài đặt và một gõ tắt, rồi chạy install.sh với gói mới; fcitx5 tự nạp lại, cài đặt, gõ tắt và phím Ctrl+Space còn nguyên, Cứu chữ đã bật. Sau đó, trong một ô chữ GTK3 trên cả hai máy: gõ câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu; gõ “tieengs vieetj” ở tiếng Anh rồi bật tiếng Việt, Cứu chữ đổi thành “tiếng việt”, bấm Esc trả lại chữ cũ; gõ “tieengs Nam” rồi bật tiếng Việt thì chỉ hiện gợi ý, bấm Tab giữ nguyên chữ đã gõ. Trên Ubuntu, bốn ca đó cũng đúng trong Chrome, và gõ câu trong terminal GNOME Console đúng; trên Mint, gõ câu trong Chrome đúng. Cài mới (gói build ngay trước bản sửa nâng cấp #315, bản sửa không đụng đường cài mới): mở ở tiếng Anh, Ctrl+Shift chuyển sang tiếng Việt, Cứu chữ bật sẵn. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.0.' +
   ' Gói 1.6.1 từ PR phát hành #323 được test trên máy ảo ngày 26/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, desktop tiếng Anh, gói “resolute”): cập nhật từ 1.6.0-1 bằng install.sh, fcitx5 tự nạp lại; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu, Cứu chữ đổi “tieengs vieetj” thành “tiếng việt”, Esc trả lại chữ cũ, Tab giữ nguyên “tieengs Nam”; dòng gợi ý của Cứu chữ hiện tiếng Việt. Linux Mint 22 (Cinnamon X11, gói “noble”): cài gói bằng apt, không qua install.sh, rồi chạy fcitx5 lần đầu với “LANG=vi_VN.UTF-8”: Ngó Sen có sẵn trong danh sách bộ gõ. Mint chọn tiếng Việt bằng “LANGUAGE” mà giữ “LANG=en_US.UTF-8” thì danh sách vẫn chỉ có bàn phím. Sau đó cài bằng install.sh rồi khởi động lại: bốn ca trên đúng trong ô chữ GTK3, câu thử đúng trong Chrome. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.1.' +
-  ' Gói 1.6.2 từ PR phát hành #335 được test trên máy ảo ngày 27/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cập nhật bằng install.sh từ bản 1.5.5 dựng từ nhánh next, fcitx5 tự nạp version mới; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng “đường tiếng Việt Nam có được không Hà Nội”. Trên cùng máy, “install.sh --ibus” hỏi lại rồi chuyển sang Ngó Sen cho GNOME 1.0.0; đăng nhập lại, chọn Ngó Sen trên thanh trên cùng, “vieetj nam” ra “việt nam” trong ô chữ GTK4; “install.sh --ibus --uninstall” gỡ bản IBus, bản fcitx5 vẫn còn. Linux Mint 22 (Cinnamon X11, gói “noble”): cập nhật bằng install.sh từ 1.5.7-1, câu thử đúng trong ô chữ GTK3 và Chromium. Cứu dấu sau khi bấm chuột (#327) không được test lại trên gói này. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.2.';
+  ' Gói 1.6.2 từ PR phát hành #335 được test trên máy ảo ngày 27/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cập nhật bằng install.sh từ bản 1.5.5 dựng từ nhánh next, fcitx5 tự nạp version mới; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng “đường tiếng Việt Nam có được không Hà Nội”. Trên cùng máy, “install.sh --ibus” hỏi lại rồi chuyển sang Ngó Sen cho GNOME 1.0.0; đăng nhập lại, chọn Ngó Sen trên thanh trên cùng, “vieetj nam” ra “việt nam” trong ô chữ GTK4; “install.sh --ibus --uninstall” gỡ bản IBus, bản fcitx5 vẫn còn. Linux Mint 22 (Cinnamon X11, gói “noble”): cập nhật bằng install.sh từ 1.5.7-1, câu thử đúng trong ô chữ GTK3 và Chromium. Cứu dấu sau khi bấm chuột (#327) không được test lại trên gói này. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.2.' +
+  ' Các gói “resolute” build từ PR #365 và PR #370 được test ngày 27/10/2026 trên máy ảo Ubuntu 26.04 (GNOME Wayland), dùng Gõ Sen, Telex. Với gói từ PR #365, gõ 18 từ trong editor và ô chat của Antigravity 2.6.0 đều ra đúng “lẫn có cá lỗi tiếng việt được không nhiều chữ đường phố tôi biết là một ngày mái”; version 1.6.2 còn để nguyên một số chữ trong editor như “vieetj”, “nhieeuf”, “dduowngf”. Lỗi mất chữ trong ô chat không xuất hiện trên máy ảo kể cả với version 1.6.2, nên phần sửa này chỉ được đối chiếu với log gõ của người báo lỗi. Với gói từ PR #370, trên cả GNOME Text Editor, Firefox và editor của Antigravity 2.6.0, trường hợp Backspace cho “muốn sứa”, trường hợp bấm chuột cho “abc nhánh xyz”, và Esc trả lại “abc nhsanh xyz”. Chưa test với version 1.6.3 trên Fedora, Arch, Debian, openSUSE, Kali, KDE, X11, Linux Mint và Chromium.' +
+  ' Gói 1.6.4-1 do CI dựng từ PR phát hành #406 được test trên máy ảo ngày 28/10/2026, dùng Gõ Sen, Telex; cài bằng dpkg -i rồi khởi động lại fcitx5 qua DBus. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): GNOME Text Editor nhận “dduwowngf tieengs vieetj nam cos dduwowjc khoong haf nooij” ra “đường tiếng việt nam có được không hà nội”. Antigravity 2.6.0: gõ 18 từ không nghỉ giữa các phím trong chat và editor đều ra “lẫn có cá lỗi tiếng việt được không nhiều chữ đường phố tôi biết là một ngày mái”, đọc từ log gõ, không phải màn hình. MX Linux 25 (Xfce X11, gói “trixie”), Chromium: gõ cùng câu chữ thường, thêm “nhanh”, chọn bằng Ctrl+Shift+Left rồi nhấn “s” (Cứu dấu), được câu trên kèm “nhánh” ở 2/3 lượt. Lượt đầu ngay sau khi mở Chromium ra “dường”: phím “d” đầu được nhấn trước khi ô chữ nối với fcitx5 nên Ngó Sen không nhận được; chưa so với 1.6.3. deepin 25.2 (DDE X11, máy mới cài): install.sh của PR #408 với gói “bookworm” 1.6.4-1 chạy xong không lỗi, kéo “whiptail” cùng im-config 1.1 và thêm Ngó Sen vào danh sách bộ gõ; trước bản sửa, install.sh dừng ở bước im-config 2/2 lần. Với 1.6.4, chưa test cập nhật qua install.sh, Fedora, Arch, Debian 12, openSUSE, Kali, KDE, Linux Mint, Firefox, phím tắt Super trong Preedit (#392) và cửa sổ cài đặt (#376, #383).';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -1142,11 +1215,6 @@ export const ROADMAP: {
       {
         text: 'Có gì mới: sau khi cập nhật lên version có tính năng mới, một thông báo nhỏ ở góc màn hình hiện một lần, bấm vào thì mở trang “Có gì mới” trong cửa sổ cài đặt, mỗi tính năng có cách dùng và nút tắt. Version chỉ sửa lỗi thì không báo.',
       },
-      { text: 'Làm lại cách chèn emoji.', refs: [110] },
-      {
-        text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
-        refs: [112],
-      },
     ],
   },
   {
@@ -1158,10 +1226,14 @@ export const ROADMAP: {
       { text: 'Sửa lỗi gõ vội, như `tiếgn` thành `tiếng`.' },
       { text: 'Tự chạy “Kiểm tra máy tôi” lần đầu mở cửa sổ cài đặt. Có thêm bảng các app gõ được, lấy từ kết quả test người dùng gửi về.' },
       { text: 'Mẹo dùng Ngó Sen trong cửa sổ cài đặt, mỗi mẹo dẫn sang trang hướng dẫn trên website. Mẹo có sẵn trong gói cài, không tải gì từ mạng.' },
-      { text: 'Cứu dấu không cần bôi đen: click vào sau chữ rồi gõ dấu.', refs: [118] },
       {
         text: 'Đưa Ngó Sen vào repo của các distro: từ 1.5.3 đã có repo riêng có chữ ký cho Fedora (COPR), Debian và Ubuntu (APT), Arch (pacman) và openSUSE Tumbleweed. nixpkgs đang chờ review. Còn AUR, rồi Debian.',
         links: [{ label: 'NixOS/nixpkgs#575620', href: 'https://github.com/NixOS/nixpkgs/pull/575620' }],
+      },
+      { text: 'Làm lại cách chèn emoji.', refs: [110] },
+      {
+        text: 'Gộp “Kiểm tra chính tả” vào “Tự khôi phục từ gõ sai”, vì nó chỉ có tác dụng khi Tự khôi phục đang bật.',
+        refs: [112],
       },
     ],
   },

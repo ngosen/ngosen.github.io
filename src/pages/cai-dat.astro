@@ -26,7 +26,8 @@ const toc = [
   tocPages={INSTALL_PAGES.map((page) => ({ ...page, current: page.href === '/cai-dat/' }))}
 >
   <p slot="lede">
-    Một dòng lệnh cho Fedora, Ubuntu, Debian, Kali, Arch, CachyOS và openSUSE Tumbleweed trên máy x86_64.
+    Một dòng lệnh cho Fedora, Ubuntu, Debian, Kali, deepin, LMDE, Devuan, Parrot, Arch, Artix, CachyOS và
+    openSUSE Tumbleweed trên máy x86_64.
     Riêng Fedora, Ubuntu, Debian và Kali có cả gói cho máy ARM 64-bit. Cách cài trên NixOS, tải gói tay và tự build
     từ source nằm ở trang <a href="/cai-dat/nang-cao/">Cài nâng cao</a>. Trang này hướng dẫn cài bản fcitx5;
     nếu dùng GNOME và muốn bản chạy trên IBus, xem trang <a href="/ngo-sen-cho-gnome/">Ngó Sen cho GNOME</a>.
@@ -243,7 +244,9 @@ sudo apt update
 sudo apt install fcitx5-ngosen`}</code></pre>
   <p>
     Trên Kali, thay phần <code>{`$(. /etc/os-release && echo \${UBUNTU_CODENAME:-$VERSION_CODENAME})`}</code>
-    bằng <code>forky</code>.
+    bằng <code>forky</code>. deepin 23 và 25: thay phần đó bằng <code>bookworm</code>. LMDE, Devuan và Parrot:
+    thay bằng bản Debian gốc, <code>bookworm</code> hoặc <code>trixie</code> (xem <code>/etc/debian_version</code>:
+    12 là <code>bookworm</code>, 13 là <code>trixie</code>).
   </p>
   <p>Arch, CachyOS và EndeavourOS dùng repo pacman (x86_64):</p>
   <pre tabindex="0"><code>{`curl -fsSL https://ngosen.github.io/ngosen/arch/ngosen.asc | sudo pacman-key --add -
