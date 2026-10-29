@@ -26,8 +26,8 @@ const toc = [
   tocPages={INSTALL_PAGES.map((page) => ({ ...page, current: page.href === '/cai-dat/' }))}
 >
   <p slot="lede">
-    Một dòng lệnh cho Fedora, Ubuntu, Debian, Kali, deepin, LMDE, Devuan, Parrot, Arch, Artix, CachyOS và
-    openSUSE Tumbleweed trên máy x86_64.
+    Một dòng lệnh cho Fedora, Ubuntu (từ 24.04), Debian (từ 12), Kali, deepin, LMDE, Devuan, Parrot, Arch, Artix,
+    CachyOS và openSUSE Tumbleweed trên máy x86_64. Ubuntu 22.04 và Linux Mint 21 dùng được tới version 1.6.4.
     Riêng Fedora, Ubuntu, Debian và Kali có cả gói cho máy ARM 64-bit. Cách cài trên NixOS, tải gói tay và tự build
     từ source nằm ở trang <a href="/cai-dat/nang-cao/">Cài nâng cao</a>. Trang này hướng dẫn cài bản fcitx5;
     nếu dùng GNOME và muốn bản chạy trên IBus, xem trang <a href="/ngo-sen-cho-gnome/">Ngó Sen cho GNOME</a>.
@@ -41,7 +41,7 @@ const toc = [
       Nhận ra distro và loại máy (x86_64 hay ARM 64-bit), rồi chọn đúng gói trong
       <a href={`${REPO}/releases/latest`}>release mới nhất</a> trên GitHub.
     </li>
-    <li>In ra gói sẽ cài và hỏi lại. Trả lời <kbd>c</kbd> thì mới đi tiếp; bấm Enter là dừng.</li>
+    <li>In ra gói sẽ cài và hỏi “Tiếp tục? [y/N]”. Gõ <kbd>y</kbd> thì mới đi tiếp; bấm Enter là dừng.</li>
     <li>Tải gói về và so hash SHA-256 với file <code>SHA256SUMS</code>. Không khớp thì không cài.</li>
     <li>Cài bằng trình quản lý gói của máy (dnf, apt, pacman hoặc zypper); lúc này máy hỏi mật khẩu sudo.</li>
     <li>

@@ -9,9 +9,11 @@ interface Props {
   title: string;
   description: string;
   toc: TocItem[];
+  // Screenshots up to 1.6 show the Qt window; the page about the two windows turns the note off.
+  qtNote?: boolean;
 }
 
-const { title, description, toc } = Astro.props;
+const { title, description, toc, qtNote = true } = Astro.props;
 const here = Astro.url.pathname;
 const index = GUIDE_PAGES.findIndex((page) => page.href === here);
 const prev = index > 0 ? GUIDE_PAGES[index - 1] : undefined;
@@ -26,6 +28,14 @@ const next = index >= 0 && index < GUIDE_PAGES.length - 1 ? GUIDE_PAGES[index + 
   tocPages={[{ href: '/huong-dan/', label: 'Mục lục hướng dẫn' }]}
 >
   <slot name="lede" slot="lede" />
+  {
+    qtNote && (
+      <p class="qt-note">
+        Ảnh trong bài chụp cửa sổ cài đặt bản Qt. GNOME và Linux Mint (Cinnamon) thường mở bản GTK, trông khác ảnh;
+        xem <a href="/huong-dan/cua-so-cai-dat/">Chọn cửa sổ cài đặt Qt hay GTK</a>.
+      </p>
+    )
+  }
   <slot />
   <nav class="pager" aria-label="Bài trước và bài sau">
     {
@@ -83,6 +93,11 @@ const next = index >= 0 && index < GUIDE_PAGES.length - 1 ? GUIDE_PAGES[index + 
     font-weight: 600;
     font-size: 0.95rem;
     box-shadow: 0 0.35em 0.5em -0.3em rgb(0 0 0 / 0.45);
+  }
+
+  .qt-note {
+    font-size: var(--step--1);
+    color: var(--ink-muted);
   }
 
   .pager {
