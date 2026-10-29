@@ -33,6 +33,104 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.7.0-1',
+    date: '29/10/2026',
+    summary:
+      'Cửa sổ cài đặt có thêm bản GTK giống app GNOME, mở mặc định trên GNOME và Cinnamon, đổi qua lại với bản Qt bằng một nút. Trang “Có gì mới & mẹo” và thông báo một lần sau khi cập nhật lên version có tính năng mới. Ngó Sen cho GNOME (IBus) tự cài trên Xfce, Cinnamon, MATE. Không còn gói cho Ubuntu 22.04.',
+    changes: [
+      {
+        claim: 'Cửa sổ cài đặt có thêm bản GTK giống app GNOME, dùng libadwaita 1.5 trở lên, bên cạnh bản Qt như cũ.',
+        source: 'GNOME và Cinnamon (Linux Mint) mở GTK nếu đủ libadwaita; desktop khác mở Qt. Chỉ có thư viện bản nào thì mở bản đó (#396). Đã test trên Linux Mint 22 (Cinnamon X11) và Ubuntu 26.04 (GNOME Wayland): cửa sổ cài đặt mở bản GTK.',
+        pr: 386,
+      },
+      {
+        claim: 'Trang Giao diện: bản Qt có nút “Đổi sang bản GTK…”, bản GTK có nút “Đổi sang bản Qt…”.',
+        source: 'Có sẵn bản kia thì cửa sổ mở lại ngay bằng bản đó. Chưa có thì báo cần cài gói nào, tải về khoảng bao nhiêu, rồi cho chọn cài ngay (hỏi mật khẩu) hoặc chép lệnh để tự chạy (#407).',
+        pr: 393,
+      },
+      {
+        claim: 'Sau khi cập nhật lên version có tính năng mới, một thông báo ở góc màn hình hiện một lần; bấm “Xem” thì mở cửa sổ cài đặt ở trang “Có gì mới & mẹo”.',
+        source: 'Version chỉ sửa lỗi và cài mới không báo. Trang có Cứu chữ, Cứu dấu, phím chuyển Anh/Việt với nút “Mở cài đặt” dẫn tới đúng ô, và 12 mẹo gõ; trang Gõ chữ hiện một mẹo ngẫu nhiên mỗi lần mở cửa sổ (#409, #433). Đã test trên Linux Mint 22: cập nhật từ 1.6.3-1, thông báo “Ngó Sen có gì mới?” hiện câu của version 1.7, bấm “Xem” mở trang “Có gì mới & mẹo”.',
+        pr: 331,
+      },
+      {
+        claim: 'Ngó Sen cho GNOME (IBus): `install.sh --ibus` trên Xfce, Cinnamon, MATE (X11, có im-config như Ubuntu, Debian, Linux Mint) tự đặt IBus làm bộ gõ, thêm Ngó Sen và phím chuyển Ctrl+Space.',
+        source: 'Không còn phải làm tay. Cài bản fcitx5 khi tài khoản đang dùng bản IBus thì lệnh hỏi lại rồi gỡ bản IBus. Đã test trên Ubuntu 26.04: máy đang dùng bản IBus, lệnh cài bản fcitx5 hỏi lại, gỡ bản IBus rồi cài 1.7.0-1.',
+        pr: 341,
+      },
+      {
+        claim: 'openSUSE Tumbleweed có Ngó Sen cho GNOME (bản IBus): `install.sh --ibus` cài được, và repo zypper có thêm gói `ibus-ngosen`.',
+        source: 'Gói `ibus-ngosen` có trong repo zypper từ version đầu tiên có package openSUSE.',
+        pr: 389,
+      },
+      {
+        claim: 'Ở chế độ gạch chân, Backspace ngay sau khi gõ xong một chữ sẽ mở lại chữ đó để sửa dấu (`việt ` + Backspace + `s` → `viết`), như Gõ Sen.',
+        source: 'Cần app báo surrounding text; terminal thì Backspace như cũ. Chưa test trên gói 1.7.0.',
+        pr: 344,
+      },
+      {
+        claim: 'Hộp “Kiểm tra máy tôi…” có nút “Nhắn qua Facebook…”: chép sẵn thông tin máy và mở khung chat với trang Facebook Ngó Sen.',
+        source: 'Dán thông tin vào tin nhắn để báo lỗi, không cần tài khoản GitHub. Chưa test trên gói 1.7.0.',
+        pr: 374,
+      },
+      {
+        claim: 'Lệnh cài hỏi “Tiếp tục? [y/N]” thay cho “Tiếp tục? [c/K]”, như đa số lệnh Linux.',
+        source: 'Gõ y, yes hoặc c để đồng ý; bấm Enter không gõ gì vẫn là không (#398). Cài bản fcitx5 trên GNOME, lệnh nói rõ trước câu hỏi sẽ đổi gì cho tài khoản và cách trả lại bằng `--uninstall`, rồi giới thiệu Ngó Sen cho GNOME (#400, #410).',
+        pr: 398,
+      },
+      {
+        claim: 'Cửa sổ cài đặt dùng xanh men của Ngó Sen cho ô đã đánh dấu, trang đang chọn ở thanh bên, focus và vùng chọn, thay cho màu nhấn của desktop.',
+        source: 'Màu này dùng cho cả giao diện sáng và tối; sắc xanh ở giao diện tối đậm hơn trước một chút để chữ dễ đọc hơn.',
+        pr: 352,
+      },
+      {
+        claim: '`install.sh` trên GNOME và Cinnamon (Linux Mint) ở Debian, Ubuntu, Linux Mint, Fedora và openSUSE cài thư viện cửa sổ cài đặt GTK, không tải Qt.',
+        source: 'Khoảng 20 MB trên Ubuntu 24.04 GNOME và Mint 22.1. Debian 12 (libadwaita quá cũ), KDE và desktop khác vẫn dùng Qt. Arch/CachyOS vẫn cài Qt. Máy đã cài Ngó Sen vẫn giữ bộ Qt, không bị gỡ.',
+        pr: 387,
+      },
+      {
+        claim: 'KDE Wayland: cài hoặc nâng cấp xong, Ngó Sen vẫn nhớ chế độ riêng từng app mà không cần đăng nhập lại.',
+        source: 'fcitx5 được KDE bật lại như lúc đăng nhập, nên Ngó Sen vẫn biết đang gõ trong app nào. Chưa test trên gói 1.7.0.',
+        pr: 428,
+      },
+      {
+        claim: 'WPS Office trên deepin: Gõ Sen không còn để lại chữ cũ khi WPS kết nối với fcitx5 theo đường D-Bus.',
+        source: '“thucws” ra “thức” thay vì “thucưcức”. Chưa test trên gói 1.7.0.',
+        pr: 430,
+      },
+      {
+        claim: 'deepin-editor mặc định dùng chế độ gạch chân, để gõ nhanh không còn đảo chữ, mất hoặc lặp dấu.',
+        source: 'Vẫn giữ chế độ đã chọn cho app qua menu, không đổi các app khác.',
+        pr: 421,
+      },
+      {
+        claim: 'Chuyển sang Ngó Sen cho GNOME bằng `install.sh --ibus`: đăng nhập lại là đang ở Ngó Sen, Firefox không còn gõ ra chữ thô và chữ đầu tiên không còn ra không dấu.',
+        source: 'Trước đây máy có thể vẫn giữ biến bộ gõ của fcitx5 tới lần khởi động lại (#425).',
+        pr: 420,
+      },
+      {
+        claim: 'Người cài gói rồi tự thêm Ngó Sen trong Fcitx5 Configuration không còn bị mất bàn phím tiếng Anh và đổi sang Ctrl+Space sau lần khởi động fcitx5 kế tiếp.',
+        source: 'Máy mới giữ Ctrl+Shift.',
+        pr: 419,
+      },
+      {
+        claim: 'Cửa sổ cài đặt: bấm “Mặc định” nay báo trước phím chuyển Anh/Việt sẽ về Ctrl+Shift nếu đang dùng phím khác.',
+        source: 'Kể cả phím vừa đổi, trong cả cửa sổ Qt và GTK.',
+        pr: 414,
+      },
+      {
+        claim: 'Cửa sổ cài đặt: lưu từ điển riêng không còn xoá chữ bắt đầu bằng dấu # khỏi file; bấm “Khôi phục…” với file sao lưu bị hỏng nay báo lỗi và không thay đổi gì.',
+        source: 'Trước đây khôi phục file hỏng có thể làm trống file từ điển riêng và ghi một phần cài đặt (#382). Cửa sổ cài đặt cũng mở được khi `ngosen.conf` có byte không phải UTF-8 (#415).',
+        pr: 367,
+      },
+      {
+        claim: 'Không còn gói cho Ubuntu 22.04 (và Linux Mint 21 dựa trên nó); cần Ubuntu 24.04 hoặc Linux Mint 22 trở lên.',
+        source: 'Version cuối cho Ubuntu 22.04 là 1.6.4. Lệnh cài một dòng báo rõ điều này; máy đã thêm repo APT của Ngó Sen thì nên gỡ dòng repo đó, vì `apt update` sẽ báo lỗi thiếu `jammy`.',
+        pr: 332,
+      },
+    ],
+  },
+  {
     version: '1.6.4-1',
     date: '28/10/2026',
     summary:
@@ -926,7 +1024,8 @@ export const LEVELS_NOTE =
   ' Gói 1.6.1 từ PR phát hành #323 được test trên máy ảo ngày 26/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, desktop tiếng Anh, gói “resolute”): cập nhật từ 1.6.0-1 bằng install.sh, fcitx5 tự nạp lại; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng chữ có dấu, Cứu chữ đổi “tieengs vieetj” thành “tiếng việt”, Esc trả lại chữ cũ, Tab giữ nguyên “tieengs Nam”; dòng gợi ý của Cứu chữ hiện tiếng Việt. Linux Mint 22 (Cinnamon X11, gói “noble”): cài gói bằng apt, không qua install.sh, rồi chạy fcitx5 lần đầu với “LANG=vi_VN.UTF-8”: Ngó Sen có sẵn trong danh sách bộ gõ. Mint chọn tiếng Việt bằng “LANGUAGE” mà giữ “LANG=en_US.UTF-8” thì danh sách vẫn chỉ có bàn phím. Sau đó cài bằng install.sh rồi khởi động lại: bốn ca trên đúng trong ô chữ GTK3, câu thử đúng trong Chrome. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.1.' +
   ' Gói 1.6.2 từ PR phát hành #335 được test trên máy ảo ngày 27/10/2026, dùng Gõ Sen, Telex. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): cập nhật bằng install.sh từ bản 1.5.5 dựng từ nhánh next, fcitx5 tự nạp version mới; trong một ô chữ GTK3, câu “dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij” ra đúng “đường tiếng Việt Nam có được không Hà Nội”. Trên cùng máy, “install.sh --ibus” hỏi lại rồi chuyển sang Ngó Sen cho GNOME 1.0.0; đăng nhập lại, chọn Ngó Sen trên thanh trên cùng, “vieetj nam” ra “việt nam” trong ô chữ GTK4; “install.sh --ibus --uninstall” gỡ bản IBus, bản fcitx5 vẫn còn. Linux Mint 22 (Cinnamon X11, gói “noble”): cập nhật bằng install.sh từ 1.5.7-1, câu thử đúng trong ô chữ GTK3 và Chromium. Cứu dấu sau khi bấm chuột (#327) không được test lại trên gói này. Fedora, Arch, Debian, openSUSE, Kali và KDE chưa được test với 1.6.2.' +
   ' Các gói “resolute” build từ PR #365 và PR #370 được test ngày 27/10/2026 trên máy ảo Ubuntu 26.04 (GNOME Wayland), dùng Gõ Sen, Telex. Với gói từ PR #365, gõ 18 từ trong editor và ô chat của Antigravity 2.6.0 đều ra đúng “lẫn có cá lỗi tiếng việt được không nhiều chữ đường phố tôi biết là một ngày mái”; version 1.6.2 còn để nguyên một số chữ trong editor như “vieetj”, “nhieeuf”, “dduowngf”. Lỗi mất chữ trong ô chat không xuất hiện trên máy ảo kể cả với version 1.6.2, nên phần sửa này chỉ được đối chiếu với log gõ của người báo lỗi. Với gói từ PR #370, trên cả GNOME Text Editor, Firefox và editor của Antigravity 2.6.0, trường hợp Backspace cho “muốn sứa”, trường hợp bấm chuột cho “abc nhánh xyz”, và Esc trả lại “abc nhsanh xyz”. Chưa test với version 1.6.3 trên Fedora, Arch, Debian, openSUSE, Kali, KDE, X11, Linux Mint và Chromium.' +
-  ' Gói 1.6.4-1 do CI dựng từ PR phát hành #406 được test trên máy ảo ngày 28/10/2026, dùng Gõ Sen, Telex; cài bằng dpkg -i rồi khởi động lại fcitx5 qua DBus. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): GNOME Text Editor nhận “dduwowngf tieengs vieetj nam cos dduwowjc khoong haf nooij” ra “đường tiếng việt nam có được không hà nội”. Antigravity 2.6.0: gõ 18 từ không nghỉ giữa các phím trong chat và editor đều ra “lẫn có cá lỗi tiếng việt được không nhiều chữ đường phố tôi biết là một ngày mái”, đọc từ log gõ, không phải màn hình. MX Linux 25 (Xfce X11, gói “trixie”), Chromium: gõ cùng câu chữ thường, thêm “nhanh”, chọn bằng Ctrl+Shift+Left rồi nhấn “s” (Cứu dấu), được câu trên kèm “nhánh” ở 2/3 lượt. Lượt đầu ngay sau khi mở Chromium ra “dường”: phím “d” đầu được nhấn trước khi ô chữ nối với fcitx5 nên Ngó Sen không nhận được; chưa so với 1.6.3. deepin 25.2 (DDE X11, máy mới cài): install.sh của PR #408 với gói “bookworm” 1.6.4-1 chạy xong không lỗi, kéo “whiptail” cùng im-config 1.1 và thêm Ngó Sen vào danh sách bộ gõ; trước bản sửa, install.sh dừng ở bước im-config 2/2 lần. Với 1.6.4, chưa test cập nhật qua install.sh, Fedora, Arch, Debian 12, openSUSE, Kali, KDE, Linux Mint, Firefox, phím tắt Super trong Preedit (#392) và cửa sổ cài đặt (#376, #383).';
+  ' Gói 1.6.4-1 do CI dựng từ PR phát hành #406 được test trên máy ảo ngày 28/10/2026, dùng Gõ Sen, Telex; cài bằng dpkg -i rồi khởi động lại fcitx5 qua DBus. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): GNOME Text Editor nhận “dduwowngf tieengs vieetj nam cos dduwowjc khoong haf nooij” ra “đường tiếng việt nam có được không hà nội”. Antigravity 2.6.0: gõ 18 từ không nghỉ giữa các phím trong chat và editor đều ra “lẫn có cá lỗi tiếng việt được không nhiều chữ đường phố tôi biết là một ngày mái”, đọc từ log gõ, không phải màn hình. MX Linux 25 (Xfce X11, gói “trixie”), Chromium: gõ cùng câu chữ thường, thêm “nhanh”, chọn bằng Ctrl+Shift+Left rồi nhấn “s” (Cứu dấu), được câu trên kèm “nhánh” ở 2/3 lượt. Lượt đầu ngay sau khi mở Chromium ra “dường”: phím “d” đầu được nhấn trước khi ô chữ nối với fcitx5 nên Ngó Sen không nhận được; chưa so với 1.6.3. deepin 25.2 (DDE X11, máy mới cài): install.sh của PR #408 với gói “bookworm” 1.6.4-1 chạy xong không lỗi, kéo “whiptail” cùng im-config 1.1 và thêm Ngó Sen vào danh sách bộ gõ; trước bản sửa, install.sh dừng ở bước im-config 2/2 lần. Với 1.6.4, chưa test cập nhật qua install.sh, Fedora, Arch, Debian 12, openSUSE, Kali, KDE, Linux Mint, Firefox, phím tắt Super trong Preedit (#392) và cửa sổ cài đặt (#376, #383).' +
+  ' Gói 1.7.0-1 do CI dựng từ PR phát hành #432 được test trên máy ảo ngày 29/10/2026, dùng Gõ Sen, Telex, cài bằng install.sh với thư mục gói trên máy. Linux Mint 22 (Cinnamon X11, gói “noble”): cập nhật từ 1.6.3-1, fcitx5 tự nạp version mới; thông báo “Ngó Sen có gì mới?” hiện câu của version 1.7, bấm “Xem” mở cửa sổ cài đặt bản GTK ở trang “Có gì mới & mẹo”. Trong một ô chữ GTK 3, 5/5 câu thử ra đúng, trong đó “vieejt nguwowif ddaay hoaf quas giuwax tieengs khoong” gõ không nghỉ giữa các phím ra “việt người đây hoà quá giữa tiếng không”, kèm chữ hoa, sửa bằng Backspace và chuyển Anh/Việt giữa câu. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): máy đang dùng Ngó Sen cho GNOME 1.0.0 (IBus) cạnh gói fcitx5 1.6.3-1; install.sh hỏi lại, gỡ bản IBus rồi cài 1.7.0-1; đăng nhập lại thì fcitx5 chạy, thông báo của version 1.7 nằm trong danh sách thông báo, cửa sổ cài đặt mở bản GTK, và cùng 5 câu thử đúng 5/5 trong ô chữ GTK 3. Với 1.7.0, chưa test Fedora, Arch, Debian, openSUSE, Kali, KDE, deepin (WPS, #430), trình duyệt và cài mới.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -1032,13 +1131,6 @@ export const DISTRIBUTIONS: Distribution[] = [
     core: 'Rust',
   },
   {
-    name: 'Ubuntu 22.04',
-    level: 'built',
-    basis: 'chỉ build và chạy test lúc build',
-    file: 'fcitx5-ngosen_*_jammy_amd64.deb',
-    core: 'Rust',
-  },
-  {
     name: 'Debian 12',
     level: 'built',
     basis: 'chỉ build và chạy test lúc build',
@@ -1057,7 +1149,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Cứu dấu',
-    text: 'Bôi đen chữ rồi gõ phím dấu để thêm, đổi hoặc bỏ dấu thanh, như nhanh + s → nhánh.',
+    text: 'Bôi đen chữ rồi gõ phím dấu để thêm, đổi hoặc bỏ dấu thanh, như nhanh + s → nhánh. Dùng được ở app cho bộ gõ đọc chữ quanh con trỏ, trừ Firefox bản snap.',
   },
   {
     title: 'Phím chuyển Anh/Việt riêng',
@@ -1073,11 +1165,11 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Cài bằng một dòng lệnh',
-    text: 'Có cho Fedora, Ubuntu, Debian, Kali, Arch, CachyOS và openSUSE Tumbleweed trên x86_64. Fedora, Ubuntu, Debian và Kali còn có gói ARM 64-bit. Script so hash SHA-256 và hỏi lại trước khi cài.',
+    text: 'Có cho Fedora, Ubuntu (từ 24.04), Debian (từ 12), Kali, deepin, LMDE, Devuan, Parrot, Arch, Artix, CachyOS và openSUSE Tumbleweed trên x86_64. Fedora, Ubuntu, Debian và Kali còn có gói ARM 64-bit. Script so hash SHA-256 và hỏi lại trước khi cài.',
   },
   {
-    title: 'Cửa sổ cài đặt theo giao diện máy',
-    text: 'Sáng hay tối, KDE hay GNOME, cửa sổ dùng giao diện đang có. Đổi gì lưu ngay, có nút Hoàn tác.',
+    title: 'Cửa sổ cài đặt Qt hoặc GTK',
+    text: 'Cửa sổ cài đặt có hai bản: Qt và GTK (giống app GNOME). GNOME và Linux Mint (Cinnamon) mở bản GTK, các desktop khác mở bản Qt. Cửa sổ dùng giao diện sáng, tối của máy trên KDE và GNOME; đổi gì lưu ngay, có nút Hoàn tác.',
   },
 ];
 
@@ -1181,6 +1273,11 @@ export const GUIDE = [
         summary: 'Icon trạng thái hay một màu, ẩn mục trong menu khay, ngôn ngữ giao diện.',
       },
       {
+        href: '/huong-dan/cua-so-cai-dat/',
+        label: 'Chọn cửa sổ cài đặt Qt hay GTK',
+        summary: 'Hai bản của cửa sổ cài đặt, bản GTK trông thế nào, nút đổi sang bản kia.',
+      },
+      {
         href: '/huong-dan/tim-sao-luu/',
         label: 'Tìm cài đặt, hoàn tác và sao lưu',
         summary: 'Ô tìm cài đặt, nút Hoàn tác, Mặc định, Sao lưu và Khôi phục.',
@@ -1210,14 +1307,6 @@ export const ROADMAP: {
   items: { text: string; refs?: number[]; links?: { label: string; href: string }[] }[];
 }[] = [
   {
-    version: '1.7.0',
-    items: [
-      {
-        text: 'Có gì mới: sau khi cập nhật lên version có tính năng mới, một thông báo nhỏ ở góc màn hình hiện một lần, bấm vào thì mở trang “Có gì mới” trong cửa sổ cài đặt, mỗi tính năng có cách dùng và nút tắt. Version chỉ sửa lỗi thì không báo.',
-      },
-    ],
-  },
-  {
     items: [
       { text: 'Chữ tiếng Anh có chữ cái đôi không còn mất phím khi trả về: `affect` không thành `afect`, `coffee` không thành `cofee`.' },
       { text: 'Bớt đổi nhầm chữ tiếng Anh thành tiếng Việt, như `nest` thành `nét`, `too` thành `tô`.' },
@@ -1225,7 +1314,6 @@ export const ROADMAP: {
       { text: 'Bôi đen một đoạn rồi thêm dấu, bỏ dấu hoặc chuyển chữ mã cũ (TCVN3, VNI) sang Unicode.' },
       { text: 'Sửa lỗi gõ vội, như `tiếgn` thành `tiếng`.' },
       { text: 'Tự chạy “Kiểm tra máy tôi” lần đầu mở cửa sổ cài đặt. Có thêm bảng các app gõ được, lấy từ kết quả test người dùng gửi về.' },
-      { text: 'Mẹo dùng Ngó Sen trong cửa sổ cài đặt, mỗi mẹo dẫn sang trang hướng dẫn trên website. Mẹo có sẵn trong gói cài, không tải gì từ mạng.' },
       {
         text: 'Đưa Ngó Sen vào repo của các distro: từ 1.5.3 đã có repo riêng có chữ ký cho Fedora (COPR), Debian và Ubuntu (APT), Arch (pacman) và openSUSE Tumbleweed. nixpkgs đang chờ review. Còn AUR, rồi Debian.',
         links: [{ label: 'NixOS/nixpkgs#575620', href: 'https://github.com/NixOS/nixpkgs/pull/575620' }],

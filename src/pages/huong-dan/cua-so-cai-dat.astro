@@ -1,0 +1,59 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Shot from '../../components/Shot.astro';
+
+const toc = [
+  { id: 'doi-ban', label: 'Đổi sang bản kia' },
+  { id: 'can-gi', label: 'Máy nào có bản GTK' },
+];
+---
+
+<Guide
+  title="Chọn cửa sổ cài đặt Qt hay GTK"
+  description="Cửa sổ cài đặt Ngó Sen có hai bản, Qt và GTK. Xem bản GTK trông thế nào và đổi qua lại ở trang “Giao diện”."
+  toc={toc}
+  qtNote={false}
+>
+  <p slot="lede">
+    Từ version 1.7.0, cửa sổ cài đặt có hai bản: Qt và GTK (giống app GNOME). GNOME và Linux Mint (Cinnamon) mở
+    bản GTK nếu máy có đủ thư viện cho bản đó, các desktop khác mở bản Qt. Máy chỉ có thư viện của một bản thì
+    mở bản đó.
+  </p>
+
+  <Shot
+    name="guide-gtk"
+    width={920}
+    height={700}
+    alt="Cửa sổ cài đặt bản GTK, trang Gõ chữ: thanh bên có sáu trang, ô mẹo ở đầu trang, hàng nút Chế độ gõ với Gõ Sen đang chọn, Kiểu gõ Telex, Bảng mã Unicode và các công tắc Kiểm tra chính tả, Tự khôi phục từ gõ sai."
+    caption="Bản GTK, trang “Gõ chữ”. Ubuntu 26.04 GNOME, version 1.7.0-1."
+  />
+  <p>
+    Bản GTK cũng có 6 trang ở thanh bên như bản Qt. “Sao lưu…” và “Khôi phục…” nằm trong menu của cửa sổ,
+    thay cho thanh dưới cùng của bản Qt.
+  </p>
+
+  <h2 id="doi-ban">Đổi sang bản kia</h2>
+  <ol class="steps">
+    <li>Vào “Cài đặt Ngó Sen › Giao diện”, kéo xuống nhóm “Cửa sổ cài đặt” ở cuối trang.</li>
+    <li>Click “Đổi sang bản GTK…” nếu đang ở bản Qt, hoặc “Đổi sang bản Qt…” nếu đang ở bản GTK.</li>
+    <li>Cửa sổ mở lại ngay bằng bản kia, vẫn ở trang “Giao diện”. Những lần mở sau cũng ra bản này.</li>
+  </ol>
+  <Shot
+    name="guide-toolkit-qt"
+    width={600}
+    height={80}
+    alt="Dòng Cửa sổ cài đặt ở cuối trang Giao diện bản Qt: Cửa sổ này dùng bản Qt, nút Đổi sang bản GTK…"
+    caption="Nhóm “Cửa sổ cài đặt” ở cuối trang “Giao diện”, bản Qt. Ubuntu 26.04 GNOME, version 1.7.0-1."
+  />
+  <p>
+    Máy chưa có bản kia thì cửa sổ báo cần cài gói nào, tải về khoảng bao nhiêu, rồi cho chọn cài ngay (hỏi mật
+    khẩu) hoặc chép lệnh để tự chạy.
+  </p>
+
+  <h2 id="can-gi">Máy nào có bản GTK</h2>
+  <p>
+    Bản GTK cần libadwaita 1.5 trở lên (Ubuntu 24.04, Linux Mint 22, Debian 13); Debian 12 chỉ có bản Qt. Trên
+    GNOME và Cinnamon ở Debian 13, Ubuntu, Linux Mint, Fedora và openSUSE, lệnh cài chỉ cài thư viện cho bản GTK,
+    không tải Qt. Máy đã cài Ngó Sen từ trước vẫn giữ bộ Qt, không bị gỡ.
+  </p>
+</Guide>

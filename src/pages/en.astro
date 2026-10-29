@@ -46,62 +46,56 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.6.4-1 is a bug-fix release: Antigravity on GNOME no longer drops tone marks when typing
-    fast, Cứu dấu works in Chrome, Chromium and Brave on X11, Super shortcuts are no longer typed as
-    letters in Preedit, the settings window and Undo are fixed, and the installer runs on deepin,
-    LMDE, Devuan, Parrot and Artix. Version 1.6.3-1, the day before, fixed typing in Antigravity’s
-    editor and chat on GNOME and Cứu dấu after Backspace or a click inside a word.
+    Version 1.7.0-1 adds a GTK edition of the settings window, which GNOME and Cinnamon open by default,
+    and a “Có gì mới &amp; mẹo” (What's new and tips) page that a one-time notification opens after an
+    update to a release with new features. Ngó Sen for GNOME (IBus) now sets itself up on Xfce, Cinnamon
+    and MATE. There is no longer a package for Ubuntu 22.04.
   </p>
   <ul>
     <li>
-      Antigravity on GNOME: Gõ Sen no longer drops tone marks when typing fast in the editor. Tested on
-      Ubuntu 26.04 (GNOME Wayland) with Antigravity 2.6.0: 18 words typed without pauses came out right
-      in the chat and the editor, read from the typing log
-      (<a href={`${REPO}/issues/362`}>#362</a>, <a href={`${REPO}/pull/395`}>#395</a>).
+      The settings window has a GTK edition next to the Qt one; it needs libadwaita 1.5 or later. The
+      “Giao diện” page has a button to switch to the other edition, and offers to install it if it is
+      missing. On GNOME and Cinnamon the installer installs only the GTK libraries; machines that already
+      have Ngó Sen keep Qt. Tested on Linux Mint 22 (Cinnamon X11) and Ubuntu 26.04 (GNOME Wayland): the
+      settings window opened in GTK (<a href={`${REPO}/pull/386`}>#386</a>,
+      <a href={`${REPO}/pull/393`}>#393</a>, <a href={`${REPO}/pull/387`}>#387</a>).
     </li>
     <li>
-      Cứu dấu works in Chrome, Chromium and Brave in an X11 session: select <code>nhanh</code>
-      (double-click or Shift+arrow) and type <code>s</code> to get <code>nhánh</code>. Gõ Sen only; Tab or
-      Esc still restores the keys typed. Tested on MX Linux 25 (Xfce X11) in Chromium: 2 of 3 runs gave
-      <code>nhánh</code>; in the first run, right after Chromium opened, the first <code>d</code> was lost
-      before the text field connected to fcitx5 (<a href={`${REPO}/pull/390`}>#390</a>).
+      After an update to a release with new features, a notification appears once; “Xem” opens the
+      “Có gì mới &amp; mẹo” page. Bug-fix releases and new installs do not notify. Tested on Linux Mint 22,
+      updating from 1.6.3-1 (<a href={`${REPO}/pull/331`}>#331</a>).
     </li>
     <li>
-      Preedit: Super + letter shortcuts (such as Super+Q to switch workspace) are no longer typed as
-      <code>q</code> or <code>ư</code>; they go to the desktop and apps like Ctrl and Alt, and the word being
-      typed is kept. Not tested on the 1.6.4 package (<a href={`${REPO}/pull/392`}>#392</a>).
+      Ngó Sen for GNOME: <code>install.sh --ibus</code> on Xfce, Cinnamon and MATE (X11, with im-config)
+      sets IBus as the input method, adds Ngó Sen and the Ctrl+Space switch key. Installing the fcitx5
+      version while the account uses the IBus one asks first, then removes the IBus one. Tested on Ubuntu
+      26.04 (<a href={`${REPO}/pull/341`}>#341</a>).
     </li>
     <li>
-      The settings window opens even when the custom dictionary file contains text that is not UTF-8,
-      and the Dictionary page says the file could not be read in full
-      (<a href={`${REPO}/pull/376`}>#376</a>). “Hoàn tác” (Undo) reverts only the change just saved
-      (<a href={`${REPO}/pull/383`}>#383</a>). Neither was tested on the 1.6.4 package.
+      The installer asks “Tiếp tục? [y/N]”: type <code>y</code> to continue; Enter alone still means no
+      (<a href={`${REPO}/pull/398`}>#398</a>).
     </li>
     <li>
-      <code>install.sh</code> installs im-config and the fcitx5 GTK and Qt modules on Debian, Ubuntu,
-      Mint and MX in every desktop language, not only English
-      (<a href={`${REPO}/pull/388`}>#388</a>), and no longer stops when another apt source is broken
-      (<a href={`${REPO}/pull/399`}>#399</a>).
+      In Preedit, Backspace right after a finished word reopens it to fix its tone mark
+      (<code>việt </code> + Backspace + <code>s</code> → <code>viết</code>), in apps that report
+      surrounding text. Not tested on the 1.7.0 package (<a href={`${REPO}/pull/344`}>#344</a>).
     </li>
     <li>
-      <code>install.sh</code> installs on deepin 23 and 25; the <code>.deb</code> no longer needs
-      <code>python3-qtpy</code>, and the installer pulls in <code>whiptail</code> so im-config does not stop
-      on fresh deepin and Kali installs. Tested on deepin 25.2 (DDE X11, fresh install): the installer
-      finished without errors and added Ngó Sen to the input method list
-      (<a href={`${REPO}/pull/397`}>#397</a>, <a href={`${REPO}/pull/408`}>#408</a>). It also installs on
-      LMDE, Devuan, Parrot and Artix (<a href={`${REPO}/pull/403`}>#403</a>).
+      No more package for Ubuntu 22.04 (and Linux Mint 21); 1.6.4 is the last version for it. If you added
+      Ngó Sen's APT repository there, remove it, since <code>apt update</code> reports the missing
+      <code>jammy</code> (<a href={`${REPO}/pull/332`}>#332</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
   <p>
-    One command for Fedora, Ubuntu (including 26.10), Debian, Kali, deepin, LMDE, Devuan, Parrot, Arch,
+    One command for Fedora, Ubuntu (24.04 and later, including 26.10), Debian (12 and later), Kali, deepin, LMDE, Devuan, Parrot, Arch,
     Artix, CachyOS and openSUSE Tumbleweed on x86_64. Fedora, Ubuntu, Debian and Kali also have ARM 64-bit packages.
   </p>
   <pre tabindex="0"><code>{INSTALL_COMMAND}</code></pre>
   <p>
     The script picks the prebuilt package for your distribution from the latest GitHub release, asks
     before it downloads the package, checks the file against <code>SHA256SUMS</code> and installs it
-    with your package manager. Your configuration is kept. Its prompts are in Vietnamese: answer <kbd>c</kbd> to continue. The source is
+    with your package manager. Your configuration is kept. Its prompts are in Vietnamese; answer <kbd>y</kbd> at “Tiếp tục? [y/N]” to continue. The source is
     <a href={`${REPO}/blob/main/install.sh`}>install.sh</a>.
   </p>
   <p>
@@ -173,9 +167,11 @@ const levels: Record<Level, string> = {
     on KDE Wayland, log out and back in. Package-manager updates do not run install.sh.
   </p>
   <p>
-    Since 1.2 the settings window follows the desktop's look, light or dark, KDE or GNOME. Every change is
-    saved at once, with an Undo button (Hoàn tác).
-    It now has five sidebar pages: “Gõ chữ”, “Gõ tắt &amp; Từ điển”, “Phím”, “Giao diện” and “Giới thiệu”.
+    Since 1.7.0 the settings window comes in two editions, Qt and GTK (like GNOME apps). GNOME and Linux
+    Mint (Cinnamon) open the GTK one, other desktops the Qt one; a button at the bottom of the “Giao diện”
+    page switches to the other. On KDE and GNOME it follows the desktop's light or dark look. Every change
+    is saved at once, with an Undo button (Hoàn tác). It has six sidebar pages: “Gõ chữ”, “Gõ tắt &amp; Từ
+    điển”, “Phím”, “Giao diện”, “Có gì mới &amp; mẹo” (What's new and tips) and “Giới thiệu”.
   </p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="/screenshots/settings-dark.png" />
@@ -184,7 +180,7 @@ const levels: Record<Level, string> = {
       width="750"
       height="500"
       loading="lazy"
-      alt="The Ngó Sen settings window on CachyOS (GNOME) with the Breeze style, Gõ chữ page, with the Gõ Sen mode selected."
+      alt="The Qt settings window of Ngó Sen on CachyOS (GNOME) with the Breeze style, Gõ chữ page, with the Gõ Sen mode selected."
     />
   </picture>
   <p>
@@ -511,6 +507,21 @@ const levels: Record<Level, string> = {
     (#376, #383) were not tested with 1.6.4.
   </p>
   <p>
+    The 1.7.0-1 package built by CI from release PR #432 was tested in virtual machines on 29 October
+    2026, using Gõ Sen and Telex, installed with install.sh from a local package folder. Linux Mint 22
+    (Cinnamon X11, <code>noble</code> package): updating from 1.6.3-1, fcitx5 reloaded the new version; the
+    “Ngó Sen có gì mới?” notification showed the 1.7 text, and “Xem” opened the GTK settings window on the
+    “Có gì mới &amp; mẹo” page. In a GTK 3 text field, 5 of 5 test sentences came out right, among them
+    <code>vieejt nguwowif ddaay hoaf quas giuwax tieengs khoong</code> typed without pauses, giving
+    <code>việt người đây hoà quá giữa tiếng không</code>, along with capitals, Backspace fixes and switching
+    English/Vietnamese mid-sentence. Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package): the machine
+    had Ngó Sen for GNOME 1.0.0 (IBus) next to the fcitx5 1.6.3-1 package; install.sh asked first, removed
+    the IBus version and installed 1.7.0-1. After logging back in fcitx5 ran, the 1.7 notification was in
+    the notification list, the settings window opened in GTK, and the same 5 sentences came out right in a
+    GTK 3 text field. Fedora, Arch, Debian, openSUSE, Kali, KDE, deepin (WPS, #430), browsers and fresh
+    installs were not tested with 1.7.0.
+  </p>
+  <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
     <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on
     Xvfb, but nobody has tried it on a real NixOS machine yet, nor on Wayland, GNOME or aarch64.
@@ -526,10 +537,10 @@ const levels: Record<Level, string> = {
     work but have not been tested closely.
   </p>
   <p>
-    The <a href="/roadmap/">roadmap (in Vietnamese)</a> starts at 1.7.0: a one-time “Có gì mới”
-    (What's new) notification for feature releases. Reworked emoji insertion and merging spell
-    checking into automatic restoration of invalid words moved to the unversioned “Sau đó” list. The
-    roadmap gives no release dates, and the order may change.
+    The <a href="/roadmap/">roadmap (in Vietnamese)</a> has no numbered version after 1.7.0 yet; its
+    “Sau đó” list keeps the planned work in order, ending with reworked emoji insertion and merging
+    spell checking into automatic restoration of invalid words. The roadmap gives no release dates, and
+    the order may change.
   </p>
   <p>
     Ngó Sen is built for fcitx5, which runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
