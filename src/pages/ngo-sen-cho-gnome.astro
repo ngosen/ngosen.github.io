@@ -1,9 +1,10 @@
 ---
 import Page from '../layouts/Page.astro';
 import InstallStrip from '../components/InstallStrip.astro';
+import Shot from '../components/Shot.astro';
 import { IBUS_INSTALL_COMMAND, IBUS_REPO, UNINSTALL_COMMAND } from '../data/site';
 
-// Facts come from README.md of ngosen/ibus-ngosen and, for install.sh, README.md of ngosen/ngosen; test runs from the release notes.
+// Facts come from README.md and the release notes of ngosen/ibus-ngosen; fcitx5 test runs from the main repository's release notes.
 const toc = [
   { id: 'khac-gi', label: 'Khác gì với bản fcitx5' },
   { id: 'cai', label: 'Cài bằng một dòng lệnh' },
@@ -33,8 +34,15 @@ const toc = [
     dùng được ở hầu hết app trên Linux, kể cả terminal, game và app X11.
   </p>
   <p>
-    Tuỳ chọn “Gõ Sen ở app cho phép” mặc định tắt. Khi bật, chữ hiện thẳng vào ô, không gạch chân, ở những
-    app trên GNOME Wayland báo được chữ quanh con trỏ (surrounding text).
+    Tuỳ chọn “Gõ Sen ở app cho phép (thử nghiệm)” mặc định tắt. Khi bật, chữ hiện thẳng vào ô, không gạch
+    chân, ở những app trên GNOME Wayland báo được chữ quanh con trỏ (surrounding text). Tuỳ chọn này chưa ổn
+    định, chữ có thể sai ở vài app; gặp lỗi thì tắt đi và <a href="#bao-loi">báo lỗi</a>. Từ version 1.1.1,
+    khi bật tuỳ chọn này, ô địa chỉ web gõ gạch chân; ô văn bản trong trang web vẫn gõ thẳng.
+  </p>
+  <p>
+    Từ version 1.1.0, bấm Backspace ngay sau chữ vừa gõ thì chữ đó mở lại dưới gạch chân để sửa:
+    <code>việt</code>, Backspace, <code>s</code> ra <code>viết</code>. Cần app báo chữ quanh con trỏ; ô địa chỉ
+    Chrome và terminal chưa mở lại được.
   </p>
   <p>Đổi Anh/Việt bằng Super+Space như các nguồn nhập khác của GNOME.</p>
   <p>
@@ -50,18 +58,23 @@ const toc = [
     nhất</a> của <code>ibus-ngosen</code>, so hash SHA-256 và hỏi lại trước khi cài.
   </p>
   <p>
-    Có gói cho Debian 13, Kali, Ubuntu 24.04 trở lên, Fedora 43 và 44, Arch và CachyOS. Linux Mint 22 dùng
-    gói của Ubuntu 24.04. Có gói ARM 64-bit cho Debian, Ubuntu và Fedora; Arch chỉ có x86_64. Không có gói
-    cho openSUSE, Debian 12 và Ubuntu 22.04.
+    Có gói cho Debian 13, Kali, Ubuntu 24.04 trở lên, Fedora 43 và 44, Arch, CachyOS và openSUSE Tumbleweed.
+    Linux Mint 22 dùng gói của Ubuntu 24.04. Có gói ARM 64-bit cho Debian, Ubuntu và Fedora; Arch và openSUSE
+    chỉ có x86_64. Không có gói cho Debian 12 và Ubuntu 22.04.
   </p>
   <p>
     Trên GNOME, lệnh thêm “Tiếng Việt (Ngó Sen)” vào nguồn nhập, đặt app dùng IBus rồi khởi động lại IBus.
   </p>
   <p>
-    Repo APT và pacman của Ngó Sen cũng có <code>ibus-ngosen</code>. Dùng các dòng khai báo repo ở mục
-    <a href="/cai-dat/#repo-goi">Cập nhật qua trình quản lý gói</a>, rồi thay <code>fcitx5-ngosen</code> bằng
-    <code>ibus-ngosen</code> trong lệnh cài.
+    Repo APT, pacman và zypper của Ngó Sen cũng có <code>ibus-ngosen</code>, dùng cùng key với bản fcitx5.
+    Dùng các dòng khai báo repo ở mục <a href="/cai-dat/#repo-goi">Cập nhật qua trình quản lý gói</a>, rồi thay
+    <code>fcitx5-ngosen</code> bằng <code>ibus-ngosen</code> trong lệnh cài. Sau đó thiết lập IBus và thêm
+    nguồn nhập theo <a href="#desktop-khac">các bước bên dưới</a>.
   </p>
+  <p>Trên Fedora, có thể cài từ kho COPR, để <code>dnf upgrade</code> tự lên version mới:</p>
+  <pre tabindex="0"><code>{`sudo dnf copr enable nguyenphi/ngosen
+sudo dnf install ibus-ngosen`}</code></pre>
+  <p>Sau đó thiết lập IBus và thêm nguồn nhập theo <a href="#desktop-khac">các bước bên dưới</a>.</p>
   <p>
     Muốn cài bằng tay, tải gói đúng distro và kiến trúc từ trang
     <a href={`${IBUS_REPO}/releases`}>Releases của <code>ibus-ngosen</code></a>, rồi cài bằng trình quản lý
@@ -77,9 +90,8 @@ const toc = [
     thêm Ngó Sen. Đăng xuất rồi đăng nhập lại, bấm <kbd>Ctrl</kbd>+<kbd>Space</kbd> để chuyển qua lại Ngó Sen
     và bàn phím thường.
   </p>
-  <p>Trên các desktop khác, lệnh chỉ cài gói rồi in các bước tự làm:</p>
+  <p>Desktop khác không có <code>im-config</code> thì lệnh chỉ cài gói rồi in các bước tự làm:</p>
   <ol>
-    <li>Chạy <code>im-config -n ibus</code> nếu máy có <code>im-config</code>.</li>
     <li>Mở “IBus Preferences” bằng <code>ibus-setup</code>, thêm “Tiếng Việt (Ngó Sen)”.</li>
     <li>Đăng xuất rồi đăng nhập lại.</li>
   </ol>
@@ -88,6 +100,13 @@ const toc = [
   <p>
     Mở cửa sổ cài đặt từ “Cài đặt › Bàn phím › Tiếng Việt (Ngó Sen)”, hoặc tìm “Ngó Sen” trong danh sách app.
   </p>
+  <Shot
+    name="ibus-settings"
+    width={820}
+    height={740}
+    alt="Cửa sổ cài đặt của Ngó Sen cho GNOME, trang Gõ chữ: bốn trang Gõ chữ, Gõ tắt, Từ điển, Giới thiệu ở thanh trên; Kiểu gõ Telex, Gõ Sen ở app cho phép (thử nghiệm) đang tắt, Bảng mã Unicode, ô Gõ thử và nhóm Cách bỏ dấu."
+    caption="Cửa sổ cài đặt của Ngó Sen cho GNOME, trang “Gõ chữ”. Ubuntu 26.04 GNOME, version 1.1.0-1."
+  />
   <p>Đổi gì lưu ngay. Nút “Hoàn tác” trên thông báo ở đáy cửa sổ đưa cài đặt về như trước lần đổi đó.</p>
   <p>
     Cài đặt nằm trong <code>~/.config/ngosen/</code>, cùng định dạng và tên khoá với <code>ngosen.conf</code>
@@ -106,8 +125,16 @@ const toc = [
   </p>
   <p>
     Muốn quay lại bản fcitx5 thì chạy <a href="/cai-dat/">lệnh cài bản fcitx5</a>; lệnh hỏi lại rồi gỡ bản
-    IBus.
+    IBus. Từ version 1.1.0, cuối trang “Gõ chữ” trong cửa sổ cài đặt có nhóm “Có ở bản fcitx5”, kèm lệnh
+    chuyển sang bản fcitx5.
   </p>
+  <Shot
+    name="ibus-fcitx5"
+    width={590}
+    height={530}
+    alt="Nhóm Có ở bản fcitx5 cuối trang Gõ chữ: danh sách tính năng chỉ bản fcitx5 có, dòng Chuyển sang bản fcitx5 và dòng Ngó Sen đầy đủ."
+    caption="Nhóm “Có ở bản fcitx5” cuối trang “Gõ chữ”. Ubuntu 26.04 GNOME, version 1.1.0-1."
+  />
 
   <h2 id="go">Gỡ cài đặt</h2>
   <pre tabindex="0"><code>{UNINSTALL_COMMAND}</code></pre>
@@ -131,12 +158,36 @@ const toc = [
     fcitx5 đã hỏi lại, gỡ bản IBus rồi cài 1.7.0-1.
   </p>
   <p>
-    Lệnh <code>install.sh --ibus --uninstall</code> đã gỡ bản cho GNOME; bản fcitx5 vẫn còn. Trang này chỉ ghi
-    nhận kết quả test trên Ubuntu 26.04 (GNOME Wayland).
+    Lệnh <code>install.sh --ibus --uninstall</code> đã gỡ bản cho GNOME; bản fcitx5 vẫn còn.
+  </p>
+  <p>
+    Gói version 1.1.0 build từ PR phát hành được test ngày 29/10/2026 trên máy ảo, kiểu gõ Telex, gõ <code>vieetj </code>, Backspace,
+    <code>s tieengs </code>. Trên Ubuntu 26.04 (GNOME 50 Wayland), tài khoản đang dùng bản fcitx5 1.7.0, chuyển
+    bằng <code>install.sh --ibus</code> rồi khởi động lại: ô chữ GTK 4, ô văn bản trong Chrome và thanh địa chỉ
+    Firefox ra <code>viết tiếng</code>; thanh địa chỉ Chrome ra <code>việts tiếng</code> và terminal Ptyxis gõ
+    dấu đúng nhưng Backspace chưa mở lại chữ. Trên Ubuntu 24.04 (GNOME 46 Wayland), sau khi chuyển từ bản fcitx5
+    bằng <code>install.sh --ibus</code> rồi khởi động lại, ô chữ GTK 4 ra <code>viết tiếng</code>. Trong ô GTK 4,
+    gõ <code>vieetj </code> rồi Super+Space chuyển sang bàn phím thường 4/4 lần, không thêm dấu cách.
+  </p>
+  <p>
+    Fedora, openSUSE, Arch, Debian, Kali, Xfce, Cinnamon, MATE và KDE chưa được test với version 1.1.0.
+  </p>
+  <p>
+    Version 1.1.1: gói <code>.deb</code> Ubuntu 26.04 build từ PR #35 được test ngày 29/10/2026 trên máy ảo Ubuntu
+    26.04 (GNOME 50 Wayland), kiểu gõ Telex, bật “Gõ Sen ở app cho phép”. Ở thanh địa chỉ Chrome, gõ
+    <code>ngayf mai em ddi ddaau ddos veef cho maus naaus canh chu</code> ra đúng
+    <code>ngày mai em đi đâu đó về cho máu nấu canh chu</code>, chữ đang gõ có gạch chân; ô văn bản trong trang
+    web Chrome ra đúng câu đó, gõ thẳng không gạch chân. “Lưu nhật ký gõ” hiện thông báo kèm đường dẫn, file chứa
+    các chữ vừa gõ. Các hệ khác chưa được test với version 1.1.1.
   </p>
 
   <h2 id="bao-loi">Báo lỗi</h2>
   <p>
     Báo lỗi của bản cho GNOME ở <a href={`${IBUS_REPO}/issues`}>Issues của repo <code>ngosen/ibus-ngosen</code></a>.
+  </p>
+  <p>
+    Gõ ra chữ sai thì chọn “Lưu nhật ký gõ” trong menu nguồn nhập (chữ “vi” trên thanh trên cùng) ngay sau đó:
+    những gì vừa gõ được lưu vào <code>~/.local/state/ngosen/</code>, chỉ tài khoản của mình đọc được, và GNOME báo
+    đường dẫn file. Đọc lại file rồi gửi kèm báo lỗi. Mục này có từ version 1.1.1.
   </p>
 </Page>
