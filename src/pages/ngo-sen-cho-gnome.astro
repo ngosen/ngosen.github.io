@@ -36,7 +36,8 @@ const toc = [
   <p>
     Tuỳ chọn “Gõ Sen ở app cho phép (thử nghiệm)” mặc định tắt. Khi bật, chữ hiện thẳng vào ô, không gạch
     chân, ở những app trên GNOME Wayland báo được chữ quanh con trỏ (surrounding text). Tuỳ chọn này chưa ổn
-    định, chữ có thể sai ở vài app; gặp lỗi thì tắt đi và <a href="#bao-loi">báo lỗi</a>.
+    định, chữ có thể sai ở vài app; gặp lỗi thì tắt đi và <a href="#bao-loi">báo lỗi</a>. Từ version 1.1.1,
+    khi bật tuỳ chọn này, ô địa chỉ web gõ gạch chân; ô văn bản trong trang web vẫn gõ thẳng.
   </p>
   <p>
     Từ version 1.1.0, bấm Backspace ngay sau chữ vừa gõ thì chữ đó mở lại dưới gạch chân để sửa:
@@ -171,9 +172,22 @@ sudo dnf install ibus-ngosen`}</code></pre>
   <p>
     Fedora, openSUSE, Arch, Debian, Kali, Xfce, Cinnamon, MATE và KDE chưa được test với version 1.1.0.
   </p>
+  <p>
+    Version 1.1.1: gói <code>.deb</code> Ubuntu 26.04 build từ PR #35 được test ngày 29/10/2026 trên máy ảo Ubuntu
+    26.04 (GNOME 50 Wayland), kiểu gõ Telex, bật “Gõ Sen ở app cho phép”. Ở thanh địa chỉ Chrome, gõ
+    <code>ngayf mai em ddi ddaau ddos veef cho maus naaus canh chu</code> ra đúng
+    <code>ngày mai em đi đâu đó về cho máu nấu canh chu</code>, chữ đang gõ có gạch chân; ô văn bản trong trang
+    web Chrome ra đúng câu đó, gõ thẳng không gạch chân. “Lưu nhật ký gõ” hiện thông báo kèm đường dẫn, file chứa
+    các chữ vừa gõ. Các hệ khác chưa được test với version 1.1.1.
+  </p>
 
   <h2 id="bao-loi">Báo lỗi</h2>
   <p>
     Báo lỗi của bản cho GNOME ở <a href={`${IBUS_REPO}/issues`}>Issues của repo <code>ngosen/ibus-ngosen</code></a>.
+  </p>
+  <p>
+    Gõ ra chữ sai thì chọn “Lưu nhật ký gõ” trong menu nguồn nhập (chữ “vi” trên thanh trên cùng) ngay sau đó:
+    những gì vừa gõ được lưu vào <code>~/.local/state/ngosen/</code>, chỉ tài khoản của mình đọc được, và GNOME báo
+    đường dẫn file. Đọc lại file rồi gửi kèm báo lỗi. Mục này có từ version 1.1.1.
   </p>
 </Page>
