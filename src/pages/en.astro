@@ -46,44 +46,32 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.7.0-1 adds a GTK edition of the settings window, which GNOME and Cinnamon open by default,
-    and a “Có gì mới &amp; mẹo” (What's new and tips) page that a one-time notification opens after an
-    update to a release with new features. Ngó Sen for GNOME (IBus) now sets itself up on Xfce, Cinnamon
-    and MATE. There is no longer a package for Ubuntu 22.04.
+    Version 1.7.1-1 is a bug-fix release. On GNOME, Gõ Sen now deletes through surrounding text when the
+    app reports the word being typed, so a late Backspace no longer garbles the word; if the app ignores
+    the deletion, Ngó Sen falls back to Backspace for the rest of the session. KDE and other desktops
+    delete as before.
   </p>
   <ul>
     <li>
-      The settings window has a GTK edition next to the Qt one; it needs libadwaita 1.5 or later. The
-      “Giao diện” page has a button to switch to the other edition, and offers to install it if it is
-      missing. On GNOME and Cinnamon the installer installs only the GTK libraries; machines that already
-      have Ngó Sen keep Qt. Tested on Linux Mint 22 (Cinnamon X11) and Ubuntu 26.04 (GNOME Wayland): the
-      settings window opened in GTK (<a href={`${REPO}/pull/386`}>#386</a>,
-      <a href={`${REPO}/pull/393`}>#393</a>, <a href={`${REPO}/pull/387`}>#387</a>).
+      Surrounding-text deletion on GNOME. Tested on Ubuntu 26.04 (GNOME Wayland): Firefox snap, GNOME Text
+      Editor and Chromium snap each 4 of 4 runs right (<a href={`${REPO}/pull/443`}>#443</a>,
+      <a href={`${REPO}/pull/446`}>#446</a>).
     </li>
     <li>
-      After an update to a release with new features, a notification appears once; “Xem” opens the
-      “Có gì mới &amp; mẹo” page. Bug-fix releases and new installs do not notify. Tested on Linux Mint 22,
-      updating from 1.6.3-1 (<a href={`${REPO}/pull/331`}>#331</a>).
+      Words like “tiíiếng” no longer appear when an app using surrounding text reports it later than the
+      keys arrive (LibreOffice, GTK4 fields), and Gõ Sen no longer pauses after each deletion there. Not
+      tested on the 1.7.1 package (<a href={`${REPO}/pull/441`}>#441</a>,
+      <a href={`${REPO}/pull/438`}>#438</a>).
     </li>
     <li>
-      Ngó Sen for GNOME: <code>install.sh --ibus</code> on Xfce, Cinnamon and MATE (X11, with im-config)
-      sets IBus as the input method, adds Ngó Sen and the Ctrl+Space switch key. Installing the fcitx5
-      version while the account uses the IBus one asks first, then removes the IBus one. Tested on Ubuntu
-      26.04 (<a href={`${REPO}/pull/341`}>#341</a>).
+      The system check warns when GNOME 50.0–50.3 runs without the forward-keys fix, with a command to turn
+      it back on, and no longer warns about an IBus that only serves another program. Not tested on the
+      1.7.1 package (<a href={`${REPO}/pull/440`}>#440</a>, <a href={`${REPO}/pull/442`}>#442</a>).
     </li>
     <li>
-      The installer asks “Tiếp tục? [y/N]”: type <code>y</code> to continue; Enter alone still means no
-      (<a href={`${REPO}/pull/398`}>#398</a>).
-    </li>
-    <li>
-      In Preedit, Backspace right after a finished word reopens it to fix its tone mark
-      (<code>việt </code> + Backspace + <code>s</code> → <code>viết</code>), in apps that report
-      surrounding text. Not tested on the 1.7.0 package (<a href={`${REPO}/pull/344`}>#344</a>).
-    </li>
-    <li>
-      No more package for Ubuntu 22.04 (and Linux Mint 21); 1.6.4 is the last version for it. If you added
-      Ngó Sen's APT repository there, remove it, since <code>apt update</code> reports the missing
-      <code>jammy</code> (<a href={`${REPO}/pull/332`}>#332</a>).
+      On GNOME with older fcitx5 (Ubuntu 26.04, Debian), a mode picked from the <code>,</code> menu lasts
+      until logout instead of being saved for good. Not tested on the 1.7.1 package
+      (<a href={`${REPO}/pull/444`}>#444</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -520,6 +508,21 @@ const levels: Record<Level, string> = {
     the notification list, the settings window opened in GTK, and the same 5 sentences came out right in a
     GTK 3 text field. Fedora, Arch, Debian, openSUSE, Kali, KDE, deepin (WPS, #430), browsers and fresh
     installs were not tested with 1.7.0.
+  </p>
+  <p>
+    The 1.7.1-1 packages built by CI from release PR #448 were tested in virtual machines on 30 October
+    2026, using Gõ Sen and Telex, installed with install.sh from a local package folder over 1.7.0-1. Test
+    sentence: <code>vieetj nam tieesng</code>, two Backspaces, <code>ng</code>, space, 0.15 s between keys,
+    expected <code>việt nam tiếng</code>; 4 runs per app, text read from the app and the deletion path from
+    the typing log. Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package): Firefox snap, GNOME Text
+    Editor and Chromium snap each 4 of 4; all three deleted through surrounding text, and Firefox fell back
+    to Backspace whenever it repeated old text (the case #446 fixes) without being marked untrusted. This
+    machine used IBus, so no fcitx5 was running before the install; fcitx5 was started by hand afterwards.
+    Linux Mint 22 (Cinnamon X11, <code>noble</code> package): install.sh reloaded fcitx5 itself; xed and
+    Chromium each 4 of 4, both talking to fcitx5 over D-Bus and still deleting with Backspace as before.
+    Fedora, Arch, Debian, openSUSE, Kali, KDE, LibreOffice (#438, #441), the GNOME 50 warning (#440), the
+    IBus warning (#442), the <code>,</code> menu mode on older fcitx5 (#444) and fresh installs were not
+    tested with 1.7.1.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
