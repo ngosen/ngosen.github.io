@@ -46,18 +46,15 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.7.2-1 is a bug-fix release for the shared typing core.
+    Version 1.7.3-1 changes the shared typing core so Ngó Sen for GNOME (the IBus edition) can type
+    directly in X11 apps.
   </p>
   <ul>
     <li>
-      Gõ Sen no longer forgets the word being typed in VS Code on GNOME, when VS Code reports the cursor at
-      the line start and then back at the word end with no edit. Covered by automated tests; VS Code snap
-      could not be driven in the test virtual machine (<a href={`${REPO}/pull/453`}>#453</a>).
-    </li>
-    <li>
-      Typing “tieesng” no longer gives “tiêsng” in Qt apps on GNOME when the app repeats old text right after
-      a replacement. This only changes the IBus edition; covered by automated tests
-      (<a href={`${REPO}/pull/452`}>#452</a>).
+      On X11, Firefox (including the snap), Chrome and LibreOffice are recognised by name when they connect
+      through the IBus GTK module, and get the same handling as when they talk to fcitx5 directly. The X11
+      mouse-click watcher is now part of the shared core for the IBus edition to use
+      (<a href={`${REPO}/pull/458`}>#458</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -521,6 +518,16 @@ const levels: Record<Level, string> = {
     tool could not get its keys to fcitx5, so #453 is covered by automated tests only; #452 only changes the
     IBus edition and was not tested on this package. Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh
     installs were not tested with 1.7.2.
+  </p>
+  <p>
+    The 1.7.3-1 code was tested on 30 October 2026 with the <code>noble</code> package CI built from PR
+    #458, which differs from the release package only in its version number. Linux Mint 22 (Cinnamon X11,
+    fcitx5 5.1.7), installed with install.sh over 1.7.0-1: xed, Chromium, Firefox and LibreOffice Writer,
+    opened with <code>GTK_IM_MODULE=ibus</code> so they reach fcitx5 through its IBus frontend, each typed
+    the 1.7.2 test sentence right 4 of 4 times, and one control run per app with Vietnamese off came out raw.
+    fcitx5 5.1.7 got an empty app name for every app there, so this version changes nothing for fcitx5 on
+    that machine. The IBus edition, Ubuntu, Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh installs
+    were not tested with 1.7.3.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
