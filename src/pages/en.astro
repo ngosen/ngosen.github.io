@@ -46,32 +46,18 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.7.1-1 is a bug-fix release. On GNOME, Gõ Sen now deletes through surrounding text when the
-    app reports the word being typed, so a late Backspace no longer garbles the word; if the app ignores
-    the deletion, Ngó Sen falls back to Backspace for the rest of the session. KDE and other desktops
-    delete as before.
+    Version 1.7.2-1 is a bug-fix release for the shared typing core.
   </p>
   <ul>
     <li>
-      Surrounding-text deletion on GNOME. Tested on Ubuntu 26.04 (GNOME Wayland): Firefox snap, GNOME Text
-      Editor and Chromium snap each 4 of 4 runs right (<a href={`${REPO}/pull/443`}>#443</a>,
-      <a href={`${REPO}/pull/446`}>#446</a>).
+      Gõ Sen no longer forgets the word being typed in VS Code on GNOME, when VS Code reports the cursor at
+      the line start and then back at the word end with no edit. Covered by automated tests; VS Code snap
+      could not be driven in the test virtual machine (<a href={`${REPO}/pull/453`}>#453</a>).
     </li>
     <li>
-      Words like “tiíiếng” no longer appear when an app using surrounding text reports it later than the
-      keys arrive (LibreOffice, GTK4 fields), and Gõ Sen no longer pauses after each deletion there. Not
-      tested on the 1.7.1 package (<a href={`${REPO}/pull/441`}>#441</a>,
-      <a href={`${REPO}/pull/438`}>#438</a>).
-    </li>
-    <li>
-      The system check warns when GNOME 50.0–50.3 runs without the forward-keys fix, with a command to turn
-      it back on, and no longer warns about an IBus that only serves another program. Not tested on the
-      1.7.1 package (<a href={`${REPO}/pull/440`}>#440</a>, <a href={`${REPO}/pull/442`}>#442</a>).
-    </li>
-    <li>
-      On GNOME with older fcitx5 (Ubuntu 26.04, Debian), a mode picked from the <code>,</code> menu lasts
-      until logout instead of being saved for good. Not tested on the 1.7.1 package
-      (<a href={`${REPO}/pull/444`}>#444</a>).
+      Typing “tieesng” no longer gives “tiêsng” in Qt apps on GNOME when the app repeats old text right after
+      a replacement. This only changes the IBus edition; covered by automated tests
+      (<a href={`${REPO}/pull/452`}>#452</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -523,6 +509,18 @@ const levels: Record<Level, string> = {
     Fedora, Arch, Debian, openSUSE, Kali, KDE, LibreOffice (#438, #441), the GNOME 50 warning (#440), the
     IBus warning (#442), the <code>,</code> menu mode on older fcitx5 (#444) and fresh installs were not
     tested with 1.7.1.
+  </p>
+  <p>
+    The 1.7.2-1 packages built by CI from release PR #454 were tested in virtual machines on 30 October
+    2026, using Gõ Sen and Telex, installed with install.sh from a local package folder, with the same test
+    sentence as 1.7.1 and one control run per app with Vietnamese off, which gave raw text as expected.
+    Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package, over 1.7.1-1): Firefox snap and GNOME Text
+    Editor each 4 of 4, both deleting through surrounding text; fcitx5 was started by hand because this
+    machine uses IBus. Linux Mint 22 (Cinnamon X11, <code>noble</code> package, over 1.7.0-1): install.sh
+    reloaded fcitx5 itself; xed and Chromium each 4 of 4. VS Code snap could not be tested because the test
+    tool could not get its keys to fcitx5, so #453 is covered by automated tests only; #452 only changes the
+    IBus edition and was not tested on this package. Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh
+    installs were not tested with 1.7.2.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
