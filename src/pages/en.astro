@@ -477,11 +477,7 @@ const levels: Record<Level, string> = {
     Gõ Sen and Telex. Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package): after updating with
     install.sh from a 1.5.5 build of the next branch, fcitx5 loaded the new version by itself; in a
     GTK3 text field, <code>dduwowngf tieengs Vieetj Nam cos dduwowjc khoong Haf Nooij</code> produced
-    <code>đường tiếng Việt Nam có được không Hà Nội</code>. On the same machine,
-    <code>install.sh --ibus</code> asked, then switched to Ngó Sen for GNOME 1.0.0; after logging back
-    in and picking Ngó Sen in the top bar, <code>vieetj nam</code> produced <code>việt nam</code> in a
-    GTK4 text field; <code>install.sh --ibus --uninstall</code> removed the IBus edition and kept the
-    fcitx5 one. Linux Mint 22 (Cinnamon X11, <code>noble</code> package): after updating with
+    <code>đường tiếng Việt Nam có được không Hà Nội</code>. Linux Mint 22 (Cinnamon X11, <code>noble</code> package): after updating with
     install.sh from 1.5.7-1, the sentence typed correctly in a GTK3 text field and in Chromium. Cứu
     dấu after a click (#327) was not retested on this package. Fedora, Arch, Debian, openSUSE, Kali and
     KDE have not been tested with 1.6.2.
@@ -524,8 +520,7 @@ const levels: Record<Level, string> = {
     <code>vieejt nguwowif ddaay hoaf quas giuwax tieengs khoong</code> typed without pauses, giving
     <code>việt người đây hoà quá giữa tiếng không</code>, along with capitals, Backspace fixes and switching
     English/Vietnamese mid-sentence. Ubuntu 26.04 (GNOME Wayland, <code>resolute</code> package): the machine
-    had Ngó Sen for GNOME 1.0.0 (IBus) next to the fcitx5 1.6.3-1 package; install.sh asked first, removed
-    the IBus version and installed 1.7.0-1. After logging back in fcitx5 ran, the 1.7 notification was in
+    had the fcitx5 1.6.3-1 package; install.sh installed 1.7.0-1. After logging back in fcitx5 ran, the 1.7 notification was in
     the notification list, the settings window opened in GTK, and the same 5 sentences came out right in a
     GTK 3 text field. Fedora, Arch, Debian, openSUSE, Kali, KDE, deepin (WPS, #430), browsers and fresh
     installs were not tested with 1.7.0.
@@ -553,8 +548,7 @@ const levels: Record<Level, string> = {
     Editor each 4 of 4, both deleting through surrounding text; fcitx5 was started by hand because this
     machine uses IBus. Linux Mint 22 (Cinnamon X11, <code>noble</code> package, over 1.7.0-1): install.sh
     reloaded fcitx5 itself; xed and Chromium each 4 of 4. VS Code snap could not be tested because the test
-    tool could not get its keys to fcitx5, so #453 is covered by automated tests only; #452 only changes the
-    IBus edition and was not tested on this package. Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh
+    tool could not get its keys to fcitx5, so #453 is covered by automated tests only. Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh
     installs were not tested with 1.7.2.
   </p>
   <p>
@@ -564,7 +558,7 @@ const levels: Record<Level, string> = {
     opened with <code>GTK_IM_MODULE=ibus</code> so they reach fcitx5 through its IBus frontend, each typed
     the 1.7.2 test sentence right 4 of 4 times, and one control run per app with Vietnamese off came out raw.
     fcitx5 5.1.7 got an empty app name for every app there, so this version changes nothing for fcitx5 on
-    that machine. The IBus edition, Ubuntu, Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh installs
+    that machine. Ubuntu, Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh installs
     were not tested with 1.7.3.
   </p>
   <p>
@@ -583,7 +577,7 @@ const levels: Record<Level, string> = {
     and Chromium snap 4 of 4; in Chromium, <code>nhes</code>, Enter, <code>a</code> typed 30 ms apart came out right 4 of 4.
     Linux Mint 22 (Cinnamon X11, <code>noble</code>), updated from 1.7.0-1: xed and Chromium 4 of 4. CachyOS
     (KDE Plasma Wayland, Arch package), updated from 1.6.2-1: GNOME Text Editor, Kate, Chromium and Firefox
-    4 of 4. Fedora, Debian, openSUSE, Kali, fresh installs, the IBus edition, GNOME 46, Sway and Google Docs
+    4 of 4. Fedora, Debian, openSUSE, Kali, fresh installs, GNOME 46, Sway and Google Docs
     were not tested with 1.7.5-1.
   </p>
   <p>
@@ -609,9 +603,7 @@ const levels: Record<Level, string> = {
   </p>
   <p>
     Ngó Sen is built for fcitx5, which runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
-    plenty of features and is light on RAM. <a href="https://github.com/ngosen/ibus-ngosen">Ngó Sen
-    for GNOME</a> runs on GNOME’s built-in IBus instead; it is simpler and has fewer features than the
-    fcitx5 edition. Source, releases and the
+    plenty of features and is light on RAM. Source, releases and the
     changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>
