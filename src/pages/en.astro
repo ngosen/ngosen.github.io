@@ -46,15 +46,52 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.7.3-1 changes the shared typing core so Ngó Sen for GNOME (the IBus edition) can type
-    directly in X11 apps.
+    Version 1.7.5-1 makes the English/Vietnamese key apply to the app you are typing in, with each app
+    remembering its choice. Enter now expands a macro first, and Gõ Sen no longer loses Enter, Shift+Enter
+    or Tab pressed while a tone mark is being added. Version 1.7.4-1, the day before, fixed lost Enter and
+    lost text in Preedit on GNOME and X11.
   </p>
   <ul>
     <li>
-      On X11, Firefox (including the snap), Chrome and LibreOffice are recognised by name when they connect
-      through the IBus GTK module, and get the same handling as when they talk to fcitx5 directly. The X11
-      mouse-click watcher is now part of the shared core for the IBus edition to use
-      (<a href={`${REPO}/pull/458`}>#458</a>).
+      The English/Vietnamese key (Ctrl+Shift) now switches only the app you are typing in, and each app
+      remembers English or Vietnamese across logins; an app you have not switched yet follows your last
+      switch. Covered by automated tests (<a href={`${REPO}/pull/469`}>#469</a>).
+    </li>
+    <li>
+      Preedit and Gõ Sen: Enter right after a macro abbreviation expands it before Enter reaches the app,
+      so <code>dc</code> then Enter in a chat box sends “được”. Measured on the PR build in Chrome on an Ubuntu
+      24.04 virtual machine (GNOME 46 Wayland, fcitx5 5.1.7): 10 of 10 in both modes, against 0 of 10 with 1.7.4
+      (<a href={`${REPO}/pull/476`}>#476</a>).
+    </li>
+    <li>
+      Gõ Sen: Enter, Shift+Enter, Tab and Shift+Tab pressed right after a word that is getting its tone mark
+      are no longer lost or inserted inside the word. On the 1.7.5-1 package in Chromium snap on Ubuntu 26.04,
+      <code>nhes</code>, Enter, <code>a</code> typed 30 ms apart gave <code>nhé</code>, a new line and <code>a</code> 4 of 4
+      times (<a href={`${REPO}/pull/487`}>#487</a>, <a href={`${REPO}/pull/488`}>#488</a>,
+      <a href={`${REPO}/pull/489`}>#489</a>).
+    </li>
+    <li>
+      Gõ Sen on KDE (Wayland), Sway, Hyprland and X11 apps using the fcitx5 GTK3/Qt modules now deletes
+      through surrounding text, as on GNOME, so a late Backspace no longer eats new text in slow apps
+      (<a href={`${REPO}/pull/477`}>#477</a>). On GNOME, tone marks are lost less often where Ngó Sen has to
+      delete with Backspace, such as Google Docs and Firefox (<a href={`${REPO}/pull/481`}>#481</a>,
+      <a href={`${REPO}/pull/490`}>#490</a>).
+    </li>
+    <li>
+      On Debian 12 and systems based on it (fcitx5 older than 5.1.7), fast typing can no longer crash fcitx5.
+      Automated tests only (<a href={`${REPO}/pull/493`}>#493</a>).
+    </li>
+    <li>
+      <code>install.sh</code> installs on Ultramarine Linux and other Fedora 43/44 derivatives, and on Fedora
+      Silverblue, Kinoite and Bazzite prints the <code>rpm-ostree</code> commands to install by hand
+      (<a href={`${REPO}/pull/491`}>#491</a>, <a href={`${REPO}/pull/494`}>#494</a>).
+    </li>
+    <li>
+      1.7.4-1: in Preedit on GNOME, Enter is no longer lost when the key is held a little; clicking in
+      Alacritty and other XIM apps no longer drops the word being typed; on GNOME 50.0–50.3 without the
+      key-forwarding extension, Gõ Sen no longer doubles letters in kitty
+      (<a href={`${REPO}/pull/465`}>#465</a>, <a href={`${REPO}/pull/466`}>#466</a>,
+      <a href={`${REPO}/pull/467`}>#467</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -74,7 +111,8 @@ const levels: Record<Level, string> = {
     as Xfce, Cinnamon and MATE, the script also makes fcitx5 the input method for your account and adds Ngó
     Sen to the input method list. New installs start in English with only Ngó Sen in the list.
     Log out and back in, then press and release Ctrl+Shift, like UniKey, to switch between English
-    and Vietnamese; the tray icon shows V while typing Vietnamese. An existing install keeps its old
+    and Vietnamese; the tray icon shows V while typing Vietnamese. Since 1.7.5 each app remembers its own
+    choice. An existing install keeps its old
     key, usually Ctrl+Space. Change it in the settings window under “Phím”, tab “Phím tắt”,
     in “Phím chuyển Anh/Việt”. On GNOME the script also hides the fcitx5 launchers you do not need, and
     adds the Input Method Panel extension when there is no system tray, as on Fedora. These steps apply to
@@ -528,6 +566,25 @@ const levels: Record<Level, string> = {
     fcitx5 5.1.7 got an empty app name for every app there, so this version changes nothing for fcitx5 on
     that machine. The IBus edition, Ubuntu, Fedora, Arch, Debian, openSUSE, Kali, KDE and fresh installs
     were not tested with 1.7.3.
+  </p>
+  <p>
+    The CI packages of PR #465 and #467 were tested in an Ubuntu 26.04 virtual machine (GNOME 50.1, fcitx5
+    5.1.19). #465, with the extension, Chrome chat page: before the fix, holding Enter 80, 120 or 200 ms sent
+    0 of 30 at each length; after it, holding 10, 120 or 300 ms sent 30 of 30. #467, extension off, a 14-word sentence in
+    kitty with Gõ Sen: 1.7.3 got 12 words wrong, the fix none. The 1.7.4-1
+    package has all three fixes; the #465 CI package had neither #466 nor #467, and the #467 one lacked #466. Fedora, Arch, Debian, openSUSE, Kali, fresh
+    installs, Electron apps and GNOME 50.0, 50.2 and 50.3 were not tested with 1.7.4.
+  </p>
+  <p>
+    The 1.7.5-1 release packages were tested on 1 November 2026 with Gõ Sen and Telex, installed with
+    install.sh from the published release. Test sentence: <code>vieetj nam tieesng</code>, two Backspaces,
+    <code>ng</code>, space, 0.15 s between keys, expecting <code>việt nam tiếng</code>; 4 runs per app.
+    Ubuntu 26.04 (GNOME Wayland, <code>resolute</code>), updated from 1.7.0-1: GNOME Text Editor, Firefox snap
+    and Chromium snap 4 of 4; in Chromium, <code>nhes</code>, Enter, <code>a</code> typed 30 ms apart came out right 4 of 4.
+    Linux Mint 22 (Cinnamon X11, <code>noble</code>), updated from 1.7.0-1: xed and Chromium 4 of 4. CachyOS
+    (KDE Plasma Wayland, Arch package), updated from 1.6.2-1: GNOME Text Editor, Kate, Chromium and Firefox
+    4 of 4. Fedora, Debian, openSUSE, Kali, fresh installs, the IBus edition, GNOME 46, Sway and Google Docs
+    were not tested with 1.7.5-1.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the

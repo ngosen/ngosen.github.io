@@ -2,6 +2,8 @@
 title: "Ngó Sen 1.6 thêm phím chuyển Anh/Việt, Cứu chữ và Cứu dấu"
 description: "Version 1.6.0-1 có phím chuyển Anh/Việt riêng, Cứu chữ khi quên bật tiếng Việt và Cứu dấu cho chữ đang bôi đen."
 pubDate: 2026-10-26
+updatedDate: 2026-11-01
+outdated: "Từ version 1.7.5, phím chuyển Anh/Việt chỉ đổi app đang gõ; mỗi app nhớ riêng Anh hay Việt qua lần đăng xuất, app chưa bấm lần nào theo lần bấm gần nhất."
 ---
 
 Ngó Sen version 1.6.0-1 đã phát hành. Hai thay đổi chính là phím riêng chuyển Anh/Việt và hai tuỳ chọn
