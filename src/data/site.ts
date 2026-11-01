@@ -33,6 +33,82 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.7.5-1',
+    date: '01/11/2026',
+    summary:
+      'Phím chuyển Anh/Việt nay chỉ đổi app đang gõ, mỗi app nhớ riêng lựa chọn. Enter nay bung gõ tắt trong Preedit và Gõ Sen; Gõ Sen không còn mất Enter, Shift+Enter, Tab bấm ngay lúc đang thêm dấu. Gõ Sen xoá qua surrounding text ở thêm nhiều app trên KDE, Sway và X11, và ít mất dấu hơn trên GNOME.',
+    changes: [
+      {
+        claim: 'Phím chuyển Anh/Việt (Ctrl+Shift) nay chỉ đổi app đang gõ, và mỗi app nhớ riêng Anh hay Việt qua lần đăng xuất. App chưa bấm lần nào theo lần bấm gần nhất.',
+        source: 'Nút “Mặc định”, sao lưu và hoàn tác trong cửa sổ cài đặt bao luôn phần nhớ này. App đã chọn Preedit qua menu chế độ không còn chuyển sang Gõ Sen sau khi bấm phím chuyển hai lần. PR này chỉ có test tự động. Trên gói 1.7.5-1, app mở lần đầu theo lần bấm phím chuyển gần nhất; nhóm fcitx5 có hai bộ gõ chưa được test.',
+        pr: 469,
+      },
+      {
+        claim: 'Preedit và Gõ Sen: bấm Enter ngay sau từ gõ tắt nay bung từ trước khi Enter tới app, ví dụ gõ “dc” rồi Enter trong ô chat sẽ gửi “được”.',
+        source: 'Đo trên build của PR: máy ảo Ubuntu 24.04, GNOME 46 Wayland, fcitx5 5.1.7, Chrome, trang chat, đúng 10/10 lượt ở cả Preedit và Gõ Sen (1.7.4: 0/10).',
+        pr: 476,
+      },
+      {
+        claim: 'Gõ Sen: Enter, Shift+Enter, Tab và Shift+Tab bấm ngay sau từ đang được thêm dấu không còn bị mất hay chen vào giữa chữ.',
+        source: 'Gồm Enter trong Google Docs trên Firefox, GNOME (#487), Enter và Shift+Enter trong app GTK, Qt (#488), Shift+Enter trong Google Docs và Tab, Shift+Tab (#489). Trên gói 1.7.5-1, Chromium snap trên Ubuntu 26.04: gõ “nhes”, Enter, “a” với 30 ms giữa các phím ra “nhé”, xuống dòng, “a”, đúng 4/4 lượt; Google Docs chưa test trên gói này.',
+        pr: 487,
+      },
+      {
+        claim: 'Gõ Sen trên KDE (Wayland), Sway, Hyprland và app X11 dùng mô-đun fcitx5 (GTK3, Qt) nay nhờ app xoá thẳng chữ cũ trong ô khi thêm dấu, như trên GNOME, để Backspace tới muộn không xoá mất chữ mới khi app chậm.',
+        source: 'Ô chưa cho biết chữ bên trong, thanh địa chỉ và khi lệnh xoá làm ô trống trên Wayland vẫn dùng Backspace như trước. Trên gói 1.7.5-1: CachyOS KDE, GNOME Text Editor, Kate và Chromium đúng 4/4, xoá qua surrounding text; Linux Mint 22 X11, xed đúng 4/4.',
+        pr: 477,
+      },
+      {
+        claim: 'Gõ Sen trên GNOME: khi Ngó Sen phải xoá bằng Backspace, như ở Google Docs và Firefox, dấu vừa gõ không còn lâu lâu bị mất hay chen vào giữa chữ (“chư”, “dâuấ”).',
+        source: 'Ngó Sen chờ ít nhất 40 ms sau Backspace thay vì 15 ms. Đo trên build của PR: Google Docs, Firefox 158, Ubuntu 26.04 GNOME 50.1, gõ 40 ms/phím: đúng 60/60 khi chờ 40 ms sau Backspace, 13/20 khi chờ 15 ms.',
+        pr: 481,
+      },
+      {
+        claim: 'Gõ Sen trên GNOME: gõ hai phím dấu sát nhau (như w và f trong “nguowfi”) không còn ra “ngời”.',
+        source: 'Chỉ được chứng minh bằng test tự động, chưa tái hiện trên máy thật.',
+        pr: 490,
+      },
+      {
+        claim: 'Gõ Sen trên Debian 12 và các bản dựa trên nó (fcitx5 cũ hơn 5.1.7): gõ nhanh trong app xoá chữ bằng Backspace, như Google Docs và Firefox, không còn có thể làm fcitx5 crash.',
+        source: 'Chỉ có test tự động; chưa test trên máy Debian 12 thật.',
+        pr: 493,
+      },
+      {
+        claim: '`install.sh` cài được trên Ultramarine Linux và các bản dựng từ Fedora 43, 44 khác; trên Fedora Silverblue, Kinoite, Bazzite thì in sẵn lệnh `rpm-ostree` để cài tay thay vì hỏng giữa chừng.',
+        source: 'Thử trong container Ultramarine 44 (#491) và container Fedora 44 giả lập máy ostree (#494); chưa test trên desktop Ultramarine, Silverblue, Bazzite thật.',
+        pr: 491,
+      },
+      {
+        claim: 'Cửa sổ cài đặt, trang Giao diện: ba mục menu Bảng mã, Gõ tắt chữ hoa và Tự viết hoa nay có icon trên GNOME, Ubuntu và các theme thiếu icon đó, cả trong menu khay.',
+        source: 'Menu khay được xem trên máy ảo Ubuntu 26.04 GNOME, dùng Yaru và AppIndicator (#486). Cửa sổ cài đặt chỉ có test tự động, chưa test trên desktop Ubuntu thật.',
+        pr: 484,
+      },
+    ],
+  },
+  {
+    version: '1.7.4-1',
+    date: '31/10/2026',
+    summary:
+      'Sửa Preedit trên GNOME mất Enter khi giữ phím, mất chữ đang gõ khi click trong Alacritty và app XIM khác trên X11. Trên GNOME 50.0–50.3 không có extension chuyển phím, sửa Gõ Sen ra chữ lặp trong kitty và Preedit mất Enter.',
+    changes: [
+      {
+        claim: 'Preedit trên GNOME: bấm Enter sau chữ đang gạch chân không còn bị mất khi giữ phím lâu một chút như gõ bình thường; Enter nay đi lúc nhả phím.',
+        source: 'Đo trên build của PR, Ubuntu 26.04 GNOME 50.1, có extension chuyển phím, Chrome, trang chat: trước khi sửa, giữ Enter 80/120/200 ms gửi 0/30 lượt ở mỗi mức; sau khi sửa, giữ 10/120/300 ms đều gửi 30/30.',
+        pr: 465,
+      },
+      {
+        claim: 'Ở chế độ Preedit, click trong Alacritty và app XIM khác không còn làm mất chữ đang gõ dở.',
+        source: 'Lỗi được đo trước khi sửa trên Ubuntu 24.04 GNOME Xorg với bản IBus; có test tự động. Chưa test bản fcitx5 với Alacritty.',
+        pr: 466,
+      },
+      {
+        claim: 'GNOME 50.0–50.3 khi không có extension chuyển phím: Gõ Sen trong kitty không còn ra chữ lặp kiểu “tieêngếng” mà chuyển sang gạch chân; Enter sau chữ gạch chân ở Preedit không còn bị mất.',
+        source: 'Đo trên build của PR, Ubuntu 26.04 GNOME 50.1, tắt extension: câu 14 chữ trong kitty, 1.7.3 sai 12/14 chữ, bản sửa sai 0/14; Preedit trong Chrome giữ Enter 10 và 120 ms: ở mỗi mức, 1.7.3 gửi 0/30 lượt, bản sửa 30/30. Khi GNOME lỗi mà không có extension, ô chat Gemini có thể phải bấm Enter hai lần.',
+        pr: 467,
+      },
+    ],
+  },
+  {
     version: '1.7.3-1',
     date: '30/10/2026',
     summary:
@@ -1102,7 +1178,9 @@ export const LEVELS_NOTE =
   ' Gói 1.7.0-1 do CI dựng từ PR phát hành #432 được test trên máy ảo ngày 29/10/2026, dùng Gõ Sen, Telex, cài bằng install.sh với thư mục gói trên máy. Linux Mint 22 (Cinnamon X11, gói “noble”): cập nhật từ 1.6.3-1, fcitx5 tự nạp version mới; thông báo “Ngó Sen có gì mới?” hiện câu của version 1.7, bấm “Xem” mở cửa sổ cài đặt bản GTK ở trang “Có gì mới & mẹo”. Trong một ô chữ GTK 3, 5/5 câu thử ra đúng, trong đó “vieejt nguwowif ddaay hoaf quas giuwax tieengs khoong” gõ không nghỉ giữa các phím ra “việt người đây hoà quá giữa tiếng không”, kèm chữ hoa, sửa bằng Backspace và chuyển Anh/Việt giữa câu. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): máy đang dùng Ngó Sen cho GNOME 1.0.0 (IBus) cạnh gói fcitx5 1.6.3-1; install.sh hỏi lại, gỡ bản IBus rồi cài 1.7.0-1; đăng nhập lại thì fcitx5 chạy, thông báo của version 1.7 nằm trong danh sách thông báo, cửa sổ cài đặt mở bản GTK, và cùng 5 câu thử đúng 5/5 trong ô chữ GTK 3. Với 1.7.0, chưa test Fedora, Arch, Debian, openSUSE, Kali, KDE, deepin (WPS, #430), trình duyệt và cài mới.' +
   ' Gói 1.7.1-1 do CI dựng từ PR phát hành #448 được test trên máy ảo ngày 30/10/2026, dùng Gõ Sen, Telex, cài bằng install.sh với thư mục gói trên máy, cập nhật từ 1.7.0-1. Câu thử: gõ “vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, phải ra “việt nam tiếng”; mỗi app 4 lượt, chữ đọc từ app, đường xoá đọc từ log gõ. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): Firefox snap, GNOME Text Editor và Chromium snap đều đúng 4/4; log cho thấy Gõ Sen xoá qua surrounding text ở cả ba app, riêng Firefox quay về Backspace mỗi khi Firefox báo lại chữ cũ (trường hợp #446 sửa) và không lần nào bị đánh dấu là không tin được. Máy này đang dùng IBus nên trước khi cài không có fcitx5 chạy; fcitx5 được bật bằng tay sau khi cài. Linux Mint 22 (Cinnamon X11, gói “noble”): install.sh tự nạp lại fcitx5; xed và Chromium đều đúng 4/4, hai app này nói chuyện với fcitx5 qua D-Bus và vẫn xoá bằng Backspace như trước. Với 1.7.1, chưa test Fedora, Arch, Debian, openSUSE, Kali, KDE, LibreOffice (#438, #441), cảnh báo forward-keys của GNOME 50 (#440), cảnh báo IBus (#442), chế độ chọn ở menu “,” trên fcitx5 cũ (#444) và cài mới.' +
   ' Gói 1.7.2-1 do CI dựng từ PR phát hành #454 được test trên máy ảo ngày 30/10/2026, dùng Gõ Sen, Telex, cài bằng install.sh với thư mục gói trên máy. Câu thử: gõ “vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, phải ra “việt nam tiếng”; mỗi app 4 lượt, chữ đọc từ app, đường xoá đọc từ log gõ. Mỗi app có thêm một lượt đối chứng khi tắt tiếng Việt, đều ra chữ thô như dự kiến. Ubuntu 26.04 (GNOME Wayland, gói “resolute”), cập nhật từ 1.7.1-1: Firefox snap và GNOME Text Editor đều đúng 4/4; log cho thấy Gõ Sen xoá qua surrounding text ở cả hai app. Máy này đang dùng IBus nên fcitx5 được bật bằng tay sau khi cài. Linux Mint 22 (Cinnamon X11, gói “noble”), cập nhật từ 1.7.0-1: install.sh tự nạp lại fcitx5; xed và Chromium đều đúng 4/4. VS Code snap trên Ubuntu 26.04 chưa test được vì công cụ test không đưa được phím từ VS Code tới fcitx5, nên #453 chỉ được kiểm tra bằng test tự động. #452 chỉ thay đổi bản IBus và không được test trên gói này. Với version 1.7.2, chưa test Fedora, Arch, Debian, openSUSE, Kali, KDE và cài mới.' +
-  ' Gói “noble” do CI dựng từ PR #458 được test trên máy ảo ngày 30/10/2026; gói phát hành 1.7.3-1 có cùng mã nguồn, chỉ khác số version. Máy test dùng Linux Mint 22 (Cinnamon X11, fcitx5 5.1.7), Gõ Sen, Telex, cài bằng install.sh từ thư mục gói trên máy, cập nhật từ 1.7.0-1. xed, Chromium, Firefox và LibreOffice Writer được mở với “GTK_IM_MODULE=ibus” để đi tới fcitx5 qua cổng IBus của fcitx5. Câu thử như 1.7.2: gõ “vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, phải ra “việt nam tiếng”; mỗi app 4 lượt, đều đúng 4/4. Mỗi app có thêm một lượt đối chứng khi tắt tiếng Việt, đều ra chữ thô như dự kiến. fcitx5 5.1.7 nhận tên app rỗng qua cổng IBus của fcitx5 ở cả bốn app, nên trên máy này version mới không thay đổi hành vi của fcitx5; xed và Writer vẫn xoá qua surrounding text, Chromium và Firefox vẫn dùng Backspace như trước. Bản IBus (Ngó Sen cho GNOME) chưa được test với version này; bản đó dùng thay đổi trong gói phát hành riêng. Với version 1.7.3, chưa test Ubuntu, Fedora, Arch, Debian, openSUSE, Kali, KDE và cài mới.';
+  ' Gói “noble” do CI dựng từ PR #458 được test trên máy ảo ngày 30/10/2026; gói phát hành 1.7.3-1 có cùng mã nguồn, chỉ khác số version. Máy test dùng Linux Mint 22 (Cinnamon X11, fcitx5 5.1.7), Gõ Sen, Telex, cài bằng install.sh từ thư mục gói trên máy, cập nhật từ 1.7.0-1. xed, Chromium, Firefox và LibreOffice Writer được mở với “GTK_IM_MODULE=ibus” để đi tới fcitx5 qua cổng IBus của fcitx5. Câu thử như 1.7.2: gõ “vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, phải ra “việt nam tiếng”; mỗi app 4 lượt, đều đúng 4/4. Mỗi app có thêm một lượt đối chứng khi tắt tiếng Việt, đều ra chữ thô như dự kiến. fcitx5 5.1.7 nhận tên app rỗng qua cổng IBus của fcitx5 ở cả bốn app, nên trên máy này version mới không thay đổi hành vi của fcitx5; xed và Writer vẫn xoá qua surrounding text, Chromium và Firefox vẫn dùng Backspace như trước. Bản IBus (Ngó Sen cho GNOME) chưa được test với version này; bản đó dùng thay đổi trong gói phát hành riêng. Với version 1.7.3, chưa test Ubuntu, Fedora, Arch, Debian, openSUSE, Kali, KDE và cài mới.' +
+  ' Các gói CI của PR #465 và #467 được test trên máy ảo Ubuntu 26.04 (GNOME 50.1, fcitx5 5.1.19). Với #465, có extension, Chrome, trang chat: trước khi sửa, giữ Enter 10/30 ms gửi 30/30 lượt ở mỗi mức, giữ 80/120/200 ms gửi 0/30; sau khi sửa, giữ 10/120/300 ms đều gửi 30/30. Trên KDE Plasma Wayland (CachyOS, Chromium) và Linux Mint X11 Cinnamon (Chromium), bản 1.7.3 và bản sửa đều gửi 30/30, không dính lỗi. Với #467, tắt extension, gõ câu 14 chữ trong kitty bằng Gõ Sen: bản 1.7.3 sai 12/14 chữ, bản sửa sai 0/14. Gói 1.7.4-1 gồm cả ba bản sửa; gói CI đem test của #465 chưa có #466 và #467, gói CI của #467 chưa có #466. Với 1.7.4, chưa test Fedora, Arch, Debian, openSUSE, Kali, cài mới, app Electron và GNOME 50.0/50.2/50.3.' +
+  ' Các gói phát hành 1.7.5-1 được test ngày 01/11/2026, dùng Gõ Sen, Telex, cài bằng install.sh tải gói từ release đã phát hành. Câu thử: gõ “vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, phải ra “việt nam tiếng”; mỗi app 4 lượt. Ubuntu 26.04 (GNOME Wayland, gói “resolute”), cập nhật từ 1.7.0-1: GNOME Text Editor, Firefox snap và Chromium snap đều đúng 4/4; trong Chromium snap, gõ “nhes”, Enter, “a” với 30 ms giữa các phím ra “nhé”, xuống dòng, “a”, đúng 4/4 lượt. Linux Mint 22 (Cinnamon X11, gói “noble”), cập nhật từ 1.7.0-1: xed và Chromium đều đúng 4/4. CachyOS (KDE Plasma Wayland, gói Arch), cập nhật từ 1.6.2-1: GNOME Text Editor, Kate, Chromium và Firefox đều đúng 4/4. Với 1.7.5-1, chưa test Fedora, Debian, openSUSE, Kali, cài mới, bản IBus, GNOME 46, Sway và Google Docs.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -1230,7 +1308,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Phím chuyển Anh/Việt riêng',
-    text: 'Cài mới dùng Ctrl+Shift như UniKey; đã cài từ trước giữ Ctrl+Space. Khi ở tiếng Anh, gõ như không có bộ gõ.',
+    text: 'Cài mới dùng Ctrl+Shift như UniKey; đã cài từ trước giữ Ctrl+Space. Khi ở tiếng Anh, gõ như không có bộ gõ. Mỗi app nhớ riêng Anh hay Việt qua lần đăng xuất; app chưa bấm lần nào theo lần bấm gần nhất.',
   },
   {
     title: 'Gõ thẳng, không gạch chân',
