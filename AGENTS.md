@@ -21,11 +21,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   again. Old entries carry `prRepo: ARCHIVE_REPO`; new release entries leave it out.
 - Page text is Vietnamese except for `/en/` and `/en/typing-without-preedit/`; code, comments and commit messages are English.
   The bilingual typing-without-preedit page takes facts from `docs/typing-without-preedit.md` on `main` of the main repository, including how Ngó Sen deletes text (maintainer-approved exception, 20 October 2026).
-- `/ngo-sen-cho-gnome/` describes Ngó Sen cho GNOME, the IBus edition. What it does, how to install,
-  remove and set it up comes from `README.md` on `main` of `ngosen/ibus-ngosen` (maintainer-approved
-  exception, 28 October 2026); what was tested still comes from the main repository's release notes. The
-  chooser on the home page and the ledes of `/cai-dat/` and `/huong-dan/` point to it. The install guide
-  and the usage guide describe the fcitx5 edition only. Neither edition is presented as the better one.
+- The site does not mention the IBus edition (`ngosen/ibus-ngosen`), `install.sh --ibus` or the `ibus-ngosen` package; the
+  project stopped developing it on 1 November 2026. Sentences about the system's own IBus and other projects' IBus
+  editions stay, as do the blog posts `chi-lam-cho-fcitx5` and `wps-office-ibus`.
 - The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
   the top of the README. Do not mention vibecoding (dropped at the maintainer's request).
 - `/roadmap/` mirrors `ROADMAP.md` on `main` of the main repository through `ROADMAP` in
@@ -39,7 +37,7 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   source, release, version, changelog, roadmap, hash/SHA-256, distro, app, container, key names such as Backspace, and input-method terms: uinput server, preedit, surrounding text, commit, forward key. Translate lỗi,
   cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
 - A release number is a "version" ("version 1.4.2", "version thử", "version sửa lỗi"), as in the main
-  repository; "bản" stays where it means something else (bản gốc, bản snap, bản IBus, bản sửa, bản build).
+  repository; "bản" stays where it means something else (bản gốc, bản snap, bản sửa, bản build).
 - One name per concept across every page and post: "service" (not "dịch vụ"), "uinput server" (not
   "chương trình chạy ngầm"), "module" (not "mô-đun"), "compositor" (not an unexplained "WM"), "click"
   for the mouse and "bấm" for keys, "test" and "lỗi" (not "thử", "hỏng") when talking about checking
