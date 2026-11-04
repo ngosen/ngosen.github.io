@@ -1271,7 +1271,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Cứu dấu',
-    text: 'Bôi đen chữ rồi gõ phím dấu để thêm, đổi hoặc bỏ dấu thanh, như nhanh + s → nhánh. Dùng được ở app cho bộ gõ đọc chữ quanh con trỏ, trừ Firefox bản snap.',
+    text: 'Bôi đen chữ rồi gõ phím dấu để thêm, đổi hoặc bỏ dấu thanh, như nhanh + s → nhánh. Dùng được ở app cho bộ gõ đọc chữ quanh con trỏ.',
   },
   {
     title: 'Phím chuyển Anh/Việt riêng',
