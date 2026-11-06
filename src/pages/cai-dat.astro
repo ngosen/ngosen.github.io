@@ -146,17 +146,31 @@ const toc = [
       <code>LANG=en_US.UTF-8</code> thì vẫn phải thêm tay.
     </li>
     <li>
+      Với GNOME, cài từ repo hoặc gói tải về chưa đặt fcitx5 thay IBus. Chạy khối lệnh sau để bật fcitx5 tự chạy
+      khi đăng nhập và đặt biến môi trường để app gõ qua fcitx5, rồi đăng xuất và đăng nhập lại:
+      <pre tabindex="0"><code>{`mkdir -p ~/.config/autostart ~/.config/environment.d
+[ -e /etc/xdg/autostart/org.fcitx.Fcitx5.desktop ] || cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
+printf 'GTK_IM_MODULE=fcitx\\nQT_IM_MODULE=fcitx\\nXMODIFIERS=@im=fcitx\\nSDL_IM_MODULE=fcitx\\n' > ~/.config/environment.d/90-ngosen.conf`}</code></pre>
+      Nếu thanh trên cùng không có icon bộ gõ, cài extension
+      <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a>. Với GNOME version 50.0 đến 50.3,
+      chạy thêm <code>gnome-extensions enable forward-keys@ngosen.github.io</code> để sửa lỗi gõ.
+    </li>
+    <li>
       Với Xfce, Cinnamon, MATE trên Debian/Ubuntu/Mint, chạy <code>im-config -n fcitx5</code>, sau đó
       đăng xuất rồi đăng nhập lại. Nếu có IBus, bước này giúp fcitx5 khởi động khi đăng nhập và gõ được
       trong app dùng XIM như PlanMaker.
     </li>
     <li>
-      Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”. Từ version 1.4.1, lệnh cài
-      một dòng tự chọn mục này, chỉ khi cài gói bằng tay mới phải làm.
+      Trên KDE Wayland: vào System Settings, mục Virtual Keyboard, chọn “Fcitx 5”, rồi đăng xuất và đăng nhập lại
+      để KDE tự chạy fcitx5 và app Qt như Kate, Dolphin gõ được. Từ version 1.4.1, lệnh cài một dòng tự chọn mục
+      này, chỉ khi cài từ repo hoặc gói tải về mới phải làm. App X11 chạy qua Xwayland (như Minecraft bản cũ) cần
+      thêm biến môi trường: chạy khối lệnh sau trước khi đăng xuất.
+      <pre tabindex="0"><code>{`mkdir -p ~/.config/environment.d
+echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></pre>
     </li>
   </ol>
   <p>
-    Lệnh cài một dòng làm cả hai bước thêm Ngó Sen vào danh sách bộ gõ và thiết lập fcitx5.
+    Lệnh cài một dòng làm các bước thêm Ngó Sen vào danh sách bộ gõ và thiết lập fcitx5.
     Máy đã dùng lệnh cài một dòng và chỉ thêm repo để cập nhật thì không cần làm thêm.
   </p>
   <p>
