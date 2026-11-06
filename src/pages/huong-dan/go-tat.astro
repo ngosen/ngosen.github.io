@@ -24,8 +24,8 @@ const toc = [
   <h2 id="them">Thêm một gõ tắt</h2>
   <p>Vào “Cài đặt Ngó Sen › Gõ tắt &amp; Từ điển › Gõ tắt”.</p>
   <ol class="steps">
-    <li>Click vào ô “Khoá”, gõ từ viết tắt, ví dụ <code>kg</code>.</li>
-    <li>Click vào ô “Giá trị”, gõ cụm từ đầy đủ, ví dụ <code>Khô gà</code>. Ô này gõ tiếng Việt được như mọi app.</li>
+    <li>Click vào ô “Từ viết tắt:”, gõ từ viết tắt, ví dụ <code>kg</code>.</li>
+    <li>Click vào ô “Từ đầy đủ:”, gõ cụm từ đầy đủ, ví dụ <code>Khô gà</code>. Ô này gõ tiếng Việt được như mọi app.</li>
     <li>
       Click “Thêm”. Gõ tắt có tác dụng ngay: gõ <code>kg</code> rồi bấm <kbd>Space</kbd> ra <code>khô gà</code>.
     </li>
@@ -34,8 +34,8 @@ const toc = [
     name="guide-macro"
     width={500}
     height={400}
-    alt="Tab Gõ tắt: ô Khoá có kg, ô Giá trị có Khô gà, nút Thêm bên phải; danh sách bên dưới có vn Việt Nam, hnay $DATE, bgio $TIME."
-    caption="Tab “Gõ tắt” với “kg” và “Khô gà” vừa gõ, chưa click “Thêm”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+    alt="Tab Gõ tắt: Định dạng giờ 15:04 (24h), Định dạng ngày dd/MM/yyyy, ô Từ viết tắt có kg, ô Từ đầy đủ có Khô gà, nút Thêm bên phải; danh sách bên dưới có vn Việt Nam, hnay $DATE, bgio $TIME."
+    caption="Tab “Gõ tắt” với “kg” và “Khô gà” vừa gõ, chưa click “Thêm”. Linux Mint 22.1 Cinnamon, version 1.8.0-1."
   />
 
   <h2 id="chu-hoa">Chữ hoa</h2>
@@ -56,14 +56,14 @@ const toc = [
 
   <h2 id="ngay-gio">Ngày và giờ hôm nay</h2>
   <p>
-    Trong ô “Giá trị”, <code>$DATE</code> thành ngày hôm nay và <code>$TIME</code> thành giờ lúc gõ. Ví dụ thêm
+    Trong ô “Từ đầy đủ:”, <code>$DATE</code> thành ngày hôm nay và <code>$TIME</code> thành giờ lúc gõ. Ví dụ thêm
     <code>hnay</code> với giá trị <code>$DATE</code>: gõ <code>hnay</code> ra <code>17/10/2026</code>. Thêm
     <code>bgio</code> với giá trị <code>$TIME</code>: gõ <code>bgio</code> ra <code>10:59</code>.
   </p>
-  <p>Cách viết ngày giờ chọn ở “Định dạng ngày:” và “Định dạng giờ:” cuối trang, đổi xong có tác dụng ngay:</p>
+  <p>Cách viết ngày giờ chọn ở “Định dạng ngày:” và “Định dạng giờ:” phía trên ô thêm gõ tắt, đổi xong có tác dụng ngay:</p>
   <ul>
-    <li><code>%d/%m/%Y</code> (mặc định) ra <code>17/10/2026</code>, <code>%Y-%m-%d</code> ra <code>2026-10-17</code>.</li>
-    <li><code>%H:%M</code> (mặc định) ra <code>10:52</code>, <code>%H:%M:%S</code> ra <code>10:52:58</code>.</li>
+    <li>“dd/MM/yyyy” (mặc định) ra <code>17/10/2026</code>, “yyyy-MM-dd” ra <code>2026-10-17</code>.</li>
+    <li>“15:04 (24h)” (mặc định) ra <code>10:52</code>, “15:04:05 (24h)” ra <code>10:52:58</code>.</li>
   </ul>
 
   <h2 id="che-do-tat">Gõ tắt trong chế độ “Tắt”</h2>
@@ -77,7 +77,7 @@ const toc = [
   </p>
 
   <h2 id="giu-nguyen">Phím chốt chữ</h2>
-  <p>Vào “Cài đặt Ngó Sen › Gõ chữ”, nhóm “Cách bỏ dấu”, hàng “Phím chốt chữ:”. Mặc định là Ctrl.</p>
+  <p>Vào “Cài đặt Ngó Sen › Gõ chữ”, nhóm “Phím gõ”, hàng “Phím chốt chữ:”. Mặc định là Ctrl.</p>
   <ol class="steps">
     <li>Gõ từ cần giữ, ví dụ <code>kg</code>.</li>
     <li>Bấm rồi thả riêng <kbd>Ctrl</kbd>.</li>
@@ -86,9 +86,9 @@ const toc = [
   <Shot
     name="guide-lock"
     width={505}
-    height={90}
+    height={82}
     alt="Hàng Phím chốt chữ đang đặt Ctrl, bên dưới có ví dụ tunx, Ctrl ra tũn và lưu ý về Alt."
-    caption="“Phím chốt chữ:” ở nhóm “Cách bỏ dấu”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+    caption="“Phím chốt chữ:” ở nhóm “Phím gõ”. Linux Mint 22.1 Cinnamon, version 1.8.0-1."
   />
   <p>
     Phím chốt chữ giữ từ đang gõ, không thêm dấu, tự khôi phục hay bung gõ tắt. Gõ <code>tunx</code>, bấm rồi
