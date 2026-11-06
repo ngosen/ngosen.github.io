@@ -5,18 +5,18 @@ import Shot from '../../components/Shot.astro';
 const toc = [
   { id: 'luu-nhat-ky', label: 'Lưu nhật ký gõ' },
   { id: 'kiem-tra-may', label: 'Kiểm tra máy' },
-  { id: 'bao-loi', label: 'Gửi báo lỗi' },
+  { id: 'bao-loi', label: 'Gửi kết quả' },
 ];
 ---
 
 <Guide
   title="Báo lỗi"
-  description="Lưu nhật ký gõ từ menu khay hoặc bằng lệnh ngosen-save-log, kiểm tra máy rồi báo lỗi bằng mẫu trong mục Issues trên GitHub."
+  description="Lưu nhật ký gõ, mở trang “Kiểm tra máy” và gửi kết quả qua Facebook hoặc GitHub."
   toc={toc}
 >
   <p slot="lede">
-    Gõ ra chữ sai thì lưu nhật ký gõ ngay, rồi gửi file đó kèm khi báo lỗi. Những lỗi đã biết mà chưa sửa nằm ở mục
-    <a href="/#chua-sua">“Chưa sửa”</a> trên trang chủ.
+    Gõ ra chữ sai thì lưu nhật ký gõ ngay. Sau đó mở trang “Kiểm tra máy”, test app gặp lỗi và gửi kết quả
+    kèm mô tả lỗi qua Facebook hoặc GitHub.
   </p>
 
   <h2 id="luu-nhat-ky">Lưu nhật ký gõ</h2>
@@ -28,8 +28,8 @@ const toc = [
     name="guide-log"
     width={378}
     height={415}
-    alt="Menu chuột phải của icon Ngó Sen trên khay, có các mục Kiểu gõ, Bảng mã, Tự viết hoa và dòng Lưu nhật ký gõ."
-    caption="Menu khi click chuột phải vào icon Ngó Sen, có dòng “Lưu nhật ký gõ”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+    alt="Menu khi click chuột phải vào icon Ngó Sen trên khay, có “Kiểu gõ (Telex)”, “Bảng mã (Unicode)”, “Lưu nhật ký gõ” và “Cài đặt”."
+    caption="Click “Lưu nhật ký gõ” trong menu khay. Linux Mint 22.1 Cinnamon, version 1.8.0-1."
   />
   <p>Icon hay menu khay bị mất hoặc đứng thì chạy lệnh sau trong terminal:</p>
   <pre tabindex="0"><code>ngosen-save-log</code></pre>
@@ -42,56 +42,89 @@ const toc = [
 
   <h2 id="kiem-tra-may">Kiểm tra máy</h2>
   <p>
-    Từ version 1.5.1, nút “Kiểm tra máy tôi…” xem fcitx5 có chạy không, Ngó Sen có trong danh sách bộ gõ không và các
-    biến môi trường của bộ gõ có đúng không. Lỗi nào cũng kèm cách sửa. Cửa sổ này còn test được một app gõ đúng hay
-    sai.
+    Vào “Cài đặt Ngó Sen › Kiểm tra máy”. Từ version 1.8, “Kiểm tra máy” là một trang trong thanh bên
+    của cửa sổ cài đặt.
   </p>
-  <ol class="steps">
-    <li>
-      Vào “Cài đặt Ngó Sen › Giới thiệu”, click “Kiểm tra máy tôi…”. Máy không có lỗi thì cửa sổ ghi “Không
-      thấy lỗi cài đặt nào”.
-    </li>
-    <li>
-      Mở app cần test, bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>
-      và gõ <code>Tieengs Vieetj cos daaus</code> để ra <code>Tiếng Việt có dấu</code>.
-    </li>
-    <li>Click chuột phải vào icon Ngó Sen trên khay, rồi click “Lưu nhật ký gõ”.</li>
-    <li>
-      Quay lại cửa sổ “Kiểm tra máy tôi”, click “Đọc nhật ký gõ”. App gõ đúng thì cửa sổ ghi tên app kèm “nhận đúng câu
-      mẫu”.
-    </li>
-  </ol>
+  <p>
+    Đầu trang ghi “Máy đã sẵn sàng” khi không có việc cần sửa. Nếu có, trang ghi “Còn 1 việc cần sửa”;
+    số thay đổi theo số việc. Mục “Kiểm tra máy” ở thanh bên cũng hiện số đó trên nền đỏ.
+  </p>
+  <p>
+    Dưới “Các bước để gõ tiếng Việt”, bước đã đạt có dấu tích, bước cần sửa có dấu cảnh báo.
+    Trên máy Linux Mint đã test, danh sách gồm:
+  </p>
+  <ul>
+    <li>“fcitx5 đang chạy”</li>
+    <li>“Ngó Sen đã có trong danh sách bộ gõ của fcitx5”</li>
+    <li>“fcitx5 tự chạy khi đăng nhập”</li>
+    <li>“App X11 cũ gõ qua fcitx5”</li>
+    <li>“App GTK gõ qua fcitx5”</li>
+    <li>“App Qt gõ qua fcitx5”</li>
+  </ul>
   <Shot
     name="guide-check"
-    width={520}
-    height={291}
-    alt="Cửa sổ Kiểm tra máy tôi: Không thấy lỗi cài đặt nào, danh sách app đang nối với fcitx5, phần Test một app với dòng xed (dbus) nhận đúng câu mẫu, và các nút Kiểm tra lại, Chép kết quả, Báo cáo lỗi…, Close."
-    caption="Cửa sổ “Kiểm tra máy tôi” sau khi test xed: “xed (dbus) nhận đúng câu mẫu.” Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+    width={525}
+    height={372}
+    alt="Đầu trang “Kiểm tra máy” ghi “Còn 1 việc cần sửa”, bên dưới là danh sách các bước và bước cảnh báo có nút “Chép lệnh”, “Chọn fcitx5”."
+    caption="Bước cần sửa có lời hướng dẫn và nút để sửa. Linux Mint 22.1 Cinnamon, version 1.8.0-1."
   />
   <p>
-    Kết quả có cả tên các app đang nối với fcitx5 và sẽ nằm trong báo lỗi, nên đọc qua trước khi gửi. Chưa gửi báo lỗi
-    thì không có gì rời khỏi máy.
+    Bước cần sửa ghi cách làm và có các nút tương ứng. Ngó Sen chỉ đổi cài đặt của tài khoản này.
+    Ví dụ, bước báo “Lần đăng nhập sau fcitx5 sẽ không tự chạy” có hướng dẫn
+    “Chạy im-config -n fcitx5, rồi đăng xuất và đăng nhập lại.” cùng hai nút “Chép lệnh” và “Chọn fcitx5”.
   </p>
-
-  <h2 id="bao-loi">Gửi báo lỗi</h2>
   <p>
-    Trong cửa sổ “Kiểm tra máy tôi”, click “Báo cáo lỗi…”. Trình duyệt mở mẫu báo lỗi trong mục Issues của Ngó Sen
-    trên GitHub, đã điền sẵn kết quả kiểm tra, version và distro; cần đăng nhập GitHub mới gửi được. Không chạy kiểm
-    tra thì click “Báo cáo lỗi” ở tab “Giới thiệu”.
+    Click “Chọn fcitx5” thì cửa sổ báo “Đã chọn fcitx5. Đăng xuất rồi đăng nhập lại để dùng.” kèm nút
+    “Hoàn tác”, và đầu trang chuyển sang “Máy đã sẵn sàng”. “Kiểm tra lại” chạy lại các bước kiểm tra.
+  </p>
+  <p>“Test gõ ngay tại đây” có ô để gõ thử ngay trong cửa sổ cài đặt. Để test một app, làm theo phần “Test một app”:</p>
+  <ol class="steps">
+    <li>
+      Mở app cần test. Bật tiếng Việt bằng
+      <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>.
+    </li>
+    <li>Gõ <code>Tieengs Vieetj cos daaus</code> để ra <code>Tiếng Việt có dấu</code>.</li>
+    <li>Click chuột phải vào icon Ngó Sen trên khay, rồi click “Lưu nhật ký gõ”.</li>
+    <li>
+      Quay lại trang “Kiểm tra máy”, click “Đọc nhật ký gõ”. Khi test với xed, kết quả là
+      “xed (dbus) nhận đúng câu mẫu.”
+    </li>
+  </ol>
+  <p>
+    “App đang kết nối với fcitx5” liệt kê các app đang nối với bộ gõ. App không có trong danh sách thì chưa
+    kết nối với fcitx5. Mở lại app đó hoặc gửi kết quả ở cuối trang.
   </p>
   <Shot
-    name="guide-about"
-    width={500}
-    height={360}
-    alt="Trang Giới thiệu có logo, tên Ngó Sen, Phiên bản 1.6.0 (Stable), các nút Kiểm tra máy tôi…, Báo cáo lỗi và Đề xuất tính năng."
-    caption="Trang “Giới thiệu” với dòng “Phiên bản 1.6.0 (Stable)”. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+    name="guide-check-app"
+    width={520}
+    height={432}
+    alt="Phần dưới trang “Kiểm tra máy” có “Test một app”, nút “Đọc nhật ký gõ”, kết quả “xed (dbus) nhận đúng câu mẫu.”, danh sách “App đang kết nối với fcitx5” và ba nút gửi hoặc chép kết quả."
+    caption="Kết quả test xed và phần “Gửi kết quả cho Ngó Sen” ở cuối trang. Linux Mint 22.1 Cinnamon, version 1.8.0-1."
   />
+
+  <h2 id="bao-loi">Gửi kết quả</h2>
+  <p>
+    “Gửi kết quả cho Ngó Sen” nằm ở cuối trang “Kiểm tra máy”. Kết quả gồm các bước kiểm tra, danh sách app
+    đang kết nối với fcitx5 và nhật ký gõ vừa đọc. Đọc qua trước khi gửi. Chưa click nút nào ở phần này
+    thì chưa có gì được gửi đi.
+  </p>
+
+  <p>
+    Click “Nhắn qua Facebook…” thì Ngó Sen chép kết quả và mở cuộc trò chuyện Messenger với trang Facebook
+    Ngó Sen trong trình duyệt; cửa sổ báo “Đã chép kết quả. Dán vào tin nhắn rồi kể lỗi gặp phải.” Cần đăng
+    nhập Facebook để nhắn.
+  </p>
+  <p>
+    Click “Báo lỗi trên GitHub…”. Trình duyệt mở mẫu báo lỗi trong mục Issues của Ngó Sen trên GitHub,
+    đã điền sẵn kết quả kiểm tra, version và distro. Cần đăng nhập GitHub mới gửi được.
+  </p>
+  <p>Nếu chỉ muốn chép kết quả, click “Chép kết quả”. Nút này chỉ chép, không gửi.</p>
   <p>
     Mẫu hỏi lỗi gì, các bước gõ ra lỗi, chữ đáng lẽ ra và chữ thật sự ra, version, cách cài, distro, desktop và kiểu
     gõ. Version của gói xem bằng lệnh sau trên Ubuntu, Debian, Linux Mint:
   </p>
   <pre tabindex="0"><code>dpkg-query -W fcitx5-ngosen</code></pre>
   <p>
-    Máy test ra <code>fcitx5-ngosen 1:1.6.0-1</code>. Trang “Giới thiệu” ghi gọn hơn: “Phiên bản 1.6.0 (Stable)”.
+    Máy test ra <code>fcitx5-ngosen 1:1.8.0-1</code>. Trang “Giới thiệu” ghi gọn hơn: “Phiên bản 1.8.0”.
   </p>
 </Guide>
