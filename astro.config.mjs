@@ -39,6 +39,5 @@ export default defineConfig({
     '/blog/dong-goi-cho-muoi-ban-linux': '/cai-dat/',
     '/blog/loi-gnome-shell-ubuntu-26-04': '/blog/ubuntu-26-04-go-tieng-viet-ra-chu-sai/',
     '/khac-gi-ban-goc': '/',
-    '/ngo-sen-cho-gnome': '/cai-dat/',
   },
 });

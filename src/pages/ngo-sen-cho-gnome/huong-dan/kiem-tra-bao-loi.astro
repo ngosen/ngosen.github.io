@@ -1,0 +1,70 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+import Shot from '../../../components/Shot.astro';
+import { IBUS_REPO } from '../../../data/site';
+
+const toc = [
+  { id: 'kiem-tra', label: 'Xem các bước cần sửa' },
+  { id: 'con-fcitx5', label: 'Còn cài đặt của bản fcitx5' },
+  { id: 'nhat-ky', label: 'Lưu nhật ký gõ' },
+  { id: 'gui', label: 'Gửi kết quả' },
+];
+---
+
+<Guide
+  edition="gnome"
+  title="Kiểm tra máy và báo lỗi"
+  description="Mở trang Kiểm tra của Ngó Sen cho GNOME để xem IBus, nguồn nhập và cài đặt fcitx5 còn sót; lấy kết quả kiểm tra và nhật ký gõ để báo lỗi."
+  toc={toc}
+>
+  <p slot="lede">
+    Không gõ được tiếng Việt thì vào “Ngó Sen › Kiểm tra”. Trang này liệt kê các bước để gõ tiếng Việt,
+    những việc cần sửa và phần “Gửi kết quả cho Ngó Sen”.
+  </p>
+
+  <h2 id="kiem-tra">Xem các bước cần sửa</h2>
+  <p>
+    Đầu trang ghi “Máy đã sẵn sàng” khi các bước đã đạt; có vấn đề thì ghi “Còn N việc cần sửa”, với N là số
+    việc. Nút “Kiểm tra lại” nằm ở đầu trang.
+  </p>
+  <p>Trên máy đã sẵn sàng, nhóm “Các bước để gõ tiếng Việt” có dấu tích ở ba dòng:</p>
+  <ul>
+    <li>“IBus đang chạy”</li>
+    <li>“Ngó Sen đã có trong nguồn nhập”</li>
+    <li>“App X11 cũ gõ qua IBus”</li>
+  </ul>
+  <p>“Test gõ ngay tại đây” có ô “Gõ vào đây để test” với hướng dẫn “Kiểu Telex: gõ vieetj sẽ ra việt.”</p>
+  <Shot
+    name="gnome-check"
+    width={600}
+    height={672}
+    alt="Trang Kiểm tra của Ngó Sen có trạng thái máy, nhóm Các bước để gõ tiếng Việt, ô test gõ và phần Gửi kết quả cho Ngó Sen."
+    caption="Trang “Kiểm tra” trong cửa sổ cài đặt. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+
+  <h2 id="con-fcitx5">Còn cài đặt của bản fcitx5</h2>
+  <p>
+    Trên máy đã gỡ bản fcitx5 bằng apt rồi cài bản IBus, GNOME chưa liệt kê Ngó Sen. Trang “Kiểm tra” báo
+    “fcitx5 đang giữ bộ gõ” và “Tài khoản này còn cài đặt của bản fcitx5”. Máy này được sửa bằng các bước sau:
+  </p>
+  <ol class="steps">
+    <li>Click “Xoá” ở bước “Tài khoản này còn cài đặt của bản fcitx5”. Thông báo xoá có nút “Hoàn tác”.</li>
+    <li>Ở bước “Cài đặt fcitx5 chỉ bạn tự đổi được”, chạy lệnh được chỉ ra: <code>im-config -n REMOVE</code>.</li>
+    <li>Đăng xuất rồi đăng nhập lại. IBus chạy và Ngó Sen có trong nguồn nhập.</li>
+  </ol>
+
+  <h2 id="nhat-ky">Lưu nhật ký gõ</h2>
+  <p>
+    Menu nguồn nhập trên thanh trên cùng có mục “Lưu nhật ký gõ”. Mục này lưu những gì vừa gõ vào
+    <code>~/.local/state/ngosen/</code> và hiện thông báo kèm đường dẫn file; chỉ tài khoản của bạn đọc được.
+    Đọc lại file trước khi gửi kèm báo lỗi.
+  </p>
+
+  <h2 id="gui">Gửi kết quả</h2>
+  <p>
+    Cuối trang “Kiểm tra”, phần “Gửi kết quả cho Ngó Sen” có ba nút: “Nhắn qua Facebook…”, “Báo lỗi trên
+    GitHub…” và “Chép kết quả”. Kết quả liệt kê các bước kiểm tra ở trên; chưa click nút nào ở phần này thì
+    chưa có gì được gửi đi.
+  </p>
+  <p>Báo lỗi bản IBus ở <a href={`${IBUS_REPO}/issues`}>Issues của <code>ngosen/ibus-ngosen</code></a>.</p>
+</Guide>

@@ -1,0 +1,61 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+import Shot from '../../../components/Shot.astro';
+
+const toc = [
+  { id: 'luu', label: 'Lưu ra file JSON' },
+  { id: 'khoi-phuc', label: 'Khôi phục từ file' },
+  { id: 'hai-ban', label: 'Mang cài đặt giữa hai bản' },
+];
+---
+
+<Guide
+  edition="gnome"
+  title="Sao lưu và khôi phục cài đặt"
+  description="Sao lưu cài đặt, gõ tắt, bảng phím, từ điển và trạng thái Anh/Việt ra file JSON từ menu Ngó Sen; khôi phục file và chuyển cài đặt giữa hai bản."
+  toc={toc}
+>
+  <p slot="lede">
+    Menu ☰ của cửa sổ “Ngó Sen” có “Sao lưu…” và “Khôi phục…”. File JSON chứa cài đặt, gõ tắt, bảng phím,
+    từ điển và trạng thái Anh/Việt, dùng chung định dạng với bản fcitx5.
+  </p>
+
+  <h2 id="luu">Lưu ra file JSON</h2>
+  <ol class="steps">
+    <li>Trong cửa sổ “Ngó Sen”, click ☰ ở đầu thanh bên rồi chọn “Sao lưu…”.</li>
+    <li>
+      Hộp thoại mở ở thư mục nhà, tên file có dạng <code>ngosen-backup-&lt;date&gt;-&lt;time&gt;.json</code>.
+      Click “Save”.
+    </li>
+    <li>Thông báo ở đáy cửa sổ cho biết đường dẫn file đã sao lưu.</li>
+  </ol>
+  <Shot
+    name="gnome-backup-menu"
+    width={504}
+    height={268}
+    alt="Menu ☰ ở đầu thanh bên cửa sổ Ngó Sen có các mục Sao lưu…, Khôi phục… và Giới thiệu Ngó Sen."
+    caption="Menu sao lưu và khôi phục trong cửa sổ cài đặt. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+
+  <h2 id="khoi-phuc">Khôi phục từ file</h2>
+  <ol class="steps">
+    <li>Click ☰ rồi chọn “Khôi phục…”.</li>
+    <li>Trong hộp thoại “Khôi phục cài đặt”, chọn file JSON đã sao lưu rồi click “Open”.</li>
+    <li>Thông báo xác nhận file vừa khôi phục có nút “Hoàn tác”.</li>
+  </ol>
+  <p>
+    Ngó Sen kiểm tra file trước khi ghi và báo trước những gì bản IBus không giữ được: chế độ emoji,
+    tắt tiếng Việt theo app và phím chuyển chỉ một phím.
+  </p>
+
+  <h2 id="hai-ban">Mang cài đặt giữa hai bản</h2>
+  <p>
+    Lần chạy đầu, bản IBus chép cài đặt từ bản fcitx5 nếu có. Việc này chỉ làm một lần; sau đó hai bản
+    không đồng bộ. Muốn mang thay đổi sang bản kia thì dùng file sao lưu.
+  </p>
+  <p>
+    Trước khi khôi phục file của bản IBus vào bản fcitx5, hãy sao lưu cài đặt của bản fcitx5 trước.
+    Bản fcitx5 chưa có thay đổi trong <a href="https://github.com/ngosen/ngosen/pull/648">ngosen/ngosen#648</a> xoá
+    các lựa chọn riêng tiếng Việt hay tiếng Anh của app khi khôi phục file này.
+  </p>
+</Guide>

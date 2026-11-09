@@ -2,7 +2,9 @@
 title: "WPS Office không phù hợp với IBus"
 description: "Gõ tiếng Việt trong WPS Office qua IBus ra tieêngếng thay vì tiếng. Đây là một phần lý do Ngó Sen thôi làm bản IBus."
 pubDate: 2026-10-09
-updatedDate: 2026-10-16
+updatedDate: 2026-11-09
+outdated: "Từ 27/10/2026 Ngó Sen lại có bản chạy trên IBus: Ngó Sen cho GNOME, version đầu tiên là 1.0.0-1."
+outdatedLink: { href: "/ngo-sen-cho-gnome/", label: "Ngó Sen cho GNOME" }
 ---
 
 Trên Ubuntu 26.04 GNOME, gõ `hocj tieengs vieetj` qua IBus vào một ô của WPS Spreadsheets thì ô hiện

@@ -13,6 +13,8 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     // Set when a later release changed what the post describes.
     outdated: z.string().optional(),
+    // Page the outdated note points to; the main repository's changelog when unset.
+    outdatedLink: z.object({ href: z.string(), label: z.string() }).optional(),
   }),
 });
 

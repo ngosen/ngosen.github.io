@@ -1,0 +1,52 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+import Shot from '../../../components/Shot.astro';
+
+const toc = [
+  { id: 'them', label: 'Thêm một gõ tắt' },
+  { id: 'tieng-anh', label: 'Gõ tắt khi đang gõ tiếng Anh' },
+  { id: 'danh-sach', label: 'Tìm và xoá gõ tắt' },
+];
+---
+
+<Guide
+  edition="gnome"
+  title="Gõ tắt một cụm từ hay dùng"
+  description="Thêm từ viết tắt và cụm từ đầy đủ ở trang Gõ tắt của Ngó Sen cho GNOME, dùng Space để bung cụm từ và xem tuỳ chọn gõ tắt khi đang gõ tiếng Anh."
+  toc={toc}
+>
+  <p slot="lede">
+    Gõ tắt đổi một từ viết tắt thành cụm từ đầy đủ khi bấm <kbd>Space</kbd>. Trang “Gõ tắt” có các ô thêm từ
+    và danh sách để tìm, xoá gõ tắt đã lưu.
+  </p>
+
+  <h2 id="them">Thêm một gõ tắt</h2>
+  <p>Vào “Ngó Sen › Gõ tắt”.</p>
+  <ol class="steps">
+    <li>Ở ô “Từ viết tắt (ví dụ: kg)”, gõ <code>kg</code>.</li>
+    <li>
+      Ở ô “Từ đầy đủ (ví dụ: khô gà)”, gõ <code>không gì</code>. Với Telex, gõ <code>khoong gif</code> để ra cụm này.
+    </li>
+    <li>Click “Thêm”. Danh sách có dòng <code>kg / không gì</code> và thông báo đã lưu.</li>
+    <li>Trong Text Editor, gõ <code>kg</code> rồi bấm <kbd>Space</kbd> để ra <code>không gì</code>.</li>
+  </ol>
+  <Shot
+    name="gnome-macro"
+    width={550}
+    height={570}
+    alt="Trang Gõ tắt của Ngó Sen có các công tắc, định dạng ngày giờ, hai ô thêm từ, nút Thêm, ô tìm kiếm và danh sách gõ tắt."
+    caption="Trang “Gõ tắt” để thêm và quản lý từ viết tắt. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+
+  <h2 id="tieng-anh">Gõ tắt khi đang gõ tiếng Anh</h2>
+  <p>
+    “Gõ tắt cả khi đang gõ tiếng Anh” cho phép từ viết tắt như <code>ko</code> vẫn ra <code>không</code>
+    khi đang gõ tiếng Anh, nếu “Bật gõ tắt” đang bật.
+  </p>
+
+  <h2 id="danh-sach">Tìm và xoá gõ tắt</h2>
+  <p>
+    Dưới các ô thêm từ có ô “Tìm từ gõ tắt…” và nút hình thùng rác ở mỗi dòng.
+    Thay đổi được lưu ngay; thông báo ở đáy cửa sổ có nút “Hoàn tác”.
+  </p>
+</Guide>

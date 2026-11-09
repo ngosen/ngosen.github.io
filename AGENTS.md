@@ -21,11 +21,17 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   again. Old entries carry `prRepo: ARCHIVE_REPO`; new release entries leave it out.
 - Page text is Vietnamese except for `/en/` and `/en/typing-without-preedit/`; code, comments and commit messages are English.
   The bilingual typing-without-preedit page takes facts from `docs/typing-without-preedit.md` on `main` of the main repository, including how Ngó Sen deletes text (maintainer-approved exception, 20 October 2026).
-- The site does not mention the IBus edition (`ngosen/ibus-ngosen`), `install.sh --ibus` or the `ibus-ngosen` package; the
-  project stopped developing it on 1 November 2026. Sentences about the system's own IBus and other projects' IBus
-  editions stay, as do the blog posts `chi-lam-cho-fcitx5` and `wps-office-ibus`.
-- The site must not imply support or a team. The intro, highlights and the fcitx5-only note (`SCOPE`) mirror
-  the top of the README. Do not mention vibecoding (dropped at the maintainer's request).
+- `/ngo-sen-cho-gnome/` is the section for Ngó Sen cho GNOME, the IBus edition: an overview, an install page,
+  a releases page and a usage guide, listed in `GNOME_PAGES` and `GNOME_GUIDE` (`src/data/site.ts`) and reached
+  from the "Bản GNOME" nav key. Its facts come from `README.md` and `CHANGELOG.md` on `main` of
+  `ngosen/ibus-ngosen` (maintainer-approved exception, 28 October 2026, renewed 9 November 2026).
+  `IBUS_RELEASES` copies the opening paragraph of each entry in that changelog; add one per release there.
+  Guide pages use `Guide.astro` with `edition="gnome"` and follow the usage-guide rules below; their
+  screenshots are named `gnome-*`. The chooser on the home page and the ledes of `/cai-dat/` and `/huong-dan/`
+  point to the section. The install guide and the usage guide describe the fcitx5 edition only. Neither
+  edition is presented as the better one. install.sh installs only the fcitx5 edition.
+- The site must not imply support or a team. The intro, highlights and the scope note (`SCOPE`) mirror
+  the top of the README; the scope note's sentence on the GNOME edition comes from the top of its README. Do not mention vibecoding (dropped at the maintainer's request).
 - `/roadmap/` mirrors `ROADMAP.md` on `main` of the main repository through `ROADMAP` in
   `src/data/site.ts`; change them together. No dates; a version number only where the work has a
   GitHub milestone. Nothing else on the site promises future work or shows a date for it.
@@ -37,7 +43,7 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   source, release, version, changelog, roadmap, hash/SHA-256, distro, app, container, key names such as Backspace, and input-method terms: uinput server, preedit, surrounding text, commit, forward key. Translate lỗi,
   cài đặt, gỡ, cập nhật, thư mục, cấu hình, máy ảo, gói.
 - A release number is a "version" ("version 1.4.2", "version thử", "version sửa lỗi"), as in the main
-  repository; "bản" stays where it means something else (bản gốc, bản snap, bản sửa, bản build).
+  repository; "bản" stays where it means something else (bản gốc, bản snap, bản IBus, bản sửa, bản build).
 - One name per concept across every page and post: "service" (not "dịch vụ"), "uinput server" (not
   "chương trình chạy ngầm"), "module" (not "mô-đun"), "compositor" (not an unexplained "WM"), "click"
   for the mouse and "bấm" for keys, "test" and "lỗi" (not "thử", "hỏng") when talking about checking
@@ -124,6 +130,10 @@ When a version is released, in this order:
    page, button or option, a new option), check the `/huong-dan/` pages that show it.
 7. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
    to `main`.
+
+When Ngó Sen cho GNOME (`ngosen/ibus-ngosen`) releases, once the release is public: add its entry at the
+top of `IBUS_RELEASES`, bring the `/ngo-sen-cho-gnome/` pages in line with its README, and if its settings
+window changed, check the GNOME guide pages that show it. Then build and ask for approval as above.
 
 ## Publishing
 

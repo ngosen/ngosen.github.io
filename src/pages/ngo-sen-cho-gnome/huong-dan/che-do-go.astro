@@ -1,0 +1,60 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+import Shot from '../../../components/Shot.astro';
+
+const toc = [
+  { id: 'chon', label: 'Chọn cho app đang dùng' },
+  { id: 'mac-dinh', label: 'Trở về chế độ mặc định' },
+  { id: 'go-sen', label: 'Gõ Sen ở app cho phép' },
+];
+---
+
+<Guide
+  edition="gnome"
+  title="Gõ Sen hay gạch chân cho từng app"
+  description="Dùng menu phím ` để chọn Gõ Sen hoặc Gạch chân cho app đang dùng; xem cách trở về mặc định và tuỳ chọn “Gõ Sen ở app cho phép” trong Ngó Sen."
+  toc={toc}
+>
+  <p slot="lede">
+    Ngó Sen mặc định dùng Gõ Sen ở ô báo được chữ quanh con trỏ; chỗ khác vẫn gạch chân. Menu phím <kbd>`</kbd>
+    cho chọn cách gõ riêng cho từng app, và Ngó Sen nhớ lựa chọn đó.
+  </p>
+
+  <h2 id="chon">Chọn cho app đang dùng</h2>
+  <ol class="steps">
+    <li>Khi đang gõ tiếng Việt trong app, bấm <kbd>`</kbd> để mở menu cạnh con trỏ.</li>
+    <li>Bấm <kbd>1</kbd> để chọn “Gõ Sen”, hoặc <kbd>q</kbd> để chọn “Gạch chân”.</li>
+  </ol>
+  <Shot
+    name="gnome-mode-menu"
+    width={460}
+    height={250}
+    alt="Menu cạnh con trỏ có các mục 1. Gõ Sen, q. Gạch chân, e. Tiếng Anh và r. Chế độ gõ mặc định."
+    caption="Menu phím ` để chọn cách gõ cho app đang dùng. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+  <p>
+    Mục “Tiếng Anh”, phím <kbd>e</kbd>, chuyển sang tiếng Anh cho mọi app. Theo mô tả của hàng “Phím tắt menu
+    chế độ gõ”, bấm <kbd>`</kbd> hai lần thì gõ ra chính phím đó; lúc gõ tiếng Anh phím này gõ như thường.
+  </p>
+
+  <h2 id="mac-dinh">Trở về chế độ mặc định</h2>
+  <p>
+    Trong app đã chọn riêng, bấm <kbd>`</kbd> rồi <kbd>r</kbd> để chọn “Chế độ gõ mặc định”.
+    App trở về cách gõ chung.
+  </p>
+  <p>
+    Vào “Ngó Sen › Gõ chữ” để xem “Phím tắt menu chế độ gõ”. Các hàng bên dưới cho sửa phím của từng mục:
+    “Phím tắt cho Gõ Sen”, “Phím tắt cho Gạch chân”, “Phím tắt cho Tiếng Anh”, “Phím tắt cho Mặc định”.
+  </p>
+
+  <h2 id="go-sen">Gõ Sen ở app cho phép</h2>
+  <p>
+    Vào “Ngó Sen › Gõ chữ”. Tắt “Gõ Sen ở app cho phép” để dùng gạch chân ở mọi app chưa chọn riêng;
+    bật lại để chữ hiện thẳng vào ô báo được surrounding text. Cứu dấu cần Gõ Sen.
+  </p>
+  <p>
+    Trên X11, các ô không báo được surrounding text vẫn gạch chân, như Chrome, app Electron, xterm,
+    Alacritty và kitty. Khi một app gõ sai với Gõ Sen, chuyển app đó sang “Gạch chân” rồi
+    <a href="/ngo-sen-cho-gnome/huong-dan/kiem-tra-bao-loi/">báo lỗi</a>.
+  </p>
+</Guide>

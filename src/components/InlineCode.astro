@@ -3,8 +3,12 @@ interface Props {
   text: string;
 }
 
-// Backticks in release text mark commands, typed keys and output.
-const parts = Astro.props.text.split('`');
+// Backticks in release text mark commands, typed keys and output; \` is a literal backtick key.
+const literal = '\u0000';
+const parts = Astro.props.text
+  .replaceAll('\\`', literal)
+  .split('`')
+  .map((part) => part.replaceAll(literal, '`'));
 ---
 
 {parts.map((part, index) => (index % 2 === 1 ? <code>{part}</code> : part))}
