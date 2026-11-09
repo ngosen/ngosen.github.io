@@ -54,17 +54,30 @@ const toc = [
   </ol>
 
   <h2 id="nhat-ky">Lưu nhật ký gõ</h2>
+  <ol class="steps">
+    <li>Ngay sau khi gõ ra chữ sai, click chữ V hoặc E trên thanh trên cùng.</li>
+    <li>Click “Lưu nhật ký gõ”.</li>
+    <li>
+      Thông báo từ “Ngó Sen” hiện đường dẫn file, như
+      “Đã lưu nhật ký gõ: ~/.local/state/ngosen/typing-20261109-163706.log”.
+    </li>
+  </ol>
   <p>
-    Menu nguồn nhập trên thanh trên cùng có mục “Lưu nhật ký gõ”. Mục này lưu những gì vừa gõ vào
-    <code>~/.local/state/ngosen/</code> và hiện thông báo kèm đường dẫn file; chỉ tài khoản của bạn đọc được.
-    Đọc lại file trước khi gửi kèm báo lỗi.
+    File nằm trong <code>~/.local/state/ngosen/</code> và chỉ tài khoản của bạn đọc được. File ghi từng phím
+    bấm và thả, chữ trong ô sau mỗi phím, desktop và loại phiên (Wayland hay X11). Dòng đầu file nhắc đọc lại
+    trước khi gửi cho người khác.
   </p>
 
   <h2 id="gui">Gửi kết quả</h2>
   <p>
-    Cuối trang “Kiểm tra”, phần “Gửi kết quả cho Ngó Sen” có ba nút: “Nhắn qua Facebook…”, “Báo lỗi trên
-    GitHub…” và “Chép kết quả”. Kết quả liệt kê các bước kiểm tra ở trên; chưa click nút nào ở phần này thì
-    chưa có gì được gửi đi.
+    Trong tab “Kiểm tra”, click “Chép kết quả”. Thông báo “Đã chép kết quả.” hiện ra, và Ngó Sen chép version
+    Ngó Sen và IBus, distro, desktop, phiên, các biến môi trường <code>GTK_IM_MODULE</code>,
+    <code>QT_IM_MODULE</code>, <code>XMODIFIERS</code>, version GNOME Shell, chế độ gõ và từng bước trong
+    “Các bước để gõ tiếng Việt” kèm <code>[OK]</code>. Dán kết quả vào báo lỗi.
+  </p>
+  <p>
+    Hai nút còn lại là “Nhắn qua Facebook…” và “Báo lỗi trên GitHub…”. Cửa sổ ghi: “Chưa có gì được gửi đi cho
+    tới khi bấm một nút bên dưới.”
   </p>
   <p>Báo lỗi bản IBus ở <a href={`${IBUS_REPO}/issues`}>Issues của <code>ngosen/ibus-ngosen</code></a>.</p>
 </Guide>
