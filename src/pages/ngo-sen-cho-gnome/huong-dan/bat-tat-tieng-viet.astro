@@ -1,0 +1,63 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+import Shot from '../../../components/Shot.astro';
+
+const toc = [
+  { id: 'chuyen', label: 'Đổi Anh/Việt bằng Ctrl+Shift' },
+  { id: 'menu', label: 'Bật và tắt từ menu' },
+  { id: 'doi-phim', label: 'Đổi phím chuyển Anh/Việt' },
+];
+---
+
+<Guide
+  edition="gnome"
+  title="Bật và tắt tiếng Việt"
+  description="Bấm rồi thả Ctrl+Shift để đổi Anh/Việt trong Ngó Sen cho GNOME, xem chữ V hay E trên thanh trên cùng và đổi phím chuyển trong cửa sổ cài đặt."
+  toc={toc}
+>
+  <p slot="lede">
+    <kbd>Ctrl</kbd>+<kbd>Shift</kbd> đổi Anh/Việt ngay trong Ngó Sen. Thanh trên cùng hiện V khi tiếng Việt bật,
+    E khi đang gõ tiếng Anh; <kbd>Super</kbd>+<kbd>Space</kbd> vẫn đổi nguồn nhập của GNOME.
+  </p>
+
+  <h2 id="chuyen">Đổi Anh/Việt bằng Ctrl+Shift</h2>
+  <ol class="steps">
+    <li>Nhấn cùng lúc <kbd>Ctrl</kbd> và <kbd>Shift</kbd> rồi thả ra để đổi Anh/Việt.</li>
+    <li>
+      Khi thanh trên cùng hiện V, với kiểu Telex, gõ <code>vieetj</code> rồi bấm <kbd>Space</kbd> ra
+      <code>việt</code>.
+    </li>
+    <li>
+      Bấm rồi thả <kbd>Ctrl</kbd>+<kbd>Shift</kbd> lần nữa để chuyển sang E; gõ <code>vieetj</code> thì giữ
+      <code>vieetj</code>.
+    </li>
+  </ol>
+  <p>Ô mật khẩu luôn gõ tiếng Anh.</p>
+
+  <h2 id="menu">Bật và tắt từ menu</h2>
+  <p>
+    Click chữ V hoặc E trên thanh trên cùng để mở menu nguồn nhập. Dòng “Tiếng Việt” có dấu ✔ khi tiếng Việt
+    đang bật, ✖ khi đang gõ tiếng Anh.
+  </p>
+  <Shot
+    name="gnome-top-menu"
+    width={236}
+    height={672}
+    alt="Menu nguồn nhập Ngó Sen trên thanh trên cùng của GNOME có dòng Tiếng Việt, Kiểu gõ, Gõ Sen ở app cho phép, Bảng mã và Cài đặt."
+    caption="Dòng “Tiếng Việt” trong menu nguồn nhập. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+
+  <h2 id="doi-phim">Đổi phím chuyển Anh/Việt</h2>
+  <p>Vào “Ngó Sen › Gõ chữ”, tìm hàng “Phím chuyển Anh/Việt”.</p>
+  <p>
+    Danh sách có “Ctrl+Shift”, “Shift+Alt”, “Tắt” và “Phím khác…”. Chọn “Ctrl+Shift” có tác dụng ngay;
+    nhấn cùng lúc rồi thả ra để chuyển.
+  </p>
+  <Shot
+    name="gnome-switch-key"
+    width={566}
+    height={325}
+    alt="Trang Gõ chữ của Ngó Sen, hàng Phím chuyển Anh/Việt đang mở danh sách: Ctrl+Shift có dấu chọn, Shift+Alt, Tắt, Ctrl+Space, Phím khác…"
+    caption="Danh sách của “Phím chuyển Anh/Việt”. “Ctrl+Space” có ở đây vì máy test chép cài đặt từ bản fcitx5. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+</Guide>

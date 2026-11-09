@@ -1,0 +1,52 @@
+---
+import Guide from '../../../layouts/Guide.astro';
+import Shot from '../../../components/Shot.astro';
+
+const toc = [
+  { id: 'cuu-dau', label: 'Click sau chữ để sửa dấu' },
+  { id: 'gioi-han', label: 'Khi Cứu dấu không chạy' },
+  { id: 'cuu-chu', label: 'Cứu chữ trên X11' },
+];
+---
+
+<Guide
+  edition="gnome"
+  title="Sửa dấu chữ vừa gõ"
+  description="Dùng Cứu dấu trong Ngó Sen cho GNOME: click ngay sau chữ rồi gõ phím dấu khi dùng Gõ Sen; xem giới hạn khi chọn chữ và Cứu chữ trên X11."
+  toc={toc}
+>
+  <p slot="lede">
+    Cứu dấu sửa dấu của một chữ đã gõ: click ngay sau chữ rồi gõ phím dấu. Cách này cần Gõ Sen và ô báo được
+    chữ quanh con trỏ.
+  </p>
+
+  <h2 id="cuu-dau">Click sau chữ để sửa dấu</h2>
+  <p>Trong Text Editor, với kiểu Telex và “Gõ Sen ở app cho phép” đang bật:</p>
+  <ol class="steps">
+    <li>Gõ <code>nha cua</code> rồi bấm <kbd>Space</kbd>.</li>
+    <li>Click ngay sau <code>nha</code>.</li>
+    <li>Bấm <kbd>f</kbd>. Chữ <code>nha</code> thành <code>nhà</code>.</li>
+  </ol>
+  <Shot
+    name="gnome-cuu-dau"
+    width={460}
+    height={200}
+    alt="Chữ nha trong Text Editor được sửa thành nhà, bên dưới có gợi ý Cứu dấu: Tab hoặc Esc để trả lại phím vừa gõ."
+    caption="Cứu dấu sau khi click ngay sau chữ “nha” rồi bấm f. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+  <p>Gợi ý dưới chữ ghi “Cứu dấu: Tab hoặc Esc để trả lại phím vừa gõ”.</p>
+
+  <h2 id="gioi-han">Khi Cứu dấu không chạy</h2>
+  <p>
+    Vào “Ngó Sen › Gõ chữ” để xem “Gõ Sen ở app cho phép”. Khi tắt mục này, Text Editor gõ có gạch chân
+    và Cứu dấu không chạy; bật lại thì Cứu dấu chạy ở ô này.
+  </p>
+  <p>Chọn chữ rồi gõ phím dấu chỉ có tác dụng trong app X11.</p>
+
+  <h2 id="cuu-chu">Cứu chữ trên X11</h2>
+  <p>
+    Cứu chữ gõ lại có dấu một chữ vừa gõ nhầm lúc đang tiếng Anh, như <code>vieetj</code> thành <code>việt</code>
+    khi chuyển về tiếng Việt. Tính năng này chỉ chạy trong phiên X11; trên Wayland, chuyển Anh/Việt không sửa
+    chữ vừa gõ theo cách đó.
+  </p>
+</Guide>

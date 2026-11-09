@@ -53,6 +53,24 @@ const jsonLd = {
       <p>{SCOPE.text}</p>
       <p><a href="/go-khong-gach-chan/">Cách người Việt gõ, và cách giúp.</a></p>
     </div>
+    <div class="editions">
+      <article class="sheet edition" aria-labelledby="ban-fcitx5">
+        <h3 id="ban-fcitx5">Ngó Sen cho fcitx5</h3>
+        <p>
+          Dành cho người cần Gõ Sen và Cứu dấu ở mọi app, Vim mode theo app hay bảng chọn emoji. Bản này chạy
+          trên fcitx5, dùng được trên GNOME, KDE, Xfce, Sway và Hyprland.
+        </p>
+        <a class="key" href="/cai-dat/">Cài bản fcitx5</a>
+      </article>
+      <article class="sheet edition" aria-labelledby="ban-gnome">
+        <h3 id="ban-gnome">Ngó Sen cho GNOME (IBus)</h3>
+        <p>
+          Dành cho người muốn dùng bộ gõ tiếng Việt với những gì GNOME có sẵn. Bản này chạy trên IBus của GNOME,
+          có Gõ Sen ở app cho phép, Cứu dấu, gõ tắt và sao lưu cài đặt.
+        </p>
+        <a class="key" href="/ngo-sen-cho-gnome/">Xem bản cho GNOME</a>
+      </article>
+    </div>
   </section>
 
   <section class="telex" aria-labelledby="telex-tieu-de">
@@ -721,6 +739,34 @@ const jsonLd = {
 
   .scope .intro p + p {
     margin-top: 0.8rem;
+  }
+
+  /* The two editions side by side: same sheet, same key, neither ranked above the other. */
+  .editions {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .edition {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: clamp(1.1rem, 3.5vw, 2rem) clamp(1.1rem, 3.5vw, 2.25rem);
+  }
+
+  .edition h3 {
+    font-size: var(--step-2);
+  }
+
+  .edition .key {
+    margin-top: auto;
+  }
+
+  @media (min-width: 44rem) {
+    .editions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   /* Modes and the Telex board */

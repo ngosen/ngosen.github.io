@@ -41,7 +41,13 @@ const jsonLd = {
       <aside class="outdated" aria-label="Ghi chú cập nhật">
         <p>
           <strong>Ghi chú sau này.</strong> {post.data.outdated} Xem
-          <a href={`${REPO}/blob/main/CHANGELOG.md`}>changelog</a>.
+          {
+            post.data.outdatedLink ? (
+              <a href={post.data.outdatedLink.href}>{post.data.outdatedLink.label}</a>
+            ) : (
+              <a href={`${REPO}/blob/main/CHANGELOG.md`}>changelog</a>
+            )
+          }.
         </p>
       </aside>
     )

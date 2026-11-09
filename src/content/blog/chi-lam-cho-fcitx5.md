@@ -2,7 +2,9 @@
 title: "Ngó Sen chỉ làm cho fcitx5"
 description: "Ngó Sen thôi làm bản IBus và bản chạy thẳng trên Sway, Hyprland. Người dùng GNOME và Ubuntu vẫn gõ được bằng fcitx5."
 pubDate: 2026-10-09
-updatedDate: 2026-10-16
+updatedDate: 2026-11-09
+outdated: "Từ 27/10/2026 Ngó Sen lại có bản chạy trên IBus: Ngó Sen cho GNOME, version đầu tiên là 1.0.0-1."
+outdatedLink: { href: "/ngo-sen-cho-gnome/", label: "Ngó Sen cho GNOME" }
 ---
 
 Từ ngày 09/10/2026, Ngó Sen chỉ làm cho fcitx5. Hai hướng trong roadmap cũ đã thôi làm: bản cho IBus

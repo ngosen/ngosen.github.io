@@ -1,0 +1,90 @@
+---
+import Page from '../../layouts/Page.astro';
+import InlineCode from '../../components/InlineCode.astro';
+import { GNOME_GUIDE, GNOME_PAGES, IBUS_RELEASES, IBUS_REPO } from '../../data/site';
+
+const toc = [
+  { id: 'khac-gi', label: 'Khác gì bản fcitx5' },
+  { id: 'cai', label: 'Cài' },
+  { id: 'huong-dan', label: 'Hướng dẫn' },
+  { id: 'version', label: 'Version mới nhất' },
+  { id: 'bao-loi', label: 'Báo lỗi' },
+];
+---
+
+<Page
+  title="Ngó Sen cho GNOME"
+  description="Bộ gõ tiếng Việt dùng IBus có sẵn của GNOME, với Gõ Sen và Ctrl+Shift đổi Anh/Việt; xem cách cài, hướng dẫn dùng, các giới hạn và version mới nhất."
+  heading="Ngó Sen cho GNOME"
+  toc={toc}
+  tocPages={GNOME_PAGES}
+>
+  <p slot="lede">
+    Ngó Sen cho GNOME là bộ gõ tiếng Việt dùng IBus có sẵn của GNOME, không cần fcitx5. Bản này hướng đến sự
+    đơn giản và ổn định, dùng những gì GNOME có sẵn; những tính năng cần lách giới hạn của GNOME/IBus thì không có.
+  </p>
+
+  <h2 id="khac-gi">Khác gì bản fcitx5</h2>
+  <p>
+    Như bản fcitx5, bản này mặc định dùng Gõ Sen: chữ hiện thẳng vào ô ở app báo được chữ quanh con trỏ
+    (surrounding text). Ô không báo được thì chữ đang gõ có gạch chân (preedit) cho tới khi chốt.
+  </p>
+  <p>Hai bản cùng có:</p>
+  <ul>
+    <li>Menu phím <kbd>`</kbd> để chọn Gõ Sen hay Gạch chân riêng cho từng app, nhớ lựa chọn đó.</li>
+    <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd> đổi Anh/Việt.</li>
+    <li>Cứu dấu bằng cách click ngay sau một chữ rồi gõ phím dấu, khi đang dùng Gõ Sen.</li>
+    <li>Gõ tắt, kể cả khi đang gõ tiếng Anh nếu bật tuỳ chọn đó.</li>
+    <li>Sao lưu và khôi phục bằng cùng định dạng JSON.</li>
+    <li>Sửa bảng phím (keymap) và kiểm tra máy ngay trong cửa sổ cài đặt.</li>
+  </ul>
+  <p>Bản fcitx5 có thêm:</p>
+  <ul>
+    <li>Gõ Sen ở mọi app, kèm sửa lỗi riêng từng app.</li>
+    <li>Cứu dấu ở mọi app.</li>
+    <li>Vim mode theo app.</li>
+    <li>Bảng chọn emoji và tắt tiếng Việt cho riêng một app.</li>
+  </ul>
+  <p>
+    Cứu chữ ở bản cho GNOME chỉ chạy trong phiên X11: chuyển về tiếng Việt để gõ lại chữ vừa gõ nhầm lúc đang
+    tiếng Anh, như <code>vieetj</code> thành <code>việt</code>.
+  </p>
+  <p>Chọn Ngó Sen cho GNOME nếu muốn dùng bộ gõ trên IBus có sẵn của GNOME.</p>
+  <p>
+    Chọn <a href="/cai-dat/">bản fcitx5</a> nếu cần Gõ Sen và Cứu dấu ở mọi app, Vim mode theo app hay bảng chọn emoji.
+  </p>
+
+  <h2 id="cai">Cài</h2>
+  <p>
+    Tải gói đúng distro và kiến trúc rồi cài bằng trình quản lý gói theo
+    <a href="/ngo-sen-cho-gnome/cai-dat/">hướng dẫn cài và gỡ</a>.
+    Có gói cho Debian 13, Kali, Ubuntu 24.04 trở lên, Fedora 43 và 44, Arch, CachyOS và openSUSE Tumbleweed.
+    Linux Mint 22 dùng gói của Ubuntu 24.04.
+  </p>
+
+  <h2 id="huong-dan">Hướng dẫn</h2>
+  <p>Các bước đã được test trên Ubuntu 24.04 GNOME với version 1.2.1-1.</p>
+  <ul>
+    {GNOME_GUIDE.map((page) => (
+      <li><a href={page.href}>{page.label}</a> <span>{page.summary}</span></li>
+    ))}
+  </ul>
+
+  <h2 id="version">Version mới nhất</h2>
+  <p>
+    Version {IBUS_RELEASES[0].version}, ngày{' '}
+    <time datetime={IBUS_RELEASES[0].date.split('/').reverse().join('-')}>{IBUS_RELEASES[0].date}</time>.
+  </p>
+  <p><InlineCode text={IBUS_RELEASES[0].summary} /></p>
+  <p>
+    Xem <a href="/ngo-sen-cho-gnome/ban-phat-hanh/">các version</a> hoặc
+    <a href={`${IBUS_REPO}/releases/latest`}>tải gói của release mới nhất</a>.
+  </p>
+
+  <h2 id="bao-loi">Báo lỗi</h2>
+  <p>
+    Báo lỗi bản này ở <a href={`${IBUS_REPO}/issues`}>Issues của <code>ngosen/ibus-ngosen</code></a>.
+    Xem cách <a href="/ngo-sen-cho-gnome/huong-dan/kiem-tra-bao-loi/">kiểm tra máy và báo lỗi</a> để lấy kết quả
+    kiểm tra và lưu nhật ký gõ.
+  </p>
+</Page>

@@ -1,0 +1,173 @@
+---
+import Page from '../../layouts/Page.astro';
+import Shot from '../../components/Shot.astro';
+import { GNOME_PAGES, IBUS_REPO } from '../../data/site';
+
+const toc = [
+  { id: 'goi', label: 'Chọn và cài gói' },
+  { id: 'tren-gnome', label: 'Thêm nguồn nhập trên GNOME' },
+  { id: 'desktop-khac', label: 'Cinnamon và Xfce' },
+  { id: 'kho-goi', label: 'Cài từ repo gói' },
+  { id: 'tu-fcitx5', label: 'Từ bản fcitx5 sang' },
+  { id: 'sang-fcitx5', label: 'Chuyển sang bản fcitx5' },
+  { id: 'go', label: 'Gỡ' },
+  { id: 'build', label: 'Build từ source' },
+];
+---
+
+<Page
+  title="Cài và gỡ Ngó Sen cho GNOME"
+  description="Cài gói ibus-ngosen theo distro, thêm nguồn nhập trên GNOME, Cinnamon hoặc Xfce; chuyển qua lại với bản fcitx5 và gỡ bằng trình quản lý gói."
+  heading="Cài và gỡ Ngó Sen cho GNOME"
+  toc={toc}
+  tocPages={GNOME_PAGES}
+>
+  <p slot="lede">
+    Cài gói <code>ibus-ngosen</code> bằng trình quản lý gói, rồi đăng xuất và đăng nhập lại để thêm nguồn nhập.
+    Hai bản IBus và fcitx5 không chạy cùng lúc trong một tài khoản.
+  </p>
+
+  <h2 id="goi">Chọn và cài gói</h2>
+  <p>
+    Tải gói đúng distro và kiến trúc từ <a href={`${IBUS_REPO}/releases/latest`}>release mới nhất</a>.
+    Có gói cho Debian 13, Kali, Ubuntu 24.04 trở lên, Fedora 43 và 44, Arch, CachyOS và openSUSE Tumbleweed.
+    Linux Mint 22 dùng gói của Ubuntu 24.04.
+  </p>
+  <p>
+    Có gói ARM 64-bit cho Debian, Ubuntu và Fedora; Arch và openSUSE chỉ có x86_64.
+    Không có gói cho Debian 12 và Ubuntu 22.04.
+  </p>
+  <p>Trong terminal, vào thư mục vừa tải gói về rồi chạy lệnh theo distro.</p>
+  <p>Debian, Kali, Ubuntu và Linux Mint dùng gói <code>.deb</code>:</p>
+  <pre tabindex="0"><code>sudo apt install ./ibus-ngosen_*.deb</code></pre>
+  <p>Fedora dùng gói <code>.rpm</code>:</p>
+  <pre tabindex="0"><code>sudo dnf install ./ibus-ngosen-*.rpm</code></pre>
+  <p>Arch và CachyOS dùng gói <code>.pkg.tar.zst</code>:</p>
+  <pre tabindex="0"><code>sudo pacman -U ./ibus-ngosen-*.pkg.tar.zst</code></pre>
+  <p>openSUSE Tumbleweed dùng gói <code>.rpm</code>:</p>
+  <pre tabindex="0"><code>sudo zypper install ./ibus-ngosen-*.rpm</code></pre>
+
+  <h2 id="tren-gnome">Thêm nguồn nhập trên GNOME</h2>
+  <ol class="steps">
+    <li>Đăng xuất rồi đăng nhập lại để IBus thấy bộ gõ vừa cài.</li>
+    <li>Vào “Settings › Keyboard › Input Sources”, click “Add Input Source…”.</li>
+    <li>Click ⋮ để hiện mọi ngôn ngữ, gõ <code>vie</code> vào ô tìm kiếm rồi chọn “Other”.</li>
+    <li>Chọn “Vietnamese (Ngó Sen)”, click “Add”.</li>
+  </ol>
+  <p>
+    Trên desktop tiếng Việt, nguồn nhập mang tên “Tiếng Việt (Ngó Sen)”. Các mục “Vietnamese”,
+    “Vietnamese (France)” và “Vietnamese (US)” là bố cục bàn phím thường.
+  </p>
+  <Shot
+    name="gnome-add-source"
+    width={420}
+    height={300}
+    alt="Hộp thoại Add Input Source của GNOME có nguồn nhập Vietnamese (Ngó Sen) để thêm."
+    caption="Thêm nguồn nhập “Vietnamese (Ngó Sen)”. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+  <p>
+    Muốn mở cửa sổ cài đặt, click ⋮ cạnh “Vietnamese (Ngó Sen)” trong “Input Sources”, chọn “Preferences”.
+    Cũng có thể tìm “Ngó Sen” trong danh sách app.
+  </p>
+  <p>
+    Lần đầu gõ, Ngó Sen tự bỏ “English (US)” vì <kbd>Ctrl</kbd>+<kbd>Shift</kbd> đã đổi Anh/Việt.
+    Việc này chỉ làm một lần: thêm lại “English (US)” thì nguồn đó được giữ; bàn phím ngôn ngữ khác giữ nguyên.
+    Nếu lúc đó phím chuyển Anh/Việt đang tắt, Ngó Sen không bỏ nguồn nhập nào, kể cả khi bật phím lại sau này.
+    Trang “Kiểm tra” có nút “Chỉ dùng Ngó Sen” để bỏ nguồn đó sau.
+  </p>
+  <p>Ngó Sen luôn dùng bàn phím kiểu Mỹ, kể cả khi đang gõ tiếng Anh bằng <kbd>Ctrl</kbd>+<kbd>Shift</kbd>.</p>
+  <p>
+    Trên GNOME 50.0–50.3, như Ubuntu 26.04, gói kèm extension sửa lỗi GNOME làm mất phím Ngó Sen gửi tới app.
+    Đăng nhập lại một lần là Ngó Sen tự bật extension; khi extension chưa chạy, chữ vẫn gạch chân.
+  </p>
+
+  <h2 id="desktop-khac">Cinnamon và Xfce</h2>
+  <ol class="steps">
+    <li>Nếu máy có <code>im-config</code>, chạy <code>im-config -n ibus</code>.</li>
+    <li>Mở “IBus Preferences” bằng <code>ibus-setup</code>, thêm “Tiếng Việt (Ngó Sen)”.</li>
+    <li>
+      Trên Cinnamon, đặt phím chuyển nguồn nhập khác, như <kbd>Ctrl</kbd>+<kbd>Space</kbd>, ở tab “General”:
+      Cinnamon giữ phím Super cho menu nên <kbd>Super</kbd>+<kbd>Space</kbd> không tới IBus.
+    </li>
+    <li>Đăng xuất rồi đăng nhập lại.</li>
+  </ol>
+
+  <h2 id="kho-goi">Cài từ repo gói</h2>
+  <p>Trên Fedora, cài từ repo COPR để <code>dnf upgrade</code> tự lên version mới:</p>
+  <pre tabindex="0"><code>{`sudo dnf copr enable nguyenphi/ngosen
+sudo dnf install ibus-ngosen`}</code></pre>
+  <p>
+    Trên Debian, Ubuntu, Arch và openSUSE, thêm repo APT, pacman hoặc zypper theo các dòng ở
+    <a href="/cai-dat/#repo-goi">hướng dẫn repo gói</a>, rồi cài <code>ibus-ngosen</code> thay cho
+    <code>fcitx5-ngosen</code>. Sau đó <code>apt upgrade</code>, <code>pacman -Syu</code> hoặc
+    <code>zypper up</code> tự lên version mới.
+  </p>
+  <p>Cài xong, <a href="#tren-gnome">thêm nguồn nhập trên GNOME</a> hoặc làm theo các bước cho <a href="#desktop-khac">Cinnamon và Xfce</a>.</p>
+
+  <h2 id="tu-fcitx5">Từ bản fcitx5 sang</h2>
+  <p>
+    Gỡ bản fcitx5 bằng <code>install.sh --uninstall</code> theo hướng dẫn của bản đó, rồi cài gói
+    <code>ibus-ngosen</code>. Nếu đã gỡ bằng trình quản lý gói, các biến môi trường hay mục tự chạy do lệnh cài
+    fcitx5 để lại có thể khiến app vẫn đi qua fcitx5.
+  </p>
+  <p>
+    Khi đó, vào “Ngó Sen › Kiểm tra”, click “Xoá” ở bước “Tài khoản này còn cài đặt của bản fcitx5”.
+    Nút chỉ xoá file còn y nguyên như lệnh cài đã ghi và có “Hoàn tác”; file đã sửa tay thì bước kế bên chỉ
+    đường dẫn để tự sửa.
+  </p>
+  <p>
+    Trên máy Ubuntu 24.04 đã test, trang này còn báo “Cài đặt fcitx5 chỉ bạn tự đổi được” với lệnh bên dưới.
+    Chạy lệnh mà “Kiểm tra” chỉ ra, rồi đăng xuất và đăng nhập lại; máy đã test sau đó có Ngó Sen trong nguồn nhập.
+  </p>
+  <pre tabindex="0"><code>im-config -n REMOVE</code></pre>
+  <p>
+    Cài đặt chỉ được chép một lần, lúc bản này chạy lần đầu trên máy đã có bản fcitx5. Sau đó hai bản không
+    đồng bộ; muốn mang thay đổi sang bản kia thì
+    <a href="/ngo-sen-cho-gnome/huong-dan/sao-luu/">sao lưu và khôi phục</a>.
+  </p>
+
+  <h2 id="sang-fcitx5">Chuyển sang bản fcitx5</h2>
+  <p>
+    Vào “Ngó Sen › Gõ chữ”, ở nhóm “Có ở bản fcitx5”, click “Chuyển sang bản fcitx5”.
+    Hộp thoại hiện lệnh cài với nút “Chép lệnh” và “Sao lưu trước…”. Cửa sổ không tự chạy lệnh.
+  </p>
+  <Shot
+    name="gnome-to-fcitx5"
+    width={556}
+    height={306}
+    alt="Hộp thoại Chuyển sang bản fcitx5 có hướng dẫn theo distro, lệnh cài và các nút Đóng, Sao lưu trước…, Chép lệnh."
+    caption="Lệnh chuyển sang bản fcitx5 và nút sao lưu trước khi chuyển. Ubuntu 24.04 GNOME, version 1.2.1-1."
+  />
+  <p>
+    Trên Debian và Ubuntu, lệnh tự thay bản IBus. Trên Fedora, openSUSE và Arch, chép lệnh rồi gỡ
+    <code>ibus-ngosen</code> trước khi chạy, vì cửa sổ này mất cùng gói. Chạy lệnh trong terminal rồi đăng xuất
+    và đăng nhập lại. Cũng có thể xem <a href="/cai-dat/">trang cài bản fcitx5</a>.
+  </p>
+  <p>
+    Cài đặt ở đây không tự chép sang: sao lưu rồi khôi phục file đó trong bản fcitx5.
+    Trước khi khôi phục, hãy sao lưu cài đặt của bản fcitx5 trước; bản fcitx5 chưa có thay đổi trong
+    <a href="https://github.com/ngosen/ngosen/pull/648">ngosen/ngosen#648</a> xoá các lựa chọn riêng tiếng Việt
+    hay tiếng Anh của app khi khôi phục file từ bản IBus.
+  </p>
+
+  <h2 id="go">Gỡ</h2>
+  <p>
+    GNOME giữ lại nguồn nhập cuối cùng. Nếu chỉ có Ngó Sen, thêm nguồn khác trước: vào
+    “Settings › Keyboard › Input Sources”, click “Add Input Source…”, chọn “English (United States)”,
+    “English (US)” rồi “Add”. Sau đó click ⋮ cạnh “Vietnamese (Ngó Sen)”, chọn “Remove”.
+    Trên desktop khác, bỏ “Tiếng Việt (Ngó Sen)” khỏi “IBus Preferences”.
+  </p>
+  <p>Gỡ gói bằng lệnh theo distro.</p>
+  <p>Debian, Kali, Ubuntu và Linux Mint:</p>
+  <pre tabindex="0"><code>sudo apt remove ibus-ngosen</code></pre>
+  <p>Fedora:</p>
+  <pre tabindex="0"><code>sudo dnf remove ibus-ngosen</code></pre>
+  <p>Arch và CachyOS:</p>
+  <pre tabindex="0"><code>sudo pacman -R ibus-ngosen</code></pre>
+  <p>openSUSE Tumbleweed:</p>
+  <pre tabindex="0"><code>sudo zypper remove ibus-ngosen</code></pre>
+  <p>Gỡ xong, đăng xuất rồi đăng nhập lại; cài đặt trong <code>~/.config/ngosen/</code> được giữ lại.</p>
+
+  <h2 id="build">Build từ source</h2>
+  <p>Các gói cần có và lệnh build từ source nằm trong <a href={`${IBUS_REPO}#dựng-từ-mã-nguồn`}>README của <code>ngosen/ibus-ngosen</code></a>.</p>
+</Page>

@@ -3,7 +3,7 @@
 // keys to the previous and next task at the end.
 import Page from './Page.astro';
 import { type TocItem } from '../components/OnThisPage.astro';
-import { GUIDE_PAGES } from '../data/site';
+import { GNOME_GUIDE, GUIDE_PAGES } from '../data/site';
 
 interface Props {
   title: string;
@@ -11,21 +11,29 @@ interface Props {
   toc: TocItem[];
   // Screenshots up to 1.6 show the Qt window; the page about the two windows turns the note off.
   qtNote?: boolean;
+  // The GNOME edition has its own guide, index and page order.
+  edition?: 'fcitx5' | 'gnome';
 }
 
-const { title, description, toc, qtNote = true } = Astro.props;
+const { title, description, toc, edition = 'fcitx5' } = Astro.props;
+const gnome = edition === 'gnome';
+const qtNote = !gnome && (Astro.props.qtNote ?? true);
+const pages = gnome ? GNOME_GUIDE : GUIDE_PAGES;
+const contents = gnome
+  ? { href: '/ngo-sen-cho-gnome/#huong-dan', label: 'Mục lục bản GNOME' }
+  : { href: '/huong-dan/', label: 'Mục lục hướng dẫn' };
 const here = Astro.url.pathname;
-const index = GUIDE_PAGES.findIndex((page) => page.href === here);
-const prev = index > 0 ? GUIDE_PAGES[index - 1] : undefined;
-const next = index >= 0 && index < GUIDE_PAGES.length - 1 ? GUIDE_PAGES[index + 1] : undefined;
+const index = pages.findIndex((page) => page.href === here);
+const prev = index > 0 ? pages[index - 1] : undefined;
+const next = index >= 0 && index < pages.length - 1 ? pages[index + 1] : undefined;
 ---
 
 <Page
-  title={`${title} | Hướng dẫn Ngó Sen`}
+  title={`${title} | ${gnome ? 'Ngó Sen cho GNOME' : 'Hướng dẫn Ngó Sen'}`}
   description={description}
   heading={title}
   toc={toc}
-  tocPages={[{ href: '/huong-dan/', label: 'Mục lục hướng dẫn' }]}
+  tocPages={[contents]}
 >
   <slot name="lede" slot="lede" />
   {
