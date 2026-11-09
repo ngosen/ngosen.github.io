@@ -1416,6 +1416,13 @@ export const DISTRIBUTIONS: Distribution[] = [
     core: 'Rust',
   },
   {
+    name: 'Debian 12',
+    level: 'vm',
+    basis: 'đã gõ thử version 1.8.1-1 trên máy ảo Debian 12 (GNOME Wayland và X11)',
+    file: 'fcitx5-ngosen_*_bookworm_amd64.deb',
+    core: 'Rust',
+  },
+  {
     name: 'Fedora 45',
     level: 'built',
     basis: 'chỉ build và chạy test lúc build',
@@ -1441,13 +1448,6 @@ export const DISTRIBUTIONS: Distribution[] = [
     level: 'built',
     basis: 'chỉ build và chạy test lúc build',
     file: 'fcitx5-ngosen_*_stonking_amd64.deb',
-    core: 'Rust',
-  },
-  {
-    name: 'Debian 12',
-    level: 'built',
-    basis: 'chỉ build và chạy test lúc build',
-    file: 'fcitx5-ngosen_*_bookworm_amd64.deb',
     core: 'Rust',
   },
 ];
