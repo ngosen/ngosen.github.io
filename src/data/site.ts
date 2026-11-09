@@ -30,6 +30,93 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.9.0-1',
+    date: '08/11/2026',
+    summary:
+      'GNOME tắt extension vẫn nhớ chế độ gõ và cài đặt riêng theo từng app; lệnh cài không còn tự bật extension khi portal báo được tên app. Gõ Sen hiện dấu ngay trong terminal và bớt khựng trong Firefox trên Hyprland, Sway. Gõ -- trong terminal và ô địa chỉ giữ nguyên.',
+    changes: [
+      {
+        claim: 'GNOME Wayland với fcitx5 cũ hơn 5.1.22 (Ubuntu 24.04, 26.04): tắt extension vẫn giữ chế độ gõ và cài đặt riêng theo từng app; Ngó Sen lấy tên app từ gói xdg-desktop-portal-gnome.',
+        source: 'App không có file .desktop vẫn cần extension. Ô tìm kiếm trong màn tổng quan GNOME được nhận ra ở mọi version fcitx5, kể cả khi tắt extension.',
+        pr: 621,
+      },
+      {
+        claim: 'GNOME 46 đến 49 và từ 50.4 với fcitx5 cũ hơn 5.1.22: lệnh cài không còn tự bật extension Ngó Sen khi máy có gói xdg-desktop-portal-gnome; máy đã bật thì để nguyên.',
+        source: 'Lệnh cài vẫn tự bật extension trên GNOME 50.0 đến 50.3 hoặc khi máy không có gói này. Trang Kiểm tra máy báo khi portal chưa cho Ngó Sen biết tên app và gợi ý bật extension. Lệnh cài và trang Kiểm tra máy chưa được test lại trên gói 1.9.0-1.',
+        pr: 629,
+      },
+      {
+        claim: 'Gõ Sen hiện chữ ngay khi thêm dấu trong kitty, Ptyxis, GNOME Terminal, foot, Ghostty trên Hyprland và trong xterm; trên GNOME, trong Ptyxis, GNOME Console và GNOME Terminal.',
+        source: 'Trên GNOME đúng cả khi bật hay tắt extension Ngó Sen (#630). Terminal chưa được test lại trên gói 1.9.0-1.',
+        pr: 620,
+      },
+      {
+        claim: 'Gõ Sen nhanh trong Firefox trên Hyprland và Sway bớt khựng: khi app báo chữ chậm, phím thêm dấu sửa luôn phần chữ chưa gửi, không phải xoá bằng Backspace rồi gõ lại.',
+        source: 'Gồm #607: trên Hyprland, Sway và KDE Plasma, Ngó Sen quay lại chờ chữ của Firefox khi app phản hồi kịp trở lại. Sway, Hyprland chưa được test lại trên gói 1.9.0-1.',
+        pr: 623,
+      },
+      {
+        claim: 'Bật “Hai gạch nối thành gạch dài” thì gõ -- trong terminal hay ô địa chỉ vẫn giữ nguyên, nên “git push --force” không còn thành “git push —force”.',
+        source: 'Ô địa chỉ của Firefox và terminal không tự báo mình là terminal (như terminal trong VS Code) chưa nhận ra được.',
+        pr: 625,
+      },
+      {
+        claim: 'GNOME: Ngó Sen nhận ra Firefox cài từ gói Fedora, Mullvad Browser cài từ gói và các bản Flatpak của Firefox và trình duyệt dựa trên Firefox, để chữ gõ trong thanh địa chỉ không lẫn với autofill.',
+        source: 'Fedora chưa được test lại trên gói 1.9.0-1.',
+        pr: 634,
+      },
+    ],
+  },
+  {
+    version: '1.8.3-1',
+    date: '08/11/2026',
+    summary:
+      'Khi bật gõ tắt, gõ từ không phải tiếng Việt liền chữ số hết bị thêm dấu. Đổi dấu sau phụ âm cuối vẫn ra đúng chữ tiếng Việt khi chốt từ.',
+    changes: [
+      {
+        claim: 'Khi bật gõ tắt, gõ từ không phải tiếng Việt liền chữ số không còn bị thêm dấu: “Sose2026” giữ nguyên, không thành “Sóe2026”.',
+        source: 'Từ tiếng Việt liền số như “tôi2” vẫn giữ nguyên.',
+        pr: 614,
+      },
+      {
+        claim: 'Đổi dấu sau phụ âm cuối không còn làm chữ trả về phím đã gõ: Telex “dduoxwcj” hay VNI “d9uo37c5” thành “được” khi gõ dấu cách, dấu câu hoặc Enter.',
+        source: 'Đúng ở cả Gõ Sen lẫn Preedit; lúc đang gõ vẫn hiện nguyên phím. Từ tiếng Anh như “parts”, “texts” vẫn giữ nguyên; muốn giữ phím đã gõ thì bấm phím chốt chữ (mặc định Ctrl) trước dấu cách.',
+        pr: 622,
+      },
+    ],
+  },
+  {
+    version: '1.8.2-1',
+    date: '07/11/2026',
+    summary:
+      'Cứu chữ hết xoá nhầm chữ khi click sang chỗ khác ngay sau phím chuyển Anh/Việt. Gõ tắt khi đang tiếng Anh hết thành “vnviệt nam” ở ô không cho đọc chữ.',
+    changes: [
+      {
+        claim: 'Cứu chữ không còn xoá nhầm chữ khi click sang chỗ khác ngay sau phím chuyển Anh/Việt: bấm Enter hay Esc lúc đó giữ nguyên chữ trong ô.',
+        source: 'Lời mời gõ lại bị bỏ khi app báo con trỏ đã dời đi. Bản sửa được kiểm bằng test của lõi, chưa gõ thử trong app thật.',
+        pr: 605,
+      },
+      {
+        claim: 'Gõ tắt khi đang tiếng Anh không còn chèn cụm chữ đầy đủ sau chữ tắt (thành “vnviệt nam”) ở ô không cho đọc chữ quanh con trỏ; chữ tắt được giữ nguyên.',
+        source: 'Bản sửa được kiểm bằng test của lõi, chưa gõ thử trong app thật.',
+        pr: 604,
+      },
+    ],
+  },
+  {
+    version: '1.8.1-1',
+    date: '07/11/2026',
+    summary:
+      'Gõ Sen hết nuốt hoặc đảo thứ tự phím điều hướng và phím tắt Ctrl bấm ngay sau một chữ; riêng app Wayland trên GNOME vẫn nhận Ctrl+phím thành chữ.',
+    changes: [
+      {
+        claim: 'Gõ Sen không còn nuốt hoặc đảo thứ tự phím mũi tên, Home, End, Delete, Esc và phím tắt Ctrl bấm ngay sau một chữ.',
+        source: 'Riêng app Wayland trên GNOME vẫn nhận Ctrl+phím thành chữ: trên máy test Debian 12 (GNOME 43 Wayland), Ctrl+A trong Chromium vẫn ra chữ “a”.',
+        pr: 591,
+      },
+    ],
+  },
+  {
     version: '1.8.0-1',
     date: '07/11/2026',
     summary:
@@ -1240,7 +1327,11 @@ export const LEVELS_NOTE =
   ' Các gói CI của PR #465 và #467 được test trên máy ảo Ubuntu 26.04 (GNOME 50.1, fcitx5 5.1.19). Với #465, có extension, Chrome, trang chat: trước khi sửa, giữ Enter 10/30 ms gửi 30/30 lượt ở mỗi mức, giữ 80/120/200 ms gửi 0/30; sau khi sửa, giữ 10/120/300 ms đều gửi 30/30. Trên KDE Plasma Wayland (CachyOS, Chromium) và Linux Mint X11 Cinnamon (Chromium), bản 1.7.3 và bản sửa đều gửi 30/30, không dính lỗi. Với #467, tắt extension, gõ câu 14 chữ trong kitty bằng Gõ Sen: bản 1.7.3 sai 12/14 chữ, bản sửa sai 0/14. Gói 1.7.4-1 gồm cả ba bản sửa; gói CI đem test của #465 chưa có #466 và #467, gói CI của #467 chưa có #466. Với 1.7.4, chưa test Fedora, Arch, Debian, openSUSE, Kali, cài mới, app Electron và GNOME 50.0/50.2/50.3.' +
   ' Các gói phát hành 1.7.5-1 được test ngày 01/11/2026, dùng Gõ Sen, Telex, cài bằng install.sh tải gói từ release đã phát hành. Câu thử: gõ “vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, phải ra “việt nam tiếng”; mỗi app 4 lượt. Ubuntu 26.04 (GNOME Wayland, gói “resolute”), cập nhật từ 1.7.0-1: GNOME Text Editor, Firefox snap và Chromium snap đều đúng 4/4; trong Chromium snap, gõ “nhes”, Enter, “a” với 30 ms giữa các phím ra “nhé”, xuống dòng, “a”, đúng 4/4 lượt. Linux Mint 22 (Cinnamon X11, gói “noble”), cập nhật từ 1.7.0-1: xed và Chromium đều đúng 4/4. CachyOS (KDE Plasma Wayland, gói Arch), cập nhật từ 1.6.2-1: GNOME Text Editor, Kate, Chromium và Firefox đều đúng 4/4. Với 1.7.5-1, chưa test Fedora, Debian, openSUSE, Kali, cài mới, GNOME 46, Sway và Google Docs.' +
   ' Gói 1.7.6-1 do CI dựng từ PR phát hành #533 được test trên máy ảo ngày 02/11/2026, dùng Gõ Sen, Telex, cài trực tiếp gói .deb hoặc gói Arch. Mỗi app 4 lượt, gõ “hoom nay trowif ddepj, tooi muoons ddi chowi vowis banj bef vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, khoảng 0,15 giây giữa các phím; chữ đọc lại từ app đều ra “hôm nay trời đẹp, tôi muốn đi chơi với bạn bè việt nam tiếng”. Ubuntu 26.04 (GNOME Wayland, gói “resolute”): Firefox, Chrome, GNOME Text Editor đều đúng 4/4. CachyOS (KDE Wayland, gói Arch): Kate, Chromium đều đúng 4/4. Linux Mint 22 (Cinnamon X11, gói “noble”): xed và Firefox đều đúng 4/4. Không test lại Google Docs, Google Slides, WPS Office, cửa sổ cài đặt và lệnh cài trên gói này; các sửa đó được đo trên build của từng PR. #535 vào nhánh patch sau khi các gói này được dựng, nên chỉ qua test của PR đó.' +
-  ' Gói 1.8.0-1 do CI dựng từ PR phát hành #588 được test trên máy ảo ngày 06–07/11/2026, dùng Gõ Sen, Telex, cài trực tiếp gói .deb. Mỗi app 4 lượt, fcitx5 khởi động lại trước mỗi lượt, cùng câu thử như 1.7.6. Ubuntu 26.04 (GNOME 50 Wayland, gói “resolute”), cập nhật từ một bản dựng thử của 1.7.6: GNOME Text Editor, Firefox, Chromium đều đúng 4/4 khi bật extension và 4/4 khi tắt extension. Linux Mint 22.1 (Cinnamon X11, gói “noble”), cập nhật từ 1.7.6-1: xed, Firefox, Chromium đều đúng 4/4. Trên cả hai máy, khởi động lại fcitx5 với AnnouncedVersion đặt về 1.7 thì thông báo “Ngó Sen có gì mới?” của version 1.8 hiện một lần. Không test lại trên gói này: KDE, Sway, Hyprland, Fedora, Arch, Debian, openSUSE, Kali, cài mới, lệnh cài và trang Kiểm tra máy; các sửa đó được đo trên build của từng PR.';
+  ' Gói 1.8.0-1 do CI dựng từ PR phát hành #588 được test trên máy ảo ngày 06–07/11/2026, dùng Gõ Sen, Telex, cài trực tiếp gói .deb. Mỗi app 4 lượt, fcitx5 khởi động lại trước mỗi lượt, cùng câu thử như 1.7.6. Ubuntu 26.04 (GNOME 50 Wayland, gói “resolute”), cập nhật từ một bản dựng thử của 1.7.6: GNOME Text Editor, Firefox, Chromium đều đúng 4/4 khi bật extension và 4/4 khi tắt extension. Linux Mint 22.1 (Cinnamon X11, gói “noble”), cập nhật từ 1.7.6-1: xed, Firefox, Chromium đều đúng 4/4. Trên cả hai máy, khởi động lại fcitx5 với AnnouncedVersion đặt về 1.7 thì thông báo “Ngó Sen có gì mới?” của version 1.8 hiện một lần. Không test lại trên gói này: KDE, Sway, Hyprland, Fedora, Arch, Debian, openSUSE, Kali, cài mới, lệnh cài và trang Kiểm tra máy; các sửa đó được đo trên build của từng PR.' +
+  ' Gói 1.8.1-1 (“bookworm”) do CI dựng từ PR phát hành #593 được test trên máy ảo Debian 12 ngày 07/11/2026, cập nhật từ 1.7.6-1 bằng apt, dùng Gõ Sen, Telex. Chromium 156 và Firefox ESR 153, mỗi app ở GNOME 43 Wayland và ở X11: câu “hoom nay trowif ddepj, tooi muoons ddi chowi vowis banj bef vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, ra “hôm nay trời đẹp, tôi muốn đi chơi với bạn bè việt nam tiếng” 4/4 lượt; gõ “loox” rồi Left hoặc Home 5 ms sau phím dấu, rồi “b”, ra “lbỗ” và “blỗ” 2/2 lượt mỗi phím. Tổng 32/32. Trước đó, trên cùng máy với bản dựng từ mã nguồn, mũi tên và Home bấm 5 ms sau phím dấu trong Chromium ở Wayland đúng 8/8 (1.8.0: 0/8); Ctrl+A trong Chromium ở Wayland vẫn ra chữ “a” ở cả hai bản (0/4). Không test lại trên gói này: Ubuntu, Mint, KDE, Sway, Hyprland, Fedora, Arch, openSUSE, Kali, cài mới, lệnh cài và trang Kiểm tra máy.' +
+  ' Hai bản sửa của 1.8.2-1 được kiểm bằng test của lõi, chưa được gõ thử trong app thật.' +
+  ' Gói 1.8.3-1 do CI dựng từ PR phát hành #635 được gõ thử trên máy ảo ngày 08/11/2026: Linux Mint 22.1 (Cinnamon X11, gói “noble”, cập nhật từ 1.8.0-1 bằng cách cài file .deb) và CachyOS (KDE Plasma Wayland, gói Arch), dùng Gõ Sen, Telex, thiết lập mặc định. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, mỗi trường hợp 4 lượt, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Trên mỗi máy ảo, “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam” 16/16 lượt; “sose2026 tooi2 ” ra “sose2026 tôi2” 16/16 lượt (#614); “dduoxwcj parts ” ra “được parts” 16/16 lượt (#622). Tổng 96/96. Không test lại trên gói này: Ubuntu, GNOME, Sway, Hyprland, Fedora, Debian, openSUSE, Kali, VNI, cài mới, lệnh cài và trang Kiểm tra máy.' +
+  ' Gói 1.9.0-1 do CI dựng từ PR phát hành #639 được gõ thử trên máy ảo ngày 09/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Linux Mint 22.1 (Cinnamon X11, gói “noble”, cập nhật từ 1.8.0-1) và CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), mỗi máy 4 lượt: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, đúng 48/48 trên mỗi máy. Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, gói “resolute” cài bằng apt, không có biến môi trường của install.sh, cập nhật từ 1.7.6-1), câu trên, 2 lượt tắt extension rồi 2 lượt bật: Ngó Sen nhận đúng tên app 16/16 (tắt extension thì lấy từ portal, bật thì lấy từ extension); chữ đúng 15/16. Lượt sai là Firefox tắt extension ngay sau khi cài, ra “ngư” thay vì “người”; đo lại cùng chỗ thì 1.8.3-1 đúng 8/8, 1.9.0-1 đúng 8/8. Trên cả ba máy, Ngó Sen ghi đã gửi thông báo version 1.9 một lần (đọc từ log và cài đặt, không xem trên màn hình). Không test lại trên gói này: Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminal, VNI, cài mới, lệnh cài và trang Kiểm tra máy.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -1325,6 +1416,13 @@ export const DISTRIBUTIONS: Distribution[] = [
     core: 'Rust',
   },
   {
+    name: 'Debian 12',
+    level: 'vm',
+    basis: 'đã gõ thử version 1.8.1-1 trên máy ảo Debian 12 (GNOME Wayland và X11)',
+    file: 'fcitx5-ngosen_*_bookworm_amd64.deb',
+    core: 'Rust',
+  },
+  {
     name: 'Fedora 45',
     level: 'built',
     basis: 'chỉ build và chạy test lúc build',
@@ -1350,13 +1448,6 @@ export const DISTRIBUTIONS: Distribution[] = [
     level: 'built',
     basis: 'chỉ build và chạy test lúc build',
     file: 'fcitx5-ngosen_*_stonking_amd64.deb',
-    core: 'Rust',
-  },
-  {
-    name: 'Debian 12',
-    level: 'built',
-    basis: 'chỉ build và chạy test lúc build',
-    file: 'fcitx5-ngosen_*_bookworm_amd64.deb',
     core: 'Rust',
   },
 ];

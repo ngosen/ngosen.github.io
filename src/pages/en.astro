@@ -46,62 +46,55 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.8.0-1 adds a “Kiểm tra máy” (check my machine) page to the settings window that walks
-    through the setup and fixes each item with a button. On GNOME it fixes several cases of lost letters
-    and raw keys, with and without the key-forwarding extension, and the one-line installer now supports
-    Fedora 45. Version 1.7.6-1, five days earlier, fixed doubled letters in Google Docs and Slides on X11.
+    Version 1.9.0-1 lets GNOME keep each app's typing mode and settings with the extension turned off, so the
+    installer no longer turns the extension on when the portal reports app names. Gõ Sen shows tone marks right
+    away in terminals and stutters less in Firefox on Hyprland and Sway. Three bug-fix versions came out in the
+    two days before it: 1.8.1-1, 1.8.2-1 and 1.8.3-1.
   </p>
   <ul>
     <li>
-      The Qt and GTK settings windows have a “Kiểm tra máy” page: it shows the setup steps, how many items
-      still need fixing, and a button for each item or for all of them. The typing test, app test with a
-      typing log, the list of apps connected to fcitx5 and sending results through Facebook, GitHub or the
-      clipboard are on the same page, replacing the old dialog and the bug-report button on the About page.
-      It also checks that fcitx5 starts at login and offers to set that up, along with environment variables,
-      the KDE virtual keyboard and im-config on X11 (<a href={`${REPO}/pull/463`}>#463</a>,
-      <a href={`${REPO}/pull/563`}>#563</a>).
+      GNOME Wayland with fcitx5 older than 5.1.22 (Ubuntu 24.04, 26.04): with the extension off, each app keeps
+      its own typing mode and settings; Ngó Sen gets the app name from the <code>xdg-desktop-portal-gnome</code>
+      package. Apps without a .desktop file still need the extension (<a href={`${REPO}/pull/621`}>#621</a>).
     </li>
     <li>
-      Gõ Sen on GNOME without the extension: one app dropping a delete request, such as Chrome’s address bar
-      autocompletion, no longer makes every app type raw keys until fcitx5 restarts; Chrome’s address bar
-      types correctly and Firefox makes fewer mistakes when typing fast
-      (<a href={`${REPO}/pull/586`}>#586</a>, <a href={`${REPO}/pull/543`}>#543</a>,
-      <a href={`${REPO}/pull/541`}>#541</a>). With the extension, overlapping keys no longer drop letters and
-      Backspace right after a tone mark no longer deletes the wrong letter
-      (<a href={`${REPO}/pull/581`}>#581</a>, <a href={`${REPO}/pull/584`}>#584</a>).
+      GNOME 46 to 49 and 50.4 or later with fcitx5 older than 5.1.22: the installer no longer turns on the Ngó Sen extension when
+      <code>xdg-desktop-portal-gnome</code> is installed, and leaves it on where it already is. It still turns it
+      on for GNOME 50.0 to 50.3 or without that package; the “Kiểm tra máy” page says when the portal does not
+      report app names (<a href={`${REPO}/pull/629`}>#629</a>).
     </li>
     <li>
-      GNOME 46–50 with fcitx5 older than 5.1.22 (Ubuntu 24.04, 26.04): the extension shipped with the package
-      now tells Ngó Sen the app name, so each app keeps its own mode and English/Vietnamese choice
-      (<a href={`${REPO}/pull/510`}>#510</a>).
+      Gõ Sen shows the letter as soon as a tone mark is added in kitty, Ptyxis, GNOME Terminal, foot and Ghostty
+      on Hyprland, in xterm, and in Ptyxis, GNOME Console and GNOME Terminal on GNOME
+      (<a href={`${REPO}/pull/620`}>#620</a>, <a href={`${REPO}/pull/630`}>#630</a>).
     </li>
     <li>
-      Firefox on KDE keeps tone marks when inserting text mid-sentence in web editors such as Slate and
-      CKEditor; on Hyprland and Sway it no longer drops letters when typing fast
-      (<a href={`${REPO}/pull/582`}>#582</a>, <a href={`${REPO}/pull/583`}>#583</a>).
+      Fast Gõ Sen typing in Firefox on Hyprland and Sway stutters less: when the app reports text late, the tone
+      key fixes the text not yet sent instead of deleting with Backspace and typing again
+      (<a href={`${REPO}/pull/607`}>#607</a>, <a href={`${REPO}/pull/623`}>#623</a>).
     </li>
     <li>
-      With automatic restoration on (the default), issue, sorry and coffee no longer lose a letter
-      (<a href={`${REPO}/pull/534`}>#534</a>).
+      With “Hai gạch nối thành gạch dài” (two hyphens to a dash) on, <code>--</code> stays as typed in terminals
+      and address bars, so <code>git push --force</code> no longer becomes <code>git push —force</code>
+      (<a href={`${REPO}/pull/625`}>#625</a>). On GNOME, Ngó Sen recognises more Firefox builds (Fedora package,
+      Mullvad Browser, Flatpak) so address-bar autofill does not mix with typed text
+      (<a href={`${REPO}/pull/634`}>#634</a>).
     </li>
     <li>
-      The one-line installer works on Fedora 45, with x86_64 and aarch64 packages; those packages are only
-      built and tested at build time (<a href={`${REPO}/pull/556`}>#556</a>). On Sway and Hyprland it starts
-      fcitx5 right away and sets up Qt 5 apps for the next login (<a href={`${REPO}/pull/557`}>#557</a>,
-      <a href={`${REPO}/pull/566`}>#566</a>).
+      1.8.3-1: with macros on, a non-Vietnamese word followed by digits no longer gets tone marks (Sose2026 stays
+      as typed); changing the tone after a final consonant still gives the right word when it is committed, as
+      Telex dduoxwcj becomes được (<a href={`${REPO}/pull/614`}>#614</a>,
+      <a href={`${REPO}/pull/622`}>#622</a>).
     </li>
     <li>
-      Settings window: the Typing page is regrouped, blocked options are dimmed with an explanation, the
-      mouse wheel no longer changes values, and the “Tắt” (off) button is gone from the typing mode row; use
-      the English/Vietnamese key to type English (<a href={`${REPO}/pull/519`}>#519</a>,
-      <a href={`${REPO}/pull/522`}>#522</a>, <a href={`${REPO}/pull/528`}>#528</a>).
+      1.8.2-1: Cứu chữ no longer deletes text when you click elsewhere right after the English/Vietnamese key;
+      macros typed in English no longer insert the full phrase after the abbreviation in fields that hide the
+      surrounding text (<a href={`${REPO}/pull/605`}>#605</a>, <a href={`${REPO}/pull/604`}>#604</a>).
     </li>
     <li>
-      1.7.6-1: Gõ Sen in Google Docs and Slides in Chromium-based browsers on X11 no longer doubles letters
-      when adding a tone mark; on GNOME, fast typing in fields that only delete through surrounding text no
-      longer loses tone marks; Cứu dấu works on selected text in WPS Office on X11
-      (<a href={`${REPO}/pull/523`}>#523</a>, <a href={`${REPO}/pull/501`}>#501</a>,
-      <a href={`${REPO}/pull/505`}>#505</a>).
+      1.8.1-1: Gõ Sen no longer swallows or reorders arrow keys, Home, End, Delete, Esc and Ctrl shortcuts
+      pressed right after a letter; Wayland apps on GNOME still receive Ctrl+key as a letter
+      (<a href={`${REPO}/pull/591`}>#591</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -156,7 +149,8 @@ const levels: Record<Level, string> = {
 printf 'GTK_IM_MODULE=fcitx\\nQT_IM_MODULE=fcitx\\nXMODIFIERS=@im=fcitx\\nSDL_IM_MODULE=fcitx\\n' > ~/.config/environment.d/90-ngosen.conf`}</code></pre>
       If the top bar has no input method icon, install the
       <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a> extension. On GNOME 50.0 to 50.3,
-      also run <code>gnome-extensions enable forward-keys@ngosen.github.io</code> to fix typing errors.
+      on a machine without the <code>xdg-desktop-portal-gnome</code> package, or to keep a separate typing mode for
+      apps without a .desktop file, also run <code>gnome-extensions enable forward-keys@ngosen.github.io</code>.
     </li>
     <li>
       On Xfce, Cinnamon or MATE on Debian/Ubuntu/Mint, run <code>im-config -n fcitx5</code>, then log
@@ -219,8 +213,11 @@ echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></p
     />
   </picture>
   <p>
-    On Ubuntu 26.04 the script turns on an extension that works around a GNOME bug that drops the
-    backspaces the input method sends. After installing a package by hand, log out and back in, then run
+    The package ships the <code>forward-keys@ngosen.github.io</code> extension for GNOME 46 to 50. Since 1.9,
+    Ngó Sen gets app names from the <code>xdg-desktop-portal-gnome</code> package, so it is needed only on GNOME
+    50.0 to 50.3 (as on Ubuntu 26.04), where it works around a GNOME bug that drops the keys the input method
+    sends; on machines without that portal package; and for apps without a .desktop file. The script turns it
+    on in the first two cases. To turn it on by hand, log out and back in, then run
     <code>gnome-extensions enable forward-keys@ngosen.github.io</code> once.
   </p>
   <p>
@@ -276,7 +273,7 @@ echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></p
   <p>
     “Main setup” means the maintainer types on that system every day, on KDE Plasma Wayland. “Tested”
     means a handful of apps were tried in a virtual machine: CachyOS with Hyprland, Ubuntu 26.04 with
-    GNOME Wayland, Linux Mint 22 for Ubuntu 24.04 and MX 25 for Debian 13; the two Ubuntu tests used a
+    GNOME Wayland, Linux Mint 22 for Ubuntu 24.04, MX 25 for Debian 13, and Debian 12 itself with 1.8.1-1; the two Ubuntu tests used a
     build from source. “Builds only” means the package builds and passes the test suite at build time;
     nobody has typed with it there. These levels come from testing release 0.5; the spreadsheet fixes in
     1.0 were tested in a CachyOS virtual machine (KDE Wayland) with LibreOffice Calc, WPS Office and
@@ -626,6 +623,27 @@ echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></p
     notification once. KDE, Sway, Hyprland, Fedora, Arch, Debian,
     openSUSE, Kali, fresh installs, the installer and the “Kiểm tra máy” page were not retested on these
     packages.
+  </p>
+  <p>
+    The 1.8.1-1 <code>bookworm</code> package from release PR #593 was tested on a Debian 12 virtual machine on
+    7 November 2026, updated from 1.7.6-1 with apt. In Chromium 156 and Firefox ESR 153, each on GNOME 43 Wayland
+    and on X11, the test sentence above came out right 4 of 4, and <code>loox</code> followed 5 ms after the tone
+    key by Left or Home and then <code>b</code> gave <code>lbỗ</code> and <code>blỗ</code> 2 of 2: 32 of 32 in
+    all. Ctrl+A in Chromium on Wayland still typed <code>a</code>. The two fixes in 1.8.2-1 were checked by the
+    core's tests only, not in real apps.
+  </p>
+  <p>
+    The 1.8.3-1 packages from release PR #635 were tested on 8 November 2026 on Linux Mint 22.1 (Cinnamon X11,
+    <code>noble</code>) and CachyOS (KDE Plasma Wayland, Arch package) in Firefox and Chromium, on a textarea and
+    a contenteditable page, 0.12 s between keys: the sentence
+    <code>tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam</code>, <code>sose2026 tooi2</code> and
+    <code>dduoxwcj parts</code> came out right 96 of 96. The 1.9.0-1 packages from release PR #639 were tested the
+    same way on 9 November 2026: 48 of 48 on each of Mint and CachyOS. On Ubuntu 26.04 (GNOME 50.1 Wayland,
+    fcitx5 5.1.19, <code>resolute</code> installed with apt), with the extension off and then on, Ngó Sen got the
+    app name right 16 of 16 and the text right 15 of 16. The miss was Firefox right after installing, with the
+    extension off, which typed <code>ngư</code> for <code>người</code>; measured again at the same spot, 1.8.3-1 and 1.9.0-1 were both 8 of 8. Fedora, Debian, openSUSE, Kali,
+    Sway, Hyprland, terminals, VNI, fresh installs, the installer and the “Kiểm tra máy” page were not retested
+    on these packages.
   </p>
   <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
