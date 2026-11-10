@@ -1690,7 +1690,7 @@ export const GNOME_GUIDE = [
   {
     href: '/ngo-sen-cho-gnome/huong-dan/che-do-go/',
     label: 'Gõ Sen hay gạch chân cho từng app',
-    summary: 'Menu phím `, chế độ riêng cho app đang dùng, tuỳ chọn “Gõ Sen ở app cho phép”.',
+    summary: 'Menu phím `, chế độ riêng cho app đang dùng, tuỳ chọn “Gõ Sen”.',
   },
   {
     href: '/ngo-sen-cho-gnome/huong-dan/sua-dau/',
@@ -1717,6 +1717,12 @@ export const GNOME_GUIDE = [
 // Releases of Ngó Sen cho GNOME, newest first: the opening paragraph of each CHANGELOG.md entry in
 // ngosen/ibus-ngosen, without its download link. Add an entry here when that repository releases.
 export const IBUS_RELEASES: { version: string; date: string; summary: string }[] = [
+  {
+    version: '1.2.2-1',
+    date: '10/11/2026',
+    summary:
+      'Gõ Sen ở mọi app như bản fcitx5, kể cả app Electron, Chrome và terminal trên X11; biểu tượng và logo giống bản fcitx5; cửa sổ cài đặt không còn cắt chữ. Dùng lõi Ngó Sen `ngosen-1.9.0-1`.',
+  },
   {
     version: '1.2.1-1',
     date: '09/11/2026',
