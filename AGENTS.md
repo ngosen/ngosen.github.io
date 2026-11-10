@@ -28,8 +28,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   `IBUS_RELEASES` copies the opening paragraph of each entry in that changelog; add one per release there.
   Guide pages use `Guide.astro` with `edition="gnome"` and follow the usage-guide rules below; their
   screenshots are named `gnome-*`. The chooser on the home page and the ledes of `/cai-dat/` and `/huong-dan/`
-  point to the section. The install guide and the usage guide describe the fcitx5 edition only. Neither
-  edition is presented as the better one. install.sh installs only the fcitx5 edition.
+  point to the section. Neither edition is presented as the better one. install.sh installs the fcitx5
+  edition by default and the IBus edition with --ibus (since 1.9.1); the install guide describes the
+  edition choice, everything else on /cai-dat/ and /huong-dan/ describes the fcitx5 edition.
 - The site must not imply support or a team. The intro, highlights and the scope note (`SCOPE`) mirror
   the top of the README; the scope note's sentence on the GNOME edition comes from the top of its README. Do not mention vibecoding (dropped at the maintainer's request).
 - `/roadmap/` mirrors `ROADMAP.md` on `main` of the main repository through `ROADMAP` in
