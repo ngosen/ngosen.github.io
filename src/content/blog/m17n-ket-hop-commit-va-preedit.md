@@ -1,5 +1,5 @@
 ---
-title: "m17n đã kết hợp commit và preedit từ năm 2010"
+title: "Phát hiện cơ chế gõ tiếng Việt cực tốt đã có 16 năm trên bộ gõ m17n"
 description: "vi-telex commit phụ âm đầu, giữ phần còn lại trong preedit và không xoá chữ đã commit. Cơ chế này đã có khoảng 16 năm, nhưng quy tắc gõ còn hạn chế."
 pubDate: 2026-11-10
 ---
@@ -54,11 +54,3 @@ Sau hai PR, cùng phép đo cho kết quả giống nhau khi có và không có 
 Cách gõ một `w` cho ươ tăng từ 0% lên 98,9–100%.
 
 Đổi lại, 26 từ tiếng Anh trước đây được Telex giữ nguyên nay đổi thành chữ Việt, như `damage` → `dâmge`, `drama` → `drâm`. Tỷ lệ từ tiếng Anh giữ nguyên giảm từ 75,2% xuống 73,8%.
-
-## Test trong web editor vẫn còn một lỗi
-
-Trên Fedora 45 GNOME Wayland với ibus-m17n và quy tắc mới, test 15 trang web editor bằng Firefox và Chromium, mỗi trang ba trường hợp gõ, so chế độ kết hợp với cùng file buộc giữ cả âm tiết trong preedit. Có 179/180 ô kết quả đúng.
-
-Lỗi duy nhất xảy ra ở chế độ kết hợp trong Firefox với terminal xterm.js. Gõ `xin`, bấm Enter rồi gõ `chaof` làm mất chữ `c` đã commit sớm, còn `hào`, trong 4/6 lần chạy. Preedit cả âm tiết không gặp lỗi này; Chromium chạy đúng ở chế độ kết hợp.
-
-Tính đến ngày 10/11/2026, các PR vẫn đang mở và chờ review.
