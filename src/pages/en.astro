@@ -46,55 +46,59 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.9.0-1 lets GNOME keep each app's typing mode and settings with the extension turned off, so the
-    installer no longer turns the extension on when the portal reports app names. Gõ Sen shows tone marks right
-    away in terminals and stutters less in Firefox on Hyprland and Sway. Three bug-fix versions came out in the
-    two days before it: 1.8.1-1, 1.8.2-1 and 1.8.3-1.
+    Version 1.9.1-1 adds an installer choice between fcitx5 and IBus and removes “Chế độ gõ mặc định”
+    from the mode menu. It fixes the first accented word in Messenger on Chromium, typing and
+    Backspace around digits, and Cứu dấu in Chrome and Chromium incognito windows.
   </p>
   <ul>
     <li>
-      GNOME Wayland with fcitx5 older than 5.1.22 (Ubuntu 24.04, 26.04): with the extension off, each app keeps
-      its own typing mode and settings; Ngó Sen gets the app name from the <code>xdg-desktop-portal-gnome</code>
-      package. Apps without a .desktop file still need the extension (<a href={`${REPO}/pull/621`}>#621</a>).
+      On a first install on GNOME, or Xfce, Cinnamon and MATE on X11 on Debian, Ubuntu and Linux Mint,
+      the installer asks which edition to install when an IBus package is available. Enter selects
+      fcitx5; <code>--ibus</code> and <code>--fcitx5</code> select directly. Updates keep the installed
+      edition (<a href={`${REPO}/pull/653`}>#653</a>).
     </li>
     <li>
-      GNOME 46 to 49 and 50.4 or later with fcitx5 older than 5.1.22: the installer no longer turns on the Ngó Sen extension when
-      <code>xdg-desktop-portal-gnome</code> is installed, and leaves it on where it already is. It still turns it
-      on for GNOME 50.0 to 50.3 or without that package; the “Kiểm tra máy” page says when the portal does not
-      report app names (<a href={`${REPO}/pull/629`}>#629</a>).
+      The mode menu opened with <kbd>`</kbd> no longer has “Chế độ gõ mặc định”; its settings checkbox
+      and shortcut are removed too. Select the app’s original mode again to follow the shared settings
+      and English/Vietnamese key. Off is still remembered for that app
+      (<a href={`${REPO}/pull/659`}>#659</a>).
     </li>
     <li>
-      Gõ Sen shows the letter as soon as a tone mark is added in kitty, Ptyxis, GNOME Terminal, foot and Ghostty
-      on Hyprland, in xterm, and in Ptyxis, GNOME Console and GNOME Terminal on GNOME
-      (<a href={`${REPO}/pull/620`}>#620</a>, <a href={`${REPO}/pull/630`}>#630</a>).
+      In Gõ Sen, the first accented word of a Messenger message on Chromium is no longer wrong or
+      missing letters (<a href={`${REPO}/pull/663`}>#663</a>).
     </li>
     <li>
-      Fast Gõ Sen typing in Firefox on Hyprland and Sway stutters less: when the app reports text late, the tone
-      key fixes the text not yet sent instead of deleting with Backspace and typing again
-      (<a href={`${REPO}/pull/607`}>#607</a>, <a href={`${REPO}/pull/623`}>#623</a>).
+      With the GNOME extension off, closing a window in the overview no longer gives the search field
+      the background app’s mode and settings (<a href={`${REPO}/pull/644`}>#644</a>).
     </li>
     <li>
-      With “Hai gạch nối thành gạch dài” (two hyphens to a dash) on, <code>--</code> stays as typed in terminals
-      and address bars, so <code>git push --force</code> no longer becomes <code>git push —force</code>
-      (<a href={`${REPO}/pull/625`}>#625</a>). On GNOME, Ngó Sen recognises more Firefox builds (Fedora package,
-      Mullvad Browser, Flatpak) so address-bar autofill does not mix with typed text
-      (<a href={`${REPO}/pull/634`}>#634</a>).
+      With macros on, non-Vietnamese words return to the typed keys as soon as a digit is entered;
+      Tab and Esc also keep <code>Sose2026</code>. In Gõ Sen, typing it followed by a space and two
+      Backspaces no longer scrambles the text; Vietnamese words such as <code>tôi2</code> stay unchanged
+      (<a href={`${REPO}/pull/613`}>#613</a>, <a href={`${REPO}/pull/643`}>#643</a>).
+      Backspacing into the non-Vietnamese prefix of <code>thuwcx2tooi2</code> keeps the displayed text
+      (<a href={`${REPO}/pull/646`}>#646</a>). In Preedit, <code>tôi2</code>, space and two Backspaces
+      keep <code>tôi</code> rather than losing its tone mark (<a href={`${REPO}/pull/661`}>#661</a>).
     </li>
     <li>
-      1.8.3-1: with macros on, a non-Vietnamese word followed by digits no longer gets tone marks (Sose2026 stays
-      as typed); changing the tone after a final consonant still gives the right word when it is committed, as
-      Telex dduoxwcj becomes được (<a href={`${REPO}/pull/614`}>#614</a>,
-      <a href={`${REPO}/pull/622`}>#622</a>).
+      Cứu dấu, Cứu chữ and line-start capitalisation work again in Chrome, Chromium and related browsers’
+      incognito windows on KDE and other Wayland desktops. GNOME was unaffected; incognito text still
+      stays out of the typing log (<a href={`${REPO}/pull/647`}>#647</a>).
     </li>
     <li>
-      1.8.2-1: Cứu chữ no longer deletes text when you click elsewhere right after the English/Vietnamese key;
-      macros typed in English no longer insert the full phrase after the abbreviation in fields that hide the
-      surrounding text (<a href={`${REPO}/pull/605`}>#605</a>, <a href={`${REPO}/pull/604`}>#604</a>).
+      Backspace in Gõ Sen can turn raw keys back into Vietnamese without scrambling what follows:
+      <code>thuwcx</code>, Backspace, <code>j</code> gives <code>thực</code>. English word prefixes such as
+      <code>perl</code> and <code>are</code> keep their raw keys, including on Backspace in Preedit
+      (<a href={`${REPO}/pull/651`}>#651</a>).
     </li>
     <li>
-      1.8.1-1: Gõ Sen no longer swallows or reorders arrow keys, Home, End, Delete, Esc and Ctrl shortcuts
-      pressed right after a letter; Wayland apps on GNOME still receive Ctrl+key as a letter
-      (<a href={`${REPO}/pull/591`}>#591</a>).
+      Restoring an IBus backup keeps the machine’s per-app English/Vietnamese choices
+      (<a href={`${REPO}/pull/648`}>#648</a>). The installer explains that replacing IBus removes its
+      package for every account and does not copy its settings. Debian, Ubuntu and Fedora replace it in
+      the same transaction, keeping the old package if installation fails; openSUSE and Arch print a
+      removal command and stop (<a href={`${REPO}/pull/649`}>#649</a>).
+      On GNOME with IBus and fcitx5 installed, the extension no longer starts fcitx5 at login and
+      disrupts the IBus input source (<a href={`${REPO}/pull/656`}>#656</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -103,6 +107,14 @@ const levels: Record<Level, string> = {
     Artix, CachyOS and openSUSE Tumbleweed on x86_64. Fedora, Ubuntu, Debian and Kali also have ARM 64-bit packages.
   </p>
   <pre tabindex="0"><code>{INSTALL_COMMAND}</code></pre>
+  <p>
+    To select IBus directly, run <code>{`${INSTALL_COMMAND} -s -- --ibus`}</code>; use
+    <code>--fcitx5</code> instead to select fcitx5. Enter at the edition prompt selects fcitx5,
+    and <code>--yes</code> installs fcitx5 without asking. Rerunning keeps the installed edition;
+    switching removes the other package for every account. See the
+    <a href="/cai-dat/#chon-ban">edition choice and migration details (in Vietnamese)</a>.
+    The remaining steps below describe the fcitx5 edition.
+  </p>
   <p>
     The script picks the prebuilt package for your distribution from the latest GitHub release, asks
     before it downloads the package, checks the file against <code>SHA256SUMS</code> and installs it
@@ -652,6 +664,52 @@ echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></p
     on these packages.
   </p>
   <p>
+    The 1.9.1 fixes were tested with PR or patch-branch builds against 1.9.0-1, using Gõ Sen and Telex.
+    On 9 November 2026, Backspace after digits (#646) passed two runs per app on Ubuntu 26.04
+    (GNOME 50 Wayland: GTK4, Firefox, Chrome) and MX Linux 25.3 (Xfce X11: GTK4, Firefox 157,
+    Chromium 156); 1.9.0-1 failed at the predicted steps. The overview search fix (#644) passed
+    3 of 3 on Ubuntu 24.04 (GNOME 46, fcitx5 5.1.7, extension off) after closing Text Editor and typing
+    <code>tieengs</code>; 1.9.0-1 took Files’ mode in all three runs. Incognito Cứu dấu (#647) gave
+    <code>nhánh</code> 3 of 3 on Arch Linux (KDE Plasma Wayland, Chromium 154), versus 0 of 3.
+    Backspace into raw keys (#651) on Fedora 44 (KDE Plasma Wayland, fcitx5 5.1.23) passed 9 of 9 in
+    kitty, 9 of 9 in Konsole and 1 of 1 in Firefox 158’s address bar.
+  </p>
+  <p>
+    Edition switching (#653) was tested on Ubuntu 26.04 (GNOME 50), starting from 1.7.6 with
+    ibus-ngosen 1.1.0 installed: after <code>--ibus</code> and logging out and back in, the Ngó Sen source
+    remained and typed <code>việt nam</code>; <code>--fcitx5</code> removed IBus and also typed
+    <code>việt nam</code>. Automated installer tests ran in Ubuntu 24.04, Ubuntu 26.04 and Fedora 44
+    containers. With IBus 1.2.1 and fcitx5 installed on Ubuntu 26.04 (GNOME 50.1, fcitx5 5.1.19),
+    the extension fix (#656) kept fcitx5 off after login, kept the input source and typed
+    <code>việt nam</code> rather than the old <code>vieetj nam</code>.
+    Only checked by automated tests, not by typing in real apps: returning raw keys at digits (#643),
+    IBus backup restore (#648), replacing IBus (#649), settings-window fixes (#652), the mode menu
+    (#659), Preedit <code>tôi2</code> (#661) and Messenger’s first word (#663).
+  </p>
+  <p>
+    The 1.9.1-1 packages built by CI from release PR #664 were tested in virtual machines on
+    10 November 2026 with Gõ Sen and Telex. Firefox and Chromium each used a textarea and a
+    contenteditable div, restarting fcitx5 before each test, with 0.12 s between keys. Four cases:
+    <code>tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam </code> gave
+    <code>tiếng việt là ngôn ngữ của người việt nam</code>, <code>sose2026 tooi2 </code> gave
+    <code>sose2026 tôi2</code>, <code>dduoxwcj parts </code> gave <code>được parts</code>, and
+    <code>thuwcx</code>, Backspace, <code>j </code> gave <code>thực</code>.
+    Linux Mint 22.1 (Cinnamon X11, noble .deb, updated from 1.8.0-1) passed 48 of 48 over three runs
+    of all four cases. CachyOS (KDE Plasma Wayland, Arch package, updated from 1.7.6-1) passed 47 of 48.
+    The miss in Firefox’s textarea ended in <code>viêt nam</code>: Firefox reported text late, so Ngó Sen
+    used Backspace, but <code>ệt</code> reached Firefox before Backspace. This existing bug is outside
+    the 1.9.1 fixes; the next run at the same spot passed.
+  </p>
+  <p>
+    Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, resolute .deb installed with apt) used the first
+    sentence and the <code>thuwcx</code> case, two runs with the extension off and two with it on:
+    text in the fields was right 32 of 32. One measurement missed the final letter, but the screenshot
+    and Firefox’s reported text were correct. App names were right 16 of 16 with the extension off
+    (from the portal) and 16 of 16 with it on (from the extension). The <code>thuwcx</code> case passed
+    12 of 12 on Mint, 12 of 12 on CachyOS and 16 of 16 on Ubuntu. Not retested on these packages:
+    Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminals, VNI, fresh installs, the installer or Messenger.
+  </p>
+  <p>
     NixOS uses the repository's flake instead of the one-line installer; the snippet is in the
     <a href={`${REPO}#cài`}>README</a>. CI builds it, runs the tests and loads the addon into fcitx5 on Xvfb.
   </p>
@@ -674,8 +732,8 @@ echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></p
   <p>
     Ngó Sen is built for fcitx5, which runs on GNOME, KDE and Xfce as well as Sway and Hyprland, has
     plenty of features and is light on RAM. <a href="https://github.com/ngosen/ibus-ngosen">Ngó Sen
-    for GNOME</a> runs on GNOME’s built-in IBus instead; it is simpler and has fewer features than the
-    fcitx5 edition. Source, releases and the
+    for GNOME</a> runs on GNOME’s built-in IBus and shares the fcitx5 edition’s typing core, so their
+    features are almost identical. New features may reach the IBus edition later. Source, releases and the
     changelog are at
     <a href={REPO}>github.com/ngosen/ngosen</a>.
   </p>

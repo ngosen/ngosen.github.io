@@ -9,8 +9,8 @@ export const OG_IMAGE = '/og.png?v=4';
 export const FACEBOOK = 'https://www.facebook.com/profile.php?id=61595753582618';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
-// Ngó Sen cho GNOME (the IBus edition) lives in its own repository and ships as packages only;
-// install.sh installs the fcitx5 edition.
+// Ngó Sen cho GNOME (the IBus edition) lives in its own repository;
+// install.sh defaults to fcitx5 and can install IBus with --ibus.
 export const IBUS_REPO = 'https://github.com/ngosen/ibus-ngosen';
 export const UNINSTALL_COMMAND = `${INSTALL_COMMAND} -s -- --uninstall`;
 
@@ -32,6 +32,74 @@ export const RELEASES: {
   // Repository the pr numbers refer to; defaults to REPO.
   prRepo?: string;
 }[] = [
+  {
+    version: '1.9.1-1',
+    date: '10/11/2026',
+    summary:
+      'Lệnh cài cho chọn bản fcitx5 hay bản IBus; menu chế độ bỏ dòng “Chế độ gõ mặc định”. Gõ Sen hết sai hoặc mất chữ đầu tin nhắn Messenger trên Chromium. Gõ chữ liền số và dùng Backspace giữ đúng chữ; Cứu dấu chạy lại trong cửa sổ ẩn danh của Chrome, Chromium.',
+    changes: [
+      {
+        claim: 'Lệnh cài lần đầu trên GNOME, hoặc Xfce, Cinnamon, MATE dùng X11 ở Debian, Ubuntu, Linux Mint, hỏi chọn bản fcitx5 hay bản IBus khi có gói IBus; bấm Enter chọn fcitx5.',
+        source: 'Dùng --ibus hoặc --fcitx5 để chọn thẳng; cập nhật giữ bản đang có. Chuyển bản được gõ thử trên Ubuntu 26.04 (GNOME 50): cả hai bản đều ra “việt nam”. Lệnh cài được test tự động trong container Ubuntu 24.04, Ubuntu 26.04, Fedora 44; chưa test lại trên gói 1.9.1-1.',
+        pr: 653,
+      },
+      {
+        claim: 'Menu mở bằng phím ` bỏ dòng “Chế độ gõ mặc định”; cửa sổ cài đặt cũng bỏ ô “Hiển thị chế độ gõ mặc định” và phím tắt của nó.',
+        source: 'Muốn app dùng lại cài đặt chung và phím chuyển Anh/Việt, chọn lại chế độ vốn có của app, thường là Gõ Sen; chọn Tắt vẫn được nhớ riêng. Chỉ kiểm bằng test tự động, chưa gõ thử trong app thật.',
+        pr: 659,
+      },
+      {
+        claim: 'Ở Gõ Sen, chữ đầu tin nhắn có dấu trong Messenger trên Chromium không còn sai hoặc mất chữ.',
+        source: 'Chỉ kiểm bằng test tự động, chưa gõ thử trong Messenger thật; Messenger chưa được test lại trên gói 1.9.1-1.',
+        pr: 663,
+      },
+      {
+        claim: 'Trên GNOME tắt extension, đóng một cửa sổ trong màn tổng quan không còn làm ô tìm kiếm mang chế độ gõ và cài đặt riêng của app phía sau.',
+        source: 'Build PR được gõ thử trên Ubuntu 24.04 (GNOME 46, fcitx5 5.1.7, tắt extension): đóng Text Editor rồi gõ “tieengs”, ô tìm kiếm giữ đúng chế độ riêng 3/3 lượt; 1.9.0-1 mang chế độ của Files 3/3 lượt.',
+        pr: 644,
+      },
+      {
+        claim: 'Bật gõ tắt: từ không phải tiếng Việt liền số trả lại đúng phím ngay khi tới chữ số; Tab, Esc cũng giữ “Sose2026”. Ở Gõ Sen, gõ “Sose2026”, dấu cách rồi Backspace hai lần không còn làm rối chữ.',
+        source: 'Từ tiếng Việt liền số như “tôi2” vẫn giữ nguyên. Gồm #613; chỉ kiểm bằng test tự động, chưa gõ thử trong app thật.',
+        pr: 643,
+      },
+      {
+        claim: 'Cứu dấu, Cứu chữ và viết hoa đầu dòng chạy lại trong cửa sổ ẩn danh của Chrome, Chromium và trình duyệt cùng nhân trên KDE và các desktop Wayland khác.',
+        source: 'GNOME không bị lỗi này; chữ trong cửa sổ ẩn danh vẫn không ghi vào nhật ký gõ. Build PR được test trên Arch Linux (KDE Plasma Wayland, Chromium 154): Cứu dấu ra “nhánh” 3/3 lượt, 1.9.0-1 đúng 0/3.',
+        pr: 647,
+      },
+      {
+        claim: 'Ở Gõ Sen, gõ phần đầu không phải tiếng Việt liền số rồi phần tiếng Việt như “thuwcx2tooi2”, sau đó Backspace lùi vào phần đầu giữ đúng chữ đang hiện.',
+        source: 'Build PR hoặc nhánh patch được test với GTK4, Firefox, Chrome trên Ubuntu 26.04 (GNOME 50 Wayland) và GTK4, Firefox 157, Chromium 156 trên MX Linux 25.3 (Xfce X11), mỗi app 2 lượt đều đúng; 1.9.0-1 sai ở các bước đã đoán trước.',
+        pr: 646,
+      },
+      {
+        claim: 'Ở Preedit, gõ “tôi2”, dấu cách rồi Backspace hai lần giữ đúng “tôi”, không còn mất dấu thành “toi”.',
+        source: 'Chỉ kiểm bằng test tự động, chưa gõ thử trong app thật.',
+        pr: 661,
+      },
+      {
+        claim: 'Khôi phục sao lưu của bản IBus không còn xoá các app đã chọn riêng tiếng Việt hay tiếng Anh trên máy.',
+        source: 'Sao lưu cũ của bản fcitx5 vẫn khôi phục như trước. Chỉ kiểm bằng test tự động, chưa gõ thử trong app thật.',
+        pr: 648,
+      },
+      {
+        claim: 'Lệnh cài báo rõ khi thay bản IBus: gỡ gói cho mọi tài khoản, cài đặt không tự chép sang. Debian, Ubuntu và Fedora thay gói trong cùng lần cài; cài lỗi thì bản IBus vẫn còn.',
+        source: 'openSUSE và Arch in lệnh gỡ rồi dừng. Cài xong, nguồn nhập “Tiếng Việt (Ngó Sen)” của bản IBus được bỏ khỏi tài khoản chạy lệnh. Chỉ kiểm bằng test tự động, chưa gõ thử trong app thật.',
+        pr: 649,
+      },
+      {
+        claim: 'Ở Gõ Sen, Backspace khi từ đang hiện nguyên phím gõ không còn làm rối chữ gõ tiếp: “thuwcx”, Backspace rồi “j” thành “thực”.',
+        source: 'Đầu từ tiếng Anh như “perl”, “are” vẫn giữ nguyên phím, cả khi Backspace ở Preedit. Build PR trên Fedora 44 (KDE Plasma Wayland, fcitx5 5.1.23): kitty 9/9, Konsole 9/9, thanh địa chỉ Firefox 158 1/1. Trên gói 1.9.1-1, câu “thuwcx” đúng 12/12 trên Mint, 12/12 trên CachyOS, 16/16 trên Ubuntu.',
+        pr: 651,
+      },
+      {
+        claim: 'Trên GNOME dùng bản IBus mà vẫn cài fcitx5, extension Ngó Sen không còn tự bật fcitx5 lúc đăng nhập, làm mất nguồn nhập và gõ ra chữ không dấu.',
+        source: 'Build PR trên Ubuntu 26.04 (GNOME 50.1, fcitx5 5.1.19), bản IBus 1.2.1: đăng nhập lại giữ nguồn nhập, gõ ra “việt nam”; bản cũ ra “vieetj nam”. Bản fcitx5 vẫn nhận tên app, kể cả cửa sổ không có file .desktop và sau khi mở khoá màn hình.',
+        pr: 656,
+      },
+    ],
+  },
   {
     version: '1.9.0-1',
     date: '08/11/2026',
@@ -1364,7 +1432,9 @@ export const LEVELS_NOTE =
   ' Gói 1.8.1-1 (“bookworm”) do CI dựng từ PR phát hành #593 được test trên máy ảo Debian 12 ngày 07/11/2026, cập nhật từ 1.7.6-1 bằng apt, dùng Gõ Sen, Telex. Chromium 156 và Firefox ESR 153, mỗi app ở GNOME 43 Wayland và ở X11: câu “hoom nay trowif ddepj, tooi muoons ddi chowi vowis banj bef vieetj nam tieesng”, hai Backspace, “ng”, dấu cách, 0,15 giây giữa các phím, ra “hôm nay trời đẹp, tôi muốn đi chơi với bạn bè việt nam tiếng” 4/4 lượt; gõ “loox” rồi Left hoặc Home 5 ms sau phím dấu, rồi “b”, ra “lbỗ” và “blỗ” 2/2 lượt mỗi phím. Tổng 32/32. Trước đó, trên cùng máy với bản dựng từ mã nguồn, mũi tên và Home bấm 5 ms sau phím dấu trong Chromium ở Wayland đúng 8/8 (1.8.0: 0/8); Ctrl+A trong Chromium ở Wayland vẫn ra chữ “a” ở cả hai bản (0/4). Không test lại trên gói này: Ubuntu, Mint, KDE, Sway, Hyprland, Fedora, Arch, openSUSE, Kali, cài mới, lệnh cài và trang Kiểm tra máy.' +
   ' Hai bản sửa của 1.8.2-1 được kiểm bằng test của lõi, chưa được gõ thử trong app thật.' +
   ' Gói 1.8.3-1 do CI dựng từ PR phát hành #635 được gõ thử trên máy ảo ngày 08/11/2026: Linux Mint 22.1 (Cinnamon X11, gói “noble”, cập nhật từ 1.8.0-1 bằng cách cài file .deb) và CachyOS (KDE Plasma Wayland, gói Arch), dùng Gõ Sen, Telex, thiết lập mặc định. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, mỗi trường hợp 4 lượt, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Trên mỗi máy ảo, “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam” 16/16 lượt; “sose2026 tooi2 ” ra “sose2026 tôi2” 16/16 lượt (#614); “dduoxwcj parts ” ra “được parts” 16/16 lượt (#622). Tổng 96/96. Không test lại trên gói này: Ubuntu, GNOME, Sway, Hyprland, Fedora, Debian, openSUSE, Kali, VNI, cài mới, lệnh cài và trang Kiểm tra máy.' +
-  ' Gói 1.9.0-1 do CI dựng từ PR phát hành #639 được gõ thử trên máy ảo ngày 09/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Linux Mint 22.1 (Cinnamon X11, gói “noble”, cập nhật từ 1.8.0-1) và CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), mỗi máy 4 lượt: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, đúng 48/48 trên mỗi máy. Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, gói “resolute” cài bằng apt, không có biến môi trường của install.sh, cập nhật từ 1.7.6-1), câu trên, 2 lượt tắt extension rồi 2 lượt bật: Ngó Sen nhận đúng tên app 16/16 (tắt extension thì lấy từ portal, bật thì lấy từ extension); chữ đúng 15/16. Lượt sai là Firefox tắt extension ngay sau khi cài, ra “ngư” thay vì “người”; đo lại cùng chỗ thì 1.8.3-1 đúng 8/8, 1.9.0-1 đúng 8/8. Trên cả ba máy, Ngó Sen ghi đã gửi thông báo version 1.9 một lần (đọc từ log và cài đặt, không xem trên màn hình). Không test lại trên gói này: Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminal, VNI, cài mới, lệnh cài và trang Kiểm tra máy.';
+  ' Gói 1.9.0-1 do CI dựng từ PR phát hành #639 được gõ thử trên máy ảo ngày 09/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Linux Mint 22.1 (Cinnamon X11, gói “noble”, cập nhật từ 1.8.0-1) và CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), mỗi máy 4 lượt: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, đúng 48/48 trên mỗi máy. Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, gói “resolute” cài bằng apt, không có biến môi trường của install.sh, cập nhật từ 1.7.6-1), câu trên, 2 lượt tắt extension rồi 2 lượt bật: Ngó Sen nhận đúng tên app 16/16 (tắt extension thì lấy từ portal, bật thì lấy từ extension); chữ đúng 15/16. Lượt sai là Firefox tắt extension ngay sau khi cài, ra “ngư” thay vì “người”; đo lại cùng chỗ thì 1.8.3-1 đúng 8/8, 1.9.0-1 đúng 8/8. Trên cả ba máy, Ngó Sen ghi đã gửi thông báo version 1.9 một lần (đọc từ log và cài đặt, không xem trên màn hình). Không test lại trên gói này: Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminal, VNI, cài mới, lệnh cài và trang Kiểm tra máy.' +
+  ' Các bản sửa được gõ thử bằng build của PR hoặc nhánh patch, so với 1.9.0-1, dùng Gõ Sen, Telex: Backspace sau chữ số (#646), ngày 09/11/2026, trên Ubuntu 26.04 (GNOME 50 Wayland) với GTK4, Firefox, Chrome và MX Linux 25.3 (Xfce X11) với GTK4, Firefox 157, Chromium 156, mỗi app 2 lượt, đều đúng, 1.9.0-1 sai ở đúng các bước đã đoán trước; ô tìm kiếm màn tổng quan (#644), ngày 09/11/2026, trên Ubuntu 24.04 (GNOME 46, fcitx5 5.1.7, tắt extension), đóng Text Editor rồi gõ “tieengs”, 3/3 lượt ô tìm kiếm giữ đúng chế độ riêng (1.9.0-1: 3/3 lượt mang chế độ của Files); Cứu dấu trong cửa sổ ẩn danh (#647), trên Arch Linux (KDE Plasma Wayland, Chromium 154), 3/3 lượt ra “nhánh” (1.9.0-1: 0/3); Backspace vào phím đang hiện nguyên (#651), trên Fedora 44 (KDE Plasma Wayland, fcitx5 5.1.23), 3 lượt mỗi app: kitty 9/9, Konsole 9/9, thanh địa chỉ Firefox 158 1/1; chọn bản trong lệnh cài (#653), trên Ubuntu 26.04 (GNOME 50), từ 1.7.6 có sẵn ibus-ngosen 1.1.0, “--ibus” rồi đăng xuất, đăng nhập lại: còn nguồn Ngó Sen, gõ ra “việt nam”, “--fcitx5”: bản IBus được gỡ, gõ ra “việt nam”, kiểm lệnh cài tự động trong container Ubuntu 24.04, Ubuntu 26.04, Fedora 44; extension không bật fcitx5 trên bản IBus (#656), trên Ubuntu 26.04 (GNOME 50.1, fcitx5 5.1.19) có bản IBus 1.2.1 và fcitx5, đăng nhập lại không còn bật fcitx5, giữ nguồn nhập, gõ ra “việt nam” (bản cũ: “vieetj nam”); chỉ kiểm bằng test tự động, chưa gõ thử trong app thật: trả phím khi gõ tới chữ số (#643), khôi phục sao lưu bản IBus (#648), cài thay bản IBus (#649), cửa sổ cài đặt (#652), menu chế độ (#659), Preedit “tôi2” (#661), chữ đầu Messenger (#663).' +
+  ' Gói 1.9.1-1 do CI dựng từ PR phát hành #664 được gõ thử trên máy ảo ngày 10/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Bốn câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, “thuwcx”, Backspace, “j ” ra “thực”. Linux Mint 22.1 (Cinnamon X11, gói deb “noble”, cập nhật từ 1.8.0-1), 3 lượt cả bốn câu, đúng 48/48. CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), 3 lượt cả bốn câu, đúng 47/48; dòng sai ở Firefox textarea, câu đầu ra “viêt nam”: Firefox báo chữ chậm nên Ngó Sen xoá bằng Backspace, và chữ “ệt” tới Firefox trước Backspace; lỗi này đã có từ trước, các bản sửa của 1.9.1 không đụng tới, cùng chỗ ở lượt sau thì đúng. Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, gói deb “resolute” cài bằng apt), câu đầu và câu “thuwcx”, 2 lượt tắt extension rồi 2 lượt bật: chữ trong ô đúng 32/32 (một dòng bộ đo đọc thiếu chữ cuối, ảnh chụp và chữ Firefox báo đều đúng); Ngó Sen nhận đúng tên app 16/16 khi tắt extension (từ portal) và 16/16 khi bật (từ extension). Câu “thuwcx” đúng trên cả ba máy: 12/12, 12/12, 16/16. Không test lại trên gói này: Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminal, VNI, cài mới, lệnh cài, Messenger.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -1523,7 +1593,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 // Mirrors the top of the README on main.
 export const SCOPE = {
   title: 'fcitx5 và IBus',
-  text: 'Ngó Sen làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, đơn giản hơn và ít tính năng hơn bản fcitx5.',
+  text: 'Ngó Sen làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, dùng chung lõi gõ với bản fcitx5 nên tính năng gần như giống hệt. Tính năng mới có thể đến bản IBus muộn hơn bản fcitx5.',
   ibusRepo: IBUS_REPO,
 };
 

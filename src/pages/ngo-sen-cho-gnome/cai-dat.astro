@@ -1,7 +1,7 @@
 ---
 import Page from '../../layouts/Page.astro';
 import Shot from '../../components/Shot.astro';
-import { GNOME_PAGES, IBUS_REPO } from '../../data/site';
+import { GNOME_PAGES, IBUS_REPO, INSTALL_COMMAND } from '../../data/site';
 
 const toc = [
   { id: 'goi', label: 'Chọn và cài gói' },
@@ -26,6 +26,12 @@ const toc = [
     Cài gói <code>ibus-ngosen</code> bằng trình quản lý gói, rồi đăng xuất và đăng nhập lại để thêm nguồn nhập.
     Hai bản IBus và fcitx5 không chạy cùng lúc trong một tài khoản.
   </p>
+
+  <p>
+    Script <code>install.sh</code> của repo chính cũng cài được bản này với <code>--ibus</code>.
+    Xem <a href="/cai-dat/#chon-ban">cách chọn và chuyển giữa hai bản</a>.
+  </p>
+  <pre tabindex="0"><code>{`${INSTALL_COMMAND} -s -- --ibus`}</code></pre>
 
   <h2 id="goi">Chọn và cài gói</h2>
   <p>
