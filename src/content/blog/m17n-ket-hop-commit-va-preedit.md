@@ -1,6 +1,6 @@
 ---
 title: "Phát hiện cơ chế gõ tiếng Việt cực tốt đã có 16 năm trên bộ gõ m17n"
-description: "vi-telex commit phụ âm đầu, giữ phần còn lại trong preedit và không xoá chữ đã commit. Cơ chế này đã có khoảng 16 năm, nhưng quy tắc gõ còn hạn chế."
+description: "Từ năm 2010, bộ gõ m17n (ibus-m17n) trên Linux gõ tiếng Việt kiểu commit phụ âm đầu, giữ phần còn lại trong preedit. Cách nó chạy và các PR sửa luật Telex."
 pubDate: 2026-11-10
 ---
 
