@@ -33,6 +33,125 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.10.0-1',
+    date: '12/11/2026',
+    summary:
+      'Vim mode cho từng app trong menu chế độ: lệnh Vim đi qua nguyên vẹn, từ đầu tiên sau khi vào insert mode có dấu ngay. Từ bắt đầu bằng / giữ nguyên như gõ, cho lệnh chat và đường dẫn trong terminal. Gõ Telex quên mũ hoặc móc như “tienf”, “Nguyenx” vẫn ra tiền, Nguyễn; các tên như plông, Mnông, Đakrông gõ ra đúng chữ.',
+    changes: [
+      {
+        claim: 'Menu chế độ có thêm dòng “[v] Vim mode”, bật hoặc tắt riêng cho từng app, dùng với cả Gõ Sen và Preedit: sau Esc hoặc Ctrl+[, lệnh Vim đi qua nguyên vẹn; từ đầu tiên gõ sau lệnh vào insert mode (i, a, o, ciw…) có dấu ngay, không còn nguyên như “tieengs”.',
+        source: 'Cho nvim/vim trong terminal, Claude Code, Antigravity, plugin Vim của Obsidian và của JetBrains IDE. Trong terminal, gõ vim hay nvim ở shell rồi Enter thì Ngó Sen tự nhận ra dù tắt Vim mode; mở Vim từ lịch sử shell, qua alias hoặc git commit thì cần bật Vim mode. Chưa xử lý Esc được đổi thành chữ như jk. Chỉ kiểm bằng test tự động.',
+        pr: 302,
+      },
+      {
+        claim: 'Từ bắt đầu bằng / ở đầu dòng hoặc ngay sau dấu cách giữ nguyên từng phím, ở cả Gõ Sen và Preedit: “/cost” không còn thành “/cót”, “cd /usr/share” không còn thành “cd /ủ/share”, kể cả trong Firefox.',
+        source: 'Dùng cho lệnh chat (Claude Code, Slack, Discord) và đường dẫn trong terminal. Tuỳ chọn “Gõ thô sau dấu / đầu từ (lệnh, đường dẫn)” nằm trong nhóm Gõ nhanh ở trang Gõ chữ, mặc định bật. Gõ thử trên Ubuntu 24.04 (Firefox, Chrome) và Linux Mint 22.1 (Firefox, Chromium); terminal chưa được test lại trên gói 1.10.0-1.',
+        pr: 312,
+      },
+      {
+        claim: 'Gõ Telex quên mũ hoặc móc ở những vần luôn có chúng vẫn ra chữ đúng khi chốt bằng dấu cách, dấu câu hoặc Enter: “tienf” ra tiền, “viecj” ra việc, “Nguyenx” ra Nguyễn, “ruouj” ra rượu.',
+        source: 'Áp dụng cho 25 vần như iên, uyên, ênh, uân, ưu, ươp, khi chữ có trong từ điển. Tám từ tiếng Anh như “hues”, “yens”, “techs” vẫn giữ nguyên, nên huế và yến vẫn phải gõ đủ. VNI và VIQR chưa có. Lỗi đã biết: trong ô soạn thảo kiểu trang web của Firefox trên X11, chữ quên mũ đôi khi ra sai; textarea và Chromium đúng.',
+        pr: 696,
+      },
+      {
+        claim: 'Tên riêng có trong từ điển nhưng mở đầu bằng phụ âm ghép tiếng Việt không có, như plông, drăng, Hrê, gõ được; từ điển có thêm 44 âm tiết trong tên xã, phường và dân tộc, như Đakrông, Mnông, kmăl.',
+        source: 'Từ tiếng Anh thông dụng vẫn được ưu tiên: “draw” vẫn là draw, gõ tiếp “drawng” mới thành drăng. Cần bật kiểm tra chính tả bằng từ điển (mặc định bật). Gồm #708; “ddakroong mnoong” được gõ thử trên Ubuntu 24.04 và Linux Mint 22.1.',
+        pr: 706,
+      },
+      {
+        claim: 'Terminal hỏi password ẩn chữ thì Ngó Sen tự ngừng gõ tiếng Việt: giữ nguyên phím, không ghi nhật ký gõ; xong tự bật lại, không cần cài đặt.',
+        source: 'Riêng sudo trên Linux Mint hiện dấu * chưa nhận ra, cần bấm phím chuyển Anh/Việt. Terminal chưa được test lại trên gói 1.10.0-1.',
+        pr: 106,
+      },
+      {
+        claim: 'Tuỳ chọn “Cỡ biểu tượng khay” ở trang Giao diện: chọn Lớn thì biểu tượng ngó sen to hơn trong ô của nó trên khay, ví dụ trên KDE cao 20 px thay vì 16 px. Icon kiểu trơn (V, E, mặt cười) nay cao bằng ô ngó sen.',
+        source: 'Cỡ Lớn chỉ áp dụng khi bật “Sử dụng biểu tượng trạng thái Ngó Sen”; trên GNOME không đổi vì biểu tượng đã đầy ô, còn icon kiểu trơn cần đăng xuất rồi đăng nhập lại mới thấy. Gồm #671.',
+        pr: 675,
+      },
+      {
+        claim: 'Lệnh cài một dòng tự thêm repo APT trên Debian, Ubuntu và các distro dựa trên chúng, để nhận version mới khi cập nhật hệ thống; trang Kiểm tra máy hiện version đang chạy và repo đã bật hay chưa.',
+        source: 'Máy đã cài bằng lệnh này trước đây có thể chạy lại để thêm repo. Repo APT, pacman, zypper có thêm gói wl-ngosen cho niri, Sway, Hyprland (#702). Lệnh cài chưa được test lại trên gói 1.10.0-1.',
+        pr: 654,
+      },
+      {
+        claim: 'Gõ thừa chữ d sau một chữ có đ (kiểu “dduowjcd”) rồi bấm Backspace không còn mất nét của đ: ra “được”, không còn ra “dược”.',
+        source: 'Gõ thử trên Ubuntu 24.04 (Firefox, Chrome) và Linux Mint 22.1 (Firefox, Chromium).',
+        pr: 712,
+      },
+      {
+        claim: 'Bảng tính Lark trên Chrome: chữ đầu tiên gõ ngay sau khi chuyển ô không còn bị quên, gõ “caau” ra “câu”.',
+        source: 'Lark chưa được test lại trên gói 1.10.0-1.',
+        pr: 704,
+      },
+    ],
+  },
+  {
+    version: '1.9.3-1',
+    date: '11/11/2026',
+    summary:
+      'Bảng tính Lark trên Brave/Chrome không còn mất chữ khi chuyển ô nhanh và không còn lặp chữ đầu trên GNOME Wayland, KDE Plasma Wayland. Lệnh cài nhận ra niri. Chữ Telex sai chính tả như “moot” giữ nguyên phím đã gõ.',
+    changes: [
+      {
+        claim: 'Bảng tính Lark trên Brave/Chrome (X11): gõ Gõ Sen rồi chuyển ô nhanh bằng mũi tên hoặc Tab không còn mất chữ, kiểu gõ “laf” chỉ còn “l” và các ô sau trống.',
+        source: 'Lark chưa được test lại trên gói 1.9.3-1.',
+        pr: 681,
+      },
+      {
+        claim: 'Bảng tính Lark trên Brave/Chrome (GNOME Wayland) và Chromium/Chrome (KDE Plasma Wayland): chữ đầu tiên gõ bằng Gõ Sen trong bảng không còn bị lặp, kiểu “tieengs” ra “tieêngếng”.',
+        source: 'Gồm #697. Lark chưa được test lại trên gói 1.9.3-1.',
+        pr: 686,
+      },
+      {
+        claim: 'Gõ Telex các chữ sai chính tả như “moot”, “tienr” rồi bấm cách giữ nguyên phím đã gõ, không còn ra “môt”, “tiẻn”.',
+        source: 'Gõ thử trên Ubuntu 24.04 (GNOME 46 Wayland) trong Firefox và Chrome.',
+        pr: 693,
+      },
+      {
+        claim: 'Lệnh cài nhận ra niri như Sway và Hyprland: thêm Ngó Sen, bật fcitx5 và in dòng để fcitx5 tự chạy khi đăng nhập.',
+        source: 'niri và lệnh cài chưa được test lại trên gói 1.9.3-1.',
+        pr: 689,
+      },
+      {
+        claim: 'Gói cài (.deb, .rpm, Arch) tự kéo theo thư viện SVG của Qt, nên cửa sổ cài đặt bản Qt hiện đủ logo và biểu tượng; gói .deb và openSUSE còn kéo theo libxcb-xfixes, nên Cứu dấu trên chữ bôi đen trong app X11 không còn tự tắt.',
+        source: 'Gói dùng để gõ thử được dựng trước khi gộp thay đổi này.',
+        pr: 695,
+      },
+      {
+        claim: 'Bản IBus (ibus-ngosen): bấm Enter ngay sau chữ đang gạch chân ra đúng chữ như bấm dấu cách, có đổi dấu sau phụ âm cuối (“mootxj” ra “một”) và bung gõ tắt; bản fcitx5 không đổi.',
+        source: 'Gõ thử bằng build của ibus-ngosen#133 trên Ubuntu 26.04 (GNOME 50.1): đúng 6/6, bản trước sai 6/6.',
+        pr: 692,
+      },
+    ],
+  },
+  {
+    version: '1.9.2-1',
+    date: '11/11/2026',
+    summary:
+      'Xfce mặc định mở cửa sổ cài đặt GTK. Icon khay kiểu trơn chuyển sang màu đen khi panel sáng trên GNOME 51 và deepin; icon Ngó Sen hiện trong swaybar.',
+    changes: [
+      {
+        claim: 'Xfce mặc định mở cửa sổ cài đặt GTK và cài thư viện GTK như GNOME và Cinnamon; lựa chọn Qt hoặc GTK đã lưu vẫn được giữ.',
+        source: 'Build PR được test trên MX Linux 25.3 (Xfce X11); Xfce chưa được test lại trên gói 1.9.2-1.',
+        pr: 670,
+      },
+      {
+        claim: 'GNOME 51 không dùng theme riêng: khi chọn giao diện sáng, icon khay kiểu trơn đổi sang màu đen, không còn trắng gần như không thấy trên thanh trên cùng sáng.',
+        source: 'Đo bằng ảnh chụp trên CachyOS và Fedora 45 (GNOME 51). GNOME 43 thanh luôn tối; GNOME 44–50 chưa đo nên giữ cách cũ.',
+        pr: 672,
+      },
+      {
+        claim: 'deepin: khi dùng giao diện sáng, icon khay kiểu trơn màu đen cho hợp thanh dock sáng, không còn trắng khó thấy.',
+        source: 'Giao diện tự động vẫn dùng icon trắng. Lệnh đọc theme chạy đúng trên deepin 25; chính Ngó Sen chưa chạy thử trên deepin vì glibc của deepin cũ hơn máy dựng.',
+        pr: 673,
+      },
+      {
+        claim: 'Sway: icon Ngó Sen hiện trong swaybar, trước đây swaybar vẽ hình “không tìm thấy icon”.',
+        source: 'Kiểm tra trên CachyOS Sway 1.12; waybar vẫn hiện icon như trước, Hyprland không đổi.',
+        pr: 674,
+      },
+    ],
+  },
+  {
     version: '1.9.1-1',
     date: '10/11/2026',
     summary:
@@ -1434,7 +1553,8 @@ export const LEVELS_NOTE =
   ' Gói 1.8.3-1 do CI dựng từ PR phát hành #635 được gõ thử trên máy ảo ngày 08/11/2026: Linux Mint 22.1 (Cinnamon X11, gói “noble”, cập nhật từ 1.8.0-1 bằng cách cài file .deb) và CachyOS (KDE Plasma Wayland, gói Arch), dùng Gõ Sen, Telex, thiết lập mặc định. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, mỗi trường hợp 4 lượt, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Trên mỗi máy ảo, “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam” 16/16 lượt; “sose2026 tooi2 ” ra “sose2026 tôi2” 16/16 lượt (#614); “dduoxwcj parts ” ra “được parts” 16/16 lượt (#622). Tổng 96/96. Không test lại trên gói này: Ubuntu, GNOME, Sway, Hyprland, Fedora, Debian, openSUSE, Kali, VNI, cài mới, lệnh cài và trang Kiểm tra máy.' +
   ' Gói 1.9.0-1 do CI dựng từ PR phát hành #639 được gõ thử trên máy ảo ngày 09/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Linux Mint 22.1 (Cinnamon X11, gói “noble”, cập nhật từ 1.8.0-1) và CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), mỗi máy 4 lượt: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, đúng 48/48 trên mỗi máy. Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, gói “resolute” cài bằng apt, không có biến môi trường của install.sh, cập nhật từ 1.7.6-1), câu trên, 2 lượt tắt extension rồi 2 lượt bật: Ngó Sen nhận đúng tên app 16/16 (tắt extension thì lấy từ portal, bật thì lấy từ extension); chữ đúng 15/16. Lượt sai là Firefox tắt extension ngay sau khi cài, ra “ngư” thay vì “người”; đo lại cùng chỗ thì 1.8.3-1 đúng 8/8, 1.9.0-1 đúng 8/8. Trên cả ba máy, Ngó Sen ghi đã gửi thông báo version 1.9 một lần (đọc từ log và cài đặt, không xem trên màn hình). Không test lại trên gói này: Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminal, VNI, cài mới, lệnh cài và trang Kiểm tra máy.' +
   ' Các bản sửa được gõ thử bằng build của PR hoặc nhánh patch, so với 1.9.0-1, dùng Gõ Sen, Telex: Backspace sau chữ số (#646), ngày 09/11/2026, trên Ubuntu 26.04 (GNOME 50 Wayland) với GTK4, Firefox, Chrome và MX Linux 25.3 (Xfce X11) với GTK4, Firefox 157, Chromium 156, mỗi app 2 lượt, đều đúng, 1.9.0-1 sai ở đúng các bước đã đoán trước; ô tìm kiếm màn tổng quan (#644), ngày 09/11/2026, trên Ubuntu 24.04 (GNOME 46, fcitx5 5.1.7, tắt extension), đóng Text Editor rồi gõ “tieengs”, 3/3 lượt ô tìm kiếm giữ đúng chế độ riêng (1.9.0-1: 3/3 lượt mang chế độ của Files); Cứu dấu trong cửa sổ ẩn danh (#647), trên Arch Linux (KDE Plasma Wayland, Chromium 154), 3/3 lượt ra “nhánh” (1.9.0-1: 0/3); Backspace vào phím đang hiện nguyên (#651), trên Fedora 44 (KDE Plasma Wayland, fcitx5 5.1.23), 3 lượt mỗi app: kitty 9/9, Konsole 9/9, thanh địa chỉ Firefox 158 1/1; chọn bản trong lệnh cài (#653), trên Ubuntu 26.04 (GNOME 50), từ 1.7.6 có sẵn ibus-ngosen 1.1.0, “--ibus” rồi đăng xuất, đăng nhập lại: còn nguồn Ngó Sen, gõ ra “việt nam”, “--fcitx5”: bản IBus được gỡ, gõ ra “việt nam”, kiểm lệnh cài tự động trong container Ubuntu 24.04, Ubuntu 26.04, Fedora 44; extension không bật fcitx5 trên bản IBus (#656), trên Ubuntu 26.04 (GNOME 50.1, fcitx5 5.1.19) có bản IBus 1.2.1 và fcitx5, đăng nhập lại không còn bật fcitx5, giữ nguồn nhập, gõ ra “việt nam” (bản cũ: “vieetj nam”); chỉ kiểm bằng test tự động, chưa gõ thử trong app thật: trả phím khi gõ tới chữ số (#643), khôi phục sao lưu bản IBus (#648), cài thay bản IBus (#649), cửa sổ cài đặt (#652), menu chế độ (#659), Preedit “tôi2” (#661), chữ đầu Messenger (#663).' +
-  ' Gói 1.9.1-1 do CI dựng từ PR phát hành #664 được gõ thử trên máy ảo ngày 10/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Bốn câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, “thuwcx”, Backspace, “j ” ra “thực”. Linux Mint 22.1 (Cinnamon X11, gói deb “noble”, cập nhật từ 1.8.0-1), 3 lượt cả bốn câu, đúng 48/48. CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), 3 lượt cả bốn câu, đúng 47/48; dòng sai ở Firefox textarea, câu đầu ra “viêt nam”: Firefox báo chữ chậm nên Ngó Sen xoá bằng Backspace, và chữ “ệt” tới Firefox trước Backspace; lỗi này đã có từ trước, các bản sửa của 1.9.1 không đụng tới, cùng chỗ ở lượt sau thì đúng. Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, gói deb “resolute” cài bằng apt), câu đầu và câu “thuwcx”, 2 lượt tắt extension rồi 2 lượt bật: chữ trong ô đúng 32/32 (một dòng bộ đo đọc thiếu chữ cuối, ảnh chụp và chữ Firefox báo đều đúng); Ngó Sen nhận đúng tên app 16/16 khi tắt extension (từ portal) và 16/16 khi bật (từ extension). Câu “thuwcx” đúng trên cả ba máy: 12/12, 12/12, 16/16. Không test lại trên gói này: Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminal, VNI, cài mới, lệnh cài, Messenger.';
+  ' Gói 1.9.1-1 do CI dựng từ PR phát hành #664 được gõ thử trên máy ảo ngày 10/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Bốn câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, “thuwcx”, Backspace, “j ” ra “thực”. Linux Mint 22.1 (Cinnamon X11, gói deb “noble”, cập nhật từ 1.8.0-1), 3 lượt cả bốn câu, đúng 48/48. CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), 3 lượt cả bốn câu, đúng 47/48; dòng sai ở Firefox textarea, câu đầu ra “viêt nam”: Firefox báo chữ chậm nên Ngó Sen xoá bằng Backspace, và chữ “ệt” tới Firefox trước Backspace; lỗi này đã có từ trước, các bản sửa của 1.9.1 không đụng tới, cùng chỗ ở lượt sau thì đúng. Ubuntu 26.04 (GNOME 50.1 Wayland, fcitx5 5.1.19, gói deb “resolute” cài bằng apt), câu đầu và câu “thuwcx”, 2 lượt tắt extension rồi 2 lượt bật: chữ trong ô đúng 32/32 (một dòng bộ đo đọc thiếu chữ cuối, ảnh chụp và chữ Firefox báo đều đúng); Ngó Sen nhận đúng tên app 16/16 khi tắt extension (từ portal) và 16/16 khi bật (từ extension). Câu “thuwcx” đúng trên cả ba máy: 12/12, 12/12, 16/16. Không test lại trên gói này: Fedora, Debian, openSUSE, Kali, Sway, Hyprland, terminal, VNI, cài mới, lệnh cài, Messenger.' +
+  ' Các bản sửa của 1.9.2 được kiểm bằng build của từng PR: cửa sổ cài đặt trên Xfce (#670), trên máy ảo MX Linux 25.3 (Xfce X11, có cả PyQt6 lẫn libadwaita), gói “trixie” của PR mở cửa sổ bản GTK; test tự động trước khi sửa đỏ 2 bài; icon khay GNOME 51 (#672), đo bằng ảnh chụp thanh trên cùng trên máy ảo CachyOS và Fedora 45 (GNOME 51): chọn giao diện sáng thì thanh sáng và icon V màu đen; GNOME 43 (Debian 12) thanh luôn tối, GNOME 44–50 chưa đo nên giữ cách cũ; deepin (#673), trên máy ảo deepin 25, đổi theme toàn cục rồi chụp dock: “nirvana.light” dock sáng, “nirvana.dark” dock tối, lệnh đọc theme chạy đúng trên máy ảo; chính Ngó Sen chưa chạy thử trên deepin vì glibc của deepin cũ hơn máy dựng, theme tự động vẫn dùng icon trắng; swaybar (#674), trên máy ảo CachyOS Sway 1.12, swaybar vẽ icon Ngó Sen, waybar vẫn hiện icon như trước, Hyprland không đổi; tệp giấy phép (#680) chỉ đổi chữ, hai link bản lưu được mở thử, đúng trang. Gói 1.9.2-1 do CI dựng từ PR phát hành #682 được gõ thử trên máy ảo ngày 11/11/2026, dùng Gõ Sen, Telex. Firefox và Chromium, mỗi app thử trên trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím. Bốn câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, “thuwcx”, Backspace, “j ” ra “thực”. CachyOS (KDE Plasma Wayland, gói Arch, cập nhật từ 1.7.6-1), 2 lượt cả bốn câu, đúng 32/32. Từ 1.9.1 không đổi phần gõ chữ nên chỉ test một máy. Không test lại trên gói này: Linux Mint, Ubuntu, GNOME, Fedora, Debian, openSUSE, Kali, Sway, Hyprland, Xfce, deepin, terminal, VNI, cài mới, lệnh cài. Gói 1.9.3-1 do CI dựng từ PR phát hành #699 (trước khi gộp #695 và #700, hai PR chỉ đổi phụ thuộc gói và lệnh cài) được gõ thử trên máy ảo ngày 11/11/2026, dùng Gõ Sen, Telex, 0,15 giây giữa các phím. Ubuntu 24.04 (GNOME 46 Wayland, gói deb “noble” cài bằng apt, cập nhật từ 1.5.5), Firefox và Chrome, trang textarea, 2 lượt mỗi câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, “thuwcx”, Backspace, “j ” ra “thực”, “moot tienr ” giữ nguyên (#693). Chrome đúng 10/10; Firefox đúng 9/10, lượt sai là lần gõ đầu tiên ngay sau khi mở Firefox, “sose2026” ra “soése026”; gõ lại câu đó 10 lượt thì đúng 10/10. Enter sau chữ gạch chân của bản IBus (#692) được gõ thử bằng build của ibus-ngosen#133 trên Ubuntu 26.04 (GNOME 50.1): đúng 6/6, bản trước sai 6/6. Không test lại trên gói này: Ubuntu 26.04, KDE, Lark, Fedora, Debian, openSUSE, Arch, Sway, Hyprland, niri, terminal, VNI, cài mới, lệnh cài. Gói 1.10.0-1 do CI dựng từ PR phát hành #715 được gõ thử trên máy ảo ngày 12/11/2026, dùng Gõ Sen, Telex. Bảy câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “dduoxwcj parts ” ra “được parts”, “/cost cd /usr/share ” giữ nguyên, “tienf nguyenx luanj ” ra “tiền nguyễn luận”, “ddakroong mnoong ” ra “đakrông mnông”, “dduowjcd”, Backspace ra “được”. Ubuntu 24.04 (GNOME 46 Wayland, gói deb “noble” cài bằng apt đè lên bản có sẵn), Firefox và Chrome, trang textarea, 2 lượt mỗi câu, 0,15 giây giữa các phím: đúng 27/28; lượt sai là lượt đầu câu “ddakroong mnoong” trong Firefox ra “mnong”, gõ lại câu đó 18 lượt thì đúng 18/18. Linux Mint 22.1 (Cinnamon X11, gói deb “noble”), Firefox và Chromium, trang textarea và contenteditable div, fcitx5 khởi động lại trước mỗi dòng test, 0,12 giây giữa các phím, 2 lượt: đúng 55/56. Lượt sai ở Firefox div, câu “tienf nguyenx luanj” ra “tiền nguyễn lu”; gõ lại 10 lượt thì sai thêm 1 (“luạnậ”). Ở cả hai lượt sai, Firefox không báo lại chữ sau khi Ngó Sen thay “ạn” bằng “ận”. Đây là lỗi đã biết của version này: chỉ gặp ở chữ gõ quên mũ, trong ô soạn thảo kiểu trang web của Firefox trên X11; textarea và Chromium đúng. Ba lần dựng gói trước đó tìm ra bốn chỗ từ bắt đầu bằng “/” vẫn bị bỏ dấu, đã sửa trong #716, #718, #719 và #721. Vim mode chỉ được kiểm bằng test tự động. Không test lại trên gói này: Ubuntu 26.04, KDE, Lark, Fedora, Debian, openSUSE, Arch, Sway, Hyprland, niri, terminal, VNI, cài mới, lệnh cài.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
@@ -1556,7 +1676,7 @@ export const DISTRIBUTIONS: Distribution[] = [
 ];
 
 // Mirrors the introduction and features in README.md in ngosen/ngosen.
-export const TAGLINE = 'Bộ gõ tiếng Việt cho fcitx5 trên Linux, cho trải nghiệm gõ như UniKey trên Windows.';
+export const TAGLINE = 'Bộ gõ tiếng Việt cho Linux, gõ như UniKey trên Windows.';
 
 export const HIGHLIGHTS: { title: string; text: string }[] = [
   {
@@ -1565,11 +1685,15 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Cứu dấu',
-    text: 'Bôi đen chữ rồi gõ phím dấu để thêm, đổi hoặc bỏ dấu thanh, như nhanh + s → nhánh. Dùng được ở app cho bộ gõ đọc surrounding text. Chromium, Vivaldi, Cốc Cốc và WPS trên X11 cũng dùng được qua chữ đang bôi đen.',
+    text: 'Bôi đen chữ rồi gõ phím dấu để thêm, đổi hoặc bỏ dấu thanh, như nhanh + s → nhánh. Ở Gõ Sen, click ngay sau từ rồi gõ phím dấu cũng sửa được, không cần bôi đen.',
+  },
+  {
+    title: 'Menu chế độ riêng cho từng app',
+    text: 'Bấm phím ` để mở menu cạnh con trỏ, chọn Gõ Sen (1), Gạch chân (q), Chọn Emoji (w) hoặc Tắt (e), và bật Vim mode (v) cho app dùng phím Vim như nvim hay Claude Code. Ngó Sen nhớ lựa chọn riêng cho từng app.',
   },
   {
     title: 'Phím chuyển Anh/Việt riêng',
-    text: 'Cài mới dùng Ctrl+Shift như UniKey; đã cài từ trước giữ Ctrl+Space. Khi ở tiếng Anh, gõ như không có bộ gõ. Mỗi app nhớ riêng Anh hay Việt qua lần đăng xuất; app chưa bấm lần nào theo lần bấm gần nhất.',
+    text: 'Cài mới dùng Ctrl+Shift như UniKey; đã cài từ trước giữ Ctrl+Space. Mỗi app nhớ riêng đang gõ Anh hay Việt.',
   },
   {
     title: 'Gõ thẳng, không gạch chân',
@@ -1580,12 +1704,16 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
     text: 'Trình duyệt, terminal, Zalo, LibreOffice đều dùng Gõ Sen. Ngó Sen tự nhận ra app nhận chữ kiểu gì, không phải đổi chế độ.',
   },
   {
+    title: 'Lệnh và đường dẫn',
+    text: 'Từ bắt đầu bằng / giữ nguyên như gõ: /cost, cd /usr/share.',
+  },
+  {
     title: 'Cài bằng một dòng lệnh',
     text: 'Có cho Fedora, Ubuntu (từ 24.04), Debian (từ 12), Kali, deepin, LMDE, Devuan, Parrot, Arch, Artix, CachyOS và openSUSE Tumbleweed trên x86_64. Fedora, Ubuntu, Debian và Kali còn có gói ARM 64-bit. Script so hash SHA-256 và hỏi lại trước khi cài.',
   },
   {
     title: 'Cửa sổ cài đặt Qt hoặc GTK',
-    text: 'Cửa sổ cài đặt có hai bản: Qt và GTK (giống app GNOME). GNOME và Linux Mint (Cinnamon) mở bản GTK, các desktop khác mở bản Qt. Cửa sổ dùng giao diện sáng, tối của máy trên KDE và GNOME; đổi gì lưu ngay, có nút Hoàn tác.',
+    text: 'Cửa sổ cài đặt có hai bản: GTK (giống app GNOME), tự mở trên GNOME, Linux Mint Cinnamon và Xfce, và Qt trên KDE Plasma và các desktop khác. Cửa sổ theo giao diện sáng, tối của máy; đổi gì lưu ngay, có nút Hoàn tác.',
   },
 ];
 
@@ -1593,7 +1721,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 // Mirrors the top of the README on main.
 export const SCOPE = {
   title: 'fcitx5 và IBus',
-  text: 'Ngó Sen làm cho fcitx5. fcitx5 chạy được trên GNOME, KDE, Xfce, Sway và Hyprland, có nhiều tính năng và nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, dùng chung lõi gõ với bản fcitx5 nên tính năng gần như giống hệt. Tính năng mới có thể đến bản IBus muộn hơn bản fcitx5.',
+  text: 'Ngó Sen làm cho fcitx5. Bản fcitx5 chạy trên GNOME, KDE Plasma, Xfce, Sway, Hyprland và niri, nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, dùng chung lõi gõ với bản fcitx5 nên tính năng gần như giống hệt. Tính năng mới có thể đến bản IBus muộn hơn bản fcitx5.',
   ibusRepo: IBUS_REPO,
 };
 
