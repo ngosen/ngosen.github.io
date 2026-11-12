@@ -3,6 +3,7 @@ import Guide from '../../layouts/Guide.astro';
 import Shot from '../../components/Shot.astro';
 
 const toc = [
+  { id: 'co', label: 'Cỡ biểu tượng khay' },
   { id: 'mau', label: 'Màu biểu tượng một màu' },
   { id: 'menu-khay', label: 'Ẩn mục trong menu khay' },
   { id: 'ngon-ngu', label: 'Ngôn ngữ giao diện' },
@@ -11,7 +12,7 @@ const toc = [
 
 <Guide
   title="Đổi icon trên khay"
-  description="Chọn icon trạng thái hay icon một màu, màu icon và các mục hiện trong menu khay. Ngôn ngữ menu và cửa sổ cài đặt cũng chọn ở trang “Giao diện”."
+  description="Chọn icon trạng thái hay icon một màu, cỡ icon, màu icon và các mục hiện trong menu khay. Ngôn ngữ menu và cửa sổ cài đặt cũng chọn ở trang “Giao diện”."
   toc={toc}
 >
   <p slot="lede">Vào “Cài đặt Ngó Sen › Giao diện”.</p>
@@ -19,9 +20,9 @@ const toc = [
   <Shot
     name="guide-tray"
     width={505}
-    height={560}
-    alt="Trang Giao diện: ngôn ngữ Tiếng Việt, icon trạng thái, màu Tự động, phần xem trước chữ V xanh và lát củ sen xám, cùng các ô chọn mục hiện trong menu khay."
-    caption="Trang “Giao diện” với icon và các mục hiện trong menu khay. Linux Mint 22.1 Cinnamon, version 1.6.0-1."
+    height={545}
+    alt="Trang Giao diện: ngôn ngữ Tiếng Việt, icon trạng thái, cỡ Bình thường, màu Tự động, phần xem trước chữ V xanh và lát củ sen xám, cùng các ô chọn mục hiện trong menu khay."
+    caption="Trang “Giao diện” với icon và các mục hiện trong menu khay. Linux Mint 22.1 Cinnamon, version 1.10.0-1."
   />
   <ul>
     <li>
@@ -31,6 +32,13 @@ const toc = [
     <li>Bỏ chọn thì dùng icon một màu, theo màu chọn bên dưới.</li>
   </ul>
   <p>Phần “Trên khay:” xem trước icon cho tiếng Việt và tiếng Anh, đổi ngay theo lựa chọn.</p>
+
+  <h2 id="co">Cỡ biểu tượng khay</h2>
+  <p>
+    “Cỡ biểu tượng khay” có hai mức, “Bình thường” (mặc định) và “Lớn”. Chọn “Lớn” thì icon ngó sen to hơn trong ô
+    của nó trên khay: trên Linux Mint 22.1 Cinnamon, chữ V cao 20 px thay vì 16 px. Trên GNOME không đổi, vì icon đã
+    đầy ô. Mức này chỉ áp dụng cho icon trạng thái, khi chọn “Sử dụng biểu tượng trạng thái Ngó Sen”.
+  </p>
 
   <h2 id="mau">Màu biểu tượng một màu</h2>
   <p>“Màu biểu tượng” chỉ dùng cho icon một màu:</p>

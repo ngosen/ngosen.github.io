@@ -46,59 +46,59 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.9.1-1 adds an installer choice between fcitx5 and IBus and removes “Chế độ gõ mặc định”
-    from the mode menu. It fixes the first accented word in Messenger on Chromium, typing and
-    Backspace around digits, and Cứu dấu in Chrome and Chromium incognito windows.
+    Version 1.10.0-1 adds a per-app Vim mode to the mode menu, keeps words that start with
+    <code>/</code> as typed, and fixes Telex words typed without their circumflex or horn. Versions
+    1.9.2-1 and 1.9.3-1 before it fixed tray icons, Lark spreadsheets and the installer on niri.
   </p>
   <ul>
     <li>
-      On a first install on GNOME, or Xfce, Cinnamon and MATE on X11 on Debian, Ubuntu and Linux Mint,
-      the installer asks which edition to install when an IBus package is available. Enter selects
-      fcitx5; <code>--ibus</code> and <code>--fcitx5</code> select directly. Updates keep the installed
-      edition (<a href={`${REPO}/pull/653`}>#653</a>).
+      The mode menu has a new “[v] Vim mode” line, switched on or off per app, in both Gõ Sen and
+      Preedit. With it on, Vim commands pass through unchanged after Esc or Ctrl+[, and the first word
+      typed after entering insert mode gets its tone marks at once. In terminals, typing
+      <code>vim</code> or <code>nvim</code> at the shell is detected even with Vim mode off. Checked
+      by automated tests only (<a href={`${REPO}/pull/302`}>#302</a>,
+      <a href={`${REPO}/pull/587`}>#587</a>).
     </li>
     <li>
-      The mode menu opened with <kbd>`</kbd> no longer has “Chế độ gõ mặc định”; its settings checkbox
-      and shortcut are removed too. Select the app’s original mode again to follow the shared settings
-      and English/Vietnamese key. Off is still remembered for that app
-      (<a href={`${REPO}/pull/659`}>#659</a>).
+      Words starting with <code>/</code> at the start of a line or after a space keep their raw keys,
+      for chat commands and paths: <code>/cost</code> and <code>cd /usr/share</code> stay as typed,
+      including in Firefox. The option is in the Gõ nhanh group on the Gõ chữ page and is on by default
+      (<a href={`${REPO}/pull/312`}>#312</a>).
     </li>
     <li>
-      In Gõ Sen, the first accented word of a Messenger message on Chromium is no longer wrong or
-      missing letters (<a href={`${REPO}/pull/663`}>#663</a>).
+      Telex words missing a circumflex or horn in rhymes that always carry one now commit correctly:
+      <code>tienf</code> gives tiền, <code>Nguyenx</code> gives Nguyễn. English words such as
+      <code>hues</code> stay unchanged; VNI and VIQR are not covered yet
+      (<a href={`${REPO}/pull/696`}>#696</a>). Proper names such as plông, Mnông and Đakrông can be
+      typed (<a href={`${REPO}/pull/706`}>#706</a>, <a href={`${REPO}/pull/708`}>#708</a>).
     </li>
     <li>
-      With the GNOME extension off, closing a window in the overview no longer gives the search field
-      the background app’s mode and settings (<a href={`${REPO}/pull/644`}>#644</a>).
+      When a terminal asks for a hidden password, Ngó Sen stops typing Vietnamese and leaves the keys
+      out of the typing log, then resumes. sudo on Linux Mint, which shows <code>*</code>, is not
+      detected yet (<a href={`${REPO}/pull/106`}>#106</a>).
     </li>
     <li>
-      With macros on, non-Vietnamese words return to the typed keys as soon as a digit is entered;
-      Tab and Esc also keep <code>Sose2026</code>. In Gõ Sen, typing it followed by a space and two
-      Backspaces no longer scrambles the text; Vietnamese words such as <code>tôi2</code> stay unchanged
-      (<a href={`${REPO}/pull/613`}>#613</a>, <a href={`${REPO}/pull/643`}>#643</a>).
-      Backspacing into the non-Vietnamese prefix of <code>thuwcx2tooi2</code> keeps the displayed text
-      (<a href={`${REPO}/pull/646`}>#646</a>). In Preedit, <code>tôi2</code>, space and two Backspaces
-      keep <code>tôi</code> rather than losing its tone mark (<a href={`${REPO}/pull/661`}>#661</a>).
+      A new “Cỡ biểu tượng khay” option makes the tray icon larger within its slot, for example 20 px
+      instead of 16 px on KDE; GNOME is unchanged (<a href={`${REPO}/pull/675`}>#675</a>). The one-line
+      installer now adds the APT repository on Debian, Ubuntu and derivatives, and the Kiểm tra máy page
+      shows the running version and whether the repository is enabled
+      (<a href={`${REPO}/pull/654`}>#654</a>, <a href={`${REPO}/pull/657`}>#657</a>).
     </li>
     <li>
-      Cứu dấu, Cứu chữ and line-start capitalisation work again in Chrome, Chromium and related browsers’
-      incognito windows on KDE and other Wayland desktops. GNOME was unaffected; incognito text still
-      stays out of the typing log (<a href={`${REPO}/pull/647`}>#647</a>).
+      Backspace after an extra <code>d</code> following a word with đ keeps the đ
+      (<a href={`${REPO}/pull/712`}>#712</a>). Lark spreadsheets in Chrome no longer forget the first
+      word typed after moving to another cell (<a href={`${REPO}/pull/704`}>#704</a>); 1.9.3-1 fixed
+      lost and repeated letters there (<a href={`${REPO}/pull/681`}>#681</a>,
+      <a href={`${REPO}/pull/686`}>#686</a>, <a href={`${REPO}/pull/697`}>#697</a>).
     </li>
     <li>
-      Backspace in Gõ Sen can turn raw keys back into Vietnamese without scrambling what follows:
-      <code>thuwcx</code>, Backspace, <code>j</code> gives <code>thực</code>. English word prefixes such as
-      <code>perl</code> and <code>are</code> keep their raw keys, including on Backspace in Preedit
-      (<a href={`${REPO}/pull/651`}>#651</a>).
-    </li>
-    <li>
-      Restoring an IBus backup keeps the machine’s per-app English/Vietnamese choices
-      (<a href={`${REPO}/pull/648`}>#648</a>). The installer explains that replacing IBus removes its
-      package for every account and does not copy its settings. Debian, Ubuntu and Fedora replace it in
-      the same transaction, keeping the old package if installation fails; openSUSE and Arch print a
-      removal command and stop (<a href={`${REPO}/pull/649`}>#649</a>).
-      On GNOME with IBus and fcitx5 installed, the extension no longer starts fcitx5 at login and
-      disrupts the IBus input source (<a href={`${REPO}/pull/656`}>#656</a>).
+      Version 1.9.3-1 also taught the installer about niri (<a href={`${REPO}/pull/689`}>#689</a>) and
+      kept misspelled Telex words such as <code>moot</code> as typed
+      (<a href={`${REPO}/pull/693`}>#693</a>). Version 1.9.2-1 opens the GTK settings window by
+      default on Xfce (<a href={`${REPO}/pull/670`}>#670</a>), shows a dark plain tray icon on light
+      panels in GNOME 51 and deepin, and shows the icon in swaybar
+      (<a href={`${REPO}/pull/672`}>#672</a>, <a href={`${REPO}/pull/673`}>#673</a>,
+      <a href={`${REPO}/pull/674`}>#674</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
