@@ -11,12 +11,12 @@ const toc = [
 
 <Guide
   title="Chuyển chữ bảng mã cũ sang Unicode"
-  description="Chuyển chữ gõ bằng TCVN3, VNI sang Unicode trong Ngó Sen: bôi đen rồi bấm phím chuyển mã, hoặc dán chữ vào trang Chuyển mã của cửa sổ cài đặt."
+  description="Chuyển chữ gõ bằng TCVN3, VNI sang Unicode trong Ngó Sen: bôi đen rồi bấm phím chuyển mã, hoặc dán chữ vào trang “Chuyển mã” của cửa sổ cài đặt."
   toc={toc}
 >
   <p slot="lede">
     Chữ gõ bằng bảng mã cũ như TCVN3 hiện ra ký tự lạ, kiểu <code>TiÕng ViÖt</code>. Từ version 1.11, Ngó Sen
-    đổi được đoạn chữ đó sang Unicode ngay trong app, bằng một phím tắt.
+    đổi được đoạn chữ đó sang Unicode ngay trong app bằng một phím tắt.
   </p>
 
   <h2 id="dat-phim">Đặt phím và bảng mã</h2>
@@ -24,7 +24,7 @@ const toc = [
   <ol class="steps">
     <li>Ở hàng “Phím tắt chuyển mã chữ bôi đen”, click nút phím rồi bấm tổ hợp phím muốn dùng, ví dụ <kbd>Ctrl+Alt+C</kbd>.</li>
     <li>
-      Ở “Chuyển từ bảng mã”, chọn bảng mã của đoạn chữ cũ. Mặc định là “TCVN3 (ABC)”. “Sang bảng mã” mặc định là
+      Ở “Chuyển từ bảng mã”, chọn bảng mã của đoạn chữ cũ, mặc định là “TCVN3 (ABC)”. Mục “Sang bảng mã” mặc định là
       “Unicode”.
     </li>
   </ol>
@@ -36,8 +36,8 @@ const toc = [
     caption="Trang “Chuyển mã” với chữ TCVN3 dán vào ô trên. Linux Mint 22.1 Cinnamon, version 1.11.0-1."
   />
   <p>
-    Nhóm “Sau khi chuyển” có “Bỏ dấu” (Tiếng Việt thành Tieng Viet) và “Chữ hoa, chữ thường”, mặc định “Giữ
-    nguyên”. “Đảo chiều” đổi chỗ hai bảng mã.
+    Nhóm “Sau khi chuyển” có “Bỏ dấu” (đổi Tiếng Việt thành Tieng Viet) và “Chữ hoa, chữ thường” (mặc định là “Giữ
+    nguyên”). Nút “Đảo chiều” đổi chỗ hai bảng mã.
   </p>
 
   <h2 id="chu-boi-den">Chuyển chữ bôi đen</h2>
@@ -46,18 +46,18 @@ const toc = [
     <li>Bấm phím chuyển mã. Đoạn chữ đổi thành <code>Tiếng Việt là ngôn ngữ của người Việt Nam</code>.</li>
   </ol>
   <p>
-    Muốn lấy lại chữ cũ thì bấm <kbd>Ctrl+Z</kbd>. Trong xed phải bấm hai lần: lần đầu xoá chữ mới, lần sau trả
-    lại chữ cũ. Bấm phím khi chưa bôi đen gì thì Ngó Sen chỉ hiện thông báo, không chèn chữ. Phím này không dùng
-    được trong terminal.
+    Để lấy lại chữ cũ, bấm <kbd>Ctrl+Z</kbd>. Trong xed phải bấm hai lần: lần đầu xoá chữ mới, lần sau trả
+    lại chữ cũ. Nếu bấm phím khi chưa bôi đen đoạn chữ nào, Ngó Sen chỉ hiện thông báo và không chèn chữ. Phím này
+    không dùng được trong terminal.
   </p>
 
   <h2 id="dan-chu">Chuyển chữ dán vào</h2>
   <p>
-    Ở cuối trang “Chuyển mã”, dán chữ vào ô “Dán chữ cần chuyển mã vào đây”. Ô bên dưới hiện chữ đã chuyển ngay.
+    Ở cuối trang “Chuyển mã”, dán chữ vào ô “Dán chữ cần chuyển mã vào đây”. Ô bên dưới hiện ngay chữ đã chuyển.
     Cách này không cần đặt phím tắt.
   </p>
   <p>
-    Vừa cập nhật lên 1.11 mà trang này chỉ có tiêu đề, không có ô nào, thì fcitx5 vẫn đang chạy version cũ.
+    Nếu vừa cập nhật lên version 1.11 mà trang này chỉ có tiêu đề, không có ô nào thì fcitx5 vẫn đang chạy version cũ.
     Khởi động lại fcitx5 rồi mở lại cửa sổ cài đặt.
   </p>
 </Guide>
