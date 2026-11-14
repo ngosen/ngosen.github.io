@@ -40,65 +40,58 @@ const levels: Record<Level, string> = {
   </p>
   <p>
     Ngó Sen includes Cứu chữ to retype what was typed before switching to Vietnamese, and Cứu dấu to
-    change the tone mark of a selected word. Ngó Sen has its own English/Vietnamese key: new installs
-    use Ctrl+Shift, like UniKey.
+    change the tone mark of a selected word. A convert hotkey turns selected TCVN3 or VNI text into
+    Unicode. Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey.
   </p>
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.10.0-1 adds a per-app Vim mode to the mode menu, keeps words that start with
-    <code>/</code> as typed, and fixes Telex words typed without their circumflex or horn. Versions
-    1.9.2-1 and 1.9.3-1 before it fixed tray icons, Lark spreadsheets and the installer on niri.
+    Version 1.11.0-1 converts selected text between charsets with a hotkey, keeps tone marks when
+    extra keys follow a word, adds a Vietnamese item at the top of the tray menu and uses about 3 MB
+    less RAM. Version 1.10.1-1 before it fixed flicker on GNOME, web spreadsheets and the Qt settings
+    window on Fedora 44.
   </p>
   <ul>
     <li>
-      The mode menu has a new “[v] Vim mode” line, switched on or off per app, in both Gõ Sen and
-      Preedit. With it on, Vim commands pass through unchanged after Esc or Ctrl+[, and the first word
-      typed after entering insert mode gets its tone marks at once. In terminals, typing
-      <code>vim</code> or <code>nvim</code> at the shell is detected even with Vim mode off. Checked
-      by automated tests only (<a href={`${REPO}/pull/302`}>#302</a>,
-      <a href={`${REPO}/pull/587`}>#587</a>).
+      Select text typed in TCVN3, VNI or another charset and press the convert hotkey to change it to
+      the chosen charset, optionally changing case or removing marks. The hotkey is unset by default;
+      set it on the new Chuyển mã page of the settings window, which can also convert pasted text.
+      Checked by automated tests and during development only
+      (<a href={`${REPO}/pull/748`}>#748</a>, <a href={`${REPO}/pull/750`}>#750</a>,
+      <a href={`${REPO}/pull/751`}>#751</a>).
     </li>
     <li>
-      Words starting with <code>/</code> at the start of a line or after a space keep their raw keys,
-      for chat commands and paths: <code>/cost</code> and <code>cd /usr/share</code> stay as typed,
-      including in Firefox. The option is in the Gõ nhanh group on the Gõ chữ page and is on by default
-      (<a href={`${REPO}/pull/312`}>#312</a>).
+      Extra keys that cannot join a Vietnamese word no longer undo its marks: Telex
+      <code>dduowjcd</code> gives <code>đượcd</code> (<a href={`${REPO}/pull/756`}>#756</a>). Space then
+      splits <code>côngty</code> into <code>công ty</code> or drops the extra key from
+      <code>đượcd</code>, and turns <code>nhưg</code>, <code>khôg</code>, <code>đúg</code> into
+      <code>nhưng</code>, <code>không</code>, <code>đúng</code>; Backspace right after restores what was
+      typed (<a href={`${REPO}/pull/757`}>#757</a>, <a href={`${REPO}/pull/760`}>#760</a>).
     </li>
     <li>
-      Telex words missing a circumflex or horn in rhymes that always carry one now commit correctly:
-      <code>tienf</code> gives tiền, <code>Nguyenx</code> gives Nguyễn. English words such as
-      <code>hues</code> stay unchanged; VNI and VIQR are not covered yet
-      (<a href={`${REPO}/pull/696`}>#696</a>). Proper names such as plông, Mnông and Đakrông can be
-      typed (<a href={`${REPO}/pull/706`}>#706</a>, <a href={`${REPO}/pull/708`}>#708</a>).
+      The fcitx5 tray menu always starts with “✔ Tiếng Việt” / “✖ Tiếng Việt”, which switches the language
+      for the current app when Ctrl+Shift is not available and is remembered per app
+      (<a href={`${REPO}/pull/749`}>#749</a>). Ngó Sen’s word lists are stored more compactly, so fcitx5 uses
+      about 3 MB less RAM (<a href={`${REPO}/pull/754`}>#754</a>).
     </li>
     <li>
-      When a terminal asks for a hidden password, Ngó Sen stops typing Vietnamese and leaves the keys
-      out of the typing log, then resumes. sudo on Linux Mint, which shows <code>*</code>, is not
-      detected yet (<a href={`${REPO}/pull/106`}>#106</a>).
+      In Firefox on GNOME, Gõ Sen no longer loses or reorders letters when typing fast with Backspace,
+      keeps Telex working right after Alt+Tab, and adapts its wait to how fast the page draws text, so the
+      old word barely flickers (<a href={`${REPO}/pull/739`}>#739</a>, <a href={`${REPO}/pull/741`}>#741</a>,
+      <a href={`${REPO}/pull/745`}>#745</a>, <a href={`${REPO}/pull/747`}>#747</a>,
+      <a href={`${REPO}/pull/759`}>#759</a>). Web spreadsheets keep tone marks and the first letter after
+      moving to another cell (<a href={`${REPO}/pull/732`}>#732</a>, <a href={`${REPO}/pull/735`}>#735</a>,
+      <a href={`${REPO}/pull/755`}>#755</a>). Telex <code>peks</code> commits as <code>pék</code> when the
+      word is in the dictionary (<a href={`${REPO}/pull/753`}>#753</a>).
     </li>
     <li>
-      A new “Cỡ biểu tượng khay” option makes the tray icon larger within its slot, for example 20 px
-      instead of 16 px on KDE; GNOME is unchanged (<a href={`${REPO}/pull/675`}>#675</a>). The one-line
-      installer now adds the APT repository on Debian, Ubuntu and derivatives, and the Kiểm tra máy page
-      shows the running version and whether the repository is enabled
-      (<a href={`${REPO}/pull/654`}>#654</a>, <a href={`${REPO}/pull/657`}>#657</a>).
-    </li>
-    <li>
-      Backspace after an extra <code>d</code> following a word with đ keeps the đ
-      (<a href={`${REPO}/pull/712`}>#712</a>). Lark spreadsheets in Chrome no longer forget the first
-      word typed after moving to another cell (<a href={`${REPO}/pull/704`}>#704</a>); 1.9.3-1 fixed
-      lost and repeated letters there (<a href={`${REPO}/pull/681`}>#681</a>,
-      <a href={`${REPO}/pull/686`}>#686</a>, <a href={`${REPO}/pull/697`}>#697</a>).
-    </li>
-    <li>
-      Version 1.9.3-1 also taught the installer about niri (<a href={`${REPO}/pull/689`}>#689</a>) and
-      kept misspelled Telex words such as <code>moot</code> as typed
-      (<a href={`${REPO}/pull/693`}>#693</a>). Version 1.9.2-1 opens the GTK settings window by
-      default on Xfce (<a href={`${REPO}/pull/670`}>#670</a>), shows a dark plain tray icon on light
-      panels in GNOME 51 and deepin, and shows the icon in swaybar
-      (<a href={`${REPO}/pull/672`}>#672</a>, <a href={`${REPO}/pull/673`}>#673</a>,
-      <a href={`${REPO}/pull/674`}>#674</a>).
+      Version 1.10.1-1: on GNOME, word changes appear at once outside Firefox-based browsers
+      (<a href={`${REPO}/pull/720`}>#720</a>); web spreadsheets such as Handsontable, jspreadsheet and AG Grid
+      no longer drop the first key after moving to another cell (<a href={`${REPO}/pull/730`}>#730</a>);
+      Lark Base on Chrome on GNOME no longer saves cells without marks (<a href={`${REPO}/pull/728`}>#728</a>);
+      Preedit in Dolphin’s search field on KDE Plasma Wayland keeps its text
+      (<a href={`${REPO}/pull/722`}>#722</a>); the Qt settings window no longer crashes on close with
+      PyQt6 6.11 (<a href={`${REPO}/pull/731`}>#731</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
