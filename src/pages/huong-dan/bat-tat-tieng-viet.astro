@@ -4,6 +4,7 @@ import Shot from '../../components/Shot.astro';
 
 const toc = [
   { id: 'dau-hieu', label: 'Biết tiếng Việt đang bật' },
+  { id: 'menu-khay', label: 'Bật, tắt từ menu khay' },
   { id: 'doi-phim', label: 'Đổi phím bật/tắt' },
 ];
 ---
@@ -36,6 +37,17 @@ const toc = [
     Khi tắt tiếng Việt, phím gõ ra như khi không dùng bộ gõ. Từ version 1.7.5, phím chuyển chỉ đổi app đang gõ;
     mỗi app nhớ riêng Anh hay Việt qua lần đăng xuất, app chưa bấm lần nào theo lần bấm gần nhất.
   </p>
+
+  <h2 id="menu-khay">Bật, tắt từ menu khay</h2>
+  <p>
+    Từ version 1.11, menu khay có dòng “✔ Tiếng Việt” ở đầu khi tiếng Việt đang bật, “✖ Tiếng Việt” khi tắt. Dùng
+    dòng này khi không bấm được phím chuyển.
+  </p>
+  <ol class="steps">
+    <li>Trong app đang gõ, click chuột phải vào icon Ngó Sen trên khay.</li>
+    <li>Click “✔ Tiếng Việt”. Icon đổi sang lát củ sen, app này gõ tiếng Anh. Click “✖ Tiếng Việt” để bật lại.</li>
+  </ol>
+  <p>Như phím chuyển, dòng này chỉ đổi app đang gõ, và lựa chọn được nhớ qua các lần khởi động lại.</p>
 
   <h2 id="doi-phim">Đổi phím bật/tắt</h2>
   <p>Vào “Cài đặt Ngó Sen › Phím › Phím tắt”, hàng “Phím chuyển Anh/Việt”.</p>
