@@ -11,10 +11,10 @@ const toc = [
 
 <Guide
   title="Chọn chế độ gõ"
-  description="Chọn chế độ gõ trong Ngó Sen giữa “Gõ Sen”, “Gạch chân”, “Chọn Emoji” và “Tắt”. Đặt chế độ chung hoặc chọn riêng cho từng app từ menu khi gõ."
+  description="Chọn chế độ gõ trong Ngó Sen giữa “Gõ Sen”, “Gạch chân” và “Tắt”. Đặt chế độ chung hoặc chọn riêng cho từng app từ menu khi gõ."
   toc={toc}
 >
-  <p slot="lede">Ngó Sen có bốn chế độ: “Gõ Sen”, “Gạch chân”, “Chọn Emoji” và “Tắt”.</p>
+  <p slot="lede">Ngó Sen có ba chế độ: “Gõ Sen”, “Gạch chân” và “Tắt”.</p>
 
   <ul>
     <li>
@@ -25,7 +25,6 @@ const toc = [
       “Gạch chân” giữ chữ đang gõ tạm trong ô, tới khi xong từ mới đưa hẳn vào app. Tuỳ app và desktop, chữ
       tạm có thể có gạch chân hoặc trông như chữ thường.
     </li>
-    <li>“Chọn Emoji” tìm emoji bằng từ khoá, xem bài <a href="/huong-dan/go-emoji/">Gõ emoji</a>.</li>
     <li>“Tắt” để phím gõ ra như bàn phím thường. Chế độ này chỉ chọn cho từng app trong menu chế độ.</li>
   </ul>
 
@@ -64,7 +63,7 @@ const toc = [
     </li>
     <li>
       Bấm phím ghi trong ngoặc trước chế độ muốn dùng: <kbd>1</kbd> Gõ Sen, <kbd>q</kbd> Gạch chân,
-      <kbd>w</kbd> Chọn Emoji, <kbd>e</kbd> Tắt.
+      <kbd>e</kbd> Tắt.
     </li>
     <li>Ngó Sen nhớ chế độ đó cho app này, kể cả khi mở lại app.</li>
   </ol>
@@ -72,8 +71,8 @@ const toc = [
     name="guide-menu"
     width={420}
     height={260}
-    alt="Menu chế độ hiện dưới con trỏ trong xed: dòng App: xed, rồi [1] Gõ Sen, [q] Gạch chân, [w] Chọn Emoji, [e] Tắt, [v] Vim mode: tắt, [`] Gõ `."
-    caption="Menu chế độ trong xed. Dấu >> đánh dấu chế độ đang dùng. Linux Mint 22.1 Cinnamon, version 1.10.0-1."
+    alt="Menu chế độ hiện dưới con trỏ trong xed: dòng App: xed, rồi [1] Gõ Sen, [q] Gạch chân, [w] Gợi ý emoji: bật, [e] Tắt, [v] Vim mode: tắt, [`] Gõ `."
+    caption="Menu chế độ trong xed. Dấu >> đánh dấu chế độ đang dùng. Linux Mint 22.1 Cinnamon, version 1.12.0-1."
   />
   <p>
     Muốn app quay về chế độ chung, mở lại menu và chọn lại chế độ vốn có của app, thường là “Gõ Sen”. Muốn gõ ra
@@ -83,6 +82,11 @@ const toc = [
     Dòng “[v] Vim mode” không phải một chế độ: bấm <kbd>v</kbd> để bật hoặc tắt Vim mode cho app đó, dòng này đổi
     thành “Vim mode: bật” hay “Vim mode: tắt”. Bật cho app dùng phím Vim, như nvim/vim trong terminal hay plugin Vim
     của Obsidian: lệnh Vim đi qua nguyên vẹn, và từ đầu tiên gõ sau khi vào insert mode có dấu ngay.
+  </p>
+  <p>
+    Dòng “[w] Gợi ý emoji” cũng vậy: bấm <kbd>w</kbd> để tắt hoặc bật lại
+    <a href="/huong-dan/go-emoji/">gợi ý emoji</a> cho app đó; chế độ gõ của app giữ nguyên. Từ version 1.12,
+    chế độ “Chọn Emoji” cũ không còn; ai đang dùng chế độ đó, chung hay riêng cho một app, được chuyển sang “Gõ Sen”.
   </p>
   <p>
     Menu chỉ mở khi tiếng Việt đang bật. Nếu đang gõ tiếng Anh, bấm

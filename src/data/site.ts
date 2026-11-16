@@ -2009,7 +2009,7 @@ export const GUIDE = [
       {
         href: '/huong-dan/go-emoji/',
         label: 'Gõ emoji',
-        summary: 'Tìm emoji bằng từ khoá ngay chỗ đang gõ.',
+        summary: 'Gõ xong một từ, bấm Tab để chọn emoji gợi ý cạnh con trỏ.',
       },
     ],
   },
