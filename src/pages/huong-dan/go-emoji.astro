@@ -3,45 +3,83 @@ import Guide from '../../layouts/Guide.astro';
 import Shot from '../../components/Shot.astro';
 
 const toc = [
-  { id: 'cac-buoc', label: 'Chọn một emoji' },
-  { id: 'luu-y', label: 'Thoát chế độ emoji' },
+  { id: 'chon-emoji', label: 'Chọn emoji gợi ý' },
+  { id: 'khi-chon', label: 'Đặt emoji sau từ hay thay từ' },
+  { id: 'tat-mot-app', label: 'Tắt gợi ý trong một app' },
+  { id: 'doi-tu', label: 'Đổi từ gợi ý' },
 ];
 ---
 
 <Guide
   title="Gõ emoji"
-  description="Mở chế độ “Chọn Emoji” của Ngó Sen, tìm emoji bằng từ khoá tiếng Anh và chọn ngay chỗ đang gõ. Xong thì chọn lại chế độ cũ để gõ chữ tiếp."
+  description="Dùng gợi ý emoji khi gõ trong Ngó Sen: gõ xong cười, haha hay =)) rồi bấm Tab để chọn emoji, tắt gợi ý cho một app và thêm từ của riêng mình."
   toc={toc}
 >
   <p slot="lede">
-    Chế độ “Chọn Emoji” tìm emoji bằng từ khoá ngay chỗ đang gõ, không phải mở bảng ký tự riêng.
+    Gõ xong một từ như <code>cười</code> hay <code>haha</code> là emoji hiện cạnh con trỏ. Từ version 1.12, gợi ý emoji khi gõ thay cho chế độ “Chọn Emoji” cũ.
   </p>
 
-  <h2 id="cac-buoc">Chọn một emoji</h2>
+  <h2 id="chon-emoji">Chọn emoji gợi ý</h2>
   <ol class="steps">
+    <li>Bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>, gõ một từ như <code>cười</code> (Telex <code>cuwowif</code>). Cạnh con trỏ hiện <code>Tab: 😂 🤣 😄 😆 😁</code>.</li>
+    <li>Bấm <kbd>Tab</kbd>. Danh sách đánh số 1–5 hiện ra, dòng đầu ghi “1–5: chọn · Space, Enter: lấy cái đầu · Esc: giữ chữ”.</li>
     <li>
-      Bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>, bấm
-      <kbd>`</kbd> để mở menu chế độ, rồi bấm <kbd>w</kbd> (“Chọn Emoji”). Icon trên khay đổi thành mặt cười.
-    </li>
-    <li>Gõ từ khoá tiếng Anh, ví dụ <code>smile</code> hay <code>heart</code>. Danh sách emoji hiện cạnh con trỏ.</li>
-    <li>
-      Bấm số trước emoji để chọn luôn, hoặc đi qua danh sách bằng <kbd>Tab</kbd> và phím mũi tên rồi bấm
-      <kbd>Space</kbd> hay <kbd>Enter</kbd>. Danh sách dài thì có nhiều trang, lật bằng <kbd>Page Down</kbd>,
-      <kbd>Page Up</kbd>.
+      Bấm số để chọn: <kbd>2</kbd> ra <code>cười 🤣</code>, chữ giữ lại và emoji thêm vào sau. Bấm <kbd>Tab</kbd> lần nữa, <kbd>Space</kbd> hoặc <kbd>Enter</kbd> thì lấy emoji đầu, ra <code>cười 😂</code>.
     </li>
   </ol>
   <Shot
     name="guide-emoji"
     width={650}
     height={400}
-    alt="Trong xed, từ khoá heart đang gõ có gạch chân; bên dưới là danh sách Trang 1/1 với bốn emoji trái tim, mục 1 đang chọn."
-    caption="Gõ heart ra bốn emoji. Linux Mint 22.1 Cinnamon, version 1.4.2-1."
+    alt="Trong xed, dưới dòng Ngó Sen gõ tiếng Việt là chữ cười; bên dưới là danh sách năm emoji đánh số 1 đến 5, dòng đầu nhắc phím chọn."
+    caption="Gõ cười rồi bấm Tab trong xed. Linux Mint 22.1 Cinnamon, version 1.12.0-1."
   />
-
-  <h2 id="luu-y">Thoát chế độ emoji</h2>
   <p>
-    Gõ xong emoji, mở lại menu bằng <kbd>`</kbd> và chọn chế độ cũ để gõ chữ tiếp. <kbd>Esc</kbd> chỉ xoá từ
-    khoá đang gõ, chưa thoát chế độ emoji.
+    Muốn giữ nguyên chữ thì bấm <kbd>Esc</kbd> thay vì chọn: <code>cười</code> giữ nguyên, không thêm emoji. <code>haha</code> và <code>:)</code> thì được thay luôn bằng emoji: gõ <code>hahaha</code> rồi bấm <kbd>Tab</kbd> hai lần ra <code>😂</code>. Mã Yahoo Messenger cũng vậy: gõ <code>=))</code> thì hiện <code>Tab: 🤣</code>, bấm <kbd>Tab</kbd> rồi <kbd>Enter</kbd> ra <code>🤣</code>.
   </p>
-  <p>Chọn “Chọn Emoji” không làm app nhớ chế độ emoji; menu vẫn đánh dấu chế độ cũ của app.</p>
+  <p>
+    Gợi ý hiện với giao diện fcitx5 mặc định và extension Input Method Panel trên GNOME; không hiện ở ô mật khẩu, terminal, thanh địa chỉ.
+  </p>
+
+  <h2 id="khi-chon">Đặt emoji sau từ hay thay từ</h2>
+  <p>Vào “Cài đặt Ngó Sen › Emoji”.</p>
+  <p>
+    Nhóm “Emoji” có ô “Gợi ý emoji khi gõ” (mặc định bật), tuỳ chọn “Khi chọn emoji” và ô “Mã emoji Yahoo Messenger” (mặc định bật).
+  </p>
+  <p>
+    Mục “Khi chọn emoji” có hai lựa chọn: “Đặt sau từ” (mặc định) và “Thay luôn từ”. Chọn “Thay luôn từ” thì gõ <code>cười</code> rồi bấm <kbd>Tab</kbd> hai lần ra <code>😂</code>, không còn chữ; <code>máy bay</code> ra <code>✈️</code>, thay cả hai chữ. Riêng <code>haha</code> và <code>:)</code> luôn được thay dù chọn gì.
+  </p>
+  <Shot
+    name="guide-emoji-page"
+    width={505}
+    height={265}
+    alt="Phần đầu trang Emoji: ô Gợi ý emoji khi gõ đang bật, Khi chọn emoji là Đặt sau từ, ô Mã emoji Yahoo Messenger đang bật, dưới cùng là dòng minh hoạ từ cười tới cười 🤣."
+    caption="Nhóm “Emoji” ở đầu trang “Emoji”. Linux Mint 22.1 Cinnamon, version 1.12.0-1."
+  />
+  <p>
+    Bên dưới là nhóm “App đã tắt emoji” và nhóm “Emoji và từ gợi ý”. Đổi gì cũng lưu ngay; cửa sổ hiện dòng “Đã lưu …” kèm nút “Hoàn tác”.
+  </p>
+
+  <h2 id="tat-mot-app">Tắt gợi ý trong một app</h2>
+  <ol class="steps">
+    <li>Trong app, bấm phím <kbd>`</kbd> để mở menu chế độ. Menu có dòng “[w] Gợi ý emoji: bật”.</li>
+    <li>Bấm <kbd>w</kbd>. Gợi ý tắt cho riêng app đó, gõ <code>cười</code> không còn hiện gợi ý. Chế độ gõ của app giữ nguyên.</li>
+  </ol>
+  <p>Bấm <kbd>`</kbd> rồi <kbd>w</kbd> lần nữa để bật lại.</p>
+
+  <h2 id="doi-tu">Đổi từ gợi ý</h2>
+  <p>
+    Ở nhóm “Emoji và từ gợi ý”, gõ vào ô “Tìm emoji hoặc từ, vd. tiền” để lọc bảng: gõ <code>mèo</code> thì chỉ còn các emoji có từ đó.
+  </p>
+  <p>
+    Mỗi hàng là một emoji kèm các từ gợi ý. Từ viền nét đứt, gạch ngang là từ đang tắt; từ nền màu là đang bật. Click một từ để tắt hay bật: click <code>mèo</code> ở hàng 😺 thì từ đó chuyển sang nét đứt.
+  </p>
+  <p>Để thêm từ gợi ý cho một emoji:</p>
+  <ol class="steps">
+    <li>Click “+ từ” cuối hàng.</li>
+    <li>Gõ từ mới (ví dụ <code>vui</code> ở hàng 😸), bấm <kbd>Enter</kbd>.</li>
+  </ol>
+  <p>
+    Gõ <code>vui</code> trong xed rồi bấm <kbd>Tab</kbd> thì 😸 đứng đầu danh sách. Hàng nào đã đổi thì có nút “Như cũ” bên phải; click để trả về từ có sẵn.
+  </p>
 </Guide>

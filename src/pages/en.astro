@@ -41,57 +41,58 @@ const levels: Record<Level, string> = {
   <p>
     Ngó Sen includes Cứu chữ to retype what was typed before switching to Vietnamese, and Cứu dấu to
     change the tone mark of a selected word. A convert hotkey turns selected TCVN3 or VNI text into
-    Unicode. Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey.
+    Unicode, and emoji are suggested while typing. Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey.
   </p>
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.11.0-1 converts selected text between charsets with a hotkey, keeps tone marks when
-    extra keys follow a word, adds a Vietnamese item at the top of the tray menu and uses about 3 MB
-    less RAM. Version 1.10.1-1 before it fixed flicker on GNOME, web spreadsheets and the Qt settings
-    window on Fedora 44.
+    Version 1.12.0-1 suggests emoji while typing and replaces the old Emoji picker mode. The settings
+    window opens the Kiểm tra máy (check my machine) page by itself when a step that stops Vietnamese
+    typing is left. Versions 1.11.1-1 and 1.11.2-1 before it were bug-fix releases.
   </p>
   <ul>
     <li>
-      Select text typed in TCVN3, VNI or another charset and press the convert hotkey to change it to
-      the chosen charset, optionally changing case or removing marks. The hotkey is unset by default;
-      set it on the new Chuyển mã page of the settings window, which can also convert pasted text.
-      Checked by automated tests and during development only
-      (<a href={`${REPO}/pull/748`}>#748</a>, <a href={`${REPO}/pull/750`}>#750</a>,
-      <a href={`${REPO}/pull/751`}>#751</a>).
+      Type <code>cười</code>, <code>con mèo</code>, <code>cảm ơn</code>, <code>haha</code> or <code>:)</code>
+      and <code>Tab: 😂 …</code> shows next to the cursor. Tab numbers the suggestions, then 1–5 picks one;
+      Tab, Space or Enter takes the first and Esc keeps the text. Ordinary words stay and the emoji goes
+      after them; <code>haha</code> and <code>:)</code> are replaced. Suggestions show with the default
+      fcitx5 UI and the GNOME Input Method Panel extension, not in password fields, terminals or address
+      bars (<a href={`${REPO}/pull/788`}>#788</a>). About 460 more words and 86 Yahoo Messenger codes such
+      as <code>=))</code> were added (<a href={`${REPO}/pull/792`}>#792</a>), and the “Khi chọn emoji”
+      option puts the emoji after the word or replaces it (<a href={`${REPO}/pull/793`}>#793</a>).
     </li>
     <li>
-      Extra keys that cannot join a Vietnamese word no longer undo its marks: Telex
-      <code>dduowjcd</code> gives <code>đượcd</code> (<a href={`${REPO}/pull/756`}>#756</a>). Space then
-      splits <code>côngty</code> into <code>công ty</code> or drops the extra key from
-      <code>đượcd</code>, and turns <code>nhưg</code>, <code>khôg</code>, <code>đúg</code> into
-      <code>nhưng</code>, <code>không</code>, <code>đúng</code>; Backspace right after restores what was
-      typed (<a href={`${REPO}/pull/757`}>#757</a>, <a href={`${REPO}/pull/760`}>#760</a>).
+      Key <code>w</code> in the <code>`</code> menu now turns emoji suggestions on or off for the current
+      app, like Vim mode (<a href={`${REPO}/pull/791`}>#791</a>). The new Emoji page of the settings window
+      lists every emoji with its words: click a word to turn it off or on, add your own, use “Như cũ” to
+      restore the built-in words, search and filter by group (<a href={`${REPO}/pull/795`}>#795</a>).
+      The Emoji picker mode is gone; anyone using it is moved to Gõ Sen, and Ngó Sen no longer needs
+      fcitx5’s emoji addon (<a href={`${REPO}/pull/791`}>#791</a>).
     </li>
     <li>
-      The fcitx5 tray menu always starts with “✔ Tiếng Việt” / “✖ Tiếng Việt”, which switches the language
-      for the current app when Ctrl+Shift is not available and is remembered per app
-      (<a href={`${REPO}/pull/749`}>#749</a>). Ngó Sen’s word lists are stored more compactly, so fcitx5 uses
-      about 3 MB less RAM (<a href={`${REPO}/pull/754`}>#754</a>).
+      The settings window opens Kiểm tra máy the first time, and while a step that stops Vietnamese
+      typing is left, reminding again after 3, 6, 12… openings (<a href={`${REPO}/pull/798`}>#798</a>);
+      it shows a red warning and opens the page when a re-login did not apply the setup
+      (<a href={`${REPO}/pull/801`}>#801</a>); and it opens once after a first install with the one-line
+      installer (<a href={`${REPO}/pull/802`}>#802</a>). Three capitalization options on the Gõ chữ page
+      lose their “(thử nghiệm)” label (<a href={`${REPO}/pull/796`}>#796</a>).
     </li>
     <li>
-      In Firefox on GNOME, Gõ Sen no longer loses or reorders letters when typing fast with Backspace,
-      keeps Telex working right after Alt+Tab, and adapts its wait to how fast the page draws text, so the
-      old word barely flickers (<a href={`${REPO}/pull/739`}>#739</a>, <a href={`${REPO}/pull/741`}>#741</a>,
-      <a href={`${REPO}/pull/745`}>#745</a>, <a href={`${REPO}/pull/747`}>#747</a>,
-      <a href={`${REPO}/pull/759`}>#759</a>). Web spreadsheets keep tone marks and the first letter after
-      moving to another cell (<a href={`${REPO}/pull/732`}>#732</a>, <a href={`${REPO}/pull/735`}>#735</a>,
-      <a href={`${REPO}/pull/755`}>#755</a>). Telex <code>peks</code> commits as <code>pék</code> when the
-      word is in the dictionary (<a href={`${REPO}/pull/753`}>#753</a>).
+      Version 1.11.2-1: words that are not Vietnamese but follow its spelling, such as <code>rose</code>
+      and <code>Sose</code>, now show the keys as typed while typing, Backspace after them removes only the
+      last key, and Ctrl switches between the keys and the marked word
+      (<a href={`${REPO}/pull/764`}>#764</a>, <a href={`${REPO}/pull/799`}>#799</a>,
+      <a href={`${REPO}/pull/800`}>#800</a>). In Firefox on Linux Mint, the first word typed right after
+      opening Firefox no longer sometimes loses the added <code>n</code> (<a href={`${REPO}/pull/804`}>#804</a>).
     </li>
     <li>
-      Version 1.10.1-1: on GNOME, word changes appear at once outside Firefox-based browsers
-      (<a href={`${REPO}/pull/720`}>#720</a>); web spreadsheets such as Handsontable, jspreadsheet and AG Grid
-      no longer drop the first key after moving to another cell (<a href={`${REPO}/pull/730`}>#730</a>);
-      Lark Base on Chrome on GNOME no longer saves cells without marks (<a href={`${REPO}/pull/728`}>#728</a>);
-      Preedit in Dolphin’s search field on KDE Plasma Wayland keeps its text
-      (<a href={`${REPO}/pull/722`}>#722</a>); the Qt settings window no longer crashes on close with
-      PyQt6 6.11 (<a href={`${REPO}/pull/731`}>#731</a>).
+      Version 1.11.1-1: Space after a stretched chat word keeps it as shown, such as <code>ừaaa</code>
+      and <code>khônggg</code> (<a href={`${REPO}/pull/768`}>#768</a>). Fixes for lost letters on GNOME
+      when the machine is busy (<a href={`${REPO}/pull/767`}>#767</a>, <a href={`${REPO}/pull/773`}>#773</a>),
+      in Firefox on Linux Mint (<a href={`${REPO}/pull/766`}>#766</a>) and right after opening the Firefox
+      snap on Ubuntu (<a href={`${REPO}/pull/778`}>#778</a>, <a href={`${REPO}/pull/780`}>#780</a>,
+      <a href={`${REPO}/pull/781`}>#781</a>). Settings pages now say to restart fcitx5 when the running
+      Ngó Sen is older than the settings window (<a href={`${REPO}/pull/777`}>#777</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>

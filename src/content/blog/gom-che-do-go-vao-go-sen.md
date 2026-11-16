@@ -2,8 +2,8 @@
 title: "Vì sao gom các chế độ gõ vào Gõ Sen"
 description: "Bảng chọn chế độ cũ có tám mục, người dùng phải tự đoán app nào hợp chế độ nào. Ngó Sen gom lại còn Gõ Sen và Preedit."
 pubDate: 2026-10-08
-updatedDate: 2026-10-23
-outdated: "Từ version 1.5.6, Gõ Sen gõ đúng trong app GLFW chạy qua Xwayland như Minecraft Java. Đã test trong hộp chữ dựng bằng LWJGL 3.4.1 và GLFW 3.5.0 giống Minecraft Java, không test trong Minecraft."
+updatedDate: 2026-11-16
+outdated: "Từ version 1.5.6, Gõ Sen gõ đúng trong app GLFW chạy qua Xwayland như Minecraft Java. Đã test trong hộp chữ dựng bằng LWJGL 3.4.1 và GLFW 3.5.0 giống Minecraft Java, không test trong Minecraft. Từ version 1.12.0, chế độ Emoji được thay bằng gợi ý emoji khi gõ."
 ---
 
 Trước version 0.5.0, bảng chọn chế độ có tám mục: Uinput (Slow), Uinput (Smooth), Uinput (Super Smooth), Surrounding Text, Preedit, Minecraft, Emoji Picker và OFF. Gõ sai ở app nào thì người dùng phải tự test từng chế độ, rồi đặt luật riêng cho app đó.
