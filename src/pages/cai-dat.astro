@@ -308,6 +308,10 @@ sudo apt install fcitx5-ngosen`}</code></pre>
 sudo pacman-key --lsign-key 6D4A2075F9853BE8F6B6FE7E75501858158B36CD
 printf '\\n[ngosen]\\nServer = https://ngosen.github.io/ngosen/arch/$arch\\n' | sudo tee -a /etc/pacman.conf
 sudo pacman -Syu fcitx5-ngosen`}</code></pre>
+  <p>
+    Hoặc cài từ AUR, tự build trên máy: <code>yay -S fcitx5-ngosen</code> (bản IBus:
+    <code>yay -S ibus-ngosen</code>).
+  </p>
   <p>openSUSE Tumbleweed dùng repo zypper (x86_64):</p>
   <pre tabindex="0"><code>{`sudo zypper addrepo https://ngosen.github.io/ngosen/opensuse/ngosen.repo
 sudo zypper refresh
