@@ -33,6 +33,29 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.13.1-1',
+    date: '20/11/2026',
+    summary:
+      'Trên KDE Plasma Wayland, WPS Office gõ được tiếng Việt. Bấm Backspace khi đang gõ dở chữ kéo dài hay chữ teencode không còn mất dấu. Nhập từ gợi ý emoji không còn hỏng cả tệp vì một từ có ký tự lạ.',
+    changes: [
+      {
+        claim: 'KDE Plasma (Wayland): WPS Office gõ được tiếng Việt. Lệnh cài đặt “QT_IM_MODULE=fcitx” riêng cho WPS, cả bản Flatpak lẫn bản cài từ package; các app khác giữ nguyên.',
+        source: 'Ai đã cài thì chạy lại lệnh cài rồi mở lại WPS. Chưa thử WPS trên KDE với gói 1.13.1-1.',
+        pr: 897,
+      },
+      {
+        claim: 'Bấm Backspace khi đang gõ dở chữ kéo dài có dấu gõ sau cùng, như “chaiiif” ra “chàiii”, nay chỉ xoá một chữ i, không còn mất luôn dấu thành “chaiii”. Chữ teencode cũng vậy: “fải” xoá còn “fả”.',
+        source: 'Gồm #902, #906.',
+        pr: 898,
+      },
+      {
+        claim: 'Nhập file từ gợi ý emoji có một từ chứa ký tự NUL nay bỏ qua từ đó, không còn hỏng cả lần nhập.',
+        source: 'Gồm #903.',
+        pr: 899,
+      },
+    ],
+  },
+  {
     version: '1.13.0-1',
     date: '20/11/2026',
     summary:
@@ -1949,7 +1972,8 @@ export const LEVELS_NOTE =
   ' Gói 1.12.0-1 do CI dựng từ PR phát hành #810 đã được cài đè lên 1.10.1-1 bằng gói deb noble và gõ thử ngày 16/11/2026 với Gõ Sen, Telex, thiết lập mặc định, cách nhau 0,15 giây giữa các phím. Bảy câu trong trang textarea, mỗi câu 2 lượt trên mỗi trình duyệt: Ubuntu 24.04 (GNOME 46 Wayland), Chrome 156 đúng 14/14 và Firefox 159 snap đúng 13/14; Linux Mint 22.1 (Cinnamon X11), Chromium 154 đúng 14/14 và Firefox 157 đúng 13/14. Lượt sai trên Mint là lượt đầu ngay sau khi mở Firefox, “nguwx” ra “nữ”; gõ lại câu đó 6 lượt, mỗi lượt mở Firefox mới, đúng 6/6, còn lượt sai không có log gõ. Lượt sai trên Ubuntu là gõ “nhưg”, Space rồi Backspace, phải trả lại “nhưg” nhưng còn “nhưng”; gõ lại 10 lượt sai 7/10, và gói 1.11.2-1 cùng cách thử cũng sai 7/10, nên lỗi này có từ trước. Gợi ý emoji thử trên Mint, vì máy Ubuntu 24.04 không có extension Input Method Panel nên không hiện gợi ý: “cuwowif” rồi Tab Tab ra “cười 😂”, “hahaha” rồi Tab Tab ra “😂”, đúng 8/8 trên Firefox và Chromium. Trên Ubuntu thông báo của version 1.12 hiện trong khay; trên Mint cửa sổ cài đặt mở thẳng trang Kiểm tra máy lần đầu mở sau khi cập nhật. Chưa thử lần này: VNI, KDE, Fedora, Debian, openSUSE, Arch, Sway, Hyprland, niri, cài mới và lệnh cài, gợi ý emoji với extension Input Method Panel trên GNOME, và các thao tác trên trang Emoji.' +
   ' Gói 1.12.1-1 do CI dựng từ PR phát hành #822 đã được cài đè lên 1.10.1-1 bằng gói deb noble và gõ thử ngày 17/11/2026 trên Ubuntu 24.04 (GNOME 46 Wayland, fcitx5 5.1.7) với Gõ Sen, Telex, thiết lập mặc định, cách nhau 0,15 giây giữa các phím. Bảy câu trong trang textarea, mỗi câu 2 lượt: Chrome 156 đúng 14/14, Firefox 159 snap đúng 13/14. Lượt sai là lượt đầu ngay sau khi mở Firefox: mất chữ đầu “tiếng ”, trang không ghi nhận gì cho 8 phím đầu và lượt này không có log gõ; gõ lại câu đó 6 lượt, mỗi lượt mở Firefox mới, đúng 6/6. Câu “nhưg”, Space rồi Backspace nay trả lại “nhưg” 4/4 (1.12.0-1 sai 7/10). Trong Firefox, mã Yahoo “:))”, “=))”, “:x”, “:)” rồi Tab Tab ra đúng emoji 8/8, và “cuwowif” Tab Tab ra “cười 😂” 2/2. Chưa thử lần này: VNI, X11, Linux Mint, KDE, Fedora, Debian, openSUSE, Arch, tiling desktops, cài mới và lệnh cài, menu chọn chế độ gõ (#814, #817), fcitx5 5.1.23 (#816, #818), và khôi phục tệp sao lưu (#805) ngoài unit test.' +
   ' Gói 1.12.2-1 do CI dựng từ PR phát hành #865 đã được cài đè lên 1.12.1-1 bằng gói rpm Fedora 45 x86_64 và gõ thử ngày 18/11/2026 trên Fedora 45 (GNOME 51.1 Wayland, fcitx5 5.1.23) với Gõ Sen, Telex, thiết lập mặc định, cách nhau 0,15 giây giữa các phím, khởi động lại fcitx5 trước mỗi lượt. Trong Local Terminal của VaultID 0.2.36 (terminal dùng xterm.js, app không được GNOME Shell báo tên), “ddaay laf tieengs vieetj” ra “đây là tiếng việt” đúng 3/3 lượt (#864). Trong GNOME Text Editor, “tooi ddiw hojc tieengs vieetj raast nhanh” ra “tôi đi học tiếng việt rất nhanh” đúng 3/3 lượt. Chưa thử lần này: VNI, X11, KDE, Ubuntu, Linux Mint, Debian, openSUSE, Arch, tiling desktops, cài mới và lệnh cài, xterm.js trong Firefox và Epiphany (#846, #853), Brave (#842), menu chọn chế độ gõ (#836, #840, #850), gõ lại dấu thanh (#835) ngoài unit test, và Backspace trong Firefox trên GNOME (#831).' +
-  ' Gói 1.13.0-1 do CI dựng từ PR phát hành #896 đã được gõ thử ngày 20/11/2026 với Gõ Sen, Telex, cách nhau 0,15 giây giữa các phím, trang textarea, 2 lượt mỗi câu. Sáu câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “/cost cd /usr/share ” giữ nguyên, “xin dduowjcd coongty nhuwg ” ra “xin được công ty nhưng”, “cuxg khoog ” ra “cũng không”, và gõ kéo dài “afaaa ” ra “àààà”. Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7, gói deb “noble” cài đè lên bản dựng thử 1.12.2), Chromium 154 và Firefox 157: đúng 24/24. Fedora 45 (KDE Plasma 6.8.3 Wayland, fcitx5 5.1.23, gói rpm cài đè lên 1.12.2-1), Brave 1.99.57 và Firefox 158: đúng 24/24. Trên Mint, gợi ý emoji cuối câu trong Firefox: “cuwowif quas.” hiện bảng “1.😂 2.🤣 …”, bấm 1 ra “cười quá. 😂”. Trên Fedora, thông báo của version 1.13 hiện bằng tiếng Việt sau khi cài. Chưa thử lần này: VNI, GNOME, Ubuntu, Debian, openSUSE, Arch và gói AUR, Sway, Hyprland, niri, terminal (kể cả xterm.js, #878, #880), cài mới và lệnh cài, phím chuyển cho mọi app (#825), teencode, lệnh “ngosen-toggle”, Xuất/Nhập trên trang Emoji, và gợi ý emoji trên GNOME không có extension Input Method Panel.';
+  ' Gói 1.13.0-1 do CI dựng từ PR phát hành #896 đã được gõ thử ngày 20/11/2026 với Gõ Sen, Telex, cách nhau 0,15 giây giữa các phím, trang textarea, 2 lượt mỗi câu. Sáu câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “/cost cd /usr/share ” giữ nguyên, “xin dduowjcd coongty nhuwg ” ra “xin được công ty nhưng”, “cuxg khoog ” ra “cũng không”, và gõ kéo dài “afaaa ” ra “àààà”. Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7, gói deb “noble” cài đè lên bản dựng thử 1.12.2), Chromium 154 và Firefox 157: đúng 24/24. Fedora 45 (KDE Plasma 6.8.3 Wayland, fcitx5 5.1.23, gói rpm cài đè lên 1.12.2-1), Brave 1.99.57 và Firefox 158: đúng 24/24. Trên Mint, gợi ý emoji cuối câu trong Firefox: “cuwowif quas.” hiện bảng “1.😂 2.🤣 …”, bấm 1 ra “cười quá. 😂”. Trên Fedora, thông báo của version 1.13 hiện bằng tiếng Việt sau khi cài. Chưa thử lần này: VNI, GNOME, Ubuntu, Debian, openSUSE, Arch và gói AUR, Sway, Hyprland, niri, terminal (kể cả xterm.js, #878, #880), cài mới và lệnh cài, phím chuyển cho mọi app (#825), teencode, lệnh “ngosen-toggle”, Xuất/Nhập trên trang Emoji, và gợi ý emoji trên GNOME không có extension Input Method Panel.' +
+  ' Gói 1.13.1-1 do CI dựng từ PR phát hành #909 đã được gõ thử ngày 20/11/2026 với Gõ Sen, Telex, cách nhau 0,15 giây giữa các phím, trang textarea, 2 lượt mỗi câu, cùng sáu câu như 1.13.0. Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7, gói deb “noble” cài đè lên 1.13.0-1), Chromium 154 và Firefox 157: đúng 24/24. Fedora 45 (KDE Plasma 6.8.3 Wayland, fcitx5 5.1.23, gói rpm cài đè lên 1.13.0-1), Brave 1.99.57 và Firefox 158: đúng 24/24. Backspace trong chữ kéo dài và teencode, trên Mint trong Chromium, năm câu “chaiiif”, “chaiiif” rồi “i”, “aaaf”, và với teencode “fair”, “nhuwgx”, mỗi câu bấm Backspace một lần rồi Space: Gõ Sen đúng 10/10, Preedit đúng 10/10; cùng cách thử, 1.13.0-1 đúng 10/10 ở Gõ Sen nhưng 0/10 ở Preedit. Chưa thử lần này: WPS trên KDE (#897), Nhập từ gợi ý emoji (#899) ngoài test tự động, VNI, GNOME, Ubuntu, Debian, openSUSE, Arch, tiling desktops, cài mới và lệnh cài.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {
