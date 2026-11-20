@@ -7,35 +7,46 @@ const toc = [
   { id: 'khi-chon', label: 'Đặt emoji sau từ hay thay từ' },
   { id: 'tat-mot-app', label: 'Tắt gợi ý trong một app' },
   { id: 'doi-tu', label: 'Đổi từ gợi ý' },
+  { id: 'xuat-nhap', label: 'Chia sẻ từ gợi ý' },
 ];
 ---
 
 <Guide
   title="Gõ emoji"
-  description="Dùng gợi ý emoji khi gõ trong Ngó Sen: gõ xong cười, haha hay =)) rồi bấm Tab để chọn emoji, tắt gợi ý cho một app và thêm từ của riêng mình."
+  description="Dùng gợi ý emoji khi gõ trong Ngó Sen: gõ hết câu rồi bấm số để chọn emoji, tắt gợi ý cho một app, thêm và chia sẻ từ gợi ý."
   toc={toc}
 >
   <p slot="lede">
-    Gõ xong một từ như <code>cười</code> hay <code>haha</code> là emoji hiện cạnh con trỏ. Từ version 1.12, gợi ý emoji khi gõ thay cho chế độ “Chọn Emoji” cũ.
+    Gõ một câu có từ như <code>cười</code> hay <code>con mèo</code> là emoji hiện dưới con trỏ. Từ version 1.13, gợi ý
+    mặc định hiện ở cuối câu, và khi gõ Telex thì bấm số để chọn.
   </p>
 
   <h2 id="chon-emoji">Chọn emoji gợi ý</h2>
   <ol class="steps">
-    <li>Bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>, gõ một từ như <code>cười</code> (Telex <code>cuwowif</code>). Cạnh con trỏ hiện <code>Tab: 😂 🤣 😄 😆 😁</code>.</li>
-    <li>Bấm <kbd>Tab</kbd>. Danh sách đánh số 1–5 hiện ra, dòng đầu ghi “1–5: chọn · Space, Enter: lấy cái đầu · Esc: giữ chữ”.</li>
+    <li>Bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>, gõ một câu như <code>cười quá.</code> (Telex <code>cuwowif quas.</code>).</li>
+    <li>Gõ xong dấu <code>.</code>, hàng emoji đánh số <code>1.😂 2.🤣 3.😄 4.😆 5.😁</code> hiện dưới con trỏ. Dừng tay một chút, hay gõ <code>!</code> <code>?</code> cũng vậy.</li>
     <li>
-      Bấm số để chọn: <kbd>2</kbd> ra <code>cười 🤣</code>, chữ giữ lại và emoji thêm vào sau. Bấm <kbd>Tab</kbd> lần nữa, <kbd>Space</kbd> hoặc <kbd>Enter</kbd> thì lấy emoji đầu, ra <code>cười 😂</code>.
+      Bấm số để chọn: <kbd>1</kbd> ra <code>cười quá. 😂</code> (không cần bấm <kbd>Tab</kbd>).
     </li>
   </ol>
   <Shot
     name="guide-emoji"
     width={650}
-    height={400}
-    alt="Trong xed, dưới dòng Ngó Sen gõ tiếng Việt là chữ cười; bên dưới là danh sách năm emoji đánh số 1 đến 5, dòng đầu nhắc phím chọn."
-    caption="Gõ cười rồi bấm Tab trong xed. Linux Mint 22.1 Cinnamon, version 1.12.0-1."
+    height={260}
+    alt="Trong xed, dưới dòng Ngó Sen gõ tiếng Việt là câu cười quá.; bên dưới là hàng năm emoji đánh số 1 đến 5."
+    caption="Gõ “cười quá.” trong xed. Linux Mint 22.1 Cinnamon, version 1.13.0-1."
   />
   <p>
-    Muốn giữ nguyên chữ thì bấm <kbd>Esc</kbd> thay vì chọn: <code>cười</code> giữ nguyên, không thêm emoji. <code>haha</code> và <code>:)</code> thì được thay luôn bằng emoji: gõ <code>hahaha</code> rồi bấm <kbd>Tab</kbd> hai lần ra <code>😂</code>. Mã Yahoo Messenger cũng vậy: gõ <code>=))</code> thì hiện <code>Tab: 🤣</code>, bấm <kbd>Tab</kbd> rồi <kbd>Enter</kbd> ra <code>🤣</code>.
+    Hàng emoji hiện suốt lúc gõ câu: gõ <code>con mèo</code>, chưa tới dấu chấm, đã thấy <code>1.🐈 2.🐱</code>. Bấm
+    <kbd>Esc</kbd> để ẩn hàng đó tới hết câu.
+  </p>
+  <p>
+    Từ tiếng Anh cũng có gợi ý: gõ <code>cat</code> thì hiện các emoji mèo. Tuỳ chọn “Từ khoá tiếng Anh” trên trang Emoji
+    bật sẵn; từ trùng chữ Việt như <code>can</code> thì không gợi ý.
+  </p>
+  <p>
+    Muốn danh sách hiện ngay sau mỗi từ như version 1.12, chọn “Sau mỗi từ” ở tuỳ chọn “Gợi ý emoji” trên trang
+    Emoji. Khi đó gõ xong <code>cười</code> thì hiện <code>Tab: 😂 …</code>; bấm <kbd>Tab</kbd> rồi bấm số để chọn.
   </p>
   <p>
     Gợi ý hiện với giao diện fcitx5 mặc định và extension Input Method Panel trên GNOME; không hiện ở ô mật khẩu, terminal, thanh địa chỉ.
@@ -44,17 +55,17 @@ const toc = [
   <h2 id="khi-chon">Đặt emoji sau từ hay thay từ</h2>
   <p>Vào “Cài đặt Ngó Sen › Emoji”.</p>
   <p>
-    Nhóm “Emoji” có ô “Gợi ý emoji khi gõ” (mặc định bật), tuỳ chọn “Khi chọn emoji” và ô “Mã emoji Yahoo Messenger” (mặc định bật).
+    Nhóm “Emoji” có ô “Gợi ý emoji khi gõ”, tuỳ chọn “Gợi ý emoji” (“Ở cuối câu” hoặc “Sau mỗi từ”), tuỳ chọn “Khi chọn emoji”, ô “Mã emoji Yahoo Messenger” và ô “Từ khoá tiếng Anh”. Các ô đều bật sẵn.
   </p>
   <p>
-    Mục “Khi chọn emoji” có hai lựa chọn: “Đặt sau từ” (mặc định) và “Thay luôn từ”. Chọn “Thay luôn từ” thì gõ <code>cười</code> rồi bấm <kbd>Tab</kbd> hai lần ra <code>😂</code>, không còn chữ; <code>máy bay</code> ra <code>✈️</code>, thay cả hai chữ. Riêng <code>haha</code> và <code>:)</code> luôn được thay dù chọn gì.
+    Mục “Khi chọn emoji” có hai lựa chọn: “Đặt sau từ” (mặc định) và “Thay luôn từ”. Chọn “Thay luôn từ” thì emoji thay chữ: <code>cười</code> thành <code>😂</code>; <code>máy bay</code> ra <code>✈️</code>, thay cả hai chữ. Riêng <code>haha</code> và <code>:)</code> luôn được thay dù chọn gì.
   </p>
   <Shot
     name="guide-emoji-page"
     width={505}
-    height={265}
-    alt="Phần đầu trang Emoji: ô Gợi ý emoji khi gõ đang bật, Khi chọn emoji là Đặt sau từ, ô Mã emoji Yahoo Messenger đang bật, dưới cùng là dòng minh hoạ từ cười tới cười 🤣."
-    caption="Nhóm “Emoji” ở đầu trang “Emoji”. Linux Mint 22.1 Cinnamon, version 1.12.0-1."
+    height={435}
+    alt="Phần đầu trang Emoji: ô Gợi ý emoji khi gõ đang bật, Gợi ý emoji là Ở cuối câu, Khi chọn emoji là Đặt sau từ, ô Mã emoji Yahoo Messenger đang bật, ô Từ khoá tiếng Anh đang bật, dưới cùng là dòng minh hoạ từ cười tới cười 🤣."
+    caption="Nhóm “Emoji” ở đầu trang “Emoji”. Linux Mint 22.1 Cinnamon, version 1.13.0-1."
   />
   <p>
     Bên dưới là nhóm “App đã tắt emoji” và nhóm “Emoji và từ gợi ý”. Đổi gì cũng lưu ngay; cửa sổ hiện dòng “Đã lưu …” kèm nút “Hoàn tác”.
@@ -80,6 +91,25 @@ const toc = [
     <li>Gõ từ mới (ví dụ <code>vui</code> ở hàng 😸), bấm <kbd>Enter</kbd>.</li>
   </ol>
   <p>
-    Gõ <code>vui</code> trong xed rồi bấm <kbd>Tab</kbd> thì 😸 đứng đầu danh sách. Hàng nào đã đổi thì có nút “Như cũ” bên phải; click để trả về từ có sẵn.
+    Từ vừa thêm hiện trong hàng như các từ đang bật. Hàng nào đã đổi thì có nút “Như cũ” bên phải; click để trả về từ có sẵn.
+  </p>
+
+  <h2 id="xuat-nhap">Chia sẻ từ gợi ý</h2>
+  <p>
+    Nhóm “Emoji và từ gợi ý” có nút “Xuất…” và “Nhập…”. Xuất lưu các từ mình đã thêm hay bật ra một file nhỏ để gửi
+    cho người khác. Nhập thêm từ của file vào mà giữ nguyên từ của mình; từ mình đã tắt vẫn tắt.
+  </p>
+  <p>Để xuất từ gợi ý:</p>
+  <ol class="steps">
+    <li>Click “Xuất…”. Hộp thoại “Xuất từ gợi ý emoji” gợi ý tên file <code>ngosen-emoji-words.json</code>.</li>
+    <li>Click “Save”. Cửa sổ báo “Đã lưu 1 từ vào …” kèm đường dẫn file.</li>
+  </ol>
+  <p>Để nhập từ gợi ý:</p>
+  <ol class="steps">
+    <li>Click “Nhập…”.</li>
+    <li>Chọn file trong hộp thoại “Nhập từ gợi ý emoji”, click “Open”. Cửa sổ báo “Đã lưu “1 từ trong file”.” kèm nút “Hoàn tác”.</li>
+  </ol>
+  <p>
+    Nút “Khôi phục…” ở góc dưới cửa sổ không nhận file này, để khỏi xoá mất từ đang có.
   </p>
 </Guide>

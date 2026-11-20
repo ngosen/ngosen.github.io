@@ -2156,12 +2156,12 @@ export const GUIDE = [
       {
         href: '/huong-dan/che-do-go/',
         label: 'Chọn chế độ gõ',
-        summary: 'Gõ Sen hay Gạch chân, chế độ riêng cho từng app.',
+        summary: 'Gõ Sen hay Gạch chân, chế độ riêng cho từng app, Teencode.',
       },
       {
         href: '/huong-dan/go-emoji/',
         label: 'Gõ emoji',
-        summary: 'Gõ xong một từ, bấm Tab để chọn emoji gợi ý cạnh con trỏ.',
+        summary: 'Gõ hết câu rồi bấm số để chọn emoji gợi ý; chia sẻ từ gợi ý.',
       },
     ],
   },
