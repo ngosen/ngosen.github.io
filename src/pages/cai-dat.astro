@@ -51,16 +51,18 @@ const toc = [
       Trên KDE Plasma, lệnh cài còn chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual
       Keyboard) để app Qt như Kate, Dolphin cũng gõ được. Trên KDE Plasma, lệnh cài còn đặt
       <code>XMODIFIERS</code> để app X11 qua Xwayland, như Minecraft version cũ, gõ được tiếng Việt.
-      Ngó Sen có phím riêng chuyển Anh/Việt. Cài mới bắt đầu ở tiếng Anh, dùng Ctrl+Shift như UniKey,
-      danh sách bộ gõ chỉ có Ngó Sen. Máy đã cài Ngó Sen giữ phím cũ, thường là Ctrl+Space.
+      Ngó Sen có phím riêng chuyển Anh/Việt. Cài mới bật sẵn tiếng Việt, dùng Ctrl+Shift như UniKey,
+      danh sách bộ gõ chỉ có Ngó Sen. Máy đã cài Ngó Sen giữ phím cũ, thường là Ctrl+Space, và trạng thái
+      đang dùng. Mặc định, phím chuyển đổi mọi app cùng lúc.
       Muốn đổi phím, mở cửa sổ cài đặt, trang “Phím”, tab “Phím tắt”, ô “Phím chuyển Anh/Việt”.
     </li>
   </ol>
   <p>
     Trên GNOME, lệnh cài còn ẩn các icon fcitx5 thừa trong danh sách app và bật extension sửa lỗi gõ trên
-    GNOME 50.0 đến 50.3. GNOME không có khay hệ thống, như Fedora, thì lệnh cài thêm extension
-    <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a> để icon và menu bộ gõ hiện
-    trên thanh trên cùng. Trên Debian và Ubuntu, lệnh cài luôn cài kèm <code>im-config</code> và các gói
+    GNOME 50.0 đến 50.3. Lệnh cài cũng thêm extension
+    <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a> để bảng emoji nằm dưới dòng
+    chữ (không có nó, app Wayland như Firefox thấy bảng che lên chữ đang gõ) và icon, menu bộ gõ hiện trên
+    thanh trên cùng. Trên Debian và Ubuntu, lệnh cài luôn cài kèm <code>im-config</code> và các gói
     giúp app GTK, Qt gõ được qua fcitx5.
   </p>
   <p>
@@ -182,8 +184,9 @@ const toc = [
       <pre tabindex="0"><code>{`mkdir -p ~/.config/autostart ~/.config/environment.d
 [ -e /etc/xdg/autostart/org.fcitx.Fcitx5.desktop ] || cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
 printf 'GTK_IM_MODULE=fcitx\\nQT_IM_MODULE=fcitx\\nXMODIFIERS=@im=fcitx\\nSDL_IM_MODULE=fcitx\\n' > ~/.config/environment.d/90-ngosen.conf`}</code></pre>
-      Nếu thanh trên cùng không có icon bộ gõ, cài extension
-      <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a>. Chạy thêm
+      Cài thêm extension <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a> rồi
+      đăng xuất, đăng nhập lại: không có nó, bảng emoji che lên chữ đang gõ trong app Wayland như Firefox, và
+      thanh trên cùng có thể không có icon bộ gõ. Chạy thêm
       <code>gnome-extensions enable forward-keys@ngosen.github.io</code> nếu gặp một trong ba trường hợp: GNOME
       version 50.0 đến 50.3; máy không có gói <code>xdg-desktop-portal-gnome</code>; cần nhớ chế độ gõ riêng cho
       app không có file .desktop (xem mục <a href="#ubuntu-26-04">extension sửa lỗi gõ</a>).

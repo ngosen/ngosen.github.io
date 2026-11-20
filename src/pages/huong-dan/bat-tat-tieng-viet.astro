@@ -4,6 +4,7 @@ import Shot from '../../components/Shot.astro';
 
 const toc = [
   { id: 'dau-hieu', label: 'Biết tiếng Việt đang bật' },
+  { id: 'ap-dung', label: 'Mỗi app nhớ riêng Anh hay Việt' },
   { id: 'menu-khay', label: 'Bật, tắt từ menu khay' },
   { id: 'doi-phim', label: 'Đổi phím bật/tắt' },
 ];
@@ -16,8 +17,8 @@ const toc = [
 >
   <p slot="lede">
     Bấm phím chuyển Anh/Việt để bật hoặc tắt tiếng Việt. Máy cài mới bằng script cài đặt dùng
-    <kbd>Ctrl+Shift</kbd> và bắt đầu ở tiếng Anh. Máy cập nhật từ version cũ giữ phím đã dùng, thường là
-    <kbd>Ctrl+Space</kbd>.
+    <kbd>Ctrl+Shift</kbd> và bật sẵn tiếng Việt. Máy cập nhật từ version cũ giữ phím đã dùng, thường là
+    <kbd>Ctrl+Space</kbd>, và trạng thái Anh/Việt đang dùng.
   </p>
 
   <h2 id="dau-hieu">Biết tiếng Việt đang bật</h2>
@@ -34,8 +35,22 @@ const toc = [
   />
 
   <p>
-    Khi tắt tiếng Việt, phím gõ ra như khi không dùng bộ gõ. Từ version 1.7.5, phím chuyển chỉ đổi app đang gõ;
-    mỗi app nhớ riêng Anh hay Việt qua lần đăng xuất, app chưa bấm lần nào theo lần bấm gần nhất.
+    Khi tắt tiếng Việt, phím gõ ra như khi không dùng bộ gõ. Từ version 1.13, phím chuyển mặc định đổi mọi app
+    cùng lúc: tắt tiếng Việt trong terminal thì xed cũng gõ <code>vieetj</code>, bật lại trong xed thì terminal
+    cũng gõ ra <code>việt</code>.
+  </p>
+
+  <h2 id="ap-dung">Mỗi app nhớ riêng Anh hay Việt</h2>
+  <p>
+    Ở “Cài đặt Ngó Sen › Phím › Phím tắt”, ngay dưới hàng “Phím chuyển Anh/Việt” có hàng “Phím chuyển áp dụng cho” với hai lựa chọn “Mọi app” (mặc định) và “Từng app”. Dòng chú thích bên dưới ghi: “Mọi app chuyển Anh/Việt cùng lúc, trừ app đặt Tắt; Từng app nhớ lựa chọn riêng cho mỗi app.”
+  </p>
+  <p>
+    Muốn mỗi app nhớ riêng Anh hay Việt như trước version 1.13, chọn “Từng app”.
+  </p>
+  <p>
+    App đặt “Tắt” trong <a href="/huong-dan/che-do-go/#rieng-mot-app">menu chế độ</a> vẫn gõ tiếng Anh dù tiếng Việt
+    đang bật. Bấm phím chuyển trong app đó thì menu chế độ mở ra; chọn “Gõ Sen” hoặc “Gạch chân” để gõ tiếng Việt
+    trở lại.
   </p>
 
   <h2 id="menu-khay">Bật, tắt từ menu khay</h2>
@@ -45,9 +60,9 @@ const toc = [
   </p>
   <ol class="steps">
     <li>Trong app đang gõ, click chuột phải vào icon Ngó Sen trên khay.</li>
-    <li>Click “✔ Tiếng Việt”. Icon đổi sang lát củ sen, app này chuyển sang gõ tiếng Anh. Click “✖ Tiếng Việt” để bật lại.</li>
+    <li>Click “✔ Tiếng Việt”. Icon đổi sang lát củ sen, tiếng Việt tắt. Click “✖ Tiếng Việt” để bật lại.</li>
   </ol>
-  <p>Cũng như phím chuyển, dòng này chỉ đổi app đang gõ và lựa chọn được nhớ qua các lần khởi động lại.</p>
+  <p>Cũng như phím chuyển, dòng này mặc định đổi mọi app cùng lúc và lựa chọn được nhớ qua các lần khởi động lại.</p>
 
   <h2 id="doi-phim">Đổi phím bật/tắt</h2>
   <p>Vào “Cài đặt Ngó Sen › Phím › Phím tắt”, hàng “Phím chuyển Anh/Việt”.</p>
