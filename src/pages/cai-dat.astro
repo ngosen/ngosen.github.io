@@ -50,7 +50,8 @@ const toc = [
       MATE (MX Linux, Linux Mint): đặt fcitx5 làm bộ gõ cho tài khoản và thêm Ngó Sen vào danh sách bộ gõ.
       Trên KDE Plasma, lệnh cài còn chọn fcitx5 làm bàn phím ảo của KDE (System Settings, mục Virtual
       Keyboard) để app Qt như Kate, Dolphin cũng gõ được. Trên KDE Plasma, lệnh cài còn đặt
-      <code>XMODIFIERS</code> để app X11 qua Xwayland, như Minecraft version cũ, gõ được tiếng Việt.
+      <code>XMODIFIERS</code> để app X11 qua Xwayland, như Minecraft version cũ, gõ được tiếng Việt. Máy có
+      WPS Office thì lệnh cài đặt <code>QT_IM_MODULE=fcitx</code> riêng cho WPS.
       Ngó Sen có phím riêng chuyển Anh/Việt. Cài mới bật sẵn tiếng Việt, dùng Ctrl+Shift như UniKey,
       danh sách bộ gõ chỉ có Ngó Sen. Máy đã cài Ngó Sen giữ phím cũ, thường là Ctrl+Space, và trạng thái
       đang dùng. Mặc định, phím chuyển đổi mọi app cùng lúc.
@@ -203,6 +204,9 @@ printf 'GTK_IM_MODULE=fcitx\\nQT_IM_MODULE=fcitx\\nXMODIFIERS=@im=fcitx\\nSDL_IM
       thêm biến môi trường: chạy khối lệnh sau trước khi đăng xuất.
       <pre tabindex="0"><code>{`mkdir -p ~/.config/environment.d
 echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></pre>
+      WPS Office bản Flatpak cần <code>flatpak override --user --env=QT_IM_MODULE=fcitx com.wps.Office</code>;
+      bản cài từ package thì thêm <code>env QT_IM_MODULE=fcitx </code> vào đầu dòng <code>Exec=</code> của từng
+      lối tắt WPS.
     </li>
   </ol>
   <p>

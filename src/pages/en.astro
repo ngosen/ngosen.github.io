@@ -46,12 +46,20 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.13.0-1 makes the English/Vietnamese key switch every app at once, like UniKey, and new
+    Version 1.13.1-1 is a bug-fix release on top of 1.13.0-1. Version 1.13.0-1 makes the
+    English/Vietnamese key switch every app at once, like UniKey, and new
     installs start with Vietnamese on. Emoji suggestions now show at the end of a sentence by default.
     It adds drawn-out letters, per-app Teencode, the <code>ngosen-toggle</code> command and AUR packages.
     Versions 1.12.1-1 and 1.12.2-1 before it were bug-fix releases.
   </p>
   <ul>
+    <li>
+      Version 1.13.1-1: WPS Office types Vietnamese on KDE Plasma Wayland; the installer sets
+      <code>QT_IM_MODULE=fcitx</code> for WPS alone (<a href={`${REPO}/pull/897`}>#897</a>). Backspace in a
+      drawn-out or teencode word no longer drops the tone mark (<a href={`${REPO}/pull/898`}>#898</a>), and
+      importing emoji words skips a word with a NUL character instead of failing
+      (<a href={`${REPO}/pull/899`}>#899</a>).
+    </li>
     <li>
       The English/Vietnamese key now switches every app at once by default, also after an update. New
       installs start with Vietnamese on; existing users keep their current state. Apps set to Tắt in the
@@ -134,7 +142,8 @@ const levels: Record<Level, string> = {
     method icon and menu show in the top bar. These steps apply to
     the account that runs the script; add <code>--no-setup</code> to install the package only. On KDE
     Plasma it selects fcitx5 as KDE's virtual keyboard (System Settings, Virtual Keyboard), so Qt apps
-    such as Kate and Dolphin can type too.
+    such as Kate and Dolphin can type too, and sets <code>QT_IM_MODULE=fcitx</code> for WPS Office alone
+    when it is installed.
   </p>
   <p id="after-install">
     On other desktops, or after installing from a repo, with <code>--no-setup</code> or a package
@@ -177,6 +186,9 @@ printf 'GTK_IM_MODULE=fcitx\\nQT_IM_MODULE=fcitx\\nXMODIFIERS=@im=fcitx\\nSDL_IM
       as older Minecraft versions, also need an environment variable: run these commands before logging out.
       <pre tabindex="0"><code>{`mkdir -p ~/.config/environment.d
 echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></pre>
+      The WPS Office Flatpak needs <code>flatpak override --user --env=QT_IM_MODULE=fcitx com.wps.Office</code>;
+      for WPS installed from a package, add <code>env QT_IM_MODULE=fcitx </code> to the start of the
+      <code>Exec=</code> line of each WPS launcher.
     </li>
   </ol>
   <p>
