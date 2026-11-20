@@ -41,58 +41,64 @@ const levels: Record<Level, string> = {
   <p>
     Ngó Sen includes Cứu chữ to retype what was typed before switching to Vietnamese, and Cứu dấu to
     change the tone mark of a selected word. A convert hotkey turns selected TCVN3 or VNI text into
-    Unicode, and emoji are suggested while typing. Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey.
+    Unicode, and emoji are suggested while typing. Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey, and it switches every app at once.
   </p>
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.12.0-1 suggests emoji while typing and replaces the old Emoji picker mode. The settings
-    window opens the Kiểm tra máy (check my machine) page by itself when a step that stops Vietnamese
-    typing is left. Versions 1.11.1-1 and 1.11.2-1 before it were bug-fix releases.
+    Version 1.13.0-1 makes the English/Vietnamese key switch every app at once, like UniKey, and new
+    installs start with Vietnamese on. Emoji suggestions now show at the end of a sentence by default.
+    It adds drawn-out letters, per-app Teencode, the <code>ngosen-toggle</code> command and AUR packages.
+    Versions 1.12.1-1 and 1.12.2-1 before it were bug-fix releases.
   </p>
   <ul>
     <li>
-      Type <code>cười</code>, <code>con mèo</code>, <code>cảm ơn</code>, <code>haha</code> or <code>:)</code>
-      and <code>Tab: 😂 …</code> shows next to the cursor. Tab numbers the suggestions, then 1–5 picks one;
-      Tab, Space or Enter takes the first and Esc keeps the text. Ordinary words stay and the emoji goes
-      after them; <code>haha</code> and <code>:)</code> are replaced. Suggestions show with the default
-      fcitx5 UI and the GNOME Input Method Panel extension, not in password fields, terminals or address
-      bars (<a href={`${REPO}/pull/788`}>#788</a>). About 460 more words and 86 Yahoo Messenger codes such
-      as <code>=))</code> were added (<a href={`${REPO}/pull/792`}>#792</a>), and the “Khi chọn emoji”
-      option puts the emoji after the word or replaces it (<a href={`${REPO}/pull/793`}>#793</a>).
+      The English/Vietnamese key now switches every app at once by default, also after an update. New
+      installs start with Vietnamese on; existing users keep their current state. Apps set to Tắt in the
+      <code>`</code> menu still type English, and pressing the key there opens the menu. To have each app
+      remember its own choice as before, pick “Từng app” under “Phím chuyển áp dụng cho” on the Phím tắt
+      page (<a href={`${REPO}/pull/825`}>#825</a>).
     </li>
     <li>
-      Key <code>w</code> in the <code>`</code> menu now turns emoji suggestions on or off for the current
-      app, like Vim mode (<a href={`${REPO}/pull/791`}>#791</a>). The new Emoji page of the settings window
-      lists every emoji with its words: click a word to turn it off or on, add your own, use “Như cũ” to
-      restore the built-in words, search and filter by group (<a href={`${REPO}/pull/795`}>#795</a>).
-      The Emoji picker mode is gone; anyone using it is moved to Gõ Sen, and Ngó Sen no longer needs
-      fcitx5’s emoji addon (<a href={`${REPO}/pull/791`}>#791</a>).
+      Emoji suggestions show “Ở cuối câu” (at the end of the sentence) by default: after
+      <code>.</code> <code>!</code> <code>?</code> or a short pause the list holds the emoji of every keyword
+      in the sentence; pick “Sau mỗi từ” to get the old behaviour (<a href={`${REPO}/pull/834`}>#834</a>).
+      With Telex the list is numbered and a digit inserts the emoji without Tab
+      (<a href={`${REPO}/pull/851`}>#851</a>). On GNOME without the Input Method Panel extension,
+      suggestions show inside the text field (<a href={`${REPO}/pull/821`}>#821</a>). English words such as
+      <code>cat</code> and <code>thumbs up</code> are suggested too (<a href={`${REPO}/pull/830`}>#830</a>),
+      and the Emoji page can export and import suggestion words (<a href={`${REPO}/pull/832`}>#832</a>).
     </li>
     <li>
-      The settings window opens Kiểm tra máy the first time, and while a step that stops Vietnamese
-      typing is left, reminding again after 3, 6, 12… openings (<a href={`${REPO}/pull/798`}>#798</a>);
-      it shows a red warning and opens the page when a re-login did not apply the setup
-      (<a href={`${REPO}/pull/801`}>#801</a>); and it opens once after a first install with the one-line
-      installer (<a href={`${REPO}/pull/802`}>#802</a>). Three capitalization options on the Gõ chữ page
-      lose their “(thử nghiệm)” label (<a href={`${REPO}/pull/796`}>#796</a>).
+      Holding the last letter of a marked word repeats it with the mark: <code>afaaa</code> gives
+      <code>àààà</code> (<a href={`${REPO}/pull/852`}>#852</a>). Teencode, turned on per app with
+      <code>t</code> in the <code>`</code> menu, keeps marks on words such as <code>zậy</code> and
+      <code>nhưg</code> (<a href={`${REPO}/pull/829`}>#829</a>). The <code>ngosen-toggle</code> command
+      switches English/Vietnamese from a desktop shortcut (<a href={`${REPO}/pull/828`}>#828</a>). Arch
+      users can install from the AUR: <code>yay -S fcitx5-ngosen</code>, or <code>yay -S ibus-ngosen</code>
+      for the IBus edition (<a href={`${REPO}/pull/873`}>#873</a>).
     </li>
     <li>
-      Version 1.11.2-1: words that are not Vietnamese but follow its spelling, such as <code>rose</code>
-      and <code>Sose</code>, now show the keys as typed while typing, Backspace after them removes only the
-      last key, and Ctrl switches between the keys and the marked word
-      (<a href={`${REPO}/pull/764`}>#764</a>, <a href={`${REPO}/pull/799`}>#799</a>,
-      <a href={`${REPO}/pull/800`}>#800</a>). In Firefox on Linux Mint, the first word typed right after
-      opening Firefox no longer sometimes loses the added <code>n</code> (<a href={`${REPO}/pull/804`}>#804</a>).
+      Fixes for xterm.js terminals: the IBus edition no longer doubles a letter
+      (<a href={`${REPO}/pull/878`}>#878</a>), and Gõ Sen no longer drops letters when typing fast in the
+      terminal of Electron code editors (<a href={`${REPO}/pull/880`}>#880</a>). Kiểm tra máy now warns
+      when the charset is not Unicode and when another keyboard sits before Ngó Sen in the input method
+      list (<a href={`${REPO}/pull/839`}>#839</a>, <a href={`${REPO}/pull/872`}>#872</a>).
     </li>
     <li>
-      Version 1.11.1-1: Space after a stretched chat word keeps it as shown, such as <code>ừaaa</code>
-      and <code>khônggg</code> (<a href={`${REPO}/pull/768`}>#768</a>). Fixes for lost letters on GNOME
-      when the machine is busy (<a href={`${REPO}/pull/767`}>#767</a>, <a href={`${REPO}/pull/773`}>#773</a>),
-      in Firefox on Linux Mint (<a href={`${REPO}/pull/766`}>#766</a>) and right after opening the Firefox
-      snap on Ubuntu (<a href={`${REPO}/pull/778`}>#778</a>, <a href={`${REPO}/pull/780`}>#780</a>,
-      <a href={`${REPO}/pull/781`}>#781</a>). Settings pages now say to restart fcitx5 when the running
-      Ngó Sen is older than the settings window (<a href={`${REPO}/pull/777`}>#777</a>).
+      Version 1.12.2-1: retyping a tone mark after a final consonant gives the right word again, such as
+      <code>mooxtj</code> → <code>một</code> (<a href={`${REPO}/pull/835`}>#835</a>). Fixes for mixed-up
+      letters in Firefox on GNOME (<a href={`${REPO}/pull/831`}>#831</a>) and in Brave on Fedora GNOME
+      (<a href={`${REPO}/pull/842`}>#842</a>), and for xterm.js terminals right after fcitx5 starts
+      (<a href={`${REPO}/pull/864`}>#864</a>). The mode menu closes on a click outside it
+      (<a href={`${REPO}/pull/836`}>#836</a>).
+    </li>
+    <li>
+      Version 1.12.1-1: Yahoo codes such as <code>:)</code> show emoji suggestions in Firefox
+      (<a href={`${REPO}/pull/819`}>#819</a>), Backspace fixes in Firefox on GNOME
+      (<a href={`${REPO}/pull/813`}>#813</a>, <a href={`${REPO}/pull/815`}>#815</a>,
+      <a href={`${REPO}/pull/818`}>#818</a>), and the mode menu closes on a key it does not list or after
+      5 seconds (<a href={`${REPO}/pull/814`}>#814</a>).
     </li>
   </ul>
   <h2 id="install">Install</h2>
@@ -118,13 +124,14 @@ const levels: Record<Level, string> = {
   <p>
     On GNOME, on KDE Plasma (Wayland), and on X11 desktops that pick the input method with im-config such
     as Xfce, Cinnamon and MATE, the script also makes fcitx5 the input method for your account and adds Ngó
-    Sen to the input method list. New installs start in English with only Ngó Sen in the list.
+    Sen to the input method list. New installs start with Vietnamese on and only Ngó Sen in the list.
     Log out and back in, then press and release Ctrl+Shift, like UniKey, to switch between English
-    and Vietnamese; the tray icon shows V while typing Vietnamese. Since 1.7.5 each app remembers its own
-    choice. An existing install keeps its old
-    key, usually Ctrl+Space. Change it in the settings window under “Phím”, tab “Phím tắt”,
+    and Vietnamese; the tray icon shows V while typing Vietnamese. Since 1.13.0 the key switches every
+    app at once; pick “Từng app” under “Phím chuyển áp dụng cho” to have each app remember its own
+    choice. An existing install keeps its old key, usually Ctrl+Space, and its current state. Change it in the settings window under “Phím”, tab “Phím tắt”,
     in “Phím chuyển Anh/Việt”. On GNOME the script also hides the fcitx5 launchers you do not need, and
-    adds the Input Method Panel extension when there is no system tray, as on Fedora. These steps apply to
+    adds the Input Method Panel extension, so the emoji list sits below the line of text and the input
+    method icon and menu show in the top bar. These steps apply to
     the account that runs the script; add <code>--no-setup</code> to install the package only. On KDE
     Plasma it selects fcitx5 as KDE's virtual keyboard (System Settings, Virtual Keyboard), so Qt apps
     such as Kate and Dolphin can type too.
@@ -153,8 +160,9 @@ const levels: Record<Level, string> = {
       <pre tabindex="0"><code>{`mkdir -p ~/.config/autostart ~/.config/environment.d
 [ -e /etc/xdg/autostart/org.fcitx.Fcitx5.desktop ] || cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
 printf 'GTK_IM_MODULE=fcitx\\nQT_IM_MODULE=fcitx\\nXMODIFIERS=@im=fcitx\\nSDL_IM_MODULE=fcitx\\n' > ~/.config/environment.d/90-ngosen.conf`}</code></pre>
-      If the top bar has no input method icon, install the
-      <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a> extension. On GNOME 50.0 to 50.3,
+      Install the <a href="https://extensions.gnome.org/extension/261/">Input Method Panel</a> extension,
+      then log out and back in: without it the emoji list covers the text being typed in Wayland apps such
+      as Firefox, and the top bar may have no input method icon. On GNOME 50.0 to 50.3,
       on a machine without the <code>xdg-desktop-portal-gnome</code> package, or to keep a separate typing mode for
       apps without a .desktop file, also run <code>gnome-extensions enable forward-keys@ngosen.github.io</code>.
     </li>
