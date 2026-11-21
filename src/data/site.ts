@@ -9,7 +9,7 @@ export const OG_IMAGE = '/og.png?v=4';
 export const FACEBOOK = 'https://www.facebook.com/profile.php?id=61595753582618';
 export const INSTALL_COMMAND =
   'curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash';
-// Ngó Sen cho GNOME (the IBus edition) lives in its own repository;
+// The IBus edition lives in its own repository;
 // install.sh defaults to fcitx5 and can install IBus with --ibus.
 export const IBUS_REPO = 'https://github.com/ngosen/ibus-ngosen';
 export const UNINSTALL_COMMAND = `${INSTALL_COMMAND} -s -- --uninstall`;
@@ -2152,7 +2152,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
 // Mirrors the top of the README on main.
 export const SCOPE = {
   title: 'fcitx5 và IBus',
-  text: 'Ngó Sen làm cho fcitx5. Bản fcitx5 chạy trên GNOME, KDE Plasma, Xfce, Sway, Hyprland và niri, nhẹ RAM. Có thêm Ngó Sen cho GNOME chạy trên IBus có sẵn của GNOME, dùng chung lõi gõ với bản fcitx5 nên tính năng gần như giống hệt. Tính năng mới có thể đến bản IBus muộn hơn bản fcitx5.',
+  text: 'Ngó Sen có hai bản. Bản fcitx5 chạy trên GNOME, KDE Plasma, Xfce, Sway, Hyprland và niri, nhẹ RAM. Bản IBus chạy trên IBus có sẵn của GNOME, và trên Cinnamon, Xfce, KDE Plasma khi dùng IBus. Hai bản dùng chung lõi gõ nên tính năng hiện tương đương 1:1; chọn bản nào là tuỳ thích. Tính năng mới đến bản IBus chậm hơn một chút.',
   ibusRepo: IBUS_REPO,
 };
 
@@ -2308,7 +2308,7 @@ export const ROADMAP: {
   },
 ];
 
-// Ngó Sen cho GNOME, the IBus edition. Facts come from README.md and CHANGELOG.md on main of
+// The IBus edition. Facts come from README.md and CHANGELOG.md on main of
 // ngosen/ibus-ngosen; guide steps were tried on a VM with the released package.
 export const GNOME_PAGES = [
   { href: '/ngo-sen-cho-gnome/', label: 'Giới thiệu' },
@@ -2316,7 +2316,7 @@ export const GNOME_PAGES = [
   { href: '/ngo-sen-cho-gnome/ban-phat-hanh/', label: 'Các version' },
 ];
 
-// The GNOME edition's usage guide, in reading order; previous/next keys follow it.
+// The IBus edition's usage guide, in reading order; previous/next keys follow it.
 export const GNOME_GUIDE = [
   {
     href: '/ngo-sen-cho-gnome/huong-dan/bat-tat-tieng-viet/',
@@ -2350,9 +2350,39 @@ export const GNOME_GUIDE = [
   },
 ];
 
-// Releases of Ngó Sen cho GNOME, newest first: the opening paragraph of each CHANGELOG.md entry in
+// Releases of the IBus edition, newest first: the opening paragraph of each CHANGELOG.md entry in
 // ngosen/ibus-ngosen, without its download link. Add an entry here when that repository releases.
 export const IBUS_RELEASES: { version: string; date: string; summary: string }[] = [
+  {
+    version: '1.5.0-1',
+    date: '21/11/2026',
+    summary:
+      'Gợi ý emoji khi gõ, có trang Emoji để sửa, xuất và nhập từ gợi ý; chuyển mã chữ TCVN3, VNI ngay tại chỗ. Ctrl+Shift đổi Anh/Việt cho mọi app cùng lúc như UniKey, và lệnh `ngosen-toggle` đổi được từ một phím tắt của GNOME. Teencode theo từng app và gõ kéo dài chữ. Khớp đủ tính năng bản fcitx5 trừ những mục ghi ở "Có ở bản fcitx5". Dùng lõi Ngó Sen `ngosen-1.13.1-1`.',
+  },
+  {
+    version: '1.4.1-1',
+    date: '18/11/2026',
+    summary:
+      'Trên GNOME, gõ nhanh ngay sau khi mở Firefox rồi xoá bằng Backspace không còn mất phím hay lộn chữ. Gõ lại dấu thanh sau phụ âm cuối ra đúng chữ, và Brave không còn mất dấu. Menu chọn chế độ gõ đóng như bản fcitx5: phím không có trong menu được gõ ra, click ra ngoài hay để yên 5 giây thì menu đóng. Arch cài được từ AUR. Dùng lõi Ngó Sen `ngosen-1.12.2-1`.',
+  },
+  {
+    version: '1.4.0-1',
+    date: '16/11/2026',
+    summary:
+      'Gõ thừa phím sau từ tiếng Việt không còn làm mất dấu: nhấn Space thì bỏ phím thừa, tách `côngty` thành `công ty` hoặc đổi `nhưg` thành `nhưng`. Nhận các bản sửa của lõi cho Firefox, bảng tính web trên Chrome và app bận trên GNOME; tab Kiểm tra báo đúng hơn trên desktop khác GNOME. Chữ không phải tiếng Việt như `rose` hiện đúng phím đã gõ, và nhấn Backspace trong lúc chờ app báo chữ không còn làm mất dấu. Khay IBus hiện V hoặc E, và mục "Tiếng Việt" trong menu đổi đúng app vừa gõ. Dùng lõi Ngó Sen `ngosen-1.11.2-1`.',
+  },
+  {
+    version: '1.3.0-1',
+    date: '12/11/2026',
+    summary:
+      'Ctrl+Shift và mục Tắt chỉ đổi Anh/Việt cho app đang dùng, như bản fcitx5. Vim mode cho từng app trong menu `, từ bắt đầu bằng `/` giữ nguyên như gõ, gõ Telex quên mũ hoặc móc vẫn ra đúng chữ. Menu ` sắp xếp được theo ý mình, cửa sổ cài đặt có ô tìm và trang "Có gì mới & mẹo", Cứu chữ chạy cả trên Wayland. Dùng lõi Ngó Sen `ngosen-1.10.0-1`.',
+  },
+  {
+    version: '1.2.3-1',
+    date: '11/11/2026',
+    summary:
+      'Ở Gõ Sen, từ bắt đầu bằng chữ hoa gõ bằng Shift không còn mất dấu; bấm Enter sau chữ đang gạch chân đổi dấu và bung gõ tắt như dấu cách. Dùng lõi Ngó Sen `ngosen-1.9.3-1`.',
+  },
   {
     version: '1.2.2-1',
     date: '10/11/2026',
@@ -2412,7 +2442,7 @@ export const IBUS_RELEASES: { version: string; date: string; summary: string }[]
 export const NAV = [
   { href: '/cai-dat/', label: 'Cài đặt' },
   { href: '/huong-dan/', label: 'Hướng dẫn' },
-  { href: '/ngo-sen-cho-gnome/', label: 'Bản GNOME' },
+  { href: '/ngo-sen-cho-gnome/', label: 'Bản IBus' },
   { href: '/blog/', label: 'Blog' },
   { href: '/en/', label: 'English' },
 ];

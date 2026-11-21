@@ -21,9 +21,9 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   again. Old entries carry `prRepo: ARCHIVE_REPO`; new release entries leave it out.
 - Page text is Vietnamese except for `/en/` and `/en/typing-without-preedit/`; code, comments and commit messages are English.
   The bilingual typing-without-preedit page takes facts from `docs/typing-without-preedit.md` on `main` of the main repository, including how Ngó Sen deletes text (maintainer-approved exception, 20 October 2026).
-- `/ngo-sen-cho-gnome/` is the section for Ngó Sen cho GNOME, the IBus edition: an overview, an install page,
+- `/ngo-sen-cho-gnome/` is the section for the IBus edition ("Ngó Sen bản IBus"): an overview, an install page,
   a releases page and a usage guide, listed in `GNOME_PAGES` and `GNOME_GUIDE` (`src/data/site.ts`) and reached
-  from the "Bản GNOME" nav key. Its facts come from `README.md` and `CHANGELOG.md` on `main` of
+  from the "Bản IBus" nav key. Its facts come from `README.md` and `CHANGELOG.md` on `main` of
   `ngosen/ibus-ngosen` (maintainer-approved exception, 28 October 2026, renewed 9 November 2026).
   `IBUS_RELEASES` copies the opening paragraph of each entry in that changelog; add one per release there.
   Guide pages use `Guide.astro` with `edition="gnome"` and follow the usage-guide rules below; their
@@ -132,7 +132,7 @@ When a version is released, in this order:
 7. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
    to `main`.
 
-When Ngó Sen cho GNOME (`ngosen/ibus-ngosen`) releases, once the release is public: add its entry at the
+When the IBus edition (`ngosen/ibus-ngosen`) releases, once the release is public: add its entry at the
 top of `IBUS_RELEASES`, bring the `/ngo-sen-cho-gnome/` pages in line with its README, and if its settings
 window changed, check the GNOME guide pages that show it. Then build and ask for approval as above.
 
