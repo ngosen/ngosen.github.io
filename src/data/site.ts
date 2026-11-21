@@ -33,6 +33,54 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.13.2-1',
+    date: '22/11/2026',
+    summary:
+      'Trên GNOME với fcitx5 từ 5.1.22 (Fedora 44, 45, Arch, Debian testing), Firefox không còn khựng khi sửa dấu, máy bận ít mất phần chữ vừa sửa hơn hẳn, và một lần sửa sai không còn làm cả app chuyển sang xoá bằng Backspace. Firefox bản snap không còn xoá mất chữ khi click về một từ đã gõ rồi gõ phím dấu. Terminal của Orca IDE không còn lặp chữ; terminal trong các app khác chưa có tên trong danh sách (như các IDE mới) được tự nhận ra sau vài từ đầu và nhớ cả sau khi khởi động lại, còn quay lại terminal của VS Code hay các app đó từ cửa sổ khác không còn ra chữ sai. Chuyển mã trong ô như VS Code không còn lấy chữ đang bôi đen ở app khác; trang Emoji sửa vài lỗi với từ tiếng Anh trùng chữ Việt.',
+    changes: [
+      {
+        claim: 'Gõ Sen trên GNOME với fcitx5 từ 5.1.22 (Fedora 44, 45, Arch, Debian testing): Firefox không còn khựng khi sửa dấu hai lần trong một chữ, và khi máy bận, Chrome cùng các app khác ít bị mất phần chữ vừa sửa hơn hẳn (kiểu “người” thành “ngưi”).',
+        source: '',
+        pr: 920,
+      },
+      {
+        claim: 'Gõ Sen trên GNOME với fcitx5 từ 5.1.22: một lần sửa sai lúc máy bận không còn làm cả app chuyển sang xoá bằng Backspace tới khi đăng xuất; chỉ ô đang gõ bị ảnh hưởng, như trước đây.',
+        source: '',
+        pr: 922,
+      },
+      {
+        claim: 'Gõ Sen: trong Firefox bản snap, click về một từ đã gõ rồi gõ phím dấu không còn xoá mất chữ ở chỗ click; phím được giữ nguyên như đã gõ.',
+        source: '',
+        pr: 919,
+      },
+      {
+        claim: 'Gõ Sen trong terminal của Orca IDE không còn lặp chữ (kiểu “ddaay laf” ra “đđây lđây là”), không cần chuyển app sang Preedit nữa.',
+        source: '',
+        pr: 927,
+      },
+      {
+        claim: 'Gõ Sen tự nhận ra terminal xterm.js trong app chưa có tên trong danh sách (như các IDE mới, trừ trình duyệt): lần đầu có thể sai vài từ, từ đó về sau gõ đúng ngay cả sau khi khởi động lại, và ô chat cùng cửa sổ không bị ảnh hưởng.',
+        source: 'Danh sách app đã nhận ra nằm trong “~/.config/fcitx5/conf/ngosen-web-terminal-apps.conf”; xoá file này để Ngó Sen học lại. Gồm #938.',
+        pr: 930,
+      },
+      {
+        claim: 'Gõ Sen trong terminal của VS Code, Cursor, Antigravity và các IDE Electron khác: chuyển sang cửa sổ khác rồi quay lại terminal, gõ nhanh không còn ra chữ sai (kiểu “tieengs” ra “tià ếng”).',
+        source: '',
+        pr: 936,
+      },
+      {
+        claim: 'Chuyển mã: ở ô không báo chữ quanh con trỏ (như VS Code), phím chuyển mã không còn lấy chữ đang bôi đen ở app khác rồi gõ vào ô.',
+        source: '',
+        pr: 916,
+      },
+      {
+        claim: 'Trang Emoji: từ tiếng Anh trùng chữ Việt như “can”, “me”, “pho” nay hiện tắt, đúng như khi gõ, và bật lên thì gợi ý được. Từ khoá chỉ khác chữ hoa, chữ thường không còn bị gộp làm một.',
+        source: 'File từ emoji hỏng không còn làm đóng cửa sổ cài đặt. Ví dụ cách dùng nay theo lúc gợi ý đang chọn: cuối câu hay sau mỗi từ.',
+        pr: 915,
+      },
+    ],
+  },
+  {
     version: '1.13.1-1',
     date: '20/11/2026',
     summary:
@@ -1973,7 +2021,8 @@ export const LEVELS_NOTE =
   ' Gói 1.12.1-1 do CI dựng từ PR phát hành #822 đã được cài đè lên 1.10.1-1 bằng gói deb noble và gõ thử ngày 17/11/2026 trên Ubuntu 24.04 (GNOME 46 Wayland, fcitx5 5.1.7) với Gõ Sen, Telex, thiết lập mặc định, cách nhau 0,15 giây giữa các phím. Bảy câu trong trang textarea, mỗi câu 2 lượt: Chrome 156 đúng 14/14, Firefox 159 snap đúng 13/14. Lượt sai là lượt đầu ngay sau khi mở Firefox: mất chữ đầu “tiếng ”, trang không ghi nhận gì cho 8 phím đầu và lượt này không có log gõ; gõ lại câu đó 6 lượt, mỗi lượt mở Firefox mới, đúng 6/6. Câu “nhưg”, Space rồi Backspace nay trả lại “nhưg” 4/4 (1.12.0-1 sai 7/10). Trong Firefox, mã Yahoo “:))”, “=))”, “:x”, “:)” rồi Tab Tab ra đúng emoji 8/8, và “cuwowif” Tab Tab ra “cười 😂” 2/2. Chưa thử lần này: VNI, X11, Linux Mint, KDE, Fedora, Debian, openSUSE, Arch, tiling desktops, cài mới và lệnh cài, menu chọn chế độ gõ (#814, #817), fcitx5 5.1.23 (#816, #818), và khôi phục tệp sao lưu (#805) ngoài unit test.' +
   ' Gói 1.12.2-1 do CI dựng từ PR phát hành #865 đã được cài đè lên 1.12.1-1 bằng gói rpm Fedora 45 x86_64 và gõ thử ngày 18/11/2026 trên Fedora 45 (GNOME 51.1 Wayland, fcitx5 5.1.23) với Gõ Sen, Telex, thiết lập mặc định, cách nhau 0,15 giây giữa các phím, khởi động lại fcitx5 trước mỗi lượt. Trong Local Terminal của VaultID 0.2.36 (terminal dùng xterm.js, app không được GNOME Shell báo tên), “ddaay laf tieengs vieetj” ra “đây là tiếng việt” đúng 3/3 lượt (#864). Trong GNOME Text Editor, “tooi ddiw hojc tieengs vieetj raast nhanh” ra “tôi đi học tiếng việt rất nhanh” đúng 3/3 lượt. Chưa thử lần này: VNI, X11, KDE, Ubuntu, Linux Mint, Debian, openSUSE, Arch, tiling desktops, cài mới và lệnh cài, xterm.js trong Firefox và Epiphany (#846, #853), Brave (#842), menu chọn chế độ gõ (#836, #840, #850), gõ lại dấu thanh (#835) ngoài unit test, và Backspace trong Firefox trên GNOME (#831).' +
   ' Gói 1.13.0-1 do CI dựng từ PR phát hành #896 đã được gõ thử ngày 20/11/2026 với Gõ Sen, Telex, cách nhau 0,15 giây giữa các phím, trang textarea, 2 lượt mỗi câu. Sáu câu: “tieengs vieetj laf ngoon nguwx cuar nguwowif vieetj nam ” ra “tiếng việt là ngôn ngữ của người việt nam”, “sose2026 tooi2 ” ra “sose2026 tôi2”, “/cost cd /usr/share ” giữ nguyên, “xin dduowjcd coongty nhuwg ” ra “xin được công ty nhưng”, “cuxg khoog ” ra “cũng không”, và gõ kéo dài “afaaa ” ra “àààà”. Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7, gói deb “noble” cài đè lên bản dựng thử 1.12.2), Chromium 154 và Firefox 157: đúng 24/24. Fedora 45 (KDE Plasma 6.8.3 Wayland, fcitx5 5.1.23, gói rpm cài đè lên 1.12.2-1), Brave 1.99.57 và Firefox 158: đúng 24/24. Trên Mint, gợi ý emoji cuối câu trong Firefox: “cuwowif quas.” hiện bảng “1.😂 2.🤣 …”, bấm 1 ra “cười quá. 😂”. Trên Fedora, thông báo của version 1.13 hiện bằng tiếng Việt sau khi cài. Chưa thử lần này: VNI, GNOME, Ubuntu, Debian, openSUSE, Arch và gói AUR, Sway, Hyprland, niri, terminal (kể cả xterm.js, #878, #880), cài mới và lệnh cài, phím chuyển cho mọi app (#825), teencode, lệnh “ngosen-toggle”, Xuất/Nhập trên trang Emoji, và gợi ý emoji trên GNOME không có extension Input Method Panel.' +
-  ' Gói 1.13.1-1 do CI dựng từ PR phát hành #909 đã được gõ thử ngày 20/11/2026 với Gõ Sen, Telex, cách nhau 0,15 giây giữa các phím, trang textarea, 2 lượt mỗi câu, cùng sáu câu như 1.13.0. Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7, gói deb “noble” cài đè lên 1.13.0-1), Chromium 154 và Firefox 157: đúng 24/24. Fedora 45 (KDE Plasma 6.8.3 Wayland, fcitx5 5.1.23, gói rpm cài đè lên 1.13.0-1), Brave 1.99.57 và Firefox 158: đúng 24/24. Backspace trong chữ kéo dài và teencode, trên Mint trong Chromium, năm câu “chaiiif”, “chaiiif” rồi “i”, “aaaf”, và với teencode “fair”, “nhuwgx”, mỗi câu bấm Backspace một lần rồi Space: Gõ Sen đúng 10/10, Preedit đúng 10/10; cùng cách thử, 1.13.0-1 đúng 10/10 ở Gõ Sen nhưng 0/10 ở Preedit. Chưa thử lần này: WPS trên KDE (#897), Nhập từ gợi ý emoji (#899) ngoài test tự động, VNI, GNOME, Ubuntu, Debian, openSUSE, Arch, tiling desktops, cài mới và lệnh cài.';
+  ' Gói 1.13.1-1 do CI dựng từ PR phát hành #909 đã được gõ thử ngày 20/11/2026 với Gõ Sen, Telex, cách nhau 0,15 giây giữa các phím, trang textarea, 2 lượt mỗi câu, cùng sáu câu như 1.13.0. Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7, gói deb “noble” cài đè lên 1.13.0-1), Chromium 154 và Firefox 157: đúng 24/24. Fedora 45 (KDE Plasma 6.8.3 Wayland, fcitx5 5.1.23, gói rpm cài đè lên 1.13.0-1), Brave 1.99.57 và Firefox 158: đúng 24/24. Backspace trong chữ kéo dài và teencode, trên Mint trong Chromium, năm câu “chaiiif”, “chaiiif” rồi “i”, “aaaf”, và với teencode “fair”, “nhuwgx”, mỗi câu bấm Backspace một lần rồi Space: Gõ Sen đúng 10/10, Preedit đúng 10/10; cùng cách thử, 1.13.0-1 đúng 10/10 ở Gõ Sen nhưng 0/10 ở Preedit. Chưa thử lần này: WPS trên KDE (#897), Nhập từ gợi ý emoji (#899) ngoài test tự động, VNI, GNOME, Ubuntu, Debian, openSUSE, Arch, tiling desktops, cài mới và lệnh cài.' +
+  ' Gói 1.13.2-1 do CI dựng từ PR phát hành #935 đã được gõ thử ngày 21–22/11/2026 với Gõ Sen, Telex, cách nhau 0,15 giây giữa các phím. Trang textarea, 2 lượt mỗi câu, cùng sáu câu như 1.13.0: Linux Mint 22.1 (Cinnamon X11, fcitx5 5.1.7, gói deb “noble” cài đè lên 1.13.1-1), Chromium 154 và Firefox 157: đúng 24/24; Fedora 45 (GNOME 51.1 Wayland, fcitx5 5.1.23, gói rpm cài đè lên 1.13.1-1), Firefox 158 và Brave 1.99.57: đúng 24/24. Terminal xterm.js trong VS Code 1.147 và Tabby 1.0.238, gõ “ddaay laf tieengs vieetj ” vào dấu nhắc readline, 8 dòng mỗi app: 3 dòng liền, 3 lần gõ nửa câu rồi sang cửa sổ khác 2 giây và quay lại, rồi khởi động lại fcitx5 và gõ thêm một dòng liền, một lần quay lại. Mint: đúng 16/16. Fedora 45 GNOME: đúng 15/16, dòng sai là dòng đầu trong Tabby (“đaây”) lúc Ngó Sen đang nhận ra app, 1.13.1 cũng sai dòng này. Fedora 45 KDE Plasma 6.8.3 Wayland: đúng 16/16. Trên cả GNOME và KDE, Ngó Sen ghi VS Code và Tabby vào “ngosen-web-terminal-apps.conf”. Chưa thử: Arch, Debian, openSUSE, và terminal của Orca IDE, Antigravity.';
 
 // Mirrors the "Máy ARM 64-bit" row of packaging/release-notes.md, which spans several distros and cores.
 export const ARM_NOTE = {

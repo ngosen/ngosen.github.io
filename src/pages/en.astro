@@ -46,13 +46,23 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Version 1.13.1-1 is a bug-fix release on top of 1.13.0-1. Version 1.13.0-1 makes the
+    Versions 1.13.1-1 and 1.13.2-1 are bug-fix releases on top of 1.13.0-1. Version 1.13.0-1 makes the
     English/Vietnamese key switch every app at once, like UniKey, and new
     installs start with Vietnamese on. Emoji suggestions now show at the end of a sentence by default.
     It adds drawn-out letters, per-app Teencode, the <code>ngosen-toggle</code> command and AUR packages.
     Versions 1.12.1-1 and 1.12.2-1 before it were bug-fix releases.
   </p>
   <ul>
+    <li>
+      Version 1.13.2-1: on GNOME with fcitx5 5.1.22 or later, Sen keeps its edit protection: Firefox no longer
+      stalls on a second tone change, busy machines lose fewer corrected letters, and one failed correction no
+      longer switches the whole app to Backspace deletion (<a href={`${REPO}/pull/920`}>#920</a>,
+      <a href={`${REPO}/pull/922`}>#922</a>). Firefox snap keeps the word when clicking back into it
+      (<a href={`${REPO}/pull/919`}>#919</a>). Orca IDE's terminal no longer repeats words
+      (<a href={`${REPO}/pull/927`}>#927</a>); xterm.js terminals in other apps are learned after the first words
+      and remembered across restarts (<a href={`${REPO}/pull/930`}>#930</a>), and coming back to one from another
+      window no longer garbles the next word (<a href={`${REPO}/pull/936`}>#936</a>).
+    </li>
     <li>
       Version 1.13.1-1: WPS Office types Vietnamese on KDE Plasma Wayland; the installer sets
       <code>QT_IM_MODULE=fcitx</code> for WPS alone (<a href={`${REPO}/pull/897`}>#897</a>). Backspace in a
