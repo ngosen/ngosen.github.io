@@ -20,7 +20,7 @@ const gnome = edition === 'gnome';
 const qtNote = !gnome && (Astro.props.qtNote ?? true);
 const pages = gnome ? GNOME_GUIDE : GUIDE_PAGES;
 const contents = gnome
-  ? { href: '/ngo-sen-cho-gnome/#huong-dan', label: 'Mục lục bản GNOME' }
+  ? { href: '/ngo-sen-cho-gnome/#huong-dan', label: 'Mục lục bản IBus' }
   : { href: '/huong-dan/', label: 'Mục lục hướng dẫn' };
 const here = Astro.url.pathname;
 const index = pages.findIndex((page) => page.href === here);
@@ -29,7 +29,7 @@ const next = index >= 0 && index < pages.length - 1 ? pages[index + 1] : undefin
 ---
 
 <Page
-  title={`${title} | ${gnome ? 'Ngó Sen cho GNOME' : 'Hướng dẫn Ngó Sen'}`}
+  title={`${title} | ${gnome ? 'Ngó Sen bản IBus' : 'Hướng dẫn Ngó Sen'}`}
   description={description}
   heading={title}
   toc={toc}

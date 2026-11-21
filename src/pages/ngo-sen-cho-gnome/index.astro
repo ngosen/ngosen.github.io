@@ -13,15 +13,16 @@ const toc = [
 ---
 
 <Page
-  title="Ngó Sen cho GNOME"
-  description="Bộ gõ tiếng Việt dùng IBus có sẵn của GNOME, với Gõ Sen và Ctrl+Shift đổi Anh/Việt; xem cách cài, hướng dẫn dùng, các giới hạn và version mới nhất."
-  heading="Ngó Sen cho GNOME"
+  title="Ngó Sen bản IBus"
+  description="Ngó Sen chạy trên IBus có sẵn của GNOME, tính năng như bản fcitx5; xem cách cài, hướng dẫn dùng, điểm khác bản fcitx5 và version mới nhất."
+  heading="Ngó Sen bản IBus"
   toc={toc}
   tocPages={GNOME_PAGES}
 >
   <p slot="lede">
-    Ngó Sen cho GNOME là bộ gõ tiếng Việt dùng IBus có sẵn của GNOME, không cần fcitx5. Bản này hướng đến sự
-    đơn giản và ổn định, dùng những gì GNOME có sẵn; những tính năng cần lách giới hạn của GNOME/IBus thì không có.
+    Bản IBus của Ngó Sen chạy trên IBus có sẵn của GNOME, không cần fcitx5, và dùng được trên Cinnamon, Xfce,
+    KDE Plasma khi dùng IBus. Bản này dùng chung lõi gõ với bản fcitx5 nên tính năng hiện tương đương 1:1;
+    chọn bản nào là tuỳ thích. Tính năng mới đến bản IBus chậm hơn một chút.
   </p>
 
   <h2 id="khac-gi">Khác gì bản fcitx5</h2>
@@ -31,26 +32,26 @@ const toc = [
   </p>
   <p>Hai bản cùng có:</p>
   <ul>
-    <li>Menu phím <kbd>`</kbd> để chọn Gõ Sen hay Gạch chân riêng cho từng app, nhớ lựa chọn đó.</li>
-    <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd> đổi Anh/Việt.</li>
-    <li>Cứu dấu bằng cách click ngay sau một chữ rồi gõ phím dấu, khi đang dùng Gõ Sen.</li>
+    <li>
+      Menu phím <kbd>`</kbd> để chọn Gõ Sen, Gạch chân hay Tắt riêng cho từng app, bật Vim mode hay Teencode
+      cho app đó; Ngó Sen nhớ lựa chọn.
+    </li>
+    <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd> đổi Anh/Việt cho mọi app cùng lúc, hoặc riêng từng app.</li>
+    <li>Cứu chữ, và Cứu dấu bằng cách click ngay sau một chữ rồi gõ phím dấu, khi đang dùng Gõ Sen.</li>
+    <li>Gợi ý emoji khi gõ, với trang Emoji để sửa, xuất và nhập từ gợi ý.</li>
+    <li>Chuyển mã chữ TCVN3, VNI đang bôi đen sang Unicode.</li>
     <li>Gõ tắt, kể cả khi đang gõ tiếng Anh nếu bật tuỳ chọn đó.</li>
     <li>Sao lưu và khôi phục bằng cùng định dạng JSON.</li>
     <li>Sửa bảng phím (keymap) và kiểm tra máy ngay trong cửa sổ cài đặt.</li>
   </ul>
-  <p>Bản fcitx5 có thêm:</p>
+  <p>Hai điểm nhỏ chỉ bản fcitx5 có:</p>
   <ul>
-    <li>Cứu dấu ở mọi app.</li>
-    <li>Vim mode theo app.</li>
-    <li>Bảng chọn emoji và tắt tiếng Việt cho riêng một app.</li>
+    <li>Cứu dấu trên chữ đang bôi đen ở mọi app; bản IBus làm được việc này trong app X11.</li>
+    <li>Chuyển mã trong LibreOffice.</li>
   </ul>
   <p>
-    Cứu chữ ở bản cho GNOME chỉ chạy trong phiên X11: chuyển về tiếng Việt để gõ lại chữ vừa gõ nhầm lúc đang
-    tiếng Anh, như <code>vieetj</code> thành <code>việt</code>.
-  </p>
-  <p>Chọn Ngó Sen cho GNOME nếu muốn dùng bộ gõ trên IBus có sẵn của GNOME.</p>
-  <p>
-    Chọn <a href="/cai-dat/">bản fcitx5</a> nếu cần Cứu dấu ở mọi app, Vim mode theo app hay bảng chọn emoji.
+    Chọn bản nào là tuỳ thích: bản IBus nếu muốn dùng IBus có sẵn của máy, <a href="/cai-dat/">bản fcitx5</a>
+    nếu muốn có tính năng mới sớm hơn hoặc cần hai điểm trên.
   </p>
 
   <h2 id="cai">Cài</h2>
