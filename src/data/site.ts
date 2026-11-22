@@ -2458,6 +2458,18 @@ export const GNOME_GUIDE = [
 // ngosen/ibus-ngosen, without its download link. Add an entry here when that repository releases.
 export const IBUS_RELEASES: { version: string; date: string; summary: string }[] = [
   {
+    version: '1.6.0-1',
+    date: '22/11/2026',
+    summary:
+      'Ở chế độ gạch chân, bôi đen một từ rồi gõ phím dấu để đổi dấu; phím chuyển mã chạy trên KDE, Sway và Hyprland; hàng emoji trên KDE hiện số một lần; có lệnh để nhờ AI giúp. Dùng lõi Ngó Sen `ngosen-1.14.0-1`.',
+  },
+  {
+    version: '1.5.1-1',
+    date: '22/11/2026',
+    summary:
+      'xterm gõ đúng khi bấm Backspace, cả trên Wayland lẫn X11; terminal xterm.js trong app chưa có tên được tự nhận ra và nhớ sau khi khởi động lại; app không tên giữ lựa chọn của từng ô khi đổi cửa sổ. Bản này nay tên là Ngó Sen bản IBus, README chỉ rõ bước nào chỉ cho GNOME. Dùng lõi Ngó Sen `ngosen-1.13.2-1`.',
+  },
+  {
     version: '1.5.0-1',
     date: '21/11/2026',
     summary:
