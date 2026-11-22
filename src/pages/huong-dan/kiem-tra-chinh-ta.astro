@@ -3,27 +3,29 @@ import Guide from '../../layouts/Guide.astro';
 import Shot from '../../components/Shot.astro';
 
 const toc = [
-  { id: 'kiem-tra', label: 'Chữ không có trong từ điển' },
+  { id: 'kiem-tra', label: 'Tự khôi phục từ gõ sai' },
   { id: 'them-chu', label: 'Thêm chữ vào từ điển' },
   { id: 'tu-dien-goc', label: 'Quay về từ điển gốc' },
 ];
 ---
 
 <Guide
-  title="Kiểm tra chính tả"
-  description="Kiểm tra chính tả trong Ngó Sen: chữ không có trong từ điển trở lại như đã gõ, và cách thêm chữ vào từ điển riêng."
+  title="Chữ không có trong từ điển"
+  description="Tự khôi phục từ gõ sai trong Ngó Sen: chữ không có trong từ điển trở lại như đã gõ, và cách thêm chữ vào từ điển riêng."
   toc={toc}
 >
-  <p slot="lede">“Kiểm tra chính tả” so từng chữ với từ điển tiếng Việt đi kèm Ngó Sen.</p>
+  <p slot="lede">“Tự khôi phục từ gõ sai” so từng chữ với từ điển tiếng Việt đi kèm Ngó Sen.</p>
 
-  <h2 id="kiem-tra">Chữ không có trong từ điển</h2>
+  <h2 id="kiem-tra">Tự khôi phục từ gõ sai</h2>
+  <p>Mục này ở “Cài đặt Ngó Sen › Gõ chữ”, nhóm “Sửa chữ”, bật sẵn.</p>
   <p>
-    Mục này ở “Cài đặt Ngó Sen › Gõ chữ”, nhóm “Sửa chữ”, bật sẵn, và chỉ có tác dụng khi “Tự khôi phục từ
-    gõ sai” cũng bật.
+    Khi bật, chữ không có trong từ điển trở lại như đã gõ, kể cả khi nó trông giống tiếng Việt:
+    <code>kaj</code> ra <code>kaj</code>. Tắt thì <code>kaj</code> ra <code>kạ</code>.
   </p>
   <p>
-    Khi cả hai bật, chữ không có trong từ điển trở lại như đã gõ, kể cả khi nó trông giống tiếng Việt:
-    <code>kaj</code> ra <code>kaj</code>. Tắt một trong hai thì <code>kaj</code> ra <code>kạ</code>.
+    Từ version 1.14 không còn ô “Kiểm tra chính tả” riêng. Ai từng tắt ô đó để giữ dấu cho chữ kiểu chat như
+    <code>zậy</code>, <code>kạ</code> thì bật <a href="/huong-dan/che-do-go/">Teencode</a> cho app đó, hoặc thêm chữ vào từ điển riêng
+    như bên dưới.
   </p>
 
   <h2 id="them-chu">Thêm chữ vào từ điển</h2>

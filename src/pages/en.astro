@@ -46,13 +46,22 @@ const levels: Record<Level, string> = {
 
   <h2 id="release">Version {RELEASE.version}</h2>
   <p>
-    Versions 1.13.1-1 and 1.13.2-1 are bug-fix releases on top of 1.13.0-1. Version 1.13.0-1 makes the
-    English/Vietnamese key switch every app at once, like UniKey, and new
-    installs start with Vietnamese on. Emoji suggestions now show at the end of a sentence by default.
-    It adds drawn-out letters, per-app Teencode, the <code>ngosen-toggle</code> command and AUR packages.
-    Versions 1.12.1-1 and 1.12.2-1 before it were bug-fix releases.
+    Version 1.14.0-1 lets the tray show <code>vi</code> / <code>en</code> or a picture of your own instead of
+    the icon. In Preedit, a selected word can be retoned with the tone key, as in Sen, in GTK 4 apps and
+    Chromium. A guide for AI assistants and the <code>ngosen-check</code> command help find typing bugs. The
+    Spell Check option is gone: automatic restoration of invalid words always checks the dictionary.
+    Versions 1.13.1-1 and 1.13.2-1 before it were bug-fix releases on top of 1.13.0-1, which made the
+    English/Vietnamese key switch every app at once, like UniKey.
   </p>
   <ul>
+    <li>
+      Version 1.14.0-1 also fixes: a first install on KDE keeps the keyboard layout set in System Settings
+      (<a href={`${REPO}/pull/942`}>#942</a>); single letters, numbers and chat shorthand such as
+      <code>t</code>, <code>ng</code>, <code>vs</code> no longer offer emoji
+      (<a href={`${REPO}/pull/945`}>#945</a>); the KDE tray letters are drawn on the pixel grid
+      (<a href={`${REPO}/pull/946`}>#946</a>); Vim mode switched on in an unnamed window no longer carries over
+      to a later window (<a href={`${REPO}/pull/949`}>#949</a>).
+    </li>
     <li>
       Version 1.13.2-1: on GNOME with fcitx5 5.1.22 or later, Sen keeps its edit protection: Firefox no longer
       stalls on a second tone change, busy machines lose fewer corrected letters, and one failed correction no
@@ -744,15 +753,17 @@ echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/90-ngosen.conf`}</code></p
   <p>
     Not fixed: SDL games not running on X11 ignore forwarded keys and get text without tone marks, and the
     snap build of VS Code types raw Telex; the workaround routes it through XIM, where about one sentence
-    in ten gets a wrong tone mark. In Preedit mode on GNOME Wayland, Chrome and Chromium-based apps
-    running natively on Wayland lose the word being typed on a mouse click until the distribution
-    ships fcitx5 5.1.20. Telex is the method used and tested daily; VNI and the other methods
+    in ten gets a wrong tone mark. In Preedit mode, apps that reach fcitx5 through IBus lose the word
+    being typed on a mouse click until the distribution ships fcitx5 5.1.20: Chrome and Chromium-based
+    apps on GNOME Wayland, and GTK apps using the ibus module on X11, such as xed on Linux Mint 22. On KDE
+    Plasma Wayland, LibreOffice shows the underlined word twice after a click in Preedit mode; Sen mode
+    avoids it. Telex is the method used and tested daily; VNI and the other methods
     work but have not been tested closely.
   </p>
   <p>
     The <a href="/roadmap/">roadmap (in Vietnamese)</a> has no numbered version after 1.7.0 yet; its
-    “Sau đó” list keeps the planned work in order, ending with reworked emoji insertion and merging
-    spell checking into automatic restoration of invalid words. The roadmap gives no release dates, and
+    “Sau đó” list keeps the planned work in order, ending with getting Ngó Sen into distribution
+    repositories. The roadmap gives no release dates, and
     the order may change.
   </p>
   <p>
