@@ -4,9 +4,10 @@ import Shot from '../../components/Shot.astro';
 import { GNOME_PAGES, IBUS_REPO, INSTALL_COMMAND } from '../../data/site';
 
 const toc = [
-  { id: 'goi', label: 'Chọn và cài gói' },
+  { id: 'lenh-cai', label: 'Cài bằng lệnh cài' },
+  { id: 'goi', label: 'Cài bằng tay' },
   { id: 'tren-gnome', label: 'Thêm nguồn nhập trên GNOME' },
-  { id: 'desktop-khac', label: 'Cinnamon và Xfce' },
+  { id: 'desktop-khac', label: 'Cinnamon, Xfce và KDE Plasma' },
   { id: 'kho-goi', label: 'Cài từ repo gói' },
   { id: 'tu-fcitx5', label: 'Từ bản fcitx5 sang' },
   { id: 'sang-fcitx5', label: 'Chuyển sang bản fcitx5' },
@@ -17,23 +18,45 @@ const toc = [
 
 <Page
   title="Cài và gỡ Ngó Sen bản IBus"
-  description="Cài gói ibus-ngosen theo distro, thêm nguồn nhập trên GNOME, Cinnamon hoặc Xfce; chuyển qua lại với bản fcitx5 và gỡ bằng trình quản lý gói."
+  description="Cài Ngó Sen bản IBus bằng lệnh cài hoặc gói ibus-ngosen theo distro, thêm nguồn nhập trên GNOME, Cinnamon, Xfce, KDE Plasma; chuyển sang bản fcitx5 và gỡ."
   heading="Cài và gỡ Ngó Sen bản IBus"
   toc={toc}
   tocPages={GNOME_PAGES}
 >
   <p slot="lede">
-    Cài gói <code>ibus-ngosen</code> bằng trình quản lý gói, rồi đăng xuất và đăng nhập lại để thêm nguồn nhập.
-    Hai bản IBus và fcitx5 không chạy cùng lúc trong một tài khoản.
+    Cài bằng lệnh cài của Ngó Sen với <code>--ibus</code>, hoặc tải gói <code>ibus-ngosen</code> rồi cài bằng
+    trình quản lý gói. Hai bản IBus và fcitx5 không chạy cùng lúc trong một tài khoản.
   </p>
 
+  <h2 id="lenh-cai">Cài bằng lệnh cài</h2>
   <p>
-    Script <code>install.sh</code> của repo chính cũng cài được bản này với <code>--ibus</code>.
-    Xem <a href="/cai-dat/#chon-ban">cách chọn và chuyển giữa hai bản</a>.
+    Chạy lệnh dưới đây trong terminal, không cần <code>sudo</code>; lệnh tự hỏi mật khẩu khi cần.
+    Xem thêm <a href="/cai-dat/#chon-ban">cách chọn giữa hai bản</a>.
   </p>
   <pre tabindex="0"><code>{`${INSTALL_COMMAND} -s -- --ibus`}</code></pre>
+  <p>
+    Lệnh nhận ra distro và cài gói của bản này. Trước khi đổi gì, lệnh liệt kê những việc sẽ làm và chờ bạn
+    đồng ý. Ngoài việc cài gói:
+  </p>
+  <ul>
+    <li>
+      Trên Debian, Ubuntu, Linux Mint, lệnh thêm repo APT của Ngó Sen để <code>apt upgrade</code> tự lên version
+      mới; thêm <code>--no-repo</code> để bỏ qua bước này.
+    </li>
+    <li>
+      Trên GNOME, lệnh thêm “Tiếng Việt (Ngó Sen)” vào nguồn nhập của tài khoản đang chạy lệnh. Trên Xfce,
+      Cinnamon, MATE dùng X11 ở máy có <code>im-config</code> (Debian, Ubuntu, Linux Mint), lệnh đặt IBus và
+      Ngó Sen làm bộ gõ. Desktop khác, như KDE Plasma, thì làm <a href="#desktop-khac">các bước thiết lập</a>
+      sau khi cài.
+    </li>
+    <li>
+      Nếu máy đang có bản fcitx5, trên Debian, Ubuntu và Fedora lệnh thay nó bằng bản này; trên Arch và
+      openSUSE, gỡ <code>fcitx5-ngosen</code> trước rồi mới chạy lệnh.
+    </li>
+  </ul>
+  <p>Cài xong, đăng xuất rồi đăng nhập lại.</p>
 
-  <h2 id="goi">Chọn và cài gói</h2>
+  <h2 id="goi">Cài bằng tay</h2>
   <p>
     Tải gói đúng distro và kiến trúc từ <a href={`${IBUS_REPO}/releases/latest`}>release mới nhất</a>.
     Có gói cho Debian 13, Kali, Ubuntu 24.04 trở lên, Fedora 43 và 44, Arch, CachyOS và openSUSE Tumbleweed.
@@ -54,6 +77,7 @@ const toc = [
   <pre tabindex="0"><code>sudo zypper install ./ibus-ngosen-*.rpm</code></pre>
 
   <h2 id="tren-gnome">Thêm nguồn nhập trên GNOME</h2>
+  <p>Cài bằng lệnh cài thì nguồn nhập này đã được thêm. Cài bằng tay thì làm các bước sau.</p>
   <ol class="steps">
     <li>Đăng xuất rồi đăng nhập lại để IBus thấy bộ gõ vừa cài.</li>
     <li>Vào “Settings › Keyboard › Input Sources”, click “Add Input Source…”.</li>
@@ -87,10 +111,16 @@ const toc = [
     Đăng nhập lại một lần là Ngó Sen tự bật extension; khi extension chưa chạy, chữ vẫn gạch chân.
   </p>
 
-  <h2 id="desktop-khac">Cinnamon và Xfce</h2>
+  <h2 id="desktop-khac">Cinnamon, Xfce và KDE Plasma</h2>
   <ol class="steps">
-    <li>Nếu máy có <code>im-config</code>, chạy <code>im-config -n ibus</code>.</li>
-    <li>Mở “IBus Preferences” bằng <code>ibus-setup</code>, thêm “Tiếng Việt (Ngó Sen)”.</li>
+    <li>
+      Nếu máy có <code>im-config</code>, chạy <code>im-config -n ibus</code>. Trên KDE Plasma Wayland, vào
+      “Thiết lập hệ thống › Bàn phím › Bàn phím ảo”, chọn “IBus Wayland”.
+    </li>
+    <li>
+      Mở “IBus Preferences” bằng <code>ibus-setup</code>, thêm “Tiếng Việt (Ngó Sen)”, hoặc click “Thêm Ngó Sen”
+      ở trang “Kiểm tra” trong cửa sổ cài đặt.
+    </li>
     <li>
       Trên Cinnamon, đặt phím chuyển nguồn nhập khác, như <kbd>Ctrl</kbd>+<kbd>Space</kbd>, ở tab “General”:
       Cinnamon giữ phím Super cho menu nên <kbd>Super</kbd>+<kbd>Space</kbd> không tới IBus.
@@ -108,7 +138,9 @@ sudo dnf install ibus-ngosen`}</code></pre>
     <code>fcitx5-ngosen</code>. Sau đó <code>apt upgrade</code>, <code>pacman -Syu</code> hoặc
     <code>zypper up</code> tự lên version mới.
   </p>
-  <p>Cài xong, <a href="#tren-gnome">thêm nguồn nhập trên GNOME</a> hoặc làm theo các bước cho <a href="#desktop-khac">Cinnamon và Xfce</a>.</p>
+  <p>Trên Arch và các distro dựa trên Arch, còn có thể cài từ AUR, gói tự build trên máy:</p>
+  <pre tabindex="0"><code>yay -S ibus-ngosen</code></pre>
+  <p>Cài xong, <a href="#tren-gnome">thêm nguồn nhập trên GNOME</a> hoặc làm theo các bước cho <a href="#desktop-khac">Cinnamon, Xfce và KDE Plasma</a>.</p>
 
   <h2 id="tu-fcitx5">Từ bản fcitx5 sang</h2>
   <p>
@@ -145,7 +177,7 @@ sudo dnf install ibus-ngosen`}</code></pre>
     caption="Lệnh chuyển sang bản fcitx5 và nút sao lưu trước khi chuyển. Ubuntu 24.04 GNOME, version 1.2.1-1."
   />
   <p>
-    Trên Debian và Ubuntu, lệnh tự thay bản IBus. Trên Fedora, openSUSE và Arch, chép lệnh rồi gỡ
+    Trên Debian, Ubuntu và Fedora, lệnh tự thay bản IBus. Trên openSUSE và Arch, chép lệnh rồi gỡ
     <code>ibus-ngosen</code> trước khi chạy, vì cửa sổ này mất cùng gói. Chạy lệnh trong terminal rồi đăng xuất
     và đăng nhập lại. Cũng có thể xem <a href="/cai-dat/">trang cài bản fcitx5</a>.
   </p>
@@ -157,6 +189,12 @@ sudo dnf install ibus-ngosen`}</code></pre>
   </p>
 
   <h2 id="go">Gỡ</h2>
+  <p>
+    Nếu đã cài bằng lệnh cài, gỡ bằng chính lệnh đó: lệnh gỡ gói, bỏ nguồn nhập và repo Ngó Sen mà lệnh cài đã
+    thêm. Bản fcitx5 mà lệnh cài đã thay không được cài lại.
+  </p>
+  <pre tabindex="0"><code>{`${INSTALL_COMMAND} -s -- --uninstall`}</code></pre>
+  <p>Nếu cài bằng tay, bỏ nguồn nhập trước rồi gỡ gói.</p>
   <p>
     GNOME giữ lại nguồn nhập cuối cùng. Nếu chỉ có Ngó Sen, thêm nguồn khác trước: vào
     “Settings › Keyboard › Input Sources”, click “Add Input Source…”, chọn “English (United States)”,
