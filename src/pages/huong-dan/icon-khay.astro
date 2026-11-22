@@ -3,8 +3,9 @@ import Guide from '../../layouts/Guide.astro';
 import Shot from '../../components/Shot.astro';
 
 const toc = [
+  { id: 'anh', label: 'Ảnh tự chọn' },
   { id: 'co', label: 'Cỡ biểu tượng khay' },
-  { id: 'mau', label: 'Màu biểu tượng một màu' },
+  { id: 'mau', label: 'Màu biểu tượng' },
   { id: 'menu-khay', label: 'Ẩn mục trong menu khay' },
   { id: 'ngon-ngu', label: 'Ngôn ngữ giao diện' },
 ];
@@ -12,40 +13,51 @@ const toc = [
 
 <Guide
   title="Đổi icon trên khay"
-  description="Chọn icon trạng thái hay icon một màu, cỡ icon, màu icon và các mục hiện trong menu khay. Ngôn ngữ menu và cửa sổ cài đặt cũng chọn ở trang “Giao diện”."
+  description="Chọn cho khay hiện biểu tượng màu, chữ V / E, chữ vi / en hay ảnh tự chọn, cỡ và màu icon, và các mục hiện trong menu khay. Ngôn ngữ menu và cửa sổ cài đặt cũng chọn ở trang “Giao diện”."
   toc={toc}
+  qtNote={false}
 >
   <p slot="lede">Vào “Cài đặt Ngó Sen › Giao diện”.</p>
 
   <Shot
     name="guide-tray"
-    width={505}
-    height={545}
-    alt="Trang Giao diện: ngôn ngữ Tiếng Việt, icon trạng thái, cỡ Bình thường, màu Tự động, phần xem trước chữ V xanh và lát củ sen xám, cùng các ô chọn mục hiện trong menu khay."
-    caption="Trang “Giao diện” với icon và các mục hiện trong menu khay. Linux Mint 22.1 Cinnamon, version 1.10.0-1."
+    width={560}
+    height={512}
+    alt="Trang Giao diện: Ngôn ngữ giao diện Tiếng Việt; Khay hiện vi / en; hai dòng ảnh khay và Cỡ biểu tượng khay mờ đi; Màu biểu tượng Tự động; Trên khay xem trước chữ vi và en."
+    caption="Trang “Giao diện”, “Khay hiện” chọn “vi / en”. Bản GTK trên Linux Mint 22.1 Cinnamon, version 1.14.0-1; bản Qt có cùng các mục."
   />
+  <p>“Khay hiện” có bốn lựa chọn:</p>
   <ul>
-    <li>
-      “Sử dụng biểu tượng trạng thái Ngó Sen” chọn sẵn: khay hiện chữ V màu xanh khi tiếng Việt bật,
-      lát củ sen màu xám khi tắt.
-    </li>
-    <li>Bỏ chọn thì dùng icon một màu, theo màu chọn bên dưới.</li>
+    <li>“Biểu tượng màu” (mặc định): chữ V màu xanh khi tiếng Việt bật, lát củ sen màu xám khi tắt.</li>
+    <li>“V / E”: chữ V khi gõ tiếng Việt, chữ E khi gõ tiếng Anh.</li>
+    <li>“vi / en”: chữ vi khi gõ tiếng Việt, chữ en khi gõ tiếng Anh.</li>
+    <li>“Ảnh tự chọn”: ảnh của bạn, mỗi ngôn ngữ một ảnh.</li>
   </ul>
-  <p>Phần “Trên khay:” xem trước icon cho tiếng Việt và tiếng Anh, đổi ngay theo lựa chọn.</p>
+  <p>
+    “V / E” và “vi / en” là chữ một màu, theo “Màu biểu tượng” bên dưới. Phần “Trên khay” xem trước icon cho tiếng
+    Việt và tiếng Anh, đổi ngay theo lựa chọn.
+  </p>
+
+  <h2 id="anh">Ảnh tự chọn</h2>
+  <p>
+    Chọn “Ảnh tự chọn” thì hai dòng “Ảnh khay khi gõ tiếng Việt” và “Ảnh khay khi gõ tiếng Anh” dùng được, mỗi dòng có
+    nút chọn ảnh và nút xoá ảnh. Dùng ảnh SVG vuông, hoặc PNG từ 64×64, nền trong suốt. Ngôn ngữ chưa có ảnh vẫn
+    hiện biểu tượng màu.
+  </p>
 
   <h2 id="co">Cỡ biểu tượng khay</h2>
   <p>
     “Cỡ biểu tượng khay” có hai mức, “Bình thường” (mặc định) và “Lớn”. Chọn “Lớn” thì icon ngó sen to hơn trong ô
     của nó trên khay: trên Linux Mint 22.1 Cinnamon, chữ V cao 20 px thay vì 16 px. Trên GNOME không đổi, vì icon đã
-    đầy ô. Mức này chỉ áp dụng cho icon trạng thái, khi chọn “Sử dụng biểu tượng trạng thái Ngó Sen”.
+    đầy ô. Mức này chỉ dùng cho “Biểu tượng màu”.
   </p>
 
-  <h2 id="mau">Màu biểu tượng một màu</h2>
-  <p>“Màu biểu tượng” chỉ dùng cho icon một màu:</p>
+  <h2 id="mau">Màu biểu tượng</h2>
+  <p>“Màu biểu tượng” dùng cho “V / E” và “vi / en”:</p>
   <ul>
     <li>“Tự động” (mặc định): theo chế độ sáng/tối của máy.</li>
-    <li>“Sáng”: hợp panel sáng.</li>
-    <li>“Tối”: hợp panel tối.</li>
+    <li>“Hợp panel sáng”.</li>
+    <li>“Hợp panel tối”.</li>
   </ul>
 
   <h2 id="menu-khay">Ẩn mục trong menu khay</h2>

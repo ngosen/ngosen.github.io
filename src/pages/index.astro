@@ -15,7 +15,7 @@ const notFixed = [
   'Khi chạy ngoài X11, game dùng SDL không nhận forward key nên gõ ra chữ không dấu.',
   'VS Code bản snap gõ ra Telex thô. Cách chữa tạm là cho nó gõ qua XIM, và khi đó khoảng một câu trong mười có một chữ sai dấu.',
   'Ubuntu 26.04 cần bật một extension của Ngó Sen để sửa lỗi GNOME làm mất phím Backspace, cho tới khi Ubuntu đưa bản sửa của GNOME vào.',
-  'Preedit trên GNOME Wayland: Chrome và app dựa trên Chromium chạy thẳng trên Wayland mất chữ đang gõ khi click chuột, cho tới khi distro có fcitx5 5.1.20.',
+  'Preedit: Chrome và app dựa trên Chromium trên GNOME Wayland, và app GTK dùng module ibus trên X11 như xed, mất chữ đang gõ khi click chuột, cho tới khi distro có fcitx5 5.1.20.',
   'Kiểu gõ được dùng và test hằng ngày là Telex. VNI và các kiểu khác dùng được nhưng chưa test kỹ.',
 ];
 
@@ -150,7 +150,7 @@ const jsonLd = {
             alt="Cửa sổ cài đặt Ngó Sen, trang Gõ chữ: hàng nút Chế độ gõ với Gõ Sen đang chọn, Kiểu gõ Telex, Bảng mã Unicode."
           />
         </picture>
-        <figcaption>Bản Qt, trang Gõ chữ trên CachyOS (GNOME), giao diện Breeze. Ảnh sáng hay tối tuỳ theo máy đang mở trang này.</figcaption>
+        <figcaption>Bản Qt, trang Gõ chữ trên CachyOS (KDE Plasma), giao diện Breeze, version 1.14.0-1. Ảnh sáng hay tối tuỳ theo máy đang mở trang này.</figcaption>
       </figure>
       <figure class="shot">
         <picture>
@@ -160,7 +160,7 @@ const jsonLd = {
             width="750"
             height="500"
             loading="lazy"
-            alt="Kiểm tra chính tả vừa tắt; dòng “Đã lưu Kiểm tra chính tả” ở đầu trang Gõ chữ, bên phải là nút Hoàn tác."
+            alt="Tự khôi phục từ gõ sai vừa tắt; dòng “Đã lưu “Tự khôi phục từ gõ sai”.” ở cuối trang Gõ chữ, bên phải là nút Hoàn tác."
           />
         </picture>
         <figcaption>Mỗi lần lưu hiện dòng “Đã lưu” kèm nút Hoàn tác.</figcaption>
@@ -173,7 +173,7 @@ const jsonLd = {
             width="750"
             height="500"
             loading="lazy"
-            alt="Dòng “Đã hoàn tác.” ở đầu trang Gõ chữ, Kiểm tra chính tả được bật lại."
+            alt="Dòng “Đã hoàn tác.” ở cuối trang Gõ chữ, Tự khôi phục từ gõ sai được bật lại."
           />
         </picture>
         <figcaption>Click Hoàn tác thì cài đặt trước đó quay lại.</figcaption>
@@ -257,7 +257,7 @@ const jsonLd = {
       </p>
       <p class="install-manual">
         Trên GNOME, KDE Plasma (Wayland), Xfce, Cinnamon và MATE, lệnh cài tự đặt fcitx5 làm bộ gõ và thêm Ngó
-        Sen. Cài mới bắt đầu ở tiếng Anh, danh sách bộ gõ chỉ có Ngó Sen. Cài xong đăng xuất rồi đăng nhập lại,
+        Sen. Cài mới bật sẵn tiếng Việt, danh sách bộ gõ chỉ có Ngó Sen. Cài xong đăng xuất rồi đăng nhập lại,
         sau đó bấm rồi thả Ctrl+Shift như UniKey để chuyển Anh/Việt; biểu tượng khay hiện V khi gõ tiếng Việt.
         Máy đã cài Ngó Sen giữ phím chuyển cũ, thường là Ctrl+Space. Muốn đổi phím, mở cửa sổ cài đặt,
         trang “Phím”, tab “Phím tắt”, ô “Phím chuyển Anh/Việt”.
