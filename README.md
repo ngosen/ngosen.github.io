@@ -44,9 +44,9 @@ main repositories and has to change with them.
 
 ## The typing demo
 
-The home page composes Vietnamese with the Go
-[bamboo-core](https://github.com/LotusInputMethod/bamboo-core) (MIT), compiled to WebAssembly. The
-Ngó Sen packages ship the Rust port, [bamboo-vi/bamboo-core](https://github.com/bamboo-vi/bamboo-core),
+The home page composes Vietnamese with a build of the Go
+[bamboo-core](https://github.com/BambooEngine/bamboo-core) (MIT) compiled to WebAssembly, at the
+revision pinned in `tools/telex-wasm/go.mod`. The Ngó Sen packages ship the Rust port, [bamboo-vi/bamboo-core](https://github.com/bamboo-vi/bamboo-core),
 which types the same text. The browser fetches the WebAssembly file only when a visitor focuses the
 demo field; the scripted run plays from precomputed steps.
 
