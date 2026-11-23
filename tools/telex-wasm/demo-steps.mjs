@@ -3,14 +3,11 @@
 // Usage: node tools/telex-wasm/demo-steps.mjs
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { createCompose } from '../../src/lib/telex.js';
 
 const dir = fileURLToPath(new URL('../../public/telex/', import.meta.url));
 const out = fileURLToPath(new URL('../../src/data/demo-steps.json', import.meta.url));
-await import(`${dir}wasm_exec.js`);
-
-const go = new globalThis.Go();
-const { instance } = await WebAssembly.instantiate(await readFile(`${dir}telex.wasm`), go.importObject);
-go.run(instance);
+const compose = await createCompose(await readFile(`${dir}telex.wasm`));
 
 const phrases = ['tieengs Vieejt', 'gox dduwowcj ngay', 'khoong nuoost chuwx'];
 
@@ -20,7 +17,7 @@ function render(raw) {
     .map((token, index) => {
       if (!/^[A-Za-z]/.test(token)) return token;
       const stillTyping = index === tokens.length - 1;
-      return globalThis.ngosenCompose(token, !stillTyping);
+      return compose(token, !stillTyping);
     })
     .join('');
 }

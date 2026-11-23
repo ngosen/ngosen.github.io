@@ -34,8 +34,8 @@ const firstText = first?.steps.at(-1) ?? '';
       </div>
       <!-- A div because Google honours data-nosnippet only on div, span and section; it kept quoting this note. -->
       <div class="status" id="go-thu-ghi-chu" data-demo-status data-nosnippet>
-        Tắt bộ gõ tiếng Việt trên máy trước khi gõ. Ô này ghép dấu bằng bamboo-core bản Go; mọi gói Ngó Sen dùng
-        bản port Rust của lõi này. Trang web chỉ thử được phần ghép dấu, còn đưa chữ vào đúng chỗ trong
+        Tắt bộ gõ tiếng Việt trên máy trước khi gõ. Ô này ghép dấu bằng bamboo-core bản Rust, cùng lõi với mọi gói
+        Ngó Sen. Trang web chỉ thử được phần ghép dấu, còn đưa chữ vào đúng chỗ trong
         từng app thì phải cài Ngó Sen.
       </div>
     </div>
@@ -369,18 +369,7 @@ const firstText = first?.steps.at(-1) ?? '';
 
 <script>
   import demoSteps from '../data/demo-steps.json';
-
-  interface GoRuntime {
-    importObject: WebAssembly.Imports;
-    run(instance: WebAssembly.Instance): Promise<void>;
-  }
-
-  declare global {
-    interface Window {
-      Go?: new () => GoRuntime;
-      ngosenCompose?: (keys: string, final: boolean) => string;
-    }
-  }
+  import { composeFrom } from '../lib/telex.js';
 
   const KEY_MS = 220;
   const HOLD_MS = 2000;
@@ -401,6 +390,7 @@ const firstText = first?.steps.at(-1) ?? '';
     let playing = false;
     let visitorTyping = false;
     let core: 'none' | 'loading' | 'ready' | 'failed' = 'none';
+    let composeWord: ((keys: string, final: boolean) => string) | undefined;
 
     const drawKeys = (keys: string, state: string) => {
       row.replaceChildren(
@@ -457,7 +447,6 @@ const firstText = first?.steps.at(-1) ?? '';
     };
 
     const compose = (raw: string) => {
-      const composeWord = window.ngosenCompose;
       if (core !== 'ready' || !composeWord) return raw;
       const tokens = raw.match(/[A-Za-z]+|[^A-Za-z]+/g) ?? [];
       return tokens
@@ -484,15 +473,6 @@ const firstText = first?.steps.at(-1) ?? '';
       }
     };
 
-    const loadScript = (src: string) =>
-      new Promise<void>((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error(`cannot load ${src}`));
-        document.head.append(script);
-      });
-
     const instantiate = async (imports: WebAssembly.Imports) => {
       try {
         return await WebAssembly.instantiateStreaming(fetch('/telex/telex.wasm'), imports);
@@ -510,12 +490,8 @@ const firstText = first?.steps.at(-1) ?? '';
       status.dataset.kind = 'loading';
       status.textContent = 'Đang tải lõi ghép dấu. Chữ sẽ tự ghép khi tải xong.';
       try {
-        await loadScript('/telex/wasm_exec.js');
-        if (!window.Go) throw new Error('wasm_exec.js did not define Go');
-        const go = new window.Go();
-        const { instance } = await instantiate(go.importObject);
-        void go.run(instance);
-        if (typeof window.ngosenCompose !== 'function') throw new Error('core did not start');
+        const { instance } = await instantiate({});
+        composeWord = composeFrom(instance);
         core = 'ready';
         delete status.dataset.kind;
         status.textContent = idleStatus;

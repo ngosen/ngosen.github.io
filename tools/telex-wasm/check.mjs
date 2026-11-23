@@ -2,13 +2,10 @@
 // Usage: node tools/telex-wasm/check.mjs
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { createCompose } from '../../src/lib/telex.js';
 
 const dir = fileURLToPath(new URL('../../public/telex/', import.meta.url));
-await import(`${dir}wasm_exec.js`);
-
-const go = new globalThis.Go();
-const { instance } = await WebAssembly.instantiate(await readFile(`${dir}telex.wasm`), go.importObject);
-go.run(instance);
+const compose = await createCompose(await readFile(`${dir}telex.wasm`));
 
 // [keystrokes, expected while typing, expected once the word has ended]
 const cases = [
@@ -42,8 +39,8 @@ const cases = [
 
 let failed = 0;
 for (const [keys, typing, done] of cases) {
-  const gotTyping = globalThis.ngosenCompose(keys, false);
-  const gotDone = globalThis.ngosenCompose(keys, true);
+  const gotTyping = compose(keys, false);
+  const gotDone = compose(keys, true);
   const ok = gotTyping === typing && gotDone === done;
   if (!ok) failed += 1;
   console.log(`${ok ? 'ok  ' : 'FAIL'} ${keys} -> ${gotTyping} / ${gotDone}${ok ? '' : ` (want ${typing} / ${done})`}`);
