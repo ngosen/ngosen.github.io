@@ -44,17 +44,20 @@ main repositories and has to change with them.
 
 ## The typing demo
 
-The home page composes Vietnamese with a build of the Go
-[bamboo-core](https://github.com/BambooEngine/bamboo-core) (MIT) compiled to WebAssembly, at the
-revision pinned in `tools/telex-wasm/go.mod`. The Ngó Sen packages ship the Rust port, [bamboo-vi/bamboo-core](https://github.com/bamboo-vi/bamboo-core),
-which types the same text. The browser fetches the WebAssembly file only when a visitor focuses the
-demo field; the scripted run plays from precomputed steps.
+The home page composes Vietnamese with the Rust
+[bamboo-core](https://github.com/bamboo-vi/bamboo-core) (MIT), the core every Ngó Sen package ships,
+compiled to WebAssembly from `tools/telex-wasm/` with the settings the input method uses. The browser
+fetches the WebAssembly file only when a visitor focuses the demo field; the scripted run plays from
+precomputed steps. `src/lib/telex.js` calls into it from the page and the scripts below.
 
 ```
-tools/telex-wasm/build.sh              # rebuild public/telex/telex.wasm (needs Go)
+tools/telex-wasm/build.sh              # rebuild public/telex/telex.wasm (needs Rust and the wasm32-unknown-unknown target)
 npm run check:telex
 node tools/telex-wasm/demo-steps.mjs   # regenerate src/data/demo-steps.json
 ```
+
+Keep the bamboo-core version in `tools/telex-wasm/Cargo.toml` in step with `bamboo-rs/Cargo.lock` in
+the main repository.
 
 ## Other tools
 
@@ -74,7 +77,6 @@ to `main` publishes it.
 
 ## Third-party files
 
-`public/telex/telex.wasm` is built from bamboo-core (MIT) with the Go toolchain, and
-`public/telex/wasm_exec.js` comes from the Go distribution (BSD-3-Clause). Both license texts are
-shipped next to them in `public/telex/`. The fonts are Xanh Mono, Barlow and Barlow Condensed (SIL
+`public/telex/telex.wasm` is built from bamboo-core (MIT); its license text is shipped next to it in
+`public/telex/`. The fonts are Xanh Mono, Barlow and Barlow Condensed (SIL
 Open Font License), self-hosted through Fontsource.

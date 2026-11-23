@@ -55,7 +55,8 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   rewrites are listed in the `vietnamese-writing` skill (`references/ai-tells.md`).
 - `public/telex/telex.wasm` is a build output kept in the repository. Rebuild it with
   `tools/telex-wasm/build.sh`, then run `npm run check:telex` and
-  `node tools/telex-wasm/demo-steps.mjs`.
+  `node tools/telex-wasm/demo-steps.mjs`. It is the Rust bamboo-core with the settings of
+  `default_config()` in `bamboo-rs/` of the main repository; keep the version and settings in step.
 - Ribbon red (`--ribbon`) is reserved for the install copy key, the caret, the "not fixed" mark,
   focus and selection, and the line under the current page's nav key. Tested levels are told apart
   by the stamp's outline, never by colour alone.

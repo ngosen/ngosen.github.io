@@ -47,8 +47,7 @@ is, they have it installed and typing without opening the source repository.
 - Install is one line: `curl -fsSL https://raw.githubusercontent.com/ngosen/ngosen/main/install.sh | bash`.
   It picks a prebuilt package from the latest GitHub release for Fedora 43/44, Ubuntu 22.04/24.04/26.04,
   Debian 12/13, Arch, CachyOS and openSUSE Tumbleweed (x86_64), verifies its checksum and asks before
-  installing. Packages for Fedora, Arch, openSUSE and Ubuntu 24.04+ use the Rust composition core;
-  Debian 12/13 and Ubuntu 22.04 keep the Go core. Building from source is the fallback for everything else.
+  installing. Every package, Debian 12 included, uses the Rust composition core. Building from source is the fallback for everything else.
 - After install the user restarts fcitx5, adds "Ngó Sen" in Fcitx5 Configuration, and on KDE Wayland
   selects "Fcitx 5" under Virtual Keyboard. On Ubuntu 26.04 they also enable a bundled GNOME
   extension once.

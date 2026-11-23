@@ -1,0 +1,21 @@
+[package]
+name = "telex-wasm"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# Same version as bamboo-rs/Cargo.lock in ngosen/ngosen; bump the two together.
+bamboo-core = { version = "=0.6.0", default-features = false }
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
