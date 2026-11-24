@@ -41,10 +41,20 @@ const levels: Record<Level, string> = {
   <p>
     Ngó Sen includes Cứu chữ to retype what was typed before switching to Vietnamese, and Cứu dấu to
     change the tone mark of a selected word. A convert hotkey turns selected TCVN3 or VNI text into
-    Unicode, and emoji are suggested while typing. Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey, and it switches every app at once.
+    Unicode. Emoji suggestions are off by default; turn them on for each app with <code>w</code> in the
+    <code>`</code> menu. Ngó Sen has its own English/Vietnamese key: new installs use Ctrl+Shift, like UniKey, and it switches every app at once.
+  </p>
+  <p>
+    To ask an AI assistant how to use Ngó Sen, such as the <code>`</code> menu, give it this link:
+    <a href="https://github.com/ngosen/ngosen/blob/main/docs/ai-guide.md">https://github.com/ngosen/ngosen/blob/main/docs/ai-guide.md</a>.
   </p>
 
   <h2 id="release">Version {RELEASE.version}</h2>
+  <p>
+    Version 1.14.1-1 fixes typing in Brave on voz.vn, Firefox and terminals using Combining Unicode.
+    Emoji suggestions are now off until enabled for each app, require Tab before a digit selects an emoji,
+    and hide after 4 seconds without a keypress. Drawn-out words keep the tone mark on the first letter only.
+  </p>
   <p>
     Version 1.14.0-1 lets the tray show <code>vi</code> / <code>en</code> or a picture of your own instead of
     the icon. In Preedit, a selected word can be retoned with the tone key, as in Sen, in GTK 4 apps and
@@ -54,6 +64,26 @@ const levels: Record<Level, string> = {
     English/Vietnamese key switch every app at once, like UniKey.
   </p>
   <ul>
+    <li>
+      Version 1.14.1-1: fixes misplaced or lost letters, raw keys when replacing selected text, and excess
+      deletion on voz.vn in Brave on KDE Wayland
+      (<a href={`${REPO}/pull/964`}>#964</a>, <a href={`${REPO}/pull/967`}>#967</a>,
+      <a href={`${REPO}/pull/971`}>#971</a>, <a href={`${REPO}/pull/972`}>#972</a>,
+      <a href={`${REPO}/pull/977`}>#977</a>). Firefox keeps letters typed before a link
+      (<a href={`${REPO}/pull/970`}>#970</a>), and Firefox Flatpak on GNOME Wayland keeps tone marks when
+      typing fast after a correction (<a href={`${REPO}/pull/975`}>#975</a>). Combining Unicode no longer
+      loses letters before tone marks in bash/fish terminals (<a href={`${REPO}/pull/952`}>#952</a>).
+    </li>
+    <li>
+      Version 1.14.1-1 also fixes Telex <code>booots</code> → <code>boots</code>
+      (<a href={`${REPO}/pull/976`}>#976</a>), the first emoji keyword in the VS Code X11 terminal
+      (<a href={`${REPO}/pull/960`}>#960</a>), words restarting midway in Antigravity on a busy machine
+      (<a href={`${REPO}/pull/974`}>#974</a>), and tone marks on the first letter of a Gnumeric cell on
+      KDE Wayland (<a href={`${REPO}/pull/978`}>#978</a>). Ctrl+Shift still switches English/Vietnamese when
+      held for up to a second (<a href={`${REPO}/pull/966`}>#966</a>). Typing logs retain about half a minute
+      of recent browser typing instead of 7 seconds (<a href={`${REPO}/pull/953`}>#953</a>). A new guide
+      helps AI assistants explain how to use Ngó Sen (<a href={`${REPO}/pull/983`}>#983</a>).
+    </li>
     <li>
       Version 1.14.0-1 also fixes: a first install on KDE keeps the keyboard layout set in System Settings
       (<a href={`${REPO}/pull/942`}>#942</a>); single letters, numbers and chat shorthand such as
@@ -87,18 +117,21 @@ const levels: Record<Level, string> = {
       page (<a href={`${REPO}/pull/825`}>#825</a>).
     </li>
     <li>
-      Emoji suggestions show “Ở cuối câu” (at the end of the sentence) by default: after
-      <code>.</code> <code>!</code> <code>?</code> or a short pause the list holds the emoji of every keyword
-      in the sentence; pick “Sau mỗi từ” to get the old behaviour (<a href={`${REPO}/pull/834`}>#834</a>).
-      With Telex the list is numbered and a digit inserts the emoji without Tab
-      (<a href={`${REPO}/pull/851`}>#851</a>). On GNOME without the Input Method Panel extension,
+      Since 1.14.1-1, emoji suggestions are off by default in every app. Press <code>`</code>, then
+      <code>w</code> to enable them for the current app; the Emoji page lists “App đã bật emoji” (apps with
+      emoji enabled), with a “Tắt” (turn off) button for each app (<a href={`${REPO}/pull/969`}>#969</a>).
+      When enabled, typing <code>cười quá.</code> shows <code>Tab: 😂 🤣 😄 😆 😁</code> near the cursor.
+      A digit still types a digit; press Tab first to number the list, then pick with a digit, or press Esc
+      to keep the text (<a href={`${REPO}/pull/968`}>#968</a>). Left alone for 4 seconds, the list goes away
+      (<a href={`${REPO}/pull/973`}>#973</a>). On GNOME without the Input Method Panel extension,
       suggestions show inside the text field (<a href={`${REPO}/pull/821`}>#821</a>). English words such as
       <code>cat</code> and <code>thumbs up</code> are suggested too (<a href={`${REPO}/pull/830`}>#830</a>),
       and the Emoji page can export and import suggestion words (<a href={`${REPO}/pull/832`}>#832</a>).
     </li>
     <li>
-      Holding the last letter of a marked word repeats it with the mark: <code>afaaa</code> gives
-      <code>àààà</code> (<a href={`${REPO}/pull/852`}>#852</a>). Teencode, turned on per app with
+      Since 1.14.1-1, drawn-out words keep the mark on the first letter only: <code>afaaa</code> gives
+      <code>àaaa</code>, like UniKey (<a href={`${REPO}/pull/852`}>#852</a>,
+      <a href={`${REPO}/pull/980`}>#980</a>). Teencode, turned on per app with
       <code>t</code> in the <code>`</code> menu, keeps marks on words such as <code>zậy</code> and
       <code>nhưg</code> (<a href={`${REPO}/pull/829`}>#829</a>). The <code>ngosen-toggle</code> command
       switches English/Vietnamese from a desktop shortcut (<a href={`${REPO}/pull/828`}>#828</a>). Arch

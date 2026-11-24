@@ -3,9 +3,9 @@ import Guide from '../../layouts/Guide.astro';
 import Shot from '../../components/Shot.astro';
 
 const toc = [
+  { id: 'bat-mot-app', label: 'Bật gợi ý cho một app' },
   { id: 'chon-emoji', label: 'Chọn emoji gợi ý' },
   { id: 'khi-chon', label: 'Đặt emoji sau từ hay thay từ' },
-  { id: 'tat-mot-app', label: 'Tắt gợi ý trong một app' },
   { id: 'doi-tu', label: 'Đổi từ gợi ý' },
   { id: 'xuat-nhap', label: 'Chia sẻ từ gợi ý' },
 ];
@@ -13,31 +13,40 @@ const toc = [
 
 <Guide
   title="Gõ emoji"
-  description="Dùng gợi ý emoji khi gõ trong Ngó Sen: gõ hết câu rồi bấm số để chọn emoji, tắt gợi ý cho một app, thêm và chia sẻ từ gợi ý."
+  description="Bật gợi ý emoji cho từng app trong Ngó Sen, bấm Tab rồi bấm số để chọn emoji, thêm và chia sẻ từ gợi ý."
   toc={toc}
 >
   <p slot="lede">
-    Gõ một câu có từ như <code>cười</code> hay <code>con mèo</code> là emoji hiện dưới con trỏ. Từ version 1.13, gợi ý
-    mặc định hiện ở cuối câu, và khi gõ Telex thì bấm số để chọn.
+    Từ version 1.14.1, gợi ý emoji tắt sẵn. Bật cho app muốn dùng bằng <kbd>`</kbd> rồi <kbd>w</kbd>;
+    khi gõ xong <code>cười quá.</code>, hàng gợi ý hiện cạnh con trỏ. Bấm <kbd>Tab</kbd> rồi bấm số để chọn.
   </p>
+
+  <h2 id="bat-mot-app">Bật gợi ý cho một app</h2>
+  <ol class="steps">
+    <li>Trong app, bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>.</li>
+    <li>Bấm phím <kbd>`</kbd> để mở menu chế độ. Menu có dòng “[w] Gợi ý emoji: tắt”.</li>
+    <li>Bấm <kbd>w</kbd> để bật gợi ý cho app đó.</li>
+  </ol>
+  <p>Bấm <kbd>`</kbd> rồi <kbd>w</kbd> lần nữa để tắt.</p>
 
   <h2 id="chon-emoji">Chọn emoji gợi ý</h2>
   <ol class="steps">
-    <li>Bật tiếng Việt bằng <a href="/huong-dan/bat-tat-tieng-viet/">phím chuyển Anh/Việt</a>, gõ một câu như <code>cười quá.</code> (Telex <code>cuwowif quas.</code>).</li>
-    <li>Gõ xong dấu <code>.</code>, hàng emoji đánh số <code>1.😂 2.🤣 3.😄 4.😆 5.😁</code> hiện dưới con trỏ. Dừng tay một chút, hay gõ <code>!</code> <code>?</code> cũng vậy.</li>
+    <li>Sau khi bật gợi ý cho app, gõ <code>cười quá.</code> (Telex <code>cuwowif quas.</code>).</li>
+    <li>Gõ xong câu, hàng <code>Tab: 😂 🤣 😄 😆 😁</code> hiện cạnh con trỏ, chưa đánh số. Bấm <kbd>1</kbd> lúc này thì ra <code>cười quá.1</code>.</li>
     <li>
-      Bấm số để chọn: <kbd>1</kbd> ra <code>cười quá. 😂</code> (không cần bấm <kbd>Tab</kbd>).
+      Để chọn emoji, bấm <kbd>Tab</kbd> khi hàng gợi ý hiện. Danh sách đánh số hiện dưới dòng
+      “1–5: chọn · hoặc mũi tên rồi Enter · Esc: giữ chữ”. Bấm <kbd>1</kbd> thì ra <code>cười quá. 😂</code>.
     </li>
   </ol>
   <Shot
     name="guide-emoji"
     width={650}
     height={260}
-    alt="Trong xed, dưới dòng Ngó Sen gõ tiếng Việt là câu cười quá.; bên dưới là hàng năm emoji đánh số 1 đến 5."
-    caption="Gõ “cười quá.” trong xed. Linux Mint 22.1 Cinnamon, version 1.13.0-1."
+    alt="Trong xed có câu “cười quá.” và hàng gợi ý “Tab: 😂 🤣 😄 😆 😁”."
+    caption="Gõ “cười quá.” trong xed. Linux Mint 22.1 Cinnamon, version 1.14.1-1."
   />
   <p>
-    Hàng emoji hiện suốt lúc gõ câu: gõ <code>con mèo</code>, chưa tới dấu chấm, đã thấy <code>1.🐈 2.🐱</code>. Bấm
+    Để yên 4 giây không bấm phím, hàng gợi ý tự ẩn. Hàng emoji hiện suốt lúc gõ câu, chưa cần tới dấu chấm; bấm
     <kbd>Esc</kbd> để ẩn hàng đó tới hết câu.
   </p>
   <p>
@@ -45,8 +54,7 @@ const toc = [
     bật sẵn; từ trùng chữ Việt như <code>can</code> thì không gợi ý.
   </p>
   <p>
-    Muốn danh sách hiện ngay sau mỗi từ như version 1.12, chọn “Sau mỗi từ” ở tuỳ chọn “Gợi ý emoji” trên trang
-    Emoji. Khi đó gõ xong <code>cười</code> thì hiện <code>Tab: 😂 …</code>; bấm <kbd>Tab</kbd> rồi bấm số để chọn.
+    Muốn danh sách hiện ngay sau mỗi từ thay vì cuối câu, chọn “Sau mỗi từ” ở tuỳ chọn “Gợi ý emoji” trên trang Emoji.
   </p>
   <p>
     Gợi ý hiện với giao diện fcitx5 mặc định và extension Input Method Panel trên GNOME; không hiện ở ô mật khẩu, terminal, thanh địa chỉ.
@@ -55,28 +63,23 @@ const toc = [
   <h2 id="khi-chon">Đặt emoji sau từ hay thay từ</h2>
   <p>Vào “Cài đặt Ngó Sen › Emoji”.</p>
   <p>
-    Nhóm “Emoji” có ô “Gợi ý emoji khi gõ”, tuỳ chọn “Gợi ý emoji” (“Ở cuối câu” hoặc “Sau mỗi từ”), tuỳ chọn “Khi chọn emoji”, ô “Mã emoji Yahoo Messenger” và ô “Từ khoá tiếng Anh”. Các ô đều bật sẵn.
+    Nhóm đầu trang có ô “Gợi ý emoji khi gõ”, tuỳ chọn “Gợi ý emoji” (“Ở cuối câu” hoặc “Sau mỗi từ”), tuỳ chọn “Khi chọn
+    emoji”, ô “Mã emoji Yahoo Messenger” và ô “Từ khoá tiếng Anh”, đều bật sẵn. Ô “Gợi ý emoji khi gõ” phải bật thì menu
+    <kbd>`</kbd> mới có dòng “[w] Gợi ý emoji”.
   </p>
   <p>
     Mục “Khi chọn emoji” có hai lựa chọn: “Đặt sau từ” (mặc định) và “Thay luôn từ”. Chọn “Thay luôn từ” thì emoji thay chữ: <code>cười</code> thành <code>😂</code>; <code>máy bay</code> ra <code>✈️</code>, thay cả hai chữ. Riêng <code>haha</code> và <code>:)</code> luôn được thay dù chọn gì.
   </p>
   <Shot
     name="guide-emoji-page"
-    width={505}
-    height={435}
-    alt="Phần đầu trang Emoji: ô Gợi ý emoji khi gõ đang bật, Gợi ý emoji là Ở cuối câu, Khi chọn emoji là Đặt sau từ, ô Mã emoji Yahoo Messenger đang bật, ô Từ khoá tiếng Anh đang bật, dưới cùng là dòng minh hoạ từ cười tới cười 🤣."
-    caption="Nhóm “Emoji” ở đầu trang “Emoji”. Linux Mint 22.1 Cinnamon, version 1.13.0-1."
+    width={580}
+    height={550}
+    alt="Trang Emoji trong cửa sổ GTK có các hàng “Khi chọn emoji”, “Mã emoji Yahoo Messenger”, “Từ khoá tiếng Anh”, ví dụ ba bước “Kết thúc câu”, “Bấm Tab”, “Bấm 2” và nhóm “App đã bật emoji” liệt kê xed với nút “Tắt”."
+    caption="Trang “Emoji”, cửa sổ GTK. Linux Mint 22.1 Cinnamon, version 1.14.1-1."
   />
   <p>
-    Bên dưới là nhóm “App đã tắt emoji” và nhóm “Emoji và từ gợi ý”. Đổi gì cũng lưu ngay; cửa sổ hiện dòng “Đã lưu …” kèm nút “Hoàn tác”.
+    Nhóm “App đã bật emoji” liệt kê các app đã bật gợi ý, mỗi app có nút “Tắt”. Bên dưới là nhóm “Emoji và từ gợi ý”. Đổi gì cũng lưu ngay; cửa sổ hiện dòng “Đã lưu …” kèm nút “Hoàn tác”.
   </p>
-
-  <h2 id="tat-mot-app">Tắt gợi ý trong một app</h2>
-  <ol class="steps">
-    <li>Trong app, bấm phím <kbd>`</kbd> để mở menu chế độ. Menu có dòng “[w] Gợi ý emoji: bật”.</li>
-    <li>Bấm <kbd>w</kbd>. Gợi ý tắt cho riêng app đó, gõ <code>cười</code> không còn hiện gợi ý. Chế độ gõ của app giữ nguyên.</li>
-  </ol>
-  <p>Bấm <kbd>`</kbd> rồi <kbd>w</kbd> lần nữa để bật lại.</p>
 
   <h2 id="doi-tu">Đổi từ gợi ý</h2>
   <p>
