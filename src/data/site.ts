@@ -33,6 +33,109 @@ export const RELEASES: {
   prRepo?: string;
 }[] = [
   {
+    version: '1.14.1-1',
+    date: '24/11/2026',
+    summary:
+      'Trên voz.vn với Brave, KDE Wayland, gõ nhanh và sửa dấu không còn làm chữ chen giữa từ, mất chữ hoặc xoá lố; gõ đè chữ bôi đen không còn ra phím thô, và phím gõ lúc ô vừa xoá trống không còn chạy lên trước. Firefox không còn mất chữ khi gõ ngay trước một link; bản Flatpak trên GNOME Wayland không còn mất dấu thanh khi gõ nhanh sau một lần sửa. Với bảng mã Unicode tổ hợp, terminal bash/fish không còn mất chữ trước dấu thanh như “nhiều” thành “nhều”. Telex gõ “booots” ra đúng “boots”; gõ kéo dài nay chỉ giữ dấu ở chữ đầu, như “afaaa” ra “àaaa” thay vì “àààà”, giống UniKey. Emoji nay tắt sẵn ở mọi app, bật từng app bằng “\\`” rồi “w”; cửa sổ cài đặt có danh sách “App đã bật emoji”. Danh sách emoji tự ẩn sau 4 giây để yên, và số gõ khi danh sách vừa hiện được nhập như thường, phải bấm Tab trước mới chọn bằng số. “Lưu nhật ký gõ” nay giữ khoảng nửa phút gõ gần nhất trong trình duyệt thay vì 7 giây, giúp giữ đủ log khi báo lỗi. Có thêm trang hướng dẫn để hỏi AI cách dùng Ngó Sen, từ menu phím “\\`” đến các tính năng và cài đặt.',
+    changes: [
+      {
+        claim: 'Thêm trang hướng dẫn để hỏi AI cách dùng Ngó Sen, từ menu phím “\\`” đến các tính năng và cài đặt; trang tìm lỗi gõ cũng dặn AI không đọc mã nguồn để tìm cách sửa và có link sang hướng dẫn mới.',
+        source: 'Trang nằm ở “docs/ai-guide.md” trong repo Ngó Sen.',
+        pr: 983,
+      },
+      {
+        claim: 'Gợi ý emoji nay tắt sẵn ở mọi app; bấm “\\`” rồi “w” để bật cho từng app muốn dùng, như Teencode. Danh sách app đã tắt emoji trước đây không còn dùng; trong cửa sổ cài đặt, mục Emoji nay liệt kê “App đã bật emoji”.',
+        source: '',
+        pr: 969,
+      },
+      {
+        claim: 'Danh sách gợi ý emoji tự ẩn khi để yên 4 giây không bấm phím nào.',
+        source: '',
+        pr: 973,
+      },
+      {
+        claim: 'Gõ kéo dài chữ nay chỉ giữ dấu ở chữ đầu, các chữ lặp sau để trơn cho dễ đọc: “afaaa” ra “àaaa” thay vì “àààà”, như UniKey.',
+        source: 'Gồm #980.',
+        pr: 852,
+      },
+      {
+        claim: 'Telex: phím dấu gõ ngay sau một phím lặp để bỏ dấu không còn làm hiện lại chữ đã bỏ (“booots” ra “boots” thay vì “booots”, “roooms” ra “rooms”).',
+        source: '',
+        pr: 976,
+      },
+      {
+        claim: '“Lưu nhật ký gõ” nay giữ khoảng nửa phút gõ gần nhất trong trình duyệt thay vì 7 giây, để lỗi vẫn còn trong nhật ký gõ khi lưu ngay sau đó.',
+        source: '',
+        pr: 953,
+      },
+      {
+        claim: 'Gõ Sen: chữ đầu tiên có gợi ý emoji sau khi bật máy không còn sai trong terminal VS Code chạy X11 (“chào” ra “chaà”); bảng xem trước emoji nay hiện sau khi chữ đã vào app.',
+        source: '',
+        pr: 960,
+      },
+      {
+        claim: 'Gõ Sen trên voz.vn (Brave, KDE Wayland): chữ gõ nhanh ngay sau phím dấu không còn chen vào giữa từ (“ngyà” ra “ngày”, “ngfươi” ra “người”).',
+        source: '',
+        pr: 964,
+      },
+      {
+        claim: 'Gõ Sen trên voz.vn (Brave, KDE Wayland): gõ đè lên chữ đang bôi đen (Ctrl+A rồi gõ) không còn ra phím thô (“nguowfi” ra “người”).',
+        source: '',
+        pr: 967,
+      },
+      {
+        claim: 'Gõ Sen trên voz.vn (Brave, KDE Wayland): từ đầu bài mà sửa dấu phải xoá hết chữ trong ô không còn mất chữ (“đồng” ra “òng”).',
+        source: '',
+        pr: 971,
+      },
+      {
+        claim: 'Gõ Sen trên voz.vn (Brave, KDE Wayland): phím bấm đúng lúc ô vừa bị xoá trống không còn chạy lên trước chữ (“đồng” ra “ođòng”).',
+        source: '',
+        pr: 972,
+      },
+      {
+        claim: 'Gõ Sen trên voz.vn (Brave, KDE Wayland): khi trang làm rơi một chữ gõ lúc phím trước chưa nhả, lần sửa dấu sau không còn xoá lố thêm một chữ (“đi đâu” ra “đi âu”, “học” ra “ọc”).',
+        source: '',
+        pr: 977,
+      },
+      {
+        claim: 'Gõ Sen trong Antigravity khi máy bận (màn hình 4K, CPU nặng): từ đang gõ không còn bị bắt đầu lại giữa chừng (“tiếng” ra “tieengs”).',
+        source: '',
+        pr: 974,
+      },
+      {
+        claim: 'Gõ Sen trong Gnumeric (KDE Wayland): bỏ dấu cho chữ đầu tiên của ô không còn sai (“oo” ra “oô” hoặc “o”, “ee” ra “eê”) và ít phải chờ hơn.',
+        source: '',
+        pr: 978,
+      },
+      {
+        claim: 'Gõ Sen với bảng mã “Unicode tổ hợp”: gõ trong terminal chạy bash hay fish không còn mất chữ trước dấu thanh (“nhiều” ra “nhều”). Trong terminal, từ đang gõ hiện ở dạng dựng sẵn, gõ xong từ mới đổi sang dạng tổ hợp; trình soạn thảo vẫn giữ dạng tổ hợp như trước.',
+        source: '',
+        pr: 952,
+      },
+      {
+        claim: 'Gợi ý emoji: số gõ ngay sau khi danh sách emoji hiện ra nay được gõ ra như thường; bấm Tab trước rồi mới chọn emoji bằng số, như sau một từ.',
+        source: '',
+        pr: 968,
+      },
+      {
+        claim: 'Bấm Ctrl+Shift chậm vẫn đổi được Anh/Việt: giữ tới một giây vẫn tính. Trước đây trên fcitx5 bản mới, nhả phím sau quá 1/4 giây là Ctrl+Shift không có tác dụng.',
+        source: '',
+        pr: 966,
+      },
+      {
+        claim: 'Gõ Sen trong Firefox: gõ ngay trước một đường link (như link file đính kèm khi sửa comment trên GitHub) không còn mất chữ trước dấu (“Gõ” ra “õ”, “tiếng” ra “tếng”).',
+        source: '',
+        pr: 970,
+      },
+      {
+        claim: 'Gõ Sen trong Firefox Flatpak trên GNOME Wayland: gõ nhanh không còn mất dấu thanh ngay sau một lần sửa chữ (“được” ra “đưc”).',
+        source: '',
+        pr: 975,
+      },
+    ],
+  },
+  {
     version: '1.14.0-1',
     date: '22/11/2026',
     summary:
@@ -2216,7 +2319,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Menu chế độ riêng cho từng app',
-    text: 'Bấm phím ` để mở menu cạnh con trỏ, chọn Gõ Sen (1), Gạch chân (q) hoặc Tắt (e), tắt Gợi ý emoji (w) cho app không cần, và bật Vim mode (v) cho app dùng phím Vim như nvim hay Claude Code. Ngó Sen nhớ lựa chọn riêng cho từng app.',
+    text: 'Bấm phím ` để mở menu cạnh con trỏ, chọn Gõ Sen (1), Gạch chân (q) hoặc Tắt (e), bật Gợi ý emoji (w) cho app muốn dùng, và bật Vim mode (v) cho app dùng phím Vim như nvim hay Claude Code. Ngó Sen nhớ lựa chọn riêng cho từng app.',
   },
   {
     title: 'Phím chuyển Anh/Việt riêng',
@@ -2240,7 +2343,7 @@ export const HIGHLIGHTS: { title: string; text: string }[] = [
   },
   {
     title: 'Gợi ý emoji khi gõ',
-    text: 'Gõ xong cười, con mèo hay haha là hiện Tab: 😂 … cạnh con trỏ; Tab để đánh số rồi chọn bằng số, Esc giữ nguyên chữ.',
+    text: 'Tắt sẵn; bật cho từng app bằng Gợi ý emoji (w) trong menu `. Khi bật, gõ xong cười, con mèo hay haha là hiện Tab: 😂 … cạnh con trỏ; Tab để đánh số rồi chọn bằng số, Esc giữ nguyên chữ. Để yên 4 giây thì danh sách tự ẩn.',
   },
   {
     title: 'Chuyển mã',
