@@ -27,6 +27,13 @@ const tokens: Token[] = [...example.keys].map((char) => {
 });
 
 const finalText = example.final;
+
+// Screen readers skip the drawn keys, so they get the sequence as text.
+const spoken = tokens
+  .map((token) =>
+    token.kind === 'space' ? 'Space' : token.kind === 'backspace' ? 'Backspace' : token.kind === 'click' ? 'click chuột' : token.char,
+  )
+  .join(' ');
 ---
 
 <figure class="te" data-te data-te-id={id} aria-label={label}>
@@ -63,9 +70,10 @@ const finalText = example.final;
       }
     </div>
   </div>
+  <p class="visually-hidden">Gõ lần lượt: {spoken}. Kết quả:</p>
   <div class="te-strip">
     <p class="te-line"><span class="te-out" data-te-out>{finalText}</span><span class="caret" aria-hidden="true"></span></p>
-    <button type="button" class="key te-replay" data-te-replay hidden>Chạy lại</button>
+    <button type="button" class="key te-replay" data-te-replay hidden>Xem từng phím</button>
   </div>
 </figure>
 
@@ -175,6 +183,10 @@ const finalText = example.final;
     background: var(--ribbon);
   }
 
+  .te-replay[hidden] {
+    display: none;
+  }
+
   .te-replay {
     flex: none;
     min-height: 2.75rem;
@@ -189,10 +201,8 @@ const finalText = example.final;
   type Example = { keys: string; steps: string[]; final: string };
   const examples = featureSteps.examples as Record<string, Example>;
   const KEY_MS = 210;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const widgets = [...document.querySelectorAll<HTMLElement>('[data-te]')];
-  const instances: Array<{ el: HTMLElement; start: () => void; played: boolean }> = [];
 
   for (const el of widgets) {
     const id = el.dataset.teId;
@@ -213,7 +223,7 @@ const finalText = example.final;
     const stop = () => {
       window.clearTimeout(timer);
       playing = false;
-      replay.textContent = 'Chạy lại';
+      replay.textContent = 'Xem từng phím';
     };
 
     const tick = (index: number) => {
@@ -244,35 +254,14 @@ const finalText = example.final;
       tick(0);
     };
 
-    const instance = { el, start, played: false };
-    instances.push(instance);
-
     replay.hidden = false;
     replay.addEventListener('click', () => {
       if (playing) {
         stop();
         return;
       }
-      instance.played = true;
       start();
     });
   }
 
-  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
-    const byEl = new Map(instances.map((item) => [item.el, item]));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const item = byEl.get(entry.target as HTMLElement);
-          if (!item || item.played) continue;
-          item.played = true;
-          observer.unobserve(item.el);
-          item.start();
-        }
-      },
-      { threshold: 0.35 },
-    );
-    for (const item of instances) observer.observe(item.el);
-  }
 </script>
