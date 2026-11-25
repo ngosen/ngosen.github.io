@@ -59,8 +59,8 @@ is, they have it installed and typing without opening the source repository.
 ## Capabilities and Constraints
 
 - Since 1.1.0 every installed file is named `ngosen`; old `lotus*.conf` settings are copied over on first start.
-- The site must not imply a support channel or a team; bug reports go to Issues. The README's roadmap
-  may appear, as a direction without dates.
+- The site must not imply a support channel or a team; bug reports go to Issues. It shows no roadmap
+  and promises no future work.
 - Primary language is Vietnamese. One short English page or section is enough.
 - Blog posts come from the maintainer's private notes; each is a real account of something measured
   or fixed. The first three are to be chosen with the maintainer.

@@ -33,9 +33,8 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   edition choice, everything else on /cai-dat/ and /huong-dan/ describes the fcitx5 edition.
 - The site must not imply support or a team. The intro, highlights and the scope note (`SCOPE`) mirror
   the top of the README; the scope note's sentence on the GNOME edition comes from the top of its README. Do not mention vibecoding (dropped at the maintainer's request).
-- `/roadmap/` mirrors `ROADMAP.md` on `main` of the main repository through `ROADMAP` in
-  `src/data/site.ts`; change them together. No dates; a version number only where the work has a
-  GitHub milestone. Nothing else on the site promises future work or shows a date for it.
+- The site has no roadmap page (removed at the maintainer's request). Nothing on the site promises
+  future work or shows a date for it.
 - fcitx5-lotus appears once, in the footer credit line. No comparison page, no "forked from" lines,
   no instructions aimed at fcitx5-lotus users. Old `lotus` file names stay only where a command needs them.
 - Since 1.1.0 installed names are `ngosen` (`ngosen*.conf`, `fcitx5 --verbose ngosen=4`). Show `lotus`
@@ -134,12 +133,11 @@ When a version is released, in this order:
 3. Update the tested levels in `DISTRIBUTIONS` from `packaging/release-notes.md`.
 4. If the README changed, update the intro, highlights and scope note (`TAGLINE`, `HIGHLIGHTS`,
    `SCOPE`).
-5. Bring `ROADMAP` in line with `ROADMAP.md`: the released version leaves the roadmap.
-6. Update `/en/` and the blog posts as described above. Update `/tinh-nang/` if user-visible
+5. Update `/en/` and the blog posts as described above. Update `/tinh-nang/` if user-visible
    features changed, and regenerate `src/data/feature-steps.json` with `tools/feature-steps/build.sh`
    when typing behaviour changed. If the settings window changed (a renamed page, button or option,
    a new option), check the `/huong-dan/` pages that show it.
-7. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
+6. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
    to `main`.
 
 When the IBus edition (`ngosen/ibus-ngosen`) releases, once the release is public: add its entry at the

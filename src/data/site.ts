@@ -2489,32 +2489,6 @@ export const GUIDE = [
 
 export const GUIDE_PAGES = GUIDE.flatMap((group) => group.pages);
 
-// Mirrors ROADMAP.md on main of the main repository; change them together. Backticks mark typed text.
-// `version` is set only for work with a GitHub milestone; `refs` are issue or PR numbers.
-export const ROADMAP_FILE = `${REPO}/blob/main/ROADMAP.md`;
-
-export const ROADMAP: {
-  version?: string;
-  items: { text: string; refs?: number[]; links?: { label: string; href: string }[] }[];
-}[] = [
-  {
-    items: [
-      { text: 'Bớt đổi nhầm chữ tiếng Anh thành tiếng Việt, như `nest` thành `nét`, `too` thành `tô`.' },
-      { text: 'Đoán dấu: gõ cả câu không dấu rồi bấm một phím để thêm dấu.' },
-      {
-        text: 'Bôi đen một đoạn không dấu rồi bấm phím để thêm dấu cả đoạn. Chuyển mã cũ (TCVN3, VNI) sang Unicode và bỏ dấu đoạn bôi đen đã xong.',
-        refs: [655],
-      },
-      { text: 'Sửa lỗi gõ vội, như `tiếgn` thành `tiếng`.' },
-      { text: 'Bảng các app gõ được, lấy từ kết quả test người dùng gửi về. Tự mở trang Kiểm tra máy đã xong ở 1.12.' },
-      {
-        text: 'Đưa Ngó Sen vào repo của các distro: từ 1.5.3 đã có repo riêng có chữ ký cho Fedora (COPR), Debian và Ubuntu (APT), Arch (pacman) và openSUSE Tumbleweed. nixpkgs đang chờ review. Từ 1.13 có gói AUR; kho Debian đã nhận bản 1.9.2 vào testing.',
-        links: [{ label: 'NixOS/nixpkgs#575620', href: 'https://github.com/NixOS/nixpkgs/pull/575620' }],
-      },
-    ],
-  },
-];
-
 // The IBus edition. Facts come from README.md and CHANGELOG.md on main of
 // ngosen/ibus-ngosen; guide steps were tried on a VM with the released package.
 export const GNOME_PAGES = [

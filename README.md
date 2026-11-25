@@ -27,13 +27,12 @@ There is no linter or unit-test runner.
 - `/ngo-sen-cho-gnome/`: the IBus edition: overview, install, releases and its own usage guide
   (`GNOME_PAGES`, `GNOME_GUIDE`, `IBUS_RELEASES`).
 - `/ban-phat-hanh/`: releases of the fcitx5 edition (`RELEASES`).
-- `/roadmap/`: mirrors `ROADMAP.md` of the main repository (`ROADMAP`).
 - `/go-khong-gach-chan/`: typing without preedit, in Vietnamese; `/en/typing-without-preedit/` is the
   English version.
 - `/blog/` with an RSS feed at `/rss.xml`, and `/en/`, the one English overview page.
 
 The names in brackets are exports of `src/data/site.ts`, which holds the site's data: releases, tested
-distributions, the intro and scope note, the roadmap and the page lists. Most of it mirrors files in the
+distributions, the intro and scope note and the page lists. Most of it mirrors files in the
 main repositories and has to change with them.
 
 ## Content
