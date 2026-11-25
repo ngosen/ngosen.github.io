@@ -1,0 +1,930 @@
+---
+import Page from '../layouts/Page.astro';
+import Shot from '../components/Shot.astro';
+import TypedExample from '../components/TypedExample.astro';
+import { REPO } from '../data/site';
+
+const toc = [
+  { id: 'go-nhanh-hon', label: 'Gõ nhanh hơn, đúng chính tả hơn' },
+  { id: 'lenh-terminal-vim', label: 'Lệnh, terminal và Vim' },
+  { id: 'cuu-chu-cuu-dau-chuyen-ma', label: 'Cứu chữ, Cứu dấu, Chuyển mã' },
+  { id: 'che-do-go-va-phim-chuyen', label: 'Chế độ gõ và phím chuyển Anh/Việt' },
+  { id: 'emoji-va-go-tat', label: 'Emoji và gõ tắt' },
+  { id: 'cua-so-cai-dat-va-kiem-tra', label: 'Cửa sổ cài đặt, khay và Kiểm tra máy' },
+  { id: 'cai-dat', label: 'Cài đặt và các bản' },
+];
+---
+
+<Page
+  title="Tính năng — Ngó Sen"
+  description="Các tính năng của Ngó Sen: luật gõ Telex, tự khôi phục tiếng Anh, lệnh và Vim mode, Cứu chữ, Cứu dấu, Chuyển mã, menu chế độ, emoji, gõ tắt và Kiểm tra máy."
+  heading="Tính năng"
+  toc={toc}
+>
+  <p slot="lede">
+    Mọi tính năng đang có ở version mới nhất, từ luật gõ tiếng Việt và nhận ra từ tiếng Anh tới chế độ theo từng app,
+    emoji, gõ tắt và công cụ Kiểm tra máy.
+  </p>
+
+  <h2 id="go-nhanh-hon">Gõ nhanh hơn, đúng chính tả hơn</h2>
+  <p>Các luật dưới đây luôn bật, không cần cài đặt gì, trừ chỗ có ghi tên tuỳ chọn.</p>
+
+  <h3>Quên mũ hoặc móc vẫn ra chữ đúng</h3>
+  <p>
+    Với 25 vần luôn có mũ hoặc móc như <code>iên</code>, <code>uyên</code>, <code>ênh</code>, <code>uân</code>,
+    <code>ưu</code>, <code>ươp</code>, gõ Telex thiếu mũ hoặc móc vẫn ra đúng chữ khi chốt từ bằng
+    <kbd>Space</kbd>, dấu câu hoặc <kbd>Enter</kbd>. Luật này chạy khi từ có dấu thanh (<code>s</code>, <code>f</code>,
+    <code>r</code>, <code>x</code>, <code>j</code>), các nguyên âm gõ liền nhau và từ có trong từ điển. Tiếng Anh
+    như <code>hues</code>, <code>yens</code>, <code>techs</code> giữ nguyên, nên <code>huế</code> và
+    <code>yến</code> vẫn cần gõ đủ (<code>huees</code>, <code>yeens</code>); VNI và VIQR chưa có.
+  </p>
+  <TypedExample id="forgot-hat" label="Ví dụ gõ quên mũ hoặc móc trong Telex" />
+
+  <h3>Gõ thừa phím vẫn giữ dấu</h3>
+  <p>
+    Khi gõ thêm phím không ghép được vào từ, Ngó Sen giữ nguyên phần chữ đã bỏ dấu thay vì trả về phím thô: Telex
+    <code>dduowjcd</code> (hay VNI <code>d9u7o7c5d</code>) hiện <code>đượcd</code>, bấm <kbd>Backspace</kbd> xoá
+    <code>d</code> còn <code>được</code>. Phím còn là đầu từ tiếng Anh hoặc từ quen dùng như <code>axit</code>,
+    <code>photoshop</code>, <code>lastname</code> vẫn hiện như đã gõ; không áp dụng cho chữ viết toàn chữ hoa.
+  </p>
+  <TypedExample id="extra-key" label="Ví dụ gõ thừa phím vẫn giữ dấu" />
+
+  <h3>Space tách từ dính liền hoặc bỏ phím thừa</h3>
+  <p>
+    Bấm <kbd>Space</kbd> ngay sau từ có phím thừa thì tách thành hai từ nếu phần thừa là từ tiếng Việt
+    (<code>coongty</code> thành <code>công ty</code>), hoặc bỏ phần thừa (<code>đượcd</code> thành
+    <code>được</code>); bấm <kbd>Backspace</kbd> ngay sau đó khôi phục đúng nội dung đã gõ. Telex giữ chữ số phía sau
+    (<code>đượcd2</code>), còn VNI bỏ cả chữ số vì số là phím dấu; các từ thường viết liền như <code>lênin</code>,
+    <code>mômen</code> giữ nguyên. Luật này chỉ chạy khi bấm <kbd>Space</kbd>, không chạy với <kbd>Enter</kbd>, dấu
+    câu, ô mật khẩu, bảng mã khác Unicode hoặc chế độ Gạch chân khi app không báo <code>surrounding text</code>.
+  </p>
+  <TypedExample id="split-space" label="Ví dụ Space tách từ dính liền" />
+
+  <h3>Chữ g cuối thay cho ng</h3>
+  <p>
+    Khi phần từ đã có dấu rồi bấm <kbd>Space</kbd>, chữ <code>g</code> cuối đổi thành <code>ng</code>:
+    <code>nhưg</code>, <code>khôg</code>, <code>đúg</code> thành <code>nhưng</code>, <code>không</code>,
+    <code>đúng</code>, và bấm <kbd>Backspace</kbd> ngay sau đó trả lại đúng chữ đã gõ. Nếu chưa có dấu lúc gõ
+    <code>g</code> (như <code>cũg</code> gõ bằng <code>cugx</code>) thì chữ vẫn giữ nguyên; khi bật Teencode cho
+    app đang dùng, kiểu <code>nhưg</code> được giữ.
+  </p>
+  <TypedExample id="g-for-ng" label="Ví dụ chữ g cuối đổi thành ng khi bấm Space" />
+
+  <h3>Gõ lại dấu thanh sau phụ âm cuối</h3>
+  <p>
+    Đổi dấu thanh khi đã gõ phụ âm cuối vẫn ra đúng chữ khi bấm <kbd>Space</kbd>, dấu câu hoặc <kbd>Enter</kbd>, trong
+    cả Gõ Sen lẫn Gạch chân: lúc đang gõ hiện nguyên phím, rồi Telex <code>dduoxwcj</code> (hay VNI
+    <code>d9uo37c5</code>) thành <code>được</code>, <code>mooxtj</code> thành <code>một</code>. Từ tiếng Anh như
+    <code>parts</code>, <code>texts</code> giữ nguyên; muốn giữ phím đã gõ thì nhấp phím chốt chữ (mặc định
+    <kbd>Ctrl</kbd>) trước <kbd>Space</kbd>.
+  </p>
+  <TypedExample id="tone-after-final" label="Ví dụ gõ lại dấu thanh sau phụ âm cuối" />
+
+  <h3>Vần ngoài quy tắc nhưng có trong từ điển</h3>
+  <p>
+    Khi gõ Telex với phím dấu thanh sau phụ âm cuối ở từ có vần ngoài quy tắc tiếng Việt thông thường nhưng có trong
+    từ điển, Ngó Sen đặt dấu lên nguyên âm khi chốt từ bằng <kbd>Space</kbd>, dấu câu hoặc <kbd>Enter</kbd>. Lúc
+    đang gõ vẫn hiện nguyên phím đã gõ.
+  </p>
+  <p>Luật này chỉ có ở kiểu gõ Telex.</p>
+  <TypedExample id="dictionary-rhyme" label="Ví dụ vần có trong từ điển" />
+
+  <h3>Tên riêng, địa danh và tên dân tộc</h3>
+  <p>
+    Từ điển có thêm 44 âm tiết trong tên xã, phường và dân tộc như <code>Đakrông</code>, <code>Mnông</code>,
+    <code>kmăl</code>, <code>knốp</code>, <code>khươl</code>, cùng các tên riêng mở đầu bằng phụ âm ghép tiếng Việt
+    không có như <code>plông</code>, <code>drăng</code>, <code>xtiêng</code>, <code>Hrê</code>, <code>Brâu</code>.
+    Tiếng Anh vẫn được ưu tiên: <code>draw</code> giữ nguyên <code>draw</code>, gõ tiếp <code>drawng</code> mới
+    thành <code>drăng</code>, và <code>broom</code> vẫn ra <code>broom</code>.
+  </p>
+  <p>Mặc định bật theo “Tự khôi phục từ gõ sai”.</p>
+  <TypedExample id="names" label="Ví dụ gõ địa danh và tên dân tộc" />
+
+  <h3>Gõ kéo dài chữ</h3>
+  <p>
+    Lặp chữ cái cuối của một từ có dấu thì chữ đó lặp lại và từ version 1.14.1 chỉ giữ dấu ở chữ đầu cho dễ đọc,
+    như <code>afaaa</code> ra <code>àaaa</code> (giống UniKey). Bấm <kbd>Space</kbd> sau từ kéo dài giữ nguyên chữ
+    (<code>ừaaa</code>, <code>ờaaa</code>, <code>khônggg</code>) khi phần gõ thêm có ít nhất hai chữ cái giống nhau
+    và từ kết thúc bằng ít nhất ba chữ cái ấy; bấm <kbd>Backspace</kbd> khi đang gõ dở chữ kéo dài có dấu gõ sau
+    cùng (<code>chaiiif</code> ra <code>chàiii</code>) chỉ xoá một chữ <code>i</code>, không mất dấu. Từ tiếng Anh
+    gõ kéo dài như <code>besttt</code> hay <code>thereee</code> vẫn giữ nguyên.
+  </p>
+  <TypedExample id="stretch" label="Ví dụ gõ kéo dài chữ" />
+
+  <h3>Backspace mở lại từ vừa gõ để sửa</h3>
+  <p>
+    Xoá lùi từ sau dấu cách vào lại từ vừa gõ rồi gõ tiếp thì Ngó Sen sửa tiếp chính từ đó, trong cả Gõ Sen lẫn
+    Gạch chân (Gạch chân cần app báo <code>surrounding text</code>; terminal giữ cách xoá cũ). Khi đang hiện phím
+    thô, bấm <kbd>Backspace</kbd> chuyển phần còn lại thành tiếng Việt nếu hợp lệ, còn đầu từ tiếng Anh như
+    <code>are</code> lùi còn <code>ar</code> không thành <code>ả</code>.
+  </p>
+  <TypedExample id="reopen-word" label="Ví dụ Backspace mở lại từ vừa gõ để sửa" />
+  <TypedExample id="backspace-raw" label="Ví dụ Backspace trên chữ đang hiện phím thô" />
+
+  <h3>Tự khôi phục từ gõ sai và từ điển tuỳ chỉnh</h3>
+  <p>
+    Từ không thể là tiếng Việt và không có trong từ điển trở lại đúng phím đã gõ (như <code>windows</code>). Phím
+    đang là đầu một từ tiếng Anh như <code>perl</code>, <code>are</code> cũng giữ như đã gõ. Từ không phải tiếng Việt
+    mà vẫn đúng luật đánh vần như <code>rose</code>, <code>case</code>,
+    <code>Sose</code> hiện đúng phím ngay khi không còn từ nào trong từ điển bắt đầu như vậy. Gõ đúp phím dấu giữ từ
+    tiếng Anh trùng cách gõ (<code>thiss</code> thành <code>this</code>, <code>tesst</code> thành <code>test</code>,
+    <code>booots</code> thành <code>boots</code>); từ không phải tiếng Việt liền chữ số như <code>Sose2026</code> trả
+    về đúng phím, còn từ tiếng Việt liền số như <code>tôi2</code> giữ nguyên dấu. Từ điển khớp cả hai kiểu đặt dấu
+    (<code>chói lóa</code> lẫn <code>nhoé</code>).
+  </p>
+  <p>
+    “Tự khôi phục từ gõ sai” mặc định bật ở “Cài đặt Ngó Sen › Gõ chữ › Sửa chữ”, kèm công tắc trong menu khay. Cùng
+    nhóm đó có “Vẫn gõ dd ra đ khi tự khôi phục” (mặc định bật) để <code>dd</code> rồi <kbd>Space</kbd> vẫn ra
+    <code>đ</code>. Nếu cần giữ dấu cho tên riêng hay từ như <code>kạ</code>, bật “Từ điển tuỳ chỉnh” ở “Gõ tắt &amp;
+    Từ điển › Từ điển” (mặc định tắt, có công tắc trong menu khay); sửa đổi có tác dụng ngay. Xem thêm ở bài{' '}
+    <a href="/huong-dan/sua-khi-go-sai/">Sửa khi gõ sai</a> và{' '}
+    <a href="/huong-dan/kiem-tra-chinh-ta/">Chữ không có trong từ điển</a>.
+  </p>
+  <TypedExample id="english-kept" label="Ví dụ huees ra huế, gõ đúp phím dấu giữ từ tiếng Anh" />
+  <figure class="ex-card" aria-label="Ví dụ Vẫn gõ dd ra đ và Từ điển tuỳ chỉnh">
+    <div class="ex-row">
+      <span class="ex-in"><code>dd</code> + <kbd>Space</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">đ</span>
+      <span class="ex-note">khi “Vẫn gõ dd ra đ khi tự khôi phục” bật</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>kaj</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">kaj</span>
+      <span class="ex-note">mặc định, từ không có trong từ điển</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>kaj</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">kạ</span>
+      <span class="ex-note">khi thêm <code>kạ</code> vào “Từ điển tuỳ chỉnh”</span>
+    </div>
+  </figure>
+
+  <h3>Phím chốt chữ</h3>
+  <p>
+    Bấm rồi thả riêng phím chốt chữ (mặc định <kbd>Ctrl</kbd>) để giữ nguyên từ đang gõ, không tự khôi phục hay bung
+    gõ tắt: gõ <code>tunx</code>, bấm <kbd>Ctrl</kbd> rồi <kbd>Space</kbd> giữ <code>tũn</code>; bấm <kbd>Ctrl</kbd>{' '}
+    lần nữa thì đổi qua lại giữa chữ có dấu và phím đã gõ. Phím này cũng giữ từ tiếng Anh như <code>parts</code>,
+    <code>texts</code> trước dấu cách.
+  </p>
+  <p>
+    Chỉnh ở “Cài đặt Ngó Sen › Gõ chữ › Phím gõ › “Phím chốt chữ”” (Tắt / Shift / Ctrl / Alt; lưu ý <kbd>Alt</kbd> còn
+    hiện thanh menu ở một số app). Xem thêm bài <a href="/huong-dan/go-tat/">Gõ tắt một cụm từ hay dùng</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ Phím chốt chữ">
+    <div class="ex-row">
+      <span class="ex-in"><code>tunx</code> + <kbd>Ctrl</kbd> + <kbd>Space</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">tũn</span>
+      <span class="ex-note">giữ dấu, không tự khôi phục</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>tũn</code> + <kbd>Ctrl</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">tunx</span>
+      <span class="ex-note">đổi lại đúng phím đã gõ</span>
+    </div>
+  </figure>
+
+  <h3>Teencode theo từng app</h3>
+  <p>
+    Khi bật cho một app, chữ viết kiểu teencode như <code>zậy</code>, <code>fải</code>, <code>đag</code>,
+    <code>nhưg</code> giữ dấu thay vì trả về phím đã gõ; gõ thanh sau <code>g</code>, <code>k</code>,
+    <code>h</code> vẫn được (<code>nhuwgx</code> ra <code>nhữg</code>), giữ cả chữ kéo dài (<code>nhaaa</code>,
+    <code>chaiiif</code> ra <code>chàiii</code>) và viết tắt ghép (<code>cgái</code>, <code>bthường</code>,
+    <code>đthoại</code>), trong khi từ tiếng Anh phần lớn giữ nguyên. Bấm <kbd>Backspace</kbd> trên chữ teencode
+    không mất dấu (<code>fải</code> xoá còn <code>fả</code>).
+  </p>
+  <p>
+    Mặc định tắt. Trong app đang gõ tiếng Việt, bấm <kbd>`</kbd> rồi <kbd>t</kbd> để bật hoặc tắt (“Teencode: bật” /
+    “Teencode: tắt”; mục <code>t</code> chỉ hiện khi “Tự khôi phục từ gõ sai” bật). Trang “Gõ chữ” có mục
+    “Teencode” liệt kê các app đang bật kèm nút tắt. Xem thêm ở bài <a href="/huong-dan/che-do-go/">Chọn chế độ gõ</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ bật Teencode cho một app">
+    <div class="ex-row">
+      <span class="ex-in"><code>nhuwgx</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">nhữg</span>
+      <span class="ex-note">khi Teencode bật</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>chaiiif</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">chàiii</span>
+      <span class="ex-note">chữ kéo dài</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>fải</code> + <kbd>⌫</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">fả</span>
+      <span class="ex-note">không mất dấu</span>
+    </div>
+  </figure>
+
+  <h3>Kiểu gõ và bảng mã</h3>
+  <p>
+    “Kiểu gõ” chọn bộ phím bỏ dấu: Telex (mặc định, được dùng và test hằng ngày), VNI, Telex + VNI, Telex + VNI + VIQR,
+    VIQR, Microsoft layout, VNI Bàn phím tiếng Pháp và Custom (dùng Keymap tuỳ chỉnh). “Bảng mã” mặc định là Unicode
+    (Cứu dấu chỉ chạy với Unicode); bảng mã “Unicode tổ hợp” từ version 1.14.1 hiện chữ dựng sẵn khi đang gõ trong
+    terminal rồi mới đổi sang dạng tổ hợp khi xong từ.
+  </p>
+  <p>
+    Chỉnh ở “Cài đặt Ngó Sen › Gõ chữ › Gõ chữ” (“Kiểu gõ”, “Bảng mã”), hoặc chuyển nhanh Telex/VNI và bảng mã từ menu
+    khay. Xem thêm ở bài <a href="/huong-dan/kieu-go-bang-ma/">Chọn kiểu gõ và bảng mã</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ ba kiểu gõ Telex, VNI, VIQR">
+    <div class="ex-row">
+      <span class="ex-in"><code>vieetj</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">việt</span>
+      <span class="ex-note">Telex</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>vie65t</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">việt</span>
+      <span class="ex-note">VNI</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>vie^.t</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">việt</span>
+      <span class="ex-note">VIQR</span>
+    </div>
+  </figure>
+
+  <h3>Cách bỏ dấu và Backspace xoá dấu thanh</h3>
+  <p>
+    Nhóm “Cách bỏ dấu” trên trang “Gõ chữ” có ba tuỳ chọn: “Bỏ dấu kiểu mới (oà, uý)” (mặc định bật: <code>hoà</code>,
+    <code>khoẻ</code>, <code>thuý</code>, <code>tuỳ</code>; tắt: <code>hòa</code>, <code>khỏe</code>,
+    <code>thúy</code>, <code>tùy</code>), “Gõ tự do” (mặc định bật: gõ dấu ở cuối từ cũng được) và “Backspace xoá dấu
+    thanh” (mặc định tắt: bấm <kbd>Backspace</kbd> lúc đang gõ <code>tiếng</code> ra <code>tiêng</code>, chữ không có
+    dấu thanh thì xoá như thường; khi tắt vẫn xoá dấu bằng <code>z</code> ở Telex hay <code>0</code> ở VNI).
+  </p>
+  <p>
+    Xem thêm ở bài <a href="/huong-dan/cach-dat-dau/">Chọn cách đặt dấu</a> và{' '}
+    <a href="/huong-dan/sua-khi-go-sai/">Sửa khi gõ sai</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ cách bỏ dấu và Backspace xoá dấu thanh">
+    <div class="ex-row">
+      <span class="ex-in">Kiểu mới (bật)</span>
+      <span class="ex-arrow" aria-hidden="true">/</span>
+      <span class="ex-out">hoà, khoẻ, thuý, tuỳ</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in">Kiểu cũ (tắt)</span>
+      <span class="ex-arrow" aria-hidden="true">/</span>
+      <span class="ex-out">hòa, khỏe, thúy, tùy</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>tiếng</code> + <kbd>⌫</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">tiêng</span>
+      <span class="ex-note">khi bật “Backspace xoá dấu thanh”</span>
+    </div>
+  </figure>
+
+  <h3>Phím w, ngoặc vuông và Keymap tuỳ chỉnh</h3>
+  <p>
+    Ở “Gõ chữ › Phím gõ”, “Gõ w ra ư” mặc định là “Trong từ” (<code>nhw</code> ra <code>như</code>, còn
+    <code>w</code> đứng riêng vẫn là <code>w</code>; chọn “Mọi nơi” thì <code>w</code> đứng riêng cũng ra
+    <code>ư</code>, chọn “Tắt” thì chỉ <code>uw</code> ra <code>ư</code>). “Phím [ ] ra ơ ư” mặc định là “Tắt”
+    (chọn “Trong từ” hoặc “Mọi nơi”: <code>ch]a</code> ra <code>chưa</code>, <code>m[f</code> ra <code>mờ</code>,
+    <code>{`{`}</code> ra <code>Ơ</code>, <code>{`}`}</code> ra <code>Ư</code>, gõ hai lần để lấy lại ngoặc
+    <code>[[</code> ra <code>[</code>). Nếu muốn tự đặt phím nào thêm dấu nào, bật “Keymap tuỳ chỉnh” ở “Phím ›
+    Keymap” (mặc định tắt) và chọn kiểu gõ <code>Custom</code>.
+  </p>
+  <p>
+    Xem thêm ở bài <a href="/huong-dan/sua-khi-go-sai/">Sửa khi gõ sai</a> và{' '}
+    <a href="/huong-dan/keymap/">Tự đặt phím bỏ dấu</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ phím w và ngoặc vuông">
+    <div class="ex-row">
+      <span class="ex-in"><code>nhw</code> / <code>w</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">như / w</span>
+      <span class="ex-note">Gõ w ra ư: Trong từ</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>ch]a</code>, <code>m[f</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">chưa, mờ</span>
+      <span class="ex-note">Phím [ ] ra ơ ư</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>[[</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">[</span>
+      <span class="ex-note">gõ hai lần lấy lại ngoặc</span>
+    </div>
+  </figure>
+  <Shot
+    name="guide-keymap"
+    width={500}
+    height={476}
+    alt="Tab Keymap: Keymap tuỳ chỉnh đã chọn, Kiểu gõ gốc Telex, bảng hai cột Phím và Hành động với z Xoá dấu thanh, s Dấu sắc, f Dấu huyền, r Dấu hỏi, x Dấu ngã, j Dấu nặng, a, e, o, w."
+    caption="Tab “Keymap” với “Keymap tuỳ chỉnh” đã chọn và bảng Telex. Linux Mint 22.1 Cinnamon, version 1.8.0-1."
+  />
+
+  <h3>Gạch dài, hai dấu cách thành dấu chấm và tự viết hoa</h3>
+  <p>
+    Nhóm “Cài đặt Ngó Sen › Gõ chữ › Gõ nhanh” có bốn mục tắt sẵn: “Hai gạch nối thành gạch dài”
+    (<code>a--b</code> thành <code>a—b</code>, riêng trong terminal và thanh địa chỉ <code>git push --force</code> giữ
+    nguyên <code>--</code>), “Hai dấu cách thành dấu chấm” (<code>ban</code> rồi hai dấu cách ra <code>ban. </code>),
+    “Tự viết hoa đầu câu” (<code>ban. tooi</code> ra <code>ban. Tôi</code>, sau <kbd>Enter</kbd> cũng vậy trong app
+    GTK; menu khay có mục “Tự viết hoa” để tắt tạm khi gõ lệnh), và “Tự viết hoa chữ đầu văn bản và đầu dòng”
+    (<code>xin</code> ra <code>Xin</code> ở ô trống hoặc đầu dòng mới, trừ thanh địa chỉ, ô mật khẩu và một số app;
+    trên GNOME 47 trở lên, Chrome và app tương tự chưa viết hoa ở ô trống).
+  </p>
+  <p>Xem thêm ở bài <a href="/huong-dan/tu-sua-dau-cau/">Tự sửa dấu câu</a>.</p>
+  <figure class="ex-card" aria-label="Ví dụ bốn tuỳ chọn nhóm Gõ nhanh">
+    <div class="ex-row">
+      <span class="ex-in"><code>a--b</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">a—b</span>
+      <span class="ex-note">trong terminal <code>git push --force</code> giữ nguyên</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>ban</code> + 2×<kbd>Space</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">ban. </span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>ban. tooi</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">ban. Tôi</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>xin</code> (ô trống)</span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">Xin</span>
+    </div>
+  </figure>
+
+  <h2 id="lenh-terminal-vim">Lệnh, terminal và Vim</h2>
+
+  <h3>Từ bắt đầu bằng / gõ thô</h3>
+  <p>
+    Từ bắt đầu bằng <code>/</code> ở đầu dòng hoặc ngay sau dấu cách giữ nguyên từng phím trong cả Gõ Sen lẫn Gạch
+    chân, kể cả trong Firefox: <code>/cost</code> không thành <code>/cót</code>, <code>cd /usr/share</code> không
+    thành <code>cd /ủ/share</code>. Các từ như <code>và/hoặc</code> và <code>@tên</code> vẫn có dấu như thường.
+  </p>
+  <p>Mặc định bật ở “Cài đặt Ngó Sen › Gõ chữ › Gõ nhanh › “Gõ thô sau dấu / đầu từ (lệnh, đường dẫn)””.</p>
+  <TypedExample id="slash" label="Ví dụ gõ lệnh và đường dẫn bắt đầu bằng dấu gạch chéo" />
+
+  <h3>Vim mode theo app</h3>
+  <p>
+    Khi bật cho một app, sau <kbd>Esc</kbd> hoặc <kbd>Ctrl+[</kbd>, các lệnh Vim đi qua nguyên vẹn và từ đầu tiên gõ
+    sau lệnh vào insert mode (<code>i</code>, <code>a</code>, <code>o</code>, <code>ciw</code>…) có dấu ngay. Dùng
+    cho <code>nvim</code>/<code>vim</code> trong terminal, Claude Code, Antigravity, plugin Vim của Obsidian và plugin
+    Vim của JetBrains IDE; trong terminal kể cả khi tắt Vim mode, Ngó Sen tự nhận ra khi gõ <code>vim</code> hay
+    <code>nvim</code> (cả có <code>sudo</code>) rồi <kbd>Enter</kbd>, và gõ lại bình thường khi thoát bằng
+    <code>:q</code>, <code>:wq</code> hoặc <code>ZZ</code>. Chưa xử lý phím <kbd>Esc</kbd> được đổi thành chữ như
+    <code>jk</code>.
+  </p>
+  <p>
+    Mặc định tắt cho mọi app; bấm <kbd>`</kbd> rồi <kbd>v</kbd> để bật hoặc tắt cho app đang dùng, và đổi phím hoặc ẩn
+    mục ở “Cài đặt Ngó Sen › Phím › Phím tắt › Đổi chế độ”. Xem thêm bài{' '}
+    <a href="/huong-dan/che-do-go/#rieng-mot-app">Chọn chế độ gõ</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ Vim mode">
+    <div class="ex-row">
+      <span class="ex-in"><kbd>Esc</kbd> <code>ciw</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">lệnh Vim đi qua nguyên vẹn</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in">vào insert mode, gõ <code>tieengs</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">tiếng</span>
+      <span class="ex-note">từ đầu tiên có dấu ngay</span>
+    </div>
+  </figure>
+
+  <h3>Tự ngừng khi hỏi mật khẩu và giữ kín ô mật khẩu</h3>
+  <p>
+    Khi terminal hỏi mật khẩu ẩn chữ, Ngó Sen tự ngừng gõ tiếng Việt, giữ nguyên phím và không ghi nhật ký gõ, rồi tự
+    bật lại khi xong (riêng <code>sudo</code> trên Linux Mint hiện dấu <code>*</code> chưa nhận ra, cần bấm phím
+    chuyển Anh/Việt). Trong mọi ô mật khẩu, nhật ký gõ không ghi gì, log gỡ lỗi chỉ ghi <code>(hidden)</code>, Cứu
+    chữ không ghi nhớ và gợi ý emoji không hiện.
+  </p>
+  <p>Hai việc này luôn bật, không có tuỳ chọn.</p>
+  <figure class="ex-card" aria-label="Ví dụ giữ kín ô mật khẩu và lệnh hỏi mật khẩu trong terminal">
+    <div class="ex-row">
+      <span class="ex-in"><code>Password:</code> (terminal)</span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">giữ nguyên phím, xong tự bật lại tiếng Việt</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in">ô mật khẩu</span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">log ghi <code>(hidden)</code>, không nhớ Cứu chữ hay hiện emoji</span>
+    </div>
+  </figure>
+
+  <h3>Tự thích nghi theo app và nhận ra terminal web</h3>
+  <p>
+    Gõ Sen tự nhận ra cách trình duyệt, terminal, Zalo và LibreOffice nhận chữ để xử lý đúng mà không cần đổi chế độ
+    (riêng <code>deepin-editor</code> mặc định dùng Gạch chân). Với terminal <code>xterm.js</code> trong app chưa có
+    tên trong danh sách (như các IDE mới, trừ trình duyệt), từ version 1.13.2 Gõ Sen tự nhận ra sau vài từ đầu, lưu
+    vào <code>~/.config/fcitx5/conf/ngosen-web-terminal-apps.conf</code> để gõ đúng cả sau khi khởi động lại, và
+    không làm ảnh hưởng ô chat cùng cửa sổ; xoá file đó để Ngó Sen học lại.
+  </p>
+  <p>Cơ chế này chạy tự động; xem thêm bài <a href="/huong-dan/che-do-go/">Chọn chế độ gõ</a>.</p>
+  <figure class="ex-card" aria-label="Ví dụ tự nhận ra terminal web trong một cửa sổ IDE">
+    <div class="ex-row">
+      <span class="ex-in">terminal <code>xterm.js</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">tự nhận ra và ghi vào <code>ngosen-web-terminal-apps.conf</code></span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in">ô chat cùng cửa sổ</span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">giữ cách gõ thường, không bị ảnh hưởng</span>
+    </div>
+  </figure>
+
+  <h2 id="cuu-chu-cuu-dau-chuyen-ma">Cứu chữ, Cứu dấu, Chuyển mã</h2>
+
+  <h3>Cứu chữ</h3>
+  <p>
+    Quên bật tiếng Việt mà đã gõ <code>tieengs vieetj</code>, bấm phím chuyển Anh/Việt của Ngó Sen (hoặc chuyển sang
+    Ngó Sen) thì chữ đổi ngay thành <code>tiếng việt</code>, cạnh con trỏ hiện “Cứu chữ: Tab hoặc Esc để trả lại chữ
+    đã gõ”. Khi đoạn có từ gõ lại vẫn y nguyên (như <code>abc</code> trong <code>abc tieengs</code>), Ngó Sen chỉ
+    hiện gợi ý <code>abc tieengs → abc tiếng</code> kèm “Cứu chữ: Enter để đổi, Tab hoặc Esc để giữ nguyên”. Cứu chữ
+    không ghi nhớ trong ô mật khẩu, quên đoạn đã gõ khi click chuột, bấm <kbd>Enter</kbd>, phím mũi tên hay chuyển ô,
+    và không hiện ở app không cho bộ gõ xoá chữ hoặc ô tìm kiếm của GNOME.
+  </p>
+  <p>
+    Mặc định bật ở “Cài đặt Ngó Sen › Gõ chữ › Sửa chữ › “Cứu chữ: gõ lại có dấu khi quên bật tiếng Việt””; tắt ô này
+    thì Ngó Sen không ghi nhớ phím gõ lúc chưa bật tiếng Việt. Xem thêm bài{' '}
+    <a href="/huong-dan/cuu-chu-cuu-dau/#cuu-chu">Sửa chữ quên bật tiếng Việt</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ Cứu chữ khi quên bật tiếng Việt">
+    <div class="ex-row">
+      <span class="ex-in"><code>tieengs vieetj</code> + <kbd>Ctrl</kbd>+<kbd>Shift</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">tiếng việt</span>
+      <span class="ex-note"><kbd>Tab</kbd> hoặc <kbd>Esc</kbd> trả lại</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>abc tieengs</code> + <kbd>Ctrl</kbd>+<kbd>Shift</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">gợi ý: abc tieengs → abc tiếng</span>
+      <span class="ex-note"><kbd>Enter</kbd> đổi, <kbd>Tab</kbd>/<kbd>Esc</kbd> giữ</span>
+    </div>
+  </figure>
+
+  <h3>Cứu dấu</h3>
+  <p>
+    Bôi đen chữ đã gõ xong rồi gõ phím dấu để đổi dấu ngay (<code>nhanh</code> rồi <code>s</code> thành
+    <code>nhánh</code>), gõ phím dấu khác để đổi tiếp (<code>nhánh</code> rồi <code>f</code> thành <code>nhành</code>);
+    bấm <kbd>Tab</kbd>, <kbd>Esc</kbd> hoặc gõ lại cùng phím dấu thì trả lại phím đã gõ, còn gõ chữ cái khác là viết
+    từ mới đè lên (<code>nhanh</code> rồi <code>sách</code> vẫn ra <code>sách</code>). Ở chế độ Gõ Sen, click chuột
+    ngay sau chữ đã gõ rồi gõ phím dấu cũng đổi dấu được mà không cần bôi đen (click vào giữa chữ thì gõ như thường).
+    Từ version 1.14, chế độ Gạch chân cũng sửa dấu được trên chữ bôi đen ở app GTK 4 và Chromium (bôi đen
+    <code>tiềng</code> rồi gõ <code>s</code> ra <code>tiếng</code>). Cứu dấu chỉ đổi dấu thanh (bôi đen
+    <code>nguoi</code> không ra <code>người</code>), chỉ chạy với bảng mã Unicode và không chạy trong ô tìm kiếm GNOME;
+    bản IBus chỉ có Cứu dấu trên chữ bôi đen ở app X11.
+  </p>
+  <p>
+    Mặc định bật ở “Cài đặt Ngó Sen › Gõ chữ › Sửa chữ › “Cứu dấu: sửa dấu chữ đang bôi đen””. Xem thêm bài{' '}
+    <a href="/huong-dan/cuu-chu-cuu-dau/#cuu-dau">Sửa dấu chữ đang bôi đen</a>.
+  </p>
+  <TypedExample id="retone-click" label="Ví dụ Cứu dấu bằng cách click ngay sau chữ rồi gõ phím dấu" />
+  <figure class="ex-card" aria-label="Ví dụ Cứu dấu khi bôi đen từ">
+    <div class="ex-row">
+      <span class="ex-in">bôi đen <code>nhanh</code> + <code>s</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">nhánh</span>
+      <span class="ex-note">gõ tiếp <code>f</code> → <code>nhành</code></span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in">bôi đen <code>tiềng</code> + <code>s</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">tiếng</span>
+      <span class="ex-note">Gạch chân ở app GTK 4 và Chromium</span>
+    </div>
+  </figure>
+
+  <h3>Chuyển mã</h3>
+  <p>
+    Bôi đen đoạn chữ gõ bằng TCVN3, VNI… rồi bấm phím chuyển mã, chữ được đổi ngay tại chỗ sang bảng mã đã chọn (mặc
+    định từ “TCVN3 (ABC)” sang “Unicode”), đồng thời có tuỳ chọn “Bỏ dấu” (<code>Tiếng Việt</code> thành
+    <code>Tieng Viet</code>) và đổi “Chữ hoa, chữ thường” (“Giữ nguyên”, “CHỮ HOA”, “chữ thường”, “Viết hoa đầu câu”,
+    “Viết Hoa Mỗi Từ”). Trang “Chuyển mã” còn có ô “Chuyển ngay ở đây” để dán chữ vào và chuyển ngay không cần phím
+    tắt. Nếu bấm phím khi chưa bôi đen gì chỉ hiện thông báo, không chèn chữ; bấm <kbd>Ctrl+Z</kbd> để lấy lại. Phím
+    này không dùng được trong terminal, và bản IBus không có Chuyển mã trong LibreOffice.
+  </p>
+  <p>
+    Phím tắt mặc định chưa đặt; chỉnh ở “Cài đặt Ngó Sen › Chuyển mã”. Xem thêm bài{' '}
+    <a href="/huong-dan/chuyen-ma/">Chuyển chữ bảng mã cũ sang Unicode</a>.
+  </p>
+  <Shot
+    name="guide-convert"
+    width={505}
+    height={570}
+    alt="Trang Chuyển mã: phím tắt Ctrl Alt C, chuyển từ TCVN3 (ABC) sang Unicode, nút Đảo chiều, ô Bỏ dấu, Chữ hoa, chữ thường Giữ nguyên; ô trên có chữ TCVN3, ô dưới ra Tiếng Việt là ngôn ngữ của người Việt Nam."
+    caption="Trang “Chuyển mã” với chữ TCVN3 dán vào ô trên. Linux Mint 22.1 Cinnamon, version 1.11.0-1."
+  />
+
+  <h2 id="che-do-go-va-phim-chuyen">Chế độ gõ và phím chuyển Anh/Việt</h2>
+
+  <h3>Gõ Sen và Gạch chân</h3>
+  <p>
+    Chế độ “Gõ Sen” (mặc định) đưa chữ thẳng vào app ngay khi gõ, gợi ý ở thanh địa chỉ hay ô tìm kiếm hiện theo từng
+    phím. Chế độ “Gạch chân” (Preedit) giữ chữ đang gõ có gạch dưới cho tới khi gõ xong, dùng khi gặp app không tương
+    thích với Gõ Sen.
+  </p>
+  <p>
+    Chọn chế độ chung ở “Cài đặt Ngó Sen › Gõ chữ › Gõ chữ › “Chế độ gõ””, hoặc đổi riêng cho một app bằng{' '}
+    <kbd>`</kbd> rồi <kbd>1</kbd> (Gõ Sen) hay <kbd>q</kbd> (Gạch chân). Xem thêm bài{' '}
+    <a href="/huong-dan/che-do-go/">Chọn chế độ gõ</a>.
+  </p>
+  <figure class="mode-compare" aria-label="So sánh Gõ Sen và Gạch chân">
+    <div class="mode-box">
+      <span class="mode-label">Gõ Sen (mặc định)</span>
+      <span class="mode-sample">tiếng<span class="mode-cursor" aria-hidden="true">|</span></span>
+      <span class="mode-hint">chữ đi thẳng vào app, không gạch chân</span>
+    </div>
+    <div class="mode-box">
+      <span class="mode-label">Gạch chân (Preedit)</span>
+      <span class="mode-sample"><span class="mode-preedit">tiếng</span><span class="mode-cursor" aria-hidden="true">|</span></span>
+      <span class="mode-hint">gạch dưới tới khi gõ xong từ</span>
+    </div>
+  </figure>
+
+  <h3>Menu chế độ và nhớ theo từng app</h3>
+  <p>
+    Khi đang gõ tiếng Việt, bấm <kbd>`</kbd> (“Phím tắt menu chế độ gõ”) mở menu cạnh con trỏ để chọn cho riêng app
+    đang dùng; Ngó Sen nhớ lựa chọn cho từng app (trên GNOME cần extension Input Method Panel để menu hiện ở app đi
+    qua GNOME Shell; từ version 1.9.0 chế độ theo app vẫn chạy khi tắt extension với app có file <code>.desktop</code>).
+    Bấm <kbd>Esc</kbd>, click ra ngoài, để yên 5 giây hoặc bấm phím không có trong menu thì menu đóng (phím đó được gõ
+    ra); bấm <kbd>`</kbd> lần nữa gõ ra chính dấu <code>`</code>.
+  </p>
+  <p>
+    Có thể đổi phím, ẩn từng mục, kéo thả thứ tự hoặc đặt “Phím tắt chuyển nhanh chế độ” (chưa đặt sẵn) ở “Cài đặt
+    Ngó Sen › Phím › Phím tắt”. Xem thêm bài <a href="/huong-dan/phim-tat-che-do/">Đổi phím tắt của chế độ gõ</a>.
+  </p>
+  <figure class="mode-popup" aria-label="Menu chế độ mở bằng phím dấu huyền ngược">
+    <ul class="popup-list">
+      <li class="active"><span class="popup-mark" aria-hidden="true">&gt;&gt;</span> <kbd>1</kbd> Gõ Sen</li>
+      <li><span class="popup-mark" aria-hidden="true"></span> <kbd>q</kbd> Gạch chân</li>
+      <li><span class="popup-mark" aria-hidden="true"></span> <kbd>w</kbd> Gợi ý emoji: tắt</li>
+      <li><span class="popup-mark" aria-hidden="true"></span> <kbd>t</kbd> Teencode: tắt</li>
+      <li><span class="popup-mark" aria-hidden="true"></span> <kbd>e</kbd> Tắt</li>
+      <li><span class="popup-mark" aria-hidden="true"></span> <kbd>v</kbd> Vim mode: tắt</li>
+      <li><span class="popup-mark" aria-hidden="true"></span> <kbd>`</kbd> Gõ `</li>
+    </ul>
+    <p class="popup-app">App: xed</p>
+  </figure>
+
+  <h3>Phím chuyển Anh/Việt, Mọi app / Từng app và ngosen-toggle</h3>
+  <p>
+    Ngó Sen có phím riêng chuyển Anh/Việt: cài mới dùng <kbd>Ctrl</kbd>+<kbd>Shift</kbd> và bật sẵn tiếng Việt (máy
+    cập nhật giữ phím và trạng thái cũ, thường là <kbd>Ctrl</kbd>+<kbd>Space</kbd>); ở tiếng Anh gõ như không có bộ
+    gõ. Với <kbd>Ctrl</kbd>+<kbd>Shift</kbd>, dùng bên trái hay phải, bấm phím nào trước cũng được và giữ tới một giây
+    vẫn tính. Mặc định, “Phím chuyển áp dụng cho” đặt ở “Mọi app” (chuyển mọi app cùng lúc, trừ app đặt “Tắt” trong
+    menu <kbd>`</kbd>, nơi bấm phím chuyển sẽ mở menu chọn lại Gõ Sen hoặc Gạch chân); chọn “Từng app” ở “Cài đặt Ngó
+    Sen › Phím › Phím tắt” để mỗi app nhớ riêng.
+  </p>
+  <p>
+    Đầu menu khay luôn có mục “✔ Tiếng Việt” / “✖ Tiếng Việt” để click chuyển và nhớ qua các lần khởi động lại. Muốn
+    gán phím tắt của desktop thì dùng lệnh <code>ngosen-toggle</code>: chuyển Anh/Việt kể cả khi chưa focus ô nhập nào,
+    hoặc chuyển từ bộ gõ fcitx5 khác sang Ngó Sen. Xem thêm bài{' '}
+    <a href="/huong-dan/bat-tat-tieng-viet/">Bật và tắt tiếng Việt</a>.
+  </p>
+  <figure class="ex-card" aria-label="Các cách chuyển Anh/Việt">
+    <div class="ex-row">
+      <span class="ex-in"><kbd>Ctrl</kbd>+<kbd>Shift</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">đổi Anh/Việt cho “Mọi app” (trừ app đặt Tắt)</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in">menu khay</span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">✔ Tiếng Việt / ✖ Tiếng Việt</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>ngosen-toggle</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">gán phím tắt desktop, chuyển kể cả khi không focus ô nhập</span>
+    </div>
+  </figure>
+
+  <h2 id="emoji-va-go-tat">Emoji và gõ tắt</h2>
+
+  <h3>Gợi ý emoji khi gõ</h3>
+  <p>
+    Từ version 1.14.1, gợi ý emoji tắt sẵn ở mọi app; bấm <kbd>`</kbd> rồi <kbd>w</kbd> để bật cho từng app. Mục <code>w</code> chỉ
+    hiện khi tuỳ chọn chung “Gợi ý emoji khi gõ” ở trang “Emoji” đang bật; tuỳ chọn này bật sẵn. Khi bật, gõ
+    xong <code>cười</code>, <code>con mèo</code>, <code>cảm ơn</code>, <code>haha</code>, <code>:)</code>, khoảng
+    460 từ theo tên emoji (như <code>máy bay</code> ✈️, <code>xe máy</code> 🏍️, <code>cơm</code> 🍚), 86 mã Yahoo
+    Messenger (<code>=))</code>, <code>:x</code>, <code>:&quot;&gt;</code>, <code>@&#125;;-</code>), tên nước viết
+    hoa (<code>Việt Nam</code>, <code>Pháp</code>) hoặc từ khoá tiếng Anh (<code>cat</code> 🐈,
+    <code>thumbs up</code> 👍; bỏ qua từ trùng chữ Việt như <code>can</code>) thì hiện <code>Tab: 😂 …</code> cạnh con
+    trỏ. Chữ cái đơn, con số và chữ tắt như <code>t</code>, <code>2</code>, <code>ng</code>, <code>vs</code> không gợi
+    ý; gợi ý không hiện ở ô mật khẩu, terminal và thanh địa chỉ.
+  </p>
+  <p>
+    Mặc định gợi ý hiện “Ở cuối câu”: danh sách hiện suốt lúc gõ, và sau dấu <code>.</code>, <code>!</code>,
+    <code>?</code> hoặc khi dừng tay thì bấm <kbd>Tab</kbd> rồi số để chọn, emoji chèn vào chỗ con trỏ;
+    <kbd>Esc</kbd> ẩn tới hết câu, hoặc đổi sang “Sau mỗi từ” ở “Emoji › “Gợi ý emoji””.
+    Bấm <kbd>Tab</kbd> để đánh số rồi bấm <kbd>1</kbd>–<kbd>5</kbd> (hoặc <kbd>1</kbd>–<kbd>9</kbd> ở cuối câu), hoặc
+    dùng phím mũi tên và <kbd>Enter</kbd>/<kbd>Space</kbd>/<kbd>Tab</kbd>; số gõ lúc chưa bấm <kbd>Tab</kbd> vẫn ra
+    chữ số như thường, và để yên 4 giây danh sách tự ẩn. Trên GNOME không có extension Input Method Panel, gợi ý hiện
+    ngay trong ô với gạch chân sau khi dừng gõ chừng nửa giây. Trên trang “Emoji” có danh sách “App đã bật emoji”, tuỳ
+    chọn “Khi chọn emoji” (“Đặt sau từ” mặc định hoặc “Thay luôn từ”; riêng <code>haha</code> và <code>:)</code> luôn
+    được thay), “Mã emoji Yahoo Messenger” (bật), “Từ khoá tiếng Anh” (bật), bảng mọi emoji kèm từ gợi ý (bật/tắt từ,
+    thêm từ, “Như cũ”) và nút “Xuất…” / “Nhập…”. Xem thêm bài <a href="/huong-dan/go-emoji/">Gõ emoji</a>.
+  </p>
+  <Shot
+    name="guide-emoji"
+    width={650}
+    height={260}
+    alt="Trong xed có câu “cười quá.” và hàng gợi ý “Tab: 😂 🤣 😄 😆 😁”."
+    caption="Gõ “cười quá.” trong xed. Linux Mint 22.1 Cinnamon, version 1.14.1-1."
+  />
+  <figure class="ex-card" aria-label="Ví dụ gợi ý emoji với câu, mã Yahoo và từ tiếng Anh">
+    <div class="ex-row">
+      <span class="ex-in"><code>vui quá!</code> + <kbd>Tab</kbd> + <kbd>1</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">vui quá! 😊</span>
+      <span class="ex-note">gợi ý ở cuối câu</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>=))</code> / <code>:)</code> + <kbd>Tab</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">🤣 / 🙂</span>
+      <span class="ex-note">mã Yahoo và mặt cười luôn được thay thành emoji</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>cat</code> + <kbd>Tab</kbd></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">cat 🐈</span>
+      <span class="ex-note">hoặc 🐈 khi chọn “Thay luôn từ”</span>
+    </div>
+  </figure>
+
+  <h3>Gõ tắt</h3>
+  <p>
+    Từ viết tắt bung thành cụm đầy đủ khi bấm <kbd>Space</kbd>, hoặc bấm <kbd>Enter</kbd> ngay sau từ gõ tắt trong ô
+    chat (<code>dc</code> rồi <kbd>Enter</kbd> gửi <code>được</code> nếu đã thêm gõ tắt đó). “Bật gõ tắt” mặc định
+    bật ở “Cài đặt Ngó Sen › Gõ tắt &amp; Từ điển › Gõ tắt” (công tắc cũng có trong menu khay). Chặn bung gõ tắt bằng phím chốt chữ (mặc định <kbd>Ctrl</kbd>).
+  </p>
+  <p>
+    “Gõ tắt chữ hoa” (bật sẵn) đổi chữ hoa theo cách gõ từ viết tắt nhưng giữ chữ hoa đã lưu trong cụm từ
+    (<code>ip</code> ra <code>iPhone</code> thì <code>Ip</code> vẫn ra <code>iPhone</code>), và khớp được từ viết tắt
+    lưu bằng chữ hoa như <code>VN</code>. Từ đầy đủ hỗ trợ <code>$DATE</code> (mặc định <code>%d/%m/%Y</code>) và
+    <code>$TIME</code> (mặc định <code>%H:%M</code>). Mục “Cho phép gõ tắt trong chế độ "Tắt"” mặc định tắt. Xem thêm
+    bài <a href="/huong-dan/go-tat/">Gõ tắt một cụm từ hay dùng</a>.
+  </p>
+  <figure class="ex-card" aria-label="Ví dụ gõ tắt, chữ hoa và ngày giờ">
+    <div class="ex-row">
+      <span class="ex-in"><code>e ko</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">em không</span>
+      <span class="ex-note">với hai gõ tắt <code>e → em</code> và <code>ko → không</code></span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>kg</code> / <code>Kg</code> / <code>KG</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">khô gà / Khô gà / KHÔ GÀ</span>
+      <span class="ex-note">Gõ tắt chữ hoa</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-in"><code>hn</code></span>
+      <span class="ex-arrow" aria-hidden="true">→</span>
+      <span class="ex-out">Hôm nay <em>ngày/tháng/năm</em></span>
+      <span class="ex-note">từ đầy đủ là <code>Hôm nay $DATE</code>, ra ngày gõ</span>
+    </div>
+  </figure>
+
+  <h2 id="cua-so-cai-dat-va-kiem-tra">Cửa sổ cài đặt, khay và Kiểm tra máy</h2>
+
+  <h3>Cửa sổ cài đặt GTK hoặc Qt</h3>
+  <p>
+    Mở bằng “Cài đặt Ngó Sen” trong menu app, menu khay hoặc lệnh <code>fcitx5-ngosen-settings</code>. GNOME, Cinnamon
+    (Linux Mint) và Xfce tự mở bản GTK nếu đủ <code>libadwaita</code>, các desktop khác mở bản Qt; đổi qua lại ở “Cài
+    đặt Ngó Sen › Giao diện › “Cửa sổ cài đặt”” (Tự động / Qt / GTK, nút “Đổi sang bản GTK…” / “Đổi sang bản Qt…”).
+  </p>
+  <p>
+    Mọi thay đổi lưu ngay kèm dòng “Đã lưu” và nút “Hoàn tác”; có “Sao lưu…”, “Khôi phục…”, nút “Đưa về mặc định…”
+    (bản Qt, hoàn tác được), ô tìm cài đặt tìm được khi gõ không dấu (<kbd>Ctrl+F</kbd>), gợi ý dưới mỗi tuỳ chọn và ô
+    “Gõ thử ở đây”. Trang “Có gì mới &amp; mẹo” liệt kê tính năng theo version kèm nút “Mở cài đặt” tới đúng ô (thông
+    báo góc màn hình hiện một lần sau khi cập nhật lên version có tính năng mới), còn trang “Gõ chữ” hiện một mẹo
+    ngẫu nhiên mỗi lần mở. Xem thêm bài <a href="/huong-dan/cua-so-cai-dat/">Chọn cửa sổ cài đặt Qt hay GTK</a> và{' '}
+    <a href="/huong-dan/tim-sao-luu/">Tìm cài đặt, hoàn tác và sao lưu</a>.
+  </p>
+  <Shot
+    name="guide-gtk"
+    width={798}
+    height={578}
+    alt="Cửa sổ cài đặt bản GTK, trang Gõ chữ: thanh bên có chín trang, ô mẹo ở đầu trang, hàng nút Chế độ gõ với Gõ Sen đang chọn, Kiểu gõ Telex, Bảng mã Unicode và nhóm Sửa chữ với các công tắc Tự khôi phục từ gõ sai, Vẫn gõ dd ra đ khi tự khôi phục."
+    caption="Bản GTK, trang “Gõ chữ”. Linux Mint 22.1 Cinnamon, version 1.14.0-1."
+  />
+
+  <h3>Biểu tượng khay, menu khay và ngôn ngữ giao diện</h3>
+  <p>
+    Ở “Cài đặt Ngó Sen › Giao diện › Biểu tượng khay”, “Khay hiện” có bốn lựa chọn: “Biểu tượng màu” (mặc định: hai
+    cọng ngó sen chụm thành chữ V khi bật tiếng Việt, lát củ sen khi tắt), “V / E”, “vi / en”, và “Ảnh tự chọn” (mỗi
+    ngôn ngữ một ảnh SVG vuông hoặc PNG từ 64×64 nền trong suốt). “Màu biểu tượng” (Tự động / Hợp panel sáng / Hợp
+    panel tối) dùng cho “V / E” và “vi / en”; “Cỡ biểu tượng khay” (Bình thường / Lớn) dùng cho “Biểu tượng màu” và
+    không đổi trên GNOME. Ô nhỏ cạnh con trỏ khi bật Ngó Sen hiện <code>vi</code>.
+  </p>
+  <p>
+    Nhóm “Hiện trong menu khay” cho phép ẩn bớt các mục chuyển nhanh (“Kiểu gõ”, “Bảng mã”, gõ tắt, “Gõ tắt chữ hoa”,
+    “Tự viết hoa”, “Tự khôi phục từ gõ sai”, “Từ điển tuỳ chỉnh”); “Cài đặt” và “Lưu nhật ký gõ” luôn có trong menu.
+    “Ngôn ngữ giao diện” (mặc định Tiếng Việt, hoặc English) áp cho menu khay, menu chế độ và cửa sổ cài đặt kể cả khi
+    desktop dùng tiếng Anh. Xem thêm bài <a href="/huong-dan/icon-khay/">Đổi icon trên khay</a>.
+  </p>
+  <Shot
+    name="guide-tray"
+    width={560}
+    height={512}
+    alt="Trang Giao diện: Ngôn ngữ giao diện Tiếng Việt; Khay hiện vi / en; hai dòng ảnh khay và Cỡ biểu tượng khay mờ đi; Màu biểu tượng Tự động; Trên khay xem trước chữ vi và en."
+    caption="Trang “Giao diện”, “Khay hiện” chọn “vi / en”. Bản GTK trên Linux Mint 22.1 Cinnamon, version 1.14.0-1."
+  />
+
+  <h3>Kiểm tra máy, nhật ký gõ và hướng dẫn cho AI</h3>
+  <p>
+    Trang “Cài đặt Ngó Sen › Kiểm tra máy” kiểm các bước cài đặt (fcitx5 tự chạy khi đăng nhập, biến môi trường,
+    Virtual Keyboard trên KDE, <code>im-config</code>, extension Input Method Panel trên GNOME, version đang chạy, bảng
+    mã không phải Unicode, bàn phím khác đứng trước Ngó Sen kèm nút “Xoá” có hoàn tác) với nút sửa từng việc hoặc “Sửa
+    cả N việc”. Trang này tự mở lần đầu mở cửa sổ, sau lần cài đầu bằng lệnh cài một dòng, và khi còn bước làm không
+    gõ được tiếng Việt (hoặc báo đỏ nếu đăng nhập lại mà thiết lập vẫn chưa có tác dụng). Cùng trang có ô gõ thử,
+    test app kèm nhật ký gõ, danh sách app đang kết nối với fcitx5 và nút gửi kết quả qua GitHub, “Nhắn qua Facebook…”
+    (chép sẵn thông tin máy, không cần tài khoản GitHub) hoặc “Chép kết quả”.
+  </p>
+  <p>
+    Lệnh <code>ngosen-check</code> in kết quả Kiểm tra máy ra terminal kèm cách sửa từng bước mà không đổi gì trên máy,
+    không ghi tên app (trừ khi thêm <code>--include-apps</code>) và không ghi chữ đã gõ. Khi gặp lỗi, chọn “Lưu nhật
+    ký gõ” trong menu khay (hoặc chạy <code>ngosen-save-log</code> nếu khay treo) để lưu log vào
+    <code>~/.local/state/ngosen/</code>; nhật ký chỉ nằm trong bộ nhớ tới lúc lưu, giữ khoảng nửa phút gõ gần nhất
+    trong trình duyệt và không ghi chữ trong ô mật khẩu. Cần nhờ AI thì gửi <a href={`${REPO}/blob/main/docs/ai-help.md`}><code>docs/ai-help.md</code></a> để
+    tìm lỗi gõ hoặc <a href={`${REPO}/blob/main/docs/ai-guide.md`}><code>docs/ai-guide.md</code></a> để hỏi cách dùng.
+    Xem thêm bài <a href="/huong-dan/bao-loi/">Báo lỗi</a>.
+  </p>
+  <Shot
+    name="guide-check"
+    width={525}
+    height={372}
+    alt="Đầu trang “Kiểm tra máy” ghi “Còn 1 việc cần sửa”, bên dưới là danh sách các bước và bước cảnh báo có nút “Chép lệnh”, “Chọn fcitx5”."
+    caption="Trang “Kiểm tra máy” với bước cần sửa và nút sửa. Linux Mint 22.1 Cinnamon, version 1.8.0-1."
+  />
+  <pre tabindex="0"><code>{`$ ngosen-check       # in kết quả Kiểm tra máy và cách sửa ra terminal
+$ ngosen-save-log    # lưu nhật ký gõ khi menu khay không mở được`}</code></pre>
+
+  <h2 id="cai-dat">Cài đặt và các bản</h2>
+  <p>
+    Lệnh cài một dòng <code>install.sh</code> tải gói đúng distro từ release mới nhất, kiểm SHA-256, tự thiết lập theo
+    desktop và chạy lại được để cập nhật (<code>--uninstall</code> để gỡ), hỗ trợ Fedora, Ubuntu (từ 24.04), Debian (từ
+    12), Kali, deepin, LMDE, Devuan, Parrot, Arch, Artix, CachyOS và openSUSE Tumbleweed trên <code>x86_64</code>,
+    cùng gói <code>aarch64</code> cho Fedora, Ubuntu, Debian và Kali, repo có chữ ký, AUR, NixOS flake và bản thử
+    <code>next-build</code>. Ngó Sen có bản fcitx5 (<code>fcitx5-ngosen</code>), bản IBus (<code>ibus-ngosen</code>,
+    thiếu Cứu dấu trên chữ bôi đen ngoài app X11 và Chuyển mã trong LibreOffice, tính năng mới đến chậm hơn một chút)
+    và <code>wl-ngosen</code> cho niri, Sway, Hyprland; xem chi tiết ở trang <a href="/cai-dat/">Cài đặt</a> và{' '}
+    <a href="/ngo-sen-cho-gnome/">Ngó Sen bản IBus</a>.
+  </p>
+</Page>
+
+<style>
+  .ex-card {
+    margin-block: 1rem 1.5rem;
+    padding: 0.75rem 0.95rem;
+    background: var(--desk);
+    border: 1px solid var(--paper-edge);
+    border-radius: 2px;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .ex-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.55rem;
+  }
+
+  .ex-in {
+    font-size: var(--step-0);
+  }
+
+  .ex-arrow {
+    color: var(--ink-muted);
+    font-family: var(--font-typed);
+  }
+
+  .ex-out {
+    font-family: var(--font-typed);
+    font-size: var(--step-1);
+    line-height: 1.35;
+    padding-block: 0.05em;
+  }
+
+  .ex-note {
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .ex-card code {
+    padding: 0.06em 0.28em;
+    background: var(--paper);
+    border-radius: 2px;
+  }
+
+  .mode-compare {
+    margin-block: 1rem 1.5rem;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  }
+
+  .mode-box {
+    padding: 0.75rem 0.95rem;
+    background: var(--paper);
+    border: 1px solid var(--paper-edge);
+    border-radius: 2px;
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .mode-label {
+    font-family: var(--font-legend);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .mode-sample {
+    font-family: var(--font-typed);
+    font-size: var(--step-1);
+    line-height: 1.35;
+    padding-block: 0.08em;
+  }
+
+  .mode-preedit {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+  }
+
+  .mode-cursor {
+    margin-left: 0.05em;
+    color: var(--ink-muted);
+  }
+
+  .mode-hint {
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .mode-popup {
+    margin-block: 1rem 1.5rem;
+    max-width: 19.5rem;
+    background: var(--paper);
+    border: 1px solid var(--ink-muted);
+    border-radius: 3px;
+    box-shadow: 0 1rem 1.4rem -1rem rgb(0 0 0 / 0.35);
+    overflow: hidden;
+  }
+
+  .popup-list {
+    margin: 0;
+    padding: 0.45rem 0.75rem;
+    list-style: none;
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .popup-list li {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-size: 0.98rem;
+  }
+
+  .popup-list li.active {
+    font-weight: 600;
+  }
+
+  .popup-mark {
+    display: inline-block;
+    width: 1.4em;
+    font-family: var(--font-typed);
+    color: var(--ink-muted);
+  }
+
+  .popup-app {
+    margin: 0;
+    padding: 0.4rem 0.75rem 0.45rem;
+    border-top: 1px solid var(--paper-edge);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+</style>

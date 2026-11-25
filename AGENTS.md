@@ -57,6 +57,13 @@ or unit-test runner; `npm run build` type-checks content frontmatter and fails o
   `tools/telex-wasm/build.sh`, then run `npm run check:telex` and
   `node tools/telex-wasm/demo-steps.mjs`. It is the Rust bamboo-core with the settings of
   `default_config()` in `bamboo-rs/` of the main repository; keep the version and settings in step.
+- `/tinh-nang/` (`src/pages/tinh-nang.astro`) takes every fact from `README.md`, `CHANGELOG.md`,
+  `settings-gui/core/catalog.py`, `settings-gui/core/whats_new_content.py`, `src/ngosen-config.h`,
+  `src/core/ngosen-options.h`, `po/vi.po` and `docs/ai-guide.md` on `main` of `ngosen/ngosen` (no
+  unreleased `next`/`patch` rules, no "Experiment" options, no "(thử nghiệm)" labels). Typing
+  examples use `TypedExample.astro` reading `src/data/feature-steps.json` by id; never hand-write
+  step outputs. Regenerate `src/data/feature-steps.json` with `tools/feature-steps/build.sh` on
+  each release.
 - Ribbon red (`--ribbon`) is reserved for the install copy key, the caret, the "not fixed" mark,
   focus and selection, and the line under the current page's nav key. Tested levels are told apart
   by the stamp's outline, never by colour alone.
@@ -128,8 +135,10 @@ When a version is released, in this order:
 4. If the README changed, update the intro, highlights and scope note (`TAGLINE`, `HIGHLIGHTS`,
    `SCOPE`).
 5. Bring `ROADMAP` in line with `ROADMAP.md`: the released version leaves the roadmap.
-6. Update `/en/` and the blog posts as described above. If the settings window changed (a renamed
-   page, button or option, a new option), check the `/huong-dan/` pages that show it.
+6. Update `/en/` and the blog posts as described above. Update `/tinh-nang/` if user-visible
+   features changed, and regenerate `src/data/feature-steps.json` with `tools/feature-steps/build.sh`
+   when typing behaviour changed. If the settings window changed (a renamed page, button or option,
+   a new option), check the `/huong-dan/` pages that show it.
 7. Run `npm run build`, check the changed pages, then ask the maintainer for approval before pushing
    to `main`.
 

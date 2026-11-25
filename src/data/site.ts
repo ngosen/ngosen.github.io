@@ -2659,6 +2659,7 @@ export const IBUS_RELEASES: { version: string; date: string; summary: string }[]
 ];
 
 export const NAV = [
+  { href: '/tinh-nang/', label: 'Tính năng' },
   { href: '/cai-dat/', label: 'Cài đặt' },
   { href: '/huong-dan/', label: 'Hướng dẫn' },
   { href: '/ngo-sen-cho-gnome/', label: 'Bản IBus' },

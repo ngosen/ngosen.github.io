@@ -1,0 +1,269 @@
+{
+  "version": "ngosen-1.14.1-1",
+  "examples": {
+    "forgot-hat": {
+      "keys": "tienf Nguyenx ruouj ",
+      "steps": [
+        "t",
+        "ti",
+        "tie",
+        "tien",
+        "tièn",
+        "tiền ",
+        "tiền N",
+        "tiền Ng",
+        "tiền Ngu",
+        "tiền Nguy",
+        "tiền Nguye",
+        "tiền Nguyen",
+        "tiền Nguyẽn",
+        "tiền Nguyễn ",
+        "tiền Nguyễn r",
+        "tiền Nguyễn ru",
+        "tiền Nguyễn ruo",
+        "tiền Nguyễn ruou",
+        "tiền Nguyễn ruọu",
+        "tiền Nguyễn rượu "
+      ],
+      "final": "tiền Nguyễn rượu "
+    },
+    "english-kept": {
+      "keys": "huees thiss tesst ",
+      "steps": [
+        "h",
+        "hu",
+        "hue",
+        "huê",
+        "huế",
+        "huế ",
+        "huế t",
+        "huế th",
+        "huế thi",
+        "huế thí",
+        "huế this",
+        "huế this ",
+        "huế this t",
+        "huế this te",
+        "huế this té",
+        "huế this tes",
+        "huế this test",
+        "huế this test "
+      ],
+      "final": "huế this test "
+    },
+    "extra-key": {
+      "keys": "dduowjcd ",
+      "steps": [
+        "d",
+        "đ",
+        "đu",
+        "đuo",
+        "đươ",
+        "đượ",
+        "được",
+        "đượcd",
+        "được "
+      ],
+      "final": "được "
+    },
+    "split-space": {
+      "keys": "coongty ",
+      "steps": [
+        "c",
+        "co",
+        "cô",
+        "côn",
+        "công",
+        "côngt",
+        "côngty",
+        "công ty "
+      ],
+      "final": "công ty "
+    },
+    "g-for-ng": {
+      "keys": "nhuwg khoog ddugs ",
+      "steps": [
+        "n",
+        "nh",
+        "nhu",
+        "như",
+        "nhưg",
+        "nhưng ",
+        "nhưng k",
+        "nhưng kh",
+        "nhưng kho",
+        "nhưng khô",
+        "nhưng khôg",
+        "nhưng không ",
+        "nhưng không d",
+        "nhưng không đ",
+        "nhưng không đu",
+        "nhưng không đug",
+        "nhưng không đugs",
+        "nhưng không đúng "
+      ],
+      "final": "nhưng không đúng "
+    },
+    "tone-after-final": {
+      "keys": "dduoxwcj mooxtj ",
+      "steps": [
+        "d",
+        "đ",
+        "đu",
+        "đuo",
+        "đuõ",
+        "đưỡ",
+        "dduoxwc",
+        "dduoxwcj",
+        "được ",
+        "được m",
+        "được mo",
+        "được mô",
+        "được mỗ",
+        "được mooxt",
+        "được mooxtj",
+        "được một "
+      ],
+      "final": "được một "
+    },
+    "dictionary-rhyme": {
+      "keys": "peks ",
+      "steps": [
+        "p",
+        "pe",
+        "pek",
+        "peks",
+        "pék "
+      ],
+      "final": "pék "
+    },
+    "names": {
+      "keys": "ddakroong mnoong drawng ",
+      "steps": [
+        "d",
+        "đ",
+        "đa",
+        "đak",
+        "đakr",
+        "đakro",
+        "đakrô",
+        "đakrôn",
+        "đakrông",
+        "đakrông ",
+        "đakrông m",
+        "đakrông mn",
+        "đakrông mno",
+        "đakrông mnô",
+        "đakrông mnôn",
+        "đakrông mnông",
+        "đakrông mnông ",
+        "đakrông mnông d",
+        "đakrông mnông dr",
+        "đakrông mnông dra",
+        "đakrông mnông draw",
+        "đakrông mnông drawn",
+        "đakrông mnông drăng",
+        "đakrông mnông drăng "
+      ],
+      "final": "đakrông mnông drăng "
+    },
+    "stretch": {
+      "keys": "afaaa khoonggg ",
+      "steps": [
+        "a",
+        "à",
+        "ầ",
+        "àaa",
+        "àaaa",
+        "àaaa ",
+        "àaaa k",
+        "àaaa kh",
+        "àaaa kho",
+        "àaaa khô",
+        "àaaa khôn",
+        "àaaa không",
+        "àaaa khôngg",
+        "àaaa khônggg",
+        "àaaa khônggg "
+      ],
+      "final": "àaaa khônggg "
+    },
+    "reopen-word": {
+      "keys": "duyeet <<<<<yeejt ",
+      "steps": [
+        "d",
+        "du",
+        "duy",
+        "duye",
+        "duyê",
+        "duyêt",
+        "duyeet ",
+        "duyeet",
+        "duyee",
+        "duye",
+        "duy",
+        "du",
+        "duy",
+        "duye",
+        "duyê",
+        "duyệ",
+        "duyệt",
+        "duyệt "
+      ],
+      "final": "duyệt "
+    },
+    "backspace-raw": {
+      "keys": "thuwcx<j ",
+      "steps": [
+        "t",
+        "th",
+        "thu",
+        "thư",
+        "thưc",
+        "thuwcx",
+        "thưc",
+        "thực",
+        "thực "
+      ],
+      "final": "thực "
+    },
+    "slash": {
+      "keys": "/cost cd /usr/share ",
+      "steps": [
+        "/",
+        "/c",
+        "/co",
+        "/cos",
+        "/cost",
+        "/cost ",
+        "/cost c",
+        "/cost cd",
+        "/cost cd ",
+        "/cost cd /",
+        "/cost cd /u",
+        "/cost cd /us",
+        "/cost cd /usr",
+        "/cost cd /usr/",
+        "/cost cd /usr/s",
+        "/cost cd /usr/sh",
+        "/cost cd /usr/sha",
+        "/cost cd /usr/shar",
+        "/cost cd /usr/share",
+        "/cost cd /usr/share "
+      ],
+      "final": "/cost cd /usr/share "
+    },
+    "retone-click": {
+      "keys": "nhanh|s",
+      "steps": [
+        "n",
+        "nh",
+        "nha",
+        "nhan",
+        "nhanh",
+        "nhánh"
+      ],
+      "final": "nhánh"
+    }
+  }
+}
