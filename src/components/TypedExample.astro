@@ -1,0 +1,267 @@
+---
+import featureSteps from '../data/feature-steps.json';
+
+export type ExampleId = keyof typeof featureSteps.examples;
+
+interface Props {
+  id: ExampleId;
+  label?: string;
+}
+
+const { id, label } = Astro.props;
+const example = featureSteps.examples[id];
+if (!example) {
+  throw new Error(`Unknown feature-steps example id: ${id}`);
+}
+
+interface Token {
+  kind: 'char' | 'space' | 'backspace' | 'click';
+  char: string;
+}
+
+const tokens: Token[] = [...example.keys].map((char) => {
+  if (char === '<') return { kind: 'backspace', char };
+  if (char === ' ') return { kind: 'space', char };
+  if (char === '|') return { kind: 'click', char };
+  return { kind: 'char', char };
+});
+
+const finalText = example.final;
+
+// Screen readers skip the drawn keys, so they get the sequence as text.
+const spoken = tokens
+  .map((token) =>
+    token.kind === 'space' ? 'Space' : token.kind === 'backspace' ? 'Backspace' : token.kind === 'click' ? 'click chuột' : token.char,
+  )
+  .join(' ');
+---
+
+<figure class="te" data-te data-te-id={id} aria-label={label}>
+  <div class="te-board" aria-hidden="true">
+    <div class="te-keys">
+      {
+        tokens.map((token) =>
+          token.kind === 'click' ? (
+            <span class="te-click" data-te-cap data-state="done" title="Click chuột">
+              <svg viewBox="0 0 14 18" width="12" height="15" aria-hidden="true">
+                <path
+                  d="M2 1.5v13l3.4-3.3 2.3 4.8 1.9-.9-2.3-4.8h4.5z"
+                  fill="var(--cap)"
+                  stroke="var(--cap-ink)"
+                  stroke-width="1.3"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          ) : token.kind === 'backspace' ? (
+            <span class="key te-key te-key--bs" data-te-cap data-state="done" title="Backspace">
+              ⌫
+            </span>
+          ) : token.kind === 'space' ? (
+            <span class="key te-key te-key--space" data-te-cap data-state="done" title="Space">
+              &nbsp;
+            </span>
+          ) : (
+            <span class="key te-key" data-te-cap data-state="done">
+              {token.char}
+            </span>
+          ),
+        )
+      }
+    </div>
+  </div>
+  <p class="visually-hidden">Gõ lần lượt: {spoken}. Kết quả:</p>
+  <div class="te-strip">
+    <p class="te-line"><span class="te-out" data-te-out>{finalText}</span><span class="caret" aria-hidden="true"></span></p>
+    <button type="button" class="key te-replay" data-te-replay hidden>Xem từng phím</button>
+  </div>
+</figure>
+
+<style>
+  .te {
+    margin-block: 1.1rem 1.5rem;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--paper-edge);
+  }
+
+  .te-board {
+    background: var(--enamel);
+    color: var(--on-enamel);
+    padding: 0.65rem 0.85rem 0.75rem;
+  }
+
+  .te-keys {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .te-key {
+    min-width: 1.65em;
+    /* Telex is case-sensitive: show the keys as typed. */
+    text-transform: none;
+    padding: 0.22em 0.42em 0.18em;
+    border-bottom-width: 0.22em;
+    border-radius: 0.32em;
+    font-size: 0.88rem;
+    cursor: default;
+    transition:
+      transform 140ms var(--ease-out),
+      box-shadow 140ms var(--ease-out),
+      opacity 220ms var(--ease-out);
+  }
+
+  .te-key--space {
+    min-width: 3.1em;
+  }
+
+  .te-key--bs {
+    min-width: 2.1em;
+  }
+
+  .te-key[data-state='done'] {
+    opacity: 0.62;
+  }
+
+  .te-key[data-state='now'] {
+    opacity: 1;
+    transform: translateY(0.18em);
+    box-shadow: 0 0.12em 0.25em -0.12em rgb(0 0 0 / 0.45);
+  }
+
+  .te-click {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.15rem 0.2rem;
+    transition:
+      transform 140ms var(--ease-out),
+      opacity 220ms var(--ease-out);
+  }
+
+  .te-click[data-state='done'] {
+    opacity: 0.62;
+  }
+
+  .te-click[data-state='now'] {
+    opacity: 1;
+    transform: translateY(0.14em) scale(1.08);
+  }
+
+  .te-strip {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 0.6rem 0.85rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem 1rem;
+  }
+
+  .te-line {
+    margin: 0;
+    flex: 1 1 12rem;
+    min-width: 0;
+    min-height: 1.4em;
+    font-family: var(--font-typed);
+    font-size: var(--step-1);
+    line-height: 1.35;
+    /* Room for stacked Vietnamese marks (ễ, ậ) and visible trailing spaces before the caret. */
+    padding-block: 0.12em;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 0.48em;
+    height: 0.1em;
+    margin-left: 0.06em;
+    background: var(--ribbon);
+  }
+
+  .te-replay[hidden] {
+    display: none;
+  }
+
+  .te-replay {
+    flex: none;
+    min-height: 2.75rem;
+    font-size: 0.85rem;
+    padding: 0.25em 0.7em 0.2em;
+  }
+</style>
+
+<script>
+  import featureSteps from '../data/feature-steps.json';
+
+  type Example = { keys: string; steps: string[]; final: string };
+  const examples = featureSteps.examples as Record<string, Example>;
+  const KEY_MS = 210;
+
+  const widgets = [...document.querySelectorAll<HTMLElement>('[data-te]')];
+
+  for (const el of widgets) {
+    const id = el.dataset.teId;
+    const example = id ? examples[id] : undefined;
+    const out = el.querySelector<HTMLElement>('[data-te-out]');
+    const replay = el.querySelector<HTMLButtonElement>('[data-te-replay]');
+    const caps = [...el.querySelectorAll<HTMLElement>('[data-te-cap]')];
+
+    if (!example || !out || !replay || caps.length === 0) continue;
+
+    // "|" is a mouse click and does not consume an entry from `steps`.
+    let stepCursor = 0;
+    const tokenSteps: Array<number | null> = [...example.keys].map((ch) => (ch === '|' ? null : stepCursor++));
+
+    let timer: number | undefined;
+    let playing = false;
+
+    const stop = () => {
+      window.clearTimeout(timer);
+      playing = false;
+      replay.textContent = 'Xem từng phím';
+    };
+
+    const tick = (index: number) => {
+      if (index > 0) {
+        const prev = caps[index - 1];
+        if (prev) prev.dataset.state = 'done';
+      }
+      if (index >= tokenSteps.length) {
+        out.textContent = example.final;
+        stop();
+        return;
+      }
+      const cap = caps[index];
+      if (cap) cap.dataset.state = 'now';
+      const stepIndex = tokenSteps[index];
+      if (stepIndex !== null && stepIndex !== undefined) {
+        out.textContent = example.steps[stepIndex] ?? '';
+      }
+      timer = window.setTimeout(() => tick(index + 1), KEY_MS);
+    };
+
+    const start = () => {
+      window.clearTimeout(timer);
+      playing = true;
+      replay.textContent = 'Dừng';
+      for (const cap of caps) cap.dataset.state = 'todo';
+      out.textContent = '';
+      tick(0);
+    };
+
+    replay.hidden = false;
+    replay.addEventListener('click', () => {
+      if (playing) {
+        stop();
+        return;
+      }
+      start();
+    });
+  }
+
+</script>

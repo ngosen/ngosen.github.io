@@ -1,0 +1,14 @@
+# id<TAB>keys. "<" is BackSpace, "|" a mouse click right after the word. Output: src/data/feature-steps.json
+forgot-hat	tienf Nguyenx ruouj 
+english-kept	huees thiss tesst 
+extra-key	dduowjcd 
+split-space	coongty 
+g-for-ng	nhuwg khoog ddugs 
+tone-after-final	dduoxwcj mooxtj 
+dictionary-rhyme	peks 
+names	ddakroong mnoong drawng 
+stretch	afaaa khoonggg 
+reopen-word	duyeet <<<<<yeejt 
+backspace-raw	thuwcx<j 
+slash	/cost cd /usr/share 
+retone-click	nhanh|s
